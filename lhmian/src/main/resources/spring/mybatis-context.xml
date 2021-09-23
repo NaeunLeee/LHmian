@@ -20,6 +20,6 @@
 	
 	
 	<!-- mybatis / db 완성후 mapper 제작 -->
-	<mybatis-spring:scan base-package="com.lh.app.**.mapper"/>
+	<mybatis-spring:scan base-package="com.lh.app.**.mapper"/> 
 
 </beans>
