@@ -38,11 +38,15 @@ public class OpeInfoController {
 	@GetMapping("/admin/admOpeInfoList")
 	public String admOpeInfoList(Model model) {
 		model.addAttribute("list", opeInfoService.getList());
-		return "introduce/admOpeInfoList";
+		return "admin/admOpeInfoList";
 	}
 	
-	
 	// 관리자 단건 조회
+	@GetMapping("/admin/admOpeInfoSelect")
+	public String admOpeInfoSelect(Model model, OpeInfoVO vo) {
+		model.addAttribute("info", opeInfoService.read(vo));
+		return "admin/admOpeInfoSelect";
+	}
 	
 	// 등록 폼
 	@GetMapping("/admin/admOpeInfoInsert")
