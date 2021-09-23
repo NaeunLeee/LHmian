@@ -11,7 +11,7 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:sql-map-config-spring.xml" /> <!-- 옵션(삭제가능) -->
-		<!-- <property name="mapperLocations" value="classpath:/mappings/*.xml" /> //차후 VO생성후 주석 제거-->
+		<property name="mapperLocations" value="classpath:/mappings/*.xml" /> 
 	</bean>
 	<!-- SqlSessionTemplate -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
@@ -20,6 +20,6 @@
 	
 	
 	<!-- mybatis / db 완성후 mapper 제작 -->
-	<!-- <mybatis-spring:scan base-package="com.lh.app.**.mapper"/> -->
+	<mybatis-spring:scan base-package="com.lh.app.**.mapper"/> 
 
 </beans>
