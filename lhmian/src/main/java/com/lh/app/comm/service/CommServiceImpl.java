@@ -28,9 +28,9 @@ public class CommServiceImpl implements CommService {
 	}
 
 	@Override
-	public int remove(CommVO vo) {
+	public int remove(Long commNo) {
 		// TODO Auto-generated method stub
-		return commMapper.remove(vo);
+		return commMapper.remove(commNo);
 	}
 
 	@Override
@@ -51,10 +51,18 @@ public class CommServiceImpl implements CommService {
 		return commMapper.getTotalCount(cri);
 	}
 
+	//댓글 이벤트
+	@Override
+	public int viewCount(Long commNo) {
+		// TODO Auto-generated method stub
+		return commMapper.viewCount(commNo);
+	}
+
 	@Override
 	public void updateReplycnt() {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

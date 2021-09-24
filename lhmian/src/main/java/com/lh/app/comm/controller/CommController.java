@@ -3,12 +3,14 @@ package com.lh.app.comm.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.comm.domain.CommVO;
 import com.lh.app.comm.domain.Criteria;
@@ -22,6 +24,7 @@ public class CommController {
 	CommService commService;
 	// @SessionAttributes("cri")
 
+	//리스트 조회
 	@RequestMapping("commlist")
 	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
 		int total = commService.getTotalCount(cri);
@@ -45,10 +48,12 @@ public class CommController {
 		return "redirect:commlist";
 	}
 
-	// 단건 조회(수정페이지)
+	// 단건 조회
 	@GetMapping("get") // 수정폼
 	public String get(@RequestParam("commNo") Long commNo, Model model, @ModelAttribute("cri") Criteria cri) {
 		CommVO vo = new CommVO();
+		System.out.println(commNo);
+		commService.viewCount(commNo);
 		vo.setCommNo(commNo);
 		model.addAttribute("list", commService.read(vo));
 		return "community/get";
@@ -61,20 +66,21 @@ public class CommController {
 	}
 
 	// 수정
-	@PostMapping("updateComm")
-	public CommVO updateComm(@ModelAttribute("cvo") CommVO vo) {
-		System.out.println(vo);
+	@PutMapping("updateComm")
+	@ResponseBody
+	public CommVO updateComm(@RequestBody CommVO vo) {
 		commService.update(vo);
 		return vo;
 	}
 
+
 	// 삭제
 	@PostMapping("deleteComm")
-	public String deleteComm(@RequestParam("commNo") Long commNo) {
-		CommVO vo = new CommVO();
-		vo.setCommNo(commNo);
-		commService.remove(vo);
-		return "redirect:commlist";
+	@ResponseBody //post 자체가 ajax 함수이기 때문에 이를 생각하고 코딩할 것 
+	public boolean deleteComm(Long commNo) {
+		System.out.println(commNo);
+		commService.remove(commNo);
+		return true;
 	}
 
 }

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<div>
+<div align="center">
 	<table border="1">
 		<thead>
 			<tr>
@@ -10,7 +10,7 @@
 				<th>아이디</th>
 				<th>제목</th>
 				<th>작성일자</th>
-				<th>작성일자</th>
+				<th>조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,8 +21,7 @@
 					<td><a class="move" href="${comm.commNo}">${comm.commTitle}</a></td>
 					<td><fmt:formatDate value="${comm.commDate}" type="both"
 							pattern="yy-MM-dd" /></td>
-					<td><fmt:formatDate value="${comm.commUpdate}" type="both"
-							pattern="yy-MM-dd" /></td>
+					<td>${comm.commHit}</td>		
 			</c:forEach>
 		</tbody>
 	</table>
