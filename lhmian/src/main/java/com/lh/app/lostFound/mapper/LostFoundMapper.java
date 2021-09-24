@@ -1,12 +1,14 @@
-package com.lh.app.lostFound.service;
+package com.lh.app.lostFound.mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.lh.app.lostFound.domian.LostFoundVO;
 
-
-public interface LostFoundService {
-	//CRUD
+@Repository
+public interface LostFoundMapper {
+	// CRUD
 	// 등록
 	public int insert(LostFoundVO vo);
 
