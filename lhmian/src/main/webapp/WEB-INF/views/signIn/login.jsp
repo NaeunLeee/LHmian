@@ -18,7 +18,7 @@
 			<button type="button">로그인</button>
 			<button type="button">카카오 로그인</button>
 		</form>
-		<br> <a href="">아이디 찾기</a> / <a href="">비밀번호 찾기</a><br> <a href="">회원가입</a>
+		<br> <a href="">아이디 찾기</a> / <a href="">비밀번호 찾기</a><br> <a href="signUp">회원가입</a>
 	</div>
 </body>
 </html>
