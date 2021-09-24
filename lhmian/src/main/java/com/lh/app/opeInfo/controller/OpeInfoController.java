@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lh.app.opeInfo.domain.OpeInfoCriteria;
+import com.lh.app.opeInfo.domain.OpeInfoPageVO;
 import com.lh.app.opeInfo.domain.OpeInfoVO;
 import com.lh.app.opeInfo.service.OpeInfoService;
 
@@ -22,8 +26,10 @@ public class OpeInfoController {
 	
 	// 전체 조회
 	@GetMapping("/introduce/opeInfoList")
-	public String opeInfoList(Model model) {
-		model.addAttribute("list", opeInfoService.getList());
+	public String opeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
+		int total = opeInfoService.getTotalCount(cri);
+		model.addAttribute("list", opeInfoService.getList(cri));
+		model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
 		return "introduce/opeInfoList";
 	}
 	
@@ -36,14 +42,16 @@ public class OpeInfoController {
 	
 	// 관리자 전체 조회
 	@GetMapping("/admin/admOpeInfoList")
-	public String admOpeInfoList(Model model) {
-		model.addAttribute("list", opeInfoService.getList());
+	public String admOpeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
+		int total = opeInfoService.getTotalCount(cri);
+		model.addAttribute("list", opeInfoService.getList(cri));
+		model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
 		return "admin/admOpeInfoList";
 	}
 	
-	// 관리자 단건 조회
+	// 관리자 단건 조회 (ajax로 바로 수정 가능)
 	@GetMapping("/admin/admOpeInfoSelect")
-	public String admOpeInfoSelect(Model model, OpeInfoVO vo) {
+	public String admOpeInfoSelect(Model model, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
 		model.addAttribute("info", opeInfoService.read(vo));
 		return "admin/admOpeInfoSelect";
 	}
@@ -56,13 +64,59 @@ public class OpeInfoController {
 	
 	// 등록
 	@PostMapping("/admin/admOpeInfoInsert")
-	public String admOpeInfoInsert(Model model, OpeInfoVO vo) {
+	public String admOpeInfoInsert(RedirectAttributes rttr, OpeInfoVO vo) {
 		int n = opeInfoService.insert(vo);
 		
-		if (n > 0) {
-			model.addAttribute("message", n + "건의 등록이 완료되었습니다!");
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "등록이 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "등록에 실패했습니다. 다시 시도해주세요.");
 		}
 		
-		return "admin/admOpeInfoInsert";
+		return "redirect:/admin/admOpeInfoList";
 	}
+	
+	// 수정
+	@PostMapping("opeInfoUpdate")
+	public String opeInfoUpdate(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
+		int n = opeInfoService.update(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		return "redirect:/admin/admOpeInfoList";
+	}
+	
+	// 삭제
+	@PostMapping("opeInfoDelete")
+	public String delete(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
+		
+		int n = opeInfoService.delete(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "삭제가 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		return "redirect:/admin/admOpeInfoList";
+	}
+	
+	
+	
+	
+	
 }

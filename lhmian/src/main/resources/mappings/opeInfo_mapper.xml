@@ -2,18 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.opeInfo.mapper.OpeInfoMapper">
 
+
+<sql id="criteria">
+	<trim prefix="(" suffix=")AND" prefixOverrides="OR">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="OR">
+				<choose>
+					<when test="type=='T'.toString()">
+						OI_TITLE like '%' || #{keyword} || '%'
+					</when>
+					<when test="type=='C'.toString()">
+						OI_TYPE like '%' || #{keyword} || '%'
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</trim>
+</sql>
+
+<select id="getTotalCount" resultType="int">
+	
+	SELECT COUNT(*) FROM
+	OPERATION_INFO
+	WHERE
+		<include refid="criteria"></include>
+	OI_NO > 0
+	
+</select>
+
 <select id="getList" resultType="opeInfoVO">
-	
-	SELECT OI_NO
-		 , OI_TYPE
-		 , OI_TITLE
-		 , OI_CONTENT
-		 , OI_DATE
-		 , OI_UPDATE
-		 , OI_FILE
-	FROM OPERATION_INFO
-	ORDER BY OI_NO
-	
+	<![CDATA[
+		SELECT OI_NO
+			 , OI_TYPE
+			 , OI_TITLE
+			 , OI_CONTENT
+			 , OI_DATE
+			 , OI_UPDATE
+			 , OI_FILE
+		FROM (
+			SELECT
+			/*+INDEX_DESC(OPERATION_INFO OI_PK)*/
+			ROWNUM RN
+			, OI_NO
+			, OI_TYPE
+			, OI_TITLE
+			, OI_CONTENT
+			, OI_DATE
+			, OI_UPDATE
+			, OI_FILE
+			FROM OPERATION_INFO
+			WHERE
+			]]>
+				<include refid="criteria"></include>
+			<![CDATA[
+			ROWNUM <= #{pageNum} * #{amount}
+		)
+		WHERE RN > (#{pageNum} - 1) * #{amount}
+	]]>
 </select>
 
 <select id="read" resultType="opeInfoVO" parameterType="opeInfoVO">
@@ -32,7 +77,7 @@
 
 <insert id="insert">
 	<selectKey keyProperty="oiNo" resultType="int" order="BEFORE">
-		SELECT SEQ_OPEINFO.NEXTVAL FROM DUAL
+		SELECT OI_SEQ.NEXTVAL FROM DUAL
 	</selectKey>
 	
 	INSERT INTO OPERATION_INFO (
@@ -48,7 +93,20 @@
 		 , #{oiContent}
 		 , '테스트.hwp'
 	)
-	
 </insert>
+
+<update id="update">
+	UPDATE OPERATION_INFO
+	SET OI_TITLE = #{oiTitle}
+	  , OI_CONTENT = #{oiContent}
+	  , OI_FILE = '수정테스트.hwp'
+	  , OI_UPDATE = SYSDATE
+	WHERE OI_NO = #{oiNo}
+</update>
+
+<delete id="delete">
+	DELETE FROM OPERATION_INFO
+	WHERE OI_NO = #{oiNo}
+</delete>
 
 </mapper>
