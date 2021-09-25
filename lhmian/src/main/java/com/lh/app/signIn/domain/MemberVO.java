@@ -10,4 +10,6 @@ public class MemberVO {
 	private Long houseInfo;
 	private String author;
 	private String key;
+	private String password;
+	private String status;
 }
