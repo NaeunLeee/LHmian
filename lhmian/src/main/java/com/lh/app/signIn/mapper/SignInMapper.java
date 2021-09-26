@@ -1,5 +1,8 @@
 package com.lh.app.signIn.mapper;
 
-public interface SignInMapper {
+import com.lh.app.signIn.domain.MemberVO;
 
+public interface SignInMapper {
+	//id 중복체크
+	public int idCheck(MemberVO vo);
 }

@@ -1,5 +1,8 @@
 package com.lh.app.signIn.service;
 
-public interface SignInService {
+import com.lh.app.signIn.domain.MemberVO;
 
+public interface SignInService {
+	//id 중복체크
+	public int idCheck(MemberVO vo);
 }
