@@ -64,7 +64,6 @@
 	</select>
 	
 	<insert id="insert">
-
 		INSERT INTO COMMUNITY(
 		COMM_NO,
 		COMM_TITLE,
@@ -74,7 +73,8 @@
 		COMM_SEQ.NEXTVAL,
 		#{commTitle},
 		#{commContent},
-		#{id})
+		#{id}||''|| COMM_SEQ.NEXTVAL) 
+		<!-- 아이디 임시로 'test'+seq 로 제작, 로그인 시큐리티 활성화 후 수정 필요 -->
 	</insert>
 	
 	<update id="update">

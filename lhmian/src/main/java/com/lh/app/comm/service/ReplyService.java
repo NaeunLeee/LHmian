@@ -1,10 +1,8 @@
 package com.lh.app.comm.service;
 
-import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.domain.ReplyPageVO;
 import com.lh.app.comm.domain.ReplyVO;
 
@@ -12,7 +10,7 @@ import com.lh.app.comm.domain.ReplyVO;
 public interface ReplyService {
 
 	//전체조회
-		public ReplyPageVO getList(@Param("cri") Criteria cri,@Param("commNo")  Long commNo);
+		public ReplyPageVO getList(@Param("commNo") Long commNo);
 		
 		//단건조회
 		public ReplyVO readRe(ReplyVO vo);

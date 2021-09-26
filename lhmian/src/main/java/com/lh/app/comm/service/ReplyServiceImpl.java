@@ -3,7 +3,6 @@ package com.lh.app.comm.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.domain.ReplyPageVO;
 import com.lh.app.comm.domain.ReplyVO;
 import com.lh.app.comm.mapper.CommMapper;
@@ -18,11 +17,9 @@ public class ReplyServiceImpl implements ReplyService {
 	@Autowired CommMapper commMapper;
 	
 	@Override
-	public ReplyPageVO getList(Criteria cri, Long commNo) {
-		// TODO Auto-generated method stub
+	public ReplyPageVO getList(Long commNo) {
 		ReplyPageVO vo = new ReplyPageVO();
-		vo.setReplyCnt(replyMapper.getCountCmt(commNo));
-		vo.setList(replyMapper.getList(cri, commNo));
+		vo.setList(replyMapper.getList(commNo));
 		return vo;
 	}
 
