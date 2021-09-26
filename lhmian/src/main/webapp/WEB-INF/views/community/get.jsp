@@ -45,7 +45,9 @@
 	<!-- 댓글 등록 -->
 	<div class="panel-heading">
 		<form id="replyForm">
-			<input type="hidden" name="bno"> <input type="hidden" name="replyer" value="user10"> <input name="reply">
+			<input type="hidden" name="commNo" value="${list.commNo}"> 
+			<input type="hidden" id="cmtWriter" name="cmtWriter" value="노잼">
+			<input type="text" id="cmtContent" name="cmtContent">
 			<button type="button" id="saveReply">댓글등록</button>
 		</form>
 	</div>
@@ -100,46 +102,78 @@
 		});
 
 	});
-	
-	//등록처리
-	$("#saveReply").on("click", function() {
+
+	// 댓글 보여주기
+	function showList() {
+		//초기화
+		$('.chat').empty();
+
+		function makeLi(datas) {
+			return '<li class="left clearfix">' + '	<div>'
+					+ '		<div class="header">'
+					+ '			<strong class="primary-font">' + datas.cmtWriter
+					+ '</strong>' + '			<small class="pull-right text-muted">'
+					+ datas.cmtDate + '</small>' + '		</div>' + '		<p>'
+					+ datas.cmtContent + '</p>' + '	</div>' + '</li>';
+		}
+
 		$.ajax({
-			url : "../reply/", //method(or type):"get"
+			url : './reply/',
+			data : {
+				commNo : $("#commNo").val()
+			},
+			dataType : 'json',
+			success : function(datas) {
+				console.log(datas);
+				let str = "";
+				for (i = 0; i < datas.list.length; i++) {
+					str += makeLi(datas.list[i]);
+				}
+				$(".chat").html(str);
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+	}
+
+	//등록처리
+	$("#saveReply").on("click", function(e) {
+		e.preventDefault();
+
+		let reply = $("input[name='cmtContent']").val();
+		let replyer = $("input[name='cmtWriter']").val();
+
+		if (reply == "" || replyer == "") {
+			alert("내용을 입력 해주시거나 회원만 등록 가능합니다.")
+			return;
+		}
+
+		$.ajax({
+			url : "./reply/",
 			method : "post",
 			data : $("#replyForm").serialize(),
 			dataType : "json",
 			success : function(data) {
-				console.log(data);
-				$(".chat").append(makeLi(data));
+
+				$.ajax({
+					url : "./reply/",
+					method : "get",
+					dataType : "json",
+					success : function(data) {
+						console.log(data);
+						showList();
+					},
+					error : function() {
+						console.error();
+					}
+				});
+			},
+			error : function() {
+				alert("등록 실패");
 			}
-
-		})
+		});
 	});
-
-	//
-	function makeLi(data) {
-		return '<li class="left clearfix">' + '   <div class="header">'
-				+ '      <strong class="primary-font">' + data.cmtWriter
-				+ '</strong>'
-				+ '         <small class="pull-right text-muted">'
-				+ data.cmtDate + '</small>' + '      </div>' + '   <p>'
-				+ data.cmtContent + '</p>' + '   </li>   ';
-	}
-
-	//목록조회
-	$.ajax({
-		url : "/reply/", //method(or type):"get"
-		data : {
-			commNo : $("#commVO").val()
-		}, 
-		dataType : "json", 
-		success : function(datas) {
-			console.log(datas);
-			str = "";
-			for (i = 0; i < datas.length; i++) {
-				str += makeLi(datas[i]);
-			}
-			$('.chat').html(str);
-		}
-	});
+	
+	showList();
 </script>

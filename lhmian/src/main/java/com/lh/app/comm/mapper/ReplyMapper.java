@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.domain.ReplyVO;
 
 public interface ReplyMapper {
 	
 	//전체조회
-	public List<ReplyVO> getList(@Param("cri") Criteria cri,@Param("commNo")  Long commNo);
+	public List<ReplyVO> getList(@Param("commNo")  Long commNo);
 	
 	//단건조회
 	public ReplyVO readRe(ReplyVO vo);

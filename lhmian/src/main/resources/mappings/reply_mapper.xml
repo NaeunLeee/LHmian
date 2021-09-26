@@ -3,18 +3,9 @@
 <mapper namespace="com.lh.app.comm.mapper.ReplyMapper">
 	
 	<select id="getList" resultType="ReplyVO">
-		<![CDATA[
 		SELECT CMT_NO, COMM_NO, CMT_CONTENT, CMT_WRITER, CMT_DATE
-		FROM
-		(
-		SELECT /*+INDEX(TBL_REPLY IDX_REPLY) */
-			ROWNUM RN, CMT_NO, COMM_NO, CMT_CONTENT, CMT_WRITER, CMT_DATE, CMT_UPDATE
 		FROM COMMENTS
 		WHERE COMM_NO = #{commNo}
-		AND CMT_NO > 0
-		AND ROWNUM <= #{cri.pageNum} * #{cri.amount}
-		) WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
-		]]>
 	</select>
 	
 	<select id="getCountCmt" resultType="int">
