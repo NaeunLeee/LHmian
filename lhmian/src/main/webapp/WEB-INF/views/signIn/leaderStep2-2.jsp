@@ -84,8 +84,8 @@
 		<form action="memberSignUp" method="POST">
 		카카오 id <input type="text" id="id" name="id" value="${kakaoId }"><br>
 		세대 인증번호*  <input type="text" id="key" name="key"><button type="button" id="authKeyBtn">세대 인증</button><br>
-		구분* <input type="radio" name="author" value="owner">세대주
-        <input type="radio" name="author" value="member">세대원<br>
+		구분* <input type="radio" name="author" value="OWNER">세대주
+        <input type="radio" name="author" value="MEMBER">세대원<br>
 		이름* <input type="text" id="name" name="name"><br>
 		연락처 <input type="text" id="phone" name="phone" value="${phone }" readonly><br>
 		동 <input type="text" id="dong" name="dong" readonly><br>

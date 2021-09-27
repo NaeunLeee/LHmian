@@ -12,4 +12,6 @@ public interface SignInService {
 	
 	//회원가입. 회원 테이블에 회원정보 등록
 	public int insert(MemberVO vo);
+	
+	public String smsAPI(String phone);
 }

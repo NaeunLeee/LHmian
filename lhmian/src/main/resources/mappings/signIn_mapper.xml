@@ -23,6 +23,6 @@
 				#{author}, 
 				#{key}, 
 				#{password},
-				'DEFAULT')
+				#{status})
 	</insert>
 </mapper>
