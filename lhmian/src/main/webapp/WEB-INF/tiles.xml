@@ -10,7 +10,7 @@
 			/>
 	</definition>
 	<definition name="no/*/*">
-		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/nolayout.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	<definition name="*/*" extends="mainTemplate"> <!-- .tiles 를 붙여서 특정 페이지만 tiles 적용 -->
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />

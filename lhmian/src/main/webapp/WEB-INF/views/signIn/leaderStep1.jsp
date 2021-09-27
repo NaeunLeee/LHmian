@@ -16,9 +16,10 @@
 </style>
 <script>
 	$(function() {
+		//변경사항 : 인풋박스 userPhoneNumber -> phone으로 변경
 		
 		//input box 숫자만 입력 가능
-		onlyNumberFunc(document.getElementById("userPhoneNumber"));
+		onlyNumberFunc(document.getElementById("phone"));
 		onlyNumberFunc(document.getElementById("key"));
 
 		//인증 성공 여부
@@ -26,13 +27,13 @@
 
 		// $('#sendKey').on('click', function() {
 
-		// 	const userPhoneNumber = $('#userPhoneNumber').val();
+		// 	const phone = $('#phone').val();
 		// 	const json = {
-		// 		"userPhoneNumber" : userPhoneNumber
+		// 		"phone" : phone
 		// 	};
 			
 		// 	//핸드폰 번호가 빈칸이거나, 11자리까지 입력하지 않은 경우 인증을 실행하지 않는다.
-		// 	if (userPhoneNumber == "" || userPhoneNumber.length !== 11) {
+		// 	if (phone == "" || phone.length !== 11) {
 		// 		$('.sendKey-msg').addClass('error-msg').text('휴대폰 번호를 확인해주세요.');
 		// 		return; //onclick 함수 종료
 		// 	}
@@ -95,13 +96,15 @@
 <body>
 
 	<div align="center">
-		세대주 회원 가입<br> 세대주 휴대폰 인증이 필요합니다. <br> <br> <br>
+		회원 가입<br> 휴대폰 인증이 필요합니다. <br> <br> <br>
 		<form id="frm" name="frm" action="leaderStep2-1" method="POST">
-			휴대폰 번호 : <input type="text" id="userPhoneNumber"
-				name="userPhoneNumber" maxlength=11 placeholder="'-'없이 입력">
+			<input type="text" id="id" name="id" value="${kakaoId }">
+			휴대폰 번호 : <input type="text" id="phone"
+				name="phone" maxlength=11 placeholder="'-'없이 입력">
 			<button type="button" id="sendKey" name="sendKey">인증번호 전송</button>
 		</form>
 		<div class="sendKey-msg"></div>
+		<!-- 프론트 : 휴대폰번호로 인증번호 전송이 되면 인풋박스가 뜨게 -->
 		<br> 인증번호 입력 : <input type="text" id="key" name="key">
 		<button type="button" id="certificate" name="certificate">인증</button>
 		<div class="certificate-msg"></div>
