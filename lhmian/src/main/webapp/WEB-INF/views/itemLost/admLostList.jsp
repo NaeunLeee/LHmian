@@ -6,10 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>분실물보관소-사용자</title>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title>분실물보관소-관리자</title>
 </head>
 <body>
 	<div>
+		<button id="register">등록</button>&nbsp;&nbsp;&nbsp;<button id="modify">수정</button>
 		<table border="1">
 			<tr>
 				<th>분실물번호</th>
@@ -20,7 +23,6 @@
 				<th>수령여부</th>
 			</tr>
 			<c:forEach items="${lost}" var="item">
-			
 			<tr>
 				<td>${item.lostNo}</td>
 				<td>${item.lostContent}</td>
@@ -31,9 +33,15 @@
 				<td><img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}"></td>
 				<td>${item.lostStatus}</td>
 			</tr>
-	
 			</c:forEach>
 		</table>
 	</div>
 </body>
+<script>
+$(function() {
+	$('#register').on('click', function() {
+		$(location).attr('href', 'admLostInsert');
+	})
+})
+</script>
 </html>
