@@ -1,7 +1,5 @@
 package com.lh.app.comm.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lh.app.comm.domain.CommVO;
 import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.domain.PageVO;
-import com.lh.app.comm.domain.ReplyVO;
 import com.lh.app.comm.service.CommService;
 import com.lh.app.comm.service.ReplyService;
 

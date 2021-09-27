@@ -45,12 +45,14 @@
 	<!-- 댓글 등록 -->
 	<div class="panel-heading">
 		<form id="replyForm">
-			<input type="hidden" name="commNo" value="${list.commNo}"> 
-			<input type="hidden" id="cmtWriter" name="cmtWriter" value="노잼">
-			<input type="text" id="cmtContent" name="cmtContent">
+			<input type="hidden" name="commNo" value="${list.commNo}"> <input
+				type="hidden" id="cmtWriter" name="cmtWriter" value="노잼">
+			<textarea rows="10" cols="100" id="cmtContent" name="cmtContent"></textarea>
 			<button type="button" id="saveReply">댓글등록</button>
 		</form>
 	</div>
+
+
 
 	<!-- 댓글 목록 -->
 	<h3>댓글 목록</h3>
@@ -109,13 +111,26 @@
 		$('.chat').empty();
 
 		function makeLi(datas) {
-			return '<li class="left clearfix">' + '	<div>'
-					+ '		<div class="header">'
-					+ '			<strong class="primary-font">' + datas.cmtWriter
-					+ '</strong>' + '			<small class="pull-right text-muted">'
-					+ datas.cmtDate + '</small>' + '		</div>' + '		<p>'
-					+ datas.cmtContent + '</p>' + '	</div>' + '</li>';
+			return '<li class="left clearfix">'
+					+ '	<div id="'+ datas.cmtNo +'">'
+					+ '			<strong class="primary-font">'
+					+ datas.cmtWriter
+					+ '</strong>'
+					+ '			<small class="pull-right text-muted">'
+					+ datas.cmtDate
+					+ '</small>'
+					+ '		<p>'
+					+ datas.cmtContent
+					+ '</p>'
+					+ '<div id="test">' + '</div>'
+					+ '<input type="hidden" id="cmtNo2" value="'+ datas.cmtNo +'">'
+					+ '<button type="button" class="test" id="cmtUpdate" data-num="'	+ datas.cmtNo + '">수정</button>'
+					+ '&nbsp'
+					+ '<button type="button" id="cmtDelete" onclick="button2_click(this);" data-num="'
+					+ datas.cmtNo + '">삭제</button>' + '	</div>' + '<br>'
+					+ '</li>';
 		}
+		3
 
 		$.ajax({
 			url : './reply/',
@@ -128,6 +143,7 @@
 				let str = "";
 				for (i = 0; i < datas.list.length; i++) {
 					str += makeLi(datas.list[i]);
+
 				}
 				$(".chat").html(str);
 			},
@@ -136,6 +152,8 @@
 			}
 		});
 	}
+
+	showList();
 
 	//등록처리
 	$("#saveReply").on("click", function(e) {
@@ -155,25 +173,133 @@
 			data : $("#replyForm").serialize(),
 			dataType : "json",
 			success : function(data) {
-
-				$.ajax({
-					url : "./reply/",
-					method : "get",
-					dataType : "json",
-					success : function(data) {
-						console.log(data);
-						showList();
-					},
-					error : function() {
-						console.error();
-					}
-				});
+				showList();
 			},
 			error : function() {
 				alert("등록 실패");
 			}
 		});
 	});
+
+	/* let update = $('input').attr('id','cmtContent').html("datas.content") */
+
+	//수정
+	function cmtUpdate(b) {
+		$.ajax({
+			url : "./reply/",
+			type : "put",
+			dataType : "json",
+			data : JSON.stringify({
+				cmtContent : $("#cmtContent").val(),
+				cmtNo : b
+			}),
+			contentType : 'application/json',
+			success : function(datas) {
+				alert("성공")
+				console.log(datas)
+				showList();
+			},
+			error : function() {
+				alert("error"); // 실패 시 처리
+			}
+		});
+	}
+
+	//삭제
+	function cmtDelete(b) {
+		$.ajax({
+			url : "./reply/" + b,
+			type : "delete",
+			dataType : "json",
+			data : JSON.stringify({
+				cmtNo : b
+			}),
+			contentType : 'application/json',
+			success : function(result) {
+				if (result == true) {
+					alert("성공")
+					showList();
+				}
+			},
+			error : function() {
+				alert("삭제 실패"); // 실패 시 처리
+			}
+		});
+	}
 	
-	showList();
+	//수정버튼
+	/* function button1_click(tabInfo) {
+		
+		console.log("수정버튼을 누르셨습니다.");
+		var b = $(tabInfo).data("num");
+		console.log(b);
+		var c = $(tabInfo).parent().children("#cmtUpdate");
+		c.attr('id', 'updatecmt1').html('완료'); 
+		
+	} */
+	
+	$(document).on("click", "#cmtUpdate", function(){
+		
+		var num = $(this).data("num")
+		
+		console.log(num);
+		$(this).parent().children("#cmtUpdate").html("완료");
+		$(this).parent().children('p').remove();
+		$(this).parent().children('div').attr('id','test0');
+		$.ajax({
+			url : "./reply/" + num,
+			type : "get",
+			dataType : "json",
+			contentType : 'application/json',
+			success : function(result) {
+				console.log(result);
+				var str2 = '<input id="test" name="test" value="'+result.cmtContent+'">'
+				$("#test0").html(str2);
+				
+				$(document).on("click", "#cmtUpdate", function(){
+					$.ajax({
+						url : "./reply/",
+						type : 'put',
+						dataType : "json",
+						contentType : "application/json",
+						data : {
+							cmtNo : num, 
+							cmtContent : $("#test").val()	
+						},
+						success : function(data) {
+							console.log(data);
+							showList();
+						},
+						error : function(){
+							alert("수정실패");
+						}
+					});
+				});
+				
+			},
+			error : function(result) {
+				console.log(result);
+				alert("실패"); // 실패 시 처리
+			}
+		});
+		
+	});
+	
+	
+			
+	
+	
+	
+	// 삭제 버튼
+	function button2_click(tabInfo) { // 함수에서 this를 사용하면 값이 정확히 넘어가지 않는다. 
+								      // 이 때문에 태그에서 함수를 사용할때 태그내부 함수()에 this를 넣어주면 그 태그에 있는 모든 정보를 담아준다.
+									  // 이를 이용하여 정보를 갖고 올 수 있다.
+		if(confirm("삭제 하시겠습니까?")){
+			console.log("삭제버튼을 누르셨습니다.");
+			var b = $(tabInfo).data("num");
+			console.log(b);
+			cmtDelete(b);
+		}
+
+	}
 </script>

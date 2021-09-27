@@ -31,7 +31,6 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	public int insertRe(ReplyVO vo) {
-		commMapper.update(null);
 		return replyMapper.insertRe(vo);
 	}
 
