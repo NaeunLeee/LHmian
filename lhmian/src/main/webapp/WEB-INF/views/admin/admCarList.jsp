@@ -27,8 +27,8 @@
 	<form id="actionForm" action="admCarList" method="get">
 		<select name="type">
 			<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
-			<option value="T" ${pageMaker.cri.type=='T' ? 'selected' : ""}>차량번호</option>
-			<option value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>차종</option>
+			<option value="T" ${pageMaker.cri.type=='T' ? 'selected' : ""}>차종</option>
+			<option value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>차량번호</option>
 		</select>
 		<input name="keyword" value="${pageMaker.cri.keyword}">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
