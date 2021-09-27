@@ -28,16 +28,16 @@
 								LOST_STATUS)	
 						VALUES(#{lostNo}, 
 								#{lostContent}, 
-								#{lostDate}, 
-								#{lostUpdate}, 
+								DEFAULT,
+								#{lostUpdate, jdbcType = DATE}, 
 								#{lostFile}, 
-								#{lostStatus})
+								DEFAULT)
 	</insert>
 	
 	<update id="update" parameterType="LostFoundVO">
 		UPDATE LOST_AND_FOUND
 			SET LOST_CONTENT = #{lostContent},
-				LOST_UPDATE = sysdate,
+				LOST_UPDATE = DEFAULT,
 				LOST_FILE = #{lostFile},
 				LOST_STATUS = #{lostStatus}
 			WHERE LOST_NO = #{lostNo}
