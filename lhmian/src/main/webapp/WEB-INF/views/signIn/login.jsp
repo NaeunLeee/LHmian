@@ -11,7 +11,7 @@
 <script>
 	$(function() {
 		$('#findId').on('click', function() {
-			window.open("findIdForm", "아이디 찾기", "width=500, height=700");
+			window.open("findIdForm", "아이디 찾기", "width=500, height=700, resizable=no");
 			
 		})
 		

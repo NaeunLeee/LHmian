@@ -138,10 +138,10 @@ public class SignInController {
 	}
 	
 	//아이디 찾기 폼
-//	@GetMapping("/findIdForm")
-//	public String findIdForm() {
-//		return "no/find/findIdForm";
-//	}
+	@GetMapping("/findIdForm")
+	public String findIdForm() {
+		return "no/findIdForm";
+	}
 
 	//인증 버튼 클릭시
 	@PostMapping("/sendKey")
