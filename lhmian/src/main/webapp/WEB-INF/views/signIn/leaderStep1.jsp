@@ -95,13 +95,14 @@
 <body>
 
 	<div align="center">
-		세대주 회원 가입<br> 세대주 휴대폰 인증이 필요합니다. <br> <br> <br>
+		회원 가입<br> 휴대폰 인증이 필요합니다. <br> <br> <br>
 		<form id="frm" name="frm" action="leaderStep2-1" method="POST">
 			휴대폰 번호 : <input type="text" id="userPhoneNumber"
 				name="userPhoneNumber" maxlength=11 placeholder="'-'없이 입력">
 			<button type="button" id="sendKey" name="sendKey">인증번호 전송</button>
 		</form>
 		<div class="sendKey-msg"></div>
+		<!-- 프론트 : 휴대폰번호로 인증번호 전송이 되면 인풋박스가 뜨게 -->
 		<br> 인증번호 입력 : <input type="text" id="key" name="key">
 		<button type="button" id="certificate" name="certificate">인증</button>
 		<div class="certificate-msg"></div>

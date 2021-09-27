@@ -6,4 +6,23 @@
 		FROM MEMBER
 		WHERE ID=#{id}
 	</select>
+	
+	<select id="authKey" resultType="GenerationVO">
+		SELECT HOUSE_INFO
+		FROM GENERATION
+		WHERE AUTH_KEY = #{authKey}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO MEMBER
+		VALUES(
+				#{id},
+				#{name},
+				#{phone}, 
+				#{houseInfo}, 
+				#{author}, 
+				#{key}, 
+				#{password},
+				'DEFAULT')
+	</insert>
 </mapper>

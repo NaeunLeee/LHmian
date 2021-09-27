@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
 import com.lh.app.signIn.etc.Coolsms;
 import com.lh.app.signIn.service.SignInService;
@@ -20,7 +22,8 @@ import com.lh.app.signIn.service.SignInService;
 @Controller
 public class SignInController {
 	
-	@Autowired SignInService signInService;
+	@Autowired
+	SignInService signInService;
 
 	@GetMapping("/login")
 	public String loginForm() {
@@ -54,6 +57,34 @@ public class SignInController {
 	public String memberStep1() {
 
 		return "signIn/memberStep1";
+	}
+	
+	//회원 가입
+	@PostMapping("/memberSignUp")
+	public String memberSignUp(MemberVO vo, Model model) {
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		System.out.println(vo);
+		
+		String rawPassword = vo.getPassword();
+		
+		vo.setPassword(passwordEncoder.encode(rawPassword));
+//		System.out.println("인코딩된 패스워드와 row 패스워드 일치여부 : " + passwordEncoder.matches("test", test));
+		
+		int count = signInService.insert(vo);
+		model.addAttribute("count", count);
+		
+		return "signIn/leaderStep3";
+	}
+	
+	
+	//세대원 인증 키를 통해 동호수 반환
+	@PostMapping("/authKey")
+	@ResponseBody
+	public GenerationVO authKey(GenerationVO vo) {
+		System.out.println(vo.getAuthKey());
+		return signInService.authKey(vo);
 	}
 	
 	
