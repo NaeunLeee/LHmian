@@ -14,7 +14,7 @@
 		<c:forEach var="notice" items="${list}">
 			<tr>
 				<td>${notice.noticeNo}</td>
-				<td><a class="move" href="noticeSelect?noticeNo=${notice.noticeNo}">${notice.noticeTitle }</a></td>
+				<td><a class="move" href="${notice.noticeNo}">${notice.noticeTitle}</a></td>
 				<td>${notice.noticeDate}</td>
 			</tr>
 		</c:forEach>
@@ -54,7 +54,7 @@
 		e.preventDefault();				//a의 원래 기능 막고
 		var noticeNo = $(this).attr("href")
 		actionForm.append('<input type="hidden" name="noticeNo" value="'+ noticeNo +'">')
-		actionForm.attr("action", "get");
+		actionForm.attr("action", "noticeSelect");
 		actionForm.submit();
 	});
 	

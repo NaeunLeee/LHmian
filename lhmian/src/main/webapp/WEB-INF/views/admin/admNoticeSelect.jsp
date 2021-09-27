@@ -4,17 +4,25 @@
 	<div>
 	<form role="form" action="delete" id="frm" name="frm" method="post">
 		<div class="form-group">
-			<label>noticeNo</label> <input class="form-control" id="noticeNo"
+			<label>No</label> <input class="form-control" id="noticeNo"
 				name="noticeNo" value="${notice.noticeNo}" readonly="readonly" disabled="disabled">
 		</div>
 	</form>
+		<div class="form-group">
+		<label>작성일</label> <input class="form-control" id="noticeDate"
+			name="noticeDate" value="${notice.noticeDate}" disabled="disabled">
+	</div>
+		<div class="form-group">
+		<label>수정일</label> <input class="form-control" id="noticeUpdate"
+			name="noticeUpdate" value="${notice.noticeUpdate}" disabled="disabled">
+	</div>
 	<div class="form-group">
 		<label>제목</label> <input class="form-control" id="noticeTitle"
 			name="noticeTitle" value="${notice.noticeTitle}" disabled="disabled">
 	</div>
 
 	<div>
-		<label>Text area</label>
+		<label>내용</label>
 		<textarea class="form-control" name="noticeContent" id="noticeContent"
 			rows="3" disabled="disabled">${notice.noticeContent}</textarea>
 	</div>

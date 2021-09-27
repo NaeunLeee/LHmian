@@ -9,6 +9,7 @@
 		</div>
 	</form>
 			${notice.noticeTitle}
+			${notice.noticeDate}
 			${notice.noticeUpdate}
 			<hr>
 			${notice.noticeContent}
