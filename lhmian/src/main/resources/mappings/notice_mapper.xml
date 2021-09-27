@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.notice.mapper.NoticeMapper">
+	
+	<sql id="criteria">
+		<trim prefix="(" suffix=")AND" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							NOTICE_TITLE like '%' ||#{keyword} || '%'
+						</when>
+						<when test="type=='C'.toString()">
+							NOTICE_CONTENT like '%' ||#{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="getTotalCount" resultType="int">
+	
+	SELECT COUNT(*) FROM
+	NOTICE
+	WHERE
+		<include refid="criteria"></include>
+	NOTICE_NO > 0
+	
+	</select>
+	
+	<select id="getList" resultType="noticeVO">
+		<![CDATA[
+		SELECT *
+		FROM ( 
+			SELECT
+			/*+INDEX_DESC(NOTICE NOTICE_PK)*/
+			ROWNUM RN
+			, NOTICE_NO
+			, NOTICE_TITLE
+			, NOTICE_CONTENT
+			, NOTICE_DATE
+			, NOTICE_UPDATE
+			FROM NOTICE
+			WHERE
+			]]>
+				<include refid="criteria"></include>
+			<![CDATA[
+			ROWNUM <= #{pageNum} * #{amount}
+		)
+		WHERE RN > (#{pageNum} - 1) * #{amount}
+	]]>
+	</select>
+	
+	<select id="read" resultType="NoticeVO" parameterType="long">
+		SELECT *
+		FROM NOTICE
+		WHERE notice_no=#{noticeNo}
+	</select>
+	
+	<insert id="insert">
+
+		INSERT INTO NOTICE(
+			NOTICE_NO,
+			NOTICE_TITLE,
+			NOTICE_CONTENT,
+			NOTICE_DATE
+			)
+		VALUES(
+			NOTICE_SEQ.NEXTVAL,
+			#{noticeTitle},
+			#{noticeContent},
+			sysdate
+		)
+	</insert>
+	
+	<delete id="delete">
+		DELETE
+		FROM NOTICE
+		WHERE notice_no=#{noticeNo}
+	</delete>
+	
+	<update id="update">
+		UPDATE NOTICE
+		SET notice_title = #{noticeTitle},
+			notice_content = #{noticeContent},
+			notice_update = sysdate
+		WHERE notice_no = #{noticeNo}
+	</update> 
+</mapper>

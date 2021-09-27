@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.member.mapper.MemberMapper">
+
+		<sql id="criteria">
+		<trim prefix="(" suffix=")AND" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							NAME like '%' ||#{keyword} || '%'
+						</when>
+						<when test="type=='C'.toString()">
+							HOUSE_INFO like '%' ||#{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="getTotalCount" resultType="int">
+	
+	SELECT COUNT(*) FROM
+	MEMBER
+	WHERE
+		<include refid="criteria"></include>
+	ID > 0
+	
+	</select>
+	
+	<select id="getList" resultType="memberVO">
+		<![CDATA[
+		SELECT *
+		FROM (
+			SELECT
+			/*+INDEX_DESC(MEMBER MEMBER_PK)*/
+			ROWNUM RN
+			, ID
+			, NAME
+			, PHONE
+			, HOUSE_INFO
+			, AUTHOR
+			, KEY
+			FROM MEMBER
+			WHERE
+			]]>
+			<include refid="criteria"></include>
+			<![CDATA[
+			ROWNUM <= #{pageNum} * #{amount}
+		)
+		WHERE RN > (#{pageNum} - 1) * #{amount}
+	]]>
+	</select>
+	
+	<select id="read" resultType="MemberVO" parameterType="long">
+		SELECT *
+		FROM MEMBER
+		WHERE id=#{id}
+	</select>
+	
+	<delete id="delete">
+		DELETE
+		FROM MEMBER
+		WHERE ID=#{id}
+	</delete>
+
+	
+</mapper>
