@@ -22,6 +22,8 @@ import com.lh.app.signIn.service.SignInService;
 @Controller
 public class SignInController {
 	
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	
 	@Autowired
 	SignInService signInService;
 
@@ -29,12 +31,6 @@ public class SignInController {
 	public String loginForm() {
 
 		return "signIn/login";
-	}
-
-	@GetMapping("/signUp")
-	public String signUp() {
-
-		return "signIn/signUp";
 	}
 
 	@GetMapping("/leaderStep1")
@@ -68,17 +64,10 @@ public class SignInController {
 		return page;
 	}
 
-	@GetMapping("/memberStep1")
-	public String memberStep1() {
-
-		return "signIn/memberStep1";
-	}
-	
 	//회원 가입
 	@PostMapping("/memberSignUp")
 	public String memberSignUp(MemberVO vo) {
 		
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String page = "";
 		
 		String rawPassword = vo.getPassword();
@@ -88,12 +77,12 @@ public class SignInController {
 		//일반 회원가입으로 들어오면
 		if (rawPassword != null) {
 			System.out.println("일반 회원가입");
+			
 			//일반 회원가입 -> DEFAULT
 			vo.setStatus("DEFAULT");
 			System.out.println(vo);
 			
 			vo.setPassword(passwordEncoder.encode(rawPassword));
-//		System.out.println("인코딩된 패스워드와 row 패스워드 일치여부 : " + passwordEncoder.matches("test", test));
 			
 			count = signInService.insert(vo);
 			
@@ -138,10 +127,57 @@ public class SignInController {
 	}
 	
 	//아이디 찾기 폼
-//	@GetMapping("/findIdForm")
-//	public String findIdForm() {
-//		return "no/find/findIdForm";
-//	}
+	@GetMapping("/findIdForm")
+	public String findIdForm() {
+		return "no/findIdForm";
+	}
+	
+	//아이디 찾기
+	@PostMapping("/findId")
+	public String findId(MemberVO vo, Model model) {
+		vo = signInService.findId(vo);
+		
+		
+		System.out.println(vo);
+		
+		model.addAttribute("member", vo);
+		
+		return "no/findId";
+	}
+	
+	//비밀번호 찾기 폼
+	@GetMapping("/findPasswordForm")
+	public String findPasswordForm() {
+		return "no/findPasswordForm";
+	}
+	
+	//비밀번호 찾기
+	@PostMapping("/findPassword")
+	public String findPassword(MemberVO vo, Model model) {
+		
+		int result = signInService.findPassword(vo);
+		
+		//있으면 1, 없으면 0
+		model.addAttribute("result", result);
+		model.addAttribute("id", vo.getId());
+		
+		return "no/updatePasswordForm";
+	}
+	
+	//비밀번호 변경
+	@PostMapping("/updatePassword")
+	public String updatePassword(MemberVO vo, Model model) {
+		String page = "";
+		String rawPassword = vo.getPassword();
+		
+		vo.setPassword(passwordEncoder.encode(rawPassword));
+		
+		if (signInService.updatePassword(vo) == 1) {
+			page = "no/updatePasswordComplete";
+		}
+		
+		return page;
+	}
 
 	//인증 버튼 클릭시
 	@PostMapping("/sendKey")
