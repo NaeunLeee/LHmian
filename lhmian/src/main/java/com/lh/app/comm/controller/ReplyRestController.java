@@ -31,9 +31,9 @@ public class ReplyRestController {
 	}
 
 	// 댓글조회
-	@GetMapping("/{commNo}") // queryString 방식
-	public ReplyVO read(@PathVariable Long commNo, ReplyVO vo) {
-		vo.setCommNo(commNo);
+	@GetMapping("/{cmtNo}") // queryString 방식
+	public ReplyVO read(@PathVariable Long cmtNo, ReplyVO vo) {
+		vo.setCmtNo(cmtNo);
 		return replyService.readRe(vo);
 	}
 
@@ -47,14 +47,15 @@ public class ReplyRestController {
 	// 수정
 	@PutMapping("/") // put, delete : 파라미터 json만 가능 -> { id:100, pw:"111", name:"choi"}
 	public ReplyVO update(@RequestBody ReplyVO vo) { // RequestBody 필요
+		System.out.println(vo.toString());
 		replyService.updateRe(vo);
 		return replyService.readRe(vo);
 	}
 
 	// 삭제
-	@DeleteMapping("/{commNo}")
-	public boolean delete(@PathVariable Long commNo, ReplyVO vo) {
-		vo.setCommNo(commNo);
+	@DeleteMapping("/{cmtNo}")
+	public boolean delete(@PathVariable Long cmtNo, ReplyVO vo) {
+		vo.setCommNo(cmtNo);
 		int r = replyService.deleteRe(vo);
 		return r == 1 ? true : false;
 	}
