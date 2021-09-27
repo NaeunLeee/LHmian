@@ -81,4 +81,26 @@ public class SignInServiceImpl implements SignInService {
 		}
 	}
 
+	@Override
+	public MemberVO findId(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return signInMapper.findId(vo);
+	}
+
+	@Override
+	public int findPassword(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return signInMapper.findPassword(vo);
+	}
+
+	@Override
+	public int updatePassword(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return signInMapper.updatePassword(vo);
+	}
+
+
+
+
+
 }

@@ -25,4 +25,26 @@
 				#{password},
 				#{status})
 	</insert>
+	
+	<select id="findId" resultType="MemberVO">
+		SELECT ID, NAME, PHONE
+		FROM MEMBER
+		WHERE NAME=#{name}
+		AND PHONE=#{phone}
+	</select>
+	
+	<select id="findPassword" resultType="int">
+		SELECT count(*)
+		FROM MEMBER
+		WHERE NAME=#{name}
+		AND PHONE=#{phone}
+		AND ID=#{id}
+	</select>
+	
+	<update id="updatePassword">
+		UPDATE MEMBER
+		SET PASSWORD=#{password}
+		WHERE ID=#{id}
+	</update>
+	
 </mapper>

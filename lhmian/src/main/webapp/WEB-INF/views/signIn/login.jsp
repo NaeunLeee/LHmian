@@ -11,7 +11,12 @@
 <script>
 	$(function() {
 		$('#findId').on('click', function() {
-			window.open("findIdForm", "아이디 찾기", "width=500, height=700, resizable=no");
+			window.open("findIdForm", "아이디 찾기", "width=500, height=400");
+			
+		})
+		
+		$('#findPassword').on('click', function() {
+			window.open("findPasswordForm", "비밀번호 찾기", "width=500, height=400");
 			
 		})
 		
@@ -30,7 +35,7 @@
 				onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=5986adbc56a3444841aed3bd67e4976d&redirect_uri=http://localhost:8091/app/kakaoLogin&response_type=code'">
 
 		</form>
-		<br> <a id="findId">아이디 찾기</a> / <a href="">비밀번호 찾기</a><br> <a
+		<br> <a id="findId">아이디 찾기</a> / <a id="findPassword">비밀번호 찾기</a><br> <a
 			href="leaderStep1">회원가입</a>
 	</div>
 </body>

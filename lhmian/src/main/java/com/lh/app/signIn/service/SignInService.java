@@ -13,5 +13,15 @@ public interface SignInService {
 	//회원가입. 회원 테이블에 회원정보 등록
 	public int insert(MemberVO vo);
 	
+	//아이디 찾기
+	public MemberVO findId(MemberVO vo);
+	
+	//비밀번호 찾기
+	public int findPassword(MemberVO vo);
+	
+	//비밀번호 변경
+	public int updatePassword(MemberVO vo);
+	
+	//smsAPI
 	public String smsAPI(String phone);
 }
