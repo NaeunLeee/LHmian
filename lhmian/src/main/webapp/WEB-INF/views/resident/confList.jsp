@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 | 운영 정보 공개</title>
+<title>LHmian | 입주자 대표회의</title>
 
 <style>
 	tr {
@@ -20,25 +20,25 @@
 </head>
 <body>
 
-
 <div align="center">
 	<div>
 		<table border="1">
 			<tr>
 				<th>글 번호</th>
-				<th>카테고리</th>
-				<th>제목</th>
+				<th>제 목</th>
+				<th>작성자</th>
 				<th>작성일자</th>
 			</tr>
-			<c:forEach items="${list}" var="info">
+			<c:forEach items="${list}" var="conf">
 				<tr>
-					<td>${info.oiNo}</td>
-					<td>${info.oiType}</td>
-					<td><a class="move" href="${info.oiNo}">${info.oiTitle}</a></td>
-					<td><fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /></td>
+					<td>${conf.confNo}</td>
+					<td><a class="move" href="${conf.confNo}">${conf.confTitle}</a></td>
+					<td>${conf.confWriter}</td>
+					<td><fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /></td>
 				</tr>
 			</c:forEach>
 		</table>
+		<button type="button" onclick="location.href='confInsert'">글 쓰기</button>
 	</div>
 	<br>
 	<div id="pageBtn">
@@ -52,14 +52,14 @@
 			<a href="${pageMaker.endPage+1}">다음</a>
 		</c:if>
 	</div>
-	
+
 	<div>
-		<form id="actionForm" action="/admin/admOpeInfoList" method="get">
+		<form id="actionForm" action="confList" method="get">
 			<select name="type">
 				<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
 				<option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-				<option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
-				<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>		
+				<option value="W" ${empty pageMaker.cri.type == 'W' ? selected : ""}>작성자</option>
+				<option value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected' : ''}"/>>전체</option>
 			</select>
 			<input name="keyword" value="${pageMaker.cri.keyword}">
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">		
@@ -68,19 +68,19 @@
 		</form>
 	</div>
 	<br><br>
-	
 </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
-$(function() {
 
 	var actionForm = $('#actionForm');
 	$('.move').on("click", function(e) {
 		e.preventDefault();
-		var oiNo = $(this).attr("href");
-		actionForm.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
-		actionForm.attr("action", "admOpeInfoSelect");
+		var confNo = $(this).attr("href");
+		actionForm.append('<input type="hidden" name="confNo" value="' + confNo + '">');
+		actionForm.attr("action", "confSelect");
 		actionForm.submit();
 	});
 	
@@ -90,7 +90,7 @@ $(function() {
 		$('[name="pageNum"]').val(p);
 		actionForm.submit();
 	});
-	
+
 	$(document).ready (function() {
 		var result = '<c:out value="${message}"/>';
 		
@@ -100,10 +100,7 @@ $(function() {
 			alert(result);
 		}
 	});
-
-});
 	
 </script>
 
-</body>
 </html>

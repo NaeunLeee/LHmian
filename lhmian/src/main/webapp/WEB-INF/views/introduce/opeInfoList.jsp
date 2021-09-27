@@ -74,12 +74,14 @@
 
 <script>
 
+$(function() {
+	
 	var actionForm = $('#actionForm');
 	$('.move').on("click", function(e) {
 		e.preventDefault();
 		var oiNo = $(this).attr("href");
 		actionForm.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
-		actionForm.attr("action", "get");
+		actionForm.attr("action", "opeInfoSelect");
 		actionForm.submit();
 	});
 
@@ -90,16 +92,18 @@
 		actionForm.submit();
 	});
 	
-	$(document).ready (function() {
-		var result = '<c:out value="${message}"/>';
-		
-		if (result === '') {
-			return;
-		} else {
-			alert(result);
-		}
-	});
+});
+
+$(document).ready(function() {
+	var result = '<c:out value="${message}"/>';
 	
+	if (result === '') {
+		return;
+	} else {
+		alert(result);
+	}
+});
+
 </script>
 
 
