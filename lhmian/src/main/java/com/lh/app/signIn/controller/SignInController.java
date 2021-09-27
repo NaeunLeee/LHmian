@@ -44,13 +44,28 @@ public class SignInController {
 	}
 	
 	@PostMapping("/leaderStep2-1")
-	public String leaderStep2One(@RequestParam("userPhoneNumber") String phone, Model model) {
+	public String leaderStep2One(MemberVO vo, Model model) {
 		
-		System.out.println(phone);
+		System.out.println(vo.getPhone());
+		System.out.println(vo.getId());
+		String page = "";
 		
-		model.addAttribute("phone", phone);
+		//kakao 로그인으로 들어오면 id에 kakao id가 있음
+		if (vo.getId() != "") {
+			System.out.println("카카오 회원가입");
+			model.addAttribute("kakaoId", vo.getId());
+			
+			page = "signIn/leaderStep2-2";
+		//일반 회원가입
+		} else {
+			System.out.println("일반 회원가입");
+			
+			page = "signIn/leaderStep2-1";
+		}
 		
-		return "signIn/leaderStep2-1";
+		model.addAttribute("phone", vo.getPhone());
+		
+		return page;
 	}
 
 	@GetMapping("/memberStep1")
@@ -61,21 +76,42 @@ public class SignInController {
 	
 	//회원 가입
 	@PostMapping("/memberSignUp")
-	public String memberSignUp(MemberVO vo, Model model) {
+	public String memberSignUp(MemberVO vo) {
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
-		System.out.println(vo);
+		String page = "";
 		
 		String rawPassword = vo.getPassword();
+		System.out.println(rawPassword);
+		int count;
 		
-		vo.setPassword(passwordEncoder.encode(rawPassword));
+		//일반 회원가입으로 들어오면
+		if (rawPassword != null) {
+			System.out.println("일반 회원가입");
+			System.out.println(vo);
+			
+			vo.setPassword(passwordEncoder.encode(rawPassword));
 //		System.out.println("인코딩된 패스워드와 row 패스워드 일치여부 : " + passwordEncoder.matches("test", test));
+			
+			count = signInService.insert(vo);
+			
+		//카카오 회원가입으로 들어오면(이 경우 password inputbox 자체가 없기 때문에 null
+		} else {
+			System.out.println("카카오 회원가입");
+			System.out.println(vo);
+			
+			vo.setId("kakao_login_id_" + vo.getId());
+			vo.setPassword("1X^H320AR)Y&G#JEIW$)OE"); //유출 금지................
+			
+			count = signInService.insert(vo);
+		}
 		
-		int count = signInService.insert(vo);
-		model.addAttribute("count", count);
 		
-		return "signIn/leaderStep3";
+		if (count == 1) {
+			page = "signIn/leaderStep3";
+		}
+		
+		return page;
 	}
 	
 	
@@ -104,7 +140,7 @@ public class SignInController {
 	@ResponseBody
 	public String sendKey(@RequestBody HashMap<String, String> map) {
 		//넘어온 휴대폰 번호
-		System.out.println(map.get("userPhoneNumber"));
+		System.out.println(map.get("phone"));
 		
 		//인증번호 4자리 랜덤 생성
         Random rand  = new Random();
@@ -121,7 +157,7 @@ public class SignInController {
 //		userService.insertAuthCode(userPhoneNumber, key); // 휴대폰 인증 관련 서비스
 
 		HashMap<String, String> set = new HashMap<String, String>();
-		set.put("to", map.get("userPhoneNumber")); // 수신번호
+		set.put("to", map.get("phone")); // 수신번호
 		set.put("from", "01067290715"); // 발신번호
 		set.put("text", "[LHmian] 인증번호 [" + key + "]를 입력해주세요."); // 문자내용
 		set.put("type", "sms"); // 문자 타입
