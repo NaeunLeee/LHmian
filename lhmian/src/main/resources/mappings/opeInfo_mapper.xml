@@ -43,13 +43,13 @@
 			SELECT
 			/*+INDEX_DESC(OPERATION_INFO OI_PK)*/
 			ROWNUM RN
-			, OI_NO
-			, OI_TYPE
-			, OI_TITLE
-			, OI_CONTENT
-			, OI_DATE
-			, OI_UPDATE
-			, OI_FILE
+				 , OI_NO
+				 , OI_TYPE
+				 , OI_TITLE
+				 , OI_CONTENT
+				 , OI_DATE
+				 , OI_UPDATE
+				 , OI_FILE
 			FROM OPERATION_INFO
 			WHERE
 			]]>
@@ -86,12 +86,16 @@
 		 , OI_TITLE
 		 , OI_CONTENT
 		 , OI_FILE
+		 , OI_FILEUUID
+		 , OI_UPLOADPATH
 	) VALUES (
 		   #{oiNo}
 		 , #{oiType}
 		 , #{oiTitle}
 		 , #{oiContent}
-		 , '테스트.hwp'
+		 , #{oiFile}
+		 , #{oiFileUuId}
+		 , #{oiUploadPath}
 	)
 </insert>
 
@@ -99,7 +103,6 @@
 	UPDATE OPERATION_INFO
 	SET OI_TITLE = #{oiTitle}
 	  , OI_CONTENT = #{oiContent}
-	  , OI_FILE = '수정테스트.hwp'
 	  , OI_UPDATE = SYSDATE
 	WHERE OI_NO = #{oiNo}
 </update>

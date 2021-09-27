@@ -1,17 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.lh.app.conference.mapper.confMapper">
+<mapper namespace="com.lh.app.conference.mapper.ConfMapper">
+
+<sql id="criteria">
+	<trim prefix="(" suffix=")AND" prefixOverrides="OR">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="OR">
+				<choose>
+					<when test="type=='T'.toString()">
+						CONF_TITLE like '%' || #{keyword} || '%'
+					</when>
+					<when test="type=='W'.toString()">
+						CONF_WRITER like '%' || #{keyword} || '%'
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</trim>
+</sql>
+
+<select id="getTotalCount" resultType="int">
+
+	SELECT COUNT(*) FROM
+	CONFERENCE
+	WHERE
+		<include refid="criteria"></include>
+	CONF_NO > 0
+
+</select>
 
 <select id="getList" resultType="confVO">
+
+	<![CDATA[
+		SELECT CONF_NO
+			 , CONF_TITLE
+			 , CONF_CONTENT
+			 , CONF_WRITER
+			 , CONF_DATE
+			 , CONF_UPDATE
+		FROM (
+			SELECT 
+			/*+INDEX_DESC(CONFERENCE CONFERENCE_PK)*/
+			ROWNUM RN
+				 , CONF_NO
+				 , CONF_TITLE
+				 , CONF_CONTENT
+				 , CONF_WRITER
+				 , CONF_DATE
+				 , CONF_UPDATE
+			FROM CONFERENCE
+			WHERE
+			]]>
+				<include refid="criteria"></include>
+			<![CDATA[
+			ROWNUM <= #{pageNum} * #{amount}
+		)
+		WHERE RN > (#{pageNum} - 1) * #{amount}
+	]]>
+	
+</select>
+
+<select id="read" resultType="confVO" parameterType="confVO">
+	
 	SELECT CONF_NO
 		 , CONF_TITLE
 		 , CONF_CONTENT
 		 , CONF_WRITER
 		 , CONF_DATE
-		 , CONF_UPDATE
+		 , CONF_UPDATE 
 	FROM CONFERENCE
-	ORDER BY CONF_DATE DESC
+	WHERE CONF_NO = #{confNo}
+
 </select>
 
+<insert id="insert">
+	<selectKey keyProperty="confNo" resultType="int" order="BEFORE">
+		SELECT CONF_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+	
+	INSERT INTO CONFERENCE (
+			CONF_NO
+		  , CONF_TITLE
+		  , CONF_CONTENT
+		  , CONF_WRITER
+		  , CONF_DATE
+		  , CONF_UPDATE
+	) VALUES (
+			#{confNo}
+		  , #{confTitle}
+		  , #{confContent}
+		  , #{confWriter}
+		  , SYSDATE
+		  , SYSDATE
+	)
+	
+</insert>
+
+<update id="update">
+	
+	UPDATE CONFERENCE
+	SET CONF_TITLE = #{confTitle}
+	  , CONF_CONTENT = #{confContent}
+	  , CONF_UPDATE = SYSDATE
+	WHERE CONF_NO = #{confNo}
+	
+</update>
+
+<delete id="delete">
+	DELETE FROM CONFERENCE
+	WHERE CONF_NO = #{confNo}
+</delete>
 
 </mapper>

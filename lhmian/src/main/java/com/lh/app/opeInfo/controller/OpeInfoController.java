@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lh.app.opeInfo.domain.OpeInfoCriteria;
@@ -35,7 +37,7 @@ public class OpeInfoController {
 	
 	// 단건 조회
 	@GetMapping("/introduce/opeInfoSelect")
-	public String opeInfoSelect(Model model, OpeInfoVO vo) {
+	public String opeInfoSelect(Model model, @ModelAttribute("cri") OpeInfoCriteria cri, OpeInfoVO vo) {
 		model.addAttribute("info", opeInfoService.read(vo));
 		return "introduce/opeInfoSelect";
 	}
@@ -58,7 +60,7 @@ public class OpeInfoController {
 	
 	// 등록 폼
 	@GetMapping("/admin/admOpeInfoInsert")
-	public String admOpeInfoInsertForm() {
+	public String admOpeInfoInsertForm(MultipartFile[] uploadFile) {
 		return "admin/admOpeInfoInsert";
 	}
 	
@@ -77,7 +79,8 @@ public class OpeInfoController {
 	}
 	
 	// 수정
-	@PostMapping("opeInfoUpdate")
+	@PostMapping("/admin/opeInfoUpdate")
+	@ResponseBody
 	public String opeInfoUpdate(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
 		int n = opeInfoService.update(vo);
 		
@@ -96,7 +99,8 @@ public class OpeInfoController {
 	}
 	
 	// 삭제
-	@PostMapping("opeInfoDelete")
+	@PostMapping("/admin/opeInfoDelete")
+	@ResponseBody
 	public String delete(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
 		
 		int n = opeInfoService.delete(vo);
