@@ -2,6 +2,7 @@ package com.lh.app.signIn.service;
 
 import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
+import com.lh.app.signIn.etc.CustomUserDetails;
 
 public interface SignInService {
 	//id 중복체크

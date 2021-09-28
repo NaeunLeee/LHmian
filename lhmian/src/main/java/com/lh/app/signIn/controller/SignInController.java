@@ -32,6 +32,11 @@ public class SignInController {
 
 		return "signIn/login";
 	}
+	
+    @GetMapping("/accessDenied")
+    public String accessDeniedPage() throws Exception {
+        return "/signIn/accessDenied";
+    }
 
 	@GetMapping("/leaderStep1")
 	public String leaderStep1() {

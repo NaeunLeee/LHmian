@@ -2,45 +2,103 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-	<!-- <security:http pattern="/css/**" security="none" /> -->
+<!-- 	<security:http pattern="/css/**" security="none" />  -->
 	<security:http pattern="/resources/**" security="none" />
-<!-- 	<security:http>
-		<security:intercept-url pattern="/top.jsp"
-			access="permitAll()" /> 
-		<security:intercept-url pattern="/loginForm"
-			access="permitAll()" />
-		<security:intercept-url pattern="/loginout"
-			access="permitAll()" />			
-		<security:intercept-url pattern="/admin/**"
-			access="hasAuthority('ROLE_ADMIN')" />
+ 	<security:http>		
+<!-- 		<security:intercept-url pattern="/admin/**"
+			access="hasAuthority('ROLE_ADMIN')" /> -->
 		<security:intercept-url pattern="/**"
-			access="isAuthenticated()" />
+			access="permitAll()" />
 		<security:form-login
 			login-page="/login"
 			login-processing-url="/loginDo" 
 			username-parameter="id"
 			password-parameter="password"
-			authentication-success-handler-ref="customLogin"
-			default-target-url="/top.jsp"/> 
-		<security:logout logout-url="/logout" logout-success-url="/top.jsp" />
-		<security:access-denied-handler error-page="/error/accessError.jsp"/>	
- 		<security:csrf disabled="false" /> 
-	</security:http> -->
-<!-- 	<security:authentication-manager>
+			default-target-url="/" /> 
+		<security:logout logout-url="/logout" logout-success-url="/" />
+		<security:access-denied-handler error-page="/accessDenied"/>	
+ 		<security:csrf disabled="true" /> 
+	</security:http>
+ 	<security:authentication-manager>
 		<security:authentication-provider>   
  			<security:jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query
-					="select id, password, 1 from users where id = ?"
+					="select id, password, 1 from member where id = ?"
 				authorities-by-username-query
-					="select id, 'ROLE_' || upper(role) from users where id = ?"
+					="select id, 'ROLE_' || upper(author) from member where id = ?"
 			/>
-			<security:password-encoder hash="bcrypt"/>
+  			<security:password-encoder hash="bcrypt"/>  
 		</security:authentication-provider>
-	</security:authentication-manager>  -->
+		<security:authentication-provider user-service-ref="userService">
+		</security:authentication-provider>
+	</security:authentication-manager>
 
+ 
+<!-- <security:authentication-manager>
+    <security:authentication-provider user-service-ref="userService">
+    </security:authentication-provider>
+</security:authentication-manager>-->
+        
+<bean id="userService" class="com.lh.app.signIn.etc.CustomUserDetailsService"/> 
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http auto-config="true" use-expressions="true">
+		ROLE_OWNER, ROLE_MEMBER
+		<intercept-url pattern="/admin/**"
+			access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/**" access="permitAll" />
+		<access-denied-handler
+			error-page="/accessDenied" />
+			
+		<form-login username-parameter="id"
+			password-parameter="password" login-processing-url="/loginDo"
+			login-page="/login" default-target-url="/" />
+
+	</http>
+
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="SELECT ID, PASSWORD, 1 FROM user WHERE ID=?"
+				authorities-by-username-query="SELECT ID, 'ROLE_' || UPPER(AUTHOR) FROM MEMBER WHERE ID=?" />
+			<password-encoder hash="bcrypt"/>
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+</beans:beans> -->
+
+
+
+
+
