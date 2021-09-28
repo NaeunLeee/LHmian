@@ -4,6 +4,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<div style="background: yellowgreen">
 		<a href="commlist">커뮤니티</a>
+		<a href="./">HOME</a>
+		<a href="myInfo">정보수정</a>
 	</div>
 	<div>
 		<a href="login">로그인</a>
