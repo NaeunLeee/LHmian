@@ -41,6 +41,10 @@
 		</table>
 	</div>
 	<br>
+	<div>
+		<button type="button" onclick="location.href='admOpeInfoInsert'">글 쓰기</button>
+	</div>
+	<br>
 	<div id="pageBtn">
 		<c:if test="${pageMaker.prev == true}">
 			<a href="${pageMaker.startPage-1}">이전</a>
