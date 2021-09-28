@@ -46,7 +46,7 @@
 	</insert>
 	
 	<update id="updateRe">
-		UPDATE COMENTS SET 
+		UPDATE COMMENTS SET 
 		CMT_CONTENT = #{cmtContent},
 		CMT_UPDATE = sysdate
 		WHERE CMT_NO = #{cmtNo}

@@ -19,4 +19,6 @@ public interface MemberService {
 	
 	//회원삭제
 	public int delete(MemberVO vo);
+	
+	
 }

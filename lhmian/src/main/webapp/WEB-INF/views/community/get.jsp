@@ -78,6 +78,8 @@
 				}
 			});
 	});
+	
+	
 
 	$("#btnModify").on("click", function() {
 		$("#commContent").attr("disabled", false);
@@ -95,6 +97,8 @@
 				success : function(data) {
 					alert("수정이 완료 되었습니다");
 					$("#commContent").attr("disabled", true);
+					$("#update").attr('id', 'btnModify').html('수정');
+					
 					console.log(data);
 				},
 				error : function() {
@@ -227,23 +231,14 @@
 		});
 	}
 	
-	//수정버튼
-	/* function button1_click(tabInfo) {
-		
-		console.log("수정버튼을 누르셨습니다.");
-		var b = $(tabInfo).data("num");
-		console.log(b);
-		var c = $(tabInfo).parent().children("#cmtUpdate");
-		c.attr('id', 'updatecmt1').html('완료'); 
-		
-	} */
-	
-	$(document).on("click", "#cmtUpdate", function(){
-		
+	$(document).on("click", "#cmtUpdate", function(e){
+		e.preventDefault();
 		var num = $(this).data("num")
 		
 		console.log(num);
+		
 		$(this).parent().children("#cmtUpdate").html("완료");
+		$(this).attr("id","cmtUpdate2");
 		$(this).parent().children('p').remove();
 		$(this).parent().children('div').attr('id','test0');
 		$.ajax({
@@ -256,24 +251,29 @@
 				var str2 = '<input id="test" name="test" value="'+result.cmtContent+'">'
 				$("#test0").html(str2);
 				
-				$(document).on("click", "#cmtUpdate", function(){
+				
+				$(document).one("click", "#cmtUpdate2", function(){
+					if (confirm('수정할까요??')){
 					$.ajax({
 						url : "./reply/",
 						type : 'put',
 						dataType : "json",
-						contentType : "application/json",
-						data : {
+						contentType: 'application/json; charset=utf-8',
+						data : JSON.stringify({
 							cmtNo : num, 
 							cmtContent : $("#test").val()	
-						},
+						}),
 						success : function(data) {
 							console.log(data);
 							showList();
+							
 						},
 						error : function(){
 							alert("수정실패");
+							console.log($("#test").val());
 						}
 					});
+					}
 				});
 				
 			},

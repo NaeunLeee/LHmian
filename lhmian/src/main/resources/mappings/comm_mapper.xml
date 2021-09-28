@@ -8,13 +8,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type=='T'.toString()">
-							COMM_TITLE like '%' ||#{keyword} || '%'
+							COMM_TITLE LIKE '%' ||#{keyword}|| '%'
 						</when>
 						<when test="type=='C'.toString()">
-							COMM_CONTENT like '%' ||#{keyword} || '%'
+							COMM_NO LIKE '%' ||#{keyword}|| '%'
 						</when>
 						<when test="type=='W'.toString()">
-							ID LIKE '%' ||#{keyword} || '%'
+							ID LIKE '%' ||#{keyword}|| '%'
 						</when>
 					</choose>
 				</trim>

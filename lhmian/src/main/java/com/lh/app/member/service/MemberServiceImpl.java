@@ -35,6 +35,7 @@ public class MemberServiceImpl implements MemberService {
 	 * return mapper.update(vo); }
 	 */
 
+	// 0928 추가 ----------------------------------------------------
 	// 회원삭제
 	@Override
 	public int delete(MemberVO vo) {

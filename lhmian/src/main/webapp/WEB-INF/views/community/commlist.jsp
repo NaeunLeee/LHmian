@@ -29,7 +29,7 @@
 		<select name="type">
 			<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
 			<option value="T" ${empty pageMaker.cri.type =='T' ? selected : ""}>제목검색</option>
-			<option value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>내용</option>
+			<option value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>번호</option>
 			<option value="W" <c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
 			<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목 or 내용</option>
 			<option value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목 or 작성자</option>
