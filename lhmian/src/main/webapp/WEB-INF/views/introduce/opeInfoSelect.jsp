@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
@@ -16,8 +17,10 @@
 		작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" />
 		<hr>
 		<textarea id="oiContent" rows="5" cols="33" readonly="readonly">${info.oiContent}</textarea><br>
-		첨부파일 | <input type="text" value="${info.oiFile}" readonly="readonly">
 		
+		<c:if test="${info.oiFileid != null}">
+		첨부파일 | <a href="opeInfoDownload?oiFileid=${info.oiFileid}">${info.oiFilename}</a>
+		</c:if>
 	</div>
 	<br>
 	<div align="center">

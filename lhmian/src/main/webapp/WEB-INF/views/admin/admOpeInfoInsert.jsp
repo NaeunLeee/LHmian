@@ -24,13 +24,15 @@
 		</div>
 	</form>
 	<div>
-		<input type="file" name="oiFile" multiple="multiple">
-		<button type="button" id="uploadBtn">업로드</button>
+		<input type="file" name="uploadFile">
+		<button type="button" id="uploadBtn">파일 첨부</button>
+		<ul id="uploaded"></ul>
 	</div>
+	<br>
 	<div align="center">
-		<button type="submit">등 록</button>
+		<button type="button" id="insertBtn">등 록</button>
 		<button type="reset">취 소</button>
-		<button type="button" onclick="location.href='../introduce/opeInfoList'">목 록</button>
+		<button type="button" onclick="location.href='../admin/admOpeInfoList'">목 록</button>
 	</div>
 	
 </div>
@@ -42,44 +44,63 @@
 
 $(function() {
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-	var maxSize = 5242880; //5MB
 	
-	function checkExtension(fineName, fileSize) {
-		if (fileSize >= maxSize) {
-			alert("파일 사이즈 초과");
-			return false;
-		}
-		if (regex.test(fileName)) {
+	function checkExtension(filename) {
+		if (regex.test(filename)) {
 			alert("해당 종류의 파일은 업로드할 수 없습니다.");
 			return false;
 		}
 		return true;
 	};
 	
+	// 파일 첨부 버튼 이벤트
 	$('#uploadBtn').on("click", function() {
 		var formData = new FormData(document.frm);
-		var inputFiles = $('[name="oiFile"]');
-		var files = inputFiles[0].files;
+		var inputFile = $('[name="uploadFile"]');
+		var files = inputFile[0].files;
 		
 		for (i=0; i<files.length; i++) {
-			if (!checkExtension(files[i].name, files[i].size)) {
+			if (!checkExtension(files[i].name)) {
 				return;
 			} else {
-				formData.append("oiFile", files[i]);
+				formData.append("uploadFile", files[i]);
 			}
 		}
 		
 		$.ajax({
 			processData : false,
 			contentType : false,
-			url : "admOpeInfoInsert",
+			url : "opeInfoFileAttach",
 			data : formData,
 			type : 'POST',
-			success : function(result){
-				alert("업로드 성공")
+			success : function(datas) {
+				var li = "";
+				var str = "";
+				
+				for (i=0; i<datas.length; i++) {
+					var obj = datas[i];
+					var fileCallPath = encodeURIComponent(obj.oiFilepath+"/"+ obj.oiFileid +"_"+obj.oiFilename);
+					var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+					
+					li += "<li>";
+					li += "<span> "+ obj.oiFilename+"</span>";
+					li += "</li>";
+					
+					str += "<input type='hidden' name='oiFilename' value='" + obj.oiFilename + "'>";
+					str += "<input type='hidden' name='oiFileid' value='" + obj.oiFileid + "'>";
+					str += "<input type='hidden' name='oiFilepath' value='" + obj.oiFilepath + "'>";
+					
+				}
+				$('#uploaded').html(li);
+				$('#frm').append(str);
 			}
 		});
 		
+	});
+	
+	// 등록 버튼 이벤트
+	$('#insertBtn').on("click", function() {
+		$('#frm').submit();
 	});
 	
 });

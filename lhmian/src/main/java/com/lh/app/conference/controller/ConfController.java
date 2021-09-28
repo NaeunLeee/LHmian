@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -57,28 +58,15 @@ public class ConfController {
 	}
 	
 	// 수정
-	@PostMapping("confUpdate")
+	@PostMapping("/resident/confUpdate")
 	@ResponseBody
-	public String confUpdate(RedirectAttributes rttr, ConfVO vo, @ModelAttribute("cri") ConfCriteria cri) {
-		int n = confService.update(vo);
-		
-		if (n == 1) {
-			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
-		} else {
-			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
-		}
-		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword", cri.getKeyword());
-		
-		return "redirect:/resident/confList";
+	public ConfVO confUpdate(@RequestBody ConfVO vo) {
+		confService.update(vo);
+		return confService.read(vo);
 	}
 	
 	// 삭제
-	@PostMapping("confDelete")
-	@ResponseBody
+	@PostMapping("/resident/confDelete")
 	public String delete(RedirectAttributes rttr, ConfVO vo, @ModelAttribute("cri") ConfCriteria cri) {
 		int n = confService.delete(vo);
 		

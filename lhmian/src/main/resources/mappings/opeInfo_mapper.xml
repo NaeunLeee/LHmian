@@ -38,7 +38,9 @@
 			 , OI_CONTENT
 			 , OI_DATE
 			 , OI_UPDATE
-			 , OI_FILE
+			 , OI_FILENAME
+			 , OI_FILEID
+			 , OI_FILEPATH
 		FROM (
 			SELECT
 			/*+INDEX_DESC(OPERATION_INFO OI_PK)*/
@@ -49,7 +51,9 @@
 				 , OI_CONTENT
 				 , OI_DATE
 				 , OI_UPDATE
-				 , OI_FILE
+				 , OI_FILENAME
+				 , OI_FILEID
+				 , OI_FILEPATH
 			FROM OPERATION_INFO
 			WHERE
 			]]>
@@ -69,11 +73,30 @@
 		 , OI_CONTENT
 		 , OI_DATE
 		 , OI_UPDATE
-		 , OI_FILE
+		 , OI_FILENAME
+		 , OI_FILEID
+		 , OI_FILEPATH
 	FROM OPERATION_INFO
 	WHERE OI_NO = #{oiNo}
 	
 </select>
+
+<select id="readByFileid" resultType="opeInfoVO" >
+
+	SELECT OI_NO
+		 , OI_TYPE
+		 , OI_TITLE
+		 , OI_CONTENT
+		 , OI_DATE
+		 , OI_UPDATE
+		 , OI_FILENAME
+		 , OI_FILEID
+		 , OI_FILEPATH
+	FROM OPERATION_INFO
+	WHERE OI_FILEID = #{oiFileid}
+	
+</select>
+
 
 <insert id="insert">
 	<selectKey keyProperty="oiNo" resultType="int" order="BEFORE">
@@ -85,17 +108,21 @@
 		 , OI_TYPE
 		 , OI_TITLE
 		 , OI_CONTENT
-		 , OI_FILE
-		 , OI_FILEUUID
-		 , OI_UPLOADPATH
+		 , OI_DATE
+		 , OI_UPDATE
+		 , OI_FILENAME
+		 , OI_FILEID
+		 , OI_FILEPATH
 	) VALUES (
 		   #{oiNo}
 		 , #{oiType}
 		 , #{oiTitle}
 		 , #{oiContent}
-		 , #{oiFile}
-		 , #{oiFileUuId}
-		 , #{oiUploadPath}
+		 , SYSDATE
+		 , SYSDATE
+		 , #{oiFilename}
+		 , #{oiFileid}
+		 , #{oiFilepath}
 	)
 </insert>
 
