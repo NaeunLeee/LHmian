@@ -2,6 +2,7 @@ package com.lh.app.signIn.mapper;
 
 import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
+import com.lh.app.signIn.etc.CustomUserDetails;
 
 public interface SignInMapper {
 	//id 중복체크

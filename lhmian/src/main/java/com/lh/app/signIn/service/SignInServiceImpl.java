@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
 import com.lh.app.signIn.etc.Coolsms;
+import com.lh.app.signIn.etc.CustomUserDetails;
 import com.lh.app.signIn.mapper.SignInMapper;
 
 @Service
@@ -98,9 +99,5 @@ public class SignInServiceImpl implements SignInService {
 		// TODO Auto-generated method stub
 		return signInMapper.updatePassword(vo);
 	}
-
-
-
-
 
 }

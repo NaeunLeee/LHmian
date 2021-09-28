@@ -10,7 +10,7 @@
 <body>
 
 	<c:if test="${result eq 0 }">
-		회원정보가 틀립니다.
+		일치하는 회원정보가 없습니다.
 	</c:if>
 
 	<c:if test="${result eq 1 }">
