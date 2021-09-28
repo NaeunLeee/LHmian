@@ -59,7 +59,7 @@ public class CommController {
 		model.addAttribute("list", commService.read(vo));
 		return "community/get";
 	}
-
+	
 	// 등록폼
 	@GetMapping("modify")
 	public String modify() {

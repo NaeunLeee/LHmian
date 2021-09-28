@@ -49,7 +49,7 @@ public class ReplyRestController {
 	public ReplyVO update(@RequestBody ReplyVO vo) { // RequestBody 필요
 		System.out.println(vo.toString());
 		replyService.updateRe(vo);
-		return replyService.readRe(vo);
+		return vo;
 	}
 
 	// 삭제

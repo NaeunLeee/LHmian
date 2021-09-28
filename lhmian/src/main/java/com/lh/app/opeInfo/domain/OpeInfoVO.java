@@ -14,8 +14,8 @@ public class OpeInfoVO {
 	private Date oiDate;
 	private Date oiUpdate;
 	
-	private String oiFile;
-	private String oiFileUuId;
-	private String oiUploadPath;
+	private String oiFilename;
+	private String oiFileid;
+	private String oiFilepath;
 	
 }

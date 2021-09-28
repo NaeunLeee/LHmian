@@ -5,6 +5,8 @@
 <html>
 <head>
 <title>Template</title>
+<link href='${pageContext.request.contextPath}/resources/lib/main.css' rel='stylesheet' />
+<script src='${pageContext.request.contextPath}/resources/lib/main.js'></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>

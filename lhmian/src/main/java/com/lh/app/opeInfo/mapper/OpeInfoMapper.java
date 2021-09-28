@@ -13,6 +13,7 @@ public interface OpeInfoMapper {
 	
 	// 단건 조회
 	public OpeInfoVO read(OpeInfoVO vo);
+	public OpeInfoVO readByFileid(String uuid);
 	
 	// 등록
 	public int insert(OpeInfoVO vo);

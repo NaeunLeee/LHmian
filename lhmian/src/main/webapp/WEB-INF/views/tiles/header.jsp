@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script
@@ -9,6 +10,7 @@
 </div>
 <div>
 	<sec:authorize access="isAnonymous()">
+
 		<a href="login">로그인</a>
 	</sec:authorize>
 	<sec:authorize access="isAuthenticated()">

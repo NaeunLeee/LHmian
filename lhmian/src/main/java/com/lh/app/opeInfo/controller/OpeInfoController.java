@@ -1,11 +1,29 @@
 package com.lh.app.opeInfo.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -78,29 +96,48 @@ public class OpeInfoController {
 		return "redirect:/admin/admOpeInfoList";
 	}
 	
+	// 파일 첨부
+	@PostMapping("/admin/opeInfoFileAttach")
+	@ResponseBody
+	public List<OpeInfoVO> opeInfoFileAttach(MultipartFile[] uploadFile, RedirectAttributes rttr) throws IllegalStateException, IOException {
+		List<OpeInfoVO> list = new ArrayList<OpeInfoVO>();
+		
+		String path = "c:/opeInfoFile";
+		
+		File dir = new File(path);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		
+		for (int i=0; i<uploadFile.length; i++) {
+			MultipartFile ufile = uploadFile[i];
+			
+			if (!ufile.isEmpty() && ufile.getSize()>0) {
+				String filename = ufile.getOriginalFilename();
+				UUID fileid = UUID.randomUUID();
+				File file = new File(path, fileid + filename);
+				ufile.transferTo(file);
+				
+				OpeInfoVO vo = new OpeInfoVO();
+				vo.setOiFileid(fileid.toString());
+				vo.setOiFilename(filename);
+				vo.setOiFilepath(path);
+				list.add(vo);
+			}
+		}
+		return list;
+	}
+	
 	// 수정
 	@PostMapping("/admin/opeInfoUpdate")
 	@ResponseBody
-	public String opeInfoUpdate(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
-		int n = opeInfoService.update(vo);
-		
-		if (n == 1) {
-			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
-		} else {
-			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
-		}
-		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-		rttr.addAttribute("type", cri.getType());
-		rttr.addAttribute("keyword", cri.getKeyword());
-		
-		return "redirect:/admin/admOpeInfoList";
+	public OpeInfoVO opeInfoUpdate(@RequestBody OpeInfoVO vo) {
+		opeInfoService.update(vo);
+		return opeInfoService.read(vo);
 	}
 	
 	// 삭제
 	@PostMapping("/admin/opeInfoDelete")
-	@ResponseBody
 	public String delete(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
 		
 		int n = opeInfoService.delete(vo);
@@ -108,7 +145,7 @@ public class OpeInfoController {
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "삭제가 완료되었습니다!");
 		} else {
-			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+			rttr.addFlashAttribute("message", "삭제에 실패했습니다. 다시 시도해주세요.");
 		}
 		
 		rttr.addAttribute("pageNum", cri.getPageNum());
@@ -119,8 +156,111 @@ public class OpeInfoController {
 		return "redirect:/admin/admOpeInfoList";
 	}
 	
+	// 첨부파일 다운로드
+	@GetMapping("/introduce/opeInfoDownload")
+	public void fileDownload(@RequestParam Map<String, Object> commandMap
+						   , HttpServletRequest request
+						   , HttpServletResponse response) throws IOException {
+		
+		String oiFileid = (String) commandMap.get("oiFileid");
+		
+		// oiFileid로 첨부파일 검색
+		OpeInfoVO vo = opeInfoService.readByFileid(oiFileid);
+		String oiFilename = "";
+		
+		if (vo != null) {
+			oiFilename = vo.getOiFilename();
+		}
+		
+		File uFile = new File("c:/opeInfoFile", oiFileid + oiFilename);
+		long fSize = uFile.length();
+		
+		if (fSize > 0) {
+			String mimetype = "application/x-msdownload";
+			response.setContentType(mimetype);
+			response.setHeader("Content-Disposition", 
+							   "attachment;filename=\"" 
+							 + URLEncoder.encode(oiFilename, "utf-8") + "\"");
+			
+			BufferedInputStream in = null;
+			BufferedOutputStream out = null;
+			try {
+				in = new BufferedInputStream(new FileInputStream(uFile));
+				out = new BufferedOutputStream(response.getOutputStream());
+				FileCopyUtils.copy(in, out);
+				out.flush();
+			} catch (IOException ex) {
+			} finally {
+				in.close();
+				response.getOutputStream().flush();
+				response.getOutputStream().close();
+			}
+		} else {
+			response.setContentType("application/x-msdownload");
+			PrintWriter printwriter = response.getWriter();
+			printwriter.println("<html>");
+			printwriter.println("<h2>Could not get file name:<br>" + oiFileid + "</h2>");
+			printwriter.println("<center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
+			printwriter.println("&copy; webAccess");
+			printwriter.println("</html>");
+			printwriter.flush();
+			printwriter.close();
+		}
+		
+	}
 	
-	
+	@GetMapping("/admin/opeInfoDownload")
+	public void admFileDownload(@RequestParam Map<String, Object> commandMap
+			, HttpServletRequest request
+			, HttpServletResponse response) throws IOException {
+		
+		String oiFileid = (String) commandMap.get("oiFileid");
+		
+		// oiFileid로 첨부파일 검색
+		OpeInfoVO vo = opeInfoService.readByFileid(oiFileid);
+		String oiFilename = "";
+		
+		if (vo != null) {
+			oiFilename = vo.getOiFilename();
+		}
+		
+		File uFile = new File("c:/opeInfoFile", oiFileid + oiFilename);
+		long fSize = uFile.length();
+		
+		if (fSize > 0) {
+			String mimetype = "application/x-msdownload";
+			response.setContentType(mimetype);
+			response.setHeader("Content-Disposition", 
+					"attachment;filename=\"" 
+							+ URLEncoder.encode(oiFilename, "utf-8") + "\"");
+			
+			BufferedInputStream in = null;
+			BufferedOutputStream out = null;
+			try {
+				in = new BufferedInputStream(new FileInputStream(uFile));
+				out = new BufferedOutputStream(response.getOutputStream());
+				FileCopyUtils.copy(in, out);
+				out.flush();
+			} catch (IOException ex) {
+			} finally {
+				in.close();
+				response.getOutputStream().flush();
+				response.getOutputStream().close();
+			}
+		} else {
+			response.setContentType("application/x-msdownload");
+			PrintWriter printwriter = response.getWriter();
+			printwriter.println("<html>");
+			printwriter.println("<h2>Could not get file name:<br>" + oiFileid + "</h2>");
+			printwriter.println("<center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
+			printwriter.println("&copy; webAccess");
+			printwriter.println("</html>");
+			printwriter.flush();
+			printwriter.close();
+		}
+		
+	}
+
 	
 	
 }

@@ -15,6 +15,7 @@ public interface MemberMapper {
 	 * //회원승인 public int update(MemberVO vo);
 	 */
 
+	// 0928 추가
 	//단건조회
 	public MemberVO read(MemberVO vo);
 	

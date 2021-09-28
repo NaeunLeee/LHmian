@@ -13,18 +13,18 @@
 	<h3>입주자 대표회의 게시글</h3>
 	<hr>
 	<div>
-		<input id="confTitle" type="text" value="${conf.confTitle}" readonly>&nbsp;
+		<input id="confTitle" type="text" value="${conf.confTitle}" disabled="disabled">&nbsp;
 		작성일자 : <fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${conf.confUpdate}" pattern="yy-MM-dd" />
 		<hr>
-		<textarea id="confContent" rows="5" cols="33" readonly>${conf.confContent}</textarea>
-	
-		<input id="confNo" name="confNo" type="hidden" value="${conf.confNo}">
-	
+		<textarea id="confContent" rows="5" cols="33" disabled="disabled">${conf.confContent}</textarea>
+		<form id="deleteForm" name="deleteForm" action="confDelete" method="post">
+			<input id="confNo" name="confNo" type="hidden" value="${conf.confNo}">
+		</form>
 	</div>
 	<br>
 	<div align="center">
-		<button type="button" id="btnUpdate">수정</button>
-		<button type="button" id="btnDelete">삭제</button>
+		<button type="button" id="modifyBtn">수정</button>
+		<button type="button" id="deleteBtn">삭제</button>
 		<button type="button" onclick="location.href='../resident/confList'">목록</button>
 	</div>
 </div>
@@ -35,15 +35,20 @@
 
 <script>
 
-$(function() {
-
-	$('#btnUpdate').on("click", function() {
-		if ($(this).text() == '수정') {
-			$('#confTitle').prop('readonly', false);
-			$('#confContent').prop('readonly', false);
-			$(this).text('완료');
-		} else if ($(this).text() == '완료') {
-			if (confirm('정말로 수정하시겠습니까?')) {
+	$('#modifyBtn').on("click", function() {
+		
+		if ($(this).attr('id') == 'modifyBtn') {
+	
+			if (confirm('수정하시겠습니까?')) {
+				$('#confTitle').attr("disabled", false);
+				$('#confContent').attr("disabled", false);
+				$(this).attr('id', 'updateBtn').html('완료');
+			}
+			
+		} else if ($(this).attr('id') == 'updateBtn') {
+			
+			if (confirm('수정사항을 반영하시겠습니까?')) {
+				
 				$.ajax({
 					url: "confUpdate",
 					type: "post",
@@ -54,40 +59,29 @@ $(function() {
 						confContent: $('#confContent').val()
 					}),
 					contentType: 'application/json',
-					success: function(data) {
+					success: function (data) {
 						alert("수정이 완료되었습니다!");
-					}
+						console.log(data);
+					},
 					error: function() {
 						alert("수정에 실패했습니다. 다시 시도해주세요.");
 					}
 				});
+				
+				$('#confTitle').attr('disabled', true);
+				$('#confContent').attr('disabled', true);
+				$(this).attr('id', 'modifyBtn').html('수정');
 			}
-			$('#confTitle').prop('readonly', true);
-			$('#confContent').prop('readonly', true);
-			$(this).text('수정');
 		}
-	});
+		
+	});	
 	
-	$('#btnDelete').on("click", function() {
+	$('#deleteBtn').on("click", function() {
 		if (confirm('정말로 삭제하시겠습니까?')) {
-			$.ajax({
-				url: "confDelete",
-				type: "post",
-				data: JSON.stringify({
-					confNo: $('input:text[name="confNo"]').val();
-				}),
-				dataType: 'json',
-				success: function() {
-					alert("삭제가 완료되었습니다!");
-				},
-				error: function() {
-					alert("삭제에 실패했습니다.");
-				}				
-			});
+			$('#deleteForm').submit();
 		}
 	});
 	
-});
 </script>
 
 </html>

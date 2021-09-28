@@ -28,7 +28,12 @@ public class OpeInfoServiceImpl implements OpeInfoService {
 	public OpeInfoVO read(OpeInfoVO vo) {
 		return opeInfoMapper.read(vo);
 	}
-
+	// 파일 아이디로 단건 조회
+	public OpeInfoVO readByFileid(String uuid) {
+		return opeInfoMapper.readByFileid(uuid);
+	}
+	
+	
 	// 등록
 	public int insert(OpeInfoVO vo) {
 		return opeInfoMapper.insert(vo);
