@@ -14,6 +14,17 @@
 		ORDER BY DECODE(LOST_STATUS, '수령전', 1), LOST_DATE DESC
 	</select>
 	
+	<select id="read" resultType="LostFoundVO" parameterType="LostFoundVO">
+	SELECT LOST_NO,
+			LOST_CONTENT,
+			LOST_DATE,
+			LOST_FILE,
+			LOST_STATUS
+		FROM 
+			LOST_AND_FOUND
+		WHERE LOST_NO = #{lostNo}
+	</select>
+	
 	<insert id="insert">
 		<selectKey keyProperty="lostNo" resultType="int" order="BEFORE">
 			SELECT

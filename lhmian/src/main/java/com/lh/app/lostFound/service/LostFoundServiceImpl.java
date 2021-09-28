@@ -33,5 +33,10 @@ public class LostFoundServiceImpl implements LostFoundService {
 		return lostFoundMapper.getList(vo);
 	}
 
+	@Override
+	public LostFoundVO read(LostFoundVO vo) {
+		return lostFoundMapper.read(vo);
+	}
+
 
 }
