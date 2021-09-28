@@ -18,4 +18,7 @@ public interface LostFoundService {
 
 	// 전체조회
 	public List<LostFoundVO> getList(LostFoundVO vo);
+	
+	//단건조회
+	public LostFoundVO read(LostFoundVO vo);
 }

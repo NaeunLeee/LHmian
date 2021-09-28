@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +23,8 @@
 			<tr>
 				<td>${item.lostNo}</td>
 				<td>${item.lostContent}</td>
-				<td><fmt:formatDate value="${item.lostDate}" pattern="yyyy/MM/dd"/></td>
-				<td>
-				<c:if test="${not empty item.lostUpdate}">
-				<fmt:formatDate value="${item.lostUpdate}" pattern="yyyy/MM/dd"/></c:if></td>
+				<td>${item.lostDate}</td>
+				<td><c:if test="${not empty item.lostUpdate}">${item.lostUpdate}</c:if></td>
 				<td><img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}"></td>
 				<td>${item.lostStatus}</td>
 			</tr>
