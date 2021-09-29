@@ -48,14 +48,15 @@
 	<update id="update" parameterType="LostFoundVO">
 		UPDATE LOST_AND_FOUND
 			SET LOST_CONTENT = #{lostContent},
-				LOST_UPDATE = DEFAULT,
+				LOST_UPDATE = SYSDATE,
 				LOST_FILE = #{lostFile},
 				LOST_STATUS = #{lostStatus}
 			WHERE LOST_NO = #{lostNo}
 	</update>
 	
 	<delete id="delete">
-		DELETE LOST_AND_FOUND
-			WHERE LOST_NO = #{lostNo}
-	</delete>
+		DELETE FROM (
+			SELECT LOST_UPDATE FROM LOST_AND_FOUND WHERE LOST_STATUS='수령완료' 
+			) WHERE LOST_UPDATE < SYSDATE;
+	</DELETE>
 </mapper>

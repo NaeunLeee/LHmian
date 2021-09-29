@@ -9,10 +9,10 @@
 <body>
 	<div>
 		<form method="post" action="admLostInsert" enctype="multipart/form-data">
-			<table>
+			<table border="1">
 				<tr>
 					<th>분실물내용</th>
-					<td><input name="lostContent" placeholder="분실물 내용을 작성하세요."></td>
+					<td><textarea name="lostContent" placeholder="분실물 내용을 작성하세요." rows="5" cols="50"></textarea></td>
 				</tr>
 				<tr>
 					<th>분실물파일</th>
