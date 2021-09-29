@@ -11,9 +11,6 @@ public interface MemberMapper {
 	public List<MemberVO> getList(MemberCriteria cri);
 	public int getTotalCount(MemberCriteria cri);
 	
-	/*
-	 * //회원승인 public int update(MemberVO vo);
-	 */
 
 	// 0928 추가
 	//단건조회
