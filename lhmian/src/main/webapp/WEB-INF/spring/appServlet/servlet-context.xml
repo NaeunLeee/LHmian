@@ -57,5 +57,6 @@
 	 </beans:bean>
 	 
 	<context:component-scan	base-package="com.lh.app" />
-	<task:annotation-driven/>
+	<task:annotation-driven scheduler="scheduler" />
+	<task:scheduler id="scheduler" pool-size="10" />
 </beans:beans>

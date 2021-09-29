@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.energy.mapper.EnergyMapper">
+<select id="getList" resultType="EnergyVO">
+SELECT MF_DATE,
+		HOUSE_INFO,
+		ENG,
+		GAS,
+		ELECTRIC,
+		WATER,
+		TRASH,
+		TRASH_FOOD
+	FROM
+		ENERGY_USAGE
+		where house_info = 1011001
+		order by mf_date
+</select>
+
+<select id="read" resultType="EnergyVO" parameterType="EnergyVO">
+	SELECT MF_DATE,
+		HOUSE_INFO,
+		ENG,
+		GAS,
+		ELECTRIC,
+		WATER,
+		TRASH,
+		TRASH_FOOD
+	FROM
+		ENERGY_USAGE
+	WHERE MF_DATE = #{mfDate}
+	ORDER BY MF_DATE
+</select>
+</mapper>
