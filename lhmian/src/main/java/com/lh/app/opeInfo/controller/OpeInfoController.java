@@ -69,7 +69,7 @@ public class OpeInfoController {
 		return "admin/admOpeInfoList";
 	}
 	
-	// 관리자 단건 조회 (ajax로 바로 수정 가능)
+	// 관리자 단건 조회
 	@GetMapping("/admin/admOpeInfoSelect")
 	public String admOpeInfoSelect(Model model, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
 		model.addAttribute("info", opeInfoService.read(vo));
