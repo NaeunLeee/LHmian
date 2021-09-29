@@ -27,13 +27,13 @@
 		<button type="button" id="deleteBtn">삭제</button>
 		<button type="button" onclick="location.href='../office/csList'">목록</button>
 	</div>
-</div>
-
+</div><br>
+<hr>
 <!-- 답변 등록 -->
-<div>
+<div align="center">
 	<form id="replyForm">
 		<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
-		<textarea rows="10" cols="100" id="csAnswer" name="csAnswer"></textarea>
+		<textarea rows="10" cols="100" id="csAnswer" name="csAnswer"></textarea><br>
 		<button type="button" id="saveAnswer">답변 등록</button>
 	</form>
 </div>
