@@ -133,13 +133,5 @@ public class LostFoundController {
 		return "redirect:/itemLost/admLostList";
 	}
 	
-	//삭제
-	@Component
-	public String delete(LostFoundVO vo, RedirectAttributes rttr) {
-		int result = lostFoundService.delete(vo);
-		if(result == 1) {
-			rttr.addFlashAttribute("result", "success");
-		}
-		return "redirect:/itemLost/admLostList";
-	}
+	
 }
