@@ -68,9 +68,9 @@
 		<button type="button" class="dropbtn">관리 사무소</button>
 		<div class="dropdown-content">
 			<a href="${pageContext.request.contextPath}/office/noticeList">공지사항</a>
-			<a href="#">민원</a>
+			<a href="${pageContext.request.contextPath}/office/csList">민원</a>
 			<a href="#">일정</a>
-			<a href="#">분실물 보관소</a>
+			<a href="${pageContext.request.contextPath}/itemLost/lostList">분실물 보관소</a>
   		</div>
 	</div>
 	

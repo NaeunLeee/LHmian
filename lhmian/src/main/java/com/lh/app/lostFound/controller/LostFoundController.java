@@ -142,5 +142,5 @@ public class LostFoundController {
 		System.out.println("매일밤12시 삭제");
 		lostFoundService.delete();
 
-
+	}
 }
