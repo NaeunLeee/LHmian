@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.carList.domain.CarListCriteria;
@@ -20,7 +21,7 @@ public class CarListController {
 	CarListService service;
 	
 	//전체조회
-	@GetMapping("/admin/admCarList")
+	@GetMapping("admCarList")
 	public String carList(Model model, @ModelAttribute("cri") CarListCriteria cri) {
 		int total = service.getTotalCount(cri);
 		model.addAttribute("list", service.getList(cri));
@@ -28,11 +29,30 @@ public class CarListController {
 		return "admin/admCarList";
 	}
 	
-	//차량삭제
-	@PostMapping("/admin/admCarListDelete")
-	@ResponseBody
-	public boolean delete(CarListVO vo) {
-		service.delete(vo);
-		return true;
-	}
+	//차량 선택 삭제
+//	@RequestMapping("/deleteCar")
+//	@ResponseBody
+//	public boolean deleteUser(@RequestParam int[] chk) throws Exception {
+//		for (int i=0; i<chk.length; i++) {
+//			CarListVO vo = new CarListVO();
+//			vo.setCarNo((long)chk[i]);
+//			
+//			service.delete(vo);
+//		}
+//		return true;
+//	}
+	
+	
+	//차량 선택 삭제
+		@RequestMapping("/deleteCar")
+		@ResponseBody
+		public boolean deleteUser(@RequestParam Long[] chk) throws Exception {
+			for (int i=0; i<chk.length; i++) {
+				CarListVO vo = new CarListVO();
+				vo.setCarNo((Long)chk[i]);
+				
+				service.delete(vo);
+			}
+			return true;
+		}
 }

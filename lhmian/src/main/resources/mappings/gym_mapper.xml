@@ -2,5 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.facility.mapper.GymMapper">
 
+<select id="yogaTime" resultType="gxVO">
+	SELECT GX_CODE
+		 , GX_TITLE
+		 , GX_MON
+		 , GX_TUE
+		 , GX_WED
+		 , GX_THU
+		 , GX_FRI
+	FROM GX
+    WHERE SUBSTR(GX_TITLE, 1, 1) = '요'
+</select>
+
+<select id="pilTime" resultType="gxVO">
+	SELECT GX_CODE
+		 , GX_TITLE
+		 , GX_MON
+		 , GX_TUE
+		 , GX_WED
+		 , GX_THU
+		 , GX_FRI
+	FROM GX
+    WHERE SUBSTR(GX_TITLE, 1, 1) = '필'
+</select>
+
+<select id="spinTime" resultType="gxVO">
+	SELECT GX_CODE
+		 , GX_TITLE
+		 , GX_MON
+		 , GX_TUE
+		 , GX_WED
+		 , GX_THU
+		 , GX_FRI
+	FROM GX
+    WHERE SUBSTR(GX_TITLE, 1, 1) = '스'
+</select>
 
 </mapper>

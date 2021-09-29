@@ -135,10 +135,12 @@ public class LostFoundController {
 		return "redirect:/itemLost/admLostList";
 	}
 	
+
 	//삭제
 	@Scheduled(cron="* * 0 * * *")
 	public void delete() {
 		System.out.println("매일밤12시 삭제");
 		lostFoundService.delete();
-	}
+
+
 }
