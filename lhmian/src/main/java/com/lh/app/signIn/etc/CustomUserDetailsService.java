@@ -5,21 +5,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.lh.app.member.service.MemberService;
+import com.lh.app.member.mapper.MemberMapper;
 
-import lombok.extern.java.Log;
-
-@Log
 public class CustomUserDetailsService implements UserDetailsService {
     
     @Autowired
-    private MemberService memberService;
+    private MemberMapper memberMapper;
  
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("아이디 : " + username);
-        
-        return null;
+        CustomUserDetails user = memberMapper.selectUserById(username);
+        if(user==null) {
+            throw new UsernameNotFoundException(username);
+        }
+        return user;
     }
  
 }

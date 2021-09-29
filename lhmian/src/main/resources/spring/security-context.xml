@@ -3,13 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-
+	<!-- @AuthenticationPrincipal 어노테이션을 사용하기 위한 bean 등록 -->
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean id="AuthenticationPrincipal" class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-<!-- 	<security:http pattern="/css/**" security="none" />  -->
+
+	<!-- resources 폴더 이하는 spring security 무시함, 부트스트랩 css js 등 적용하기 위함 -->
 	<security:http pattern="/resources/**" security="none" />
  	<security:http>		
 <!-- 		<security:intercept-url pattern="/admin/**"
@@ -27,78 +36,10 @@
  		<security:csrf disabled="true" /> 
 	</security:http>
  	<security:authentication-manager>
-		<security:authentication-provider>   
- 			<security:jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query
-					="select id, password, 1 from member where id = ?"
-				authorities-by-username-query
-					="select id, 'ROLE_' || upper(author) from member where id = ?"
-			/>
+		<security:authentication-provider user-service-ref="userService">
   			<security:password-encoder hash="bcrypt"/>  
 		</security:authentication-provider>
-		<security:authentication-provider user-service-ref="userService">
-		</security:authentication-provider>
 	</security:authentication-manager>
-
- 
-<!-- <security:authentication-manager>
-    <security:authentication-provider user-service-ref="userService">
-    </security:authentication-provider>
-</security:authentication-manager>-->
         
 <bean id="userService" class="com.lh.app.signIn.etc.CustomUserDetailsService"/> 
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans
-	xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-                                 http://www.springframework.org/schema/beans/spring-beans.xsd
-                                 http://www.springframework.org/schema/security
-                                 http://www.springframework.org/schema/security/spring-security.xsd">
-
-	<http auto-config="true" use-expressions="true">
-		ROLE_OWNER, ROLE_MEMBER
-		<intercept-url pattern="/admin/**"
-			access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/**" access="permitAll" />
-		<access-denied-handler
-			error-page="/accessDenied" />
-			
-		<form-login username-parameter="id"
-			password-parameter="password" login-processing-url="/loginDo"
-			login-page="/login" default-target-url="/" />
-
-	</http>
-
-	<authentication-manager>
-		<authentication-provider>
-			<jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="SELECT ID, PASSWORD, 1 FROM user WHERE ID=?"
-				authorities-by-username-query="SELECT ID, 'ROLE_' || UPPER(AUTHOR) FROM MEMBER WHERE ID=?" />
-			<password-encoder hash="bcrypt"/>
-		</authentication-provider>
-	</authentication-manager>
-
-	<beans:bean id="bcryptPasswordEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-</beans:beans> -->
-
-
-
-
-
