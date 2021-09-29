@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	접근 불가
+	<h1>접근 불가</h1>
 </body>
 </html>

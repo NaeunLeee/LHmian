@@ -94,6 +94,9 @@
 	<sec:authorize access="isAnonymous()">
 		<button type="button" class="dropbtn" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+		<button type="button" class="dropbtn" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</button>
+	</sec:authorize>
 	
 <!-- 	<div class="dropdown">
 		<button type="button" class="dropbtn">마이 페이지</button>
@@ -112,7 +115,6 @@
 <div>
 
 	<sec:authorize access="isAuthenticated()">
-		<a href="logout">로그아웃</a>
 		<p>
 			아이디 <sec:authentication property="principal.username"/><br>
 			이름 <sec:authentication property="principal.NAME"/><br>
