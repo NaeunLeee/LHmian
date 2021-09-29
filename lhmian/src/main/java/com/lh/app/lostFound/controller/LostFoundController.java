@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,17 +87,17 @@ public class LostFoundController {
 	}
 	
 	//수정 폼
-	@GetMapping("/lostModifyModal")
+	@GetMapping("/lostModifyForm")
 	@ResponseBody
 	public LostFoundVO updateForm(LostFoundVO vo) {
-	System.out.println(vo);
 	LostFoundVO result = lostFoundService.read(vo);
 	return result;
 	}
 	
 	//수정
 	@PostMapping("/lostModify")
-	public String modify(LostFoundVO vo, @RequestParam("lostImg") MultipartFile file, RedirectAttributes rttr) throws IllegalStateException, IOException {
+	public String modify(LostFoundVO vo, @RequestParam("yj") MultipartFile file, RedirectAttributes rttr) throws IllegalStateException, IOException {
+		System.out.println(vo);
 		MultipartFile ufile = file;
 		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img";
 		//서버저장
@@ -122,16 +123,18 @@ public class LostFoundController {
 			g.dispose();
 			 
 			ImageIO.write(newImg, "jpg", lostFile);
+			vo.setLostFile(fileName);
 		int result = lostFoundService.update(vo);
 		if(result == 1) {
-			rttr.addFlashAttribute("result", "success");
+			rttr.addFlashAttribute("result", vo.getLostNo());
+			rttr.addFlashAttribute("message", "성공적으로 수정되었습니다.");
 			}
 		}
 		return "redirect:/itemLost/admLostList";
 	}
 	
 	//삭제
-	@PostMapping("/delete")
+	@Component
 	public String delete(LostFoundVO vo, RedirectAttributes rttr) {
 		int result = lostFoundService.delete(vo);
 		if(result == 1) {
