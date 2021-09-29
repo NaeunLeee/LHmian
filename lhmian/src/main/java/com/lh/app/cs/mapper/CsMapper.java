@@ -1,0 +1,35 @@
+package com.lh.app.cs.mapper;
+
+import java.util.List;
+
+import com.lh.app.cs.domain.CsCriteria;
+import com.lh.app.cs.domain.CsVO;
+
+public interface CsMapper {
+
+	// 전체 조회
+	public List<CsVO> getList(CsCriteria cri);
+	public int getTotalCount(CsCriteria cri);
+	
+	// 단건 조회
+	public CsVO read(CsVO vo);
+	
+	// 게시글 등록
+	public int insertBoard(CsVO vo);
+	
+	// 게시글 수정
+	public int updateBoard(CsVO vo);
+	
+	// 게시글 삭제
+	public int deleteBoard(CsVO vo);
+	
+	// 답변 등록
+	public int insertAnswer(CsVO vo);
+	
+	// 답변 수정
+	public int updateAnswer(CsVO vo);
+	
+	// 답변 삭제
+	public int deleteAnswer(CsVO vo);
+	
+}
