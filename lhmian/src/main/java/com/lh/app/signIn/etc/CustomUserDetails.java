@@ -23,7 +23,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 	    @Override
 	    public Collection<? extends GrantedAuthority> getAuthorities() {
 	        ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
-	        auth.add(new SimpleGrantedAuthority(AUTHORITY));
+	        auth.add(new SimpleGrantedAuthority("ROLE_" + AUTHORITY));
 	        return auth;
 	    }
 	 

@@ -114,8 +114,11 @@
 	<sec:authorize access="isAuthenticated()">
 		<a href="logout">로그아웃</a>
 		<p>
-			<sec:authentication property="principal.username"/>
-			님, 반갑습니다.
+			아이디 <sec:authentication property="principal.username"/><br>
+			이름 <sec:authentication property="principal.NAME"/><br>
+			폰번호 <sec:authentication property="principal.PHONE"/><br>
+			권한(ADMIN, OWNER, MEMBER) <sec:authentication property="principal.AUTHOR"/><br>
+			세대정보 <sec:authentication property="principal.HOUSEINFO"/><br>
 		</p>
 	</sec:authorize>
 </div>

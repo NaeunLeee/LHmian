@@ -8,7 +8,7 @@
 			<tr>
 				<th><input type="checkbox" name="chkAll" id="chkAll"></th>
 				<th>아이디</th>
-				<th>동호수/주소</th>
+				<th>동호수</th>
 				<th>휴대폰번호</th>
 				<th>구분</th>
 			</tr>
@@ -19,9 +19,12 @@
 					<td><input type="checkbox" name="chk" id="${member.id}"
 						value="${member.id}"></td>
 					<td>${member.id}</td>
-					<td><a class="move" href="${member.id}">${member.houseInfo}</a></td>
-					<td>${member.phone}</td>
-					<td>${member.author}</td>
+					<td>${member.houseInfo}</td>
+					<td id="phone">${member.phone}</td>
+					<td id="test"> 
+					<c:if test="${member.author eq 'OWNER'}"> 세대주</c:if>
+					<c:if test="${member.author eq 'MEMBER'}"> 세대원</c:if>
+					</td>
 
 				</tr>
 			</c:forEach>
@@ -61,14 +64,14 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	var actionForm = $("#actionForm")
+/* 	var actionForm = $("#actionForm")
 	$(".move").on("click", function(e) {
 		e.preventDefault(); //a의 원래 기능 막고
 		var noticeNo = $(this).attr("href")
 		actionForm.append('<input type="hidden" name="id" value="'+ id +'">')
 		actionForm.attr("action", "admMemberList");
 		actionForm.submit();
-	});
+	}); */
 
 	$("#pageButton a").on("click", function(e) { //페이지 번호 눌렀을 때. pagebutton 안써주면 헤더, 푸터에 걸린 a태그도 다 링크 걸림
 		e.preventDefault(); //a, submit
@@ -135,4 +138,12 @@
 			});
 		}
 	}
+	 
+/* 	 $(document).ready(function() {
+		 
+		 var test = "${member.phone}";
+		 var testPhone = test.replae(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+		  
+		 $("#phone").text(testPhone);
+		 }); */
 </script>

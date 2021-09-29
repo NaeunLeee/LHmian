@@ -8,10 +8,13 @@
 				<trim prefix="OR">
 					<choose>
 						<when test="type=='T'.toString()">
-							NAME like '%' ||#{keyword} || '%'
+							ID like '%' ||#{keyword} || '%'
 						</when>
 						<when test="type=='C'.toString()">
 							HOUSE_INFO like '%' ||#{keyword} || '%'
+						</when>
+						<when test="type=='A'.toString()">
+							PHONE like '%' ||#{keyword} || '%'
 						</when>
 					</choose>
 				</trim>

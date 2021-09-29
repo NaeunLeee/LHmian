@@ -49,7 +49,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalClose">닫기</button>
-						<button type="button" class="btn btn-primary" name="lostModal">저장</button>
+						<button type="button" class="btn btn-primary" id="lostModal">저장</button>
 					</div>
 				</div>
 			</div>
@@ -61,37 +61,36 @@
 function lostModify(n) {
 	$(LaFModal).modal('show');
 	$.ajax({
-		url : "lostModifyModal",
+		url : "lostModifyForm",
 		type: "get",
 		data : {lostNo : n},
 		success : function(data) {
-			console.log(data);
 			var tag ="";
-			tag += '<form method="post" action="admLostUpdate" enctype="multipart/form-data">'
-				+  '	<table>'
+			tag += '<form id="frm" action="lostModify" method="post" enctype="multipart/form-data">'
+				+  '	<table border="1">'
 				+  '		<tr>'
-				+  '			<th>분실물번호</th>'
-				+  '			<td>' + data.lostNo + '</td>'
+				+  '			<th colspan="2">분실물번호</th>'
+				+  '			<td colspan="3">' + data.lostNo + '</td>'
 				+  '		</tr>'
 				+  '		<tr>'
-				+  '			<th>분실물내용</th>'
-				+  '			<td><input name="lostContent" placeholder="분실물 내용을 작성하세요." value="' + data.lostContent + '"></td>'
+				+  '			<th colspan="2">분실물내용</th>'
+				+  '			<td colspan="3"><textarea name="lostContent" placeholder="분실물 내용을 작성하세요." rows="5" cols="50">' + data.lostContent + '</textarea></td>'
 				+  '		</tr>'
 				+  '		<tr>'
-				+  '			<th>등록날짜</th>'
+				+  '			<th colspan="2">등록날짜</th>'
 				+  '			<td>' + data.lostDate + '</td>'
-				+  '		</tr>'
-				+  '		<tr>'
-				+  '			<th>분실물파일</th>'
-				+  '			<td><input type="file" name="lostImg" value="' + data.lostFile + '"></td>'
-				+  '		</tr>'
-				+  '		<tr>'
 				+  '			<th>수령여부</th>'
-				+  '			<td>' + data.lostStatus + '</td>'
+				+  '			<td><select name="lostStatus">'
+				+  ' 					<option value="' + data.lostStatus + '">' + data.lostStatus + '</option>'
+				+  '					<option value="수령완료">수령완료</option></td>'
+				+  '		</tr>'
+				+  '		<tr>'
+				+  '			<th colspan="2">분실물파일</th>'
+				+  '			<td colspan="3"><input type="file" name="yj"></td>'
 				+  '		</tr>'
 				+  '	</table>'
+				+  '	<input type="hidden" name="lostNo" value="' + data.lostNo + '">'
 				+  '</form>'
-				console.log(tag);
 			$("#LaFModal .modal-body").html(tag);
 		}
 	});
@@ -105,16 +104,12 @@ $(function() {
 	});
 
 	//모달 저장버튼
-	$('#lostModal').on('click', function() {
-		$.ajax({
-			type : "get", 
-			url : "lostModifyForm",
-			data : {lostNo : $('#lostModify').val()},
-			success : function() {
-				lostModal.submit();
-			}
-		});
+	$(document).ready(function() {
+		$('#lostModal').on('click', function() {
+			$('#frm').submit();
+		})	
 	});
 });
+
 </script>
 </html>
