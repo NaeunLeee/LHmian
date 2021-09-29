@@ -24,8 +24,8 @@ public class LostFoundServiceImpl implements LostFoundService {
 	}
 
 	@Override
-	public int delete(LostFoundVO vo) {
-		return lostFoundMapper.delete(vo);
+	public int delete() {
+		return lostFoundMapper.delete();
 	}
 
 	@Override

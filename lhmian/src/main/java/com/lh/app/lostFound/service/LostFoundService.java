@@ -14,7 +14,7 @@ public interface LostFoundService {
 	public int update(LostFoundVO vo);
 	
 	//삭제
-	public int delete(LostFoundVO vo);
+	public int delete();
 
 	// 전체조회
 	public List<LostFoundVO> getList(LostFoundVO vo);

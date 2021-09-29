@@ -54,5 +54,13 @@
 			WHERE LOST_NO = #{lostNo}
 	</update>
 	
-	
+
+	   <delete id="delete">
+   <![CDATA[ 
+      DELETE FROM LOST_AND_FOUND
+         WHERE LOST_STATUS = '수령완료' AND NVL(LOST_UPDATE, LOST_DATE)  < (SYSDATE-3)
+      ]]>
+   </delete>
+
+
 </mapper>

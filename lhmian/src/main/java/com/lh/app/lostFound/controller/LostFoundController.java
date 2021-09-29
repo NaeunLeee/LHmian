@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lh.app.lostFound.domian.LostFoundVO;
 import com.lh.app.lostFound.service.LostFoundService;
 
+@Component
 @Controller
 @RequestMapping("/itemLost/*")
 public class LostFoundController {
@@ -31,13 +33,13 @@ public class LostFoundController {
 	
 	//전체조회-사용자
 	@GetMapping("/lostList")
-	public void list(LostFoundVO vo, Model model) throws IOException {
+	public void list(LostFoundVO vo, Model model) {
 		model.addAttribute("lost", lostFoundService.getList(vo));
 	}
 	
 	//전체조회-관리자
 	@GetMapping("/admLostList")
-	public void admList(LostFoundVO vo, Model model) throws IOException {
+	public void admList(LostFoundVO vo, Model model) {
 		model.addAttribute("lost", lostFoundService.getList(vo));
 	}
 	
@@ -133,5 +135,12 @@ public class LostFoundController {
 		return "redirect:/itemLost/admLostList";
 	}
 	
-	
+
+	//삭제
+	@Scheduled(cron="* * 0 * * *")
+	public void delete() {
+		System.out.println("매일밤12시 삭제");
+		lostFoundService.delete();
+
+
 }
