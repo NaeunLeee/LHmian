@@ -98,7 +98,7 @@ public class LostFoundController {
 	
 	//수정
 	@PostMapping("/lostModify")
-	public String modify(LostFoundVO vo, @RequestParam("yj") MultipartFile file, RedirectAttributes rttr) throws IllegalStateException, IOException {
+	public String modify(LostFoundVO vo, @RequestParam("lostChangeImg") MultipartFile file, RedirectAttributes rttr) throws IllegalStateException, IOException {
 		System.out.println(vo);
 		MultipartFile ufile = file;
 		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img";

@@ -1,0 +1,313 @@
+/*
+Template: Printer
+category: Product Landing
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+
+ul.pl-thumbs-list{
+	width:100%;
+	float:left;
+	padding-left:0px;
+}
+.pl-thumbs-list li{
+	float:left;
+	margin-right:25px;
+	border:1px solid #e4e4e4;
+}
+
+/* feature box 1
+ ------------------------------ */
+.pl-feature-box-1{
+	width:100%;
+	float:left;
+	padding:55px;
+	background-color:#fff;
+}
+.pl-feature-box-1 .item-box{
+	width:100%;
+	float:left;
+}
+.pl-feature-box-1 .line{
+	position: absolute;
+	width:335px;
+	height:95px;
+	float:left;
+	z-index:2;
+	left: 146px;
+	top: 369px;
+}
+.pl-feature-box-1 .item-box:hover .icon, .pl-feature-box-1 .item-box:hover .title{
+	color:#ecae3d;
+}
+/* feature box 2
+ ------------------------------ */
+ 
+.pl-feature-box-2{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:55px;
+	top:165px;
+	background-color:#fff;
+}
+.pl-feature-box-2 .item-box{
+	width:100%;
+	float:left;
+}
+.pl-feature-box-2 .line{
+	position: absolute;
+	width:335px;
+	height:95px;
+	float:left;
+	z-index:2;
+	left: -136px;
+	top: -94px;
+}
+
+.pl-feature-box-2 .item-box:hover .icon, .pl-feature-box-2 .item-box:hover .title,
+.pl-feature-box-2 .item-box.active .icon, .pl-feature-box-2 .item-box.active .title{
+	color:#ecae3d;
+}
+
+/* feature box 3
+ ------------------------------ */
+.pl-feature-box-3{
+	width:100%;
+	float:left;
+	padding:70px;
+	min-height:449px;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.pl-feature-box-3:hover, .pl-feature-box-3.active{
+	background-color:#101010;
+}
+.pl-feature-box-3:hover .title, .pl-feature-box-3.active .title{
+	color:#fff;
+}
+.pl-feature-box-3:hover .btn.btn-border.dark, .pl-feature-box-3.active .btn.btn-border.dark{
+	border-color:#fff;
+	color:#fff;
+}
+.pl-feature-box-3 .title a:hover{
+	color:#fff;
+}
+
+/* feature box 4
+ ------------------------------ */
+.pl-feature-box-4{
+	width:100%;
+	float:left;
+	min-height:465px;
+}
+/* feature box 5
+ ------------------------------ */
+ 
+ .pl-feature-box-5-holder{
+	width:100%;
+	float:left;
+	padding:160px 0px 0px 0px;
+}
+
+.pl-feature-box-5{
+	position:relative;
+	width:100%;
+	float:left;
+	top:0px;
+	padding:0px;
+}
+.pl-feature-box-5 .img-box{
+	position: absolute;
+	width:600px;
+	height:429px;
+	float:left;
+	top: -450px;
+	left: 255px;
+}
+
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.pl-title-line-1 {
+	width: 125px;
+	height:2px;
+	margin:0px auto 20px auto;
+	background-color:#ecae3d;
+}
+.pl-title-line-1.align-left {
+	width: 125px;
+	margin:0 auto 20px 0;
+}
+.pl-title-line-2.dark, .pl-title-line-1.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+.pl-title-line-1.less-mar {
+	margin:5px auto 10px auto;
+}
+
+
+/*============ Parallax Sections ============ */
+
+.parallax-43 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+.parallax-43 .pl-feature-box {
+	width: 100%;
+	float: left;
+	margin-top:130px;
+}
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+
+.pl-feature-box-1 .line {
+	display:none;
+}
+.pl-feature-box-2 .line {
+	display:none;
+}
+.pl-feature-box-2 {
+    top: 0;
+}
+
+
+
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+.container{
+width:90%;
+	
+}
+.pl-feature-box-4 {
+    min-height: 0;
+}
+.pl-feature-box-5 .img-box {
+    position: static;
+    top: 0;
+}
+.pl-feature-box-5-holder {
+    padding:0px 0px 0px 0px;
+}
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+.pl-feature-box-5 .img-box {
+    position: static;
+    width: 300px;
+    height: 165px;
+    top: -380px;
+    left: 64px;
+}
+.pl-feature-box-5 .img-box img {
+    width: 60%;
+}
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+
+}

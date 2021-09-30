@@ -1,0 +1,316 @@
+/*
+Template: Printer
+category: Education
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+.en-feature-box-1{
+	position:relative;
+	width:100%;
+	left:0px;
+	top: -118px;
+	padding:55px;
+	background-color:#101010;
+}
+.en-feature-box-1.border-right{
+	border-right:1px solid #242424;
+}
+/* feature box 2
+ ------------------------------ */
+ 
+.en-feature-box-2{
+	width:100%;
+	float:left;
+	background-color:#fff;
+}
+.en-feature-box-2 .img-box{
+	position:relative;
+	width:100%;
+}
+.en-feature-box-2 .text-box .author{
+	position: relative;
+	width:100%;
+	float:left;
+}
+.en-feature-box-2 .text-box .author .imgbox-tiny{
+	position: absolute;
+	left: 51px;
+	top: -73px;
+	border:6px solid #fff;
+}
+.en-feature-box-2 .img-box .price-badge{
+	position: absolute;
+	width:46px;
+	height:46px;
+	left:15px;
+	top:15px;
+	text-align:center;
+	line-height:44px;
+	color:#fff;
+	border-radius:100%;
+	background-color:#ecae3d;
+}
+
+/* feature box 3
+ ------------------------------ */
+.en-feature-box-3{
+	width:100%;
+	float:left;
+	padding:60px;
+	min-height:380px;
+	border:3px solid #f5f5f5;
+}
+/* feature box 4
+ ------------------------------ */
+.en-feature-box-4{
+	width:100%;
+	float:left;
+	padding:0px;
+}
+
+/* feature box 5
+ ------------------------------ */
+.en-feature-box-5{
+	width:100%;
+	float:left;
+	padding:30px;
+	background-color:#fff;
+}
+.en-feature-box-5 .img-box{
+	position:relative;
+	width:100%;
+	float:left;
+}
+.en-feature-box-5 .img-box .post-date-box{
+	position: absolute;
+	color:#ecae3d;
+	left: 19px;
+	bottom: -17px;
+	background-color:#fff;
+}
+.en-feature-box-5 .img-box .post-date-box span{
+	color:#ecae3d;
+}
+
+/* feature box 6
+ ------------------------------ */
+.en-feature-box-6{
+	width:100%;
+	float:left;
+}
+.en-feature-box-6 .iconbox-smedium {
+	font-size:20px;
+	color: #101010;
+	line-height: 20px;
+	font-weight:normal;
+	border:1px solid #e4e4e4;
+	background-color:#fff;
+	padding: 19px 0 0 0;
+	font:'Open Sans', sans-serif;
+}
+.en-feature-box-6 .iconbox-smedium span {
+	font-size: 13px;
+	color:#727272;
+}
+.en-feature-box-6:hover .iconbox-smedium, .en-feature-box-6.active .iconbox-smedium {
+	color: #727272;
+	border:1px solid #101010;
+	background-color:#101010;
+}
+.en-feature-box-6:hover .iconbox-smedium span, .en-feature-box-6.active .iconbox-smedium span {
+	color:#727272;
+}
+.en-feature-box-6:hover h5, .en-feature-box-6.active h5 {
+	color:#ecae3d;
+}
+
+/* feature box 7
+ ------------------------------ */
+.en-feature-box-7{
+	width:100%;
+	float:left;
+	background-color:#fff;
+}
+.en-feature-box-7 .text-box{
+	padding:10px 20px;
+}
+.en-feature-box-7 .text-box .arrow{
+	padding:8px 0 0 0;
+}
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.en-title-line-1 {
+	width: 70px;
+	height:2px;
+	margin:15px auto 30px auto;
+	background-color:#101010;
+}
+.en-title-line-1.white {
+	background-color:#fff;
+}
+.en-title-line-1.align-left {
+	width: 70px;
+	margin:8px auto 20px 0;
+}
+.en-title-line-1.dark, .en-title-line-1.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+/*============ Parallax Sections ============ */
+
+.parallax-28 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+.parallax-29 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+.container{
+	width:95%;
+	
+	}
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+.en-feature-box-1 {
+    top: 0;
+    padding: 30px;
+}
+
+
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+.en-feature-box-1 {
+    top: 0;
+    padding: 30px;
+}
+.en-feature-box-2 {
+    width: 46%;
+}
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+.en-feature-box-1 {
+    top: 0;
+    padding: 30px;
+}
+.en-feature-box-2 {
+    width: 60%;
+}
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+.en-feature-box-2 {
+    width: 100%;
+}
+
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+
+}

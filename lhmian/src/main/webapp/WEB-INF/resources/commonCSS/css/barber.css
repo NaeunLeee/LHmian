@@ -1,0 +1,387 @@
+/*
+Template: Printer
+category: Barber
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+/*========= Band layout styles ===========*/
+
+/*============ Feature boxes ============ */
+
+.bb-feature-box-1{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.bb-feature-box-1 .img-box {
+    position: relative;
+    width: 385px;
+    height: 385px;
+    background-color: #fff;
+    margin:0;
+    padding: 0px;
+	left: 266px;
+	top: -20px;
+    border: 1px solid #e4e4e4;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    transition-property: background-color, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+.bb-feature-box-1 .img-box .img-frame {
+    position: absolute;
+    width: 346px;
+    height: 346px;
+    background-color: #fff;
+    margin: 40px;
+    padding: 0px;
+    left: -22px;
+    top: -22px;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    overflow: hidden;
+}
+.bb-feature-box-1 .img-box .img-frame .img{
+    margin: -83px;
+    padding: 0 0 0 0;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* ---------- feature box 2 ---------- */
+
+.bb-feature-box-2{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.bb-feature-box-2 .icon-circle {
+	width: 200px;
+	height: 200px;
+	font-size: 46px;
+	border: none;
+	border-radius:100%;
+	margin:0 auto 15px auto;
+}
+.bb-feature-box-2 .icon-circle.icon-1 {
+	background: #fff url(../images/bb-5.png) center 45px no-repeat;
+}
+.bb-feature-box-2:hover .icon-circle.icon-1 {
+	background: #fff url(../images/bb-5-hover.png) center 45px no-repeat;
+}
+.bb-feature-box-2 .icon-circle.icon-2 {
+	background: #fff url(../images/bb-6.png) center 45px no-repeat;
+}
+.bb-feature-box-2:hover .icon-circle.icon-2 {
+	background: #fff url(../images/bb-6-hover.png) center 45px no-repeat;
+}
+.bb-feature-box-2 .icon-circle.icon-3 {
+	background: #fff url(../images/bb-7.png) center 45px no-repeat;
+}
+.bb-feature-box-2:hover .icon-circle.icon-3, .bb-feature-box-2.active .icon-circle.icon-3 {
+	background: #fff url(../images/bb-7-hover.png) center 45px no-repeat;
+}
+.bb-feature-box-2 .icon-circle.icon-4 {
+	background: #fff url(../images/bb-8.png) center 45px no-repeat;
+}
+.bb-feature-box-2:hover .icon-circle.icon-4 {
+	background: #fff url(../images/bb-8-hover.png) center 45px no-repeat;
+}
+.bb-feature-box-2:hover h5, .bb-feature-box-2.active h5 {
+	color:#ecae3d;
+}
+
+/* ---------- feature box 3 ---------- */
+
+.bb-feature-box-3{
+	width:100%;
+	padding:170px 35px 35px 35px;
+	float:left;
+	margin:80px 0 0 0;
+	transition: all 0.3s ease-out 0s;
+	background-color: #fff;
+}
+.bb-feature-box-3 .img-frame {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background-color: #fff;
+    margin: 40px;
+    padding: 0px;
+    left: 107px;
+    top: 27px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    overflow: hidden;
+}
+.bb-feature-box-3 .img-frame .img{
+    margin: -34px;
+    padding: 0 0 0 0;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.bb-feature-box-3:hover, .bb-feature-box-3.active{
+	background-color: #101010;
+}
+.bb-feature-box-3:hover h5, .bb-feature-box-3.active h5{
+	color: #fff;
+}
+/*============ Section Titles ============ */
+
+/* title container
+ ------------------------------ */
+.sec-title-container {
+	width:100%;
+	float:left;
+	padding-bottom:70px;
+}
+.sec-title-container.less-padding {
+	padding-bottom:50px;
+}
+
+/* page title
+ ------------------------------ */
+.bb-section-title {
+	width:40%;
+	padding: 12px 0;
+	margin:0 auto;
+	font-weight: 400;
+	text-align:center;
+	border:1px solid #101010;
+}
+.bb-section-title.small {
+	font-weight: 400;
+	font-size:40px;
+}
+.bb-section-title.left {
+	width:80%;
+	padding: 12px;
+	text-align:left;
+	margin:0 auto 0 0;
+}
+.bb-section-title.left-2 {
+	width:50%;
+	padding: 12px;
+	text-align:left;
+	margin:0 auto 0 0;
+}
+
+
+
+
+/*============ Parallax Sections ============ */
+.parallax-3 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+.bb-parallax-sec-2 {
+	position:relative;
+	width: 100%;
+	float: left;
+	padding: 0;
+	margin: 0px;
+	text-align: center;
+	background: url(../images/parallax/bb-parallax2.jpg);
+	background-attachment: fixed;
+	background-origin: initial;
+	background-clip: initial;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+	background-position: center;
+	z-index: 1;
+}
+
+
+
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+	
+.bb-feature-box-3 .img-frame {
+    width: 100px;
+    height: 100px;
+    left: 83px;
+}
+.bb-feature-box-3 {
+    padding: 95px 35px 35px 35px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+.sec-m-margin-1 {
+    margin-top: 0px;
+}
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+.bb-feature-box-3 .img-frame {
+    left: 193px;
+}
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+.bb-feature-box-3 .img-frame {
+    left: 148px;
+}
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+.bb-feature-box-3 .img-frame {
+    left: 141px;
+}
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+.bb-feature-box-1 .img-box {
+    width: 285px;
+    height: 285px;
+	top:-14px;
+}
+.bb-feature-box-1 .img-box .img-frame {
+    width: 247px;
+    height: 247px;
+}
+.bb-feature-box-3 .img-frame {
+    left: 263px;
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+.bb-feature-box-1 .img-box {
+    left: 207px;
+}
+.bb-feature-box-3 .img-frame {
+    left: 186px;
+}
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+.bb-feature-box-1 .img-box {
+    width: 180px;
+    height: 180px;
+	top:-14px;
+	left: 150px;
+}
+.bb-feature-box-1 .img-box .img-frame {
+    width: 144px;
+    height: 144px;
+}
+.bb-feature-box-3 .img-frame {
+    left: 130px;
+}
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+.bb-feature-box-1 .img-box {
+    left: 130px;
+}
+.bb-feature-box-3 .img-frame {
+    left: 111px;
+}
+
+
+
+
+
+
+}

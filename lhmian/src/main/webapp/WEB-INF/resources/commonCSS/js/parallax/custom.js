@@ -1,0 +1,1 @@
+$('.parallax-2').parallax("50%", 0.3);

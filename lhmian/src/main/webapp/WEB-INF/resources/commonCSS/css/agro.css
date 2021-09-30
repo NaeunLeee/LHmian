@@ -1,0 +1,268 @@
+/*
+Template: Printer
+category: Agro
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+	4.crossed shapes
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+/*========= Agro layout styles ===========*/
+
+/*============ Feature boxes ============ */
+
+.ag-feature-box-1{
+	width:100%;
+	padding:0 0 30px 0;
+	float:left;
+	border:2px solid #fff;
+	transition: all 0.3s ease-out 0s;
+}
+.ag-feature-box-1:hover, .ag-feature-box-1.active{
+	border:2px solid #101010;
+}
+/* ---------- feature box 2 ---------- */
+.ag-feature-box-2{
+	width:100%;
+	float:left;
+	transition: all 0.3s ease-out 0s;
+}
+.ag-feature-box-2 .title{
+	transition: all 0.3s ease-out 0s;
+}
+.ag-feature-box-2:hover .title, .ag-feature-box-2.active .title{
+	color:#ecae3d;
+}
+.ag-feature-box-2:hover .icon-plain-msmall, .ag-feature-box-2.active .icon-plain-msmall{
+	color:#ecae3d;
+}
+
+/* ---------- feature box 3 ---------- */
+.ag-feature-box-3{
+	width:100%;
+	float:left;
+	padding:30px;
+	border-bottom:1px solid #f1f1f1;
+	border-right:1px solid #f1f1f1;
+}
+.ag-feature-box-3.box-two{
+	border-bottom:1px solid #f1f1f1;
+	border-right:1px solid #fff;
+}
+.ag-feature-box-3.box-three{
+	border-bottom:1px solid #fff;
+	border-right:1px solid #f1f1f1;
+}
+.ag-feature-box-3.box-four{
+	border-bottom:1px solid #fff;
+	border-right:1px solid #fff;
+}
+
+/* ---------- feature box 4 ---------- */
+.ag-feature-box-4{
+	width:100%;
+	float:left;
+	padding:15px;
+	margin-bottom:30px;
+	border:2px solid #f5f5f5;
+}
+.ag-feature-box-4 .inner-box{
+	width:100%;
+	float:left;
+	padding:30px;
+	background-color:#f5f5f5;
+}
+
+/* ---------- feature box 5 ---------- */
+.ag-feature-box-5{
+	width:100%;
+	margin:0px;
+	padding-bottom:130px;
+}
+.ag-truck-before-padding{
+	width:100%;
+	float:left;
+	height:150px;
+}
+
+/*============ Footer Styles ============ */
+
+.footer-style-1 {
+	width:100%;
+	color: #fff;
+	float: left;
+	left:0px;
+} 
+.footer-style-1 .truc-box {
+	width:100%;
+	color: #fff;
+	float: left;
+	padding-bottom:20px;
+	margin-top:-430px;
+	z-index:2;
+} 
+
+/* ---------- Footer quick links ---------- */
+
+.footer-quick-links {
+	width: 100%;
+	padding: 60px 0 0 0;
+	margin: 0px;
+}
+.footer-quick-links li {
+	padding: 0px;
+	margin: 0px;
+	display: inline-block;
+}
+.footer-quick-links li a {
+	padding:0 35px 20px 0;
+	margin:0;
+	color: #727272;
+	float: left;
+	display: inline-block;
+}
+.footer-quick-links li a:hover {
+	color: #fff;
+}
+
+/* ---------- Footer social links ---------- */
+.footer-social-icons {
+    width: 100%;
+    padding: 0px;
+	margin:35px 0 35px 0;
+}
+.footer-social-icons li {
+    padding: 0px;
+	margin: 0px;
+	display: inline-block;
+}
+.footer-social-icons li a {
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+    padding: 0px;
+    color: #101010;
+    background-color: #fff;
+}
+.footer-social-icons li a:hover, .footer-social-icons li a.active {
+    color: #fff;
+    background-color: #ecae3d;
+}
+
+/*============ Parallax Sections ============ */
+.parallax-1 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+	
+.footer-style-1 .truc-box {
+	width:100%;
+	padding-bottom:20px;
+	margin-top:-384px;
+} 
+.footer-style-1 .truc-box img {
+	width:100%;
+} 
+
+
+
+
+
+}
+	
+	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+.container{ 
+	width:94%;
+}
+.ag-feature-box-3, .ag-feature-box-3.box-two, .ag-feature-box-3.box-three, .ag-feature-box-3.box-four{
+	border:none;
+}
+.footer-style-1 .truc-box {
+	width:100%;
+	padding-bottom:20px;
+	margin-top:-225px;
+}
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+ 
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+.footer-style-1 .truc-box {
+    margin-top: -194px;
+}
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+}

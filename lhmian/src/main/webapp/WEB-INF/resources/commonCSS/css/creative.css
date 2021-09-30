@@ -1,0 +1,540 @@
+/*
+Template: Printer
+category: Creative
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+.ce3-feature-box-1{
+	width:100%;
+	float:left;
+	background-color:#fff;
+}
+.ce3-feature-box-1 .img-box{
+	position: relative;
+	width:100%;
+	float:left;
+}
+.ce3-feature-box-1 .img-box .text-box{
+	position: absolute;
+	width:100%;
+	height:100%;
+	float:left;
+	padding:25px;
+	transition: all 0.3s ease-out 0s;
+	background-color:rgba(255, 255, 255, 1);
+}
+.ce3-feature-box-1 .img-box .text-box .inner-box{
+	width:100%;
+	height:100%;
+	float:left;
+	padding:35px;
+	transition: all 0.3s ease-out 0s;
+	border:1px solid #e9e9e9;
+}
+.ce3-feature-box-1:hover .img-box .text-box, .ce3-feature-box-1.active .img-box .text-box{
+	background-color:rgba(0, 0, 0, 0.9);
+}
+.ce3-feature-box-1:hover .img-box .text-box .inner-box, .ce3-feature-box-1.active .img-box .text-box .inner-box{
+	border:1px solid rgba(255, 255, 255, 0.2);
+}
+.ce3-feature-box-1:hover .img-box .text-box .inner-box h4, .ce3-feature-box-1.active .img-box .text-box .inner-box h4{
+	color:#fff;
+}
+.ce3-feature-box-1:hover .img-box .text-box .inner-box .icon-plain-msmall, .ce3-feature-box-1.active .img-box .text-box .inner-box .icon-plain-msmall{
+	color:#ecae3d;
+}
+
+/* featurebox 2
+ ------------------------------ */
+.ce3-feature-box-2 {
+    width: 100%;
+    float: left;
+	margin-bottom:70px;
+}
+.ce3-feature-box-2 .inner-box {
+	border-left:1px solid #e4e4e4;
+	padding:0 0 0 20px;
+}
+.ce3-feature-box-2 .iconbox-small {
+	border:3px solid #f5f5f5;
+}
+.ce3-feature-box-2:hover .inner-box, .ce3-feature-box-2.active .inner-box {
+	border-left:1px solid #ecae3d;
+}
+.ce3-feature-box-2:hover .iconbox-small, .ce3-feature-box-2.active .iconbox-small{
+	color:#ecae3d;
+}
+.ce3-feature-box-2:hover h5, .ce3-feature-box-2.active h5{
+	color:#ecae3d;
+}
+
+/* featurebox 3
+ ------------------------------ */
+.ce3-feature-box-3 {
+	position:relative;
+    width: 100%;
+    float: left;
+}
+.ce3-feature-box-3 .overlay {
+	padding:60px;
+	background-color:rgba(0, 0, 0, 0.8);
+}
+.ce3-feature-box-3 .overlay.dark {
+	background-color:rgba(0, 0, 0, 0.9);
+}
+.ce3-feature-box-3 .overlay .text-box {
+    width: 100%;
+	height:100%;
+	padding:90px 60px 60px 60px;
+    float: left;
+	border:1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* featurebox 4
+ ------------------------------ */
+ .ce3-feature-box-4 {
+    width: 100%;
+    float: left;
+	transition: all 0.3s ease-out 0s;
+}
+.ce3-feature-box-4 .text-box{
+	position:relative;
+    width: 100%;
+    float: left;
+	padding:40px;
+	transition: all 0.3s ease-out 0s;
+	border:2px solid #e9e9e9;
+}
+.ce3-feature-box-4 .text-box .arrow-down {
+	position: absolute;
+	left: 146px;
+	top: 210px;
+	float: left;
+	z-index: 1;
+	transition: all 0.3s ease-out 0s;
+	border-top: 20px solid #f5f5f5;
+}
+.ce3-feature-box-4 .ce3-circle {
+	width:110px;
+	height:110px;
+	z-index: 1;
+	font-size:18px;
+	display:inline-block;
+	border-radius:100%;
+	text-align:center;
+	line-height:105px;
+	margin:40px 0 0 0;
+	transition: all 0.3s ease-out 0s;
+	background-color:#101010;
+}
+.ce3-feature-box-4:hover .text-box, .ce3-feature-box-4.active .text-box{
+	border:2px solid #101010;
+}
+.ce3-feature-box-4:hover .arrow-down, .ce3-feature-box-4.active .arrow-down {
+	border-top: 20px solid #101010;
+}
+.ce3-feature-box-4:hover .ce3-circle, .ce3-feature-box-4.active .ce3-circle {
+	background-color:#ecae3d;
+	color:#fff;
+}
+.ce3-feature-box-4:hover h5, .ce3-feature-box-4.active h5 {
+	color:#ecae3d;
+}
+.ce3-history-line {
+    width: 100%;
+    float: left;
+	top:300px;
+	background:url(../images/ce3-7.png) center 530px no-repeat;
+}
+
+/* featurebox 5
+ ------------------------------ */
+.ce3-feature-box-5 {
+    width: 100%;
+    float: left;
+	padding:30px;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.ce3-feature-box-5 .text-box {
+    width: 100%;
+    float: left;
+	padding:35px;
+	border:1px solid #efefef;
+	transition: all 0.3s ease-out 0s;
+}
+.ce3-feature-box-5:hover .text-box h5, .ce3-feature-box-5.active .text-box h5 {
+	color:#fff;
+}
+.ce3-feature-box-5:hover, .ce3-feature-box-5.active{
+	background-color:#101010;
+}
+.ce3-feature-box-5:hover .text-box, .ce3-feature-box-5.active .text-box{
+	border:1px solid #262626;
+}
+.ce3-feature-box-5:hover .text-box .icon-plain-msmall, .ce3-feature-box-5.active .text-box .icon-plain-msmall{
+	color:#ecae3d;
+}
+.ce3-feature-box-5:hover .text-box a, .ce3-feature-box-5.active .text-box a{
+	color:#ecae3d;
+}
+
+/* featurebox 6
+ ------------------------------ */
+.ce3-feature-box-6 {
+    width: 100%;
+    float: left;
+	padding:20px;
+	margin-bottom:208px;
+	border:1px solid #e9e9e9;
+	transition: all 0.3s ease-out 0s;
+}
+.ce3-feature-box-6 .img-box {
+	position:relative;
+    width: 100%;
+    float: left;
+	padding:0px;
+	text-align:center;
+	overflow:hidden;
+	background-color:#f5f5f5;
+}
+.ce3-feature-box-6 .text-box {
+	position: absolute;
+    width: 80%;
+	padding:50px;
+	left: 57px;
+	bottom: 20px;
+	z-index:3;
+	background-color:#fff;
+	border:1px solid #e9e9e9;
+}
+.ce3-feature-box-6 .img-box .sc-icons-box{
+	position: absolute;
+	width:20%;
+	height:100%;
+	padding:0px;
+	margin:0px;
+	right: -110px;
+	top:0px;
+	overflow:hidden;
+	z-index:1;
+	text-align:center;
+	display:inline-block;
+	background-color:#101010;
+	transition: all 0.3s ease-out 0s;
+}
+.ce3-feature-box-6 .img-box .sc-icons-box .sc-icons{
+	width:100%;
+	padding:60px 0 0 0;
+	margin:0px;
+}
+.ce3-feature-box-6 .img-box .sc-icons-box .sc-icons li{
+	width:100%;
+	padding:0px;
+	margin:0 0 10px 0;
+	display:inline-block;
+}
+.ce3-feature-box-6 .img-box .sc-icons-box .sc-icons li a{
+	width:40px;
+	height:40px;
+	padding:15px 10px;
+	color:#fff;
+	line-height:12px;
+	display:inline-block;
+	border:1px solid rgba(255, 255, 255, 0.1);
+}
+.ce3-feature-box-6 .img-box .sc-icons-box .sc-icons li a:hover, .ce3-feature-box-6 .img-box .sc-icons-box .sc-icons li a.active{
+	color:#101010;
+	background-color:#fff;
+}
+.ce3-feature-box-6:hover .img-box .sc-icons-box, .ce3-feature-box-6.active .img-box .sc-icons-box{
+	right:0px;
+}
+.ce3-feature-box-6:hover, .ce3-feature-box-6.active{
+	border:1px solid #101010;
+}
+
+/* featurebox 7
+ ------------------------------ */
+.ce3-feature-box-7 {
+    width: 100%;
+    float: left;
+	padding:70px;
+	border:1px solid #282828;
+}
+/* featurebox 8
+ ------------------------------ */
+.ce3-feature-box-8 {
+	position:relative;
+    width: 100%;
+    float: left;
+	min-height:200px;
+	padding:50px;
+	margin-bottom:95px;
+	border:3px solid #f5f5f5;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.ce3-feature-box-8 .client-box {
+	position:absolute;
+    width:82%;
+	padding:7px;
+	top: 155px;
+}
+.ce3-feature-box-8 .client-box .imgbox-xlarge {
+	padding:7px;
+}
+.ce3-feature-box-8 .client-box .title-top-pad {
+	padding-top:50px;
+}
+
+.ce3-feature-box-8:hover, .ce3-feature-box-8.active {
+	border:3px solid #101010;
+	background-color:#101010;
+}
+.ce3-feature-box-8:hover .client-box .imgbox-xlarge, .ce3-feature-box-8.active .client-box .imgbox-xlarge {
+	background-color:#fff;
+}
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.ce3-sub-text {
+	width: 30%;
+	margin:15px auto 0 auto;
+}
+.ce3-sub-text.align-left {
+	width: 80%;
+	margin:15px auto 0 0;
+}
+
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+.ce3-feature-box-1 .img-box .text-box {
+    height:auto;
+}	
+.ce3-feature-box-3 .overlay {
+    padding: 10px;
+}
+.ce3-feature-box-3 .overlay .text-box {
+    padding: 20px;
+}
+.ce3-feature-box-4 .text-box .arrow-down {
+	display:none;
+}
+.ce3-feature-box-6 .text-box {
+    bottom: -21px;
+}
+.ce3-feature-box-7 {
+    padding: 25px;
+}
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+.ce3-feature-box-3 .overlay .text-box {
+    padding: 150px 60px 60px 60px;
+}
+.ce3-feature-box-4 .ce3-circle {
+    margin: 0px 0 0 0;
+}
+.ce3-history-line {
+    background: none;
+}
+.ce3-feature-box-6 .text-box {
+    bottom: -3px;
+}
+.ce3-feature-box-6 {
+    margin-bottom: 255px;
+}
+.ce3-sub-text {
+    width: 50%;
+}
+.ce3-feature-box-8 {
+    margin-bottom: 130px;
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+.ce3-feature-box-6 .text-box {
+    bottom: -7px;
+    left: 40px;
+}
+.ce3-feature-box-6 .img-box .sc-icons-box .sc-icons {
+    padding: 10px 0 0 0;
+}
+.ce3-feature-box-6 {
+    margin-bottom: 300px;
+}
+.ce3-sub-text {
+    width: 65%;
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+.ce3-feature-box-6 .text-box {
+    bottom: 25px;
+}
+.ce3-feature-box-6 {
+    margin-bottom: 370px;
+}
+
+
+
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+.ce3-feature-box-3 .overlay .text-box {
+    padding: 60px 60px 60px 60px;
+}
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+.ce3-feature-box-8 .client-box {
+    top: 187px;
+}
+.ce3-feature-box-3 .overlay .text-box {
+    padding: 0;
+}
+
+
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+.ce3-feature-box-3 {
+    min-height: 300px;
+}
+
+.ce3-feature-box-3 .overlay .text-box {
+    padding: 20px;
+}
+.ce3-feature-box-8 .client-box .title-top-pad {
+    padding-top: 0;
+}
+.ce3-feature-box-8 .client-box {
+    top: 230px;
+}
+.ce3-feature-box-8 {
+    margin-bottom: 204px;
+}
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+.ce3-sub-text {
+    width: 100%;
+}
+.ce3-feature-box-6 {
+    margin-bottom: 367px;
+}
+.ce3-feature-box-6 .text-box {
+    bottom: 12px;
+    padding: 25px;
+	left: 30px;
+}
+.ce3-feature-box-6 .img-box .sc-icons-box .sc-icons li {
+    margin: 0 0 0 0;
+}
+
+
+}

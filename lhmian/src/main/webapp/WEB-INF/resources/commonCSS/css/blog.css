@@ -1,0 +1,442 @@
+/*
+Template: Printer
+category: Blog
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+/*========= Band layout styles ===========*/
+
+/*============ Feature boxes ============ */
+
+.bg-header-banner-1{
+	position:relative;
+	width:100%;
+	height:520px;
+	float:left;
+}
+.bg-header-banner-1 .text-box{
+	position: absolute;
+	width:100%;
+	float:left;
+	top:0px;
+	left:0px;
+	padding:250px 80px 0 350px;
+	z-index:1;
+}
+.bg-header-banner-1 .text-box .title{
+	width:100%;
+	float:left;
+	font-size:80px;
+	padding:0px;
+}
+.bg-header-banner-1 .text-box .title2{
+	width:100%;
+	float:left;
+	font-size:30px;
+	padding:0px;
+}
+.bg-header-banner-1 .text-box .title3{
+	width:100%;
+	float:right;
+	font-size:30px;
+	padding: 0px 0px 0px 198px;
+}
+/* ---------- header banner small ---------- */
+
+.bg-header-banner-2{
+	position:relative;
+	width:100%;
+	height:268px;
+	float:left;
+}
+.bg-header-banner-2 .text-box{
+	position: absolute;
+	width:100%;
+	float:left;
+	top:0px;
+	left:0px;
+	padding: 102px 0px 0px 54px;
+	z-index:1;
+}
+.bg-header-banner-2 .text-box .title{
+	width:100%;
+	float:left;
+	font-size:40px;
+	padding: 59px 0 0 70px;
+}
+.bg-header-banner-2 .text-box .title2{
+	width:100%;
+	float:left;
+	font-size:30px;
+	padding:0px;
+}
+
+/* ---------- newsletter box ---------- */
+
+.bg-right-item-holder{
+	width:100%;
+	float:left;
+	margin-bottom: 50px;
+}
+.bg-left-item-holder{
+	width:100%;
+	float:left;
+	padding:0px;
+}
+.bg-news-letter{
+	width:100%;
+	float:left;
+	padding:30px;
+	margin-top: 143px;
+	border:3px solid #f5f5f5;
+}
+.bg-news-letter input{
+	width:100%;
+	height:45px;
+	float:left;
+	padding:10px;
+	border:1px solid #e4e4e4;
+}
+.bg-gall-box{
+	width:100%;
+	float:left;
+}
+.bg-rightcol-title{
+	font-size:24px;
+	padding-bottom:30px;
+}
+.bg-rightcol-title.no-padding{
+	padding-bottom:00px;
+}
+
+/* ---------- right gallery box ---------- */
+
+.bg-gall-holder{
+	position:relative;
+	width:100%;
+	float:left;
+}
+.bg-gall-holder .text{
+	position: absolute;
+	width:100%;
+	float:left;
+	padding:85px 35px 35px 35px;
+	z-index:1;
+}
+
+/* ---------- left col 2 ---------- */
+
+.bg-left-item-holder-2{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0px;
+}
+.bg-left-item-holder-2 .text-box{
+	position: absolute;
+	width:85%;
+	left:23px;
+	bottom:0px;
+	padding:40px 0;
+	background-color:#fff;
+	
+}
+/* ---------- left col 3 ---------- */
+.bg-left-item-holder-3{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0 0 15px 0;
+}
+.bg-left-item-holder-3 .text-box{
+	position: absolute;
+	width:60%;
+	height:85%;
+	right:0px;
+	top:11px;
+	float:right;
+	padding:40px;
+	background-color:#fff;
+	
+}
+.bg-left-item-holder-3 img{
+	width:60%;
+	
+}
+/* ---------- left col 4 ---------- */
+
+.bg-left-item-holder-4{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0 0 15px 0;
+}
+.bg-left-item-holder-4 .text-box{
+	position: absolute;
+	width: 60%;
+	height: 80%;
+	right: 0px;
+	top: 21px;
+	float: right;
+	padding: 40px;
+	background-color: #fff;
+	
+}
+.bg-left-item-holder-4 img{
+	width: 60%;
+	
+}
+/* ---------- right side col 2 ---------- */
+
+.bg-right-item-holder-2{
+	width:100%;
+	float:left;
+	margin-bottom: 50px;
+}
+.bg-right-item-holder-2.top-margin{
+	margin-top: 143px;
+}
+.bg-right-posts{
+	width:100%;
+	float:left;
+	margin-bottom:20px;
+}
+
+/* ---------- right socialicon box ---------- */
+
+.bg-scicon-holder{
+	width:100%;
+	float:left;
+	padding:0px;
+}
+ul.bg-scicons li{
+	width:82px;
+	height:90px;
+	float:left;
+	margin:0 5px 5px 0;
+	border:1px solid #e9e9e9;
+}
+ul.bg-scicons li a{
+	width:82px;
+	height:90px;
+	float:left;
+	color:#101010;
+	line-height:18px;
+	text-decoration:none;
+	padding: 12px 0 0 0;
+	text-align:center;
+}
+ul.bg-scicons li a:hover, ul.bg-scicons li a.active{
+	color:#727272;
+	background-color:#101010;
+}
+ul.bg-scicons li a:hover i, ul.bg-scicons li a.active i{
+	color:#727272;
+}
+
+
+/*============ Section Titles ============ */
+
+/* title container
+ ------------------------------ */
+.sec-title-container {
+	width:100%;
+	float:left;
+	padding-bottom:70px;
+}
+.sec-title-container.less-padding {
+	padding-bottom:50px;
+}
+
+
+/*============ Parallax Sections ============ */
+.parallax-6 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+
+.bg-header-banner-1 .text-box {
+    padding: 174px 80px 0 205px;
+}
+.bg-header-banner-2 {
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+.container{
+	width:90%;
+	}
+.bg-header-banner-1 {
+    margin-bottom: 100px;
+}
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+.bg-header-banner-1 {
+    height: auto;
+}
+.bg-header-banner-1 {
+    margin-bottom: 0;
+}
+.bg-news-letter {
+    margin-top: 20px;
+}
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+.bg-header-banner-1 {
+    margin-bottom:0px;
+}
+.bg-header-banner-1 {
+    height: 100%;
+}
+.bg-gall-holder .text {
+    width: 47%;
+}
+.bg-left-item-holder-4 img {
+    width: 100%;
+}
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+.bg-header-banner-1 .text-box {
+    padding: 50px 0 0 30px;
+}
+.bg-left-item-holder-4 .text-box {
+    width: 100%;
+    height: 80%;
+    right: 0;
+    top: 21px;
+    padding: 20px;
+}
+.bg-left-item-holder-4 {
+	min-height:300px;
+}
+
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+.bg-header-banner-1 .text-box .title {
+    font-size: 49px;
+}
+.bg-header-banner-1 .text-box .title3 {
+    padding: 0px 0px 0px 79px;
+}
+.bg-left-item-holder-4 {
+	min-height:300px;
+}
+.bg-left-item-holder-3 img {
+    width: 100%;
+}
+.bg-left-item-holder-3 .text-box {
+    width: 82%;
+}
+
+
+
+
+
+
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+.bg-left-item-holder-3 .text-box {
+    width: 100%;
+    height: 85%;
+    top: 17px;
+    left: 21px;
+}
+
+
+}
