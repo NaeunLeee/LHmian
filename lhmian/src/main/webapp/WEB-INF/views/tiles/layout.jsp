@@ -5,13 +5,6 @@
 <html>
 <head>
 <title>Template</title>
-<link href='${pageContext.request.contextPath}/resources/css/main.css' rel='stylesheet' />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href='${pageContext.request.contextPath}/resources/vendor/css/select2.min.css' />
-    <link rel="stylesheet" href='${pageContext.request.contextPath}/resources/vendor/css/bootstrap-datetimepicker.min.css' />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
