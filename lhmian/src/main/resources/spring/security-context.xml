@@ -35,16 +35,20 @@
 		class="com.lh.app.signIn.etc.CustomAccessDeniedHandler" />
 
 	<!-- resources 폴더 이하는 spring security 무시함, 부트스트랩 css js 등 적용하기 위함 -->
-	<security:http pattern="/1.1/**" security="none" />
+
+	<security:http pattern="/resources/**" security="none" />
 	<security:http pattern="/css/**" security="none" />
-	<security:http pattern="/image/**" security="none" />
+	<security:http pattern="/fonts/**" security="none" />
+	<security:http pattern="/images/**" security="none" />
 	<security:http pattern="/js/**" security="none" />
-	<security:http pattern="/vendor/**" security="none" />
+	<security:http pattern="/less/**" security="none" />
+	<security:http pattern="/php/**" security="none" />
 
 	<security:http>
 		<!-- 인터셉트 처리 -->
 		<!-- <security:intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')" 
 			/> -->
+
 		<security:intercept-url pattern="/**"
 			access="permitAll()" />
 		<!-- 커스텀 로그인 -->

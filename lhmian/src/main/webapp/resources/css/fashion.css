@@ -1,0 +1,627 @@
+/*
+Template: Printer
+category: Fashion
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+.fn-feature-box-1{
+	width:100%;
+	float:left;
+}
+.fn-feature-box-1:hover .iconbox-large, .fn-feature-box-1.active .iconbox-large{
+	color:#ecae3d;
+}
+.fn-feature-box-1:hover .title, .fn-feature-box-1.active .title{
+	color:#ecae3d;
+}
+/* feature box 2
+ ------------------------------ */
+.fn-feature-box-2{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0;
+	margin-bottom:65px;
+}
+.fn-feature-box-2 .overlay{
+	position: absolute;
+	width:74%;
+	height:100%;
+	float:left;
+	padding:0;
+	z-index:2;
+	background-color:rgba(0, 0, 0, 0.1);
+}
+.fn-feature-box-2 .overlay .text-box{
+	position: absolute;
+	width:60%;
+	min-height:535px;
+	float:left;
+	padding:90px;
+	z-index:2;
+	right:-302px;
+	top:102px;
+	background-color:#f5f5f5;
+	transition: all 0.3s ease-out 0s;
+}
+.fn-feature-box-2:hover .overlay .text-box,
+.fn-feature-box-2.active .overlay .text-box{
+	background-color:#101010;
+}
+.fn-feature-box-2:hover .overlay .text-box .title, .fn-feature-box-2:hover .overlay .text-box .title-2,
+.fn-feature-box-2.active .overlay .text-box .title, .fn-feature-box-2.active .overlay .text-box .title-2{
+	color:#fff;
+}
+.fn-feature-box-2:hover .overlay .text-box a, .fn-feature-box-2.active .overlay .text-box a{
+	color:#ecae3d;
+}
+.fn-feature-box-2:hover .overlay .text-box .fn-title-line-1,
+.fn-feature-box-2.active .overlay .text-box .fn-title-line-1{
+	background-color:#fff;
+}
+/* feature box 3
+ ------------------------------ */
+.fn-feature-box-3{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0;
+	text-align:right;
+}
+.fn-feature-box-3 img{
+	float:right;
+}
+.fn-feature-box-3 .overlay{
+	position: absolute;
+	width:74%;
+	height:100%;
+	float:right;
+	right:0px;
+	z-index:2;
+	background-color:rgba(0, 0, 0, 0.2);
+}
+.fn-feature-box-3 .overlay .text-box{
+	position: absolute;
+	width:60%;
+	min-height:535px;
+	float:left;
+	padding:90px;
+	z-index:2;
+	left:-300px;
+	top:102px;
+	text-align:left;
+	background-color:#f5f5f5;
+	transition: all 0.3s ease-out 0s;
+}
+.fn-feature-box-3:hover .overlay .text-box,
+.fn-feature-box-3.active .overlay .text-box{
+	background-color:#101010;
+}
+.fn-feature-box-3:hover .overlay .text-box .title, .fn-feature-box-3:hover .overlay .text-box .title-2,
+.fn-feature-box-3.active .overlay .text-box .title, .fn-feature-box-3.active .overlay .text-box .title-2{
+	color:#fff;
+}
+.fn-feature-box-3:hover .overlay .text-box a, .fn-feature-box-3.active .overlay .text-box a{
+	color:#ecae3d;
+}
+.fn-feature-box-3:hover .overlay .text-box .fn-title-line-1,
+.fn-feature-box-3.active .overlay .text-box .fn-title-line-1{
+	background-color:#fff;
+}
+
+/* feature box 4
+ ------------------------------ */
+.fn-feature-box-4{
+	width:100%;
+	float:left;
+}
+.fn-feature-box-4:hover .icon-plain-medium,
+.fn-feature-box-4.active .icon-plain-medium{
+	color:#ecae3d;
+}
+.fn-feature-box-4:hover .title,
+.fn-feature-box-4.active .title{
+	color:#ecae3d;
+}
+
+/* feature box 5
+ ------------------------------ */
+.fn-feature-box-5{
+	width:100%;
+	float:left;
+	padding:50px;
+	border:2px solid #fff;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.fn-feature-box-5:hover, .fn-feature-box-5.active{
+	border:2px solid #101010;
+}
+
+/* ---------- feature box 6 ---------- */
+
+.fn-feature-box-6 {
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0px;
+	transition: all 0.3s ease-out 0s;
+}
+.fn-feature-box-6 .text-box{
+	position:absolute;
+	width:45%;
+	float:left;
+	top:60px;
+	left:60px;
+	padding:60px;
+	background-color:#fff;
+	z-index:2;
+}
+.fn-feature-box-6 .text-box .post-date-box{
+	color:#101010;
+	bottom: 0px;
+	left: 512px;
+	font-size:22px;
+	padding: 35px 0 0 0;
+	width:120px;
+	height:120px;
+	background-color:#fff;
+}
+.fn-feature-box-6 .text-box .post-date-box span{
+	color:#101010;
+	font-size:16px;
+}
+.fn-feature-box-6:hover h3, .fn-feature-box-6.active h3 {
+	color:#ecae3d;
+}
+.fn-feature-box-6 .text-box.top-space{
+	top:60px;
+}
+
+
+/* feature box 7
+ ------------------------------ */
+.fn-feature-box-7{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0;
+}
+.fn-feature-box-7 .overlay{
+	position: absolute;
+	width:74%;
+	height:100%;
+	float:left;
+	padding:0;
+	z-index:2;
+	background-color:rgba(0, 0, 0, 0.1);
+}
+.fn-feature-box-7 .overlay .text-box{
+	position: absolute;
+	width:60%;
+	min-height:440px;
+	float:left;
+	padding:90px;
+	z-index:2;
+	right:-302px;
+	top:54px;
+	background-color:#fff;
+	border:2px solid #f5f5f5;
+	transition: all 0.3s ease-out 0s;
+}
+.fn-feature-box-7 .post-date-box{
+	width:130px;
+	height:100px;
+	font-size:22px;
+	bottom: 52px;
+	left: 50px;
+	z-index:3;
+	text-transform:uppercase;
+	background-color:transparent;
+}
+.fn-feature-box-7 .post-date-box span{
+	font-size:40px;
+	padding-top:3px;
+}
+
+
+.fn-feature-box-7:hover .overlay .text-box .title, .fn-feature-box-7:hover .overlay .text-box .title-2,
+.fn-feature-box-7.active .overlay .text-box .title, .fn-feature-box-7.active .overlay .text-box .title-2{
+	color:#ecae3d;
+}
+.fn-feature-box-7:hover .overlay .text-box .fn-title-line-1,
+.fn-feature-box-7.active .overlay .text-box .fn-title-line-1{
+	background-color:#ecae3d;
+}
+
+
+/* feature box 8
+ ------------------------------ */
+.fn-feature-box-8{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0;
+	text-align:right;
+}
+.fn-feature-box-8 img{
+	float:right;
+}
+.fn-feature-box-8 .overlay{
+	position: absolute;
+	width:74%;
+	height:100%;
+	float:right;
+	right:0px;
+	z-index:2;
+	background-color:rgba(0, 0, 0, 0.1);
+}
+.fn-feature-box-8 .overlay .text-box{
+	position: absolute;
+	width:60%;
+	min-height:440px;
+	float:left;
+	padding:90px;
+	z-index:2;
+	left:-300px;
+	top:54px;
+	text-align:left;
+	background-color:#fff;
+	border:2px solid #f5f5f5;
+	transition: all 0.3s ease-out 0s;
+}
+.fn-feature-box-8 .post-date-box{
+	width:130px;
+	height:100px;
+	font-size:22px;
+	bottom: 52px;
+	right: 50px;
+	z-index:3;
+	text-transform:uppercase;
+	background-color:transparent;
+}
+.fn-feature-box-8 .post-date-box span{
+	font-size:40px;
+	padding-top:3px;
+}
+.fn-feature-box-8:hover .overlay .text-box .title, .fn-feature-box-8:hover .overlay .text-box .title-2,
+.fn-feature-box-8.active .overlay .text-box .title, .fn-feature-box-8.active .overlay .text-box .title-2{
+	color:#ecae3d;
+}
+.fn-feature-box-8:hover .overlay .text-box .fn-title-line-1,
+.fn-feature-box-8.active .overlay .text-box .fn-title-line-1{
+	background-color:#ecae3d;
+}
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.fn-title-line-1 {
+	width: 70px;
+	height:2px;
+	margin:15px auto 30px auto;
+	background-color:#101010;
+}
+.fn-title-line-1.white {
+	background-color:#fff;
+}
+.fn-title-line-1.align-left {
+	width: 70px;
+	margin:8px auto 20px 0;
+}
+.fn-title-line-1.dark, .fn-title-line-1.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+/*============ Parallax Sections ============ */
+
+.parallax-30 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+
+.fn-feature-box-2 .overlay .text-box {
+    right: -80px;
+}
+.fn-feature-box-3 .overlay .text-box {
+    left: -80px;
+}
+.fn-feature-box-3 .overlay {
+    width: 89%;
+}
+.fn-feature-box-2 .overlay {
+    width: 89%;
+}
+.fn-feature-box-8 .overlay {
+    width: 89%;
+}
+.fn-feature-box-8 .overlay .text-box {
+    left: -80px;
+}
+.fn-feature-box-7 .overlay {
+    width: 89%;
+}
+.fn-feature-box-7 .overlay .text-box {
+    right: -80px;
+}
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+.fn-feature-box-2 .overlay {
+    width: 93%;
+}
+.fn-feature-box-2 .overlay .text-box {
+    right: -45px;
+}
+.fn-feature-box-3 .overlay {
+    width: 93%;
+}
+.fn-feature-box-3 .overlay .text-box {
+    left: -45px;
+}
+.fn-feature-box-5 {
+    margin-bottom: 20px;
+}
+
+.fn-feature-box-8 .overlay {
+    width: 93%;
+}
+.fn-feature-box-8 .overlay .text-box {
+    left: -45px;
+}
+.fn-feature-box-7 .overlay {
+    width: 93%;
+}
+.fn-feature-box-7 .overlay .text-box {
+    right: -45px;
+}
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+.fn-feature-box-8 .overlay .text-box {
+	 min-height: 360px;
+    padding: 50px;
+}
+.fn-feature-box-8 .overlay {
+    width: 100%;
+}
+.fn-feature-box-8 .overlay .text-box {
+    left: 7px;
+}
+.fn-feature-box-7 .overlay {
+    width: 100%;
+}
+.fn-feature-box-7 .overlay .text-box {
+    left: 7px;
+}
+.fn-feature-box-7 .overlay .text-box {
+	 min-height: 360px;
+    padding: 50px;
+}
+.fn-feature-box-2 .overlay {
+    width: 100%;
+}
+.fn-feature-box-2 .overlay .text-box {
+    right: 26px;
+}
+.fn-feature-box-2 .overlay .text-box {
+    padding: 50px;
+	min-height: 440px;
+}
+.fn-feature-box-3 .overlay {
+    width: 100%;
+}
+.fn-feature-box-3 .overlay .text-box {
+    right: 26px;
+}
+.fn-feature-box-3 .overlay .text-box {
+    padding: 50px;
+	min-height: 440px;
+}
+.fn-feature-box-3 .overlay .text-box {
+    left: 40px;
+}
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+.fn-feature-box-2 .overlay .text-box {
+    width: 90%;
+	top:30px;
+}
+.fn-feature-box-3 .overlay .text-box {
+    width: 90%;
+	top:30px;
+}
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+.fn-feature-box-8 {
+    min-height: 457px;
+}
+.fn-feature-box-7 .post-date-box {
+    left: 450px;
+}
+
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+.fn-feature-box-2 {
+    margin-bottom: 131px;
+}
+.fn-feature-box-3 .overlay .text-box {
+    left: 25px;
+}
+.fn-feature-box-3 {
+    margin-bottom: 131px;
+}
+
+.fn-feature-box-8 {
+    min-height: 603px;
+}
+.fn-feature-box-7 {
+    min-height: 603px;
+}
+.fn-feature-box-7 .post-date-box {
+    left: 300px;
+}
+.fn-feature-box-8 .post-date-box {
+    left: 300px;
+}
+
+
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+.fr-feature-box-3 .text-box {
+    padding: 45px;
+}
+.fr-feature-box-4 {
+    padding: 45px;
+}
+.fr-feature-box-6 input {
+    width: 100%;
+}
+.fr-feature-box-6 .submit-btn {
+    width: 100%;
+}
+.fr-feature-box-6 {
+    padding: 45px;
+}
+.fn-feature-box-2 .overlay .text-box {
+    padding: 25px;
+}
+.fn-feature-box-3 .overlay .text-box {
+    padding: 25px;
+}
+.fn-feature-box-2 {
+    margin-bottom: 217px;
+}
+.fn-feature-box-3 {
+    margin-bottom: 217px;
+}
+.fn-feature-box-8 .post-date-box {
+	display:none;
+}
+.fn-feature-box-8 .overlay .text-box {
+    width: 95%;
+}
+.fn-feature-box-8 {
+    min-height: 515px;
+}
+.fn-feature-box-7 {
+    min-height: 515px;
+}
+.fn-feature-box-7 .post-date-box {
+	display:none;
+}
+.fn-feature-box-7 .overlay .text-box {
+    width: 95%;
+}
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+.fn-feature-box-2 {
+    margin-bottom: 255px;
+}
+.fn-feature-box-3 {
+    margin-bottom: 255px;
+}
+.fn-feature-box-3 .overlay .text-box {
+    left: 0;
+}
+
+
+
+
+
+
+
+
+}

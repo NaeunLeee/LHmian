@@ -1,0 +1,288 @@
+/*
+Template: Printer
+category: Beauty
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+/*========= Band layout styles ===========*/
+
+/*============ Feature boxes ============ */
+
+.by2-feature-box-1{
+	width:100%;
+	float:left;
+}
+.by2-feature-box-1 .img-box{
+	position: relative;
+	width:100%;
+	float:left;
+	z-index:1;
+}
+.by2-feature-box-1 .img-box .badge{
+	position: absolute;
+	width:116px;
+	height:116px;
+	float:left;
+	z-index:2;
+	left: 245px;
+	top: 108px;
+	padding-top:20px;
+	font-size:14px;
+	color:#727272;
+	line-height:18px;
+	font-weight:normal;
+	border-radius:100%;
+	background-color:#101010;
+}
+.by2-feature-box-1 .img-box .badge span{
+	font-size:22px;
+	color:#fff;
+}
+/* ---------- feature box 2 ---------- */
+.by2-feature-box-2{
+	position:relative;
+	width:100%;
+	float:left;
+	top:89px;
+	margin-bottom:110px;
+	padding:150px 40px 40px 40px;
+	background-color:#fff;
+}
+.by2-feature-box-2 .img-circle{
+	position:absolute;
+	width:224px;
+	height:224px;
+	left:70px;
+	top:-89px;
+	padding:12px;
+	border-radius:100%;
+	background-color:#fff;
+	z-index:1;
+	transition: all 0.3s ease-out 0s;
+}
+.by2-feature-box-2 .img-circle .img{
+	width:200px;
+	height:200px;
+	overflow:hidden;
+	border-radius:100%;
+}
+.by2-feature-box-2:hover .img-circle{
+	background-color:#101010;
+}
+.by2-feature-box-2:hover h4{
+	color:#ecae3d;
+}
+
+/* ---------- feature box 3 ---------- */
+.by2-feature-box-3{
+	width:240px;
+	height:240px;
+	float:left;
+	border-radius:100%;
+	border:1px solid #e4e4e4;
+}
+
+
+
+
+/*============ Section Titles ============ */
+
+/* title container
+ ------------------------------ */
+.sec-title-container {
+	width:100%;
+	float:left;
+	padding-bottom:70px;
+}
+.sec-title-container.less-padding {
+	padding-bottom:50px;
+}
+
+/* page title
+ ------------------------------ */
+.by2-section-title {
+	width:40%;
+	padding: 12px 0;
+	margin:0 auto;
+	font-weight: 400;
+	text-align:center;
+	border:1px solid #101010;
+}
+.by2-section-title.small {
+	font-weight: 400;
+	font-size:40px;
+}
+.by2-section-title.left {
+	width:80%;
+	padding: 12px;
+	text-align:left;
+	margin:0 auto 0 0;
+}
+.by2-section-title.left-2 {
+	width:50%;
+	padding: 12px;
+	text-align:left;
+	margin:0 auto 0 0;
+}
+
+
+
+
+/*============ Parallax Sections ============ */
+.parallax-4 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+.parallax-5 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+.by2-feature-box-1 .img-box .badge {
+    left: 181px;
+}	
+.by2-feature-box-2 .img-circle {
+    left: 35px;
+}
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+.by2-feature-box-1 .img-box .badge {
+    left: 170px;
+}
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+.by2-feature-box-1 .img-box .badge {
+    left: 241px;
+}
+.by2-feature-box-2 .img-circle {
+    left: 110px;
+}
+.by2-feature-box-3 {
+    width: 200px;
+    height: 200px;
+}
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+.by2-feature-box-2 .img-circle {
+    left: 61px;
+}
+.by2-feature-box-3 {
+    width: 150px;
+    height: 150px;
+}
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+.by2-feature-box-2 .img-circle {
+    left: 181px;
+}
+.by2-feature-box-3 {
+    width: 240px;
+    height: 240px;
+}
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+.by2-feature-box-2 .img-circle {
+    left: 108px;
+}
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+.by2-feature-box-1 .img-box .badge {
+    left: 176px;
+}
+.by2-feature-box-2 .img-circle {
+    left: 46px;
+}
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+.by2-feature-box-1 .img-box .badge {
+    left: 137px;
+}
+.by2-feature-box-2 .img-circle {
+    left: 26px;
+}
+
+
+
+
+}

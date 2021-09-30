@@ -1,0 +1,315 @@
+/*
+Template: Printer
+category: Farmer
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+.fr-feature-box-1{
+	width:100%;
+	float:left;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.fr-feature-box-1 .img-box{
+	position:relative;
+	width:100%;
+	padding:0px;
+	float:left;
+	overflow:hidden;
+	transition: all 0.3s ease-out 0s;
+}
+.fr-feature-box-1 .img-box .crossed-box{
+	position: absolute;
+	width: 375px;
+	height: 158px;
+	padding: 0px;
+	float: left;
+	left: -20px;
+	bottom: -109px;
+	background-color:#fff;
+	-moz-transform: rotate(163deg);
+	-webkit-transform: rotate(163deg);
+	-o-transform: rotate(163deg);
+	-ms-transform: rotate(163deg);
+	transform: rotate(163deg);
+	transition: all 0.3s ease-out 0s;
+}
+.fr-feature-box-1 .text-box{
+	width:100%;
+	padding:15px 40px 40px 40px;
+	float:left;
+}
+.fr-feature-box-1:hover, .fr-feature-box-1.active{
+	background-color:#101010;
+}
+.fr-feature-box-1:hover .img-box .crossed-box, .fr-feature-box-1.active .img-box .crossed-box{
+	background-color:#101010;
+}
+.fr-feature-box-1:hover h5, .fr-feature-box-1.active h5{
+	color:#fff;
+}
+/* feature box 2
+ ------------------------------ */
+.fr-feature-box-2{
+	width:100%;
+	float:left;
+	padding:30px;
+	border-bottom:1px solid #f1f1f1;
+	border-right:1px solid #f1f1f1;
+}
+.fr-feature-box-2.box-two{
+	border-bottom:1px solid #f1f1f1;
+	border-right:1px solid #fff;
+}
+.fr-feature-box-2.box-three{
+	border-bottom:1px solid #fff;
+	border-right:1px solid #f1f1f1;
+}
+.fr-feature-box-2.box-four{
+	border-bottom:1px solid #fff;
+	border-right:1px solid #fff;
+}
+
+/* feature box 3
+ ------------------------------ */
+.fr-feature-box-3 {
+	position: relative;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	min-height: 450px;
+	overflow: hidden;
+}
+.fr-feature-box-3 .background-imgholder .overlay {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	z-index: 1;
+}
+.fr-feature-box-3 .background-imgholder {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 0;
+	background-position: 50% 50% !important;
+	background-size: cover !important;
+}
+.fr-feature-box-3 .text-box {
+	position: relative;
+	width: 100%;
+	z-index: 3;
+	padding: 80px;
+}
+
+/* feature box 4
+ ------------------------------ */
+.fr-feature-box-4 {
+	width: 100%;
+	padding: 65px;
+	float:left;
+	border:6px solid #f5f5f5;
+}
+
+/* feature box 5
+ ------------------------------ */
+.fr-feature-box-5{
+	width:100%;
+	float:left;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.fr-feature-box-5 .img-box{
+	position:relative;
+	width:100%;
+	padding:0px;
+	float:left;
+	overflow:hidden;
+	transition: all 0.3s ease-out 0s;
+}
+.fr-feature-box-5 .img-box .crossed-box{
+	position: absolute;
+	width: 632px;
+	height: 154px;
+	padding: 0px;
+	float: left;
+	left: -20px;
+	bottom: -87px;
+	background-color:#fff;
+	-moz-transform: rotate(167deg);
+	-webkit-transform: rotate(167deg);
+	-o-transform: rotate(167deg);
+	-ms-transform: rotate(167deg);
+	transform: rotate(167deg);
+	transition: all 0.3s ease-out 0s;
+}
+.fr-feature-box-5 .text-box{
+	width:100%;
+	padding:15px 40px 40px 40px;
+	float:left;
+}
+.fr-feature-box-5:hover h5, .fr-feature-box-5.active h5{
+	color:#ecae3d;
+}
+
+/* feature box 6
+ ------------------------------ */
+.fr-feature-box-6{
+	width:100%;
+	float:left;
+	padding:60px;
+	background-color:#101010;
+}
+.fr-feature-box-6 input{
+	width:77%;
+	height:60px;
+	float:left;
+	padding:15px;
+	border:1px solid #313131;
+	background-color:#101010;
+}
+.fr-feature-box-6 .submit-btn{
+	width:23%;
+	height:60px;
+	float:left;
+	padding:0px;
+	color:#fff;
+	text-transform:uppercase;
+	border:1px solid #ecae3d;
+	background-color:#ecae3d;
+}
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+.fr-feature-box-3 .text-box {
+    padding: 45px;
+}
+.fr-feature-box-4 {
+    padding: 45px;
+}
+.fr-feature-box-6 input {
+    width: 100%;
+}
+.fr-feature-box-6 .submit-btn {
+    width: 100%;
+}
+.fr-feature-box-6 {
+    padding: 45px;
+}
+
+
+
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+
+}

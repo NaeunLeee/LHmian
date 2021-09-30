@@ -12,8 +12,7 @@
 	<form id="frm" name="frm" action="" method="post">
 		<div>
 			제목 : <input type="text" name="confTitle">&nbsp;
-			<!-- 작성자는 후에 세션에서 이름 받아오기~ -->
-			작성자 : <input type="text" name="confWriter">
+			<input type="hidden" name="confWriter" value="${name}">
 			<hr>
 			<textarea rows="20" cols="50" name="confContent"></textarea>
 		</div>

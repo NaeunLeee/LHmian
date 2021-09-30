@@ -1,0 +1,280 @@
+/*
+Template: Printer
+category: Cafe
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+/*========= Band layout styles ===========*/
+
+/*============ Feature boxes ============ */
+
+.ce2-feature-box-1{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.ce2-feature-box-1 .img-box{
+	position:relative;
+	width:100%;
+	padding:0px;
+	float:left;
+	margin-bottom:20px;
+	transition: all 0.3s ease-out 0s;
+}
+.ce2-feature-box-1 .text-box{
+	width:100%;
+	float:left;
+	background-color:#f5f5f5;
+}
+.ce2-feature-box-1 .title-line{
+	width:50%;
+	margin:0 auto;
+	height:1px;
+	background-color:#ecae3d;
+}
+
+/* featurebox 2
+ ------------------------------ */
+ 
+ .ce2-feature-box-2{
+	width:100%;
+	padding:40px;
+	float:left;
+	background-color:#101010;
+}
+
+.opening-hours-list {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	float: left;
+}
+.opening-hours-list li {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	float: left;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.opening-hours-list li i {
+	color:#ecae3d;
+}
+.opening-hours-list li:last-child {
+	border-bottom: none;
+}
+.opening-hours-list li .item {
+	float: left;
+	text-align: left;
+}
+.opening-hours-list li .price {
+	float: right;
+	text-align: right;
+}
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.ce2-title-line-1 {
+	width: 125px;
+	height:2px;
+	margin:4px auto 0 auto;
+	border-bottom:1px solid #eaeaec;
+}
+.ce2-title-line-2 {
+	width: 180px;
+	height:2px;
+	margin:10px auto 0 auto;
+	border-bottom:1px solid #eaeaec;
+}
+.ce2-title-line-1.align-left {
+	width: 125px;
+	margin:4px auto 0 0;
+}
+.ce2-title-line-2.align-left {
+	width: 160px;
+	margin:10px auto 0 0;
+}
+.ce2-title-line-1.dark, .ce2-title-line-2.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+/*============ Parallax Sections ============ */
+.parallax-10 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+/*============ blog ============ */
+
+.ce2-post-holder{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.ce2-post-holder .ce2-post-img{
+	position:relative;
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.ce2-post-holder .text-box{
+	height:274px;
+	padding:60px 50px 50px 50px;
+}
+.ce2-post-holder .text-box.one{
+	height:274px;
+}
+.ce2-post-holder .text-box .blog-post-info span{
+	color:#ecae3d;
+}
+
+.ce2-post-holder .ce2-post-img .arrow-up {
+	position:absolute;
+	width: 0;
+	height: 0;
+	left: 175px;
+	bottom:0px;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 20px solid #fff;
+	z-index:2;
+}
+.ce2-post-holder .ce2-post-img .arrow-down {
+	position:absolute;
+	width: 0;
+	height: 0;
+	left: 175px;
+	top:0px;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #fff;
+}
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+	
+.ce2-post-holder .text-box {
+	height: 217px;
+    padding: 30px 30px 30px 30px;
+}
+.ce2-post-holder .text-box.one {
+    height: 218px;
+}
+
+
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+.ce-feature-box-2 {
+    margin-bottom: 585px;
+}
+.ce2-post-holder .ce-post-img .arrow-down {
+    left: 139px;
+}
+.ce2-post-holder .ce-post-img .arrow-up {
+    left: 139px;
+}
+
+
+
+
+
+
+
+
+}
