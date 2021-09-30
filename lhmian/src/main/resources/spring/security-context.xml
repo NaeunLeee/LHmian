@@ -12,53 +12,63 @@
 	<!-- @AuthenticationPrincipal 어노테이션을 사용하기 위한 bean 등록 -->
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>
-			<bean id="AuthenticationPrincipal" class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
+			<bean id="AuthenticationPrincipal"
+				class="org.springframework.security.web.method.annotation.AuthenticationPrincipalArgumentResolver" />
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
-	
+
 	<!-- 빈 등록 -->
 	<!-- 패스워드 암호화 -->
-	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<!-- 로그인 처리 DB -->
-	<bean id="userService" class="com.lh.app.signIn.etc.CustomUserDetailsService"/> 
+	<bean id="userService"
+		class="com.lh.app.signIn.etc.CustomUserDetailsService" />
 	<!-- 로그인 성공시 처리를 담당하는 핸들러 -->
-	<bean id="customLoginSuccess" class="com.lh.app.signIn.etc.CustomLoginSuccessHandler" />
+	<bean id="customLoginSuccess"
+		class="com.lh.app.signIn.etc.CustomLoginSuccessHandler" />
 	<!-- 로그아웃 성공시 처리를 담당하는 핸들러 -->
-	<bean id="customLogoutSuccess" class="com.lh.app.signIn.etc.CustomLogoutSuccessHandler" />
+	<bean id="customLogoutSuccess"
+		class="com.lh.app.signIn.etc.CustomLogoutSuccessHandler" />
 	<!-- admin, owner, member 페이지 접근시 핸들러 -->
-	<bean id="customAccessDeniedHandler" class="com.lh.app.signIn.etc.CustomAccessDeniedHandler" />
+	<bean id="customAccessDeniedHandler"
+		class="com.lh.app.signIn.etc.CustomAccessDeniedHandler" />
 
 	<!-- resources 폴더 이하는 spring security 무시함, 부트스트랩 css js 등 적용하기 위함 -->
-	<security:http pattern="/resources/**" security="none" />
-	
- 	<security:http>		
- 	<!-- 인터셉트 처리 -->
-<!-- 		<security:intercept-url pattern="/admin/**"
-			access="hasAuthority('ROLE_ADMIN')" /> -->
+	<security:http pattern="/1.1/**" security="none" />
+	<security:http pattern="/css/**" security="none" />
+	<security:http pattern="/image/**" security="none" />
+	<security:http pattern="/js/**" security="none" />
+	<security:http pattern="/vendor/**" security="none" />
+
+	<security:http>
+		<!-- 인터셉트 처리 -->
+		<!-- <security:intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')" 
+			/> -->
 		<security:intercept-url pattern="/**"
 			access="permitAll()" />
-	<!-- 커스텀 로그인 -->
-		<security:form-login
-			login-page="/login"
-			login-processing-url="/loginDo" 
-			username-parameter="id"
+		<!-- 커스텀 로그인 -->
+		<security:form-login login-page="/login"
+			login-processing-url="/loginDo" username-parameter="id"
 			password-parameter="password"
-			authentication-success-handler-ref="customLoginSuccess"/> 
-	<!-- 로그아웃 -->
-		<security:logout 
-						success-handler-ref="customLogoutSuccess"
-						invalidate-session="true" />
-	<!-- 접근 금지 페이지 처리 -->	
-		<security:access-denied-handler ref="customAccessDeniedHandler" />
-	<!-- csrf. true=>닫음. false=>csrf 지옥 시작... -->
- 		<security:csrf disabled="true" /> 
+			authentication-success-handler-ref="customLoginSuccess" />
+		<!-- 로그아웃 -->
+		<security:logout
+			success-handler-ref="customLogoutSuccess" invalidate-session="true" />
+		<!-- 접근 금지 페이지 처리 -->
+		<security:access-denied-handler
+			ref="customAccessDeniedHandler" />
+		<!-- csrf. true=>닫음. false=>csrf 지옥 시작... -->
+		<security:csrf disabled="true" />
 	</security:http>
- 		
- 	<!-- 로그인 DB 연동 -->
- 	<security:authentication-manager>
-		<security:authentication-provider user-service-ref="userService">
-  			<security:password-encoder ref="bcryptPasswordEncoder"/>  
+
+	<!-- 로그인 DB 연동 -->
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="userService">
+			<security:password-encoder
+				ref="bcryptPasswordEncoder" />
 		</security:authentication-provider>
 	</security:authentication-manager>
-        
+
 </beans>
