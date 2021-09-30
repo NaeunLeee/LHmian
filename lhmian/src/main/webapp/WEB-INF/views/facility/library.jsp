@@ -5,14 +5,6 @@
 <meta charset="UTF-8">
 <title>LHmian | 독서실</title>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
@@ -27,6 +19,57 @@
 		<hr>
 	</div>
 </div>
+      <section class="parallax-6">
+      <div class="container-fluid nopadding">
+	<div class="parallax-overlay bg-opacity-1">
+        <div class="container sec-tpadding-4 sec-bpadding-4">
+          <div class="row">
+ 
+ 
+  				<div class="col-md-12 text-center"><h4 class="uppercase less-mar-1 text-white">Posts With Parallax</h4></div>
+              <div class="clearfix"></div>
+          <br/><br/>
+          
+           <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="post-style-1 margin-bottom">
+                <div class="text-box">
+                  <div class="arrow-right"></div>
+                  <h5>16 June, 2019</h5>
+                  <div class="divider-line solid light"></div>
+                  <br/>
+                  <h5 class="uppercase font-weight-3"><a href="#">Lorem ipsum dolor sit amet commodo</a></h5>
+                  <div class="divider-line solid light"></div>
+                  <br/>
+                  <br/>
+                  <a class=" read-more uppercase" href="#">Read more &nbsp; <i class="fa fa-angle-double-right" aria-hidden="true"></i></a> </div>
+                <div class="img-box"> <img src="http://placehold.it/800x900" alt="" class="img-responsive"/> </div>
+              </div>
+            </div>
+            <!--end item-->
+            
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="post-style-1 margin-bottom">
+                <div class="text-box">
+                  <div class="arrow-right"></div>
+                  <h5>25 July, 2016</h5>
+                  <div class="divider-line solid light"></div>
+                  <br/>
+                  <h5 class="uppercase font-weight-3"><a href="#">Lorem ipsum dolor sit amet commodo</a></h5>
+                  <div class="divider-line solid light"></div>
+                  <br/>
+                  <br/>
+                  <a class=" read-more uppercase" href="#">Read more &nbsp; <i class="fa fa-angle-double-right" aria-hidden="true"></i></a> </div>
+                <div class="img-box"> <img src="http://placehold.it/800x900" alt="" class="img-responsive"/> </div>
+              </div>
+            </div>
+            <!--end item--> 
+            
+     		 </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
 <div class="row">
 	<div class="col-8" align="center">
 		<button type="button" id="reservation" data-toggle="modal" data-target="#libModal">등록</button>

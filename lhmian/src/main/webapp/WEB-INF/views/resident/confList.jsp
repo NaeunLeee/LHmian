@@ -19,7 +19,16 @@
 
 </head>
 <body>
-
+     <section class="sec-padding section-light">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-12 text-center">
+   <h3 class="uppercase font-weight-5">입주자 대표회의</h3>
+           <br/><br/>
+  </div>
+  
+  <div class="col-md-12">
+  <div class="text-box white padding-4">
 <div align="center">
 	<div>
 		<table border="1">
@@ -82,6 +91,17 @@
 	</div>
 	<br><br>
 </div>
+  </div>
+  <!--end item-->
+  </div>
+  </div>
+  </div>
+  </section>
+<div class="clearfix"></div>
+  <!-- end section -->
+  
+  
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
