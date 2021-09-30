@@ -8,7 +8,7 @@
 </head>
 <body>
 <div align="center">
-	<form id="frm" name="frm" action="" method="post">
+	<form id="frm" name="frm" action="csInsert" method="post">
 		<div>
 			제목 : <input type="text" name="csTitle"><br>
 			<hr>
