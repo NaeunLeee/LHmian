@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 	    private String PHONE;
 	    private String HOUSEINFO;
 	    private String AUTHOR;
+	    private String STATUS;
 	    
 	    
 	    @Override
@@ -87,6 +88,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 	 
 	    public void setAUTHOR(String author) {
 	    	AUTHOR = author;
+	    }
+	    
+	    public String getSTATUS() {
+	        return STATUS;
+	    }
+	 
+	    public void setSTATUS(String status) {
+	    	STATUS = status;
 	    }
 	 
 	}

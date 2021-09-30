@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.fee.mapper.ManagementFeeMapper">
-	<select id="selectFee" resultType="ManagementFeeVO">
-		SELECT *
-		FROM MANAGEMENT_FEE
-		WHERE MF_DATE = #{mfDate}
-		<!-- AND HOUSE_INFO = #{houseInfo} -->
-		ORDER BY 1 DESC
+
+	<select id="selectFeeList" resultType="ManagementFeeVO">
+		SELECT ROWNUM AS ARN,
+			   MF_DATE, 
+			   HOUSE_INFO, 
+			   MF_FEE, 
+			   MF_HEAT, 
+			   MF_ELECT,
+			   MF_WATER, 
+			   MF_TV, 
+			   MF_CLEAN, 
+			   MF_SECURITY, 
+			   MF_ELEVATOR, 
+			   MF_TRASH,
+			   MF_FEE + MF_HEAT + MF_ELECT + MF_WATER + MF_TV + MF_CLEAN + MF_SECURITY + MF_ELEVATOR + MF_TRASH AS TOTAL
+		FROM
+			(
+			SELECT *
+			FROM MANAGEMENT_FEE
+			WHERE HOUSE_INFO = #{houseInfo}
+			ORDER BY MF_DATE DESC)
+			)
+
 	</select>
-	
+
 </mapper>
