@@ -1,0 +1,325 @@
+/*
+Template: Printer
+category: Blog style 2
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+/*========= Band layout styles ===========*/
+
+/*============ Feature boxes ============ */
+
+.bg3-header-banner-1{
+	position:relative;
+	width:100%;
+	float:left;
+}
+.bg3-header-banner-1 .overlay-1{
+	position: absolute;
+	width:100%;
+	height:100%;
+	float:left;
+	z-index:2;
+	padding:0px;
+	margin:0px;
+	background-color:rgba(0, 0, 0, 0.4);
+}
+.bg3-header-banner-1 .overlay-1.opa-2{
+	background-color:rgba(0, 0, 0, 0.6);
+}
+
+.bg3-header-banner-1 .overlay-1 .text-box{
+	width:100%;
+	float:left;
+	padding:220px 0 0 0;
+	margin:0px;
+}
+.bg3-header-banner-1 .overlay-1 .text-box .title a{
+	color:#fff;
+}
+.bg3-header-banner-1 .overlay-1 .text-box .title a:hover{
+	color:#ecae3d;
+}
+.bg3-header-banner-1 .overlay-1 .text-box .blog-post-info span{
+	color:#ecae3d;
+}
+
+/* blog left column
+ ------------------------------ */
+
+.bg3-featurebox-1{
+	position:relative;
+	width:100%;
+	float:left;
+	margin-bottom:300px;
+}
+.bg3-featurebox-1 .overlay-1{
+	position: absolute;
+	width:100%;
+	height:100%;
+	float:left;
+	z-index:2;
+	padding:0px;
+	margin:0px;
+	z-index:1;
+	background-color:rgba(118, 118, 118, 0.2);
+}
+.bg3-featurebox-1 .postinfo-box{
+	position:absolute;
+	width:90%;
+	float:left;
+	padding:60px;
+	margin:0px;
+	z-index:2;
+	left:45px;
+	top:400px;
+	background-color:#fff;
+}
+.bg3-featurebox-1 .postinfo-box .postdate-box .blog-post-info span{
+	font-size:14px;
+	color:#727272;
+	text-transform:uppercase;
+}
+.bg3-featurebox-1 .postinfo-box .title a:hover{
+	color:#ecae3d;
+}
+
+
+/* blog right column
+ ------------------------------ */
+
+.bg3-right-col-item-holder {
+    width: 100%;
+    float: left;
+	margin-bottom:60px;
+}
+.bg3-right-col-item-title {
+	font-size:20px;
+	margin-bottom:25px;
+}
+.bg3-right-col-item-holder .social-links {
+    width: 100%;
+    float: left;
+	padding:0px;
+	margin:0px;
+}
+.bg3-right-col-item-holder .social-links li {
+	float:left;
+	padding:0px;
+	margin:0px;
+}
+.bg3-right-col-item-holder .social-links li a {
+	padding:0 20px 0 0;
+	float:left;
+	color:#101010;
+}
+.bg3-right-col-item-holder .social-links li a:hover {
+	color:#ecae3d;
+}
+.bg3-news-letter {
+    width: 100%;
+    height: 45px;
+    float: left;
+    padding: 10px;
+    border: 1px solid #e4e4e4;
+}
+.bg3-rightcol-links {
+    width: 100%;
+    float: left;
+    padding:0px;
+}
+.bg3-rightcol-links li {
+    width: 100%;
+    float: left;
+	border-bottom:1px solid #ececec;
+}
+.bg3-rightcol-links li a {
+    width: 100%;
+    float: left;
+    padding:10px 0;
+}
+.bg3-rightcol-links li a:hover, .bg3-rightcol-links li a.active {
+	color:#ecae3d;
+}
+.bg3-rightcol-links li:last-child {
+	border-bottom:none;
+}
+
+/* blog right column tags
+ ------------------------------ */
+.bg3-tags {
+	padding: 0px;
+	margin: 0px;
+}
+.bg3-tags li {
+	padding: 0px;
+	margin: 0;
+}
+.bg3-tags li a {
+	padding: 5px 15px 5px 15px;
+	margin: 0 10px 10px 0;
+	float: left;
+	color: #727272;
+	border:1px solid #e9e9e9;
+	background-color: #fff;
+}
+.bg3-tags li a:hover, .bg3-tags li a.active {
+	color: #727272;
+	background-color: #101010;
+}
+
+
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+
+.bg3-featurebox-1 .postinfo-box {
+    width: 91%;
+    left: 24px;
+    top: 252px;
+}
+.bg3-featurebox-1 {
+    margin-bottom: 362px;
+}
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+.bg3-featurebox-1 .postinfo-box {
+    left: 40px;
+    top: 401px;
+}
+.bg3-featurebox-1 {
+    margin-bottom: 270px;
+}
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+.bg3-featurebox-1 {
+    margin-bottom: 355px;
+}
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+.bg3-featurebox-1 {
+    margin-bottom: 340px;
+}
+.bg3-header-banner-1 .overlay-1 .text-box {
+    padding: 180px 0 0 0;
+}
+.bg3-featurebox-1 .postinfo-box {
+    left: 29px;
+    top: 279px;
+}
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+.bg3-featurebox-1 .postinfo-box {
+    left: 21px;
+    top: 193px;
+	padding: 45px;
+}
+.bg3-featurebox-1 {
+    margin-bottom: 371px;
+}
+.bg3-header-banner-1 .overlay-1 .text-box {
+    padding: 123px 0 0 0;
+}
+
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+.bg3-header-banner-1 .overlay-1 .text-box {
+    padding: 75px 0 0 0;
+}
+
+.bg3-featurebox-1 .postinfo-box {
+    left: 16px;
+    top: 150px;
+    padding: 37px;
+}
+.bg3-featurebox-1 {
+    margin-bottom: 423px;
+}
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+
+}

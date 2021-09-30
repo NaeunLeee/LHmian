@@ -1,0 +1,244 @@
+/*
+Template: Printer
+category: Cosmetics
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+.cs-feature-box-1{
+	position:relative;
+	width:100%;
+	float:left;
+	left:0px;
+	top:-203px;
+	min-height:310px;
+	padding:27px;
+	z-index:2;
+	background-color:#fff;
+}
+.cs-feature-box-1 .img-box{
+	position: absolute;
+	width:100%;
+	float:left;
+	z-index:2;
+}
+.cs-feature-box-1 .img-box .overlay{
+	position: absolute;
+	width:100%;
+	height:100%;
+	float:left;
+	z-index:2;
+	padding: 150px 0 0 80px;
+	background-color:rgba(0, 0, 0, 0.2);
+}
+.cs-feature-box-1 .img-box .overlay.style-2{
+	background-color:rgba(0, 0, 0, 0.3);
+}
+.cs-feature-box-1 .img-box .overlay .title{
+	font-size:74px;
+}
+.cs-feature-box-1 .img-box .overlay .title-small{
+	padding:0 0 0 33px;
+}
+
+/* featurebox 2
+ ------------------------------ */
+.cs-feature-box-2{
+	width:240px;
+	height:240px;
+	float:left;
+	border-radius:100%;
+	border:1px solid #e4e4e4;
+}
+/* featurebox 3
+ ------------------------------ */
+.cs-feature-box-3{
+	width:100%;
+	float:left;
+	min-height:422px;
+	padding:50px;
+	background-color:#fff;
+}
+/* featurebox 4
+ ------------------------------ */
+.cs-feature-box-4{
+	width:100%;
+	float:left;
+	padding:0px;
+	border:1px solid #202020;
+}
+
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.cn-title-line-1 {
+	width: 70px;
+	height:2px;
+	margin:15px auto 30px auto;
+	background-color:#ecae3d;
+}
+.cn-title-line-1.align-left {
+	width: 70px;
+	margin:8px auto 20px 0;
+}
+.cn-title-line-1.dark, .cn-title-line-1.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+
+/*============ Parallax Sections ============ */
+
+.parallax-25 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+	
+.cs-feature-box-2 {
+    width: 200px;
+    height: 200px;
+}
+.fo-newsletter-2 {
+    width: 57%;
+}
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+.cs-feature-box-1 {
+	top:0px;
+    min-height: 342px;
+}
+.cs-feature-box-1 .img-box .overlay {
+    padding: 44px 0 0 48px;
+}
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+
+
+
+
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+.cs-feature-box-1 .img-box {
+    position: static;
+}
+.cs-feature-box-1 {
+    padding: 0;
+}
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+
+
+
+
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+
+
+
+
+
+
+}

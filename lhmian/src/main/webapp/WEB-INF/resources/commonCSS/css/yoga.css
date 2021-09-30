@@ -1,0 +1,555 @@
+/*
+Template: Printer
+category: Yoga
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+/* feature box 1
+ ------------------------------ */
+.ya-feature-box-1{
+	width:100%;
+	float:left;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.ya-feature-box-1.bg-white{
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.ya-feature-box-1 .img-box{
+	position:relative;
+	width:100%;
+	float:left;
+}
+.ya-feature-box-1 .img-box .time{
+	position: absolute;
+	width:110px;
+	height:40px;
+	float:left;
+	bottom:0px;
+	right:0px;
+	text-align:center;
+	line-height:40px;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.ya-feature-box-1 .img-box .time.bg-white{
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.ya-feature-box-1 .text-box .title-line {
+    width: 90%;
+    margin: 10px 50% 27px 0;
+    height: 1px;
+    background-color: #e7e7e7;
+	transition: all 0.3s ease-out 0s;
+}
+
+.ya-feature-box-1:hover .title, .ya-feature-box-1.active .title{
+	color:#ecae3d;
+}
+.ya-feature-box-1:hover .text-box .title-line, .ya-feature-box-1.active .text-box .title-line {
+    background-color: #ecae3d;
+}
+.ya-feature-box-1:hover .img-box .time, .ya-feature-box-1.active .img-box .time {
+   color: #ecae3d;
+}
+
+/* feature box 2
+ ------------------------------ */
+.ya-feature-box-2{
+	position:relative;
+	width:100%;
+	float:left;
+}
+.ya-feature-box-2 .text-box{
+	position: absolute;
+	width:47%;
+	float:left;
+	top:90px;
+	padding:70px;
+	background-color:#fff;
+	border:6px solid #f5f5f5;
+}
+
+/* feature box 3
+ ------------------------------ */
+.ya-feature-box-3{
+	width:100%;
+	float:left;
+}
+.ya-feature-box-3 .img-box{
+	position:relative;
+	width:100%;
+	float:left;
+}
+.ya-feature-box-3 .img-box .overlay{
+	position: absolute;
+	width:100%;
+	height:100%;
+	float:left;
+	background-color:rgba(0, 0, 0, 0.6);
+}
+.ya-feature-box-3 .img-box .overlay.less-opacity{
+	background-color:rgba(0, 0, 0, 0.5);
+}
+.ya-feature-box-3 .img-box .overlay .text-box{
+	width:100%;
+	float:left;
+	padding:100px 60px 60px 60px;
+}
+.ya-feature-box-3 .img-box .overlay .text-box .title-line {
+    width: 80%;
+    margin:0 auto;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease-out 0s;
+}
+
+/* feature box 4
+ ------------------------------ */
+.ya-feature-box-4{
+	position:relative;
+	width:100%;
+	float:left;
+	min-height:480px;
+}
+.ya-feature-box-4 .img-box{
+	width:350px;
+	height:490px;
+	float:right;
+}
+.ya-feature-box-4 .text-box{
+	position:absolute;
+	width:50%;
+	float:left;
+	top:50px;
+	padding:35px;
+	background-color:#fff;
+}
+.ya-feature-box-4 .text-box .inner-box{
+	width:100%;
+	float:left;
+	padding:25px;
+	border:1px solid #f1f1f1;
+}
+
+.ya-feature-box-4 .text-box .inner-box .sc-icons{
+	width:100%;
+	padding-left:0px;
+	display:inline-block;
+}
+.ya-feature-box-4 .text-box .inner-box .sc-icons li{
+	padding:0px;
+	display:inline-block;
+}
+.ya-feature-box-4 .text-box .inner-box .sc-icons li a{
+	width:36px;
+	height:36px;
+	padding:0px;
+	color:#101010;
+	line-height:37px;
+	text-align:center;
+	border:1px solid #e7e7e7;
+	display:inline-block;
+}
+.ya-feature-box-4 .text-box .inner-box .sc-icons li a:hover,
+.ya-feature-box-4 .text-box .inner-box .sc-icons li a.active{
+	color:#fff;
+	border:1px solid #ecae3d;
+	display:inline-block;
+	background-color:#ecae3d;
+}
+
+
+/* feature box 5
+ ------------------------------ */
+.ya-feature-box-5 {
+	position:relative;
+	width: 100%;
+	float: left;
+	min-height:445px;
+	padding:0;
+}
+.ya-feature-box-5 .img-box {
+	position: absolute;
+	width: 75%;
+	float: left;
+	padding:0;
+}
+.ya-feature-box-5 .text-box {
+	position: absolute;
+	width: 55%;
+	float: right;
+	padding:70px;
+	right:0px;
+	top:55px;
+	z-index:2;
+	border:6px solid #f5f5f5;
+	background-color: #fff;
+}
+.ya-feature-box-5 .text-box .blog-post-info span {
+	color:#ecae3d;
+}
+
+
+/* feature box 6
+ ------------------------------ */
+.ya-feature-box-6 {
+	position:relative;
+	width: 100%;
+	float: left;
+	margin:50px 0 40px 0;
+	min-height:445px;
+	padding:0;
+}
+.ya-feature-box-6 .img-box {
+	position: absolute;
+	width: 75%;
+	float: right;
+	right:0px;
+}
+.ya-feature-box-6 .text-box {
+	position: absolute;
+	width: 55%;
+	float: left;
+	padding:70px;
+	left:0px;
+	top:55px;
+	z-index:2;
+	border:6px solid #f5f5f5;
+	background-color: #fff;
+}
+.ya-feature-box-6 .text-box .blog-post-info span {
+	color:#ecae3d;
+}
+
+/* feature box 7
+ ------------------------------ */
+.ya-feature-box-7{
+	width:100%;
+	float:left;
+	padding:40px;
+	margin-bottom:30px;
+	border:3px solid #f5f5f5;
+}
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.ya-title-line-1 {
+	width: 70px;
+	height:2px;
+	margin:15px auto 30px auto;
+	background-color:#ecae3d;
+}
+.ya-title-line-1.align-left {
+	width: 70px;
+	margin:8px auto 20px 0;
+}
+.ya-title-line-1.dark, .ya-title-line-1.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+
+/*============ price table ============ */
+
+.ya-price-table {
+	width: 100%;
+	float: left;
+	padding:0 0 50px 0;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.ya-price-table .price {
+    color: #101010;
+    font-size:40px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 45px 45px 30px 45px;
+    text-align: center;
+	border-bottom:1px solid #f1f1f1;
+	transition: all 0.3s ease-out 0s;
+}
+.ya-price-table .price sup {
+    color: #101010;
+    font-size: 24px;
+	font-weight:400;
+}
+.ya-price-table .price span {
+    color: #101010;
+    font-size:18px;
+    font-weight: normal;
+    margin:15px 0 0 0;
+    text-align: center;
+}
+.ya-price-table .features-list {
+	width:100%;
+	padding:30px;
+	margin:0px;
+	display:inline-block;
+}
+.ya-price-table .features-list li {
+	padding:10px 0;
+	margin:0px;
+	color:#727272;
+	display:block;
+	text-align:center;
+	border-bottom:1px solid #f1f1f1;
+	transition: all 0.3s ease-out 0s;
+}
+.ya-price-table .features-list li:last-child {
+	border-bottom:none;
+}
+
+.ya-price-table:hover, .ya-price-table.active {
+	background-color:#101010;
+}
+.ya-price-table:hover .btn.btn-light,
+.ya-price-table.active .btn.btn-light {
+	color:#fff;
+	background-color:#ecae3d;
+}
+.ya-price-table:hover .features-list li, .ya-price-table:hover .price,
+.ya-price-table.active .features-list li, .ya-price-table.active .price {
+	border-bottom:1px solid #282828;
+}
+.ya-price-table:hover .price, .ya-price-table:hover sup, .ya-price-table:hover .price span,
+.ya-price-table.active .price, .ya-price-table.active sup, .ya-price-table.active .price span {
+	color:#fff;
+}
+.ya-price-table:hover .features-list li:last-child,
+.ya-price-table.active .features-list li:last-child {
+	border-bottom:none;
+}
+
+
+/*============ Parallax Sections ============ */
+
+.ya-parallax-sec-1 {
+	width: 100%;
+	float: left;
+	text-align: center;
+	background: url(../images/parallax/ya-parallax1.jpg);
+	/*background-attachment: fixed;
+	background-origin: initial;
+	background-clip: initial;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 100% 0;*/
+	background-position: center;
+	z-index: 1;
+}
+.parallax-55 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+.ya-feature-box-3 .img-box .overlay .text-box {
+    padding: 20px;
+}
+.ya-feature-box-4 .text-box {
+    width: 65%;
+}
+.ya-feature-box-2 {
+    margin-bottom: 193px;
+}
+.ya-feature-box-2 .text-box {
+    width: 60%;
+}
+.ya-feature-box-5 .img-box {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+.container{
+width:90%;
+	
+}
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+.ya-feature-box-5 .text-box {
+    width: 65%;
+}
+.ya-feature-box-6 .img-box {
+    width: 100%;
+}
+.ya-feature-box-6 .text-box {
+    width: 65%;
+}
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+.ya-feature-box-2 .text-box {
+    width: 70%;
+}
+.ya-feature-box-2 {
+    margin-bottom: 320px;
+}
+.ya-feature-box-5 {
+    min-height: 595px;
+}
+.ya-feature-box-6 {
+    min-height: 595px;
+}
+
+
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+.ya-feature-box-2 .text-box {
+    width: 100%;
+}
+.ya-feature-box-5 .text-box {
+    width: 100%;
+}
+.ya-feature-box-6 .text-box {
+    width: 100%;
+}
+.ya-feature-box-5 {
+    min-height: 530px;
+}
+
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+.ya-feature-box-2 .text-box {
+    padding: 30px;
+}
+.ya-feature-box-2 {
+    margin-bottom: 376px;
+}
+.ya-feature-box-4 .text-box {
+    width: 100%;
+}
+.ya-feature-box-5 {
+    min-height: 709px;
+}
+.ya-feature-box-5 .text-box {
+    padding: 35px;
+}
+.ya-feature-box-5 {
+    min-height: 487px;
+}
+.ya-feature-box-6 .text-box {
+    padding: 30px;
+}
+.ya-feature-box-6 {
+    min-height: 465px;
+}
+
+
+
+
+
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+	
+	
+	
+	
+	
+	
+
+}

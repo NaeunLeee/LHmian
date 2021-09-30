@@ -1,0 +1,218 @@
+/*
+Template: Printer
+category: Realestate
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+
+/* feature box 1
+ ------------------------------ */
+.re-feature-box-1{
+	width:100%;
+	float:left;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+.re-feature-box-1 .img-box{
+	position:relative;
+	width:100%;
+	float:left;
+}
+.re-feature-box-1 .img-box .price{
+	position: absolute;
+	width:92px;
+	height:92px;
+	float:left;
+	bottom: -23px;
+	left: 86px;
+	font-size:18px;
+	font-weight:600;
+	line-height:85px;
+	text-align:center;
+	color:#ecae3d;
+	background-color:#fff;
+	transition: all 0.3s ease-out 0s;
+}
+
+.re-feature-box-1:hover, .re-feature-box-1.active{
+	background-color:#101010;
+}
+.re-feature-box-1:hover .title, .re-feature-box-1.active .title{
+	color:#fff;
+}
+.re-feature-box-1:hover .img-box .price, .re-feature-box-1.active .img-box .price{
+	color:#ecae3d;
+	background-color:#101010;
+}
+.re-feature-box-1:hover .btn.btn-light, .re-feature-box-1.active .btn.btn-light{
+	color:#404040;
+	background-color:#101010;
+	border:1px solid #404040;
+}
+
+
+/* feature box 2
+ ------------------------------ */
+.re-feature-box-2{
+	width:100%;
+	float:left;
+	background-color:#fff;
+}
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.re-title-line-1 {
+	width: 125px;
+	height:2px;
+	margin:4px auto 0 auto;
+	border-bottom:1px solid #eaeaec;
+}
+.re-title-line-2 {
+	width: 180px;
+	height:2px;
+	margin:10px auto 0 auto;
+	border-bottom:1px solid #eaeaec;
+}
+.re-title-line-1.align-left {
+	width: 125px;
+	margin:4px auto 0 0;
+}
+.re-title-line-2.align-left {
+	width: 160px;
+	margin:10px auto 0 0;
+}
+.re-title-line-1.dark, .re-title-line-2.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+/*============ Parallax Sections ============ */
+
+.parallax-46 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+	
+}
+.parallax-47 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+	background-position:center;
+}
+
+
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+.container{
+width:90%;
+	
+}
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+
+}

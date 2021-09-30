@@ -1,0 +1,391 @@
+/*
+Template: Printer
+category: Band
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+/*========= Band layout styles ===========*/
+
+/*============ Feature boxes ============ */
+
+.br-feature-box-1{
+	width:100%;
+	padding:30px;
+	float:left;
+	background-color:#fff;
+}
+.br-feature-box-1 .img-box{
+	position:relative;
+	width:100%;
+	float:left;
+}
+
+
+/* ---------- feature box 2 ---------- */
+
+.br-feature-box-2 {
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0px;
+	transition: all 0.3s ease-out 0s;
+}
+.br-feature-box-2 .text-box{
+	position:absolute;
+	width:45%;
+	float:left;
+	top:60px;
+	left:60px;
+	padding:60px;
+	background-color:#fff;
+	z-index:2;
+}
+.br-feature-box-2 .text-box .post-date-box{
+	color:#101010;
+	bottom: 0px;
+	left: 512px;
+	font-size:22px;
+	padding: 35px 0 0 0;
+	width:120px;
+	height:120px;
+	background-color:#fff;
+}
+.br-feature-box-2 .text-box .post-date-box span{
+	color:#101010;
+	font-size:16px;
+}
+.br-feature-box-2:hover h3, .br-feature-box-2.active h3 {
+	color:#ecae3d;
+}
+.br-feature-box-2 .text-box.top-space{
+	top:60px;
+}
+
+/*============ Section Titles ============ */
+
+/* title container
+ ------------------------------ */
+.sec-title-container {
+	width:100%;
+	float:left;
+	padding-bottom:70px;
+}
+.sec-title-container.less-padding {
+	padding-bottom:50px;
+}
+
+/* page title
+ ------------------------------ */
+.br-section-title {
+	width:40%;
+	padding: 12px 0;
+	margin:0 auto;
+	font-weight: 400;
+	text-align:center;
+	border:1px solid #101010;
+}
+.br-section-title.small {
+	font-weight: 400;
+	font-size:40px;
+}
+.br-section-title.left {
+	width:80%;
+	padding: 12px;
+	text-align:left;
+	margin:0 auto 0 0;
+}
+.br-section-title.left-2 {
+	width:50%;
+	padding: 12px;
+	text-align:left;
+	margin:0 auto 0 0;
+}
+
+
+
+
+/*============ Parallax Sections ============ */
+.br-parallax-sec-1 {
+	position:relative;
+	width: 100%;
+	float: left;
+	padding: 0;
+	margin: 0px;
+	text-align: center;
+	background: url(../images/parallax/br-parallax1.jpg);
+	background-attachment: fixed;
+	background-origin: initial;
+	background-clip: initial;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 100% 0;
+	background-position: center;
+	z-index: 1;
+}
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+	
+.br-section-title.left-2 {
+    width: 100%;
+}
+.br-feature-box-2 .text-box-holder .text-box {
+    width: 56%;
+    padding: 40px;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    bottom: 27px;
+}
+.br-feature-box-2 .text-box {
+    width: 55%;
+}
+.br-feature-box-2 .text-box {
+    left: 25px;
+    top: 25px;
+}
+.br-feature-box-2 .text-box.top-space {
+    top: 25px;
+}
+
+
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+.sec-m-margin-1 {
+    margin-top: 0px;
+}
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+.container{
+	width:90%;
+	}
+.br-feature-box-2 .text-box-holder {
+    padding: 30px;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    bottom: 40px;
+	left:501px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+.br-feature-box-2 .text-box .post-date-box {
+    bottom: 40px;
+    left: 401px;
+}
+.br-sec-top-mar{
+	margin-top:90px;
+	}
+
+.br-feature-box-2 .text-box {
+    width: 60%;
+}
+.br-feature-box-2 {
+    margin-bottom: 65px;
+}
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+.br-section-title {
+    width: 80%;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    left: 311px;
+}
+.br-feature-box-2 .text-box.top-space {
+    top: 149px;
+}
+.br-feature-box-2 .text-box.top-space {
+    top: 25px;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    left: 396px;
+}
+.br-sec-top-mar {
+    margin-top: 0px;
+}
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+.br-feature-box-2 .text-box .post-date-box {
+    font-size: 21px;
+    padding: 18px 0 0 0;
+    width: 80px;
+    height: 80px;
+}
+.br-feature-box-2 .text-box .post-date-box span {
+    color: #101010;
+    font-size: 12px;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    left: 439px;
+}
+.br-feature-box-2 .text-box {
+    width: 80%;
+}
+.br-sec-top-mar{
+	margin-top:50px;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    top: 0;
+}
+
+
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+.br-feature-box-2 .text-box .post-date-box {
+    left: 318px;
+	top: 326px;
+}
+.br-feature-box-2 .text-box {
+    top: 20px;
+    left: 20px;
+}
+.br-feature-box-2 .text-box.top-space {
+    top: 182px;
+}
+.br-sec-top-mar{
+	margin-top:340px;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    top: 0;
+}
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+.br-section-title {
+    width: 100%;
+}
+.br-feature-box-2 .text-box {
+	width: 65%;
+    top: 20px;
+    left: 20px;
+	padding: 25px;
+}
+.br-feature-box-2 .text-box.top-space {
+    top: 182px;
+}
+.br-feature-box-2 .text-box.top-space {
+    top: 278px;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    left: 200px;
+}
+.br-sec-top-mar{
+	margin-top:500px;
+	
+	}
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+.br-feature-box-2 .text-box {
+    top: 5px;
+    left: 5px;
+    padding: 15px;
+}
+.br-feature-box-2 .text-box .post-date-box {
+    left: 173px;
+}
+
+
+
+
+
+
+
+
+}
