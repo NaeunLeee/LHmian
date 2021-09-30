@@ -93,5 +93,5 @@ var newEvent = function (start, end, eventType) {
 				alert("error"); // 실패 시 처리
 			}
         });
-    });
+
 };
