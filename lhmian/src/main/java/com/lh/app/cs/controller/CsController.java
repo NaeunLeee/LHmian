@@ -1,6 +1,7 @@
 package com.lh.app.cs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import com.lh.app.cs.domain.CsCriteria;
 import com.lh.app.cs.domain.CsPageVO;
 import com.lh.app.cs.domain.CsVO;
 import com.lh.app.cs.service.CsService;
+import com.lh.app.signIn.etc.CustomUserDetails;
 
 @Controller
 public class CsController {
@@ -40,7 +42,8 @@ public class CsController {
 	
 	// 등록 폼
 	@RequestMapping("/office/csInsert")
-	public String csInsert() {
+	public String csInsert(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		model.addAttribute("user", customUserDetails);
 		return "office/csInsert";
 	}
 	
