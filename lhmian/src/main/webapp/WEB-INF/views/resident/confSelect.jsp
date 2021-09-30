@@ -13,6 +13,7 @@
 	<h3>입주자 대표회의 게시글</h3>
 	<hr>
 	<div>
+	
 		<input id="confTitle" type="text" value="${conf.confTitle}" disabled="disabled">&nbsp;
 		작성일자 : <fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${conf.confUpdate}" pattern="yy-MM-dd" />
 		<hr>

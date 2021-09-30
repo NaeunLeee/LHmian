@@ -6,23 +6,82 @@
 <meta charset="UTF-8">
 <title>LHmian | 헬스장</title>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<style>
-	.card {
-		margin: 10px;
-	}
-</style>
-
 </head>
 <body>
+
+    <section class="sec-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 nopadding">
+            <div class="sec-title-container less-padding-3 text-center">
+              <p class="uppercase less-mar-1 text-gyellow lspace-sm nopadding">what we offer</p>
+              <h3 class="uppercase font-weight-7 less-mar-1">POPULAR CLASSES</h3>
+              <div class="clearfix"></div>
+              <div class="gm-title-line-1"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <!--end title-->
+          
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="gm-feature-box-1 margin-bottom">
+              <div class="img-box">
+                <div class="time">7 pm - 9 pm</div>
+                <img src="http://placehold.it/600x650" alt="" class="img-responsive"/> </div>
+              <div class="text-box padding-4">
+                <h5 class="uppercase title">Body Building</h5>
+                <p>Lorem ipsum dolor sit Suspendisse consectetuer sit amet et justo </p>
+              </div>
+            </div>
+          </div>
+          <!--end item-->
+          
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="gm-feature-box-1 margin-bottom">
+              <div class="img-box">
+                <div class="time">7 pm - 9 pm</div>
+                <img src="http://placehold.it/600x650" alt="" class="img-responsive"/> </div>
+              <div class="text-box padding-4">
+                <h5 class="uppercase title">group classes</h5>
+                <p>Lorem ipsum dolor sit Suspendisse consectetuer sit amet et justo </p>
+              </div>
+            </div>
+          </div>
+          <!--end item-->
+          
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="gm-feature-box-1 active margin-bottom">
+              <div class="img-box">
+                <div class="time">7 pm - 9 pm</div>
+                <img src="http://placehold.it/600x650" alt="" class="img-responsive"/> </div>
+              <div class="text-box padding-4">
+                <h5 class="uppercase title">Yoga Classes</h5>
+                <p>Lorem ipsum dolor sit Suspendisse consectetuer sit amet et justo </p>
+              </div>
+            </div>
+          </div>
+          <!--end item-->
+          
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="gm-feature-box-1 margin-bottom">
+              <div class="img-box">
+                <div class="time">7 pm - 9 pm</div>
+                <img src="http://placehold.it/600x650" alt="" class="img-responsive"/> </div>
+              <div class="text-box padding-4">
+                <h5 class="uppercase title">fitness classes</h5>
+                <p>Lorem ipsum dolor sit Suspendisse consectetuer sit amet et justo </p>
+              </div>
+            </div>
+          </div>
+          <!--end item--> 
+          
+        </div>
+      </div>
+    </section>
+    <div class="clearfix"></div>
+    <!-- end section -->
+
+
 <div class="row" style="margin: 20px;">
 	<h3>프로그램</h3>
 </div>
