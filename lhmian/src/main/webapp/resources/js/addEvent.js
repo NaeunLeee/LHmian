@@ -89,10 +89,6 @@ var newEvent = function (start, end, eventType) {
             contentType : 'application/json',
             success: function (response) {
                 //DB연동시 중복이벤트 방지를 위한
-                console.log(response);
-                $('#calendar').fullCalendar('removeEvents');
-                $('#calendar').fullCalendar('refetchEvents');
-            },
 			error : function() {
 				alert("error"); // 실패 시 처리
 			}
