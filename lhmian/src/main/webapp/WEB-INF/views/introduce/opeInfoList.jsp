@@ -66,7 +66,7 @@
 			<button type="submit">검색</button>
 		</form>
 	</div>
-	<br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>
 </body>
 

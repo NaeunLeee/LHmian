@@ -1,0 +1,336 @@
+/*
+Template: Printer
+category: Charity
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+.cy-feature-box-1{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.cy-feature-box-1 .text-box{
+	position:relative;
+}
+.cy-feature-box-1 .text-box .top-strip{
+	position: absolute;
+	width:90%;
+	height:30px;
+	left: 18px;
+	top: -21px;
+	z-index:2;
+	background-color:#fff;
+}
+/* featurebox 2
+ ------------------------------ */
+.cy-feature-box-2 {
+    width: 100%;
+    float: left;
+    padding:0 30px 30px 0;
+}
+/* featurebox 3
+ ------------------------------ */
+.cy-feature-box-3 {
+    width: 100%;
+    float: left;
+	margin-bottom:50px;
+}
+.cy-feature-box-3 .inner-box {
+	border-left:2px solid #e4e4e4;
+	padding:0 0 0 20px;
+}
+
+/* featurebox 4
+ ------------------------------ */
+.cy-feature-box-4 {
+    width: 100%;
+    float: left;
+	padding:60px;
+	border:6px solid #f5f5f5;
+}
+
+/* featurebox 5
+ ------------------------------ */
+.cy-feature-box-5 {
+    width: 100%;
+    float: left;
+}
+.cy-feature-box-5 .img-box {
+	position:relative;
+    width: 100%;
+	overflow:hidden;
+}
+
+.cy-feature-box-5 .img-box .sc-icons-box{
+	position: absolute;
+	width:80%;
+	padding:0px;
+	margin:0px;
+	bottom:-55px;
+	left:38px;
+	bottom:-60px;
+	overflow:hidden;
+	z-index:1;
+	text-align:center;
+	display:inline-block;
+	background-color:#ecae3d;
+	transition: all 0.3s ease-out 0s;
+}
+.cy-feature-box-5 .img-box .sc-icons-box .sc-icons{
+	width:100%;
+	padding:0px;
+}
+.cy-feature-box-5 .img-box .sc-icons-box .sc-icons li{
+	padding:0px;
+	display:inline-block;
+}
+.cy-feature-box-5 .img-box .sc-icons-box .sc-icons li a{
+	padding:15px 10px 10px 10px;
+	color:#fff;
+	display:inline-block;
+}
+.cy-feature-box-5 .img-box .sc-icons-box .sc-icons li a:hover{
+	color:#101010;
+}
+.cy-feature-box-5:hover .img-box .sc-icons-box{
+	bottom:0px;
+}
+
+/* featurebox 6
+ ------------------------------ */
+.cy-feature-box-6 {
+    width: 100%;
+    float: left;
+	padding:40px;
+	border:6px solid #f5f5f5;
+	transition: all 0.3s ease-out 0s;
+}
+.cy-feature-box-6:hover, .cy-feature-box-6.active {
+	border:6px solid #101010;
+}
+
+/* gallery
+ ------------------------------ */
+ul.cy-gallery {
+    width: 100%;
+    float: left;
+	padding:0px;
+	margin:0px;
+}
+ul.cy-gallery li {
+    width: 20%;
+    float: left;
+	padding:0px;
+	margin:0px;
+}
+ul.cy-gallery li a {
+	position:relative;
+    width: 100%;
+    float: left;
+	padding:0px;
+	margin:0px;
+}
+ul.cy-gallery li a .hover-box {
+	position: absolute;
+    width: 100%;
+	height:100%;
+    float: left;
+	padding:20px;
+	margin:0px;
+	opacity:0;
+	transition: all 0.3s ease-out 0s;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+ul.cy-gallery li a .hover-box .inner-box {
+    width: 100%;
+	height:100%;
+    float: left;
+	padding:120px 0 0 0;
+	margin:0px;
+	border:1px solid #ecae3d;
+	transition: all 0.3s ease-out 0s;
+}
+ul.cy-gallery li a:hover .hover-box, ul.cy-gallery li a.active .hover-box {
+	opacity:1;
+}
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.cy-title-line-1 {
+	width: 70px;
+	height:3px;
+	margin:12px auto 30px auto;
+	background-color:#101010;
+}
+.cy-title-line-1.align-left {
+	width: 70px;
+	margin:0 auto 20px 0;
+}
+.cy-title-line-1.dark, .cy-title-line-1.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+.cy-title-subtext {
+	width: 60%;
+}
+
+
+/*============ Parallax Sections ============ */
+
+.parallax-12 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+.parallax-13 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+/*============ blog ============ */
+
+.cy-post-holder{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.cy-post-holder .cy-post-img{
+	position:relative;
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.cy-post-holder .text-box .inner-box{
+	width:100%;
+	padding:25px;
+	float:left;
+	border:1px solid #f5f5f5;
+}
+
+.cy-post-holder .cy-post-img .post-date-box{
+	width:120px;
+	height:100px;
+	right:0px;
+	bottom:0px;
+	padding:30px 0 0 0;
+	color:#ecae3d;
+	background-color:#fff;
+}
+.cy-post-holder .cy-post-img .post-date-box span{
+	color:#727272;
+	font-size:14px;
+}
+
+
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+	
+ul.cy-gallery li a .hover-box .inner-box {
+    padding: 49px 0 0 0;
+}
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+ul.cy-gallery li {
+    width: 33%;
+}
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+ul.cy-gallery li {
+    width: 50%;
+}
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+ul.cy-gallery li {
+    width: 100%;
+}
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+
+
+}

@@ -42,6 +42,19 @@
 	</div>
 	<br>
 	<div id="pageBtn">
+		<ul class="pagination style-2">
+			<c:if test="${pageMaker.prev == true}">
+				<li><a href="${pageMaker.startPage-1}"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a></li>
+			</c:if>
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+				<li><a href="${num}">${num}</a></li>
+			</c:forEach>
+			<c:if test="${pageMaker.next == true}">
+				<li><a href="${pageMaker.endPage+1}"><span aria-hidden="true"><i class="fa fa-angle-right"></i></span></a></li>
+			</c:if>
+		</ul>
+	</div>
+<%-- 	<div id="pageBtn">
 		<c:if test="${pageMaker.prev == true}">
 			<a href="${pageMaker.startPage-1}">이전</a>
 		</c:if>
@@ -51,7 +64,7 @@
 		<c:if test="${pageMaker.next == true}">
 			<a href="${pageMaker.endPage+1}">다음</a>
 		</c:if>
-	</div>
+	</div> --%>
 
 	<div>
 		<form id="actionForm" action="confList" method="get">
