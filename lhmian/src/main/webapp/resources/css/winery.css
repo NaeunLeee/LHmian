@@ -1,0 +1,249 @@
+/*
+Template: Printer
+category: Winery
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+/* feature box 1
+ ------------------------------ */
+.wy-feature-box-1{
+	width:100%;
+	float:left;
+}
+.wy-feature-box-1 .icon{
+	border:4px solid #f5f5f5;
+}
+.wy-feature-box-1:hover .icon, .wy-feature-box-1.active .icon{
+	color:#fff;
+	background-color:#101010;
+	border:4px solid #101010;
+}
+.wy-feature-box-1:hover .title, .wy-feature-box-1.active .title{
+	color:#ecae3d;
+}
+
+/* feature box 2
+ ------------------------------ */
+.wy-feature-box-2{
+	width:100%;
+	float:left;
+}
+.wy-feature-box-2 .img-box{
+	position:relative;
+	width:100%;
+	float:left;
+	border:1px solid #efefef;
+}
+.wy-feature-box-2 .img-box .badge{
+	position:absolute;
+	width:40px;
+	height:40px;
+	float:left;
+	left: 76px;
+	top: 97px;
+	font-weight:normal;
+	font-size:11px;
+	line-height:36px;
+	border-radius:100%;
+	background-color:#ecae3d;
+}
+
+
+
+/*============ Section Titles ============ */
+/* title line
+ ------------------------------ */
+.wy-title-line-1 {
+	width: 125px;
+	height:2px;
+	margin:4px auto 0 auto;
+	border-bottom:1px solid #eaeaec;
+}
+.wy-title-line-2 {
+	width: 180px;
+	height:2px;
+	margin:10px auto 0 auto;
+	border-bottom:1px solid #eaeaec;
+}
+.wy-title-line-1.align-left {
+	width: 125px;
+	margin:4px auto 0 0;
+}
+.wy-title-line-2.align-left {
+	width: 160px;
+	margin:10px auto 0 0;
+}
+.wy-title-line-1.dark, .wy-title-line-2.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+
+/*============ Parallax Sections ============ */
+.parallax-54 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+/*============ blog ============ */
+
+.wy-post-holder{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.wy-post-holder .wy-post-img{
+	position:relative;
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.wy-post-holder .text-box{
+	height:274px;
+	padding:60px 50px 50px 50px;
+}
+.wy-post-holder .text-box.one{
+	height:274px;
+}
+.wy-post-holder .wy-post-img .arrow-up {
+	position:absolute;
+	width: 0;
+	height: 0;
+	left: 175px;
+	bottom:0px;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 20px solid #fff;
+	z-index:2;
+}
+.wy-post-holder .wy-post-img .arrow-down {
+	position:absolute;
+	width: 0;
+	height: 0;
+	left: 175px;
+	top:0px;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #fff;
+}
+
+.wy-post-holder .blog-post-info span {
+	color:#ecae3d;
+}
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+.container{
+width:90%;
+	
+}
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+	
+	
+	
+	
+	
+	
+
+}

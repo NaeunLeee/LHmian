@@ -1,0 +1,401 @@
+/*
+Template: Printer
+category: Education
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+
+.dt-feature-box-1{
+	position:relative;
+	width:100%;
+	left:0px;
+	top: -80px;
+	padding:55px;
+	background-color:#101010;
+	transition: all 0.3s ease-out 0s;
+}
+.dt-feature-box-1:hover, .dt-feature-box-1.active{
+	background-color:#ecae3d;
+}
+.dt-feature-box-1:hover p, .dt-feature-box-1.active p{
+	color:#fff;
+}
+.dt-feature-box-1:hover a.read-more.gyellow-2, .dt-feature-box-1.active a.read-more.gyellow-2{
+	color:#fff;
+}
+
+
+/* feature box 2
+ ------------------------------ */
+ .dt-feature-box-2{
+	width:100%;
+	float:left;
+	padding:0px;
+}
+ .dt-feature-box-2 .img-box{
+	 position:relative;
+	width:500px;
+	height:550px;
+	float:right;
+	padding:0px;
+}
+ .dt-feature-box-2 .img-box .text-box{
+	 position:absolute;
+	width:73%;
+	float:left;
+	padding:45px;
+	left:-148px;
+	top:0px;
+	z-index:2;
+	background-color:#fff;
+}
+.dt-opening-hours-list {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	float: left;
+}
+.dt-opening-hours-list li {
+	width: 100%;
+	padding: 10px 0px 0 0px;
+	margin: 0px;
+	float: left;
+	color:#727272;
+	border-bottom: 1px solid #efefef;
+}
+.dt-opening-hours-list li i {
+	color:#ecae3d;
+}
+.dt-opening-hours-list li:last-child {
+	border-bottom: none;
+}
+.dt-opening-hours-list li span.item {
+	float: left;
+	text-align: left;
+}
+.dt-opening-hours-list li span.time {
+	float: right;
+	color:#727272;
+	text-align: right;
+}
+.dt-opening-hours-list li span.time h6 {
+	color:#727272;
+}
+
+/* feature box 3
+ ------------------------------ */
+.dt-feature-box-3{
+	width:100%;
+	float:left;
+	padding:0px;
+	margin-bottom:15px;
+	background-color:#f5f5f5
+	
+}
+/* feature box 4
+ ------------------------------ */
+.dt-feature-box-4{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0px;
+}
+.dt-feature-box-4 .text-strip{
+	position: absolute;
+	width:100%;
+	padding:30px;
+	z-index:2;
+	color:#101010;
+	left:0px;
+	font-size:18px;
+	bottom:0px;
+	background-color:rgba(255, 255, 255, 0.7);
+}
+
+/* feature box 5
+ ------------------------------ */
+.dt-feature-box-5{
+	width:100%;
+	float:left;
+	padding:25px;
+	background-color:#fff;
+}
+.dt-feature-box-5 .img-box{
+	position:relative;
+	width:100%;
+	float:left;
+	padding:0px;
+	overflow:hidden;
+	border:3px solid #f5f5f5;
+}
+.dt-feature-box-5 .img-box img {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	transition: all 0.3s ease-out 0s;
+}
+.dt-feature-box-5 .text-box{
+	width:100%;
+	float:left;
+	padding:35px;
+	margin-top:25px;
+	border:3px solid #f5f5f5;
+}
+
+.dt-feature-box-5 .img-box .sc-icons-box{
+	position: absolute;
+	width:20%;
+	height:100%;
+	padding:0px;
+	margin:0px;
+	right: -110px;
+	top:0px;
+	overflow:hidden;
+	z-index:1;
+	text-align:center;
+	display:inline-block;
+	background-color:#ecae3d;
+	transition: all 0.3s ease-out 0s;
+}
+.dt-feature-box-5 .img-box .sc-icons-box .sc-icons{
+	width:100%;
+	padding:60px 0 0 0;
+	margin:0px;
+}
+.dt-feature-box-5 .img-box .sc-icons-box .sc-icons li{
+	width:100%;
+	padding:0px;
+	margin:0 0 10px 0;
+	display:inline-block;
+}
+.dt-feature-box-5 .img-box .sc-icons-box .sc-icons li a{
+	width:40px;
+	height:40px;
+	padding:15px 10px;
+	color:#fff;
+	line-height:12px;
+	display:inline-block;
+	border:1px solid rgba(255, 255, 255, 0.2);
+}
+.dt-feature-box-5 .img-box .sc-icons-box .sc-icons li a:hover, .dt-feature-box-5 .img-box .sc-icons-box .sc-icons li a.active{
+	color:#101010;
+	background-color:#fff;
+}
+.dt-feature-box-5:hover .img-box .sc-icons-box, .dt-feature-box-5.active .img-box .sc-icons-box{
+	right:0px;
+}
+.dt-feature-box-5:hover .img-box img {
+	left: -30px;
+}
+
+/* feature box 6
+ ------------------------------ */
+.dt-feature-box-6{
+	width:100%;
+	float:left;
+}
+/* feature box 7
+ ------------------------------ */
+.dt-feature-box-7{
+	width:100%;
+	float:left;
+}
+.dt-feature-box-7 .img-box{
+	width:32%;
+	float:left;
+}
+.dt-feature-box-7 .text-box{
+	width:68%;
+	float:left;
+	padding:60px;
+	min-height:437px;
+	border:1px solid #101010;
+}
+
+
+
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.dt-title-line-1 {
+	width: 70px;
+	height:2px;
+	margin:12px auto 30px auto;
+	background-color:#101010;
+}
+.dt-title-line-1.align-left {
+	width: 70px;
+	margin:8px auto 20px 0;
+}
+.dt-title-line-1.dark, .dt-title-line-1.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+/*============ Parallax Sections ============ */
+
+.parallax-26 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+.parallax-27 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+.dt-feature-box-2 .img-box .text-box {
+    left: -37px;
+}
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+
+.dt-feature-box-1 {
+    top: 0;
+}
+.dt-feature-box-2 .img-box .text-box {
+    left: -401px;
+}
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+.dt-feature-box-2 .img-box .text-box {
+    left: -188px;
+}
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+.dt-feature-box-2 .img-box .text-box {
+    left: -64px;
+}
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+.dt-feature-box-2 .img-box {
+	width:100%;
+}
+.dt-feature-box-2 .img-box img {
+	display:none;
+}
+.dt-feature-box-2 .img-box .text-box {
+    left: 0;
+}
+.dt-feature-box-2 .img-box .text-box {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+.dt-feature-box-7 .img-box {
+    width: 100%;
+}
+.dt-feature-box-7 .text-box {
+    width: 100%;
+}
+
+
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+
+
+}

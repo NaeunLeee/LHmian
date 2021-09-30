@@ -1,0 +1,361 @@
+/*
+Template: Printer
+category: Charity
+Author: Codelayers
+Version: 1.0
+Design and Developed by: Codelayers
+*/
+
+
+/*
+======================================
+[ CSS TABLE CONTENT ]
+======================================
+
+    [Table of contents]
+
+	1.feature boxes
+	2.parallax sections
+	3.footer styles
+
+	
+======================================
+[ END CSS TABLE CONTENT ]
+======================================
+*/
+
+
+/*============ Feature boxes ============ */
+.ch-feature-box-1{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.ch-feature-box-1 .inner-box{
+	width:100%;
+	padding:50px;
+	float:left;
+	border:1px solid #eeeeee;
+}
+.ch-feature-box-1:hover .inner-box h4, .ch-feature-box-1.active .inner-box h4{
+	color:#ecae3d;
+}
+
+/* featurebox 2
+ ------------------------------ */
+.ch-feature-box-2 {
+    width: 100%;
+    float: left;
+	margin-bottom:70px;
+}
+.ch-feature-box-2 .inner-box {
+	border-left:1px solid #e4e4e4;
+	padding:0 0 0 20px;
+}
+.ch-feature-box-2 .iconbox-small {
+	border:3px solid #f5f5f5;
+}
+.ch-feature-box-2:hover .inner-box, .ch-feature-box-2.active .inner-box {
+	border-left:1px solid #ecae3d;
+}
+.ch-feature-box-2:hover .iconbox-small, .ch-feature-box-2.active .iconbox-small{
+	color:#ecae3d;
+}
+.ch-feature-box-2:hover h5, .ch-feature-box-2.active h5{
+	color:#ecae3d;
+}
+
+/* featurebox 3
+ ------------------------------ */
+.ch-feature-box-3{
+	width:100%;
+	padding:0px;
+	float:left;
+	background-color:#fff;
+}
+.ch-feature-box-3 .img-box{
+	position:relative;
+	width:50%;
+	padding:0px;
+	float:left;
+}
+.ch-feature-box-3 .text-box{
+	width:50%;
+}
+.ch-feature-box-3 .img-box .arrow-left {
+	position:absolute;
+	width: 0;
+	height: 0;
+	right: -5px;
+	bottom:96px;
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-right: 20px solid #fff;
+	z-index:2;
+}
+
+/* featurebox4
+ ------------------------------ */
+.ch-feature-box-4{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.ch-feature-box-4:hover h4, .ch-feature-box-4.active h4{
+	color:#ecae3d;
+}
+.ch-feature-box-4:hover .ch-title-line-2, .ch-feature-box-4.active .ch-title-line-2{
+	background-color:#ecae3d;
+}
+
+/* featurebox 5
+ ------------------------------ */
+.ch-feature-box-5{
+	position:relative;
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.ch-feature-box-5 .overlay{
+	position: absolute;
+	width:100%;
+	height:100%;
+	padding:40px;
+	float:left;
+	z-index:2;
+	background-color:rgba(0, 0, 0, 0.5);
+}
+.ch-feature-box-5 .overlay .text-box{
+	width:100%;
+	height:100%;
+	padding:40px;
+	float:left;
+	border:1px solid rgba(255, 255, 255, 0.2);
+}
+.ch-feature-box-5 .overlay .text-box .title-line{
+	width:100%;
+	height:1px;
+	float:left;
+	margin-bottom:50px;
+	background-color:rgba(255, 255, 255, 0.2);
+}
+.ch-feature-box-5 .overlay .text-box .post-date-box{
+	right: 22px;
+	top: 337px;
+}
+.ch-feature-box-5 .overlay .text-box h4 a:hover{
+	color:#ecae3d;
+}
+
+
+/*============ Section Titles ============ */
+
+/* title line
+ ------------------------------ */
+.ch-title-line-1 {
+	width: 255px;
+	height:25px;
+	margin:12px auto 0 auto;
+}
+.cy-title-line-1.align-left {
+	width: 70px;
+	margin:0 auto 20px 0;
+}
+.cy-title-line-1.dark, .cy-title-line-1.dark {
+	border-bottom:1px solid rgba(255, 255, 255, 0.2);
+}
+.cy-title-subtext {
+	width: 60%;
+}
+.ch-title-line-2 {
+	width: 85px;
+	height:1px;
+	margin:12px auto 0 auto;
+	background-color:#101010;
+}
+.ch-title-line-2.align-left {
+	width: 85px;
+	height:1px;
+	margin:0 auto 20px 0;
+}
+/*============ Parallax Sections ============ */
+.parallax-14 {
+    background: rgba(0, 0, 0, 0) url("http://placehold.it/2000x1300") no-repeat fixed 50% 0;
+}
+
+
+/*============ blog ============ */
+
+.cy-post-holder{
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.cy-post-holder .cy-post-img{
+	position:relative;
+	width:100%;
+	padding:0px;
+	float:left;
+}
+.cy-post-holder .text-box .inner-box{
+	width:100%;
+	padding:25px;
+	float:left;
+	border:3px solid #f5f5f5;
+}
+
+.cy-post-holder .cy-post-img .post-date-box{
+	width:120px;
+	height:100px;
+	right:0px;
+	bottom:0px;
+	padding:30px 0 0 0;
+	color:#ecae3d;
+	background-color:#fff;
+}
+.cy-post-holder .cy-post-img .post-date-box span{
+	color:#727272;
+	font-size:14px;
+}
+
+
+
+
+/*----------------------------RESPONSIVE STYLES------------------------------- */
+/* ---------- MAX 1024PX ---------- */
+@media screen and (max-width: 1024px) {
+	
+.ch-feature-box-5 .overlay {
+    padding: 20px;
+}
+.ch-feature-box-5 .overlay .text-box .post-date-box {
+    right: 13px;
+    top: 263px;
+}
+.ch-feature-box-5 .overlay .text-box .title-line {
+    margin-bottom: 26px;
+}
+
+
+
+
+
+
+
+}
+	
+@media only screen and (max-width: 1000px) {
+	
+
+
+}	
+
+	
+	
+/* ---------- MAX 991PX ---------- */
+@media only screen and (max-width: 991px) {
+.ch-feature-box-5 .overlay .text-box .post-date-box {
+    right: 13px;
+    top: 396px;
+}
+
+
+}
+
+
+
+/* ---------- MAX 800PX ---------- */
+@media only screen and (max-width: 800px) {
+
+.ch-feature-box-3 .img-box {
+    width: 100%;
+}
+.ch-feature-box-3 .text-box {
+    width: 100%;
+}
+.ch-feature-box-3 .img-box .arrow-left {
+	display:none;
+}
+.ch-feature-box-5 .overlay .text-box .post-date-box {
+    right: 13px;
+    top: 331px;
+}
+
+
+
+
+
+
+
+
+}
+
+
+
+/* ---------- MAX 768PX ---------- */
+@media only screen and (max-width: 768px) {
+
+.ch-feature-box-5 .overlay .text-box .post-date-box {
+    right: 13px;
+    top: 311px;
+}
+
+
+
+
+
+
+}
+
+
+/* ---------- MAX 767PX ---------- */
+@media only screen and (max-width: 767px) {
+
+}
+
+
+@media screen and (max-width: 640px) {
+
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+.ch-feature-box-5 .overlay .text-box .post-date-box {
+    top: 396px;
+}
+
+
+}
+
+/* ---------- MAX 360PX ---------- */
+@media screen and (max-width: 360px) {
+
+.ch-feature-box-5 .overlay .text-box .post-date-box {
+    top: 282px;
+}
+
+
+}
+
+
+/* ---------- MAX 320PX ---------- */
+@media only screen and (max-width: 320px) {
+
+.ch-feature-box-5 .overlay .text-box .post-date-box {
+    top: 237px;
+}
+.ch-feature-box-1 .inner-box {
+    padding: 22px;
+}
+
+
+
+
+
+}
