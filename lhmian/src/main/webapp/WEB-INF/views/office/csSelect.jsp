@@ -50,19 +50,14 @@
 <script>
 
 $('#modifyBtn').on("click", function() {
-	
 	if ($(this).attr('id') == 'modifyBtn') {
-
 		if (confirm('수정하시겠습니까?')) {
 			$('#csTitle').attr("disabled", false);
 			$('#csContent').attr("disabled", false);
 			$(this).attr('id', 'updateBtn').html('완료');
-		}
-		
+		}	
 	} else if ($(this).attr('id') == 'updateBtn') {
-		
 		if (confirm('수정사항을 반영하시겠습니까?')) {
-			
 			$.ajax({
 				url: "csUpdateBoard",
 				type: "post",
@@ -81,13 +76,11 @@ $('#modifyBtn').on("click", function() {
 					alert("수정에 실패했습니다. 다시 시도해주세요.");
 				}
 			});
-			
 			$('#csTitle').attr('disabled', true);
 			$('#csContent').attr('disabled', true);
 			$(this).attr('id', 'modifyBtn').html('수정');
 		}
 	}
-	
 });
 
 $('#deleteBtn').on("click", function() {
@@ -96,7 +89,11 @@ $('#deleteBtn').on("click", function() {
 	}
 });
 
+$('#saveAnswer').on('click', function() {
+	if(confirm('답변을 등록하시겠습니까?')) {
+		$('#replyForm').submit();
+	}
+})
 	
 </script>
-
 </html>
