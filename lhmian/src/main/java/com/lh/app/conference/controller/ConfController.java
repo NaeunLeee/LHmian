@@ -1,6 +1,7 @@
 package com.lh.app.conference.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import com.lh.app.conference.domain.ConfCriteria;
 import com.lh.app.conference.domain.ConfPageVO;
 import com.lh.app.conference.domain.ConfVO;
 import com.lh.app.conference.service.ConfService;
+import com.lh.app.signIn.etc.CustomUserDetails;
 
 @Controller
 public class ConfController {
@@ -39,7 +41,8 @@ public class ConfController {
 	
 	// 등록 폼
 	@GetMapping("/resident/confInsert")
-	public String confInsertForm() {
+	public String confInsertForm(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		model.addAttribute("name", customUserDetails.getNAME());
 		return "resident/confInsert";
 	}
 	
