@@ -1,5 +1,6 @@
 package com.lh.app.signIn.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,11 +15,15 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lh.app.signIn.domain.MemberVO;
 import com.lh.app.signIn.etc.KakaoProfile;
 import com.lh.app.signIn.etc.OAuthToken;
+import com.lh.app.signIn.service.SignInService;
 
 @Controller
 public class KakaoController {
+	
+	@Autowired SignInService signInService;
 	
 	@GetMapping("/kakaoLogin")
 	public String kakao(String code, Model model) { //카카오 인증 코드
@@ -93,13 +98,26 @@ public class KakaoController {
 			e.printStackTrace();
 		}
 			
-		System.out.println("카카오 아이디(번호) : " + kakaoProfile.getId());
+		Integer kakaoId = kakaoProfile.getId();
+		System.out.println("카카오 아이디(번호) : " + kakaoId);
 		System.out.println("카카오 이메일 : " + kakaoProfile.getKakao_account().getEmail());
-		
-		model.addAttribute("kakaoId", kakaoProfile.getId());
-		
+
 		//회원가입 이력이 있는지 조회하는 로직
 		
-		return "signIn/leaderStep1";
+		String page="";
+		
+		//가입 이력이 있으면 1, 없으면 0
+		int kakaoIdCheck = signInService.kakaoIdCheck(kakaoId);
+		
+		// 
+		if (kakaoIdCheck == 0) {
+			model.addAttribute("kakaoId", kakaoId);
+			page = "signIn/leaderStep1";
+		} else {
+			//로그인을 시켜버려야....하는데..............
+			page = "/";
+		}
+		
+		return page;
 	}
 }

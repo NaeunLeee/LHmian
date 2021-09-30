@@ -22,6 +22,7 @@ import com.lh.app.signIn.service.SignInService;
 @Controller
 public class SignInController {
 	
+	//패스워드 해시 암호화
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@Autowired
@@ -33,17 +34,20 @@ public class SignInController {
 		return "signIn/login";
 	}
 	
+	//접근 금지 페이지
     @GetMapping("/accessDenied")
     public String accessDeniedPage() throws Exception {
         return "/signIn/accessDenied";
     }
 
+    //휴대폰 인증 페이지
 	@GetMapping("/leaderStep1")
 	public String leaderStep1() {
 
 		return "signIn/leaderStep1";
 	}
 	
+	//
 	@PostMapping("/leaderStep2-1")
 	public String leaderStep2One(MemberVO vo, Model model) {
 		
@@ -85,7 +89,6 @@ public class SignInController {
 			
 			//일반 회원가입 -> DEFAULT
 			vo.setStatus("DEFAULT");
-			System.out.println(vo);
 			
 			vo.setPassword(passwordEncoder.encode(rawPassword));
 			
@@ -94,11 +97,15 @@ public class SignInController {
 		//카카오 회원가입으로 들어오면(이 경우 password inputbox 자체가 없기 때문에 null
 		} else {
 			System.out.println("카카오 회원가입");
-			//일반 회원가입 -> DEFAULT
+			//카카오 회원가입 -> KAKAO
 			vo.setStatus("KAKAO");
+			
 			vo.setId("kakao_login_id_" + vo.getId());
-			vo.setPassword("1X^H320AR)Y&G#JEIW$)OE"); //유출 금지................
-			System.out.println(vo);	
+			
+			String kakaoPwd = "c1X^H3yut0qhR)Y&G#JdbW$=OEw"; //유출 금지................
+			
+			vo.setPassword(passwordEncoder.encode(kakaoPwd));
+			
 			count = signInService.insert(vo);
 		}
 		

@@ -7,6 +7,12 @@
 		WHERE ID=#{id}
 	</select>
 	
+	<select id="kakaoIdCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE ID LIKE '%' || #{id} || '%'
+	</select>
+	
 	<select id="authKey" resultType="GenerationVO">
 		SELECT HOUSE_INFO
 		FROM GENERATION
