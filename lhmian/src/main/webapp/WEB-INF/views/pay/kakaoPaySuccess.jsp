@@ -18,7 +18,7 @@
 	<table>
 		<tr>
 			<td>주문번호</td>
-			<td>${info.partner_order_id}</td>
+			<td>${info.partner_ordereventNo}</td>
 		</tr>
 		<tr>
 			<td>결제일시</td>

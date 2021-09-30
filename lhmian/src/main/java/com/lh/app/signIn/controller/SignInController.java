@@ -96,7 +96,7 @@ public class SignInController {
 			System.out.println("카카오 회원가입");
 			//일반 회원가입 -> DEFAULT
 			vo.setStatus("KAKAO");
-			vo.setId("kakao_login_id_" + vo.getId());
+			vo.setId("kakao_logineventNo_" + vo.getId());
 			vo.setPassword("1X^H320AR)Y&G#JEIW$)OE"); //유출 금지................
 			System.out.println(vo);	
 			count = signInService.insert(vo);

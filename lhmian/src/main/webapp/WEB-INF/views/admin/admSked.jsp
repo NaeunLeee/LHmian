@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <body>
-	<div class="container">
+	  <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
@@ -148,6 +148,7 @@
         <!-- /.filter panel -->
     </div>
     <!-- /.container -->
+
 
     <script src="${pageContext.request.contextPath}/resources/vendor/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/vendor/js/bootstrap.min.js"></script>

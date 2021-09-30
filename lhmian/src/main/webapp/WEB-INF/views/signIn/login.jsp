@@ -39,7 +39,7 @@
 
 			<button>로그인</button>
 			<img src="../resources/image/kakao_login_medium_narrow.png"
-				onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=5986adbc56a3444841aed3bd67e4976d&redirect_uri=http://localhost:8091/app/kakaoLogin&response_type=code'">
+				onclick="location.href='https://kauth.kakao.com/oauth/authorize?clienteventNo=5986adbc56a3444841aed3bd67e4976d&redirect_uri=http://localhost:8091/app/kakaoLogin&response_type=code'">
 
 		</form>
 		<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">

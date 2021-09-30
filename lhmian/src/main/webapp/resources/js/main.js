@@ -22,7 +22,7 @@ var calendar = $('#calendar').fullCalendar({
                               },
   eventLimitClick           : 'week', //popover
   navLinks                  : true,
-  defaultDate               : moment('2021-09'), //실제 사용시 현재 날짜로 수정
+  defaultDate               : moment('2021-10'), //실제 사용시 현재 날짜로 수정
   timeFormat                : 'HH:mm',
   defaultTimedEventDuration : '01:00:00',
   editable                  : true,
@@ -36,7 +36,7 @@ var calendar = $('#calendar').fullCalendar({
   eventLongPressDelay       : 0,
   selectLongPressDelay      : 0,  
   header                    : {
-                                left   : 'today, prevYear, nextYear',
+                                left   : 'today, prevYear, nextYear, viewWeekends',
                                 center : 'prev, title, next',
                                 right  : 'month, agendaWeek, agendaDay, listWeek'
                               },
@@ -57,7 +57,17 @@ var calendar = $('#calendar').fullCalendar({
                                   columnFormat : ''
                                 }
                               },
- 
+  customButtons             : { //주말 숨기기 & 보이기 버튼
+                                viewWeekends : {
+                                  text  : '주말',
+                                  click : function () {
+                                    activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
+                                    $('#calendar').fullCalendar('option', { 
+                                      weekends: activeInactiveWeekends
+                                    });
+                                  }
+                                }
+                               },
 
 
   eventRender: function (event, element, view) {
@@ -90,21 +100,24 @@ var calendar = $('#calendar').fullCalendar({
     return filtering(event);
 
   },
-
+	
   /* ****************
    *  일정 받아옴 
    * ************** */
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "./resources/data.json",
+      url: "getList",
       data: {
         // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
         //startDate : moment(start).format('YYYY-MM-DD'),
         //endDate   : moment(end).format('YYYY-MM-DD')
+        startDate : '2021-10-01',
+        endDate : '2021-10-31'
+        
       },
       success: function (response) {
-		console.log(response);
+      	console.log(response);
         var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             array.end = moment(array.end).add(1, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력

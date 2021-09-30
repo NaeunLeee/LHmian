@@ -1251,7 +1251,7 @@
         if (this._b < 1) { this._b = mathRound(this._b); }
 
         this._ok = rgb.ok;
-        this._tc_id = tinyCounter++;
+        this._tceventNo = tinyCounter++;
     };
 
     tinycolor.prototype = {

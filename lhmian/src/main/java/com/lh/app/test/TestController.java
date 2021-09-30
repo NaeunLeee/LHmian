@@ -48,8 +48,8 @@ public class TestController {
 			
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 			params.add("cid", "TC0ONETIME");//사업장 고유번호
-			params.add("partner_order_id", "partner_order_id"); //파라미터 세팅
-			params.add("partner_user_id", "partner_user_id"); //파라미터 세팅
+			params.add("partner_ordereventNo", "partner_ordereventNo"); //파라미터 세팅
+			params.add("partner_usereventNo", "partner_usereventNo"); //파라미터 세팅
 			params.add("item_name", "푸 인형"); //파라미터 세팅
 			params.add("quantity", "1"); //파라미터 세팅
 			params.add("total_amount", "110"); //파라미터 세팅
@@ -89,8 +89,8 @@ public class TestController {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", "TC0ONETIME");
 		params.add("tid", kakaoPayReadyVO.getTid());
-		params.add("partner_order_id", "partner_order_id"); //파라미터 세팅
-		params.add("partner_user_id", "partner_user_id"); //파라미터 세팅
+		params.add("partner_ordereventNo", "partner_ordereventNo"); //파라미터 세팅
+		params.add("partner_usereventNo", "partner_usereventNo"); //파라미터 세팅
 		params.add("pg_token", pg_token);
 		
 		//HttpHeader, HttpBody를 하나의 오브젝트에 담기 -> 왜 여기에 담아? 밑에 있는 exchange 함수가 HttpEntity를 받아서....

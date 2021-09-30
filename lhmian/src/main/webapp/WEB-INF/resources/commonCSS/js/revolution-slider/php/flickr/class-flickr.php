@@ -119,14 +119,14 @@ class TP_flickr {
 	 * Get Public Photos
 	 *
 	 * @since    1.0.0
-	 * @param    string    $user_id 	flicker User id (not name)
+	 * @param    string    $usereventNo 	flicker User id (not name)
 	 * @param    int       $item_count 	number of photos to pull
 	 */
-	public function get_public_photos($user_id,$item_count=10){
+	public function get_public_photos($usereventNo,$item_count=10){
 		//public photos params
 		$public_photo_params = $this->api_param_defaults + array(
 			'method'  => 'flickr.people.getPublicPhotos',
-  			'user_id' => $user_id,
+  			'usereventNo' => $usereventNo,
   			'extras'  => 'description, license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o',
   			'per_page'=> $item_count,
   			'page' => 1
@@ -141,14 +141,14 @@ class TP_flickr {
 	 * Get Photosets List from User
 	 *
 	 * @since    1.0.0
-	 * @param    string    $user_id 	flicker User id (not name)
+	 * @param    string    $usereventNo 	flicker User id (not name)
 	 * @param    int       $item_count 	number of photos to pull
 	 */
-	public function get_photo_sets($user_id,$item_count=10){
+	public function get_photo_sets($usereventNo,$item_count=10){
 		//photoset params
 		$photo_set_params = $this->api_param_defaults + array(
 			'method'  => 'flickr.photosets.getList',
-  			'user_id' => $user_id,
+  			'usereventNo' => $usereventNo,
   			'per_page'=> $item_count,
   			'page'    => 1
 		);
@@ -162,14 +162,14 @@ class TP_flickr {
 	 * Get Photoset Photos
 	 *
 	 * @since    1.0.0
-	 * @param    string    $photo_set_id 	Photoset ID
+	 * @param    string    $photo_seteventNo 	Photoset ID
 	 * @param    int       $item_count 	number of photos to pull
 	 */
-	public function get_photo_set_photos($photo_set_id,$item_count=10){
+	public function get_photo_set_photos($photo_seteventNo,$item_count=10){
 		//photoset photos params
 		$photo_set_params = $this->api_param_defaults + array(
 			'method'  		=> 'flickr.photosets.getPhotos',
-  			'photoset_id' 	=> $photo_set_id,
+  			'photoseteventNo' 	=> $photo_seteventNo,
   			'per_page'		=> $item_count,
   			'page'    		=> 1,
   			'extras'		=> 'license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o'
@@ -184,14 +184,14 @@ class TP_flickr {
 	 * Get Groop Pool Photos
 	 *
 	 * @since    1.0.0
-	 * @param    string    $group_id 	Photoset ID
+	 * @param    string    $groupeventNo 	Photoset ID
 	 * @param    int       $item_count 	number of photos to pull
 	 */
-	public function get_group_photos($group_id,$item_count=10){
+	public function get_group_photos($groupeventNo,$item_count=10){
 		//photoset photos params
 		$group_pool_params = $this->api_param_defaults + array(
 			'method'  		=> 'flickr.groups.pools.getPhotos',
-  			'group_id' 	=> $group_id,
+  			'groupeventNo' 	=> $groupeventNo,
   			'per_page'		=> $item_count,
   			'page'    		=> 1,
   			'extras'		=> 'license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o'
@@ -225,14 +225,14 @@ class TP_flickr {
 	 * Get Gallery Photos
 	 *
 	 * @since    1.0.0
-	 * @param    string    $gallery_id 	flicker Gallery id (not name)
+	 * @param    string    $galleryeventNo 	flicker Gallery id (not name)
 	 * @param    int       $item_count 	number of photos to pull
 	 */
-	public function get_gallery_photos($gallery_id,$item_count=10){
+	public function get_gallery_photos($galleryeventNo,$item_count=10){
 		//gallery photos params
 		$gallery_photo_params = $this->api_param_defaults + array(
 			'method'  => 'flickr.galleries.getPhotos',
-  			'gallery_id' => $gallery_id,
+  			'galleryeventNo' => $galleryeventNo,
   			'extras'  => 'description, license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o',
   			'per_page'=> $item_count,
   			'page' => 1

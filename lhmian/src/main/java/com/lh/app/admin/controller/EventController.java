@@ -1,5 +1,7 @@
 package com.lh.app.admin.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +20,7 @@ import com.lh.app.admin.service.EventService;
 @Controller
 public class EventController {
 
-	@Autowired
-	EventService eventService;
+	@Autowired	EventService eventService;
 
 	// 스케줄폼
 	@GetMapping("admSked")
@@ -27,38 +28,31 @@ public class EventController {
 		return "admin/admSked";
 	}
 
-	/*
-	 * // 리스트 조회
-	 * 
-	 * @RequestMapping("eventlist") public String getList(Model model) {
-	 * model.addAttribute("list", eventService.getList()); return
-	 * "eventunity/eventlist"; }
-	 * 
-	 * // 등록
-	 * 
-	 * @PostMapping("insertevent") public String insertevent(@ModelAttribute("cvo")
-	 * EventVO vo) { eventService.insert(vo); return "redirect:eventlist"; }
-	 * 
-	 * // 단건 조회
-	 * 
-	 * @GetMapping("get") // 수정폼 public String get(@RequestParam("eventNo") Long
-	 * eventNo, Model model) { EventVO vo = new EventVO(); vo.setEventNo(eventNo);
-	 * model.addAttribute("list", eventService.read(vo)); return "eventunity/get"; }
-	 * 
-	 * // 수정
-	 * 
-	 * @PutMapping("updateevent")
-	 * 
-	 * @ResponseBody public EventVO updateevent(@RequestBody EventVO vo) {
-	 * eventService.update(vo); return vo; }
-	 * 
-	 * // 삭제
-	 * 
-	 * @PostMapping("deleteevent")
-	 * 
-	 * @ResponseBody // post 자체가 ajax 함수이기 때문에 이를 생각하고 코딩할 것 public boolean
-	 * deleteevent(Long eventNo) { System.out.println(eventNo);
-	 * eventService.remove(eventNo); return true; }
-	 */
+	// 등록
+	@PostMapping("insertEvent")
+	@ResponseBody
+	public EventVO insertevent(@RequestBody EventVO vo) {
+		if(vo.isAllDay() == false) {
+			vo.setResult(0);
+		} else {
+			vo.setResult(1);
+		}
+		eventService.insert(vo);
+		return vo;
+	}
+	
+	@GetMapping("getList")
+	@ResponseBody
+	public List<EventVO> getList(EventVO vo) {
+		
+		if(vo.getResult()==0) {
+			vo.setAllDay(false);
+		} else {
+			vo.setAllDay(true);
+		}
+		return eventService.getList();
+		
+	}
+	
 
 }

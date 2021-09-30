@@ -30,7 +30,7 @@
     $.fn.fileinputLocales = {};
     $.fn.fileinputThemes = {};
 
-    var NAMESPACE, MODAL_ID, STYLE_SETTING, OBJECT_PARAMS, DEFAULT_PREVIEW, objUrl, compare, isIE, handler,
+    var NAMESPACE, MODALeventNo, STYLE_SETTING, OBJECT_PARAMS, DEFAULT_PREVIEW, objUrl, compare, isIE, handler,
         previewCache, getNum, hasFileAPISupport, hasDragDropSupport, hasFileUploadSupport, addCss, tMain1, tMain2,
         tPreview, tFileIcon, tClose, tCaption, tBtnDefault, tBtnLink, tBtnBrowse, tModalMain, tModal, tProgress, tSize,
         tFooter, tActions, tActionDelete, tActionUpload, tActionZoom, tActionDrag, tTagBef, tTagBef1, tTagBef2, tTagAft,
@@ -40,7 +40,7 @@
         cleanMemory, findFileName, checkFullScreen, toggleFullScreen, moveArray, FileInput;
 
     NAMESPACE = '.fileinput';
-    MODAL_ID = 'kvFileinputModal';
+    MODALeventNo = 'kvFileinputModal';
     STYLE_SETTING = 'style="width:{width};height:{height};"';
     OBJECT_PARAMS = '<param name="controller" value="true" />\n' +
         '<param name="allowFullScreen" value="true" />\n' +
@@ -348,8 +348,8 @@
     tBtnDefault = '<button type="{type}" tabindex="500" title="{title}" class="{css}" {status}>{icon} {label}</button>';
     tBtnLink = '<a href="{href}" tabindex="500" title="{title}" class="{css}" {status}>{icon} {label}</a>';
     tBtnBrowse = '<div tabindex="500" class="{css}" {status}>{icon} {label}</div>';
-    tModalMain = '<div id="' + MODAL_ID + '" class="file-zoom-dialog modal fade" tabindex="-1" aria-labelledby="' +
-        MODAL_ID + 'Label"></div>';
+    tModalMain = '<div id="' + MODALeventNo + '" class="file-zoom-dialog modal fade" tabindex="-1" aria-labelledby="' +
+        MODALeventNo + 'Label"></div>';
     tModal = '<div class="modal-dialog modal-lg" role="document">\n' +
         '  <div class="modal-content">\n' +
         '    <div class="modal-header">\n' +
@@ -1138,11 +1138,11 @@
             });
         },
         _initZoom: function () {
-            var self = this, $dialog, modalMain = self._getLayoutTemplate('modalMain'), modalId = '#' + MODAL_ID;
+            var self = this, $dialog, modalMain = self._getLayoutTemplate('modalMain'), modalId = '#' + MODALeventNo;
             self.$modal = $(modalId);
             if (!self.$modal || !self.$modal.length) {
                 $dialog = $(document.createElement('div')).html(modalMain).insertAfter(self.$container);
-                self.$modal = $('#' + MODAL_ID).insertBefore($dialog);
+                self.$modal = $('#' + MODALeventNo).insertBefore($dialog);
                 $dialog.remove();
             }
             self.$modal.html(self._getModalContent());
@@ -1824,7 +1824,7 @@
                 }, 100);
             };
             formdata.append(self.uploadFileAttr, files[i], self.filenames[i]);
-            formdata.append('file_id', i);
+            formdata.append('fileeventNo', i);
             self._ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError, previewId, i);
         },
         _uploadBatch: function () {

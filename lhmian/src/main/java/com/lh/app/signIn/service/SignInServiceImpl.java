@@ -65,7 +65,7 @@ public class SignInServiceImpl implements SignInService {
 		if ((boolean) result.get("status") == true) {
 			// 메시지 보내기 성공 및 전송결과 출력
 			System.out.println("성공");
-			System.out.println(result.get("group_id")); // 그룹아이디
+			System.out.println(result.get("groupeventNo")); // 그룹아이디
 			System.out.println(result.get("result_code")); // 결과코드
 			System.out.println(result.get("result_message")); // 결과 메시지
 			System.out.println(result.get("success_count")); // 성공 갯수

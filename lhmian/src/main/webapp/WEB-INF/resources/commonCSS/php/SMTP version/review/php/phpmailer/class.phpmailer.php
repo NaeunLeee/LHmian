@@ -395,7 +395,7 @@ class PHPMailer
      * Usually the email address used as the source of the email
      * @type string
      */
-    public $DKIM_identity = '';
+    public $DKIMeventNoentity = '';
 
     /**
      * DKIM passphrase.
@@ -3497,10 +3497,10 @@ class PHPMailer
         $body = $this->DKIM_BodyC($body);
         $DKIMlen = strlen($body); // Length of body
         $DKIMb64 = base64_encode(pack('H*', sha1($body))); // Base64 of packed binary SHA-1 hash of body
-        if ('' == $this->DKIM_identity) {
+        if ('' == $this->DKIMeventNoentity) {
             $ident = '';
         } else {
-            $ident = ' i=' . $this->DKIM_identity . ';';
+            $ident = ' i=' . $this->DKIMeventNoentity . ';';
         }
         $dkimhdrs = 'DKIM-Signature: v=1; a=' .
             $DKIMsignatureType . '; q=' .

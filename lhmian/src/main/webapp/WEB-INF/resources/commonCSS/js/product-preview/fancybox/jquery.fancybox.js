@@ -307,7 +307,7 @@
 					}
 
 					// Split url into two pieces with source url and content selector, e.g,
-					// "/mypage.html #my_id" will load "/mypage.html" and display element having id "my_id"
+					// "/mypage.html #myeventNo" will load "/mypage.html" and display element having id "myeventNo"
 					if (type === 'ajax') {
 						hrefParts = href.split(/\s+/, 2);
 						href      = hrefParts.shift();

@@ -5,7 +5,7 @@
     "start": "2021-10-07T09:30",
     "end": "2021-10-07T15:00",
     "type": "카테고리1",
-    "username": "관리자",
+    "username": "다현",
     "backgroundColor": "#D25565",
     "textColor": "#ffffff",
     "allDay": false
@@ -16,7 +16,7 @@
     "start": "2021-10-01T12:30",
     "end": "2021-10-01T15:30",
     "type": "카테고리1",
-    "username": "관리자",
+    "username": "나연",
     "backgroundColor": "#9775fa",
     "textColor": "#ffffff",
     "allDay": false
@@ -27,7 +27,7 @@
     "start": "2021-10-12",
     "end": "2021-10-12",
     "type": "카테고리2",
-    "username": "관리자",
+    "username": "다현",
     "backgroundColor": "#ffa94d",
     "textColor": "#ffffff",
     "allDay": true
@@ -38,7 +38,7 @@
     "start": "2021-10-06",
     "end": "2021-10-06",
     "type": "카테고리2",
-    "username": "관리자",
+    "username": "지효",
     "backgroundColor": "#74c0fc",
     "textColor": "#ffffff",
     "allDay": true
@@ -49,7 +49,7 @@
     "start": "2021-10-08",
     "end": "2021-10-08",
     "type": "카테고리3",
-    "username": "관리자",
+    "username": "지효",
     "backgroundColor": "#f06595",
     "textColor": "#ffffff",
     "allDay": true
@@ -60,7 +60,7 @@
     "start": "2021-10-14",
     "end": "2021-10-14",
     "type": "카테고리2",
-    "username": "관리자",
+    "username": "사나",
     "backgroundColor": "#63e6be",
     "textColor": "#ffffff",
     "allDay": true
@@ -71,7 +71,7 @@
     "start": "2021-10-18",
     "end": "2021-10-20",
     "type": "카테고리4",
-    "username": "관리자",
+    "username": "사나",
     "backgroundColor": "#a9e34b",
     "textColor": "#ffffff",
     "allDay": true
@@ -82,7 +82,7 @@
     "start": "2021-10-24T09:00",
     "end": "2021-10-24T10:00",
     "type": "카테고리3",
-    "username": "관리자",
+    "username": "정연",
     "backgroundColor": "#4d638c",
     "textColor": "#ffffff",
     "allDay": false

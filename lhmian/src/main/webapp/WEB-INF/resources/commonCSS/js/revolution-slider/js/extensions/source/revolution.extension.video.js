@@ -737,10 +737,10 @@ var addVideoListener = function(_nc,opt,startnow) {
 				while (m = re.exec(queryString)) {
 					queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
 				}
-				if (queryParameters['player_id']!=undefined)
-					isrc = isrc.replace(queryParameters['player_id'],frameID);
+				if (queryParameters['playereventNo']!=undefined)
+					isrc = isrc.replace(queryParameters['playereventNo'],frameID);
 				else
-					isrc=isrc+"&player_id="+frameID;
+					isrc=isrc+"&playereventNo="+frameID;
 				try{ isrc = isrc.replace('api=0','api=1'); } catch(e) {}
 				isrc=isrc+"&api=1";
 				ifr.attr('src',isrc);

@@ -544,7 +544,7 @@ jQuery.extend(true,_R, {
 			
 			// PRESET SVG STYLE
 			if ($svg.svg) {
-				$svg.idle = setSVGAnimObject(_nc.data('svg_idle'),newSVGHoverAnimObject());			
+				$svg.idle = setSVGAnimObject(_nc.data('svgeventNole'),newSVGHoverAnimObject());			
 				//$svg.idle.anim.css.color = 
 				punchgs.TweenLite.set($svg.svg,$svg.idle.anim);
 			}
@@ -561,7 +561,7 @@ jQuery.extend(true,_R, {
 					hashover = _nc.data('transform_hover')!==undefined || _nc.data('style_hover')!==undefined;				
 			
 				// WHICH ANIMATION TYPE SHOULD BE USED				
-				$result = getAnimDatas($result,_nc.data('transform_idle'));
+				$result = getAnimDatas($result,_nc.data('transformeventNole'));
 								
 				$from = getAnimDatas($result,_nc.data('transform_in'),opt.sdir==1);		
 				

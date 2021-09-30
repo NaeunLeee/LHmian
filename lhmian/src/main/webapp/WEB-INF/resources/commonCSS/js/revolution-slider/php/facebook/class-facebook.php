@@ -33,12 +33,12 @@ class TP_facebook {
 	 * Get Photosets List from User
 	 *
 	 * @since    1.0.0
-	 * @param    string    $user_id 	Facebook User id (not name)
+	 * @param    string    $usereventNo 	Facebook User id (not name)
 	 * @param    int       $item_count 	number of photos to pull
 	 */
-	public function get_photo_sets($user_id,$item_count=10){
+	public function get_photo_sets($usereventNo,$item_count=10){
 		//photoset params
-		$url = "https://graph.facebook.com/$user_id/albums";
+		$url = "https://graph.facebook.com/$usereventNo/albums";
 		$photo_sets_list = json_decode(file_get_contents($url));
 		return $photo_sets_list->data;
 	}
@@ -47,11 +47,11 @@ class TP_facebook {
 	 * Get Photoset Photos
 	 *
 	 * @since    1.0.0
-	 * @param    string    $photo_set_id 	Photoset ID
+	 * @param    string    $photo_seteventNo 	Photoset ID
 	 * @param    int       $item_count 	number of photos to pull
 	 */
-	public function get_photo_set_photos($photo_set_id,$item_count=10){
-		$url = "https://graph.facebook.com/v2.0/$photo_set_id?fields=photos";
+	public function get_photo_set_photos($photo_seteventNo,$item_count=10){
+		$url = "https://graph.facebook.com/v2.0/$photo_seteventNo?fields=photos";
 		$photo_set_photos = json_decode(file_get_contents($url));
 		return $photo_set_photos->photos->data;
 	}
@@ -63,9 +63,9 @@ class TP_facebook {
 	 * @param    string    $user 	User ID
 	 * @param    int       $item_count 	number of itmes to pull
 	 */
-	public function get_post_feed($user,$app_id,$app_secret,$item_count=10){
-		$oauth = file_get_contents("https://graph.facebook.com/oauth/access_token?type=client_cred&client_id=".$app_id."&client_secret=".$app_secret);
-		$url = "https://graph.facebook.com/$user/feed?".$oauth."&fields=id,from,message,picture,link,name,icon,privacy,type,status_type,object_id,application,created_time,updated_time,is_hidden,is_expired,likes,comments";
+	public function get_post_feed($user,$appeventNo,$app_secret,$item_count=10){
+		$oauth = file_get_contents("https://graph.facebook.com/oauth/access_token?type=client_cred&clienteventNo=".$appeventNo."&client_secret=".$app_secret);
+		$url = "https://graph.facebook.com/$user/feed?".$oauth."&fields=id,from,message,picture,link,name,icon,privacy,type,status_type,objecteventNo,application,created_time,updated_time,is_hidden,is_expired,likes,comments";
 		$feed = json_decode(file_get_contents($url));
 		return $feed->data;
 	}

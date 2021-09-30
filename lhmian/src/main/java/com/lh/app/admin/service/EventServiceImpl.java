@@ -2,41 +2,45 @@ package com.lh.app.admin.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lh.app.admin.domain.EventVO;
+import com.lh.app.admin.mapper.EventMapper;
 
 @Service
 public class EventServiceImpl implements EventService{
+	
+	@Autowired EventMapper eventMapper;
 
 	@Override
 	public int insert(EventVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return eventMapper.insert(vo);
 	}
 
 	@Override
 	public int update(EventVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return eventMapper.update(vo);
 	}
 
 	@Override
-	public int remove(Long eventNo) {
+	public int delete(Long eventNo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return eventMapper.delete(eventNo);
 	}
 
 	@Override
 	public EventVO read(EventVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return eventMapper.read(vo);
 	}
 
 	@Override
 	public List<EventVO> getList() {
 		// TODO Auto-generated method stub
-		return null;
+		return eventMapper.getList();
 	}
 
 }

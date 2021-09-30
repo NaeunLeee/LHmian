@@ -46,7 +46,7 @@ var newEvent = function (start, end, eventType) {
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '관리자',
+            username: '사나',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
@@ -81,16 +81,21 @@ var newEvent = function (start, end, eventType) {
 
         //새로운 일정 저장
         $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //.....
-            },
+            url: "insertEvent",
+            method : "post",
+            dataType : "json",
+            data : JSON.stringify(eventData)
+            ,
+            contentType : 'application/json',
             success: function (response) {
                 //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
-            }
+                console.log(response);
+                $('#calendar').fullCalendar('removeEvents');
+                $('#calendar').fullCalendar('refetchEvents');
+            },
+			error : function() {
+				alert("error"); // 실패 시 처리
+			}
         });
     });
 };

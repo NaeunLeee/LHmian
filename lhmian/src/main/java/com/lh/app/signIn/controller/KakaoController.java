@@ -32,7 +32,7 @@ public class KakaoController {
 		//HttpBody 오브젝트 생성
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("grant_type", "authorization_code");
-		params.add("client_id", "5986adbc56a3444841aed3bd67e4976d");
+		params.add("clienteventNo", "5986adbc56a3444841aed3bd67e4976d");
 		params.add("redirect_uri", "http://localhost:8091/app/kakaoLogin");
 		params.add("code", code); //code는 동적
 		

@@ -4,7 +4,7 @@
 * http://www.newmediacampaigns.com/page/jquery-flickr-plugin
 *
 * Available tags for templates:
-* title, link, date_taken, description, published, author, author_id, tags, image*
+* title, link, date_taken, description, published, author, authoreventNo, tags, image*
 */
 (function($) {
 	$.fn.jflickrfeed = function(settings, callback) {
