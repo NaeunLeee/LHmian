@@ -35,6 +35,7 @@
  	<!-- 인터셉트 처리 -->
 <!-- 		<security:intercept-url pattern="/admin/**"
 			access="hasAuthority('ROLE_ADMIN')" /> -->
+		<!-- 회원가입, 아이디/비밀번호 찾기, 로그인, 메인화면, 아파트 소개 permitAll -->
 		<security:intercept-url pattern="/**"
 			access="permitAll()" />
 	<!-- 커스텀 로그인 -->
