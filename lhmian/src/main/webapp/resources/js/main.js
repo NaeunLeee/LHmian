@@ -57,6 +57,7 @@ var calendar = $('#calendar').fullCalendar({
                                   columnFormat : ''
                                 }
                               },
+	
   customButtons             : { //주말 숨기기 & 보이기 버튼
                                 viewWeekends : {
                                   text  : '주말',
