@@ -100,4 +100,10 @@ public class SignInServiceImpl implements SignInService {
 		return signInMapper.updatePassword(vo);
 	}
 
+	@Override
+	public int kakaoIdCheck(Integer id) {
+		// TODO Auto-generated method stub
+		return signInMapper.kakaoIdCheck(id);
+	}
+
 }

@@ -22,4 +22,7 @@ public interface SignInMapper {
 	
 	//비밀번호 변경
 	public int updatePassword(MemberVO vo);
+	
+	//카카오 로그인시, 회원가입 이력 조회
+	public int kakaoIdCheck(Integer id);
 }
