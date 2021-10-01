@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.admin.mapper.EventMapper">
+	<resultMap type="EventVO" id="event">
+		<result property="start" column="STARTDATE"/>
+		<result property="end" column="ENDDATE"/>
+	</resultMap>
+
+	<select id="getList" resultType="EventVO" resultMap="event">
+		SELECT * FROM EVENT
+	</select>
+	
+	<select id="read" resultType="EventVO">
+		SELECT EVENT_NO, 
+			   DESCRIPTION,
+			   TITLE,
+               STARTDATE,
+               ENDDATE,
+               TYPE,
+               BACKGROUNDCOLOR,
+               ALLDAY,
+               USERNAME
+		FROM EVENT 
+		WHERE EVENT_NO = #{eventNo}
+	</select>
+	
+	
+	<!-- 10/01 수정 시작-->
+	
+	<insert id="insert">
+		<selectKey keyProperty="eventNo" resultType="long"
+			order="BEFORE">
+			SELECT EVENT_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+
+		INSERT INTO EVENT(
+		EVENT_NO,
+		TITLE,
+		DESCRIPTION,
+		STARTDATE,
+		ENDDATE,
+		EVENT_UPDATE,
+		TYPE,
+		BACKGROUNDCOLOR,
+		ALLDAY
+		)
+		VALUES (
+		#{eventNo},
+		#{title},
+		#{description},
+		#{start},
+		#{end},
+		sysdate,
+		#{type},
+		#{backgroundColor},
+		#{result}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE EVENT SET 
+		TITLE = #{title},
+		DESCRIPTION = #{description},
+		STARTDATE = #{start},
+		ENDDATE = #{end},
+		EVENT_UPDATE = sysdate,
+		TYPE = #{type},
+		BACKGROUNDCOLOR = #{backgroundColor},
+		ALLDAY = #{result}
+		WHERE EVENT_NO = #{eventNo}
+	</update>
+	
+	<!-- 10/01 수정 끝부분 -->
+	
+	<delete id="delete">
+		DELETE FROM EVENT WHERE EVENT_NO = #{eventNo}
+	</delete>
+</mapper>

@@ -13,8 +13,6 @@
    	</definition>
    	
 	<definition name="admin/admSked" template="/WEB-INF/views/tiles/fullcalendar.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
       <put-attribute name="content" value="/WEB-INF/views/admin/admSked.jsp" />
    	</definition>
    

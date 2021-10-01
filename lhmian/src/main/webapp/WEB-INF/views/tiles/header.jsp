@@ -15,8 +15,7 @@
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.css">
 
 <!-- Google fonts  -->
 <link
@@ -206,6 +205,20 @@
 															<a href="${pageContext.request.contextPath}/facility/gym">헬스장</a>
 														</li>
 													</ul>
+												</li>
+												<li> 
+													<sec:authorize access="isAnonymous()">
+														<a href="${pageContext.request.contextPath}/login">
+															<span class="btn-top-1">로그인</span>
+														</a>
+													</sec:authorize>
+												</li>
+												<li> 
+													<sec:authorize access="isAuthenticated()">
+														<a href="${pageContext.request.contextPath}/logout">
+															<span class="btn-top-1">로그아웃</span>
+														</a>
+													</sec:authorize>
 												</li>
 											</ul>
 										</div>
