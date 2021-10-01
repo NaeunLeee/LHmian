@@ -43,6 +43,29 @@
 		]]>
 	</select>
 	
+	<select id="getListno" resultType="CommVO">
+		<![CDATA[
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		/*+INDEX_DESC(COMMUNITY COMMUNITY_PK)*/
+		ROWNUM RN, COMM_NO, COMM_TITLE, COMM_CONTENT,
+		COMM_DATE,COMM_HIT
+		FROM COMMUNITY
+		where
+		]]>
+			<include refid="criteria"></include>
+		<![CDATA[ 
+		ROWNUM <= #{pageNum} * #{amount} 
+		AND ID = #{id}
+		)
+		WHERE RN > (#{pageNum} -1) * #{amount} 
+		
+		]]>
+	</select>
+	
 	<select id="read" resultType="CommVO" parameterType="CommVO"> <!-- 파라미터 타입은 생략해도 가능 resultType은 필수 -->
 		SELECT COMM_NO
 		,COMM_TITLE

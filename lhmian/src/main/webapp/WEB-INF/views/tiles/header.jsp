@@ -82,7 +82,7 @@
 													<li><a
 														href="${pageContext.request.contextPath}/office/csList">민원</a>
 													</li>
-													<li><a href="#">일정</a></li>
+													<li><a href="schedule">일정</a></li>
 													<li><a
 														href="${pageContext.request.contextPath}/itemLost/lostList">분실물
 															보관소</a></li>

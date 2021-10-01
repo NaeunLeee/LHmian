@@ -130,8 +130,8 @@
                 <div class="col-lg-6">
                     <label for="calendar_view">등록자별</label>
                     <div class="input-group">
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="관리자"
-                                checked>관리자</label>
+                        <label class="checkbox-inline">
+                        <input class='filter' type="checkbox" value="관리자" checked>관리자</label>
                     </div>
                 </div>
 

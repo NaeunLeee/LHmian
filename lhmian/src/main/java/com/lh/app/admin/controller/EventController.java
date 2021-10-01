@@ -13,25 +13,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lh.app.admin.domain.EventVO;
 import com.lh.app.admin.service.EventService;
 
-
 @Controller
 public class EventController {
 
-	@Autowired	EventService eventService;
+	@Autowired
+	EventService eventService;
 
 	// 스케줄폼
 	@GetMapping("admSked")
 	public String admSked() {
 		return "admin/admSked";
 	}
-	
+
+	// 스케줄폼
+	@GetMapping("schedule")
+	public String schedule() {
+		return "office/schedule";
+	}
+
 	// 10/01 추가부분 등록 ~ 삭제 (광호) ----------------------------------------
-	
+
 	// 등록
 	@PostMapping("insertEvent")
 	@ResponseBody
 	public EventVO insertevent(@RequestBody EventVO vo) {
-		if(vo.isAllDay() == false) {
+		if (vo.isAllDay() == false) {
 			vo.setResult(0);
 		} else {
 			vo.setResult(1);
@@ -39,13 +45,13 @@ public class EventController {
 		eventService.insert(vo);
 		return vo;
 	}
-	
-	//조회
+
+	// 조회
 	@GetMapping("getList")
 	@ResponseBody
 	public List<EventVO> getList(EventVO vo) {
-		
-		if(vo.getResult()==0) {
+
+		if (vo.getResult() == 0) {
 			vo.setAllDay(false);
 		} else {
 			vo.setAllDay(true);
@@ -53,11 +59,24 @@ public class EventController {
 		return eventService.getList();
 	}
 	
-	//수정
+	// 조회
+		@GetMapping("getList2")
+		@ResponseBody
+		public List<EventVO> getList2(EventVO vo) {
+
+			if (vo.getResult() == 0) {
+				vo.setAllDay(false);
+			} else {
+				vo.setAllDay(true);
+			}
+			return eventService.getList();
+		}
+
+	// 수정
 	@PostMapping("updateEvent")
 	@ResponseBody
 	public EventVO updateEvent(@RequestBody EventVO vo) {
-		if(vo.isAllDay() == false) {
+		if (vo.isAllDay() == false) {
 			vo.setResult(0);
 		} else {
 			vo.setResult(1);
@@ -65,8 +84,8 @@ public class EventController {
 		eventService.update(vo);
 		return vo;
 	}
-	
-	//삭제
+
+	// 삭제
 	@PostMapping("deleteEvent")
 	@ResponseBody
 	public boolean deleteEvent(@RequestParam Long eventNo) {

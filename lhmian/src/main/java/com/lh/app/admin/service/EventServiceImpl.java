@@ -12,9 +12,8 @@ import com.lh.app.admin.mapper.EventMapper;
 public class EventServiceImpl implements EventService{
 	
 	@Autowired EventMapper eventMapper;
-
-	// 10/01 return 값 수정
 	
+	// 10/01 return 값 수정
 	
 	@Override
 	public int insert(EventVO vo) {

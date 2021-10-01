@@ -3,9 +3,11 @@ package com.lh.app.comm.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import com.lh.app.comm.domain.CommVO;
 import com.lh.app.comm.domain.Criteria;
+import com.lh.app.signIn.etc.CustomUserDetails;
 
 public interface CommMapper {
 	// CRUD
@@ -20,9 +22,12 @@ public interface CommMapper {
 
 	// 단건 조회
 	public CommVO read(CommVO vo);
-
+	
 	// 전체 조회
 	public List<CommVO> getList(Criteria cri);
+	
+	// 마이페이지 게시글 조회
+	public List<CommVO> getListno(Criteria cri,String username);
 
 	public int getTotalCount(Criteria cri);
 
