@@ -3,11 +3,13 @@ package com.lh.app.comm.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
 import com.lh.app.comm.domain.CommVO;
 import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.mapper.CommMapper;
+import com.lh.app.signIn.etc.CustomUserDetails;
 
 @Service
 public class CommServiceImpl implements CommService {
@@ -62,6 +64,12 @@ public class CommServiceImpl implements CommService {
 	public void updateReplycnt() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<CommVO> getListno(Criteria cri, String username) {
+		// TODO Auto-generated method stub
+		return commMapper.getListno(cri, username);
 	}
 
 
