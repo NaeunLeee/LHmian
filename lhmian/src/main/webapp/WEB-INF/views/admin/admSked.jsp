@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <body>
-	<div class="container">
+	  <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
@@ -130,16 +130,8 @@
                 <div class="col-lg-6">
                     <label for="calendar_view">등록자별</label>
                     <div class="input-group">
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
-                                checked>정연</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="다현"
-                                checked>다현</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="사나"
-                                checked>사나</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="나연"
-                                checked>나연</label>
-                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="지효"
-                                checked>지효</label>
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="관리자"
+                                checked>관리자</label>
                     </div>
                 </div>
 
@@ -149,15 +141,16 @@
     </div>
     <!-- /.container -->
 
-    <script src="${pageContext.request.contextPath}/resources/vendor/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/js/moment.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/js/fullcalendar.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/js/ko.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/js/select2.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/addEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/editEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/etcSetting.js"></script>
+	<!-- 10/01 resources -> fullcalendar로 수정함 -->
+    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/moment.min.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/fullcalendar.min.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/ko.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/select2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/js/addEvent.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/js/editEvent.js"></script>
+    <script src="${pageContext.request.contextPath}/fullcalendar/js/etcSetting.js"></script>
 </body>
