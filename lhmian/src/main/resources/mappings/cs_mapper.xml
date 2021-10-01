@@ -88,6 +88,22 @@
 	
 </select>
 
+<!-- 나의 민원 리스트 -->
+<select id="myList" resultType="csVO">
+SELECT CS_NO
+		 , ID  
+		 , HOUSE_INFO
+		 , CS_TITLE
+		 , CS_CONTENT
+		 , CS_DATE
+		 , CS_UPDATE
+		 , CS_ANSWER
+		 , CS_ANSDATE
+	FROM CUSTOMSERVICE
+	WHERE 
+	ID = #{id}
+</select>
+
 <!-- 게시글 입력 -->
 <insert id="insertBoard">
 	<selectKey keyProperty="csNo" resultType="int" order="BEFORE">
@@ -139,13 +155,5 @@
 	SET CS_ANSWER = #{csAnswer}
 	WHERE CS_NO = #{csNo}
 </update>
-
-<!-- 댓글 삭제 -->
-<delete id="deleteAnswer">
-    UPDATE CUSTOMSERVICE
-	SET CS_ANSWER = ''
-	  , CS_ANSDATE = ''
-	WHERE CS_NO = #{csNo}
-</delete>
 
 </mapper>

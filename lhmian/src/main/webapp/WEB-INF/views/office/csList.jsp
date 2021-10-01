@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +48,9 @@
 	</div>
 	<br>
 	<div>
-		<button type="button" onclick="location.href='csInsert'">글 쓰기</button>
+		<%-- <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
+			<button type="button" onclick="location.href='csInsert'">글 쓰기</button>
+		<%-- </sec:authorize> --%>
 	</div>
 	<br>
 	<div id="pageBtn">

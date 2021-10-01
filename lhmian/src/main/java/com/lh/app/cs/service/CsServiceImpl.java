@@ -14,8 +14,7 @@ public class CsServiceImpl implements CsService {
 
 	@Autowired
 	CsMapper csMapper;
-	
-	
+
 	public List<CsVO> getList(CsCriteria cri) {
 		return csMapper.getList(cri);
 	}
@@ -26,6 +25,10 @@ public class CsServiceImpl implements CsService {
 
 	public CsVO read(CsVO vo) {
 		return csMapper.read(vo);
+	}
+
+	public CsVO myList(CsVO vo) {
+		return csMapper.myList(vo);
 	}
 
 	public int insertBoard(CsVO vo) {
@@ -46,10 +49,6 @@ public class CsServiceImpl implements CsService {
 
 	public int updateAnswer(CsVO vo) {
 		return csMapper.updateAnswer(vo);
-	}
-
-	public int deleteAnswer(CsVO vo) {
-		return csMapper.deleteAnswer(vo);
 	}
 
 }
