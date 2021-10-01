@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,24 +24,26 @@
 		<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
 	</form>
 	<div align="center">
-		<button type="button" id="modifyBtn">수정</button>
-		<button type="button" id="deleteBtn">삭제</button>
+	<%-- 	<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
+			<button type="button" id="modifyBtn">수정</button>
+			<button type="button" id="deleteBtn">삭제</button>
+		<%-- </sec:authorize> --%>
 		<button type="button" onclick="location.href='../office/csList'">목록</button>
 	</div>
 </div><br>
 <hr>
 <!-- 답변 등록 -->
 <div align="center">
-	<form id="replyForm">
+	<form id="replyForm" action="csAnswer" method="post">
 		<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
-		<textarea rows="10" cols="100" id="csAnswer" name="csAnswer"></textarea><br>
+		<textarea rows="10" cols="100" id="csAnswer" name="csAnswer">${cs.csAnswer}</textarea><br>
+		<c:if test="${empty cs.csAnswer}">
 		<button type="button" id="saveAnswer">답변 등록</button>
+		</c:if>
+		<c:if test="${not empty cs.csAnswer}">
+		<button type="button" id="csUpdateBtn">답변 수정</button>
+		</c:if>
 	</form>
-</div>
-
-<!-- 답변 조회 -->
-<div>
-	<ul class="answer"></ul>
 </div>
 
 </body>
@@ -48,7 +51,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
 $('#modifyBtn').on("click", function() {
 	if ($(this).attr('id') == 'modifyBtn') {
 		if (confirm('수정하시겠습니까?')) {
@@ -89,11 +91,25 @@ $('#deleteBtn').on("click", function() {
 	}
 });
 
-$('#saveAnswer').on('click', function() {
-	if(confirm('답변을 등록하시겠습니까?')) {
-		$('#replyForm').submit();
+	$('#saveAnswer').on('click', function() {
+		if(confirm('답변을 등록하시겠습니까?')) { 
+			$('#replyForm').submit();
+		}
+	})
+	
+$('#csUpdateBtn').on('click', function() {
+	if(confirm('답변을 수정하시겠습니까?')) { 
+		$.ajax({
+			url: "csAnswerUpdate",
+			type: "post",
+			data: JSON.stringify({ csAnswer: $('#csAnswer').val() }),
+			contentType: 'application/json',
+			success: function () {
+				$('#replyForm').submit();
+				alert("수정이 완료되었습니다!");
+			}
+		})
 	}
 })
-	
 </script>
 </html>

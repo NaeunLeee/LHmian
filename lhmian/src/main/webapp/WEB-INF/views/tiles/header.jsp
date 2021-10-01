@@ -172,7 +172,12 @@
 															<a href="#">일정</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/itemLost/lostList">분실물 보관소</a>
+															<%-- <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
+																<a href="${pageContext.request.contextPath}/itemLost/lostList">분실물 보관소</a>
+														<%-- 	</sec:authorize>
+															<sec:authorize access="hasRole('ROLE_ADMIN')">
+																<a href="${pageContext.request.contextPath}/itemLost/admLostList">분실물 보관소</a>
+															</sec:authorize> --%>
 														</li>
 													</ul>
 												</li>

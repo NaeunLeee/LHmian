@@ -14,6 +14,9 @@ public interface CsMapper {
 	// 단건 조회
 	public CsVO read(CsVO vo);
 	
+	// 마이리스트
+	public CsVO myList(CsVO vo);
+	
 	// 게시글 등록
 	public int insertBoard(CsVO vo);
 	
@@ -28,8 +31,5 @@ public interface CsMapper {
 	
 	// 답변 수정
 	public int updateAnswer(CsVO vo);
-	
-	// 답변 삭제
-	public int deleteAnswer(CsVO vo);
 	
 }
