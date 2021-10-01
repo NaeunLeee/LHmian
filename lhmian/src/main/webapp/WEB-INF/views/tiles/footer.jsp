@@ -5,7 +5,6 @@
 			<div class="col-md-3 col-sm-12 colmargin clearfix margin-bottom">
 				<div class="fo-map">
 					<div class="footer-logo">
-						<img src="images/logo/f-logo.png" alt="" />
 					</div>
 					<p>Consectetuer adipiscing elit Suspendisse et justo Praesent
 						mattis commodo</p>
@@ -31,7 +30,6 @@
 					<div class="clearfix"></div>
 					<div class="fo-posts">
 						<div class="image-left">
-							<img src="images/ce4-1.jpg" alt="" />
 						</div>
 						<div class="text-box-right">
 							<h6 class="less-mar3 uppercase nopadding text-white">
@@ -47,7 +45,6 @@
 					<br /> <br /> <br /> <br /> <br /> <br />
 					<div class="fo-posts">
 						<div class="image-left">
-							<img src="images/ce4-2.jpg" alt="" />
 						</div>
 						<div class="text-box-right">
 							<h6 class="less-mar3 uppercase nopadding text-white">
@@ -101,5 +98,3 @@
 </section>
 <div class="clearfix"></div>
 <!--end section-->
-</body>
-</html>

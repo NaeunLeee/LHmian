@@ -16,7 +16,7 @@ public interface CsService {
 	public CsVO read(CsVO vo);
 
 	// 마이리스트
-	public CsVO myList(CsVO vo);
+	public List<CsVO> myList(CsVO vo);
 
 	// 게시글 등록
 	public int insertBoard(CsVO vo);

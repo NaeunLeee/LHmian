@@ -27,7 +27,7 @@ public class CsServiceImpl implements CsService {
 		return csMapper.read(vo);
 	}
 
-	public CsVO myList(CsVO vo) {
+	public List<CsVO> myList(CsVO vo) {
 		return csMapper.myList(vo);
 	}
 
