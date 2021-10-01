@@ -66,14 +66,23 @@
 										<ul class="nav navbar-nav">
 											<li class="right"><a href="#">우리 아파트</a>
 												<ul class="dm-align-2">
-													<li><a href="#">아파트 소개</a></li>
-													<li><a href="#">배치도</a></li>
-													<li><a href="#">평형도</a></li>
-													<li><a
-														href="${pageContext.request.contextPath}/introduce/opeInfoList">운영정보공개</a>
-													</li>
-													<li><a href="#">오시는 길</a></li>
-												</ul></li>
+														<li>
+															<a href="${pageContext.request.contextPath}/introduce/introduce">아파트 소개</a> 
+														</li>
+														<li>
+															<a href="${pageContext.request.contextPath}/introduce/arrangement">배치도</a> 
+														</li>
+														<li>
+															<a href="${pageContext.request.contextPath}/introduce/phaseDiagram">평형도</a> 
+														</li>
+														<li>
+															<a href="${pageContext.request.contextPath}/introduce/opeInfoList">운영정보공개</a> 
+														</li>
+														<li>
+															<a href="${pageContext.request.contextPath}/introduce/map">오시는 길</a> 
+														</li>
+												</ul>
+                      </li>
 											<li class="right"><a href="#">관리 사무소</a>
 												<ul class="dm-align-2">
 													<li><a
