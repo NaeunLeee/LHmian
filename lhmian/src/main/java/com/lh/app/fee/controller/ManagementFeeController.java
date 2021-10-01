@@ -13,8 +13,11 @@ public class ManagementFeeController {
 	@GetMapping("/fee")
 	public String fee(@AuthenticationPrincipal CustomUserDetails user) {
 		
-		System.out.println(user.getUsername());
-		System.out.println(user.getHOUSEINFO());
+		if (user != null) {
+			System.out.println(user.getUsername());
+			System.out.println(user.getHOUSEINFO());
+		}
+		
 		
 		return "myPage/myManageFee";
 	}
