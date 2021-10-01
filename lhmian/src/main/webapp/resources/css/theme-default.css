@@ -3224,7 +3224,7 @@ ul.footer-flickr {
 	width: 100%;
 }
 .opening-list li {
-	color: #727272;
+
 	float: left;
 	padding: 8px 0;
 	width: 100%;
@@ -3967,16 +3967,16 @@ background-color: #fff;
 .pagenation-holder .breadcrumb li+li:before {
     content:"» ";
 }
-/* 2021-10-01 구분선 없는버전 윤지민 */
+/* 2021-10-01 흰색, 구분선 없는버전 윤지민 */
 .pagenation-holder-no-bottom { 
-
 	float: left;
 	margin: 0;
-	padding: 25px 0 10px;
+	padding: 25px 0 25px;
 	width: 100%;
+	background-color: white;
 }
 .pagenation-holder-no-bottom .breadcrumb {
-	float:right;
+	float:left;
 	margin-bottom:0px;
 	background-color:#fff;
 }
@@ -3988,6 +3988,21 @@ background-color: #fff;
 }
 .pagenation-holder-no-bottom .breadcrumb li+li:before {
     content:"» ";
+}
+/* 2021-10-01 회색, 구분선 없는버전 윤지민 */
+.pagenation-holder-no-bottom .breadcrumb-gray {
+	float:left;
+	margin-bottom:0px;
+}
+.pagenation-holder-no-bottom .breadcrumb-gray li {
+    display: inline;
+}
+.pagenation-holder-no-bottom .breadcrumb-gray li.current a {
+	color:#ecae3d;
+}
+.pagenation-holder-no-bottom .breadcrumb-gray li+li:before {
+    content:"» ";
+    color: black;
 }
 
 /*============ 5 and 7 custom cols ============ */
