@@ -13,11 +13,11 @@
 </head>
 <body>
 	<section>
-		<div class="pagenation-holder">
+		<div class="pagenation-holder-no-bottom">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h4>독서실</h4>
+						<!-- <h4>Pricing Badges</h4> -->
 					</div>
 					<div class="col-md-6">
 						<ol class="breadcrumb">
@@ -36,11 +36,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 nopadding">
-					<div class="sec-title-container less-padding-3 text-center">
-						<div class="title-line-3"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">Heading Block Center</h4>
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">독서실</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">Lorem ipsum dolor sit amet,	consectetuer</p>
+						<p class="by-sub-title">한사랑 독서실입니다</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
