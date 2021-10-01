@@ -90,18 +90,18 @@
 
 <!-- 나의 민원 리스트 -->
 <select id="myList" resultType="csVO">
-SELECT CS_NO
-		 , ID  
-		 , HOUSE_INFO
-		 , CS_TITLE
-		 , CS_CONTENT
-		 , CS_DATE
-		 , CS_UPDATE
-		 , CS_ANSWER
-		 , CS_ANSDATE
-	FROM CUSTOMSERVICE
-	WHERE 
-	ID = #{id}
+	SELECT CS_NO
+			 , ID  
+			 , HOUSE_INFO
+			 , CS_TITLE
+			 , CS_CONTENT
+			 , CS_DATE
+			 , CS_UPDATE
+			 , CS_ANSWER
+			 , CS_ANSDATE
+		FROM CUSTOMSERVICE
+		WHERE 
+		ID = #{id}
 </select>
 
 <!-- 게시글 입력 -->
