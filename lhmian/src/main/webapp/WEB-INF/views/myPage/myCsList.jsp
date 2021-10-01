@@ -34,6 +34,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		${myList }
 	</div>
 </body>
 </html>
