@@ -14,8 +14,7 @@
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.css">
 
 <!-- Google fonts  -->
 <link
