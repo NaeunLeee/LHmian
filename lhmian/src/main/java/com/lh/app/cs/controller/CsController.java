@@ -42,7 +42,8 @@ public class CsController {
 
 	// 마이리스트
 	@GetMapping("/myPage/myCsList")
-	public String myCsList(Model model, CsVO vo) {
+	public String myCsList(Model model, CsVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		vo.setId(customUserDetails.getUsername());
 		model.addAttribute("myList", csService.myList(vo));
 		return "myPage/myCsList";
 	}
@@ -58,14 +59,12 @@ public class CsController {
 	@PostMapping("/office/csInsert")
 	public String csInsert(RedirectAttributes rttr, CsVO vo) {
 		int n = csService.insertBoard(vo);
-
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "등록이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "등록에 실패했습니다. 다시 시도해주세요.");
 		}
-
-		return "redirect:/office/csList";
+		return "redirect:/office/csSelect?csNo=" + vo.getCsNo();
 	}
 
 	// 수정
@@ -79,15 +78,12 @@ public class CsController {
 	// 삭제
 	@PostMapping("/office/csDeleteBoard")
 	public String delete(RedirectAttributes rttr, CsVO vo, @ModelAttribute("cri") CsCriteria cri) {
-
 		int n = csService.deleteBoard(vo);
-
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "삭제가 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "삭제에 실패했습니다. 다시 시도해주세요.");
 		}
-
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		rttr.addAttribute("type", cri.getType());
@@ -100,13 +96,11 @@ public class CsController {
 	@PostMapping("/office/csAnswer")
 	public String csAnswerInsert(RedirectAttributes rttr, CsVO vo) {
 		int n = csService.insertAnswer(vo);
-
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "등록이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "등록에 실패했습니다. 다시 시도해주세요.");
 		}
-
 		return "redirect:/office/csSelect?csNo=" + vo.getCsNo();
 	}
 
