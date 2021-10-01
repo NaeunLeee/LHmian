@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -200,6 +201,20 @@
 															<a href="${pageContext.request.contextPath}/facility/gym">헬스장</a>
 														</li>
 													</ul>
+												</li>
+												<li> 
+													<sec:authorize access="isAnonymous()">
+														<a href="${pageContext.request.contextPath}/login">
+															<span class="btn-top-1">로그인</span>
+														</a>
+													</sec:authorize>
+												</li>
+												<li> 
+													<sec:authorize access="isAuthenticated()">
+														<a href="${pageContext.request.contextPath}/logout">
+															<span class="btn-top-1">로그아웃</span>
+														</a>
+													</sec:authorize>
 												</li>
 											</ul>
 										</div>
