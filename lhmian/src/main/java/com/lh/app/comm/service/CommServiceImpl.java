@@ -65,11 +65,12 @@ public class CommServiceImpl implements CommService {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	// 10/02 cri 주석처리함
 	@Override
-	public List<CommVO> getListno(Criteria cri, String username) {
+	public List<CommVO> getListno(/* Criteria cri, */String username) {
 		// TODO Auto-generated method stub
-		return commMapper.getListno(cri, username);
+		return commMapper.getListno(/* cri, */ username);
 	}
 
 
