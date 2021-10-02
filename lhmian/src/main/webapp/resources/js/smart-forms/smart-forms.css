@@ -75,7 +75,7 @@ html, body{
 /* @form helper classes 
 --------------------------------------------------------------- */
 .smart-forms .section{ margin-bottom:22px; }
-.smart-forms .smart-link{ color:#4ebd4a; text-decoration:none; }
+.smart-forms .smart-link{ color:#ecae3d; text-decoration:none; }
 .smart-forms .smart-link:hover{ text-decoration: underline; }
 .smart-forms .tagline{ height:0; border-top:1px solid #CFCFCF; text-align:center;  }
 .smart-forms .tagline span{ 
@@ -84,7 +84,6 @@ html, body{
 	position:relative;
 	padding:0 15px; 
 	background:#fff; 
-	color:#4ebd4a;
 	top:-10px;  
 }
 
@@ -141,7 +140,7 @@ html, body{
 /* @header themes :: primary + lite 
 ---------------------------------------------- */
 .smart-forms .header-primary {	
-	background-color:#4ebd4a;
+	background-color:#ecae3d;
 	border-top:1px solid #A7D065;  
 	border-bottom:5px solid #3c9b39;
 }
@@ -154,7 +153,7 @@ html, body{
 
 .smart-forms .header-lite:before{
 	content:"";
-	background-color:#4ebd4a;  
+	background-color:#ecae3d;  
 	position:absolute;
 	height:8px;  
 	z-index:1; 
@@ -447,7 +446,7 @@ html, body{
 .smart-forms .gui-input:hover ~ .input-hint,
 .smart-forms .file .gui-file:hover + .gui-input,
 .smart-forms .gui-textarea:hover ~ .input-hint{
-	border-color: #6BC868;
+	border-color: #ecae3d;
 }
 
 /* @form element :focus state 
@@ -458,11 +457,11 @@ html, body{
 .smart-forms .select-multiple select:focus{ 
     color: #3c3c3c;
     background: #fff;
-	border:1px solid #4EBD4A;
-	-webkit-box-shadow:0px 0px 3px #4EBD4A inset; 
-	-moz-box-shadow:0px 0px 3px #4EBD4A inset;  
-	-o-box-shadow:0px 0px 3px #4EBD4A inset;	
-	box-shadow:0px 0px 3px #4EBD4A inset;
+	border:1px solid #ecae3d;
+	-webkit-box-shadow:0px 0px 3px #ecae3d inset; 
+	-moz-box-shadow:0px 0px 3px #ecae3d inset;  
+	-o-box-shadow:0px 0px 3px #ecae3d inset;	
+	box-shadow:0px 0px 3px #ecae3d inset;
     outline: none; 
 
 }
@@ -475,12 +474,12 @@ html, body{
 .smart-forms .gui-textarea:focus{  height: 120px; }
 .smart-forms .select > select:focus { z-index:10; z-index:20\9; }
 .smart-forms .gui-input:focus ~ .field-icon i,
-.smart-forms .gui-textarea:focus ~ .field-icon i{ color:#4EBD4A; }
+.smart-forms .gui-textarea:focus ~ .field-icon i{ color:#ecae3d; }
 .smart-forms .select-multiple select:focus, 
 .smart-forms .gui-input:focus ~ .input-hint,
 .smart-forms .gui-textarea:focus ~ .input-hint, 
-.smart-forms .file .gui-file:focus + .gui-input{ border-color: #4EBD4A; }
-.smart-forms .select > select:focus + .arrow{ color:#4EBD4A; }
+.smart-forms .file .gui-file:focus + .gui-input{ border-color: #ecae3d; }
+.smart-forms .select > select:focus + .arrow{ color:#ecae3d; }
 
 
 /* @radio + checkbox option elements 
@@ -537,7 +536,7 @@ html, body{
     left: 3px;
     width: 6px;
     height: 3px;
-    border: solid #4ebd4a;
+    border: solid #ecae3d;
     -webkit-border-width: 0 0 3px 3px;
 	-moz-border-width: 0 0 3px 3px;
 	border-width: 0 0 3px 3px;
@@ -549,7 +548,7 @@ html, body{
 }
 
 .smart-forms input:checked + .checkbox, 
-.smart-forms input:checked + .radio{ border: 3px solid #4ebd4a; }
+.smart-forms input:checked + .radio{ border: 3px solid #ecae3d; }
 .smart-forms .radio { 
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px; 
@@ -561,7 +560,7 @@ html, body{
     margin: 4px;
     width: 7px;
     height: 7px;
-    background: #4ebd4a;
+    background: #ecae3d;
   	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px; 
 	-o-border-radius: 10px; 
@@ -573,16 +572,16 @@ html, body{
 -------------------------------------------------- */
 .smart-forms input:hover + .checkbox, 
 .smart-forms input:hover + .radio{
-    border-color:#6BC868;
+    border-color:#ecae3d;
 	
 }
 
 /* @radio + checkbox :focus state 
 --------------------------------------------------- */
 .smart-forms input:focus + .checkbox, 
-.smart-forms input:focus + .radio{ border-color: #4ebd4a; }
-.smart-forms input:focus + .radio:before{ background: #4ebd4a; }
-.smart-forms input:focus + .checkbox:before{ border-color: #4ebd4a; }
+.smart-forms input:focus + .radio{ border-color: #ecae3d; }
+.smart-forms input:focus + .radio:before{ background: #ecae3d; }
+.smart-forms input:focus + .checkbox:before{ border-color: #ecae3d; }
 
 /* @toggle switch elements 
 -------------------------------------------------- */
@@ -653,8 +652,8 @@ html, body{
 /* @toggle switch normal state 
 --------------------------------------------------------------- */
 .smart-forms .switch > input:checked + .switch-label {
-    border-color: #4ebd4a;
-	background: #4ebd4a; 
+    border-color: #ecae3d;
+	background: #ecae3d; 
 	padding-left: 33px;
 	color: white;
 }
@@ -696,7 +695,7 @@ html, body{
 }
 
 .smart-forms .switch-round > input:checked + .switch-label { padding-left: 33px; }
-.smart-forms .switch-round > input:checked + .switch-label:after{ color:#4ebd4a; }
+.smart-forms .switch-round > input:checked + .switch-label:after{ color:#ecae3d; }
 
 /* @buttons 
 ----------------------------------------------------- */
@@ -954,7 +953,7 @@ html, body{
 .smart-forms .rating-input { position: absolute; left:-9999px; top: auto; }
 .smart-forms .rating:hover .rating-star:hover,
 .smart-forms .rating:hover .rating-star:hover ~ .rating-star,
-.smart-forms .rating-input:checked ~ .rating-star { color: #4ebd4a;	}
+.smart-forms .rating-input:checked ~ .rating-star { color: #ecae3d;	}
 .smart-forms .rating-star, 
 .smart-forms .rating:hover .rating-star {	
 	width: 18px;
@@ -1491,7 +1490,7 @@ html, body{
 	position: absolute;
 	text-decoration: none;
 	cursor: pointer;
-	color:#4ebd4a;
+	color:#ecae3d;
 	top:20.5%;
 }
 
@@ -1501,7 +1500,7 @@ html, body{
 	margin: 0 2.3em; 
 	line-height: 1.8em; 
 	text-align: center;
-	color:#4ebd4a; 
+	color:#ecae3d; 
 }
 
 .ui-datepicker .ui-datepicker-title select { font-size: 1em; margin: 1px 0; }
@@ -1537,7 +1536,7 @@ html, body{
 .ui-datepicker-today a, .ui-datepicker-today a:hover, 
 .ui-datepicker .ui-state-highlight {
 	font-weight: 700;
-	background: #4ebd4a!important;
+	background: #ecae3d!important;
 	color:#fff;
 }
 
@@ -1602,7 +1601,7 @@ html, body{
 	height: 1.5em;
 	cursor: default;
 	background:#fff;
-	border:3px solid #4ebd4a;
+	border:3px solid #ecae3d;
 	-webkit-border-radius:20px;
 	-moz-border-radius:20px;
 	-o-border-radius:20px;
@@ -1618,7 +1617,7 @@ html, body{
     width: 7px;
     height: 7px;
 	position:absolute;
-    background-color: #4ebd4a;
+    background-color: #ecae3d;
   	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px; 
 	-o-border-radius: 10px; 
@@ -1635,7 +1634,7 @@ html, body{
 	display: block;
 	border: 0;
 	background-position: 0 0;
-	background-color: #4ebd4a;
+	background-color: #ecae3d;
 }
 
 .smart-forms .ui-slider.ui-state-disabled .ui-slider-handle,
@@ -1866,7 +1865,7 @@ html, body{
 
 /* @progress bar themes
 ----------------------------------------------------------- */
-.smart-forms .bar-primary > .bar  { background-color: #4ebd4a; }
+.smart-forms .bar-primary > .bar  { background-color: #ecae3d; }
 .smart-forms .bar-blue > .bar     { background-color: #00acee; }
 .smart-forms .bar-black > .bar    { background-color: #505558; }
 .smart-forms .bar-green > .bar    { background-color: #0E993C; }
@@ -2044,7 +2043,7 @@ html, body{
 .smart-forms .price-box p{ line-height:1.5em; color:#526066; margin-bottom:0; }
 .smart-forms .price-box h5{ text-transform:uppercase; font-weight:300; margin:0; font-size:15px; color:#B0B2B9; letter-spacing:2px  }
 .smart-forms .price-box h4{ font-size:60px; font-weight:300; margin:0; color:#626262; }
-.smart-forms .selected-box h4{ color:#4ebd4a; }
+.smart-forms .selected-box h4{ color:#ecae3d; }
 .smart-forms .price-box h4 sup{ position:relative; font-size:30px; vertical-align:top; top:15px; }
 .smart-forms .price-box h4 .per-month{font-size:14px; }
 .smart-forms .expand{ height:50px; line-height:50px!important; border-radius:3px; }
@@ -2076,7 +2075,7 @@ html, body{
 	-ms-transform:rotate(45deg);
 	-o-transform:rotate(45deg);
 	transform:rotate(45deg);
-	background: #4ebd4a;
+	background: #ecae3d;
 	letter-spacing:4px;
 	text-align:center;
 	position:relative;
@@ -2116,7 +2115,7 @@ html, body{
 .smart-forms .captcode img{ position:relative; top:1px;}
 .smart-forms .refresh-captcha{ 
 	position:absolute;
-	background:#4EBD4A;
+	background:#ecae3d;
 	border:3px solid #3C9B39;
 	-webkit-border-radius:30px;
 	-moz-border-radius:30px;

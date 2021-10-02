@@ -22,8 +22,6 @@
 			FROM MANAGEMENT_FEE
 			WHERE HOUSE_INFO = #{houseInfo}
 			ORDER BY MF_DATE DESC)
-			)
-			WHERE ARN = #{arn}
 
 	</select>
 

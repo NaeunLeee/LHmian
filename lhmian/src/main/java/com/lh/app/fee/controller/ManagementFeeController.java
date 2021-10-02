@@ -1,23 +1,36 @@
 package com.lh.app.fee.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lh.app.fee.domain.ManagementFeeVO;
+import com.lh.app.fee.service.ManagementFeeService;
 import com.lh.app.signIn.etc.CustomUserDetails;
 
 @Controller
 @RequestMapping("/mypage/*")
 public class ManagementFeeController {
+	
+	@Autowired ManagementFeeService managementFeeService;
+	
 	@GetMapping("/fee")
-	public String fee(@AuthenticationPrincipal CustomUserDetails user) {
+	public String fee(Model model, @AuthenticationPrincipal CustomUserDetails user) {
 		
 		if (user != null) {
+			String houseInfo = user.getHOUSEINFO();
+			
 			System.out.println(user.getUsername());
-			System.out.println(user.getHOUSEINFO());
+			
+			System.out.println(houseInfo);
+			
+			ManagementFeeVO vo = new ManagementFeeVO();
+			vo.setHouseInfo(houseInfo);
+			model.addAttribute("list", managementFeeService.selectFeeList(vo));
 		}
-		
 		
 		return "myPage/myManageFee";
 	}

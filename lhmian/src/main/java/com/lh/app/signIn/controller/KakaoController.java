@@ -114,7 +114,7 @@ public class KakaoController {
 			model.addAttribute("kakaoId", kakaoId);
 			page = "signIn/leaderStep1";
 		} else {
-			//로그인을 시켜버려야....하는데..............
+			//로그인을 시켜버려야....하는데..............어떻게하지??............
 			page = "/";
 		}
 		

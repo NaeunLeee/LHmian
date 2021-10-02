@@ -4,8 +4,9 @@ import lombok.Data;
 
 @Data
 public class ManagementFeeVO {
+	public int arn;
 	public String mfDate;
-	public Long houseInfo;
+	public String houseInfo;
 	public String payNo;
 	public Long mfFee;
 	public Long mfHeat;
