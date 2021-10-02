@@ -745,8 +745,8 @@ html, body{
 -------------------------------------------- */
 .smart-forms .btn-dark {  background-color: #101010;  }
 .smart-forms .btn-dark:hover,
-.smart-forms .btn-dark:focus { background-color: #ecae3d; }
-.smart-forms .btn-dark:active{ background-color: #ecae3d; }
+.smart-forms .btn-dark:focus { background-color: #3e3e3e; }
+.smart-forms .btn-dark:active{ background-color: #3e3e3e; }
 .smart-forms .btn-dark, 
 .smart-forms .btn-dark:focus, 
 .smart-forms .btn-dark:active{ color: #fff; text-shadow: none; }
