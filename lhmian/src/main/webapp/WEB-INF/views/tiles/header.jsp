@@ -38,6 +38,8 @@
 <link href="${pageContext.request.contextPath}/resources/js/tabs/css/responsive-tabs.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/jFlickrFeed/style.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pro-landing.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/gym.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/smart-forms/smart-forms.css" />
 <!-- Template's stylesheets END -->
 
 <link rel="stylesheet/less" type="text/css" href="${pageContext.request.contextPath}/resources/less/skin.less">
@@ -212,6 +214,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/less/less.min.js" data-env="development"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/functions/functions.js"></script> 
 <!-- Scripts END --> 
 
 <!-- Template scripts --> 
@@ -348,4 +351,3 @@ The following part can be removed on Server for On Demand Loading) -->
     })
 
   </script>
-<script src="js/functions/functions.js"></script>

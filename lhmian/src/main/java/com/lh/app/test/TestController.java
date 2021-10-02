@@ -28,6 +28,16 @@ import org.springframework.web.client.RestTemplate;
 public class TestController {
 	KakaoPayReadyVO kakaoPayReadyVO;
 	
+	@GetMapping("animationTest")
+	public String animationTest() {
+		return "signIn/animationTest";
+	}
+	
+	@GetMapping("animsition1")
+	public String animsition1() {
+		return "signIn/animsition1";
+	}
+	
 	@GetMapping("/test")
 	public String testPage() {
 		
