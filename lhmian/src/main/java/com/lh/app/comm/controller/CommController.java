@@ -31,19 +31,23 @@ public class CommController {
 	
 
 	// 리스트 조회
+	//10 / 02 추가부분 시작 ------------------------------------------------------------------------------------- 
+	
 	@RequestMapping("myCommunityList")
-	public String getList(Model model, @ModelAttribute("cri") Criteria cri,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		System.out.println();
-		int total = commService.getTotalCount(cri);
+	public String getListno(Model model,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		String id = customUserDetails.getUsername();
 		
-		model.addAttribute("list", commService.getListno(cri,customUserDetails.getUsername()));
-		model.addAttribute("pageMaker", new PageVO(cri, total));
+		model.addAttribute("list", commService.getListno(id));
+		System.out.println(commService.getListno(id).toString());
+		/*model.addAttribute("pageMaker", new PageVO(cri, total));*/
 		return "myPage/myCommunityList";
 	}
+	//10 / 02 추가부분 끝 -------------------------------------------------------------------------------------
+	
 
 	// 리스트 조회
 	@RequestMapping("commlist")
-	public String getListno(Model model, @ModelAttribute("cri") Criteria cri) {
+	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
 		int total = commService.getTotalCount(cri);
 		System.out.println("cri======" + cri);
 		System.out.println(total);
@@ -51,12 +55,13 @@ public class CommController {
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "community/commlist";
 	}
-
-	// mypage
-	@GetMapping("myCommunityList")
-	public String myCommunityList() {
-		return "myPage/myCommunityList";
-	}
+	
+	
+	/* 10/02 삭제
+	 *
+	 * @GetMapping("myCommunityList") public String myCommunityList() { return
+	 * "myPage/myCommunityList"; }
+	 */
 
 	// 등록폼
 	@GetMapping("register")

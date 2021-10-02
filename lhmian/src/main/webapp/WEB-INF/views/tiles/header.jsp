@@ -131,7 +131,9 @@
 															<a href="${pageContext.request.contextPath}/office/csList">민원</a>
 														</li>
 														<li>
-															<a href="#">일정</a>
+															<!-- 10/02 스케쥴 조회 링크 추가 -->
+															<a href="schedule">일정</a>
+															<!-- --------  끝  -------- -->
 														</li>
 														<li>
 															<%-- <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
@@ -184,7 +186,9 @@
 															<a href="#">주민 투표</a>
 														</li>
 														<li>
-															<a href="#">작성글 조회</a>
+															<!-- 10/02 스케쥴 조회 링크 추가 시작-->
+															<a href="myCommunityList">작성글 조회</a>
+															<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
 														</li>
 														<li>
 															<a href="#">시설이용내역</a>
