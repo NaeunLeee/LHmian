@@ -47,6 +47,24 @@ public class SignInController {
 		return "signIn/leaderStep1";
 	}
 	
+	//프론트용~~~~~~~~~~~~~ 나중에 지워야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	@GetMapping("/leaderStep2-1")
+	public String test() {
+		return "signIn/leaderStep2-1";
+	}
+	
+	//프론트용~~~~~~~~~~~~~ 나중에 지워야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	@GetMapping("/leaderStep2-2")
+	public String test2() {
+		return "signIn/leaderStep2-2";
+	}
+	
+	//프론트용~~~~~~~~~~~~~ 나중에 지워야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	@GetMapping("/leaderStep3")
+	public String test3() {
+		return "signIn/leaderStep3";
+	}
+	
 	//
 	@PostMapping("/leaderStep2-1")
 	public String leaderStep2One(MemberVO vo, Model model) {

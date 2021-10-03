@@ -29,21 +29,23 @@ public class CommController {
 	@Autowired
 	ReplyService replyService;
 	
-
+	//10/02 주석 삭제 
 	// 리스트 조회
+	
 	@RequestMapping("myCommunityList")
-	public String getList(Model model, @ModelAttribute("cri") Criteria cri,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		System.out.println();
-		int total = commService.getTotalCount(cri);
+	public String getListno(Model model,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		String id = customUserDetails.getUsername();
 		
-		model.addAttribute("list", commService.getListno(cri,customUserDetails.getUsername()));
-		model.addAttribute("pageMaker", new PageVO(cri, total));
+		model.addAttribute("list", commService.getListno(id));
+		System.out.println(commService.getListno(id).toString());
+		/*model.addAttribute("pageMaker", new PageVO(cri, total));*/
 		return "myPage/myCommunityList";
 	}
+	
 
 	// 리스트 조회
 	@RequestMapping("commlist")
-	public String getListno(Model model, @ModelAttribute("cri") Criteria cri) {
+	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
 		int total = commService.getTotalCount(cri);
 		System.out.println("cri======" + cri);
 		System.out.println(total);
@@ -51,13 +53,7 @@ public class CommController {
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "community/commlist";
 	}
-
-	// mypage
-	@GetMapping("myCommunityList")
-	public String myCommunityList() {
-		return "myPage/myCommunityList";
-	}
-
+	
 	// 등록폼
 	@GetMapping("register")
 	public String registerForm() {
@@ -73,7 +69,7 @@ public class CommController {
 
 	// 단건 조회
 	@GetMapping("get") // 수정폼
-	public String get(@RequestParam("commNo") Long commNo, Model model, @ModelAttribute("cri") Criteria cri) {
+	public String get(@RequestParam("commNo") Long commNo, Model model) { // 10/03 criteria 삭제 
 		CommVO vo = new CommVO();
 		commService.viewCount(commNo);
 		vo.setCommNo(commNo);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,7 +99,13 @@
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div class="text-box white padding-4">버튼이 들어갈 자리</div>
+					<div class="text-box white padding-4">버튼이 들어갈 자리
+					
+					<c:forEach items="${list }" var="list">
+						${list.mfDate }
+					</c:forEach>
+					
+					</div>
 				</div>
 			</div>
 		</div>

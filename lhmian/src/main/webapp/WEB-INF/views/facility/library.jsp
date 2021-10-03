@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +14,12 @@
 </head>
 <body>
 	<section>
-		<div class="pagenation-holder">
+		<div class="pagenation-holder-no-bottom">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h4>독서실</h4>
-					</div>
-					<div class="col-md-6">
-						<ol class="breadcrumb">
-							<li><a href="${pageContext.request.contextPath}">Home</a></li>
+						<ol class="breadcrumb-gray">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a href="${pageContext.request.contextPath}/facility/facilityList">편의 시설</a></li>
 							<li class="current"><a href="#">독서실</a></li>
 						</ol>
@@ -30,17 +28,16 @@
 			</div>
 		</div>
 	</section>
-	<div class="clearfix"></div>
 
 	<section class="sec-tpadding-2">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 nopadding">
-					<div class="sec-title-container less-padding-3 text-center">
-						<div class="title-line-3"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">Heading Block Center</h4>
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">독서실</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">Lorem ipsum dolor sit amet,	consectetuer</p>
+						<p class="by-sub-title">한사랑 독서실입니다</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -154,19 +151,18 @@
 				<div class="modal-body">
 					<div>
 						<form id="libForm" name="libForm">
-							이름 | <input type="text" id="member" disabled="disabled"
-								value="김아무개"><br> <br> 날짜 | <input type="text"
-								id="selectDate"><br> <br> 기간 | <select
-								id="libPeriod" name="libPeriod">
-								<option value="" selected>선택</option>
-								<option value="1">1일</option>
-								<option value="7">1주</option>
-								<option value="30">1달</option>
-								<option value="90">3달</option>
-								<option value="180">6달</option>
-								<option value="365">1년</option>
-							</select><br> <br> 금액 | <input type="text" id="libPrice"
-								name="libPrice" readonly="readonly">원
+							이름 | <sec:authentication property="principal.NAME" /> <br> <br> 
+							날짜 | <input type="text" id="selectDate"><br> <br> 
+							기간 | <select id="libPeriod" name="libPeriod">
+										<option value="" selected>선택</option>
+										<option value="1">1일</option>
+										<option value="7">1주</option>
+										<option value="30">1달</option>
+										<option value="90">3달</option>
+										<option value="180">6달</option>
+										<option value="365">1년</option>
+								   </select><br> <br> 
+							금액 | <input type="text" id="libPrice" name="libPrice" readonly="readonly">원
 						</form>
 					</div>
 					<br>

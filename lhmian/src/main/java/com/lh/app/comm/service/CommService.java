@@ -25,8 +25,9 @@ public interface CommService {
 	// 전체 조회
 	public List<CommVO> getList(Criteria cri);
 	
+	// 10/02 cri 주석처리함
 	// 마이페이지 게시글 조회
-	public List<CommVO> getListno(Criteria cri,String username);
+	public List<CommVO> getListno(/* Criteria cri, */String username);
 
 	public int getTotalCount(Criteria cri);
 
