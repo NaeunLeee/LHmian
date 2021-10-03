@@ -84,16 +84,18 @@
 				type: 'POST',
 				data: {authKey : authKey},
 				success: function(data) {
+					$('.name-msg').css('display', 'block');
 					
 					//인증번호가 일치하지 않으면
 					if (!data) {
-						alert('일치하는 세대가 없습니다.');
+						$('.key-msg').empty();
+						$('.key-msg').addClass('error-msg').text('일치하는 세대가 없습니다.');
 						return;
 					}
 					
 					//인증번호가 일치하면
 					$('.key-msg').empty();
-					alert('세대 인증이 완료되었습니다.');
+					$('.key-msg').removeClass().addClass('correct-msg').text('세대 인증이 완료되었습니다.');
 					
 					success = true;
 					

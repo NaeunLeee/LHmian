@@ -13,10 +13,14 @@
 
 .correct-msg {
 	padding: 7px 0;
-	color: blue;
+	color: green;
 }
 .smart-forms .form-body {
 	padding-bottom: 40px;
+}
+
+.time {
+	color: red;
 }
 </style>
 <script>
@@ -26,7 +30,7 @@
 		onlyNumberFunc(document.getElementById("phone"));
 
 		//인증 성공 여부
-		let success;
+		let success = false;
 
 		$('#sendKey').on('click', function() {
 
@@ -37,7 +41,7 @@
 
 			//핸드폰 번호가 빈칸이거나, 11자리까지 입력하지 않은 경우 인증을 실행하지 않는다.
 			if (phone == "" || phone.length !== 11) {
-				$('.sendKey-msg').addClass('error-msg').text('휴대폰 번호를 확인해주세요.');
+				$('.sendKey-msg').addClass('error-msg').text('핸드폰 번호를 확인해주세요.');
 				return; //onclick 함수 종료
 			}
 
@@ -48,38 +52,70 @@
 				contentType : "application/json",
 				success : function(data) { //문자 발송에 성공시 data: 인증번호, 실패시 data: "fail" 메세지
 					if (data !== "fail") {
-						success == "success";
+						success = true;
 						$('.sendKey-msg').addClass('correct-msg').text('인증번호 발송에 성공했습니다.');
 
 						//인증번호 인풋박스 생성
 						const box = '<div class="section">'
 								  + '	<label for="phone">'
 								  +	'		<h6 class="less-mar-4">'
-								  +	'			<span class="font-weight-5">인증 번호</span>'
+								  +	'			<span class="font-weight-5">인증 번호 </span>'
+								  + '			<span class="icon-alarmclock"></span>&nbsp;'
+								  + '			<span class="time"></span>'
 								  + '       </h6>'
 								  + '	</label>'
 								  + '	<label class="field prepend-icon">'
-								  + '	<input type="text" name="key" id="key" class="gui-input" placeholder="인증번호 입력">'
+								  + '	<input type="text" name="key" id="key" class="gui-input" placeholder="3분 내에 입력">'
 								  + '	<span class="field-icon"><i class="fa fa-key"></i></span>'
 								  + '	</label>'
-								  + '	<p class="sendKey-msg"></p>'
+								  + '	<p class="certificate-msg"></p>'
 								  + '	</div>'
 								  + '	<button id="certificate" name="certificate" class="btn btn-gyellow btn-fullwidth uppercase" type="button">인증번호 전송</button>';
 						$('#sendKey').remove();
 						$('#box').html(box);
+
+						//3분 내에 입력
+						let timeout = false;
+						let time = 180;
+						let min = "";
+						let sec = "";
+
+						const x = setInterval(function() {
+							min = parseInt(time / 60);
+							sec = parseInt(time % 60);
+							//0초~9초 앞에 0 붙이기
+							if (sec < 10 && sec >= 0) {
+								sec = "0" + sec;
+							} 
+
+							$('.time').html(min + ":" + sec);
+							time--;
+							
+							if (time < 0) {
+								clearInterval(x);
+								success = false;
+								data = null;
+								timeout = true;
+							}
+						}, 1000);
 					
 						$('#certificate').on('click', function() {
+							
+							if (timeout) {
+								$('.certificate-msg').addClass('error-msg').text('인증번호 시간이 지났습니다.');
+								return;
+							}
+							
 							if ($('#key').val() == data) {
 								alert('휴대폰 인증이 완료되었습니다.');
 								//다음 페이지로 넘어가기
 								$('#frm').submit();
 							} else {
-								$('#sendKey-msg').addClass('error-msg').text('인증번호가 일치하지 않습니다.');
+								$('.certificate-msg').addClass('error-msg').text('인증번호가 일치하지 않습니다.');
 							}
 						})
 					} else {
-						//이거 뜨는지 반드시!!!!!!!!!!!!!!!!!!!!!!!!확인해보기!!!!!!!!!!!!!!!!!!!!!!
-						$('.sendKey-msg').addClass('error-msg').text('인증번호 발송에 실패했습니다.');
+						$('.certificate-msg').addClass('error-msg').text('인증번호 발송에 실패했습니다.');
 					}
 				},
 				error : function() {
@@ -87,12 +123,6 @@
 				}
 			})
 
-		})
-
-		$('#certificate').on('click', function() {
-			if (success == null) {
-				$('.certificate-msg').addClass('error-msg').text('먼저 인증번호를 발송해주세요.');
-			}
 		})
 
 	})

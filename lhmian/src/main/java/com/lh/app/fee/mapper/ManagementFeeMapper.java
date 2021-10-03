@@ -8,5 +8,7 @@ public interface ManagementFeeMapper {
 	//동호수의 모든 관리비 내역
 	public List<ManagementFeeVO> selectFeeList(ManagementFeeVO vo);
 	
+	//특정 월 관리비 내역
+	public ManagementFeeVO selectFee(ManagementFeeVO vo);
 	
 }

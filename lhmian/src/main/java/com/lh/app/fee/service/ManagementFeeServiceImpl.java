@@ -19,4 +19,10 @@ public class ManagementFeeServiceImpl implements ManagementFeeService {
 		return managementFeeMapper.selectFeeList(vo);
 	}
 
+	@Override
+	public ManagementFeeVO selectFee(ManagementFeeVO vo) {
+		// TODO Auto-generated method stub
+		return managementFeeMapper.selectFee(vo);
+	}
+
 }
