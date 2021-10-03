@@ -9,33 +9,34 @@
 <title>LHmian | 입주자 대표회의</title>
 
 <style>
-tr {
-	cursor: pointer;
-}
-
-tr:hover {
-	background-color: lightyellow;
-}
+	tr {
+		cursor: pointer;
+	}
+	tr:hover {
+		background-color: lightyellow;
+	}
+	table {
+		text-align: center;
+		background-color: white;
+		box-shadow: 5px 5px 5px grey;
+	}
 </style>
 
 </head>
 <body>
 
 	<section>
-		<div class="pagenation-holder">
+		<div class="pagenation-holder-no-bottom">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h4>입주자 대표회의</h4>
-					</div>
-					<div class="col-md-6">
-						<ol class="breadcrumb">
-							<li><a href="${pageContext.request.contextPath}">Home</a></li>
-							<li><a href="#">입주민 공간</a></li>
-<%-- 							<li><a href="${pageContext.request.contextPath}/resident/residentmenu">입주민 공간</a></li> --%>
+						<ol class="breadcrumb-gray">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/resident">입주민 공간</a></li>
 							<li class="current"><a href="#">입주자 대표회의</a></li>
 						</ol>
 					</div>
+					<div class="col-md-6"></div>
 				</div>
 			</div>
 		</div>
@@ -44,16 +45,26 @@ tr:hover {
 	<section class="sec-padding section-light">
 		<div class="container">
 			<div class="row">
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">입주자 대표회의</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title">입주자 대표회의... 설명이 필요해..</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			
 				<div class="col-md-12">
 					<div class="text-box white padding-4">
 						<div align="center">
 							<div>
-								<table border="1">
+								<table class="table">
 									<tr>
-										<th>글 번호</th>
-										<th>제 목</th>
-										<th>작성자</th>
-										<th>작성일자</th>
+										<th class="col-1">글 번호</th>
+										<th class="col-5">제 목</th>
+										<th class="col-3">작성자</th>
+										<th class="col-3">작성일자</th>
 									</tr>
 									<c:forEach items="${list}" var="conf">
 										<tr>
@@ -70,7 +81,7 @@ tr:hover {
 							</div>
 							<br>
 							<div id="pageBtn">
-								<ul class="pagination style-1 hover-violet">
+								<ul class="pagination hover-orange">
 									<c:if test="${pageMaker.prev == true}">
 										<li>
 											<a href="${pageMaker.startPage-1}">

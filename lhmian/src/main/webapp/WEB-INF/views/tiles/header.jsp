@@ -84,8 +84,8 @@
 						<div class="mod-menu">
 							<div class="row">
 								<div class="col-sm-2">
-									<a href="${pageContext.request.contextPath}/" title="" class="logo mar-4"> <img
-										src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="">
+									<a href="${pageContext.request.contextPath}/" title="" class="logo mar-4"> 
+										<img src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="">
 									</a>
 								</div>
 								<div class="col-sm-10">
@@ -107,13 +107,13 @@
 													<a href="#">우리 아파트</a> 
 													<ul class="dm-align-2">
 														<li>
-															<a href="#">아파트 소개</a> 
+															<a href="${pageContext.request.contextPath}/introduce/introduce">아파트 소개</a> 
 														</li>
 														<li>
 															<a href="#">배치도</a> 
 														</li>
 														<li>
-															<a href="#">평형도</a> 
+															<a href="${pageContext.request.contextPath}/introduce/phaseDiagram">평형도</a> 
 														</li>
 														<li>
 															<a href="${pageContext.request.contextPath}/introduce/opeInfoList">운영정보공개</a> 
