@@ -38,5 +38,10 @@ public class LostFoundServiceImpl implements LostFoundService {
 		return lostFoundMapper.read(vo);
 	}
 
+	@Override
+	public int delFile(String filePath, String string) {
+		return lostFoundMapper.delFile(filePath, string);
+	}
+
 
 }

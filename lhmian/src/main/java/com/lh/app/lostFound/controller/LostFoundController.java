@@ -29,118 +29,129 @@ import com.lh.app.lostFound.service.LostFoundService;
 @RequestMapping("/itemLost/*")
 public class LostFoundController {
 
-	@Autowired LostFoundService lostFoundService;
-	
-	//전체조회-사용자
+	@Autowired
+	LostFoundService lostFoundService;
+
+	// 전체조회-사용자
 	@GetMapping("/lostList")
 	public void list(LostFoundVO vo, Model model) {
 		model.addAttribute("lost", lostFoundService.getList(vo));
 	}
-	
-	//전체조회-관리자
+
+	// 전체조회-관리자
 	@GetMapping("/admLostList")
 	public void admList(LostFoundVO vo, Model model) {
 		model.addAttribute("lost", lostFoundService.getList(vo));
 	}
-	
-	//등록페이지
+
+	// 등록페이지
 	@GetMapping("/admLostInsert")
 	public void registerForm() {
 	}
 
-	//등록처리
+	// 등록처리
 	@PostMapping("/admLostInsert")
-	public String register(LostFoundVO vo, @RequestParam("lostImg") MultipartFile file, RedirectAttributes rttr) throws IllegalStateException, IOException {
-	MultipartFile ufile = file;
-	String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img";
-	//서버저장
-	if(!ufile.isEmpty() && ufile.getSize() > 0) {
-		String fileName = ufile.getOriginalFilename();
-		File lostFile = new File(filePath, fileName); //경로 + 파일명
-		ufile.transferTo(lostFile);
-	
-		//리사이징
-		Image image = null;
-		//바꿀 사이즈
-		int width = 300;
-		int height = 250;
-		
-		//서버에 저장된 원본이미지 가져오기
-		image = ImageIO.read(lostFile);
-		//사이즈 지정하여 리사이징
-		Image resizeImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		//이미지 불러오기
-		BufferedImage newImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		Graphics g = newImg.getGraphics(); 
-		g.drawImage(resizeImage, 0, 0, null);
-		g.dispose();
-		 
-		ImageIO.write(newImg, "jpg", lostFile);
-
-		//형성된 파일을 vo에 담아줌
-		vo.setLostFile(fileName);
-		lostFoundService.insert(vo);
-		rttr.addFlashAttribute("result", vo.getLostNo());
-		rttr.addFlashAttribute("message", "등록이 정상적으로 완료되었습니다.");
-	}else {
-		rttr.addFlashAttribute("message", "다시 시도해 주세요.");
-	}
-		return "redirect:/itemLost/admLostList";
-	}
-	
-	//수정 폼
-	@GetMapping("/lostModifyForm")
-	@ResponseBody
-	public LostFoundVO updateForm(LostFoundVO vo) {
-	LostFoundVO result = lostFoundService.read(vo);
-	return result;
-	}
-	
-	//수정
-	@PostMapping("/lostModify")
-	public String modify(LostFoundVO vo, @RequestParam("lostChangeImg") MultipartFile file, RedirectAttributes rttr) throws IllegalStateException, IOException {
-		System.out.println(vo);
+	public String register(LostFoundVO vo, @RequestParam("lostImg") MultipartFile file, RedirectAttributes rttr)
+			throws IllegalStateException, IOException {
 		MultipartFile ufile = file;
-		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img";
-		//서버저장
-		if(!ufile.isEmpty() && ufile.getSize() > 0) {
+		String filePath = "C:\\Users\\HOME\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; // 집
+		// String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
+		// 서버저장
+		if (!ufile.isEmpty() && ufile.getSize() > 0) {
 			String fileName = ufile.getOriginalFilename();
-			File lostFile = new File(filePath, fileName); //경로 + 파일명
+			File lostFile = new File(filePath, fileName); // 경로 + 파일명
 			ufile.transferTo(lostFile);
-		
-			//리사이징
+
+			// 리사이징
 			Image image = null;
-			//바꿀 사이즈
+			// 바꿀 사이즈
 			int width = 300;
 			int height = 250;
-			
-			//서버에 저장된 원본이미지 가져오기
+
+			// 서버에 저장된 원본이미지 가져오기
 			image = ImageIO.read(lostFile);
-			//사이즈 지정하여 리사이징
+			// 사이즈 지정하여 리사이징
 			Image resizeImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-			//이미지 불러오기
+			// 이미지 불러오기
 			BufferedImage newImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-			Graphics g = newImg.getGraphics(); 
+			Graphics g = newImg.getGraphics();
 			g.drawImage(resizeImage, 0, 0, null);
 			g.dispose();
-			 
+
 			ImageIO.write(newImg, "jpg", lostFile);
+
+			// 형성된 파일을 vo에 담아줌
 			vo.setLostFile(fileName);
-		int result = lostFoundService.update(vo);
-		if(result == 1) {
+			lostFoundService.insert(vo);
 			rttr.addFlashAttribute("result", vo.getLostNo());
-			rttr.addFlashAttribute("message", "성공적으로 수정되었습니다.");
-			}
+			rttr.addFlashAttribute("message", "등록이 정상적으로 완료되었습니다.");
+		} else {
+			rttr.addFlashAttribute("message", "다시 시도해 주세요.");
 		}
 		return "redirect:/itemLost/admLostList";
 	}
-	
 
-	//삭제
-	@Scheduled(cron="* * 0 * * *")
+	// 수정 폼
+	@GetMapping("/lostModifyForm")
+	@ResponseBody
+	public LostFoundVO updateForm(LostFoundVO vo) {
+		LostFoundVO result = lostFoundService.read(vo);
+		return result;
+	}
+
+	// 수정
+	//썅!!!
+	@PostMapping("/lostModify")
+	public String modify(LostFoundVO vo, @RequestParam("lostChangeImg") MultipartFile file, RedirectAttributes rttr)
+			throws IllegalStateException, IOException {
+		// 파일은 수정하지 않을 경우를 대비해 단건조회
+		LostFoundVO oldVo = lostFoundService.read(vo);
+		// 새파일
+		if(file != null) {
+		MultipartFile ufile = file;
+		String filePath = "C:\\Users\\HOME\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; // 집
+		// String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
+		// 서버저장
+			if (!ufile.isEmpty() && ufile.getSize() > 0) {
+				// 기존 파일 삭제
+				lostFoundService.delFile(filePath, oldVo.getLostFile());
+				// 새파일 저장
+				String fileName = ufile.getOriginalFilename();
+				File lostFile = new File(filePath, fileName); // 경로 + 파일명
+				ufile.transferTo(lostFile);
+				// 리사이징
+				Image image = null;
+				// 바꿀 사이즈
+				int width = 300;
+				int height = 250;
+	
+				// 서버에 저장된 원본이미지 가져오기
+				image = ImageIO.read(lostFile);
+				// 사이즈 지정하여 리사이징
+				Image resizeImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+				// 이미지 불러오기
+				BufferedImage newImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+				Graphics g = newImg.getGraphics();
+				g.drawImage(resizeImage, 0, 0, null);
+				g.dispose();
+	
+				ImageIO.write(newImg, "jpg", lostFile);
+				vo.setLostFile(fileName);
+				lostFoundService.update(vo);
+				rttr.addFlashAttribute("result", vo.getLostNo());
+			}
+		}else {
+			// 파일은 수정하지 않는 경우
+			vo.setLostFile(oldVo.getLostFile());
+			System.out.println("제발되라");
+		}
+		return "redirect:/itemLost/admLostList";
+	}
+
+	// 삭제
+	@Scheduled(cron = "* 0-1 0 * * *")
 	public void delete() {
 		System.out.println("매일밤12시 삭제");
 		lostFoundService.delete();
-
 	}
 }

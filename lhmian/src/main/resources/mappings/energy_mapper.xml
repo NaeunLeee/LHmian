@@ -12,8 +12,9 @@ SELECT MF_DATE,
 		TRASH_FOOD
 	FROM
 		ENERGY_USAGE
-		where house_info = 1011001
-		order by mf_date
+		WHERE HOUSE_INFO = #{houseInfo}
+        AND MF_DATE BETWEEN TRUNC(TO_CHAR(ADD_MONTHS(SYSDATE,-6), 'YYMM')) AND TO_CHAR(SYSDATE,'YYMM')
+		ORDER BY MF_DATE
 </select>
 
 <select id="read" resultType="EnergyVO" parameterType="EnergyVO">
