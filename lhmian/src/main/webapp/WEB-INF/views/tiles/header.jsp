@@ -174,7 +174,9 @@
 													<a href="${pageContext.request.contextPath}/myPage/myPage">마이 페이지</a>
 													<ul class="dm-align-2">
 														<li>
-															<a href="#">개인정보수정</a>
+															<!-- 10/03 개인정보 조회/수정 링크 -->
+															<a href="myInfo">개인정보수정</a>
+															<!-- ------------------------ -->
 														</li>
 														<li>
 															<a href="#">관리비 조회</a>
