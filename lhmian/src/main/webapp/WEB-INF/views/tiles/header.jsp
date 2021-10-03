@@ -13,13 +13,40 @@
 					</a>
 				</div>
 				<!--end left-->
+<!-- Mobile view -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-				<div class="col-md-5 col-sm-6 col-xs-12 margin-bottom">
-					<div class="col-md-6 col-sm-6 col-xs-12 border-r">
-						<div class="icon-plain-tiny left">
-							<span class="text-gyellow"> <i class="fa fa-envelope"
-								aria-hidden="true"></i>
-							</span>
+<!-- Favicon -->
+
+
+<!-- Skin stylesheet -->
+
+</head>
+<body>
+
+	<div class="wrapper-boxed">
+		<div class="site-wrapper">
+			<div class="topbar light topbar-padding more-padd-1">
+				<div class="container">
+					<div class="col-md-7 col-sm-6 col-xs-12 margin-bottom">
+						<a href="index.html" title="" class="logo mar-4"> <img
+							src="${pageContext.request.contextPath}/resources/images/logo/logo.png"
+							alt="">
+						</a>
+					</div>
+					<!--end left-->
+
+					<div class="col-md-5 col-sm-6 col-xs-12 margin-bottom">
+						<div class="col-md-6 col-sm-6 col-xs-12 border-r">
+							<div class="icon-plain-tiny left">
+								<span class="text-gyellow"> <i class="fa fa-envelope"
+									aria-hidden="true"></i>
+								</span>
+							</div>
+							<div class="text-box-right less-padding-3">
+								<span class="text-gyellow font-weight-6">Mail Us:</span><br />
+								info@domain.com
+							</div>
 						</div>
 						<div class="text-box-right less-padding-3">
 							<span class="text-gyellow font-weight-6">Mail Us:</span><br />
