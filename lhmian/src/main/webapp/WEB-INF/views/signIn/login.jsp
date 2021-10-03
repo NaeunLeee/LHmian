@@ -97,6 +97,16 @@
 		$('#login').submit();
 
 	}
+	
+	//엔터키 눌렀을때 로그인이 되도록
+	function enterkey() {
+        if (window.event.keyCode == 13) {
+             // 엔터키가 눌렸을 때 실행할 내용
+             login();
+        }
+	}
+
+	
 </script>
 </head>
 <body>
@@ -143,6 +153,7 @@
 									<span class="alert-closebtn"
 										onclick="this.parentElement.style.display='none';">×</span>
 									&nbsp;
+									<i class="fa fa-exclamation-circle"></i>&nbsp;
 									${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 									<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
 								</div>
@@ -174,6 +185,7 @@
 							<!-- 로그인 버튼 -->
 								<button type="button" class="btn btn-gyellow btn-fullwidth uppercase"
 									onclick="login()">로그인</button>
+								<input onkeyup="enterkey()" type="hidden" value="" />
 							<div class="form-footer">
 								<!-- 아이디/비번찾기, 회원가입 -->
 								<div class="find-util">

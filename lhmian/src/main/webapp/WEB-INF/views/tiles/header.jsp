@@ -37,9 +37,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/ytplayer/ytplayer.css" />
 <link href="${pageContext.request.contextPath}/resources/js/tabs/css/responsive-tabs.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/jFlickrFeed/style.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pro-landing.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/gym.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/smart-forms/smart-forms.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pro-landing.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/gym.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/smart-forms/smart-forms.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/hint.css">
 <!-- Template's stylesheets END -->
 
 <link rel="stylesheet/less" type="text/css" href="${pageContext.request.contextPath}/resources/less/skin.less">
