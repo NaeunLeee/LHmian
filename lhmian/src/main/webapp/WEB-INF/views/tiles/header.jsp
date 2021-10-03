@@ -20,26 +20,7 @@
 <link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
 
 <!-- Template's stylesheets -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/megamenu/stylesheets/screen.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme-default.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/loaders/stylesheets/screen.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/corporate.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shortcodes.css" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/font-awesome/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/fonts/Simple-Line-Icons-Webfont/simple-line-icons.css" media="screen" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/et-line-font/et-line-font.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/revolution-slider/css/settings.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/revolution-slider/css/layers.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/revolution-slider/css/navigation.css">
-<link href="${pageContext.request.contextPath}/resources/js/owl-carousel/owl.carousel.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/js/owl-carousel/owl.theme.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/cubeportfolio/cubeportfolio.min.css">
-<link href="${pageContext.request.contextPath}/resources/js/accordion/css/smk-accordion.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/ytplayer/ytplayer.css" />
-<link href="${pageContext.request.contextPath}/resources/js/tabs/css/responsive-tabs.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/jFlickrFeed/style.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pro-landing.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/gym.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/smart-forms/smart-forms.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/hint.css">
 <!-- Template's stylesheets END -->
