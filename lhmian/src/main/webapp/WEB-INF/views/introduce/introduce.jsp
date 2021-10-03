@@ -24,96 +24,284 @@
 </section>
 <div class="clearfix"></div>
 <!-- end section -->
-
 <section class="sec-padding">
 	<div class="container">
 		<div class="row">
 
-			<div id="js-grid-mosaic"
-				class="cbp cbp-l-grid-mosaic cbp-caption-active cbp-caption-zoom cbp-ready"
-				style="height: 800px;">
-				<div class="cbp-wrapper-outer">
-					<div class="cbp-wrapper">
-						<div class="cbp-item print motion"
-							style="width: 530px; left: 0px;">
-							<div class="cbp-item-wrapper">
-								<a href="http://placehold.it/1200x900"
-									class="cbp-caption cbp-lightbox"
-									data-title="WhereTO App<br>by Tiberiu Neamu">
-									<div class="cbp-caption-defaultWrap">
-										<img src="http://placehold.it/760x900" alt="">
-									</div>
-									<div class="cbp-caption-activeWrap">
-										<div class="cbp-l-caption-alignCenter">
-											<div class="cbp-l-caption-body">
-												<div class="cbp-l-caption-title">WhereTO App</div>
-												<div class="cbp-l-caption-desc">by Tiberiu Neamu</div>
-											</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-
-			<div class="col-md-12">
-				<h4 class="uppercase weight3">Synced Owls</h4>
-				<br>
-				<div id="sync1" class="owl-carousel owl-theme"
-					style="opacity: 1; display: block;">
-					<div class="owl-wrapper-outer">
-						<div class="owl-wrapper"
-							style="width: 7520px; left: 0px; display: block; transition: all 0ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-							<div class="owl-item" style="width: 940px;">
-								<div class="item">
-									<img src="http://placehold.it/1500x600" alt="">
-								</div>
-							</div>
-							
-						</div>
-					</div>
-
-				</div>
-				<div class="col-md-8 col-sm-12 col-xs-12">
-					<div id="sync2" class="owl-carousel owl-theme"
-						style="opacity: 1; display: block;">
-						<div class="owl-wrapper-outer">
-							<div class="owl-wrapper"
-								style="width: 1192px; left: 0px; display: block; transition: all 200ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-								<div class="owl-item synced" style="width: 149px;">
-									<div class="item">
-										<img src="http://placehold.it/200x150" alt=""
-											class="img-responsive">
-									</div>
-								</div>
-								<div class="owl-item" style="width: 149px;">
-									<div class="item">
-										<img src="http://placehold.it/200x150" alt=""
-											class="img-responsive">
-									</div>
-								</div>
-								<div class="owl-item" style="width: 149px;">
-									<div class="item">
-										<img src="http://placehold.it/200x150" alt=""
-											class="img-responsive">
-									</div>
-								</div>
-								<div class="owl-item" style="width: 149px;">
-									<div class="item">
-										<img src="http://placehold.it/200x150" alt=""
-											class="img-responsive">
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
+			<div class="col-md-9 col-centered text-center">
+				<h4 class="text-dark font-weight-4 raleway">Lorem ipsum dolor
+					sit amet consectetuer adipiscing elit Suspendisse et justo Praesent
+					mattis commodo augue Aliquam ornare hendrerit augue Cras tellus In
+					pulvinar lectus a est Curabitur eget orc Cras laoreet ligul Etiam</h4>
 			</div>
 
 		</div>
 	</div>
 </section>
+<div class="clearfix"></div>
+<!-- end section -->
+
+<section class="sec-padding section-light">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-md-6">
+				<div class="text-box white padding-3">
+					<img src="http://placehold.it/700x700" alt=""
+						class="img-responsive" />
+
+				</div>
+			</div>
+			<!--end item-->
+
+			<div class="col-md-6">
+				<div class="text-box white padding-5">
+
+					<div class="col-xs-12 nopadding">
+						<div class="sec-title-container less-padding-3 text-left">
+							<div class="ce4-title-line-1 align-left"></div>
+							<h4 class="uppercase font-weight-7 less-mar-1">Who We Are</h4>
+							<div class="clearfix"></div>
+							<p class="by-sub-title">lorem ipsum dolor sit amet</p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<!--end title-->
+
+					<h4 class="raleway">consectetuer adipiscing elit Suspendisse
+						et justo Praesent mattis commodo augue</h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+						Suspendisse et justo. Praesent mattis commodo augue Aliquam ornare
+						hendrerit augue Cras tellus In pulvinar lectus a est Curabitur
+						eget orci Cras laoreet ligula. Etiam sit amet dolor. Vestibulum
+						ante ipsum primis in faucibus orci luctus et ultrices posuere
+						cubilia Curae Nullam tellus diam .</p>
+					<br />
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+						Suspendisse et justo. Praesent mattis commodo augue Aliquam ornare
+						hendrerit augue Cras tellus In pulvinar lectus a est Curabitur
+						eget orci Cras laoreet ligula. Etiam sit amet dolor. Vestibulum
+						ante ipsum primis .</p>
+
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<!--end item-->
+
+		</div>
+	</div>
+</section>
+<div class="clearfix"></div>
+<!-- end section -->
+
+
+<section class="sec-padding" style="padding-bottom:20px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 nopadding">
+				<div class="sec-title-container text-center"
+					style="padding-bottom: 50px;">
+					<div class="ce4-title-line-1"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">Our Process</h4>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">Lorem ipsum dolor sit amet,
+						consectetuer</p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<!--end title-->
+
+
+			<div class="col-md-4 col-sm-6">
+				<div class="text-box white padding-5 text-center">
+					<div class="icon-plain-medium dark center">
+						<span class="icon-bike"></span>
+					</div>
+					<br />
+					<h4 class="uppercase">Graphic Design</h4>
+					<p>Lorem ipsum dolor consectetuer sit amet sit et justo
+						consectetuer adipiscing elit.</p>
+					<br /> <br />
+				</div>
+			</div>
+			<!--end item-->
+
+			<div class="col-md-4 col-sm-6">
+				<div class="text-box white padding-5 text-center">
+					<div class="icon-plain-medium dark center">
+						<span class="icon-lightbulb"></span>
+					</div>
+					<br />
+					<h4 class="uppercase">Graphic Design</h4>
+					<p>Lorem ipsum dolor consectetuer sit amet sit et justo
+						consectetuer adipiscing elit.</p>
+					<br /> <br />
+				</div>
+			</div>
+			<!--end item-->
+
+
+			<div class="col-md-4 col-sm-6">
+				<div class="text-box white padding-5 text-center">
+					<div class="icon-plain-medium dark center">
+						<span class="icon-pencil"></span>
+					</div>
+					<br />
+					<h4 class="uppercase">Graphic Design</h4>
+					<p>Lorem ipsum dolor consectetuer sit amet sit et justo
+						consectetuer adipiscing elit.</p>
+					<br /> <br />
+				</div>
+			</div>
+			<!--end item-->
+		</div>
+	</div>
+</section>
+<div class="clearfix"></div>
+<!-- end section -->
+
+
+
+<div class="divider-line solid light"></div>
+
+<section class="sec-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6" style="padding: 30px;">
+
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container less-padding-3 text-left">
+						<div class="ce4-title-line-1 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">Our History</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title">lorem ipsum dolor sit amet</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<!--end title-->
+
+				<h6 class="raleway">Lorem ipsum dolor sit amet, consectetuer
+					adipiscing elit. Suspendisse et justo. Praesent mattis commodo
+					augue Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus
+					a est Curabitur eget orci Cras.</h6>
+				<br />
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+					Suspendisse et justo. Praesent mattis commodo augue. Aliquam ornare
+					hendrerit augue. Cras tellus. In pulvinar lectus a est. Curabitur
+					eget orci. Cras laoreet ligula. Etiam sit amet dolor. Vestibulum</p>
+
+				<br /> <br /> <br />
+
+			</div>
+			
+			<div class="col-md-5 margin-bottom" style="margin-left:80px;">
+            <img src="http://placehold.it/700x700" alt="" class="img-responsive">
+            </div>
+			
+			
+			
+			</div>
+			</div>
+			</section>
+							<div class="divider-line solid light"></div>
+			<!-- <a class="btn btn-dark-3 uppercase" href="#">Read more</a> </div> -->
+			<!--end item-->
+			
+
+
+
+
+
+			<section class="sec-padding">
+				<div class="container">
+					<div class="row"></div>
+
+					<div class="col-md-12">
+					<!-- <div class="ce4-title-line-1 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">Our History</h4> -->
+						<div id="sync1" class="owl-carousel">
+							<div class="item">
+								<img src="http://placehold.it/1500x600" alt="">
+							</div>
+							<div class="item">
+								<img src="http://placehold.it/1500x600" alt="">
+							</div>
+							<div class="item">
+								<img src="http://placehold.it/1500x600" alt="">
+							</div>
+							<div class="item">
+								<img src="http://placehold.it/1500x600" alt="">
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<div id="sync2" class="owl-carousel">
+								<div class="item">
+									<img src="http://placehold.it/200x150" alt=""
+										class="img-responsive">
+								</div>
+								<div class="item">
+									<img src="http://placehold.it/200x150" alt=""
+										class="img-responsive">
+								</div>
+								<div class="item">
+									<img src="http://placehold.it/200x150" alt=""
+										class="img-responsive">
+								</div>
+								<div class="item">
+									<img src="http://placehold.it/200x150" alt=""
+										class="img-responsive">
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				</section>
+				<div class="clearfix"></div>
+				<!-- End of section -->
+
+
+
+<!-- Template scripts -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/megamenu/js/main.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/parallax/jquery.parallax-1.1.3.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/jFlickrFeed/jflickrfeed.min.js"></script>
+<!-- index 4 -->
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery/jquery.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/less/less.min.js"
+	data-env="development"></script>
+<!-- End of index 4 -->
+<script>
+	$('#basicuse').jflickrfeed({
+						limit : 6,
+						qstrings : {
+							id : '133294431@N08'
+						},
+						itemTemplate : '<li>'
+								+ '<a href="{{image_b}}"><img src="{{image_s}}" alt="{{title}}" /></a>'
+								+ '</li>'
+					});
+</script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/owl-carousel/owl.carousel.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/owl-carousel/custom.js"></script>
+<script>
+	$(window).load(function() {
+		setTimeout(function() {
+
+			$('.loader-live').fadeOut();
+		}, 1000);
+	})
+</script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/functions/functions.js"></script>

@@ -9,15 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="keywords" content="" />
-<meta name="description" content="">
-<meta name="author" content="">
 
-<!-- Mobile view -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Favicon -->
-<link rel="shortcut icon" href="">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.css">
 
 <!-- Google fonts  -->
@@ -74,8 +66,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/js/jFlickrFeed/style.css" />
 <!-- Template's stylesheets END -->
-
-<!-- Skin stylesheet -->
 </head>
 <body>
 
