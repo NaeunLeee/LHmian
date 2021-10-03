@@ -39,50 +39,107 @@
 </style>
 </head>
 <script>
-	//프론트에서 해야할 것
-	//id는 영어대소문자+숫자 조합 12자리까지만 가능, 한글 및 특수문자 입력 안되게
-	//const regExpPw = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$/;
-	//비밀번호는 영어대소문자+숫자+특수문자 조합 12자리까지만 가능
-	//*이 붙은 것은 반드시 입력하고 넘어가도록 해야한다. (완료)
+	//비밀번호 유효성 검사는 완료됨.
+	//아이디 유효성 검사가 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 덜됐네요!!!!!!!!!!!!!!!
+	
+	//전역변수
+	//세대 인증 성공여부
+	let success;
+	//아이디, 비밀번호 검증 성공여부
+	let idToken;
+	let passwordToken;
 	
 	$(function() {
+		//유효성 검사^^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+		let textId; //실시간으로 변하는 아이디
+		let textPw; //실시간으로 변하는 비밀번호
+		let textPwcf; //실시간으로 변하는 비밀번호 확인
 		
-		let success;
+        //아이디 실시간 검증
+        $("#id").on("propertychange change keyup paste input", function() {
+        	
+            // 현재 변경된 데이터 셋팅
+            textId = $(this).val();
+            
+         });
+        
+        //비밀번호 실시간 검증
+        $("#password").on("propertychange change keyup paste input", function() {
+        	
+            // 현재 변경된 데이터 셋팅
+            textPw = $(this).val();
+
+            $('.pw-msg').css('display', 'block');
+            //비밀번호 정규식 함수에 따른 메시지 출력
+            $('.pw-msg').addClass('error-msg').text(checkPwd(textPw));
+            
+         });
+        
+        //비밀번호 실시간 검증
+        $("#passwordConfirm").on("propertychange change keyup paste input", function() {
+
+            // 현재 변경된 데이터 셋팅
+            textPwcf = $(this).val();
+
+            if (textPw !== textPwcf) {
+            	$('.pwcf-msg').css('display', 'block');
+            	$('.pwcf-msg').addClass('error-msg').text('비밀번호가 일치하지 않습니다.');
+            } else {
+            	$('.pwcf-msg').text('');
+            	passwordToken = true;
+            }
+         });
 		
+        
 		$('#id').on('blur', function() {
 			
-			const id = $('#id').val();
+			let id = $(this).val();
 			
-			if (id == "") {
+			if (id == "" || id == null) {
 				$('.idCheck-msg').empty();
 				$('.idCheck-msg').css('display', 'block');
-				$('.idCheck-msg').removeClass('correct-msg').addClass('error-msg').text('아이디를 입력하세요.');
+				$('.idCheck-msg').removeClass().addClass('error-msg').text('아이디를 입력하세요.');
 				return;
 			}
-	
-			$.ajax({
-				url: 'idCheck',
-				type: 'POST',
-				data: {id : id},
-				success: function(data) {
-						$('.idCheck-msg').css('display', 'block');
-					if (data == 1) {
-						$('.idCheck-msg').toggleClass('correct-msg error-msg').text('중복된 아이디입니다.');
-					} else {
-						$('.idCheck-msg').toggleClass('correct-msg error-msg').text('사용 가능한 아이디입니다.');
+
+			if (checkID(id) == '') {
+				idToken = true;
+				
+				$.ajax({
+					url: 'idCheck',
+					type: 'POST',
+					data: {id : id},
+					success: function(data) {
+							$('.idCheck-msg').css('display', 'block');
+						if (data == 1) {
+							$('.idCheck-msg').empty();
+							$('.idCheck-msg').removeClass().addClass('error-msg').text('중복된 아이디입니다.');
+						} else {
+							$('.idCheck-msg').empty();
+							$('.idCheck-msg').removeClass().addClass('correct-msg').text('사용 가능한 아이디입니다.');
+						}
+					},
+					error: function() {
+						alert('AJAX 에러');
 					}
-				},
-				error: function() {
-					alert('AJAX 에러');
-				}
-			})
+				})
+				
+			} else {
+			   idToken = false;
+			   $('.idCheck-msg').empty();
+		       $('.idCheck-msg').css('display', 'block');
+		       $('.idCheck-msg').addClass('error-msg').text(checkID(id));
+			}
+
 		})
 		
 		$('#password').on('blur', function() {
-			$('.pw-msg').empty();
+			
 			const password = $('#password').val();
 			
 			if (password == "") {
+				$('.pw-msg').empty();
 				$('.pw-msg').css('display', 'block');
 				$('.pw-msg').addClass('error-msg').text('비밀번호를 입력하세요.');
 				return;
@@ -90,10 +147,10 @@
 		})
 		
 		$('#passwordConfirm').on('blur', function() {
-			$('.pwcf-msg').empty();
 			const passwordConfirm = $('#passwordConfirm').val();
 			
 			if (passwordConfirm == "") {
+				$('.pwcf-msg').empty();
 				$('.pwcf-msg').css('display', 'block');
 				$('.pwcf-msg').addClass('error-msg').text('비밀번호를 입력하세요.');
 				return;
@@ -101,10 +158,10 @@
 		})
 		
 		$('#key').on('blur', function() {
-			$('.key-msg').empty();
 			const key = $('#key').val();
 			
 			if (key == "") {
+				$('.key-msg').empty();
 				$('.key-msg').css('display', 'block');
 				$('.key-msg').addClass('error-msg').text('세대 인증번호를 입력하세요.');
 				return;
@@ -112,30 +169,21 @@
 		})
 		
 		$('#name').on('blur', function() {
-			$('.name-msg').empty();
 			const name = $('#name').val();
 			
 			if (name == "") {
+				$('.name-msg').empty();
 				$('.name-msg').css('display', 'block');
 				$('.name-msg').addClass('error-msg').text('이름을 입력하세요.');
 				return;
 			}
 		})
 		
-		
-		//유효성 검사^^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		
-        let newValue;
-        // 모든 텍스트의 변경에 반응합니다.
-        $("#id").on("propertychange change keyup paste input", function() {
-           
-           // 현재 변경된 데이터 셋팅
-           newValue = $(this).val();
-           
-           // 현재 실시간 데이터 표츌
-           $('.idCheck-msg').text('오오오');
-        });
-		
+		//--------------------------------- blur 끝 ---------------------------------
+        
+        
+        
+        //세대 인증 버튼 클릭시
 		$('#authKeyBtn').on('click', function() {
 			const authKey = $('#key').val();
 
@@ -152,9 +200,10 @@
 					}
 					
 					//인증번호가 일치하면
+					$('.key-msg').empty();
 					alert('세대 인증이 완료되었습니다.');
 					
-					success = 1;
+					success = true;
 					
 					const donghosu = String(data.houseInfo);
 					const dong = donghosu.substring(0, 3);
@@ -192,6 +241,7 @@
 			})
 		})
 		
+		//회원 가입 버튼 클릭시, 빈 칸 검사
 		$('#signUp').on('click', function() {
 			//메시지 박스 클리어
 			$('.idCheck-msg').empty();
@@ -241,21 +291,32 @@
 				$('.gubun-msg').css('display', 'block');
 				$('.gubun-msg').addClass('error-msg').text('세대주 세대원 여부를 선택해주세요.');
 				$('#gubun').focus(); //이거 맞냐????
+				//$(':radio[name="author"]').focus();
 				return;
 			}
 			if (name == "") {
 				
 				$('.name-msg').css('display', 'block');
-				$('.name-msg').addClass('error-msg').text('비밀번호를 입력하세요.');
-				$(':radio[name="author"]').focus();
+				$('.name-msg').addClass('error-msg').text('이름을 입력하세요.');
+				$('#name').focus();
 				return;
 			}
-			if (success !== 1) {
+			if (!success) {
 				
 				$('.key-msg').css('display', 'block');
 				$('.key-msg').addClass('error-msg').text('세대 인증을 해주세요.');
 				$('#key').focus(); //이것도 ㅠ
 				return;
+			}
+			if (!idToken) {
+				$('.id-msg').css('display', 'block');
+				$('.id-msg').addClass('error-msg').text('아이디는');
+				$('#id').focus(); //이것도 ㅠ
+			}
+			if (textPw !== textPwcf) {
+				$('.pw-msg').css('display', 'block');
+				$('.key-msg').addClass('error-msg').text('비밀번호가 일치하지 않습니다.');
+				$('#password').focus(); //이것도 ㅠ
 			}
 			
 			alert('가입');
@@ -264,6 +325,58 @@
 		
 		
 	})
+	
+	
+	//비밀번호 유효성 검사 함수
+	function checkPwd(password) {
+		let check = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$/.test(password);
+		
+		if (!check) {
+			return "영문자, 숫자, 특수문자를 모두 포함하여 8~12자로 입력해주세요"
+		}
+		
+		if(/(\w)\1\1/.test(password)){
+ 			return '같은 문자를 3번 이상 사용하실 수 없습니다.';
+ 		}	
+		
+			var cnt = 0;
+ 			var cnt2 = 0;
+ 			var tmp = "";
+ 			var tmp2 = "";
+ 			var tmp3 = "";
+ 			for (var i = 0; i < password.length; i++) {
+ 				tmp = password.charAt(i);
+ 				tmp2 = password.charAt(i + 1);
+ 				tmp3 = password.charAt(i + 2);
+ 
+ 				if (tmp.charCodeAt(0) - tmp2.charCodeAt(0) == 1
+ 						&& tmp2.charCodeAt(0) - tmp3.charCodeAt(0) == 1) {
+ 					cnt = cnt + 1;
+ 				}
+ 				if (tmp.charCodeAt(0) - tmp2.charCodeAt(0) == -1
+ 						&& tmp2.charCodeAt(0) - tmp3.charCodeAt(0) == -1) {
+ 					cnt2 = cnt2 + 1;
+ 				}
+ 			}
+ 			if (cnt > 0 || cnt2 > 0) {
+ 				return '연속된 문자를 3번 이상 사용하실 수 없습니다.';
+ 			} 
+ 			
+ 			return '';
+		
+	}
+	
+	//아이디 유효성 검사 함수
+	function checkID(value) {
+		let check = /^[a-zA-z0-9]{4,20}$/.test(value);
+
+		if (!check) {
+			return "영문 대소문자, 숫자를 조합하여 4~20자리로 입력해주세요."
+		}
+		
+		return '';
+	}
+	
 	
 </script>
 
@@ -275,7 +388,7 @@
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="#">홈</a></li>
-							<li class="current"><a href="leaderStep1">회원가입</a></li>
+							<li class="current"><a href="">회원가입</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
@@ -303,7 +416,7 @@
 				<div class="smart-forms smart-container wrap-3">
 					<!-- 정보 입력 폼 -->
 					<div class="form-body bg-light">
-						<form action="memberSignUp" method="POST" autocomplete="off">
+						<form id="frm" name="frm" action="memberSignUp" method="POST" autocomplete="off">
 							<!-- 아이디 입력 -->
 							<div class="section">
 								<label for="id">
@@ -312,7 +425,8 @@
 											class="font-weight-3">*</span></span>
 									</h6>
 								</label> <label class="field prepend-icon"> <input type="text"
-									name="id" id="id" class="gui-input" placeholder="몇자리 이상 웅앵">
+									name="id" id="id" class="gui-input" placeholder="아이디"
+									 style="IME-MODE: inactive">
 									<span class="field-icon"><i class="fa fa-user"></i></span>
 								</label>
 								<div class="idCheck-msg" style="display: none"></div>
@@ -325,7 +439,7 @@
 									</h6>
 								</label> <label class="field prepend-icon"> <input
 									type="password" name="password" id="password" class="gui-input"
-									placeholder="영문자+숫자+특수문자 8자리 이상 20자리 이하 입력"> <span class="field-icon"><i
+									placeholder="비밀번호"> <span class="field-icon"><i
 										class="fa fa-lock"></i></span>
 								</label>
 								<div class="pw-msg" style="display: none"></div>
@@ -338,7 +452,7 @@
 									</h6>
 								</label> <label class="field prepend-icon"> <input type="password"
 									name="passwordConfirm" id="passwordConfirm" class="gui-input"
-									placeholder="영문자+숫자+특수문자 8자리 이상 20자리 이하 입력"> <span class="field-icon"><i
+									placeholder="비밀번호 확인"> <span class="field-icon"><i
 										class="fa fa-unlock-alt"></i></span>
 								</label>
 								<div class="pwcf-msg" style="display: none"></div>
@@ -347,10 +461,14 @@
 							<div class="section">
 								<label for="key">
 									<h6 class="less-mar-4">
-										<span class="font-weight-5">세대 인증번호</span>
+										세대 인증번호
+										<span class="font-weight-5 hint--bottom-right hint--medium"
+										data-hint="세대 인증번호란? 관리사무소에서 문자로 받은 어쩌구">
+										<i class="fa fa-question-circle"></i></span>
 									</h6>
-								</label> <label class="field prepend-icon"> <input type="text"
-									name="key" id="key" class="gui-input"> <span class="field-icon"><i
+								</label>
+								<label class="field prepend-icon"> <input type="text"
+									name="key" id="key" class="gui-input" placeholder="세대 인증번호"> <span class="field-icon"><i
 										class="fa fa-key"></i></span>
 								</label>
 								<div class="key-msg" style="display: none"></div>
@@ -388,7 +506,7 @@
 									</h6>
 								</label> <label class="field prepend-icon"> <input type="text"
 									name="name" id="name" class="gui-input"
-									placeholder=""> <span class="field-icon"><i
+									placeholder="이름"> <span class="field-icon"><i
 										class="fa fa-smile-o"></i></span>
 								</label>
 								<div class="name-msg" style="display: none"></div>
