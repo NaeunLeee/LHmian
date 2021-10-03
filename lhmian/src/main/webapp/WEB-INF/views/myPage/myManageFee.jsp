@@ -100,7 +100,6 @@
 				</div>
 				<div class="col-md-6">
 					<div class="text-box white padding-4">버튼이 들어갈 자리
-					
 					<c:forEach items="${list }" var="list">
 						${list.mfDate }
 					</c:forEach>

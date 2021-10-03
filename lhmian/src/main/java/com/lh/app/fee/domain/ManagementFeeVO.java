@@ -17,4 +17,5 @@ public class ManagementFeeVO {
 	public Long mfSecurity;
 	public Long mfElevator;
 	public Long mfTrash;
+	public Long total;
 }

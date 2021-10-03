@@ -44,10 +44,10 @@
 	
 	//전역변수
 	//세대 인증 성공여부
-	let success;
+	let success = false;
 	//아이디, 비밀번호 검증 성공여부
-	let idToken;
-	let passwordToken;
+	let idToken = false;
+	let passwordToken = false;
 	
 	$(function() {
 		//유효성 검사^^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,16 +58,18 @@
 		
         //아이디 실시간 검증
         $("#id").on("propertychange change keyup paste input", function() {
+        	$('.idCheck-msg').empty();
         	
-            // 현재 변경된 데이터 셋팅
+            //실시간데이터 셋팅
             textId = $(this).val();
             
          });
         
         //비밀번호 실시간 검증
         $("#password").on("propertychange change keyup paste input", function() {
+        	passwordToken = false;
         	
-            // 현재 변경된 데이터 셋팅
+            // 실시간 데이터 셋팅
             textPw = $(this).val();
 
             $('.pw-msg').css('display', 'block');
@@ -78,8 +80,9 @@
         
         //비밀번호 실시간 검증
         $("#passwordConfirm").on("propertychange change keyup paste input", function() {
+        	passwordToken = false;
 
-            // 현재 변경된 데이터 셋팅
+            // 실시간 데이터 셋팅
             textPwcf = $(this).val();
 
             if (textPw !== textPwcf) {
@@ -93,23 +96,24 @@
 		
         
 		$('#id').on('blur', function() {
+			$('.idCheck-msg').empty();
+			idToken = false;
 			
-			let id = $(this).val();
+			textId = $(this).val();
 			
-			if (id == "" || id == null) {
-				$('.idCheck-msg').empty();
+			if (textId == "" || textId == null) {
 				$('.idCheck-msg').css('display', 'block');
 				$('.idCheck-msg').removeClass().addClass('error-msg').text('아이디를 입력하세요.');
 				return;
 			}
-
-			if (checkID(id) == '') {
-				idToken = true;
-				
+			
+			//아이디 유효성 검사가 통과되었으면 ajax로 아이디 중복 검사
+			if (checkID(textId) == '') {
+				$('.idCheck-msg').empty();
 				$.ajax({
 					url: 'idCheck',
 					type: 'POST',
-					data: {id : id},
+					data: {id : textId},
 					success: function(data) {
 							$('.idCheck-msg').css('display', 'block');
 						if (data == 1) {
@@ -118,24 +122,22 @@
 						} else {
 							$('.idCheck-msg').empty();
 							$('.idCheck-msg').removeClass().addClass('correct-msg').text('사용 가능한 아이디입니다.');
+							idToken = true;
 						}
 					},
 					error: function() {
 						alert('AJAX 에러');
 					}
 				})
-				
+			//통과되지 않으면 그에 따른 메세지 출력
 			} else {
-			   idToken = false;
 			   $('.idCheck-msg').empty();
 		       $('.idCheck-msg').css('display', 'block');
-		       $('.idCheck-msg').addClass('error-msg').text(checkID(id));
+		       $('.idCheck-msg').addClass('error-msg').text(checkID(textId));
 			}
-
 		})
 		
 		$('#password').on('blur', function() {
-			
 			const password = $('#password').val();
 			
 			if (password == "") {
@@ -180,9 +182,7 @@
 		})
 		
 		//--------------------------------- blur 끝 ---------------------------------
-        
-        
-        
+   
         //세대 인증 버튼 클릭시
 		$('#authKeyBtn').on('click', function() {
 			const authKey = $('#key').val();
@@ -192,16 +192,18 @@
 				type: 'POST',
 				data: {authKey : authKey},
 				success: function(data) {
+					$('.name-msg').css('display', 'block');
 					
 					//인증번호가 일치하지 않으면
 					if (!data) {
-						alert('일치하는 세대가 없습니다.');
+						$('.key-msg').empty();
+						$('.key-msg').addClass('error-msg').text('일치하는 세대가 없습니다.');
 						return;
 					}
 					
 					//인증번호가 일치하면
 					$('.key-msg').empty();
-					alert('세대 인증이 완료되었습니다.');
+					$('.key-msg').removeClass().addClass('correct-msg').text('세대 인증이 완료되었습니다.');
 					
 					success = true;
 					
@@ -290,8 +292,7 @@
 				
 				$('.gubun-msg').css('display', 'block');
 				$('.gubun-msg').addClass('error-msg').text('세대주 세대원 여부를 선택해주세요.');
-				$('#gubun').focus(); //이거 맞냐????
-				//$(':radio[name="author"]').focus();
+				$(':radio[name="author"]').focus();
 				return;
 			}
 			if (name == "") {
@@ -302,24 +303,27 @@
 				return;
 			}
 			if (!success) {
-				
 				$('.key-msg').css('display', 'block');
 				$('.key-msg').addClass('error-msg').text('세대 인증을 해주세요.');
-				$('#key').focus(); //이것도 ㅠ
+				$('#key').focus(); 
 				return;
 			}
 			if (!idToken) {
-				$('.id-msg').css('display', 'block');
-				$('.id-msg').addClass('error-msg').text('아이디는');
-				$('#id').focus(); //이것도 ㅠ
+				$('.idCheck-msg').css('display', 'block');
+				$('.idCheck-msg').addClass('error-msg').text('아이디 중복확인을 해주세요.');
+				$('#id').focus(); 
+				return;
 			}
-			if (textPw !== textPwcf) {
+			if (!passwordToken) {
 				$('.pw-msg').css('display', 'block');
-				$('.key-msg').addClass('error-msg').text('비밀번호가 일치하지 않습니다.');
+				$('.pw-msg').addClass('error-msg').text('비밀번호가 일치하지 않습니다.');
 				$('#password').focus(); //이것도 ㅠ
+				return;
 			}
 			
 			alert('가입');
+			
+			//$('#frm').submit();
 		})
 		
 		
