@@ -29,9 +29,8 @@ public class CommController {
 	@Autowired
 	ReplyService replyService;
 	
-
+	//10/02 주석 삭제 
 	// 리스트 조회
-	//10 / 02 추가부분 시작 ------------------------------------------------------------------------------------- 
 	
 	@RequestMapping("myCommunityList")
 	public String getListno(Model model,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
@@ -42,7 +41,6 @@ public class CommController {
 		/*model.addAttribute("pageMaker", new PageVO(cri, total));*/
 		return "myPage/myCommunityList";
 	}
-	//10 / 02 추가부분 끝 -------------------------------------------------------------------------------------
 	
 
 	// 리스트 조회
@@ -56,13 +54,6 @@ public class CommController {
 		return "community/commlist";
 	}
 	
-	
-	/* 10/02 삭제
-	 *
-	 * @GetMapping("myCommunityList") public String myCommunityList() { return
-	 * "myPage/myCommunityList"; }
-	 */
-
 	// 등록폼
 	@GetMapping("register")
 	public String registerForm() {
@@ -78,7 +69,7 @@ public class CommController {
 
 	// 단건 조회
 	@GetMapping("get") // 수정폼
-	public String get(@RequestParam("commNo") Long commNo, Model model, @ModelAttribute("cri") Criteria cri) {
+	public String get(@RequestParam("commNo") Long commNo, Model model) { // 10/03 criteria 삭제 
 		CommVO vo = new CommVO();
 		commService.viewCount(commNo);
 		vo.setCommNo(commNo);

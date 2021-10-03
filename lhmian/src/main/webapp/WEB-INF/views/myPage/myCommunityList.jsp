@@ -50,6 +50,7 @@
 		$(".move").on("click",function(e){
 			e.preventDefault();
 			var commno = $(this).attr("href")
+			console.log(commno);
 			actionForm.append('<input type="hidden" name="commNo" value="'+commno+'">')
 			actionForm.attr("action","get")
 			actionForm.submit();
