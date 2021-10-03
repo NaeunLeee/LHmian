@@ -2,19 +2,40 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>LHmian | 민원</title>
-</head>
-<body>
+<style>
+h4 {
+	color: #727272;
+}
+
+tr {
+	border-bottom: 1px solid lightgray;
+	height: 50px;
+	cursor: pointer;
+}
+
+.table-style-2 {
+	width: 800px;
+	text-align: center;
+}
+
+tr:hover {
+	background-color: lightyellow;
+}
+
+.btn-gyellow-yj {
+	height : 30px;
+	color: #fff;
+	background-color: #ecae3d;
+	padding : 0 30px;
+}
+</style>
 <div align="center">
-	<h3>민원</h3>
+	<h4>민원</h4>
 	<hr>
 	<div>
 		<input id="csTitle" type="text" value="${cs.csTitle}" disabled="disabled"><br>
-		작성일자 : <fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${cs.csUpdate}" pattern="yy-MM-dd" /><br>
+		작성일자 : <fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" />
+		<c:if test="${not empty cs.csUpdate}"> / 수정일자 : <fmt:formatDate value="${cs.csUpdate}" pattern="yy-MM-dd" /></c:if><br>
 		작성자 : ${cs.name}
 		<hr>
 		<textarea id="csContent" rows="5" cols="33" disabled="disabled">${cs.csContent}</textarea>
@@ -25,12 +46,12 @@
 	</form>
 	<div align="center">
 	<%-- 	<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
-			<button type="button" id="modifyBtn">수정</button>
-			<button type="button" id="deleteBtn">삭제</button>
+			<button type="button" id="modifyBtn" class="btn btn-gyellow-yj">수정</button>
+			<button type="button" id="deleteBtn" class="btn btn-gyellow-yj">삭제</button>
 		<%-- </sec:authorize> --%>
-		<button type="button" onclick="location.href='../office/csList'">목록</button>
+		<button type="button" onclick="location.href='../office/csList'" class="btn btn-gyellow-yj">목록</button>
 	</div>
-</div><br>
+</div>
 <hr>
 <!-- 답변 등록 -->
 <div align="center">
@@ -38,13 +59,14 @@
 		<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
 		<textarea rows="10" cols="100" id="csAnswer" name="csAnswer">${cs.csAnswer}</textarea><br>
 		<c:if test="${empty cs.csAnswer}">
-		<button type="button" id="saveAnswer">답변 등록</button>
+		<button type="button" id="saveAnswer" class="btn btn-gyellow-yj">답변 등록</button>
 		</c:if>
 		<c:if test="${not empty cs.csAnswer}">
-		<button type="button" id="csUpdateBtn">답변 수정</button>
+		<button type="button" id="csUpdateBtn" class="btn btn-gyellow-yj">답변 수정</button>
 		</c:if>
 	</form>
 </div>
+<br>
 
 </body>
 

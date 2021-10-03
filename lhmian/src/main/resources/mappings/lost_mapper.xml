@@ -3,12 +3,13 @@
 <mapper namespace="com.lh.app.lostFound.mapper.LostFoundMapper">
 
 	<select id="getList" resultType="LostFoundVO">
-	SELECT LOST_NO,
+	  SELECT LOST_NO,
 			LOST_CONTENT,
 			LOST_DATE,
 			LOST_UPDATE,
 			LOST_FILE,
 			LOST_STATUS
+			
 		FROM 
 			LOST_AND_FOUND
 		ORDER BY DECODE(LOST_STATUS, '수령전', 1), LOST_DATE DESC
@@ -53,7 +54,6 @@
 				LOST_STATUS = #{lostStatus}
 			WHERE LOST_NO = #{lostNo}
 	</update>
-	
 
 	   <delete id="delete">
    <![CDATA[ 
