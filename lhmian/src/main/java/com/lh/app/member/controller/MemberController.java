@@ -3,6 +3,7 @@ package com.lh.app.member.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,13 +33,15 @@ public class MemberController {
 	}
 
 	// 단건조회
-	//10/03 추가 시작 ---------------------------------------------------------------------------
-	@GetMapping("myInfo")
-	public String myInfo() {
-		return "myPage/myInfo";
-	}
-	//10/03 추가 끝 -----------------------------------------------------------------------------
-	
+	// 10/04 추가
+	/*
+	 * @GetMapping("myInfo") public String myInfo(Model model, MemberVO
+	 * vo,@AuthenticationPrincipal CustomUserDetails customUserDetails) { String id
+	 * = customUserDetails.getUsername(); System.out.println(id +
+	 * " controller check"); vo.setId(id);
+	 * model.addAttribute("info",service.read(vo));
+	 * System.out.println(service.read(vo)); return "myPage/myInfo"; }
+	 */
 	
 	/*
 	 * //회원삭제

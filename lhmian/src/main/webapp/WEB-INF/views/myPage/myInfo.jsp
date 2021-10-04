@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div class="container">
+	<!-- 10/04 주석처리 -->
+	<%-- ${info.id} / ${info.carType} / ${info.phone}
 	<table class="table">
 		<thead>
 		</thead>
@@ -8,7 +10,7 @@
 			<tr>
 				<th class="align-middle">아이디</th>
 				<td><input type="text" class="form-control" id="basic-url"
-					aria-describedby="basic-addon3" disabled="disabled"></td>
+					aria-describedby="basic-addon3" value="${info.id}" disabled="disabled"></td>
 			</tr>
 			<tr>
 				<th class="align-middle">현재 비밀번호</th>
@@ -27,12 +29,12 @@
 			</tr>
 			<tr>
 				<th class="align-middle">휴대전화</th>
-				<td><input type="tel" name="tel" class="form-control" value=""></td>
+				<td><input type="tel" name="tel" class="form-control" value="${info.phone}"></td>
 			</tr>
 			<tr>
 				<th class="align-middle">차량정보</th>
 				<td><input type="text" class="form-control" id="basic-url"
-					aria-describedby="basic-addon3" disabled="disabled"><br>
+					aria-describedby="basic-addon3" disabled="disabled" value=""><br>
 			</tr>
 		</tbody>
 	</table>
@@ -64,6 +66,6 @@
 	</div>
 	<div>
 		<button>수정</button>
-	</div>
+	</div> --%>
 
 </div>

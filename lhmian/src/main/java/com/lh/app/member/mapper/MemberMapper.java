@@ -22,4 +22,8 @@ public interface MemberMapper {
 	
 	//회원삭제
 	public int delete(MemberVO vo);
+	
+	//10/04 추가 (이광호)
+	//비밀번호 변경
+	public int updatePw(MemberVO vo);
 }

@@ -3,11 +3,9 @@ package com.lh.app.comm.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import com.lh.app.comm.domain.CommVO;
 import com.lh.app.comm.domain.Criteria;
-import com.lh.app.signIn.etc.CustomUserDetails;
 
 public interface CommMapper {
 	// CRUD

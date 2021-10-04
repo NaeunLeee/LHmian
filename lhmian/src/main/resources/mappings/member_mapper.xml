@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.member.mapper.MemberMapper">
 
-		<sql id="criteria">
+	<sql id="criteria">
 		<trim prefix="(" suffix=")AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
 				<trim prefix="OR">
@@ -22,15 +22,15 @@
 		</trim>
 	</sql>
 	
+	<!-- 10/04 수정 시작 -->
 	<select id="getTotalCount" resultType="int">
-	
-	SELECT COUNT(*) FROM
-	MEMBER
-	WHERE
+		SELECT COUNT(ROWNUM) FROM
+		MEMBER
+		WHERE
 		<include refid="criteria"></include>
-	ID > 0
-	
+		ROWNUM > 0
 	</select>
+	<!-- 10/04 수정 끝 -->
 	
 	<select id="getList" resultType="memberVO">
 		<![CDATA[
@@ -48,7 +48,7 @@
 			FROM MEMBER
 			WHERE
 			]]>
-			<include refid="criteria"></include>
+		<include refid="criteria"></include>
 			<![CDATA[
 			ROWNUM <= #{pageNum} * #{amount}
 		)
@@ -56,11 +56,19 @@
 	]]>
 	</select>
 	
-	<select id="read" resultType="MemberVO" parameterType="long">
-		SELECT *
-		FROM MEMBER
-		WHERE id=#{id}
+	<!-- 10/04추가 -->
+	<select id="read" resultType="MemberVO">
+		SELECT DISTINCT M.ID, M.PHONE, M.PASSWORD,
+        LISTAGG(C.CAR_CODE, '/') WITHIN GROUP (ORDER BY C.CAR_CODE) OVER(PARTITION BY C.HOUSE_INFO) AS CARCODE
+        , LISTAGG(C.CAR_TYPE, '/') WITHIN GROUP (ORDER BY C.CAR_TYPE) OVER(PARTITION BY C.HOUSE_INFO) AS CARTYPE
+		FROM MEMBER M
+		JOIN GENERATION G 
+		ON M.HOUSE_INFO = G.HOUSE_INFO
+		JOIN CARLIST C
+		ON G.HOUSE_INFO = C.HOUSE_INFO
+		WHERE M.ID = #{id}
 	</select>
+	<!-- 끝 -->
 	
 	<delete id="delete">
 		DELETE
@@ -68,5 +76,5 @@
 		WHERE ID=#{id}
 	</delete>
 
-	
+
 </mapper>
