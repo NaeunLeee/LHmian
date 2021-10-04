@@ -53,4 +53,15 @@
 		WHERE ID=#{id}
 	</update>
 	
+	<select id="memberSelect" resultType="MemberVO">
+		SELECT ID,
+			   NAME,
+			   PHONE,
+			   HOUSE_INFO,
+			   AUTHOR,
+			   STATUS
+		FROM MEMBER
+		WHERE ID LIKE '%' || #{id} || '%'
+	</select>
+	
 </mapper>

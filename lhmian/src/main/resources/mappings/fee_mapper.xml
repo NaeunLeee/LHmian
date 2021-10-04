@@ -3,8 +3,7 @@
 <mapper namespace="com.lh.app.fee.mapper.ManagementFeeMapper">
 
 	<select id="selectFeeList" resultType="ManagementFeeVO">
-		SELECT ROWNUM AS ARN,
-			   MF_DATE,
+		SELECT MF_DATE,
 			   SUBSTR(MF_DATE, 1, 2) AS YEAR,
 			   CASE WHEN SUBSTR(MF_DATE, 3, 1) = '0' THEN SUBSTR(MF_DATE, 4, 1)
 			   ELSE SUBSTR(MF_DATE, 3, 2)
@@ -20,39 +19,32 @@
 			   MF_ELEVATOR, 
 			   MF_TRASH,
 			   MF_TOTAL
-		FROM
-			(
-			SELECT *
-			FROM MANAGEMENT_FEE
-			WHERE HOUSE_INFO = #{houseInfo}
-			ORDER BY MF_DATE DESC)
+		FROM MANAGEMENT_FEE
+        WHERE HOUSE_INFO = #{houseInfo}
+        ORDER BY 1 DESC
 	</select>
 	
 	<select id="selectFee" resultType="ManagementFeeVO">
-		SELECT *
-		FROM
-			(
-			SELECT ROWNUM AS ARN,
-				   MF_DATE, 
-				   HOUSE_INFO, 
-				   MF_FEE, 
-				   MF_HEAT, 
-				   MF_ELECT,
-				   MF_WATER, 
-				   MF_TV, 
-				   MF_CLEAN, 
-				   MF_SECURITY, 
-				   MF_ELEVATOR, 
-				   MF_TRASH,
-				   MF_TOTAL
-			FROM
-				(
-				SELECT *
-				FROM MANAGEMENT_FEE
-				WHERE HOUSE_INFO = #{houseInfo}
-				ORDER BY MF_DATE DESC)
-			)
-		WHERE ARN = #{arn}
+		SELECT MF_DATE,
+			   SUBSTR(MF_DATE, 1, 2) AS YEAR,
+			   CASE WHEN SUBSTR(MF_DATE, 3, 1) = '0' THEN SUBSTR(MF_DATE, 4, 1)
+			   ELSE SUBSTR(MF_DATE, 3, 2)
+			   END AS MONTH, 
+			   HOUSE_INFO, 
+			   MF_FEE, 
+			   MF_HEAT, 
+			   MF_ELECT,
+			   MF_WATER, 
+			   MF_TV, 
+			   MF_CLEAN, 
+			   MF_SECURITY, 
+			   MF_ELEVATOR, 
+			   MF_TRASH,
+			   MF_TOTAL
+		FROM MANAGEMENT_FEE
+        WHERE HOUSE_INFO = #{houseInfo}
+        AND MF_DATE = #{mfDate}
+        ORDER BY 1 DESC
 	</select>
 	
 	<select id="selectAvg" resultType="ManagementFeeVO">

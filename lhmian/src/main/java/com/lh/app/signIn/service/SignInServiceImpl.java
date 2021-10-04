@@ -106,4 +106,10 @@ public class SignInServiceImpl implements SignInService {
 		return signInMapper.kakaoIdCheck(id);
 	}
 
+	@Override
+	public MemberVO memberSelect(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return signInMapper.memberSelect(vo);
+	}
+
 }

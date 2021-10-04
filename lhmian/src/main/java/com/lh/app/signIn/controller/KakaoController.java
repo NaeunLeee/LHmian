@@ -1,10 +1,17 @@
 package com.lh.app.signIn.controller;
 
+import java.util.Iterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -16,6 +23,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lh.app.signIn.domain.MemberVO;
+import com.lh.app.signIn.etc.CustomUserDetails;
 import com.lh.app.signIn.etc.KakaoProfile;
 import com.lh.app.signIn.etc.OAuthToken;
 import com.lh.app.signIn.service.SignInService;
@@ -115,9 +123,33 @@ public class KakaoController {
 			page = "signIn/leaderStep1";
 		} else {
 			//로그인을 시켜버려야....하는데..............어떻게하지??............
-			page = "/";
+			//패스워드 해시 암호화
+			 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	         CustomUserDetails customUserDetails = new CustomUserDetails();
+
+	         MemberVO vo = new MemberVO();
+	         
+	         vo.setId("" + kakaoId);
+
+	         vo = signInService.memberSelect(vo);
+	         
+	         customUserDetails.setUsername(vo.getId());
+	         customUserDetails.setNAME(vo.getName());
+	         customUserDetails.setPHONE(vo.getPhone());
+	         customUserDetails.setHOUSEINFO("" + vo.getHouseInfo());
+	         customUserDetails.setAUTHOR(vo.getAuthor());
+	         customUserDetails.setSTATUS(vo.getStatus());
+ 
+	         System.out.println(customUserDetails);
+	         
+	         Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, passwordEncoder.encode("c1X^H3yut0qhR)Y&G#JdbW$=OEw"), customUserDetails.getAuthorities());
+	         SecurityContextHolder.getContext().setAuthentication(authentication);
+	         System.out.println(SecurityContextHolder.getContext().getAuthentication());	
+			
+			page = "redirect:/";
 		}
 		
 		return page;
 	}
+	
 }
