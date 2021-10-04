@@ -78,6 +78,20 @@ table {
 
 		<div class="container" align="center">
 			<div class="col-7">
+				<div>
+					<form id="actionForm" action="opeInfoList" method="get">
+						<select name="type" class="form-control" style="width: 100px; float: left;">
+							<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
+							<option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
+							<option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
+							<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>
+						</select> 
+						<input name="keyword" class="form-control" style="width: 300px; float: left;" value="${pageMaker.cri.keyword}"> 
+						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+						<button type="submit" class="btn btn-gyellow" style="float: left;">검색</button>
+					</form>
+				</div><br><br>
 				<table class="table">
 					<tr>
 						<th>글 번호</th>
@@ -96,7 +110,6 @@ table {
 					</c:forEach>
 				</table>
 			</div>
-			<br>
 			<div id="pageBtn">
 				<ul class="pagination hover-orange">
 					<c:if test="${pageMaker.prev == true}">
@@ -119,20 +132,6 @@ table {
 				</ul>
 			</div>
 
-			<div>
-				<form id="actionForm" action="opeInfoList" method="get">
-					<select name="type">
-						<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-						<option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-						<option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
-						<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>
-					</select> 
-					<input name="keyword" value="${pageMaker.cri.keyword}"> 
-					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-					<button type="submit">검색</button>
-				</form>
-			</div>
 			<br><br><br><br><br><br>
 		</div>
 	</section>
@@ -141,7 +140,6 @@ table {
 
 <script>
 	$(function() {
-
 		var actionForm = $('#actionForm');
 		$('.move')
 				.on(

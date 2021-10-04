@@ -82,6 +82,22 @@
 					<div class="text-box white padding-4">
 						<div align="center">
 							<div>
+								<form id="actionForm" action="confList" method="get">
+									<select name="type" class="form-control" style="width: 100px; float: left;">
+										<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
+										<option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
+										<option value="W" ${empty pageMaker.cri.type == 'W' ? selected : ""}>작성자</option>
+										<option value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected' : ''}"/>>전체</option>
+									</select>
+									<input name="keyword" class="form-control" style="width: 300px; float: left;" value="${pageMaker.cri.keyword}"> 
+									<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
+									<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+									<button type="submit" class="btn btn-gyellow" style="float: left;">검색</button>
+								</form>
+							</div>
+							<button style="float: right;" type="button" class="btn btn-dark" onclick="location.href='confInsert'">글 쓰기</button>
+							<br><br>
+							<div>
 								<table class="table">
 									<tr>
 										<th class="col-1">글 번호</th>
@@ -99,10 +115,7 @@
 										</tr>
 									</c:forEach>
 								</table>
-								<button type="button" onclick="location.href='confInsert'">글
-									쓰기</button>
 							</div>
-							<br>
 							<div id="pageBtn">
 								<ul class="pagination hover-orange">
 									<c:if test="${pageMaker.prev == true}">
@@ -124,29 +137,6 @@
 									</c:if>
 								</ul>
 							</div>
-
-							<form id="actionForm" action="confList" method="get">
-								<div style="float: left;">
-									<select name="type" class="form-control">
-										<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-										<option value="T"
-											${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-										<option value="W"
-											${empty pageMaker.cri.type == 'W' ? selected : ""}>작성자</option>
-										<option value="TW"
-											<c:out value="${pageMaker.cri.type eq 'TW' ? 'selected' : ''}"/>>전체</option>
-									</select>
-								</div>
-								&nbsp;&nbsp;
-								<div style="float: left;">
-									<input name="keyword" class="form-control"
-										value="${pageMaker.cri.keyword}"> <input type="hidden"
-										name="pageNum" value="${pageMaker.cri.pageNum}"> <input
-										type="hidden" name="amount" value="${pageMaker.cri.amount}">
-								</div>
-								&nbsp;&nbsp;
-								<button type="submit" class="btn btn-small" style="float: left;">검색</button>
-							</form>
 							<br>
 							<br>
 						</div>

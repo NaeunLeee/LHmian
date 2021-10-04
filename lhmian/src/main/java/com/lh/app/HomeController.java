@@ -51,4 +51,14 @@ public class HomeController {
 		return "admin/adminPage";
 	}
 	
+	@RequestMapping("/office/office")
+	public String office() {
+		return "office/office";
+	}
+	
+	@RequestMapping("/resident/resident")
+	public String resident() {
+		return "resident/resident";
+	}
+	
 }

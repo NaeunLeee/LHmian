@@ -13,4 +13,6 @@ public interface GymService {
 	// 스피닝 시간표
 	public List<GxVO> spinTime();
 	
+	// GX 단건 조회
+	public GxVO gxRead(GxVO vo);
 }
