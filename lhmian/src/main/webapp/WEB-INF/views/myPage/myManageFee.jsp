@@ -40,12 +40,13 @@ a:hover {
 }
 
 .select-box {
-	width: 130px;
+	width: 140px;
+	font-size: 16px;
 }
 
 .select-box select {
 	background-color: white;
-	width: 130px;
+	width: 140px;
 }
 
 .select-box select:hover {
@@ -90,9 +91,12 @@ a:hover {
 
 				<div class="col-md-6">
 					<div class="text-box white padding-4 margin-bottom-3">
+					<div class="col-md-6">
 						<h4 id="month" class="font-weight-7 text-gray"></h4>
+					</div>
+					<div class="col-md-6 text-right">
 						<div class="select-box">
-							<select>
+							<select id="dateSelectBox">
 								<c:forEach var="list" items="${list }">
 									<option value="${list.mfDate }">
 									20${list.year }년 ${list.month }월</option>
@@ -100,14 +104,10 @@ a:hover {
 							</select>
 							<div class="select__arrow"></div>
 						</div>
+					</div>
+						<div class="col-md-12 margin-bottom-3">
 						<h1 id="mfTotal" class="font-weight-5" style="margin-top: 10px;"></h1>
-						<div class="col-md-12">
-							<h5>
-								<sec:authentication property="principal.NAME" />
-								님! 이번달은 관리비가 조금 많이 나오셨군요!
-							</h5>
 						</div>
-						<div class="margin-bottom-5"></div>
 						<!--end item-->
 
 						<div class="col-md-12">
@@ -677,52 +677,93 @@ a:hover {
 </script>
 <script>
 	
-	const arn = 1;
-	
 	//이번달 관리비 합계
 	const currentMfTotal = ${list[0].mfTotal};
 	//저번달 관리비 합계
 	const lastMfTotal = ${list[1].mfTotal};
-	
 	//관리비 전체 평균
 	const mfAvg = ${avg.mfAvg};
+	//월
+	let month = ${list[0].month};
+	//전월 대비
+	compareLastMonth(lastMfTotal, currentMfTotal);
+	//관리비 평균에 (-8,388) 
+	avgDiff(mfAvg, currentMfTotal);
 	
-	$('#mfFee').text(comma(${fee.mfFee}));
-	$('#mfHeat').text(comma(${fee.mfHeat}));
-	$('#mfElect').text(comma(${fee.mfElect}));
-	$('#mfWater').text(comma(${fee.mfWater}));
-	$('#mfTv').text(comma(${fee.mfTv}));
-	$('#mfClean').text(comma(${fee.mfClean}));
-	$('#mfSecurity').text(comma(${fee.mfSecurity}));
-	$('#mfElevator').text(comma(${fee.mfElevator}));
-	$('#mfTrash').text(comma(${fee.mfTrash}));
+	$('#mfFee').text(comma(${list[0].mfFee}));
+	$('#mfHeat').text(comma(${list[0].mfHeat}));
+	$('#mfElect').text(comma(${list[0].mfElect}));
+	$('#mfWater').text(comma(${list[0].mfWater}));
+	$('#mfTv').text(comma(${list[0].mfTv}));
+	$('#mfClean').text(comma(${list[0].mfClean}));
+	$('#mfSecurity').text(comma(${list[0].mfSecurity}));
+	$('#mfElevator').text(comma(${list[0].mfElevator}));
+	$('#mfTrash').text(comma(${list[0].mfTrash}));
 	$('#mfTotal').text(comma(currentMfTotal));
 	
-	//이번달 관리비와 지난달 관리비 차이
-	const diff = Math.abs(lastMfTotal - currentMfTotal);
-	
-	//이번달 관리비가 지난달 관리비보다 많으면(초과) => 빨간색
-	if (currentMfTotal > lastMfTotal) {
-		$('#compareTotal').addClass('bigger').text(comma(diff) + " 증가");
-	} else {
-		$('#compareTotal').addClass('smaller').text(comma(diff) + " 감소");
-	}
-	
-	//관리비 전체 평균과 이번달 관리비 차이
-	const difference = Math.abs(mfAvg - currentMfTotal);
-	
-	if (mfAvg < mfTotal){
-		$('#mfAvg').addClass('bigger').text(comma(mfAvg + " (-" + difference + ")" ));
-	} else {
-		$('#mfAvg').addClass('smaller').text(comma(mfAvg + " (-" + difference + ")" ));
-	}
-	
-	let date = ${fee.mfDate};
-	const month = parseInt(date.toString().substring(2, 4));
 	$('#month').text(month + "월 관리비");
 	
+	
+	$('#dateSelectBox').on('change', function() {
+		let date = $('#dateSelectBox option:selected').val();
+		console.log(date);
+		
+		$.ajax({
+			url: 'dateChange',
+			type: 'POST',
+			data: {
+				mfDate: date
+			},
+			success: function(data) {
+				$('#mfFee').text(comma(data.mfFee));
+				$('#mfHeat').text(comma(data.mfHeat));
+				$('#mfElect').text(comma(data.mfElect));
+				$('#mfWater').text(comma(data.mfWater));
+				$('#mfTv').text(comma(data.mfTv));
+				$('#mfClean').text(comma(data.mfClean));
+				$('#mfSecurity').text(comma(data.mfSecurity));
+				$('#mfElevator').text(comma(data.mfElevator));
+				$('#mfTrash').text(comma(data.mfTrash));
+				$('#mfTotal').text(comma(data.mfTotal));
+				$('#month').text(data.month + "월 관리비");
+				avgDiff(mfAvg, data.mfTotal);
+				
+				//이전 달 관리비를 가져와야하는데.............................
+			}
+			
+			})
+		
+		
+	})
+	
+	//천단위 구분기호
 	function comma(money) {
 		return money.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + " 원";
+	}
+	
+	//전월대비
+	function compareLastMonth(lastMfTotal, currentMfTotal) {
+		//이번달 관리비와 지난달 관리비 차이
+		const diffference = Math.abs(lastMfTotal - currentMfTotal);
+		
+		//이번달 관리비가 지난달 관리비보다 많으면(초과) => 빨간색
+		if (currentMfTotal > lastMfTotal) {
+			return $('#compareTotal').addClass('bigger').text(comma(diffference) + " 증가");
+		} else {
+			return $('#compareTotal').addClass('smaller').text(comma(diffference) + " 감소");
+		}
+	}
+	
+	//아파트 평균관리비랑 차이표시
+	function avgDiff(mfAvg, currentMfTotal) {
+		//관리비 전체 평균과 이번달 관리비 차이
+		const difference = Math.abs(mfAvg - currentMfTotal);
+		
+		if (currentMfTotal > mfAvg){
+			return $('#mfAvg').removeClass('smaller').addClass('bigger').text(comma(mfAvg + " (+" + difference + ")" ));
+		} else {
+			return $('#mfAvg').removeClass('bigger').addClass('smaller').text(comma(mfAvg + " (-" + difference + ")" ));
+		}
 	}
 	
 </script>

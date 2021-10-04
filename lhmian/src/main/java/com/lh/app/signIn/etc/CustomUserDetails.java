@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 	    
 	    private String ID;
 	    private String PASSWORD;
-	    private String AUTHORITY;
 	    private boolean ENABLED = true;
 	    private String NAME;
 	    private String PHONE;
@@ -24,7 +23,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 	    @Override
 	    public Collection<? extends GrantedAuthority> getAuthorities() {
 	        ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
-	        auth.add(new SimpleGrantedAuthority("ROLE_" + AUTHORITY));
+	        auth.add(new SimpleGrantedAuthority("ROLE_" + AUTHOR));
 	        return auth;
 	    }
 	 
@@ -36,6 +35,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 	    @Override
 	    public String getUsername() {
 	        return ID;
+	    }
+  
+	    public void setUsername(String id) {
+	        ID = id;
 	    }
 	 
 	    @Override

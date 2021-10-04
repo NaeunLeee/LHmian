@@ -5,7 +5,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.fee.domain.ManagementFeeVO;
 import com.lh.app.fee.service.ManagementFeeService;
@@ -23,20 +25,24 @@ public class ManagementFeeController {
 		if (user != null) {
 			String houseInfo = user.getHOUSEINFO();
 			
-			System.out.println(user.getUsername());
-			
-			System.out.println(houseInfo);
-			
 			ManagementFeeVO vo = new ManagementFeeVO();
 			vo.setHouseInfo(houseInfo);
 			//가장 최근 관리비
-			vo.setArn(1);
 			
 			model.addAttribute("list", managementFeeService.selectFeeList(vo));
-			model.addAttribute("fee", managementFeeService.selectFee(vo));
 			model.addAttribute("avg", managementFeeService.selectAvg());
 		}
 		
 		return "myPage/myManageFee";
+	}
+	
+	@PostMapping("/dateChange")
+	@ResponseBody
+	public ManagementFeeVO dateChange(ManagementFeeVO vo, @AuthenticationPrincipal CustomUserDetails user) {
+		
+		vo.setHouseInfo(user.getHOUSEINFO());
+		
+		return managementFeeService.selectFee(vo);
+		
 	}
 }
