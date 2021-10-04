@@ -11,4 +11,6 @@ public interface ManagementFeeMapper {
 	//특정 월 관리비 내역
 	public ManagementFeeVO selectFee(ManagementFeeVO vo);
 	
+	//관리비 전체 평균
+	public ManagementFeeVO selectAvg();
 }

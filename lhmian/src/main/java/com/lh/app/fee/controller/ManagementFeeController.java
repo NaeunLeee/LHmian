@@ -29,7 +29,12 @@ public class ManagementFeeController {
 			
 			ManagementFeeVO vo = new ManagementFeeVO();
 			vo.setHouseInfo(houseInfo);
+			//가장 최근 관리비
+			vo.setArn(1);
+			
 			model.addAttribute("list", managementFeeService.selectFeeList(vo));
+			model.addAttribute("fee", managementFeeService.selectFee(vo));
+			model.addAttribute("avg", managementFeeService.selectAvg());
 		}
 		
 		return "myPage/myManageFee";

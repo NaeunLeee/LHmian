@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 
@@ -27,6 +29,31 @@ a:hover {
 
 .tabstyle-9 .responsive-tabs li a {
 	line-height: 1px;
+}
+
+.bigger {
+	color: red;
+}
+
+.smaller {
+	color: blue;
+}
+
+.select-box {
+	width: 130px;
+}
+
+.select-box select {
+	background-color: white;
+	width: 130px;
+}
+
+.select-box select:hover {
+	background: white;
+}
+
+.select-box select:focus {
+	background: white;
 }
 </style>
 <body>
@@ -59,68 +86,72 @@ a:hover {
 				</div>
 				<div class="clearfix"></div>
 				<!--end title-->
-				
-				<div class="col-md-12 margin-bottom-3">
-					<div class="text-box white padding-4">
-						ddkdkdkdk
 
-					</div>
-				</div>
 
 				<div class="col-md-6">
 					<div class="text-box white padding-4 margin-bottom-3">
-						<h5 class="font-weight-7 text-gray">{}월 관리비</h5>
-						<h1 class="font-weight-5">{}100,000</h1>
-						<div class="col-md-6">
-							<h6 class="">전월 대비</h6>
+						<h4 id="month" class="font-weight-7 text-gray"></h4>
+						<div class="select-box">
+							<select>
+								<c:forEach var="list" items="${list }">
+									<option value="${list.mfDate }">
+									20${list.year }년 ${list.month }월</option>
+								</c:forEach>
+							</select>
+							<div class="select__arrow"></div>
 						</div>
-						<div class="col-md-6">
-							<h6>
-								<!-- 감소 증가, 빨간색 파란색 -->
-								<span class="font-weight-7">몇원</span><span class="">감소</span>
-							</h6>
-						</div>
-						<div class="col-md-6">
-							<h6 class="">관리비 평균</h6>
-						</div>
-						<div class="col-md-6">
-							<h6>
-								<!-- 감소 증가, 빨간색 파란색 -->
-								<span class="font-weight-7">123,456</span> 원<span class=""></span>
-							</h6>
-						</div>
-						<br>
+						<h1 id="mfTotal" class="font-weight-5" style="margin-top: 10px;"></h1>
 						<div class="col-md-12">
-							<h6>{} 님! 이번달은 관리비가 조금 많이 나오셨군요!</h6>
+							<h5>
+								<sec:authentication property="principal.NAME" />
+								님! 이번달은 관리비가 조금 많이 나오셨군요!
+							</h5>
 						</div>
-						<br> <br> <br>
+						<div class="margin-bottom-5"></div>
 						<!--end item-->
 
 						<div class="col-md-12">
-							<h5 class="nopadding">상세 내역</h5>
-							<ul class="opening-list font-weight-7">
-								<li><span class="pull-left">일반관리비</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
-								<li><span class="pull-left">난방/온수</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
-								<li><span class="pull-left">전기료</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
-								<li><span class="pull-left">수도료</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
-								<li><span class="pull-left">TV 수신료</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
-								<li><span class="pull-left">청소비</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
+							<ul class="opening-list" style="font-size: 18px;">
+								<li><span class="pull-left">전월 대비</span> <span
+									id="compareTotal" class="pull-right font-weight-7">dddd</span></li>
+								<li><span class="pull-left">아파트 평균 관리비</span> <span
+									id="mfAvg" class="pull-right"></span></li>
+								<li><span class="pull-left">일반관리비</span> <span id="mfFee"
+									class="pull-right"></span></li>
+								<li><span class="pull-left">난방/온수</span> <span id="mfHeat"
+									class="pull-right"></span></li>
+								<li><span class="pull-left">전기료</span> <span id="mfElect"
+									class="pull-right"></span></li>
+								<li><span class="pull-left">수도료</span> <span id="mfWater"
+									class="pull-right"></span></li>
+								<li><span class="pull-left">TV 수신료</span> <span id="mfTv"
+									class="pull-right"></span></li>
+								<li><span class="pull-left">청소비</span> <span id="mfClean"
+									class="pull-right"></span></li>
 								<li><span class="pull-left">경비비</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
+									id="mfSecurity" class="pull-right"></span></li>
 								<li><span class="pull-left">승강기 유지비</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
+									id="mfElevator" class="pull-right"></span></li>
 								<li><span class="pull-left">생활 폐기물 수수료</span> <span
-									class="pull-right">06.00 - 22.00</span></li>
+									id="mfTrash" class="pull-right"></span></li>
 							</ul>
 						</div>
 					</div>
 				</div>
+				<div class="col-md-6 margin-bottom-3">
+
+					<div class="text-box white padding-3">
+						<div class="col-md-7" style="height: 44.84px; align-self: center">
+							<h4 class="font-weight-5 col-centered">지금 바로 관리비를 결제하세요!</h4>
+						</div>
+						<div class="col-md-5 text-right">
+							<a class="btn btn-medium btn-dark uppercase" href="#"> <span>결제하기</span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+
 				<div class="col-md-6 text-center margin-bottom">
 					<div class="text-box white padding-4">
 						<iframe class="chartjs-hidden-iframe"
@@ -129,8 +160,8 @@ a:hover {
 						<h4 class="uppercase">Pie Chart</h4>
 						<br>
 
-						<canvas id="myPieChart" width="555" height="555"
-							style="display: block; width: 555px; height: 555px;"></canvas>
+						<canvas id="myPieChart" width="300" height="300"
+							style="display: block; width: 300px; height: 300px;"></canvas>
 					</div>
 				</div>
 			</div>
@@ -148,18 +179,7 @@ a:hover {
 							style="display: block; width: 400px; height: 400px;"></canvas>
 					</div>
 				</div>
-				<div class="col-md-6 text-center margin-bottom">
-					<div class="text-box white padding-4">
-						<iframe class="chartjs-hidden-iframe"
-							style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
 
-						<h4 class="uppercase">Pie Chart</h4>
-						<br>
-
-						<canvas id="myPieChart" width="555" height="555"
-							style="display: block; width: 555px; height: 555px;"></canvas>
-					</div>
-				</div>
 			</div>
 
 			<div class="row">
@@ -655,5 +675,55 @@ a:hover {
 
 	});
 </script>
-
+<script>
+	
+	const arn = 1;
+	
+	//이번달 관리비 합계
+	const currentMfTotal = ${list[0].mfTotal};
+	//저번달 관리비 합계
+	const lastMfTotal = ${list[1].mfTotal};
+	
+	//관리비 전체 평균
+	const mfAvg = ${avg.mfAvg};
+	
+	$('#mfFee').text(comma(${fee.mfFee}));
+	$('#mfHeat').text(comma(${fee.mfHeat}));
+	$('#mfElect').text(comma(${fee.mfElect}));
+	$('#mfWater').text(comma(${fee.mfWater}));
+	$('#mfTv').text(comma(${fee.mfTv}));
+	$('#mfClean').text(comma(${fee.mfClean}));
+	$('#mfSecurity').text(comma(${fee.mfSecurity}));
+	$('#mfElevator').text(comma(${fee.mfElevator}));
+	$('#mfTrash').text(comma(${fee.mfTrash}));
+	$('#mfTotal').text(comma(currentMfTotal));
+	
+	//이번달 관리비와 지난달 관리비 차이
+	const diff = Math.abs(lastMfTotal - currentMfTotal);
+	
+	//이번달 관리비가 지난달 관리비보다 많으면(초과) => 빨간색
+	if (currentMfTotal > lastMfTotal) {
+		$('#compareTotal').addClass('bigger').text(comma(diff) + " 증가");
+	} else {
+		$('#compareTotal').addClass('smaller').text(comma(diff) + " 감소");
+	}
+	
+	//관리비 전체 평균과 이번달 관리비 차이
+	const difference = Math.abs(mfAvg - currentMfTotal);
+	
+	if (mfAvg < mfTotal){
+		$('#mfAvg').addClass('bigger').text(comma(mfAvg + " (-" + difference + ")" ));
+	} else {
+		$('#mfAvg').addClass('smaller').text(comma(mfAvg + " (-" + difference + ")" ));
+	}
+	
+	let date = ${fee.mfDate};
+	const month = parseInt(date.toString().substring(2, 4));
+	$('#month').text(month + "월 관리비");
+	
+	function comma(money) {
+		return money.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + " 원";
+	}
+	
+</script>
 </html>
