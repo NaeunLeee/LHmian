@@ -93,7 +93,7 @@
 															<a href="${pageContext.request.contextPath}/introduce/introduce">아파트 소개</a> 
 														</li>
 														<li>
-															<a href="#">배치도</a> 
+															<a href="${pageContext.request.contextPath}/introduce/arrangement">배치도</a> 
 														</li>
 														<li>
 															<a href="${pageContext.request.contextPath}/introduce/phaseDiagram">평형도</a> 
@@ -102,7 +102,8 @@
 															<a href="${pageContext.request.contextPath}/introduce/opeInfoList">운영정보공개</a> 
 														</li>
 														<li>
-															<a href="#">오시는 길</a> 
+														<!-- 한솔 1004 -->
+															<a href="${pageContext.request.contextPath}/introduce/map">오시는 길</a> 
 														</li>
 													</ul>
 												</li>
