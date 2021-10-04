@@ -44,8 +44,9 @@
 			</tr>
 		</tbody>
 	</table>
+	<input type="text" id="houseInfo" name="houseInfo" class="houseInfo" value="${info.houseInfo}">
 	<!-- 10/04 주석처리  -->
-	<%-- <button data-toggle="modal" data-target="#modal-switch"
+	<button data-toggle="modal" data-target="#modal-switch"
 		class="btn btn-default">수정</button>
 	<div id="modal-switch" tabindex="-1" role="dialog"
 		aria-labelledby="modal-switch-label" class="modal fade">
@@ -59,45 +60,58 @@
 						<h4>차량 정보</h4>
 					</div>
 				</div>
-				<div class="modal-body">
+				<div>
 					<c:forEach var="car" items="${car}">
-						<form id="frm" class="frm">
-							<span>순번</span> <input type="text" id="rownum${car.rownum}"
-								name="rownum${car.rownum}" class="rownum" value="${car.rownum}"><br>
-							<span>차종</span> <input type="text" id="carType${car.rownum}"
-								name="carType${car.rownum}" class="carType"
+						<form class="frm">
+							<span>순번</span> <input type="text" id="rownum"
+								name="rownum" class="rownum" value="${car.rownum}" disabled="disabled"><br>
+							<span>차종</span> <input type="text" id="carType"
+								name="carType" class="carType"
 								value="${car.carType}"><br> <span>차번호</span> <input
-								type="text" id="carCode${car.rownum}"
-								name="carCode${car.rownum}" class="carCode"
+								type="text" id="carCode"
+								name="carCode" class="carCode"
 								value="${car.carCode}"><br>
 						</form>
+						<button class="btn2">확인</button>
 					</c:forEach>
 				</div>
 			</div>
 		</div>
-	</div> --%>
-
-	<!-- <div>
-		<button id="btnUpdate">수정</button>
-	</div> -->
-	<!-- 10/04 주석처리 끝 -->
-	<!-- 10/04 추가부분 -->
-	<div>
-		<c:forEach var="car" items="${car}">
-			<form class="frm">
-				<span>순번</span> <input type="text" id="rownum${car.rownum}"
-					name="rownum${car.rownum}" class="rownum" value="${car.rownum}"><br>
-				<span>차종</span> <input type="text" id="carType${car.rownum}"
-					name="carType${car.rownum}" class="carType" value="${car.carType}"><br>
-				<span>차번호</span> <input type="text" id="carCode${car.rownum}"
-					name="carCode${car.rownum}" class="carCode" value="${car.carCode}"><br>
-			</form>
-			<button class="btn">확인</button>
-		</c:forEach>
 	</div>
+	<div>
+		<button id="btnUpdate">수정</button>
+	</div>
+	<!-- for문 같이 여러 폼 형식의 값을 보내고 싶을때는 클래스를 이용해서 보낸다. -->
+	<!-- id는 오로지 하나의 값만 인정된다. -->
+	<!-- 10/04 19시 이후 커밋 -->
 	<script type="text/javascript">
-		$(".btn").on("click",function(){
-			console.log($(this).prev().serializeArray());
+		$(".btn2").on("click", function() {
+			console.log($(this).prev().children(".carType").val());
+			console.log($(this).prev().children(".carCode").val());
+			console.log($(this).prev().children(".rownum").val());
+			console.log($(".houseInfo").val());
+			$.ajax({
+				url : "updateCar",
+				type : "put",
+				dataType : "json",
+				data : JSON.stringify({
+					houseInfo : $(".houseInfo").val(),
+					rownum : $(this).prev().children(".rownum").val(),
+					carCode : $(this).prev().children(".carCode").val(),
+					carType : $(this).prev().children(".carType").val()
+				}),
+				contentType : 'application/json',
+				success : function(data) {
+					alert("수정이 완료 되었습니다");
+					console.log(data);
+					$("#modal-switch").hide();
+					location.reload();
+				},
+				error : function() {
+					alert("입력되지 않았습니다."); // 실패 시 처리
+				}
+			}); 
+
 		});
 	</script>
 	<!-- 추가부분 끝 -->

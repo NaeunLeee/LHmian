@@ -57,19 +57,17 @@
 	</select>
 
 	<select id="read" resultType="MemberInfoVO">
-		SELECT DISTINCT M.ID, M.PHONE,
+		SELECT DISTINCT M.ID, M.PHONE, M.HOUSE_INFO,
 		M.PASSWORD,
 		LISTAGG(C.CAR_CODE, '/') WITHIN GROUP (ORDER BY C.CAR_CODE) OVER(PARTITION BY
 		C.HOUSE_INFO) AS carCode
 		, LISTAGG(C.CAR_TYPE, '/') WITHIN GROUP (ORDER BY C.CAR_TYPE)
 		OVER(PARTITION BY C.HOUSE_INFO) AS carType
 		FROM MEMBER M
-		JOIN GENERATION
-		G
-		ON M.HOUSE_INFO = G.HOUSE_INFO
+		JOIN GENERATION	G
+		ON (M.HOUSE_INFO = G.HOUSE_INFO)
 		JOIN CARLIST C
-		ON G.HOUSE_INFO =
-		C.HOUSE_INFO
+		ON (G.HOUSE_INFO = C.HOUSE_INFO)
 		WHERE M.ID = #{id}
 	</select>
 
@@ -85,14 +83,16 @@
 		C.HOUSE_INFO
 		WHERE M.ID = #{id}
 	</select>
-
+	
+	<!-- 10/04 19시 이후 커밋 -->
 	<update id="updateCar">
 		UPDATE CARLIST SET
-		CAR_CODE = {carCode},
-		CAR_TYPE = {carType}
-		WHERE HOUSE_INFO = {houseInfo}
-		AND ROWNUM = {rownum}
+		CAR_CODE = #{carCode},
+		CAR_TYPE = #{carType}
+		WHERE HOUSE_INFO = #{houseInfo}
+		AND ROWNUM = #{rownum}
 	</update>
+
 
 	<delete id="delete">
 		DELETE

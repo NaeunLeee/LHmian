@@ -46,12 +46,12 @@ public class MemberController {
 		return "myPage/myInfo";
 	}
 	
+	//10/04 19시 이후 커밋
 	@PutMapping("updateCar") // put, delete : 파라미터 json만 가능 -> { id:100, pw:"111", name:"choi"}
-	public MemberInfoVO update(@RequestParam String[] chk,MemberInfoVO vo) { // RequestBody 필요
-		System.out.println(chk.toString());
-		for (int i = 0; i < chk.length; i++) {
-			service.updateCar(vo);
-		}
+	@ResponseBody
+	public MemberInfoVO update(@RequestBody MemberInfoVO vo) { // RequestBody 필요
+		System.out.println(vo.toString());
+		service.updateCar(vo);
 		return vo;
 	}
 	
