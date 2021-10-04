@@ -4,7 +4,11 @@
 
 	<select id="selectFeeList" resultType="ManagementFeeVO">
 		SELECT ROWNUM AS ARN,
-			   MF_DATE, 
+			   MF_DATE,
+			   SUBSTR(MF_DATE, 1, 2) AS YEAR,
+			   CASE WHEN SUBSTR(MF_DATE, 3, 1) = '0' THEN SUBSTR(MF_DATE, 4, 1)
+			   ELSE SUBSTR(MF_DATE, 3, 2)
+			   END AS MONTH, 
 			   HOUSE_INFO, 
 			   MF_FEE, 
 			   MF_HEAT, 
@@ -15,7 +19,7 @@
 			   MF_SECURITY, 
 			   MF_ELEVATOR, 
 			   MF_TRASH,
-			   MF_FEE + MF_HEAT + MF_ELECT + MF_WATER + MF_TV + MF_CLEAN + MF_SECURITY + MF_ELEVATOR + MF_TRASH AS TOTAL
+			   MF_TOTAL
 		FROM
 			(
 			SELECT *
@@ -40,7 +44,7 @@
 				   MF_SECURITY, 
 				   MF_ELEVATOR, 
 				   MF_TRASH,
-				   MF_FEE + MF_HEAT + MF_ELECT + MF_WATER + MF_TV + MF_CLEAN + MF_SECURITY + MF_ELEVATOR + MF_TRASH AS TOTAL
+				   MF_TOTAL
 			FROM
 				(
 				SELECT *
@@ -49,6 +53,11 @@
 				ORDER BY MF_DATE DESC)
 			)
 		WHERE ARN = #{arn}
+	</select>
+	
+	<select id="selectAvg" resultType="ManagementFeeVO">
+		SELECT TRUNC(AVG(MF_TOTAL)) AS MF_AVG
+		FROM MANAGEMENT_FEE
 	</select>
 
 </mapper>
