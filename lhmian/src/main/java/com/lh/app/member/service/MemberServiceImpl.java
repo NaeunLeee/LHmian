@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lh.app.member.domain.MemberCriteria;
+import com.lh.app.member.domain.MemberInfoVO;
 import com.lh.app.member.mapper.MemberMapper;
 import com.lh.app.signIn.domain.MemberVO;
 
@@ -44,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO read(MemberVO vo) {
+	public MemberInfoVO read(MemberInfoVO vo) {
 		// TODO Auto-generated method stub
 		return mapper.read(vo);
 	}
@@ -56,4 +57,20 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 
+	@Override
+	public List<MemberInfoVO> getListcar(String id) {
+		// TODO Auto-generated method stub
+		return mapper.getListcar(id);
+	}
+	
+	// 10/04 추가 (이광호)
+	//차량 정보 수정
+	@Override
+	public int updateCar(MemberInfoVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.updateCar(vo);
+	}
+	
+	
+	
 }

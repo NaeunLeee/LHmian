@@ -21,7 +21,7 @@
 			</foreach>
 		</trim>
 	</sql>
-	
+
 	<!-- 10/04 수정 시작 -->
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(ROWNUM) FROM
@@ -31,7 +31,7 @@
 		ROWNUM > 0
 	</select>
 	<!-- 10/04 수정 끝 -->
-	
+
 	<select id="getList" resultType="memberVO">
 		<![CDATA[
 		SELECT *
@@ -55,21 +55,45 @@
 		WHERE RN > (#{pageNum} - 1) * #{amount}
 	]]>
 	</select>
-	
-	<!-- 10/04추가 -->
-	<select id="read" resultType="MemberVO">
-		SELECT DISTINCT M.ID, M.PHONE, M.PASSWORD,
-        LISTAGG(C.CAR_CODE, '/') WITHIN GROUP (ORDER BY C.CAR_CODE) OVER(PARTITION BY C.HOUSE_INFO) AS CARCODE
-        , LISTAGG(C.CAR_TYPE, '/') WITHIN GROUP (ORDER BY C.CAR_TYPE) OVER(PARTITION BY C.HOUSE_INFO) AS CARTYPE
+
+	<select id="read" resultType="MemberInfoVO">
+		SELECT DISTINCT M.ID, M.PHONE,
+		M.PASSWORD,
+		LISTAGG(C.CAR_CODE, '/') WITHIN GROUP (ORDER BY C.CAR_CODE) OVER(PARTITION BY
+		C.HOUSE_INFO) AS carCode
+		, LISTAGG(C.CAR_TYPE, '/') WITHIN GROUP (ORDER BY C.CAR_TYPE)
+		OVER(PARTITION BY C.HOUSE_INFO) AS carType
 		FROM MEMBER M
-		JOIN GENERATION G 
+		JOIN GENERATION
+		G
 		ON M.HOUSE_INFO = G.HOUSE_INFO
 		JOIN CARLIST C
-		ON G.HOUSE_INFO = C.HOUSE_INFO
+		ON G.HOUSE_INFO =
+		C.HOUSE_INFO
 		WHERE M.ID = #{id}
 	</select>
-	<!-- 끝 -->
-	
+
+	<!-- 10/04 추가 -->
+	<select id="getListcar" resultType="MemberInfoVO">
+		SELECT
+		ROWNUM,C.CAR_TYPE,C.CAR_CODE
+		FROM MEMBER M
+		JOIN GENERATION G
+		ON M.HOUSE_INFO = G.HOUSE_INFO
+		JOIN CARLIST C
+		ON G.HOUSE_INFO =
+		C.HOUSE_INFO
+		WHERE M.ID = #{id}
+	</select>
+
+	<update id="updateCar">
+		UPDATE CARLIST SET
+		CAR_CODE = {carCode},
+		CAR_TYPE = {carType}
+		WHERE HOUSE_INFO = {houseInfo}
+		AND ROWNUM = {rownum}
+	</update>
+
 	<delete id="delete">
 		DELETE
 		FROM MEMBER
