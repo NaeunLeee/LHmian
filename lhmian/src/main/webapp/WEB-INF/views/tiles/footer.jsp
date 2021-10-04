@@ -8,7 +8,7 @@
 			<div class="container sec-tpadding-3 sec-bpadding-3">
 				<div class="row">
 					<div class=" col-md-12 col-centered text-center">
-						<img src="${pageContext.request.contextPath}/resources/images/logo/fn2-logo.png" alt="" />
+						<img src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="" />
 						<div class="clearfix"></div>
 						<br /> <br />
 						<h4 class="text-white uppercase">Address</h4>

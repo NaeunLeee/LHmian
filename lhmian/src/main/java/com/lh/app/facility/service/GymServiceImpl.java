@@ -26,4 +26,8 @@ public class GymServiceImpl implements GymService {
 		return gymMapper.spinTime();
 	}
 
+	public GxVO gxRead(GxVO vo) {
+		return gymMapper.gxRead(vo);
+	}
+
 }
