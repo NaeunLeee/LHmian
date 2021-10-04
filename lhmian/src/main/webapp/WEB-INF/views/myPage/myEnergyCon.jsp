@@ -14,30 +14,54 @@ margin : 30px;
 select {
 display : block;
 }
+
+.btn-yj {
+display : inline-block;
+}
+
+.btn-month {
+width : 100px;
+margin : 0px 5px;
+}
+
+.col-md-8 {
+padding-left : 65px;
+}
+
+/* .btn1 {
+margin-left : 300px;
+} */
+
+.btn2 {
+margin-left : 324px;
+} 
 </style>
+<hr>
 <div class="container">
 	<div class="row">
-	<select name="chart">
-	<option value="">선택</option>
-	<option value="all">전체</option>
-	<option value="month">월별</option>
-	<option value="energy">에너지별</option>
-	</select>
+	<br><br>
+		<div class="col-md-2"></div>
+		<div class="btn1 col-md-8"></div>
+		<div class="col-md-2"></div>
+		<br><br>
+		<div class="btn2">
+			<button class="btn-yj">6개월</button>
+			<button class="btn-yj">1년</button>
+		</div>
+		<div class="col-md-7 text-center margin-bottom">
+			<h4 class="uppercase">Bar Chart</h4>
+			<br/>
+			<canvas id="myBarChart" width="400" height="300"></canvas>
+		</div>
+		<div class="col-md-5 text-center margin-bottom">
+		    <h4 class="uppercase">Pie Chart</h4>
+			<br/>
+			<canvas id="myDoughnutChart" width="300" height="300"></canvas>
+		</div>
 		<div class="col-md-7 text-center margin-bottom">
 			<h4 class="uppercase">Line Chart</h4>
 			<br/>
 			<canvas id="myLineChart" width="400" height="300"></canvas>
-		</div>
-		 <div class="col-md-5 text-center margin-bottom">
-		     <h4 class="uppercase">Pie Chart</h4>
-			 <br/>
-			 <canvas id="myDoughnutChart" width="300" height="300"></canvas>
-		 </div>
-		  <div class="col-md-12 text-center margin-bottom"></div>
-		 <div class="col-md-7 text-center margin-bottom">
-			<h4 class="uppercase">Bar Chart</h4>
-			<br/>
-			<canvas id="myBarChart" width="400" height="300"></canvas>
 		</div>
 		<div class="col-md-5 text-center margin-bottom">
 			<h4 class="uppercase">Gauge Chart(평균)</h4>
@@ -49,6 +73,21 @@ display : block;
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
 <script>
+$(function() {
+	var date = new Date();
+	var month = date.getMonth() + 1;
+	var total = "";
+	$(document).ready(function() {
+		for (let i = 0; i < 6; i++) {
+			var btn = month - i;
+			var tag = "";
+			tag = '<button id="month' + i + '" class="btn-yj btn-month">' + btn + '월</button>';
+			total = total + tag;
+		}
+		$('.btn1').html(total);
+	});  
+});
+
 var engArray = [];			var gasArray = [];
 var electricArray = [];		var waterArray = [];
 var trashArray = [];		var trashFoodArray = [];

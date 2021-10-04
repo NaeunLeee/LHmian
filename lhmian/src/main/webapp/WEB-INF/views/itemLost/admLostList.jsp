@@ -60,15 +60,22 @@
 }
 
 .container {
-margin-left : 80px; 
+width : 500px;
+
+}
+
+.table-style-2 { 
+width : 500px;
 }
 
 tr {
 border-bottom : 1px solid lightgray;
+height : 80px;
 }
 
-#lostModal {
-	transform: translateY(-3px);
+textarea {
+width : 280px;
+height : 60px;
 }
 
 h4 {
@@ -76,7 +83,7 @@ margin : 0 0 0;
 }
 
 .modal-footer {
-padding-right : 32%;
+padding-right : 40%;
 }
 </style>
 <br><br>

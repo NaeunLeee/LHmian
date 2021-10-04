@@ -17,6 +17,7 @@
 		</div>
 		<input type="hidden" name="id" value="${user.username}">
 		<input type="hidden" name="houseInfo" value="${user.HOUSEINFO}">
+		<br>
 		<div align="center">
 			<button type="submit" class="btn btn-gyellow-yj">등 록</button>
 			<button type="reset" class="btn btn-gyellow-yj">취 소</button>
@@ -24,5 +25,4 @@
 		</div>
 	</form>
 </div>
-</body>
-</html>
+<br>

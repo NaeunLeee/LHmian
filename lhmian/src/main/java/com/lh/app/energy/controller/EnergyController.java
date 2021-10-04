@@ -30,4 +30,11 @@ public class EnergyController {
 	public void admList(EnergyVO vo, Model model) {
 		model.addAttribute("admList", energyService.getList(vo));
 	}
+	
+	// 테스트페이지
+		@GetMapping("/no/test")
+		public void test(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+			vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
+			model.addAttribute("engList", energyService.getList(vo));
+		}
 }
