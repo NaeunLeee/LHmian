@@ -11,43 +11,8 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<style>
-	.thumbs img {
-		width: 100px;
-		height: 100px;
-	}
-	#mainImg img {
-		width: 450px;
-		height: 300px;
-	}
-</style>
-
 </head>
 <body>
-
-<div class="header-inner-tmargin">
-	<section class="section-side-image clearfix">
-		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay">
-							<div class="text text-center">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class=" clearfix"></div>
-</div>
-
 	<section>
 		<div class="pagenation-holder-no-bottom">
 			<div class="container">
@@ -77,6 +42,7 @@
 				</div>
 				<div class="clearfix"></div>
 				<!--end title-->
+
 			</div>
 		</div>
 	</section>
@@ -86,26 +52,24 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 margin-bottom">
-					<div id="mainImg">
-						<img src="${pageContext.request.contextPath}/resources/images/library_1.jpg" alt="독서실" class="img-responsive">
-					</div>
+					<img src="${pageContext.request.contextPath}/resources/images/library.jpg" alt="독서실" class="img-responsive">
 				</div>
 				<div class="col-md-6 margin-bottom">
 					<h5 class="font-weight-4">LHmian 한사랑 독서실</h5>
-					<p>LHmian의 자라나는 새싹들을 위한, 준비된 미래형 독서실</p>
+					<p>독서실 설명 블라블라블라~~~</p>
 					<br />
 					<ul class="iconlist gyellow">
 						<li><i class="fa fa-check"></i> 
 							쾌적한 환경
 						</li>
 						<li><i class="fa fa-check"></i> 
-							전 좌석 LAN선, 기가 WIFI 설치 완료
+							Etiam enim Suspendisse imperdiet cursus nisi Maecenas
 						</li>
 						<li><i class="fa fa-check"></i> 
-							컴퓨터실, 휴게실 무료 이용 가능
+							Nullam turpis Cras dapibus orci rutrum
 						</li>
 						<li><i class="fa fa-check"></i> 
-							백색소음기 구비
+							Etiam enim Suspendisse imperdiet cursus nisi Maecenas
 						</li>
 					</ul>
 					<br /> <br />
@@ -121,40 +85,42 @@
 	<!-- end section -->
 
 	<div class="divider-line solid light"></div>
-	<br><br>
 	<section class="moreless-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="thumbs">
-						<ul class="ce4-clients noborder grid-cols-6 hover-2">
-							<li>
-								<a href="${pageContext.request.contextPath}/resources/images/library_1.jpg">
-									<img src="${pageContext.request.contextPath}/resources/images/library_1.jpg" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/resources/images/library_2.jpg">
-									<img src="${pageContext.request.contextPath}/resources/images/library_2.jpg" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/resources/images/library_3.jpg">
-									<img src="${pageContext.request.contextPath}/resources/images/library_3.jpg" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/resources/images/library_4.jpg">
-									<img src="${pageContext.request.contextPath}/resources/images/library_4.jpg" alt="">
-								</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/resources/images/library_5.jpg">
-									<img src="${pageContext.request.contextPath}/resources/images/library_5.jpg" alt="">
-								</a>
-							</li>
-						</ul>
-					</div>
+					<ul class="ce4-clients noborder grid-cols-6 hover-2">
+						<li>
+							<a href="#">
+								<img src="http://placehold.it/400x300" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="http://placehold.it/400x300" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="http://placehold.it/400x300" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="http://placehold.it/400x300" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="http://placehold.it/400x300" alt="">
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="http://placehold.it/400x300" alt="">
+							</a>
+						</li>
+					</ul>
 				</div>
 				<!--end item-->
 			</div>
@@ -183,11 +149,11 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form id="libForm" name="libForm" method="post" action="libraryPay" target="popup_window">
-						<div>
-							이 름 | <sec:authentication property="principal.NAME" /> <br> <br> 
-							시작 날짜 | <input type="text" id="libStartdate"><br> <br> 
-							기 간 | <select id="libPeriod" name="libPeriod">
+					<div>
+						<form id="libForm" name="libForm">
+							이름 | <sec:authentication property="principal.NAME" /> <br> <br> 
+							날짜 | <input type="text" id="selectDate"><br> <br> 
+							기간 | <select id="libPeriod" name="libPeriod">
 										<option value="" selected>선택</option>
 										<option value="1">1일</option>
 										<option value="7">1주</option>
@@ -196,15 +162,15 @@
 										<option value="180">6달</option>
 										<option value="365">1년</option>
 								   </select><br> <br> 
-							금 액 | <input type="text" id="libPrice" name="libPrice" readonly="readonly">원
-						</div>
-						<br>
-						<div align="center">
-								<button type="submit" id="doPay">결제하기</button>
-								<button type="button" data-dismiss="modal">취소</button>
-							&nbsp;
-						</div>
-					</form>
+							금액 | <input type="text" id="libPrice" name="libPrice" readonly="readonly">원
+						</form>
+					</div>
+					<br>
+					<div align="center">
+						<button type="button">등록</button>
+						&nbsp;
+						<button type="button" data-dismiss="modal">취소</button>
+					</div>
 				</div>
 
 			</div>
@@ -215,7 +181,7 @@
 
 <script>
 	// 날짜 선택 DatePicker
-	$("#libStartdate").datepicker();
+	$("#selectDate").datepicker();
 
 	$.datepicker.setDefaults({
 		dateFormat : 'yy-mm-dd',
@@ -255,18 +221,6 @@
 		$('#libPrice').val(price);
 
 	});
-	
-    $(".thumbs a").click(function() {           					 //클릭 시
-        var imgPath = $(this).attr("href");     				  //클릭한 a태그의 하이퍼링크를 변수저장
-        $("#mainImg>img").attr({src:imgPath}) 					  //메인 이미지의 주소 속성에 할당
-        				 .hide()                                 //fadein()효과를 보여주기 위해 숨김처리
-        				 .fadeIn();                              //fadeIn()
-        return false;                           //<a> 의 본래기능 (하이퍼링크) 작동방지
-    });
-
-   	$('#doPay').on('click', function() {
-   		window.open("", "popup_window", "width=500, height=700, scrollbars=yes");
-   	});
 </script>
 
 </html>
