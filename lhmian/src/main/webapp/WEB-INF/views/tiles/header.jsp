@@ -225,6 +225,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
  
+<script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
+ 
 <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
 (Load Extensions only on Local File Systems ! 
 The following part can be removed on Server for On Demand Loading) --> 
