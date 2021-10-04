@@ -9,7 +9,7 @@ public class LibraryVO {
 
 	private String libNo;
 	private String payNo;
-	private Date libStartDate;
+	private Date libStartdate;
 	private int libPeriod;
 	private int libPrice;
 	

@@ -9,40 +9,65 @@
 
 </head>
 <body>
-	<div class="wrapper-boxed">
-		<div class="site-wrapper">
-			<section>
-				<div class="pagenation-holder-no-bottom">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6">
-								<!-- <h4>Pricing Badges</h4> -->
-							</div>
-							<div class="col-md-6">
-								<ol class="breadcrumb">
-									<li><a href="${pageContext.request.contextPath}">Home</a></li>
-									<li><a href="${pageContext.request.contextPath}/facility/facilityList">편의 시설</a></li>
-									<li class="current"><a href="#">헬스장</a></li>
-								</ol>
+
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
+							<div class="text text-center">
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
-			<section class="sec-padding">
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12 nopadding">
-							<div class="sec-title-container-padding-topbottom text-center">
-								<div class="pl-title-line-1"></div>
-								<h4 class="uppercase font-weight-7 less-mar-1">헬스장</h4>
-								<div class="clearfix"></div>
-								<p class="by-sub-title">LHmian의 자랑, 근손실없는헬스장 입니다</p>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-						<!--end title-->
+			</div>
+		</div>
+	</section>
+	<div class=" clearfix"></div>
+</div>
 
+	<section>
+		<div class="pagenation-holder-no-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<ol class="breadcrumb-gray">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/facility/facilityList">편의 시설</a></li>
+							<li class="current"><a href="#">헬스장</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="sec-tpadding-2">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">헬스장</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title">LHmian의 자랑, 근손실없는헬스장 입니다.</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<!--end title-->
+			</div>
+		</div>
+	</section>
+
+	<div class="wrapper-boxed">
+		<div class="site-wrapper">
 						<section class="sec-padding section-light">
 							<div class="container">
 								<div class="row">

@@ -26,8 +26,26 @@ table {
 
 </head>
 <body>
-	<br>
-	<br>
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class=" clearfix"></div>
+</div>
 	<section>
 		<div class="pagenation-holder-no-bottom">
 			<div class="container">
@@ -60,7 +78,7 @@ table {
 
 		<div class="container" align="center">
 			<div class="col-7">
-				<table border="1" class="table">
+				<table class="table">
 					<tr>
 						<th>글 번호</th>
 						<th>카테고리</th>
