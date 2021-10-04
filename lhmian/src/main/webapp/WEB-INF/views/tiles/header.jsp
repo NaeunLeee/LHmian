@@ -166,10 +166,10 @@
 																<!-- ------------------------ -->
 															</li>
 															<li>
-																<a href="#">관리비 조회</a>
+																<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
 															</li>
 															<li>
-																<a href="#">에너지 사용량</a>
+																<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
 															</li>
 															<li>
 																<a href="#">주민 투표</a>
@@ -195,10 +195,10 @@
 																<!-- ------------------------ -->
 															</li>
 															<li>
-																<a href="#">에너지 사용량</a>
+																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
 															</li>
 															<li>
-																<a href="#">회원 관리</a>
+																<a href="${pageContext.request.contextPath}/admMemberList">회원 관리</a>
 															</li>
 															<li>
 																<a href="#">시설물 관리</a>
