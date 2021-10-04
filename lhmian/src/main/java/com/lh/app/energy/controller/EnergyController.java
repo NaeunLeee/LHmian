@@ -18,14 +18,14 @@ public class EnergyController {
 	EnergyService energyService;
 
 	// 전체조회-사용자
-	@GetMapping("/no/myEnergyCon")
+	@GetMapping("/myPage/myEnergyCon")
 	public void myList(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
 		model.addAttribute("engList", energyService.getList(vo));
 	}
 
 	// 전체조회-관리자
-	@GetMapping("/no/admEnergyCon")
+	@GetMapping("/admin/admEnergyCon")
 	@ResponseBody
 	public void admList(EnergyVO vo, Model model) {
 		model.addAttribute("admList", energyService.getList(vo));
