@@ -3,13 +3,22 @@
 h4 {
 color: #727272;
 }
+
 tr {
 border-bottom : 1px solid lightgray;
+height : 80px;
 }
+
 .table-style-2 {
 width : 600px;
 }
 
+th { 
+text-align : center;
+}
+td {
+padding-left : 10px; 
+}
 textarea {
   width : 350px;
   height : 70px;
@@ -32,6 +41,7 @@ textarea {
 								<td><input type="file" name="lostImg"></td>
 							</tr>
 						</table>
+						<br>
 						<button class="btn btn-gyellow">등록</button>
 					</div>
 				</div>
