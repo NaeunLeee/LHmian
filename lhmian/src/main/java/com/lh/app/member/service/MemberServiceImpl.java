@@ -48,5 +48,12 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.read(vo);
 	}
+	
+	//10/04 추가 (이광호)
+	@Override
+	public int updatePw(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
