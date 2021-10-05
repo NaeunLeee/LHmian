@@ -57,7 +57,8 @@ a:hover {
 	background: white;
 }
 </style>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <body>
 	<section>
 		<div class="pagenation-holder-no-bottom">
@@ -148,7 +149,9 @@ a:hover {
 						<div class="col-md-5 text-right">
 
 							<input type="hidden" id="price" name="price">
-							<button type="button" id="payBtn" class="btn btn-medium btn-dark uppercase"> <span>결제하기</span>
+							<button type="button" id="payBtn"
+								class="btn btn-medium btn-dark uppercase">
+								<span>결제하기</span>
 							</button>
 
 						</div>
@@ -599,6 +602,7 @@ a:hover {
 
 			</div>
 		</div>
+		<input type="hidden" id="payName" value="<sec:authentication property="principal.NAME"/>">
 	</section>
 	<div class="clearfix"></div>
 	<!-- end section -->
@@ -684,7 +688,6 @@ a:hover {
 	//관리비 평균에 (-8,388) 
 	avgDiff(mfAvg, currentMfTotal);
 	//원형 차트 표시
-	console.log(${currentFeeJson});
 	pieChart(${currentFeeJson});
 	
 	$('#price').val(currentMfTotal);
@@ -705,7 +708,6 @@ a:hover {
 	
 	$('#dateSelectBox').on('change', function() {
 		date = $('#dateSelectBox option:selected').val();
-		console.log(date);
 		
 		$.ajax({
 			url: 'dateChange',
@@ -729,7 +731,7 @@ a:hover {
 				compareLastMonth(data.lastMonthTotal, data.mfTotal);
 				pieChart(data);
 				
-				$('#price').val() = data.mfTotal;
+				$('#price').val(data.mfTotal);
 				
 			}
 			
@@ -772,19 +774,26 @@ a:hover {
 	}
 	
 	$('#payBtn').on('click', function() {
-		const price = $('#price').val();
 		let author = null;
-		let phone = null;
-		let name = null;
+		let houseInfo = null;
+		let name = $('#payName').val();
 		
 		<sec:authorize access="isAuthenticated()">
 			author = '<sec:authentication property="principal.AUTHOR"/>';
+			houseInfo = '<sec:authentication property="principal.HOUSEINFO"/>';
 			phone = '<sec:authentication property="principal.PHONE"/>';
-			name = '<sec:authentication property="principal.NAME"/>';
 		</sec:authorize>
 		
+		console.log(author);
+		console.log(name);
+		console.log(houseInfo);
+		console.log(phone);
+		
 		if (author == 'OWNER') {
-			iamport(date, price, name, phone);	
+			alert('dsfa');
+			
+			paymentFnc(name, houseInfo);
+			
 		} else {
 			alert('세대주만 결제할 수 있습니다.');
 		}
@@ -792,33 +801,46 @@ a:hover {
 	})
 
 	
-	function iamport(date, price, name, phone) {
-				//가맹점 식별코드
-				IMP.init('imp57655457');
-				IMP.request_pay({
-				    pg : 'INIpayTest',
-				    pay_method : 'card',
-				    merchant_uid : 'merchant_' + new Date().getTime(),
-				    name : 'fee_' + date  , //결제창에서 보여질 이름
-				    amount : price, //실제 결제되는 가격
-				    buyer_name : name,
-				    buyer_tel : phone,
-				}, function(rsp) {
-					console.log(rsp);
-				    if ( rsp.success ) {
-				    	var msg = '결제가 완료되었습니다.';
-				        msg += '고유ID : ' + rsp.imp_uid;
-				        msg += '상점 거래ID : ' + rsp.merchant_uid;
-				        msg += '결제 금액 : ' + rsp.paid_amount;
-				        msg += '카드 승인번호 : ' + rsp.apply_num;
-				    } else {
-				    	 var msg = '결제에 실패하였습니다.';
-				         msg += '에러내용 : ' + rsp.error_msg;
-				    }
-				    alert(msg);
-				});
-			}
+	function paymentFnc(name, houseInfo, phone) {
 
+	IMP.init('imp57655457');
+	
+	IMP.request_pay({
+		pg : 'inicis', // version 1.1.0부터 지원.
+		pay_method : 'card',
+		merchant_uid : 'merchant_' + new Date().getTime(),
+		name : 'fee_' + houseInfo + '_' + date,
+		buyer_name : name,
+		buyer_tel : phone,
+		buyer_email : "8841258@naver.com",
+		amount : '100', //판매 가격
+	}, function(rsp) {
+		if (rsp.success) {
+			$.ajax({
+				url: "feeCreditCard",
+				type: "POST",
+				data: {imp_uid: rsp.imp_uid},
+				success: function(data) {
+					console.log(data);
+					
+		        	if(rsp.paid_amount == data.response.amount){
+			        	alert("결제가 완료되었습니다.");
+		        	} else {
+		        		alert("결제가 실패하였습니다.");
+		        	}
+					
+					
+				},
+				error: () => alert('AJAX 에러')
+			})
+		} else {
+			var msg = '결제에 실패하였습니다.';
+			msg += '에러내용 : ' + rsp.error_msg;
+			alert(msg);
+		}
+
+	});
+	}
 	
 	//원형 차트
 	function pieChart(data) {
