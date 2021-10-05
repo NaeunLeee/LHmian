@@ -28,10 +28,6 @@ margin : 0px 5px;
 padding-left : 65px;
 }
 
-/* .btn1 {
-margin-left : 300px;
-} */
-
 .btn2 {
 margin-left : 324px;
 } 
@@ -73,7 +69,7 @@ margin-left : 324px;
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
 <script>
-$(function() {
+	//버튼-현재 월 기준으로 최근 6개월의 버튼이 생성됨
 	var date = new Date();
 	var month = date.getMonth() + 1;
 	var total = "";
@@ -81,272 +77,294 @@ $(function() {
 		for (let i = 0; i < 6; i++) {
 			var btn = month - i;
 			var tag = "";
-			tag = '<button id="month' + i + '" class="btn-yj btn-month">' + btn + '월</button>';
+			tag = '<button id="month' + i + '" class="btn-yj btn-month" onclick="monthBtn(' + btn + ')">' + btn + '월</button>';
 			total = total + tag;
 		}
-		$('.btn1').html(total);
-	});  
-});
-
-var engArray = [];			var gasArray = [];
-var electricArray = [];		var waterArray = [];
-var trashArray = [];		var trashFoodArray = [];
-
-var mfDate = [];
-
-<c:forEach var="list" items="${engList}">
-var eng;					var gas;
-var electric;				var water;
-var trash;					var trashFood;
-
-var totalEng = 0;			var totalGas = 0;
-var totalElectric = 0;		var totalWater = 0;
-var totalTrash = 0;			var totalTrashFood = 0;
-
-var tempDate;
-
-tempDate = ${list.mfDate} + '';
-tempDate = tempDate.substring(0, 2) + "/" + tempDate.substring(2, 4);
-mfDate.push(tempDate);
-
-eng = ${list.eng};				gas = ${list.gas};
-engArray.push(eng);				gasArray.push(gas);
-
-electric = ${list.electric};	water = ${list.water};
-electricArray.push(electric);	waterArray.push(water);
-
-trash = ${list.trash};			trashFood = ${list.trashFood};
-trashArray.push(trash);			trashFoodArray.push(trashFood);
-
-totalEng += eng;				totalGas += gas;
-totalElectric += electric;		totalWater += water;
-totalTrash += trash;			totalTrashFood += trashFood;
-</c:forEach>
-
-/* 라인차트(전체) */
-var ctx = document.getElementById("myLineChart");
-var myLineChart = Chart.Line(ctx, {
-	type : 'line',
-	data : {
-		labels : mfDate,
-		datasets : [ {
-			label : "일반관리비",
-			fill : false,
-			lineTension : 0.1,
-			backgroundColor : "rgba(75,192,192,1)",
-			borderColor : "rgba(75,192,192,1)",
-			borderCapStyle : 'butt',
-			borderDash : [],
-			borderDashOffset : 0.0,
-			borderJoinStyle : 'miter',
-			pointBorderColor : "rgba(75,192,192,1)",
-			pointBackgroundColor : "#fff",
-			pointBorderWidth : 1,
-			pointHoverRadius : 5,
-			pointHoverBackgroundColor : "rgba(75,192,192,1)",
-			pointHoverBorderColor : "rgba(220,220,220,1)",
-			pointHoverBorderWidth : 2,
-			pointRadius : 1,
-			pointHitRadius : 10,
-			data : engArray
-		}, {
-			label : "가스",
-			fill : false,
-			lineTension : 0.1,
-			backgroundColor : "rgba(162,236,191,1)",
-			borderColor : "rgba(162,236,191,1)",
-			borderCapStyle : 'butt',
-			borderDash : [],
-			borderDashOffset : 0.0,
-			borderJoinStyle : 'miter',
-			pointBorderColor : "rgba(162,236,191,1)",
-			pointBackgroundColor : "#fff",
-			pointBorderWidth : 1,
-			pointHoverRadius : 5,
-			pointHoverBackgroundColor : "rgba(162,236,191,1)",
-			pointHoverBorderColor : "rgba(220,220,220,1)",
-			pointHoverBorderWidth : 2,
-			pointRadius : 1,
-			pointHitRadius : 10,
-			data : gasArray
-		}, {
-			label : "전기",
-			fill : false,
-			lineTension : 0.1,
-			backgroundColor : "rgba(236,162,183,1)",
-			borderColor : "rgba(236,162,183,1)",
-			borderCapStyle : 'butt',
-			borderDash : [],
-			borderDashOffset : 0.0,
-			borderJoinStyle : 'miter',
-			pointBorderColor : "rgba(236,162,183,1)",
-			pointBackgroundColor : "#fff",
-			pointBorderWidth : 1,
-			pointHoverRadius : 5,
-			pointHoverBackgroundColor : "rgba(236,162,183,1)",
-			pointHoverBorderColor : "rgba(220,220,220,1)",
-			pointHoverBorderWidth : 2,
-			pointRadius : 1,
-			pointHitRadius : 10,
-			data : electricArray
-		}, {
-			label : "수도",
-			fill : false,
-			lineTension : 0.1,
-			backgroundColor : "rgba(215,236,162,1)",
-			borderColor : "rgba(215,236,162,1)",
-			borderCapStyle : 'butt',
-			borderDash : [],
-			borderDashOffset : 0.0,
-			borderJoinStyle : 'miter',
-			pointBorderColor : "rgba(215,236,162,1)",
-			pointBackgroundColor : "#fff",
-			pointBorderWidth : 1,
-			pointHoverRadius : 5,
-			pointHoverBackgroundColor : "rgba(215,236,162,1)",
-			pointHoverBorderColor : "rgba(220,220,220,1)",
-			pointHoverBorderWidth : 2,
-			pointRadius : 1,
-			pointHitRadius : 10,
-			data : waterArray
-		}, {
-			label : "생활폐기물",
-			fill : false,
-			lineTension : 0.1,
-			backgroundColor : "rgba(162,163,236,1)",
-			borderColor : "rgba(162,163,236,1)",
-			borderCapStyle : 'butt',
-			borderDash : [],
-			borderDashOffset : 0.0,
-			borderJoinStyle : 'miter',
-			pointBorderColor : "rgba(162,163,236,1)",
-			pointBackgroundColor : "#fff",
-			pointBorderWidth : 1,
-			pointHoverRadius : 5,
-			pointHoverBackgroundColor : "rgba(162,163,236,1)",
-			pointHoverBorderColor : "rgba(220,220,220,1)",
-			pointHoverBorderWidth : 2,
-			pointRadius : 1,
-			pointHitRadius : 10,
-			data : trashArray
-		}, {
-			label : "음식물폐기물",
-			fill : false,
-			lineTension : 0.1,
-			backgroundColor : "rgba(236,235,162,1)",
-			borderColor : "rgba(236, 235,162,1)",
-			borderCapStyle : 'butt',
-			borderDash : [],
-			borderDashOffset : 0.0,
-			borderJoinStyle : 'miter',
-			pointBorderColor : "rgba(236,235,162,1)",
-			pointBackgroundColor : "#fff",
-			pointBorderWidth : 1,
-			pointHoverRadius : 5,
-			pointHoverBackgroundColor : "rgba(236,235,162,1)",
-			pointHoverBorderColor : "rgba(220,220,220,1)",
-			pointHoverBorderWidth : 2,
-			pointRadius : 1,
-			pointHitRadius : 10,
-			data : trashFoodArray
-		} ]
+	$('.btn1').html(total);
+	//차트-첫 로딩시 현재 월 차트 보여주고, 월 버튼 클릭시 해당 월의 데이터 표시
+	bar();
+	doughnut();
+function monthBtn(n) {
+		$.ajax({
+			url : "myEnergy",
+			type : "get",
+			success : function(datas) {
+				console.log(datas);
+			bar(datas);
+			}
+		})
 	}
-});
+	});  
+	
+	//기간데이터
+	var engArray = [];			var gasArray = [];
+	var electricArray = [];		var waterArray = [];
+	var trashArray = [];		var trashFoodArray = [];
+	
+	var mfDate = [];
+	
+	var eng;					var gas;
+	var electric;				var water;
+	var trash;					var trashFood;
+	
+	//기간평균-게이지데이터 
+	var avgEng = 0;				var avgGas = 0;
+	var avgElectric = 0;		var avgWater = 0;
+	var avgTrash = 0;			var avgTrashFood = 0;
+	
+	var tempDate;
+	
+	//기간데이터(6개월, 1년)
+	<c:forEach var="list" items="${engList}">
+	//데이터 가져오기
+	eng = ${list.eng}; 				gas = ${list.gas};
+	electric = ${list.electric};	water = ${list.water};
+	trash = ${list.trash};			trashFood = ${list.trashFood};
+	
+	//기간데이터
+	tempDate = ${list.mfDate} + '';
+	tempDate = tempDate.substring(0, 2) + "/" + tempDate.substring(2, 4);
+	mfDate.push(tempDate);
 
-/* 도넛차트(에너지별) */
-var ctx = document.getElementById("myDoughnutChart");
-var myDoughnutChart = new Chart(ctx,{
-    type: 'doughnut',
-    data: {
-       labels: [
-        "일반관리비",
-        "가스",
-        "전기",
-        "수도",
-        "생활폐기물",
-        "음식물폐기물"
-    ],
-       datasets: [
-        { 
-        	data: [totalEng, totalGas, totalElectric, totalWater, totalTrash, totalTrashFood],
-            backgroundColor: [
-            	"rgba(75,192,192,1)",
-                "rgba(162,236,191,1)",
-                "rgba(236,162,183,1)",
-                "rgba(215,236,162,1)",
-                "rgba(162,163,236,1)",
-                "rgba(236, 235,162,1)"
-            ],
-             hoverBackgroundColor: [
-            	"rgba(75,192,192,0.8)",
-                "rgba(162,236,191,0.8)",
-                "rgba(236,162,183,0.8)",
-                "rgba(215,236,162,0.8)",
-                "rgba(162,163,236,0.8)",
-                "rgba(236, 235,162,0.8)"
-            ]
-        }]
-    },
-    
-});
-
-/* 바차트(월별) */
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx,{
-    type: 'bar',
-    data: {
-       labels: [
-        "일반관리비",
-        "가스",
-        "전기",
-        "수도",
-        "생활폐기물",
-        "음식물폐기물"
-    ],
-       datasets: [
-        { 
-        	label : "일반관리비",
-        	data: [totalEng, totalGas, totalElectric, totalWater, totalTrash, totalTrashFood],
-            backgroundColor: [
-            	"rgba(75,192,192,1)",
-                "rgba(162,236,191,1)",
-                "rgba(236,162,183,1)",
-                "rgba(215,236,162,1)",
-                "rgba(162,163,236,1)",
-                "rgba(236, 235,162,1)"
-            ],
-             hoverBackgroundColor: [
-            	"rgba(75,192,192,0.8)",
-                "rgba(162,236,191,0.8)",
-                "rgba(236,162,183,0.8)",
-                "rgba(215,236,162,0.8)",
-                "rgba(162,163,236,0.8)",
-                "rgba(236, 235,162,0.8)"
-            ]
-        }
-        ]
-    }    
-});
-
+	//데이터 배열화
+	engArray.push(eng);				gasArray.push(gas);
+	electricArray.push(electric);	waterArray.push(water);
+	trashArray.push(trash);			trashFoodArray.push(trashFood);
+	
+	//데이터 평균
+	avgEng += eng;					avgGas += gas;
+	avgElectric += electric;		avgWater += water;
+	avgTrash += trash;				avgTrashFood += trashFood;
+	</c:forEach>
+	
+	/* 바차트(월별) */
+	function bar(datas) {
+		var ctx = document.getElementById("myBarChart");
+		var myBarChart = new Chart(ctx,{
+		    type: 'bar',
+		    data: {
+		       labels: [
+		        "일반관리비",
+		        "가스",
+		        "전기",
+		        "수도",
+		        "생활폐기물",
+		        "음식물폐기물"
+		    ],
+		       datasets: [
+		        { 
+		        	label : "일반관리비",
+		        	data: [],
+		            backgroundColor: [
+		            	"rgba(75,192,192,1)",
+		                "rgba(162,236,191,1)",
+		                "rgba(236,162,183,1)",
+		                "rgba(215,236,162,1)",
+		                "rgba(162,163,236,1)",
+		                "rgba(236, 235,162,1)"
+		            ],
+		             hoverBackgroundColor: [
+		            	"rgba(75,192,192,0.8)",
+		                "rgba(162,236,191,0.8)",
+		                "rgba(236,162,183,0.8)",
+		                "rgba(215,236,162,0.8)",
+		                "rgba(162,163,236,0.8)",
+		                "rgba(236, 235,162,0.8)"
+		            ]
+		        }]
+		    }    
+		});
+	};
+	
+	/* 도넛차트(에너지별) */
+	function doughnut() {
+		var ctx = document.getElementById("myDoughnutChart");
+		var myDoughnutChart = new Chart(ctx,{
+		    type: 'doughnut',
+		    data: {
+		       labels: [
+		        "일반관리비",
+		        "가스",
+		        "전기",
+		        "수도",
+		        "생활폐기물",
+		        "음식물폐기물"
+		    ],
+		       datasets: [
+		        { 
+		        	data: [avgEng, avgGas, avgElectric, avgWater, avgTrash, avgTrashFood],
+		            backgroundColor: [
+		            	"rgba(75,192,192,1)",
+		                "rgba(162,236,191,1)",
+		                "rgba(236,162,183,1)",
+		                "rgba(215,236,162,1)",
+		                "rgba(162,163,236,1)",
+		                "rgba(236, 235,162,1)"
+		            ],
+		             hoverBackgroundColor: [
+		            	"rgba(75,192,192,0.8)",
+		                "rgba(162,236,191,0.8)",
+		                "rgba(236,162,183,0.8)",
+		                "rgba(215,236,162,0.8)",
+		                "rgba(162,163,236,0.8)",
+		                "rgba(236, 235,162,0.8)"
+		            ]
+		        }]
+		    },  
+		});
+	}
+	
+	function line() {		
+		/* 라인차트(전체) */
+		var ctx = document.getElementById("myLineChart");
+		var myLineChart = Chart.Line(ctx, {
+			type : 'line',
+			data : {
+				labels : mfDate,
+				datasets : [ {
+					label : "일반관리비",
+					fill : false,
+					lineTension : 0.1,
+					backgroundColor : "rgba(75,192,192,1)",
+					borderColor : "rgba(75,192,192,1)",
+					borderCapStyle : 'butt',
+					borderDash : [],
+					borderDashOffset : 0.0,
+					borderJoinStyle : 'miter',
+					pointBorderColor : "rgba(75,192,192,1)",
+					pointBackgroundColor : "#fff",
+					pointBorderWidth : 1,
+					pointHoverRadius : 5,
+					pointHoverBackgroundColor : "rgba(75,192,192,1)",
+					pointHoverBorderColor : "rgba(220,220,220,1)",
+					pointHoverBorderWidth : 2,
+					pointRadius : 1,
+					pointHitRadius : 10,
+					data : engArray
+				}, {
+					label : "가스",
+					fill : false,
+					lineTension : 0.1,
+					backgroundColor : "rgba(162,236,191,1)",
+					borderColor : "rgba(162,236,191,1)",
+					borderCapStyle : 'butt',
+					borderDash : [],
+					borderDashOffset : 0.0,
+					borderJoinStyle : 'miter',
+					pointBorderColor : "rgba(162,236,191,1)",
+					pointBackgroundColor : "#fff",
+					pointBorderWidth : 1,
+					pointHoverRadius : 5,
+					pointHoverBackgroundColor : "rgba(162,236,191,1)",
+					pointHoverBorderColor : "rgba(220,220,220,1)",
+					pointHoverBorderWidth : 2,
+					pointRadius : 1,
+					pointHitRadius : 10,
+					data : gasArray
+				}, {
+					label : "전기",
+					fill : false,
+					lineTension : 0.1,
+					backgroundColor : "rgba(236,162,183,1)",
+					borderColor : "rgba(236,162,183,1)",
+					borderCapStyle : 'butt',
+					borderDash : [],
+					borderDashOffset : 0.0,
+					borderJoinStyle : 'miter',
+					pointBorderColor : "rgba(236,162,183,1)",
+					pointBackgroundColor : "#fff",
+					pointBorderWidth : 1,
+					pointHoverRadius : 5,
+					pointHoverBackgroundColor : "rgba(236,162,183,1)",
+					pointHoverBorderColor : "rgba(220,220,220,1)",
+					pointHoverBorderWidth : 2,
+					pointRadius : 1,
+					pointHitRadius : 10,
+					data : electricArray
+				}, {
+					label : "수도",
+					fill : false,
+					lineTension : 0.1,
+					backgroundColor : "rgba(215,236,162,1)",
+					borderColor : "rgba(215,236,162,1)",
+					borderCapStyle : 'butt',
+					borderDash : [],
+					borderDashOffset : 0.0,
+					borderJoinStyle : 'miter',
+					pointBorderColor : "rgba(215,236,162,1)",
+					pointBackgroundColor : "#fff",
+					pointBorderWidth : 1,
+					pointHoverRadius : 5,
+					pointHoverBackgroundColor : "rgba(215,236,162,1)",
+					pointHoverBorderColor : "rgba(220,220,220,1)",
+					pointHoverBorderWidth : 2,
+					pointRadius : 1,
+					pointHitRadius : 10,
+					data : waterArray
+				}, {
+					label : "생활폐기물",
+					fill : false,
+					lineTension : 0.1,
+					backgroundColor : "rgba(162,163,236,1)",
+					borderColor : "rgba(162,163,236,1)",
+					borderCapStyle : 'butt',
+					borderDash : [],
+					borderDashOffset : 0.0,
+					borderJoinStyle : 'miter',
+					pointBorderColor : "rgba(162,163,236,1)",
+					pointBackgroundColor : "#fff",
+					pointBorderWidth : 1,
+					pointHoverRadius : 5,
+					pointHoverBackgroundColor : "rgba(162,163,236,1)",
+					pointHoverBorderColor : "rgba(220,220,220,1)",
+					pointHoverBorderWidth : 2,
+					pointRadius : 1,
+					pointHitRadius : 10,
+					data : trashArray
+				}, {
+					label : "음식물폐기물",
+					fill : false,
+					lineTension : 0.1,
+					backgroundColor : "rgba(236,235,162,1)",
+					borderColor : "rgba(236, 235,162,1)",
+					borderCapStyle : 'butt',
+					borderDash : [],
+					borderDashOffset : 0.0,
+					borderJoinStyle : 'miter',
+					pointBorderColor : "rgba(236,235,162,1)",
+					pointBackgroundColor : "#fff",
+					pointBorderWidth : 1,
+					pointHoverRadius : 5,
+					pointHoverBackgroundColor : "rgba(236,235,162,1)",
+					pointHoverBorderColor : "rgba(220,220,220,1)",
+					pointHoverBorderWidth : 2,
+					pointRadius : 1,
+					pointHitRadius : 10,
+					data : trashFoodArray
+				} ]
+			}
+		});
+	}
+	
 	/* 게이지차트(에너지평균) */
-
-	google.charts.load('current', {'packages':['gauge']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Label', 'Value'],
-        ['Memory', 80]
-      ]);
-
-      var options = {
-
-        redFrom: 90, redTo: 100,
-        yellowFrom:75, yellowTo: 90,
-        minorTicks: 5
-      };
-
-      var chart = new google.visualization.Gauge(document.getElementById('myGaugeChart'));
-      chart.draw(data, options);
-    }
+	function gauge() {
+		google.charts.load('current', {'packages':['gauge']});
+	    google.charts.setOnLoadCallback(drawChart);
+	
+	    function drawChart() {
+	      var data = google.visualization.arrayToDataTable([
+	        ['Label', 'Value'],
+	        ['Memory', 80]
+	      ]);
+	
+	      var options = {
+	        redFrom: 90, redTo: 100,
+	        yellowFrom:75, yellowTo: 90,
+	        minorTicks: 5
+	      };
+	
+	      var chart = new google.visualization.Gauge(document.getElementById('myGaugeChart'));
+	      chart.draw(data, options);
+	    }
+	}
 </script>
