@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
 	.thumbs img {
@@ -110,7 +111,7 @@
 					</ul>
 					<br /> <br />
 					<button type="button" id="reservation"
-						class="btn btn-dark-3 btn-round" data-toggle="modal"
+						class="btn btn-dark" data-toggle="modal"
 						data-target="#libModal">등록</button>
 				</div>
 				<!--end item-->
@@ -174,39 +175,46 @@
 	<div class="modal" id="libModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
+				<form id="libForm" name="libForm" method="post" action="libraryPay" target="popup_window">
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h5 class="modal-title">독서실 등록</h5>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">독서실 등록</h4>
+					</div>
 				</div>
-
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form id="libForm" name="libForm" method="post" action="libraryPay" target="popup_window">
-						<div>
-							이 름 | <sec:authentication property="principal.NAME" /> <br> <br> 
-							시작 날짜 | <input type="text" id="libStartdate"><br> <br> 
-							기 간 | <select id="libPeriod" name="libPeriod">
-										<option value="" selected>선택</option>
-										<option value="1">1일</option>
-										<option value="7">1주</option>
-										<option value="30">1달</option>
-										<option value="90">3달</option>
-										<option value="180">6달</option>
-										<option value="365">1년</option>
-								   </select><br> <br> 
-							금 액 | <input type="text" id="libPrice" name="libPrice" readonly="readonly">원
-						</div>
-						<br>
-						<div align="center">
-								<button type="submit" id="doPay">결제하기</button>
-								<button type="button" data-dismiss="modal">취소</button>
-							&nbsp;
-						</div>
-					</form>
+					<div style="margin: 0px 20px 0px;">
+						<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">이 름</label></h5>
+							<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br> 
+						<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="libStartdate">시작 날짜</label></h5>
+							<input type="text" id="libStartdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
+						<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="libPeriod">기 간</label></h5> 
+							<select id="libPeriod" name="libPeriod" class="form-control">
+								<option value="" selected>선택</option>
+								<option value="1">1일</option>
+								<option value="7">1주</option>
+								<option value="30">1달</option>
+								<option value="90">3달</option>
+								<option value="180">6달</option>
+								<option value="365">1년</option>
+						   </select><br>
+						<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="libPrice">금 액 (원)</label></h5> 
+							<input type="text" id="libPrice" name="libPrice" class="form-control" readonly="readonly">
+					</div>
+					<br>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<div align="center">
+						<button type="submit" id="doPay" class="btn btn-gyellow">결제하기</button>
+						<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
+					</div>
 				</div>
 
+					</form>
 			</div>
 		</div>
 	</div>

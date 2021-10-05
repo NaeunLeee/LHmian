@@ -10,6 +10,7 @@
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
 	.thumbs img {
@@ -19,6 +20,12 @@
 	#mainImg img {
 		width: 450px;
 		height: 300px;
+	}
+	th, tr {
+		text-align: center;
+	}
+	.tab-content-style-7 {
+		background-color: #EEEEEE;
 	}
 </style>
 
@@ -181,37 +188,45 @@
 					<div class="tab-content-style-7">
 						<div class="responsive-tabs-content">
 							<div id="example-1-tab-1" class="responsive-tabs-panel">
-								<div class="responsive-tab-title ttitle"></div>
-								<table class="table">
-									<tr>
-										<th>프로그램</th>
-										<th>월</th>
-										<th>화</th>
-										<th>수</th>
-										<th>목</th>
-										<th>금</th>
-										<th></th>
-									</tr>
-									<c:forEach items="${yogaTime}" var="yoga">
-										<tr align="center">
-											<td>${yoga.gxTitle}</td>
-											<td>${yoga.gxMon}</td>
-											<td>${yoga.gxTue}</td>
-											<td>${yoga.gxWed}</td>
-											<td>${yoga.gxThu}</td>
-											<td>${yoga.gxFri}</td>
-											<td><button type="button" class="registerBtn btn btn-dark" data-gxCode="${yoga.gxCode}" data-gxTitle="${yoga.gxTitle}">등록</button></td>
+								<div style="margin: 30px 50px 20px;">
+									<div style="margin-left: 20px;">
+										<div class="title-line-3 align-left"></div>
+										<h4 class="uppercase font-weight-7 less-mar-1">요가 프로그램 시간표</h4><br>
+									</div>
+									<table class="table table-bordered" style="background-color: white;">
+										<tr>
+											<th>프로그램</th>
+											<th>월</th>
+											<th>화</th>
+											<th>수</th>
+											<th>목</th>
+											<th>금</th>
+											<th></th>
 										</tr>
-									</c:forEach>
-								</table>
+										<c:forEach items="${yogaTime}" var="yoga">
+											<tr align="center">
+												<td>${yoga.gxTitle}</td>
+												<td>${yoga.gxMon}</td>
+												<td>${yoga.gxTue}</td>
+												<td>${yoga.gxWed}</td>
+												<td>${yoga.gxThu}</td>
+												<td>${yoga.gxFri}</td>
+												<td><button type="button" class="registerBtn btn btn-default" data-gxCode="${yoga.gxCode}" data-gxTitle="${yoga.gxTitle}">등록</button></td>
+											</tr>
+										</c:forEach>
+									</table>
+								</div>
 							</div>
 							<!--end panel 1-->
 							<div class="clearfix"></div>
 							<br />
 							<div id="example-1-tab-2" class="responsive-tabs-panel">
-								<div class="responsive-tab-title ttitle"></div>
-								<form id="frm" action="gxRead" method="get">
-									<table class="table">
+								<div style="margin: 30px 50px 20px;">
+									<div style="margin-left: 20px;">
+										<div class="title-line-3 align-left"></div>
+										<h4 class="uppercase font-weight-7 less-mar-1">필라테스 프로그램 시간표</h4><br>
+									</div>
+									<table class="table table-bordered" style="background-color: white;">
 										<tr>
 											<th>프로그램</th>
 											<th>월</th>
@@ -229,20 +244,23 @@
 												<td>${pil.gxWed}</td>
 												<td>${pil.gxThu}</td>
 												<td>${pil.gxFri}</td>
-												<td><button type="button" class="registerBtn btn btn-dark" data-gxCode="${pil.gxCode}" data-gxTitle="${pil.gxTitle}">등록</button></td>
+												<td><button type="button" class="registerBtn btn btn-default" data-gxCode="${pil.gxCode}" data-gxTitle="${pil.gxTitle}">등록</button></td>
 											</tr>
 										</c:forEach>
 									</table>
-									</form>
+								</div>
 							</div>
 							<!--end panel 2-->
 
 							<div class="clearfix"></div>
 							<br />
 							<div id="example-1-tab-3" class="responsive-tabs-panel">
-								<div class="responsive-tab-title ttitle"></div>
-								<form id="frm" action="gxRead" method="get">
-									<table class="table">
+								<div style="margin: 30px 50px 20px;">
+									<div style="margin-left: 20px;">
+										<div class="title-line-3 align-left"></div>
+										<h4 class="uppercase font-weight-7 less-mar-1">스피닝 프로그램 시간표</h4><br>
+									</div>
+									<table class="table table-bordered" style="background-color: white;">
 										<tr>
 											<th>프로그램</th>
 											<th>월</th>
@@ -260,11 +278,11 @@
 												<td>${spin.gxWed}</td>
 												<td>${spin.gxThu}</td>
 												<td>${spin.gxFri}</td>
-												<td><button type="button" class="registerBtn btn btn-dark" data-gxCode="${spin.gxCode}" data-gxTitle="${spin.gxTitle}">등록</button></td>
+												<td><button type="button" class="registerBtn btn btn-default" data-gxCode="${spin.gxCode}" data-gxTitle="${spin.gxTitle}">등록</button></td>
 											</tr>
 										</c:forEach>
 									</table>
-								</form>
+								</div>
 							</div>
 							<!--end panel 3-->
 						</div>
@@ -280,37 +298,44 @@
 <div class="modal" id="gymModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
+			<form id="gymForm" name="gymForm" method="post" action="gymPay" target="popup_window">
 			<!-- Modal Header -->
 			<div class="modal-header">
-				<h5 class="modal-title">피트니스센터 등록</h5>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<div style="margin-left: 20px;">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">피트니스센터 등록</h4>
+				</div>
 			</div>
-
 			<!-- Modal body -->
 			<div class="modal-body">
-				<form id="gymForm" name="gymForm" method="post" action="gymPay" target="popup_window">
-					<div>
-						이 름 | <sec:authentication property="principal.NAME" /> <br> <br>
-						프로그램명 | <input type="text" id="gxTitle" name="gxTitle" readonly="readonly"><br> <br>
-						시작 날짜 | <input type="text" id="gymStartdate"><br> <br> 
-						기 간 | <select id="gymPeriod" name="gymPeriod">
-									<option value="" selected>선택</option>
-									<option value="90">3달</option>
-									<option value="180">6달</option>
-									<option value="365">1년</option>
-							   </select><br> <br> 
-						금 액 | <input type="text" id="gymPrice" name="gymPrice" readonly="readonly">원
+				<div style="margin: 0px 20px 0px;">
+					<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">이 름</label></h5>
+						<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br>
+					<h5><i class="bi bi-patch-exclamation"></i>&nbsp;&nbsp;<label for="gxTitle">프로그램명</label></h5>
+						<input type="text" id="gxTitle" name="gxTitle" class="form-control" readonly="readonly"><br>
+					<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="gymStartdate">시작 날짜</label></h5>
+						<input type="text" id="gymStartdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
+					<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="gymPeriod">기 간</label></h5> 
+						<select id="gymPeriod" name="gymPeriod" class="form-control">
+								<option value="" selected>선택</option>
+								<option value="90">3달</option>
+								<option value="180">6달</option>
+								<option value="365">1년</option>
+						</select><br>
+					<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="gymPrice">금 액 (원)</label></h5>
+						<input type="text" id="gymPrice" name="gymPrice" class="form-control" readonly="readonly">
 						<input type="hidden" id="gxCode" name="gxCode">
-					</div>
-					<br>
-					<div align="center">
-						<button type="submit" id="doPay">결제하기</button>
-						<button type="button" data-dismiss="modal">취소</button>
-						&nbsp;
-					</div>
-				</form>
+				</div>
+				<br>
 			</div>
-
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<div align="center">
+					<button type="submit" id="doPay" class="btn btn-gyellow">결제하기</button>
+					<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
+				</div>
+			</div>
+			</form>
 		</div>
 	</div>
 </div>
