@@ -42,7 +42,7 @@
 <!--               <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All
                 <div class="cbp-filter-counter"></div>
               </div> -->
-              <div data-filter=".print" class="cbp-filter-item"> qqraphic
+              <div data-filter=".print" class="cbp-filter-item"> graphic
                 <div class="cbp-filter-counter"></div>
               </div>
               <div data-filter=".web-design" class="cbp-filter-item"> Branding

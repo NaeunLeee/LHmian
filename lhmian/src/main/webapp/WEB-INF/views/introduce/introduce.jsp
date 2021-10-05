@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<head>
+ <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+</head>
 
 <section>
 	<div class="pagenation-holder">
@@ -104,10 +107,10 @@
 				<div class="sec-title-container text-center"
 					style="padding-bottom: 50px;">
 					<div class="ce4-title-line-1"></div>
-					<h4 class="uppercase font-weight-7 less-mar-1">Our Process</h4>
+					<h4 class="uppercase font-weight-7 less-mar-1">기본에 대한 믿음</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title">Lorem ipsum dolor sit amet,
-						consectetuer</p>
+					<p class="by-sub-title">믿고 살 수 있는 주거공간을 만들기 위해 가장
+					기본적인 것들을 중요시합니다.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -120,9 +123,9 @@
 						<span class="icon-bike"></span>
 					</div>
 					<br />
-					<h4 class="uppercase">Graphic Design</h4>
-					<p>Lorem ipsum dolor consectetuer sit amet sit et justo
-						consectetuer adipiscing elit.</p>
+					<h4 class="uppercase">조화를 통한 균형</h4>
+					<p>생활환경의 다양한 요소들이 조화롭게
+					어우러진 최적의 주거공간을 만듭니다.</p>
 					<br /> <br />
 				</div>
 			</div>
@@ -134,9 +137,9 @@
 						<span class="icon-lightbulb"></span>
 					</div>
 					<br />
-					<h4 class="uppercase">Graphic Design</h4>
-					<p>Lorem ipsum dolor consectetuer sit amet sit et justo
-						consectetuer adipiscing elit.</p>
+					<h4 class="uppercase">배려와 존중</h4>
+					<p>다양한 라이프스타일과 개성을 반영하여
+					본연의 삶에 집중할 수 있도록 합니다.</p>
 					<br /> <br />
 				</div>
 			</div>
