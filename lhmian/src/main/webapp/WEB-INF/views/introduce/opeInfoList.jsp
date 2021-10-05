@@ -9,18 +9,25 @@
 <title>LHmian | 운영 정보 공개</title>
 
 <style>
-tr {
+.tr_1 {
 	cursor: pointer;
+	text-align: center;
 }
 
-tr:hover {
-	background-color: lightyellow;
+th {
+	text-align: center;
+	background-color: #EEEEEE;
+}
+
+.tr_1:hover {
+	background-color: #f5f5f5;
 }
 
 table {
-	text-align: center;
 	background-color: white;
-	box-shadow: 5px 5px 5px grey;
+}
+.pagination>li>a {
+	color: black;
 }
 </style>
 
@@ -77,8 +84,28 @@ table {
 		</div>
 
 		<div class="container" align="center">
-			<div class="col-7">
-				<div>
+			<div class="text-box white padding-4 col-7">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>카테고리</th>
+							<th>제목</th>
+							<th>작성일자</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${list}" var="info">
+							<tr class="move tr_1" data-oiNo="${info.oiNo}">
+								<td>${info.oiNo}</td>
+								<td>${info.oiType}</td>
+								<td>${info.oiTitle}</td>
+								<td><fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<div style="float: left; margin-top: 20px;">
 					<form id="actionForm" action="opeInfoList" method="get">
 						<select name="type" class="form-control" style="width: 100px; float: left;">
 							<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
@@ -86,52 +113,35 @@ table {
 							<option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
 							<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>
 						</select> 
-						<input name="keyword" class="form-control" style="width: 300px; float: left;" value="${pageMaker.cri.keyword}"> 
+						<input name="keyword" class="form-control" style="width: 200px; float: left;" value="${pageMaker.cri.keyword}"> 
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-						<button type="submit" class="btn btn-gyellow" style="float: left;">검색</button>
+						<button type="submit" class="btn btn-dark" style="float: left;">검색</button>
 					</form>
-				</div><br><br>
-				<table class="table">
-					<tr>
-						<th>글 번호</th>
-						<th>카테고리</th>
-						<th>제목</th>
-						<th>작성일자</th>
-					</tr>
-					<c:forEach items="${list}" var="info">
-						<tr>
-							<td>${info.oiNo}</td>
-							<td>${info.oiType}</td>
-							<td><a class="move" href="${info.oiNo}">${info.oiTitle}</a></td>
-							<td><fmt:formatDate value="${info.oiDate}"
-									pattern="yy-MM-dd" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-			<div id="pageBtn">
-				<ul class="pagination hover-orange">
-					<c:if test="${pageMaker.prev == true}">
-						<li>
-							<a href="${pageMaker.startPage-1}">
-								<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-							</a>
-						</li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-						<li><a href="${num}">${num}</a></li>
-					</c:forEach>
-					<c:if test="${pageMaker.next == true}">
-						<li>
-							<a href="${pageMaker.endPage+1}">
-								<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-							</a>
-						</li>
-					</c:if>
-				</ul>
-			</div>
+				</div>
+				<div id="pageBtn" style="margin: auto; width: 50%">
+					<ul class="pagination hover-orange">
+						<c:if test="${pageMaker.prev == true}">
+							<li>
+								<a href="${pageMaker.startPage-1}">
+									<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+								</a>
+							</li>
+						</c:if>
+						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+							<li><a href="${num}">${num}</a></li>
+						</c:forEach>
+						<c:if test="${pageMaker.next == true}">
+							<li>
+								<a href="${pageMaker.endPage+1}">
+									<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 
+			</div>
 			<br><br><br><br><br><br>
 		</div>
 	</section>
@@ -146,7 +156,7 @@ table {
 						"click",
 						function(e) {
 							e.preventDefault();
-							var oiNo = $(this).attr("href");
+							var oiNo = $(this).attr("data-oiNo");
 							actionForm
 									.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
 							actionForm.attr("action", "opeInfoSelect");

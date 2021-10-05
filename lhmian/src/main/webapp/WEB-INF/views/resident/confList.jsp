@@ -118,7 +118,7 @@
 								</table>
 							</div>
 							<div id="pageBtn">
-								<ul class="pagination hover-orange">
+								<ul class="pagination style-1 hover-orange">
 									<c:if test="${pageMaker.prev == true}">
 										<li>
 											<a href="${pageMaker.startPage-1}">
