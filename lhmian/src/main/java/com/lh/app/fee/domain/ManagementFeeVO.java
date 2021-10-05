@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class ManagementFeeVO {
-	public int arn;
 	public String mfDate;
 	public String year;
 	public String month;
@@ -21,4 +20,5 @@ public class ManagementFeeVO {
 	public Long mfTrash;
 	public Long mfTotal;
 	public Long mfAvg;
+	public Long lastMonthTotal;
 }

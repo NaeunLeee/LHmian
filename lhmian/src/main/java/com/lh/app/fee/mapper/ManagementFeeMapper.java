@@ -13,4 +13,7 @@ public interface ManagementFeeMapper {
 	
 	//관리비 전체 평균
 	public ManagementFeeVO selectAvg();
+	
+	//제일 최근 관리비 출력(이전달 관리비와 함께)
+	public ManagementFeeVO selectCurrentFee(ManagementFeeVO vo);
 }

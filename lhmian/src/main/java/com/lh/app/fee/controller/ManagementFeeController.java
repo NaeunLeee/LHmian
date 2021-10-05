@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.lh.app.fee.domain.ManagementFeeVO;
 import com.lh.app.fee.service.ManagementFeeService;
 import com.lh.app.signIn.etc.CustomUserDetails;
@@ -27,9 +28,11 @@ public class ManagementFeeController {
 			
 			ManagementFeeVO vo = new ManagementFeeVO();
 			vo.setHouseInfo(houseInfo);
-			//가장 최근 관리비
-			
+			Gson gson = new Gson();
+
 			model.addAttribute("list", managementFeeService.selectFeeList(vo));
+			model.addAttribute("currentFee", managementFeeService.selectCurrentFee(vo));
+			model.addAttribute("currentFeeJson", gson.toJson(managementFeeService.selectCurrentFee(vo)));
 			model.addAttribute("avg", managementFeeService.selectAvg());
 		}
 		
@@ -45,4 +48,5 @@ public class ManagementFeeController {
 		return managementFeeService.selectFee(vo);
 		
 	}
+	
 }
