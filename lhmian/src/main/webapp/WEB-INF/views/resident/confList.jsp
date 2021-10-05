@@ -11,14 +11,16 @@
 <style>
 	tr {
 		cursor: pointer;
+		text-align: center;
 	}
-	tr:hover {
+	.tr_1:hover {
 		background-color: lightyellow;
 	}
 	table {
-		text-align: center;
 		background-color: white;
-		box-shadow: 5px 5px 5px grey;
+	}
+	th {
+		text-align: center;
 	}
 </style>
 
@@ -94,9 +96,8 @@
 									<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 									<button type="submit" class="btn btn-gyellow" style="float: left;">검색</button>
 								</form>
-							</div>
-							<button style="float: right;" type="button" class="btn btn-dark" onclick="location.href='confInsert'">글 쓰기</button>
-							<br><br>
+								<button style="float: right;" type="button" class="btn btn-default" onclick="location.href='confInsert'">글 쓰기</button>
+							</div><br><br><br>
 							<div>
 								<table class="table">
 									<tr>
@@ -106,7 +107,7 @@
 										<th class="col-3">작성일자</th>
 									</tr>
 									<c:forEach items="${list}" var="conf">
-										<tr>
+										<tr class="tr_1">
 											<td>${conf.confNo}</td>
 											<td><a class="move" href="${conf.confNo}">${conf.confTitle}</a></td>
 											<td>${conf.confWriter}</td>
@@ -137,7 +138,6 @@
 									</c:if>
 								</ul>
 							</div>
-							<br>
 							<br>
 						</div>
 					</div>

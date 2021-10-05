@@ -20,6 +20,43 @@
 </head>
 <body>
 
+	<div class="header-inner-tmargin">
+		<section class="section-side-image clearfix">
+			<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+				<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+					<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+						<div class="header-inner">
+							<div class="overlay">
+								<div class="text text-center"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class=" clearfix"></div>
+	</div>
+
+	<section>
+		<div class="pagenation-holder-no-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<ol class="breadcrumb-gray">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/adminPage">관리자 페이지</a></li>
+							<li class="current"><a href="#">운영 정보 목록</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 <div align="center">
 	<div>
