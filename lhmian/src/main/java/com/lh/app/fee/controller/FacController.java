@@ -16,13 +16,13 @@ public class FacController {
 	@Autowired FacService facService;
 	
 	// 리스트 조회
-		@RequestMapping("commlist")
-		public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
-			int total = facService.getTotalCount(cri);
-			System.out.println("cri======" + cri);
-			System.out.println(total);
-			/* model.addAttribute("list", commService.getList(cri)); */
-			model.addAttribute("pageMaker", new PageVO(cri, total));
-			return "community/commlist";
-		}
+//		@RequestMapping("commlist")
+//		public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
+//			int total = facService.getTotalCount(cri);
+//			System.out.println("cri======" + cri);
+//			System.out.println(total);
+//			/* model.addAttribute("list", commService.getList(cri)); */
+//			model.addAttribute("pageMaker", new PageVO(cri, total));
+//			return "community/commlist";
+//		}
 }
