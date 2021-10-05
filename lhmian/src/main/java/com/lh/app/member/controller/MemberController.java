@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lh.app.comm.domain.Criteria;
+import com.lh.app.comm.domain.PageVO;
 import com.lh.app.comm.domain.ReplyVO;
 import com.lh.app.member.domain.MemberCriteria;
 import com.lh.app.member.domain.MemberInfoVO;
@@ -40,13 +42,11 @@ public class MemberController {
 	// 단건조회
 	@GetMapping("myInfo")
 	public String myInfo(Model model, MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		// 10/05 추가 ----------------------------------------------------------------
 		String id = customUserDetails.getUsername();
 		vo.setId(id);
 		if(encoder.matches("4", customUserDetails.getPassword())) {
 			System.out.println("match!!");
 		}
-		// ------------------------------------------------------------ 10/05 추가 끝 
 		model.addAttribute("car",service.getListcar(id));
 		model.addAttribute("info", service.read(vo));
 		return "myPage/myInfo";
@@ -74,7 +74,6 @@ public class MemberController {
 		return true;
 	}
 	
-	//10/05 비밀번호 수정 추가
 	@RequestMapping("updatePw")
 	@ResponseBody
 	public MemberInfoVO updatePw(@RequestBody MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
@@ -88,7 +87,6 @@ public class MemberController {
 		return vo;
 	}
 	
-	//10/05 전화번호 수정 추가
 	@PutMapping("updatePhone") 
 	@ResponseBody
 	public MemberInfoVO updatePhone(@RequestBody MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) { 
@@ -99,5 +97,5 @@ public class MemberController {
 		service.updatePhone(vo);
 		return vo;
 	}
-
+	
 }

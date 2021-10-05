@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lh.app.comm.domain.Criteria;
 import com.lh.app.member.domain.MemberCriteria;
 import com.lh.app.member.domain.MemberInfoVO;
 import com.lh.app.member.mapper.MemberMapper;
@@ -76,7 +77,5 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return mapper.updatePhone(vo);
 	}
-	
-	
 	
 }

@@ -55,50 +55,57 @@
 	</select>
 
 	<select id="read" resultType="MemberInfoVO">
-		SELECT DISTINCT M.ID, M.PHONE, M.HOUSE_INFO,
+		SELECT DISTINCT M.ID, M.PHONE,
+		M.HOUSE_INFO,
 		M.PASSWORD,
-		LISTAGG(C.CAR_CODE, '/') WITHIN GROUP (ORDER BY C.CAR_CODE) OVER(PARTITION BY
+		LISTAGG(C.CAR_CODE, '/') WITHIN GROUP (ORDER
+		BY C.CAR_CODE) OVER(PARTITION BY
 		C.HOUSE_INFO) AS carCode
-		, LISTAGG(C.CAR_TYPE, '/') WITHIN GROUP (ORDER BY C.CAR_TYPE)
+		,
+		LISTAGG(C.CAR_TYPE, '/') WITHIN GROUP (ORDER BY C.CAR_TYPE)
 		OVER(PARTITION BY C.HOUSE_INFO) AS carType
 		FROM MEMBER M
-		JOIN GENERATION	G
+		JOIN GENERATION
+		G
 		ON (M.HOUSE_INFO = G.HOUSE_INFO)
 		JOIN CARLIST C
-		ON (G.HOUSE_INFO = C.HOUSE_INFO)
+		ON (G.HOUSE_INFO =
+		C.HOUSE_INFO)
 		WHERE M.ID = #{id}
 	</select>
 
-	<!-- 10/05 rownum제거 c.car_no추가 수정 -->
 	<select id="getListcar" resultType="MemberInfoVO">
 		SELECT
 		C.CAR_NO,C.CAR_TYPE,C.CAR_CODE
 		FROM MEMBER M
 		JOIN GENERATION G
-		ON M.HOUSE_INFO = G.HOUSE_INFO
+		ON
+		M.HOUSE_INFO = G.HOUSE_INFO
 		JOIN CARLIST C
 		ON G.HOUSE_INFO =
 		C.HOUSE_INFO
 		WHERE M.ID = #{id}
 	</select>
-	
-	<!-- 10/05 회원 차량정보 수정 -->
+
+	<!-- 회원 차량정보 수정 -->
 	<update id="updateCar">
 		UPDATE CARLIST SET
 		CAR_CODE = #{carCode},
-		CAR_TYPE = #{carType}
-		WHERE 
+		CAR_TYPE =
+		#{carType}
+		WHERE
 		CAR_NO = #{carNo}
 	</update>
-	
-	<!-- 10/05 회원 비밀번호 수정 -->
+
+	<!-- 회원 비밀번호 수정 -->
 	<update id="updatePw">
 		UPDATE member SET
 		password = #{password}
-		WHERE id = #{id}
+		WHERE id =
+		#{id}
 	</update>
-	
-	<!-- 10/05 회원 전화번호 수정 -->
+
+	<!-- 회원 전화번호 수정 -->
 	<update id="updatePhone">
 		UPDATE MEMBER SET
 		phone = #{phone}
@@ -110,5 +117,36 @@
 		FROM MEMBER
 		WHERE ID=#{id}
 	</delete>
+
+	<!-- 10/05 추가 부분 -->
+	<!-- 예약내역 쿼리문 2개 작성 VO명은 일치 시킬것 -->
+	<select id="readlib" resultType="MemberInfoVO">
+		SELECT P.PAY_NO
+		, P.PAY_DATE
+		, P.PAY_CAT
+		, L.LIB_STARTDATE AS startDate
+		, L.LIB_PERIOD AS period
+		, L.LIB_PRICE AS price
+		FROM
+		PAYMENT P
+		JOIN LIBRARY L
+		ON (P.PAY_NO =
+		L.PAY_NO)
+		WHERE P.ID = #{id};
+	</select>
+
+	<select id="readgym" resultType="MemberInfoVO">
+		SELECT P.PAY_NO
+		, P.PAY_DATE
+		, P.PAY_CAT
+		, G.GYM_STARTDATE AS STARTDATE
+		, G.GYM_PERIOD AS PERIOD
+		, G.GYM_PRICE AS PRICE
+		FROM
+		PAYMENT P
+		JOIN GYM G
+		ON (P.PAY_NO = G.PAY_NO)
+		WHERE P.ID = #{id};
+	</select>
 
 </mapper>
