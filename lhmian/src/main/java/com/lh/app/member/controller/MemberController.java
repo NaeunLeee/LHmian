@@ -2,6 +2,7 @@ package com.lh.app.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,8 @@ public class MemberController {
 
 	@Autowired
 	MemberService service;
-
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	// 전체조회
 	@GetMapping("admMemberList")
 	public String memberList(Model model, @ModelAttribute("cri") MemberCriteria cri) {
@@ -36,39 +38,27 @@ public class MemberController {
 	}
 
 	// 단건조회
-	// 10/04 추가
 	@GetMapping("myInfo")
 	public String myInfo(Model model, MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		// 10/05 추가 ----------------------------------------------------------------
 		String id = customUserDetails.getUsername();
 		vo.setId(id);
+		if(encoder.matches("4", customUserDetails.getPassword())) {
+			System.out.println("match!!");
+		}
+		// ------------------------------------------------------------ 10/05 추가 끝 
 		model.addAttribute("car",service.getListcar(id));
 		model.addAttribute("info", service.read(vo));
 		return "myPage/myInfo";
 	}
 	
-	//10/04 19시 이후 커밋
-	@PutMapping("updateCar") // put, delete : 파라미터 json만 가능 -> { id:100, pw:"111", name:"choi"}
+	@PutMapping("updateCar") 
 	@ResponseBody
 	public MemberInfoVO update(@RequestBody MemberInfoVO vo) { // RequestBody 필요
 		System.out.println(vo.toString());
 		service.updateCar(vo);
 		return vo;
 	}
-	
-	
-
-	/*
-	 * //회원삭제
-	 * 
-	 * @PostMapping("/admin/admMemberDelete")
-	 * 
-	 * @ResponseBody public boolean delete(MemberVO vo) { service.delete(vo); return
-	 * true; }
-	 */
-
-	// 회원삭제
-	// 0928 한솔 + 광호
-	// ----------------------------------------------------------------------------------------------------------------
 
 	@RequestMapping("/deleteUser")
 	@ResponseBody
@@ -84,14 +74,30 @@ public class MemberController {
 		return true;
 	}
 	
+	//10/05 비밀번호 수정 추가
+	@RequestMapping("updatePw")
+	@ResponseBody
+	public MemberInfoVO updatePw(@RequestBody MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		String id = customUserDetails.getUsername();
+		String pw = customUserDetails.getPassword();
+		if(encoder.matches(vo.getPassword(), pw)) {
+			vo.setId(id);
+			vo.setPassword(encoder.encode(vo.getNewpw())); 
+			service.updatePw(vo);
+		}
+		return vo;
+	}
 	
-
-	// ----------------------------------------------------------------------------------------------------------------
-
-	/*
-	 * @PostMapping("/admin/admMemberDelete")
-	 * 
-	 * @ResponseBody public delete(MemberVO vo) { service.delete(vo); return true; }
-	 */
+	//10/05 전화번호 수정 추가
+	@PutMapping("updatePhone") 
+	@ResponseBody
+	public MemberInfoVO updatePhone(@RequestBody MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) { 
+		
+		String id = customUserDetails.getUsername();
+		vo.setId(id);
+		System.out.println(vo.toString());
+		service.updatePhone(vo);
+		return vo;
+	}
 
 }

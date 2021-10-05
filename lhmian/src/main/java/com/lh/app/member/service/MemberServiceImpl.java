@@ -36,7 +36,6 @@ public class MemberServiceImpl implements MemberService {
 	 * return mapper.update(vo); }
 	 */
 
-	// 0928 추가 ----------------------------------------------------
 	// 회원삭제
 	@Override
 	public int delete(MemberVO vo) {
@@ -50,11 +49,11 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.read(vo);
 	}
 	
-	//10/04 추가 (이광호)
+	//10/05 추가 (이광호)
 	@Override
-	public int updatePw(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updatePw(MemberInfoVO vo) {
+		
+		return mapper.updatePw(vo);
 	}
 
 	@Override
@@ -63,12 +62,19 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.getListcar(id);
 	}
 	
-	// 10/04 추가 (이광호)
-	//차량 정보 수정
+	//차량 정보 수정 (10/05)
 	@Override
 	public int updateCar(MemberInfoVO vo) {
 		// TODO Auto-generated method stub
 		return mapper.updateCar(vo);
+	}
+
+	
+	//10/05 추가
+	@Override
+	public int updatePhone(MemberInfoVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.updatePhone(vo);
 	}
 	
 	
