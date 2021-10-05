@@ -192,7 +192,7 @@
 				type: 'POST',
 				data: {authKey : authKey},
 				success: function(data) {
-					$('.name-msg').css('display', 'block');
+					$('.key-msg').css('display', 'block');
 					
 					//인증번호가 일치하지 않으면
 					if (!data) {

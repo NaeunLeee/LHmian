@@ -661,44 +661,34 @@ a:hover {
 </script>
 
 <script>
-	var ctx = document.getElementById("myPieChart");
-	var myPieChart = new Chart(ctx, {
-		type : 'pie',
-		data : {
-			labels : [ "Red", "Blue", "Yellow" ],
-			datasets : [ {
-				data : [ 300, 50, 100 ],
-				backgroundColor : [ "#FF6384", "#36A2EB", "#FFCE56" ],
-				hoverBackgroundColor : [ "#FF6384", "#36A2EB", "#FFCE56" ]
-			} ]
-		},
 
-	});
 </script>
 <script>
 	
 	//이번달 관리비 합계
-	const currentMfTotal = ${list[0].mfTotal};
+	const currentMfTotal = ${currentFee.mfTotal};
 	//저번달 관리비 합계
-	const lastMfTotal = ${list[1].mfTotal};
+	const lastMfTotal = ${currentFee.lastMonthTotal};
 	//관리비 전체 평균
 	const mfAvg = ${avg.mfAvg};
 	//월
-	let month = ${list[0].month};
-	//전월 대비
+	let month = ${currentFee.month};
+	//전월 대비 표시
 	compareLastMonth(lastMfTotal, currentMfTotal);
 	//관리비 평균에 (-8,388) 
 	avgDiff(mfAvg, currentMfTotal);
+	//원형 차트 표시
+	pieChart(${currentFeeJson});
 	
-	$('#mfFee').text(comma(${list[0].mfFee}));
-	$('#mfHeat').text(comma(${list[0].mfHeat}));
-	$('#mfElect').text(comma(${list[0].mfElect}));
-	$('#mfWater').text(comma(${list[0].mfWater}));
-	$('#mfTv').text(comma(${list[0].mfTv}));
-	$('#mfClean').text(comma(${list[0].mfClean}));
-	$('#mfSecurity').text(comma(${list[0].mfSecurity}));
-	$('#mfElevator').text(comma(${list[0].mfElevator}));
-	$('#mfTrash').text(comma(${list[0].mfTrash}));
+	$('#mfFee').text(comma(${currentFee.mfFee}));
+	$('#mfHeat').text(comma(${currentFee.mfHeat}));
+	$('#mfElect').text(comma(${currentFee.mfElect}));
+	$('#mfWater').text(comma(${currentFee.mfWater}));
+	$('#mfTv').text(comma(${currentFee.mfTv}));
+	$('#mfClean').text(comma(${currentFee.mfClean}));
+	$('#mfSecurity').text(comma(${currentFee.mfSecurity}));
+	$('#mfElevator').text(comma(${currentFee.mfElevator}));
+	$('#mfTrash').text(comma(${currentFee.mfTrash}));
 	$('#mfTotal').text(comma(currentMfTotal));
 	
 	$('#month').text(month + "월 관리비");
@@ -727,8 +717,10 @@ a:hover {
 				$('#mfTotal').text(comma(data.mfTotal));
 				$('#month').text(data.month + "월 관리비");
 				avgDiff(mfAvg, data.mfTotal);
+				compareLastMonth(data.lastMonthTotal, data.mfTotal);
+				pieChart(data);
 				
-				//이전 달 관리비를 가져와야하는데.............................
+				
 			}
 			
 			})
@@ -747,10 +739,13 @@ a:hover {
 		const diffference = Math.abs(lastMfTotal - currentMfTotal);
 		
 		//이번달 관리비가 지난달 관리비보다 많으면(초과) => 빨간색
+		if (lastMfTotal == null) {
+			return $('#compareTotal').removeClass('bigger').removeClass('smaller').text('전월 실적 없음');
+		}
 		if (currentMfTotal > lastMfTotal) {
-			return $('#compareTotal').addClass('bigger').text(comma(diffference) + " 증가");
+			return $('#compareTotal').removeClass('smaller').addClass('bigger').text(comma(diffference) + " 증가");
 		} else {
-			return $('#compareTotal').addClass('smaller').text(comma(diffference) + " 감소");
+			return $('#compareTotal').removeClass('bigger').addClass('smaller').text(comma(diffference) + " 감소");
 		}
 	}
 	
@@ -764,6 +759,30 @@ a:hover {
 		} else {
 			return $('#mfAvg').removeClass('bigger').addClass('smaller').text(comma(mfAvg + " (-" + difference + ")" ));
 		}
+	}
+	
+	//원형 차트
+	function pieChart(data) {
+		//"일반관리비", "난방온수", "전기료", "수도료", "TV수신료", "청소비", "경비비", "승강기유지비", "생활폐기물수수료"
+		var ctx = document.getElementById("myPieChart");
+		var myPieChart = new Chart(ctx, {
+			type : 'pie',
+			data : {
+				labels : [ "일반관리비", "난방온수", "전기료", "수도료", "TV수신료", "청소비", "경비비", "승강기유지비", "생활폐기물수수료" ],
+				datasets : [ {
+					data : [ data.mfFee, data.mfHeat, data.mfElect,
+							 data.mfWater, data.mfTv, data.mfClean,
+							 data.mfSecurity, data.mfElevator, data.mfTrash ],
+					backgroundColor : [ "rgba(75,192,192,1)", "rgba(162,236,191,1)", "rgba(236,162,183,1)",
+										"rgba(215,236,162,1)", "rgba(162,163,236,1)", "rgba(236,235,162,1)",
+										"rgba(233,234,211,1)", "rgba(215,193,170,1)", "rgba(168,169,190,1)"],
+					hoverBackgroundColor : [ "rgba(75,192,192,0.8)", "rgba(162,236,191,0.8)", "rgba(236,162,183,0.8)",
+											 "rgba(215,236,162,0.8)", "rgba(162,163,236,0.8)", "rgba(236,235,162,0.8)",
+											 "rgba(233,234,211,0.8)", "rgba(215,193,170,0.8)", "rgba(168,169,190,0.8)" ]
+				} ]
+			},
+
+		});
 	}
 	
 </script>
