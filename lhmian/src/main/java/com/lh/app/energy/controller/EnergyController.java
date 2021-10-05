@@ -1,6 +1,6 @@
 package com.lh.app.energy.controller;
 
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,16 +20,23 @@ public class EnergyController {
 	@Autowired
 	EnergyService energyService;
 
-	// 전체조회-사용자
+	// 첫 로딩 페이지-사용자
 	@GetMapping("/myPage/myEnergyCon")
 	public void myList(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		model.addAttribute("engList", energyService.getList(vo));
-		
 		Gson gson = new Gson();
-
-		
 		model.addAttribute("read", gson.toJson(energyService.read(vo)));
+	}
+
+	// 기간조회(전체조회)-사용자
+	@GetMapping("/myEnergyPeriod")
+	@ResponseBody
+	public List<EnergyVO> myPeriod(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
+		System.out.println(energyService.getList(vo));
+		//model.addAttribute("engList", energyService.getList(vo));
+		List<EnergyVO> result = energyService.getList(vo);
+		return result;
 	}
 
 	// 단건 조회-사용자
@@ -37,11 +44,8 @@ public class EnergyController {
 	@ResponseBody
 	public String myRead(EnergyVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		
 		Gson gson = new Gson();
-		
 		String result = String.valueOf(gson.toJson(energyService.read(vo)));
-		System.out.println(gson.toJson(energyService.read(vo)));
 		return result;
 	}
 
@@ -57,11 +61,11 @@ public class EnergyController {
 	@ResponseBody
 	public String admRead(EnergyVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		
+
 		Gson gson = new Gson();
-		
+
 		String result = gson.toJson(energyService.read(vo));
-		
+
 		return result;
 	}
 

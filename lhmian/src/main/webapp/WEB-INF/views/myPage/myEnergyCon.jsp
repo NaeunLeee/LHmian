@@ -41,23 +41,13 @@ margin-left : 324px;
 		<div class="col-md-2"></div>
 		<br><br>
 		<div class="btn2">
-			<button class="btn-yj">6개월</button>
-			<button class="btn-yj">1년</button>
+			<button class="btn-yj" value="6" onclick="periodBtn(this)">6개월</button>
+			<button class="btn-yj" value="12" onclick="periodBtn(this)">1년</button>
 		</div>
 		<div class="col-md-7 text-center margin-bottom">
 		</div>
 		<div class="col-md-5 text-center margin-bottom">
 		</div>
-		<%-- <div class="col-md-7 text-center margin-bottom">
-			<h4 class="uppercase">Line Chart</h4>
-			<br/>
-			<canvas id="myLineChart" width="400" height="300"></canvas>
-		</div>
-		<div class="col-md-5 text-center margin-bottom">
-			<h4 class="uppercase">Gauge Chart(평균)</h4>
-			<br/>
-			<div id="myGaugeChart"></div>
-		</div> --%>
 	</div>
 </div>
 <br>
@@ -79,23 +69,24 @@ margin-left : 324px;
 	
 	//차트-첫 로딩시 현재 월 차트 보여주고, 월 버튼 클릭시 해당 월의 데이터 표시
 	var tagBar = "";
-	tagBar += '<h4 class="uppercase">Bar Chart</h4>'
+	tagBar += '<h4 class="uppercase">월별 - Bar</h4>'
 		+  '<br/>'
 		+  '<canvas id="myBarChart" width="400" height="300"></canvas>'
 	$(".col-md-7").html(tagBar);
 		
 	var tagDoughnut = "";
-	tagDoughnut += '<h4 class="uppercase">Pie Chart</h4>'
+	tagDoughnut += '<h4 class="uppercase">월별 - Pie</h4>'
 		+  '<br/>'
 		+  '<canvas id="myDoughnutChart" width="300" height="300"></canvas>'
 	$(".col-md-5").html(tagDoughnut);
 		
+	//첫로딩 데이터 - 현재 월	
 	data = ${read};
-	console.log(data);
 	bar(data);
 	doughnut(data);
 	}); 
 	
+	//월별 버튼
 	function monthBtn(data) {
 		var month = date.getFullYear() + "";
 		if(data.value == '10' || data.value == '11' || data.value == '12') {
@@ -108,51 +99,37 @@ margin-left : 324px;
 			type : "get",
 			data : { mfDate : month },
 			success : function(data) {
-			bar(data);
+				data = JSON.parse(data);
+				bar(data);
+				doughnut(data);
 			}
 		});
 	};
 	
-	//기간데이터
-	var engArray = [];			var gasArray = [];
-	var electricArray = [];		var waterArray = [];
-	var trashArray = [];		var trashFoodArray = [];
-	
-	var mfDate = [];
-	
-	var eng;					var gas;
-	var electric;				var water;
-	var trash;					var trashFood;
-	
-	//기간평균-게이지데이터 
-	var avgEng = 0;				var avgGas = 0;
-	var avgElectric = 0;		var avgWater = 0;
-	var avgTrash = 0;			var avgTrashFood = 0;
-	
-	var tempDate;
-	
-	//기간데이터(6개월, 1년)
-	<c:forEach var="list" items="${engList}">
-	//데이터 가져오기
-	eng = ${list.eng}; 				gas = ${list.gas};
-	electric = ${list.electric};	water = ${list.water};
-	trash = ${list.trash};			trashFood = ${list.trashFood};
-	
-	//기간데이터
-	tempDate = ${list.mfDate} + '';
-	tempDate = tempDate.substring(0, 2) + "/" + tempDate.substring(2, 4);
-	mfDate.push(tempDate);
-
-	//데이터 배열화
-	engArray.push(eng);				gasArray.push(gas);
-	electricArray.push(electric);	waterArray.push(water);
-	trashArray.push(trash);			trashFoodArray.push(trashFood);
-	
-	//데이터 평균
-	avgEng += eng;					avgGas += gas;
-	avgElectric += electric;		avgWater += water;
-	avgTrash += trash;				avgTrashFood += trashFood;
-	</c:forEach>
+	//기간별 버튼
+	function periodBtn(data) {
+		var tagLine = "";
+		tagLine += '<h4 class="uppercase">기간별 - Line</h4>'
+			+  '<br/>'
+			+  '<canvas id="myLineChart" width="400" height="300"></canvas>'
+		$(".col-md-7").html(tagLine);
+			
+		var tagGauge = "";
+		tagGauge += '<h4 class="uppercase">기간별 - 평균</h4>'
+			+  '<br/>'
+			+  '<div id="myGaugeChart"></div>'
+		$(".col-md-5").html(tagGauge);
+			
+		$.ajax({
+			url : "${pageContext.request.contextPath}/myEnergyPeriod",
+			type : "get",
+			data : { mfDate : data.value },
+			success : function(data) {
+				line(data);
+				gauge(data);
+			}
+		});
+	};
 	
 	/* 바차트(월별) */
 	function bar(data) {
@@ -231,7 +208,24 @@ margin-left : 324px;
 		});
 	}
 	
-	function line() {		
+	function line(data) {	
+		//기간데이터-라인차트
+		var mfDate = [];
+		
+		var engArray = [];			var gasArray = [];
+		var electricArray = [];		var waterArray = [];
+		var trashArray = [];		var trashFoodArray = [];
+		
+		for(let i=0; i<data.length; i++) {
+			mfDate.push(data[i].mfDate);
+			engArray.push(data[i].eng);
+			gasArray.push(data[i].gas);
+			electricArray.push(data[i].electric);
+			waterArray.push(data[i].water);
+			trashArray.push(data[i].trash);
+			trashFoodArray.push(data[i].trashFood);
+		}
+		
 		/* 라인차트(전체) */
 		var ctx = document.getElementById("myLineChart");
 		var myLineChart = Chart.Line(ctx, {
@@ -364,14 +358,60 @@ margin-left : 324px;
 	}
 	
 	/* 게이지차트(에너지평균) */
-	function gauge() {
+	function gauge(data) {
 		google.charts.load('current', {'packages':['gauge']});
 	    google.charts.setOnLoadCallback(drawChart);
 	
+	  //기간평균-게이지차트 
+		var avgEng = 0;				var avgGas = 0;
+		var avgElectric = 0;		var avgWater = 0;
+		var avgTrash = 0;			var avgTrashFood = 0;
+		
+	    for(let i=0; i<data.length; i++) {
+	    	avgEng += data[i].eng;
+	    	avgGas += data[i].gas;
+	    	avgElectric += data[i].electric;
+	    	avgWater += data[i].water;
+	    	avgTrash += data[i].trash;
+	    	avgTrashFood += data[i].trashFood;
+	    }
+	    if(data.length == 6) {
+	    	avgEng = avgEng/6;
+	    	avgEng = Number(avgEng.toFixed(1));
+	    	avgGas = avgGas/6;
+	    	avgGas = Number(avgGas.toFixed(1));
+	    	avgElectric = avgElectric/6;
+	    	avgElectric = Number(avgElectric.toFixed(1));
+	    	avgWater = avgWater/6;
+	    	avgWater = Number(avgWater.toFixed(1));
+	    	avgTrash = avgTrash/6;
+	    	avgTrash = Number(avgTrash.toFixed(1));
+	    	avgTrashFood = avgTrashFood/6;
+	    	avgTrashFood = Number(avgTrashFood.toFixed(1));
+	    }else {
+	    	avgEng = avgEng/12;
+	    	avgEng = Number(avgEng.toFixed(1));
+	    	avgGas = avgGas/12;
+	    	avgGas = Number(avgGas.toFixed(1));
+	    	avgElectric = avgElectric/12;
+	    	avgElectric = Number(avgElectric.toFixed(1));
+	    	avgWater = avgWater/12;
+	    	avgWater = Number(avgWater.toFixed(1));
+	    	avgTrash = avgTrash/12;
+	    	avgTrash = Number(avgTrash.toFixed(1));
+	    	avgTrashFood = avgTrashFood/12;
+	    	avgTrashFood = Number(avgTrashFood.toFixed(1));
+	    }
+
 	    function drawChart() {
 	      var data = google.visualization.arrayToDataTable([
 	        ['Label', 'Value'],
-	        ['Memory', 80]
+	        ['일반관리비', avgEng],
+	        ['가스', avgGas],
+	        ['전기', avgElectric],
+	        ['수도', avgWater],
+	        ['생활폐기물', avgTrash],
+	        ['음식물폐기물', avgTrashFood]
 	      ]);
 	
 	      var options = {
