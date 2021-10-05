@@ -49,4 +49,15 @@ public class ManagementFeeController {
 		
 	}
 	
+	String payPrice = null;
+	
+	@PostMapping("/payMethodSelect")
+	public String payMethodSelect(String price) {
+		
+		payPrice = price;
+		
+		return "myPage/payMethodSelect";
+	}
+	
+	
 }

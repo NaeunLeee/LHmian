@@ -32,11 +32,11 @@ a:hover {
 }
 
 .bigger {
-	color: red;
+	color: #FA612E;
 }
 
 .smaller {
-	color: blue;
+	color: #4B91FA;
 }
 
 .select-box {
@@ -57,6 +57,7 @@ a:hover {
 	background: white;
 }
 </style>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <body>
 	<section>
 		<div class="pagenation-holder-no-bottom">
@@ -91,22 +92,22 @@ a:hover {
 
 				<div class="col-md-6">
 					<div class="text-box white padding-4 margin-bottom-3">
-					<div class="col-md-6">
-						<h4 id="month" class="font-weight-7 text-gray"></h4>
-					</div>
-					<div class="col-md-6 text-right">
-						<div class="select-box">
-							<select id="dateSelectBox">
-								<c:forEach var="list" items="${list }">
-									<option value="${list.mfDate }">
-									20${list.year }년 ${list.month }월</option>
-								</c:forEach>
-							</select>
-							<div class="select__arrow"></div>
+						<div class="col-md-6">
+							<h4 id="month" class="font-weight-7 text-gray"></h4>
 						</div>
-					</div>
+						<div class="col-md-6 text-right">
+							<div class="select-box">
+								<select id="dateSelectBox">
+									<c:forEach var="list" items="${list }">
+										<option value="${list.mfDate }">20${list.year }년
+											${list.month }월</option>
+									</c:forEach>
+								</select>
+								<div class="select__arrow"></div>
+							</div>
+						</div>
 						<div class="col-md-12 margin-bottom-3">
-						<h1 id="mfTotal" class="font-weight-5" style="margin-top: 10px;"></h1>
+							<h1 id="mfTotal" class="font-weight-5" style="margin-top: 10px;"></h1>
 						</div>
 						<!--end item-->
 
@@ -145,8 +146,11 @@ a:hover {
 							<h4 class="font-weight-5 col-centered">지금 바로 관리비를 결제하세요!</h4>
 						</div>
 						<div class="col-md-5 text-right">
-							<a class="btn btn-medium btn-dark uppercase" href="#"> <span>결제하기</span>
-							</a>
+
+							<input type="hidden" id="price" name="price">
+							<button type="button" id="payBtn" class="btn btn-medium btn-dark uppercase"> <span>결제하기</span>
+							</button>
+
 						</div>
 					</div>
 
@@ -157,11 +161,12 @@ a:hover {
 						<iframe class="chartjs-hidden-iframe"
 							style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
 
-						<h4 class="uppercase">Pie Chart</h4>
+						<h4 class="uppercase">관리비</h4>
 						<br>
-
-						<canvas id="myPieChart" width="300" height="300"
-							style="display: block; width: 300px; height: 300px;"></canvas>
+						<div id="pieChart">
+							<canvas id="myPieChart" width="300" height="300"
+								style="display: block; width: 300px; height: 300px;"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -673,13 +678,17 @@ a:hover {
 	const mfAvg = ${avg.mfAvg};
 	//월
 	let month = ${currentFee.month};
+	let date = ${currentFee.mfDate};
 	//전월 대비 표시
 	compareLastMonth(lastMfTotal, currentMfTotal);
 	//관리비 평균에 (-8,388) 
 	avgDiff(mfAvg, currentMfTotal);
 	//원형 차트 표시
+	console.log(${currentFeeJson});
 	pieChart(${currentFeeJson});
 	
+	$('#price').val(currentMfTotal);
+
 	$('#mfFee').text(comma(${currentFee.mfFee}));
 	$('#mfHeat').text(comma(${currentFee.mfHeat}));
 	$('#mfElect').text(comma(${currentFee.mfElect}));
@@ -695,7 +704,7 @@ a:hover {
 	
 	
 	$('#dateSelectBox').on('change', function() {
-		let date = $('#dateSelectBox option:selected').val();
+		date = $('#dateSelectBox option:selected').val();
 		console.log(date);
 		
 		$.ajax({
@@ -720,6 +729,7 @@ a:hover {
 				compareLastMonth(data.lastMonthTotal, data.mfTotal);
 				pieChart(data);
 				
+				$('#price').val() = data.mfTotal;
 				
 			}
 			
@@ -761,9 +771,63 @@ a:hover {
 		}
 	}
 	
+	$('#payBtn').on('click', function() {
+		const price = $('#price').val();
+		let author = null;
+		let phone = null;
+		let name = null;
+		
+		<sec:authorize access="isAuthenticated()">
+			author = '<sec:authentication property="principal.AUTHOR"/>';
+			phone = '<sec:authentication property="principal.PHONE"/>';
+			name = '<sec:authentication property="principal.NAME"/>';
+		</sec:authorize>
+		
+		if (author == 'OWNER') {
+			iamport(date, price, name, phone);	
+		} else {
+			alert('세대주만 결제할 수 있습니다.');
+		}
+		
+	})
+
+	
+	function iamport(date, price, name, phone) {
+				//가맹점 식별코드
+				IMP.init('imp57655457');
+				IMP.request_pay({
+				    pg : 'INIpayTest',
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : 'fee_' + date  , //결제창에서 보여질 이름
+				    amount : price, //실제 결제되는 가격
+				    buyer_name : name,
+				    buyer_tel : phone,
+				}, function(rsp) {
+					console.log(rsp);
+				    if ( rsp.success ) {
+				    	var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				    } else {
+				    	 var msg = '결제에 실패하였습니다.';
+				         msg += '에러내용 : ' + rsp.error_msg;
+				    }
+				    alert(msg);
+				});
+			}
+
+	
 	//원형 차트
 	function pieChart(data) {
-		//"일반관리비", "난방온수", "전기료", "수도료", "TV수신료", "청소비", "경비비", "승강기유지비", "생활폐기물수수료"
+		const idPieChart = document.getElementById("pieChart");
+		
+		const canvasTag = '<canvas id="myPieChart" width="300" height="300"'
+						+ 'style="display: block; width: 300px; height: 300px;"></canvas>';
+		idPieChart.innerHTML = canvasTag;
+
 		var ctx = document.getElementById("myPieChart");
 		var myPieChart = new Chart(ctx, {
 			type : 'pie',
