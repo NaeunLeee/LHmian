@@ -45,16 +45,10 @@ margin-left : 324px;
 			<button class="btn-yj">1년</button>
 		</div>
 		<div class="col-md-7 text-center margin-bottom">
-			<h4 class="uppercase">Bar Chart</h4>
-			<br/>
-			<canvas id="myBarChart" width="400" height="300"></canvas>
 		</div>
 		<div class="col-md-5 text-center margin-bottom">
-		    <h4 class="uppercase">Pie Chart</h4>
-			<br/>
-			<canvas id="myDoughnutChart" width="300" height="300"></canvas>
 		</div>
-		<div class="col-md-7 text-center margin-bottom">
+		<%-- <div class="col-md-7 text-center margin-bottom">
 			<h4 class="uppercase">Line Chart</h4>
 			<br/>
 			<canvas id="myLineChart" width="400" height="300"></canvas>
@@ -63,9 +57,10 @@ margin-left : 324px;
 			<h4 class="uppercase">Gauge Chart(평균)</h4>
 			<br/>
 			<div id="myGaugeChart"></div>
-		</div>
+		</div> --%>
 	</div>
 </div>
+<br>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
 <script>
@@ -77,24 +72,46 @@ margin-left : 324px;
 		for (let i = 0; i < 6; i++) {
 			var btn = month - i;
 			var tag = "";
-			tag = '<button id="month' + i + '" class="btn-yj btn-month" onclick="monthBtn(' + btn + ')">' + btn + '월</button>';
+			tag = '<button id="month' + i + '" class="btn-yj btn-month" value="' + btn + '" onclick="monthBtn(this);">' + btn + '월</button>';
 			total = total + tag;
 		}
 	$('.btn1').html(total);
+	
 	//차트-첫 로딩시 현재 월 차트 보여주고, 월 버튼 클릭시 해당 월의 데이터 표시
-	bar();
-	doughnut();
-function monthBtn(n) {
+	var tagBar = "";
+	tagBar += '<h4 class="uppercase">Bar Chart</h4>'
+		+  '<br/>'
+		+  '<canvas id="myBarChart" width="400" height="300"></canvas>'
+	$(".col-md-7").html(tagBar);
+		
+	var tagDoughnut = "";
+	tagDoughnut += '<h4 class="uppercase">Pie Chart</h4>'
+		+  '<br/>'
+		+  '<canvas id="myDoughnutChart" width="300" height="300"></canvas>'
+	$(".col-md-5").html(tagDoughnut);
+		
+	data = ${read};
+	console.log(data);
+	bar(data);
+	doughnut(data);
+	}); 
+	
+	function monthBtn(data) {
+		var month = date.getFullYear() + "";
+		if(data.value == '10' || data.value == '11' || data.value == '12') {
+		month = month.substr(2,2) + data.value;
+		}else {
+			month = month.substr(2,2) + '0' + data.value;
+		};
 		$.ajax({
-			url : "myEnergy",
+			url : "${pageContext.request.contextPath}/myEnergy",
 			type : "get",
-			success : function(datas) {
-				console.log(datas);
-			bar(datas);
+			data : { mfDate : month },
+			success : function(data) {
+			bar(data);
 			}
-		})
-	}
-	});  
+		});
+	};
 	
 	//기간데이터
 	var engArray = [];			var gasArray = [];
@@ -138,7 +155,7 @@ function monthBtn(n) {
 	</c:forEach>
 	
 	/* 바차트(월별) */
-	function bar(datas) {
+	function bar(data) {
 		var ctx = document.getElementById("myBarChart");
 		var myBarChart = new Chart(ctx,{
 		    type: 'bar',
@@ -154,7 +171,7 @@ function monthBtn(n) {
 		       datasets: [
 		        { 
 		        	label : "일반관리비",
-		        	data: [],
+		        	data: [data.eng, data.gas, data.electric, data.water, data.trash, data.trashFood],
 		            backgroundColor: [
 		            	"rgba(75,192,192,1)",
 		                "rgba(162,236,191,1)",
@@ -177,7 +194,7 @@ function monthBtn(n) {
 	};
 	
 	/* 도넛차트(에너지별) */
-	function doughnut() {
+	function doughnut(data) {
 		var ctx = document.getElementById("myDoughnutChart");
 		var myDoughnutChart = new Chart(ctx,{
 		    type: 'doughnut',
@@ -192,7 +209,7 @@ function monthBtn(n) {
 		    ],
 		       datasets: [
 		        { 
-		        	data: [avgEng, avgGas, avgElectric, avgWater, avgTrash, avgTrashFood],
+		        	data: [data.eng, data.gas, data.electric, data.water, data.trash, data.trashFood],
 		            backgroundColor: [
 		            	"rgba(75,192,192,1)",
 		                "rgba(162,236,191,1)",
