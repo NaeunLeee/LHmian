@@ -11,7 +11,9 @@ import com.lh.app.energy.mapper.EnergyMapper;
 @Service
 public class EnergyserviceImpl implements EnergyService {
 
-	@Autowired EnergyMapper energyMapper;
+	@Autowired
+	EnergyMapper energyMapper;
+
 	@Override
 	public List<EnergyVO> getList(EnergyVO vo) {
 		return energyMapper.getList(vo);
@@ -22,4 +24,8 @@ public class EnergyserviceImpl implements EnergyService {
 		return energyMapper.read(vo);
 	}
 
+	@Override
+	public List<EnergyVO> admList(EnergyVO vo) {
+		return energyMapper.admList(vo);
+	}
 }

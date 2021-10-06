@@ -35,6 +35,8 @@ margin-left : 324px;
 <hr>
 <div class="container">
 	<div class="row">
+		<h4 align="center">에너지 사용 내역</h4>
+	<hr>
 	<br><br>
 		<div class="col-md-2"></div>
 		<div class="btn1 col-md-8"></div>
@@ -88,6 +90,18 @@ margin-left : 324px;
 	
 	//월별 버튼
 	function monthBtn(data) {
+		var tagBar = "";
+		tagBar += '<h4 class="uppercase">월별 - Bar</h4>'
+			+  '<br/>'
+			+  '<canvas id="myBarChart" width="400" height="300"></canvas>'
+		$(".col-md-7").html(tagBar);
+			
+		var tagDoughnut = "";
+		tagDoughnut += '<h4 class="uppercase">월별 - Pie</h4>'
+			+  '<br/>'
+			+  '<canvas id="myDoughnutChart" width="300" height="300"></canvas>'
+		$(".col-md-5").html(tagDoughnut);
+			
 		var month = date.getFullYear() + "";
 		if(data.value == '10' || data.value == '11' || data.value == '12') {
 		month = month.substr(2,2) + data.value;
@@ -144,10 +158,8 @@ margin-left : 324px;
 		        "수도",
 		        "생활폐기물",
 		        "음식물폐기물"
-		    ],
-		       datasets: [
-		        { 
-		        	label : "일반관리비",
+		    	],
+			    datasets: [{
 		        	data: [data.eng, data.gas, data.electric, data.water, data.trash, data.trashFood],
 		            backgroundColor: [
 		            	"rgba(75,192,192,1)",
@@ -165,8 +177,13 @@ margin-left : 324px;
 		                "rgba(162,163,236,0.8)",
 		                "rgba(236, 235,162,0.8)"
 		            ]
-		        }]
-		    }    
+		    	}]
+		    },
+	    	options: {
+	    		legend: {
+	        		display: false
+	        }
+	    }   
 		});
 	};
 	
@@ -204,7 +221,7 @@ margin-left : 324px;
 		                "rgba(236, 235,162,0.8)"
 		            ]
 		        }]
-		    },  
+		    }
 		});
 	}
 	
