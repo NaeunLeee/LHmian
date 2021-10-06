@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 10/06  fac_mapper 추가 -->
+
+<mapper namespace="com.lh.app.facility.mapper.FacMapper">
+	
+	<sql id="criteria">
+		<trim prefix="(" suffix=")AND" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							P.PAY_CAT LIKE '%' ||#{keyword}|| '%'
+						</when>
+						<when test="type=='C'.toString()">
+							p.pay_date LIKE '%' ||#{keyword}|| '%'
+						</when>
+						<when test="type=='W'.toString()">
+							PERIOD LIKE  '%' ||#{keyword}|| '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+
+	<select id="myFac" resultType="FacVO">
+		SELECT
+		*
+		FROM
+		(
+		SELECT ROWNUM RM, PAY_CAT, PAY_DATE, PERIOD, PRICE FROM
+		(SELECT P.PAY_CAT, P.PAY_DATE, L.LIB_PERIOD PERIOD, L.LIB_PRICE PRICE
+		FROM PAYMENT P
+		JOIN LIBRARY L
+		ON (P.PAY_NO = L.PAY_NO)
+		WHERE ID = #{id}
+		UNION ALL
+		SELECT P.PAY_CAT, P.PAY_DATE, G.GYM_PERIOD PERIOD, G.GYM_PRICE PRICE
+		FROM PAYMENT P
+		JOIN GYM G
+		ON (P.PAY_NO = G.PAY_NO)WHERE ID = #{id})
+		WHERE
+		<include refid="criteria"></include>
+		<![CDATA[ 
+		ROWNUM <= #{pageNum} * #{amount} 
+		)
+		WHERE ROWNUM > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+		
+	<select id="getTotalCount" resultType="int">
+		SELECT
+		count(*)
+		FROM
+		(
+		/*+INDEX_DESC(COMMUNITY COMMUNITY_PK)*/
+		SELECT ROWNUM
+		RM, PAY_CAT, PAY_DATE, PERIOD, PRICE FROM
+		(SELECT P.PAY_CAT, P.PAY_DATE, L.LIB_PERIOD PERIOD, L.LIB_PRICE PRICE
+		FROM PAYMENT P
+		JOIN LIBRARY L
+		ON (P.PAY_NO = L.PAY_NO)
+		WHERE ID = #{id}
+		UNION ALL
+		SELECT P.PAY_CAT, P.PAY_DATE, G.GYM_PERIOD PERIOD, G.GYM_PRICE PRICE
+		FROM PAYMENT P
+		JOIN GYM G
+		ON (P.PAY_NO = G.PAY_NO) WHERE ID = #{id}))
+		WHERE
+		rownum > 0
+	</select>
+</mapper>
