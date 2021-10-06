@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.lh.app.comm.domain.CommVO;
 import com.lh.app.comm.domain.Criteria;
+import com.lh.app.comm.domain.PersonalCriteria;
 import com.lh.app.comm.mapper.CommMapper;
 import com.lh.app.signIn.etc.CustomUserDetails;
 
@@ -66,12 +67,30 @@ public class CommServiceImpl implements CommService {
 		
 	}
 	
-	// 10/02 cri 주석처리함
+	// 10/06 -------------------------------------------------------
 	@Override
-	public List<CommVO> getListno(/* Criteria cri, */String username) {
+	public List<CommVO> getListno(PersonalCriteria cri) {
 		// TODO Auto-generated method stub
-		return commMapper.getListno(/* cri, */ username);
+		return commMapper.getListno(cri);
 	}
 
+	@Override
+	public int getCntMember(PersonalCriteria cri) {
+		// TODO Auto-generated method stub
+		return commMapper.getCntMember(cri);
+	}
 
+	@Override
+	public int getCntCmt(Criteria cri) {
+		return commMapper.getCntCmt(cri);
+	}
+
+	@Override
+	public List<CommVO> getComment(Criteria cri) {
+		// TODO Auto-generated method stub
+		return commMapper.getComment(cri);
+	}
+
+	
+	
 }

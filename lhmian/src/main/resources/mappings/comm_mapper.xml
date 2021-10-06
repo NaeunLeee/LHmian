@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.comm.mapper.CommMapper">
-	
+
 	<sql id="criteria">
 		<trim prefix="(" suffix=")AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
@@ -21,7 +21,7 @@
 			</foreach>
 		</trim>
 	</sql>
-	
+
 	<select id="getList" resultType="CommVO">
 		<![CDATA[
 		SELECT
@@ -35,7 +35,7 @@
 		FROM COMMUNITY
 		where
 		]]>
-			<include refid="criteria"></include>
+		<include refid="criteria"></include>
 		<![CDATA[ 
 		ROWNUM <= #{pageNum} * #{amount} 
 		)
@@ -43,33 +43,49 @@
 		]]>
 	</select>
 	
+	<!-- 10/06 수정 -->
 	<select id="getListno" resultType="CommVO">
-		select COMM_NO, COMM_TITLE, COMM_CONTENT,
-		COMM_DATE,COMM_HIT
-		FROM COMMUNITY
-		where id = #{id}
-		<!-- <![CDATA[
 		SELECT
 		*
 		FROM
 		(
 		SELECT
-		/*+INDEX_DESC(COMMUNITY COMMUNITY_PK)*/
 		ROWNUM RN, COMM_NO, COMM_TITLE, COMM_CONTENT,
+		ID,
 		COMM_DATE,COMM_HIT
 		FROM COMMUNITY
-		where
-		]]>
-			<include refid="criteria"></include>
+		WHERE
+		<include refid="criteria"></include>
 		<![CDATA[ 
 		ROWNUM <= #{pageNum} * #{amount} 
-		
 		)
 		WHERE RN > (#{pageNum} -1) * #{amount} 
 		AND ID = #{id}
-		]]> -->
+		]]>
 	</select>
-	
+
+	<!-- 10/06 수정 -->
+	<select id="getComment" resultType="ReplyVO">
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		ROWNUM, B.ID, B.COMM_NO,C.CMT_CONTENT, C.CMT_DATE
+		FROM COMMENTS C
+		JOIN COMMUNITY B
+		ON (C.COMM_NO = B.COMM_NO)
+		WHERE
+		<include refid="criteria"></include>
+		<![CDATA[ 
+		ROWNUM <= #{pageNum} * #{amount} 
+		AND ID = #{id}
+		ORDER BY ROWNUM DESC
+		)
+		WHERE ROWNUM > (#{pageNum} -1) * #{amount} 
+		]]>
+	</select>
+
 	<select id="read" resultType="CommVO" parameterType="CommVO"> <!-- 파라미터 타입은 생략해도 가능 resultType은 필수 -->
 		SELECT COMM_NO
 		,COMM_TITLE
@@ -77,19 +93,36 @@
 		,ID
 		,COMM_DATE
 		,COMM_UPDATE
-		FROM COMMUNITY
+		FROM
+		COMMUNITY
 		WHERE
 		COMM_NO = #{commNo}
 	</select>
-	
+
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM
 		COMMUNITY
 		where
-			<include refid="criteria"></include>
+		<include refid="criteria"></include>
 		COMM_NO > 0
 	</select>
 	
+	<!-- 10/06 추가 -->
+	<select id="getCntMember" resultType="int">
+		SELECT COUNT(*) FROM
+		COMMUNITY
+		WHERE ID = #{id}
+	</select>
+
+	<!-- 10/06 추가 -->
+	<select id="getCntCmt" resultType="int">
+		SELECT COUNT(*) FROM
+		COMMENTS C
+		JOIN COMMUNITY B
+		ON (C.COMM_NO = B.COMM_NO)
+		WHERE B.ID = #{id}
+	</select>
+
 	<insert id="insert">
 		INSERT INTO COMMUNITY(
 		COMM_NO,
@@ -100,30 +133,29 @@
 		COMM_SEQ.NEXTVAL,
 		#{commTitle},
 		#{commContent},
-		#{id}||''|| COMM_SEQ.NEXTVAL) 
+		#{id}||''||
+		COMM_SEQ.NEXTVAL)
 		<!-- 아이디 임시로 'test'+seq 로 제작, 로그인 시큐리티 활성화 후 수정 필요 -->
 	</insert>
-	
+
 	<update id="update">
 		UPDATE COMMUNITY SET
 		COMM_CONTENT = #{commContent},
 		COMM_UPDATE = sysdate
 		WHERE COMM_NO = #{commNo}
 	</update>
-	
+
 	<!-- 댓글 수 업데이트 -->
-	<!-- <update id="updateReplycnt">
-		UPDATE community SET
-			   REPLYCNT = REPLYCNT + #{amount}
-		WHERE COMM_NO = #{commNo}
-	</update> -->
-	
+	<!-- <update id="updateReplycnt"> UPDATE community SET REPLYCNT = REPLYCNT 
+		+ #{amount} WHERE COMM_NO = #{commNo} </update> -->
+
 	<delete id="remove">
 		DELETE FROM COMMUNITY WHERE COMM_NO = #{commNo}
 	</delete>
-	
+
 	<!-- 조회수 올리기 -->
 	<update id="viewCount">
-		update community set comm_hit = comm_hit + 1 where comm_no = #{commNo}
+		update community set comm_hit = comm_hit + 1 where
+		comm_no = #{commNo}
 	</update>
 </mapper>

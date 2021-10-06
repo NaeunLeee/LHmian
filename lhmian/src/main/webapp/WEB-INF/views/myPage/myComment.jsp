@@ -8,23 +8,21 @@
 		<thead>
 			<tr>
 				<th>번호</th>
-				<th>제목</th>
+				<th>내용</th>
 				<th>작성일자</th>
-				<th>조회수</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${list}" var="comm">
+			<c:forEach items="${list}" var="cmt">
 				<tr>
-					<td>${comm.commNo}</td>
-					<td><a class="move" href="${comm.commNo}">${comm.commTitle}</a></td>
-					<td><fmt:formatDate value="${comm.commDate}" type="both"
+					<td>${cmt.rownum}</td>
+					<td><a class="move" href="${cmt.commNo}">${cmt.cmtContent}</a></td>
+					<td><fmt:formatDate value="${cmt.cmtDate}" type="both"
 							pattern="yy-MM-dd" /></td>
-					<td>${comm.commHit}</td>		
 			</c:forEach>
 		</tbody>
 	</table>
-	<form id="actionForm" action="myCommunityList" method="get"> <!-- 메소드 생략시 자동으로 get로 전환 -->
+	<form id="actionForm" action="getComment" method="get"> <!-- 메소드 생략시 자동으로 get로 전환 -->
 		<select name="type">
 			<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
 			<option value="T" ${empty pageMaker.cri.type =='T' ? selected : ""}>제목검색</option>
