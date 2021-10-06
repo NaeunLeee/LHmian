@@ -9,6 +9,13 @@ import lombok.Data;
 
 @Data
 public class ReplyVO {
+	
+	// 10/06 추가
+	private String rownum;
+	private String id;
+	
+	
+	
 	private long cmtNo;
 	private long commNo;
 	
