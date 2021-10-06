@@ -32,8 +32,8 @@
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="">우리아파트</a></li>
-							<li class="current"><a href="${pageContext.request.contextPath}/introduce/map">오시는길</a></li>
+							<li><a href="">우리 아파트</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/introduce/map">오시는 길</a></li>
 						</ol>
 					</div>
 				</div>

@@ -5,18 +5,14 @@
 <section>
       <div class="pagenation-holder">
         <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <h4>평형도</h4>
-            </div>
-            <div class="col-md-6">
+          <div class="row" style="float:left">
               <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">우리 아파트</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
                 <li class="current"><a href="${pageContext.request.contextPath}/introduce/phaseDiagram">평형도</a></li>
               </ol>
             </div>
-          </div>
+           
         </div>
       </div>
     </section>

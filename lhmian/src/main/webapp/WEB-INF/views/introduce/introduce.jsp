@@ -17,25 +17,19 @@ h1{
 </style>
 
 <section>
-	<div class="pagenation-holder">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<h4>아파트 소개</h4>
-				</div>
-				<div class="col-md-6">
-					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
-						<li class="current"><a
-							href="${pageContext.request.contextPath}/introduce/introduce">아파트
-								소개</a></li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+      <div class="pagenation-holder">
+        <div class="container">
+          <div class="row" style="float:left">
+              <ol class="breadcrumb">
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
+                <li class="current"><a href="${pageContext.request.contextPath}/introduce/arrangement">아파트 소개</a></li>
+              </ol>
+            </div>
+            </div>
+            
+          </div>
+    </section>
 <div class="clearfix"></div>
 <!-- end section -->
 <section class="sec-padding">
