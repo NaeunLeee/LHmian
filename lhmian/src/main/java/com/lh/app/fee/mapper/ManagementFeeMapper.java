@@ -16,4 +16,7 @@ public interface ManagementFeeMapper {
 	
 	//제일 최근 관리비 출력(이전달 관리비와 함께)
 	public ManagementFeeVO selectCurrentFee(ManagementFeeVO vo);
+	
+	//관리자 전체 관리비 출력
+	public List<ManagementFeeVO> admSelectFeeList();
 }
