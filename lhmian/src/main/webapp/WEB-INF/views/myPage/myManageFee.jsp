@@ -100,7 +100,7 @@
 						<div class="col-md-12">
 							<ul class="opening-list" style="font-size: 18px;">
 								<li><span class="pull-left">전월 대비</span> <span
-									id="compareTotal" class="pull-right font-weight-7">dddd</span></li>
+									id="compareTotal" class="pull-right font-weight-7"></span></li>
 								<li><span class="pull-left">아파트 평균 관리비</span> <span
 									id="mfAvg" class="pull-right"></span></li>
 								<li><span class="pull-left">일반관리비</span> <span id="mfFee"
@@ -172,422 +172,19 @@
 							style="display: block; width: 400px; height: 400px;"></canvas>
 					</div>
 				</div>
-
-			</div>
-
-			<div class="row">
-				<div class="col-md-12 text-center">
-					<div class="clearfix"></div>
-					<br> <br>
-
-
-					<div class="col-md-12 nopadding">
-						<div class="tab-navbar-main tabstyle-9">
-							<ul class="responsive-tabs">
-								<li class=""><a href="#example-1-tab-1" target="_self">
-										restaurants</a></li>
-								<li class=""><a href="#example-1-tab-2" target="_self">
-										Hotel Rooms</a></li>
-								<li class=""><a href="#example-1-tab-3" target="_self">
-										Spa &amp; Massage</a></li>
-								<li class="active"><a href="#example-1-tab-4"
-									target="_self"> Bar</a></li>
-								<li class=""><a href="#example-1-tab-5" target="_self">
-										sport-club</a></li>
-								<li class=""><a href="#example-1-tab-6" target="_self">
-										Events</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-					<div class="tab-content-holder-9">
-						<div class="responsive-tabs-content">
-							<div id="example-1-tab-1" class="responsive-tabs-panel"
-								style="display: none;">
-								<div class="responsive-tab-title ttitle">
-									<p>
-										<strong><span class="icon-global"></span> <br>
-											restaurants</strong>
-									</p>
-								</div>
-								<div class="col-md-2"></div>
-								<div class="col-md-8">
-									<div class="tabstyle-9-feature-box-2">
-										<iframe class="chartjs-hidden-iframe"
-											style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
-
-										<h4 class="uppercase">Chart</h4>
-										<br>
-
-										<canvas id="myChart" width="400" height="400"
-											style="display: block; width: 400px; height: 400px;"></canvas>
-									</div>
-								</div>
-								<div class="col-md-2"></div>
-								<!--end item-->
-
-								<div class="col-md-5 col-sm-5 col-xs-12 margin-bottom">
-									<div class="tabstyle-9-feature-box">
-										<img src="images/hl-10.jpg" alt="" class="img-responsive">
-									</div>
-								</div>
-								<!--end item-->
-							</div>
-							<!--end panel 1-->
-
-							<div id="example-1-tab-2" class="responsive-tabs-panel"
-								style="display: none;">
-								<div class="responsive-tab-title ttitle">
-									<p>
-										<strong><span class="icon-layers"></span> <br>
-											Hotel Rooms</strong>
-									</p>
-								</div>
-								<div class="col-md-5">
-									<div class="tabstyle-9-feature-box">
-										<img src="images/hl-11.jpg" alt="" class="img-responsive">
-									</div>
-								</div>
-								<!--end item-->
-
-								<div class="col-md-7 col-sm-7 col-xs-12 margin-bottom">
-									<div class="tabstyle-9-feature-box-2">
-										<h4 class="uppercase">Hotel Rooms</h4>
-										<h6 class="raleway">Lorem ipsum dolor sit amet
-											consectetuer adipiscing elit Suspendisse et justo Praesent
-											mattis commodo augue Aliquam ornare hendrerit augue</h6>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor sit amet
-											consectetuer adipiscing eli Suspendisse et justo sit amet
-											justo elite.</p>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor.</p>
-										<br> <a class="read-more" href="#">Read more &nbsp;
-											&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-								<!--end item-->
-
-							</div>
-							<!--end panel 2-->
-
-							<div id="example-1-tab-3" class="responsive-tabs-panel"
-								style="display: none;">
-								<div class="responsive-tab-title ttitle">
-									<p>
-										<strong><span class="icon-desktop"></span> <br>
-											Spa &amp; Massage</strong>
-									</p>
-								</div>
-								<div class="col-md-7">
-									<div class="tabstyle-9-feature-box-2">
-										<h4 class="uppercase">Spa &amp; Massage</h4>
-										<h6 class="raleway">Lorem ipsum dolor sit amet
-											consectetuer adipiscing elit Suspendisse et justo Praesent
-											mattis commodo augue Aliquam ornare hendrerit augue</h6>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor sit amet
-											consectetuer adipiscing eli Suspendisse et justo sit amet
-											justo elite.</p>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor.</p>
-										<br> <a class="read-more" href="#">Read more &nbsp;
-											&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-								<!--end item-->
-
-								<div class="col-md-5">
-									<div class="tabstyle-9-feature-box">
-										<img src="images/hl-12.jpg" alt="" class="img-responsive">
-									</div>
-								</div>
-								<!--end item-->
-							</div>
-							<!--end panel 3-->
-
-							<div id="example-1-tab-4" class="responsive-tabs-panel"
-								style="display: block;">
-								<div class="responsive-tab-title ttitle">
-									<p>
-										<strong><span class="icon-envelope"></span> <br>
-											Bar</strong>
-									</p>
-								</div>
-								<div class="col-md-7">
-									<div class="tabstyle-9-feature-box-2">
-										<h4 class="uppercase">Bar &amp; Restaurant</h4>
-										<h6 class="raleway">Lorem ipsum dolor sit amet
-											consectetuer adipiscing elit Suspendisse et justo Praesent
-											mattis commodo augue Aliquam ornare hendrerit augue</h6>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor sit amet
-											consectetuer adipiscing eli Suspendisse et justo sit amet
-											justo elite.</p>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor.</p>
-										<br> <a class="read-more" href="#">Read more &nbsp;
-											&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-								<!--end item-->
-
-								<div class="col-md-5">
-									<div class="tabstyle-9-feature-box">
-										<img src="images/hl-13.jpg" alt="" class="img-responsive">
-									</div>
-								</div>
-								<!--end item-->
-							</div>
-							<!--end panel 4-->
-
-							<div id="example-1-tab-5" class="responsive-tabs-panel"
-								style="display: none;">
-								<div class="responsive-tab-title ttitle">
-									<p>
-										<strong><span class="icon-briefcase"></span> <br>
-											sport-club</strong>
-									</p>
-								</div>
-								<div class="col-md-7">
-									<div class="tabstyle-9-feature-box-2">
-										<h4 class="uppercase">Sport Club</h4>
-										<h6 class="raleway">Lorem ipsum dolor sit amet
-											consectetuer adipiscing elit Suspendisse et justo Praesent
-											mattis commodo augue Aliquam ornare hendrerit augue</h6>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor sit amet
-											consectetuer adipiscing eli Suspendisse et justo sit amet
-											justo elite.</p>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor.</p>
-										<br> <a class="read-more" href="#">Read more &nbsp;
-											&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-								<!--end item-->
-
-								<div class="col-md-5">
-									<div class="tabstyle-9-feature-box">
-										<img src="images/hl-14.jpg" alt="" class="img-responsive">
-									</div>
-								</div>
-								<!--end item-->
-							</div>
-							<!--end panel 5-->
-
-							<div id="example-1-tab-6" class="responsive-tabs-panel"
-								style="display: none;">
-								<div class="responsive-tab-title ttitle">
-									<p>
-										<strong><span class="icon-lock"></span> <br>
-											Events</strong>
-									</p>
-								</div>
-								<div class="col-md-7">
-									<div class="tabstyle-9-feature-box-2">
-										<h4 class="uppercase">Events &amp; Partys</h4>
-										<h6 class="raleway">Lorem ipsum dolor sit amet
-											consectetuer adipiscing elit Suspendisse et justo Praesent
-											mattis commodo augue Aliquam ornare hendrerit augue</h6>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor sit amet
-											consectetuer adipiscing eli Suspendisse et justo sit amet
-											justo elite.</p>
-										<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-											Suspendisse et justo Praesent mattis commodo augue Aliquam
-											ornare hendrerit augue Cras Lorem ipsum dolor.</p>
-										<br> <a class="read-more" href="#">Read more &nbsp;
-											&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>
-										</a>
-									</div>
-								</div>
-								<!--end item-->
-
-								<div class="col-md-5">
-									<div class="tabstyle-9-feature-box">
-										<img src="images/hl-15.jpg" alt="" class="img-responsive">
-									</div>
-								</div>
-								<!--end item-->
-							</div>
-						</div>
-					</div>
-					<!--end column-->
-
-				</div>
-			</div>
-		</div>
-
-
-
-
-	</section>
-
-
-
-
-
-
-	<section class="sec-padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="fe-feature-box-11 text-center margin-bottom">
-						<h1 class="text-big">249</h1>
-						<div class="line"></div>
-						<h5 class="uppercase text-small">Projects</h5>
-					</div>
-				</div>
-				<!--end item-->
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="fe-feature-box-11 text-center margin-bottom">
-						<h1 class="text-big">190</h1>
-						<div class="line"></div>
-						<h5 class="uppercase text-small">Compleated</h5>
-					</div>
-				</div>
-				<!--end item-->
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="fe-feature-box-11 text-center active">
-						<h1 class="text-big">180</h1>
-						<div class="line"></div>
-						<h5 class="uppercase text-small">Happy Clients</h5>
-					</div>
-				</div>
-				<!--end item-->
-
-
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="fe-feature-box-11 text-center">
-						<h1 class="text-big">89</h1>
-						<div class="line"></div>
-						<h5 class="uppercase text-small">Our awards</h5>
-					</div>
-				</div>
-				<!--end item-->
-
-			</div>
-		</div>
-	</section>
-	<div class="clearfix"></div>
-	<!-- end section -->
-
-	<section>
-		<div class="divider-line solid light"></div>
-		<div class="container">
-			<div class="row sec-padding">
-				<div class="col-xs-12 nopadding">
-					<div class="sec-title-container text-center">
-						<h6 class="uppercase less-mar-1 text-gyellow">Our Team</h6>
-						<h3 class="uppercase font-weight-7 less-mar-1">Meet Our Team</h3>
-						<div class="clearfix"></div>
-						<div class="fe-title-line-1"></div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<!--end title-->
-
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="fe-feature-box-12 margin-bottom">
-						<div class="img-box">
-							<img src="http://placehold.it/800x800" alt=""
-								class="img-responsive" />
-						</div>
-						<div class="text-box text-center">
-							<h5 class="uppercase less-mar-1">Madison</h5>
-							<span class="text-gyellow">Tax Adviser</span> <br /> <br />
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-								Suspendisse et justo et Praesent Lorem ipsum dolor sit amet</p>
-							<br />
-							<ul class="social-icons">
-								<li><a target="_blank"
-									href="https://www.facebook.com/codelayers"><i
-										class="fa fa-facebook"></i></a></li>
-								<li><a target="_blank"
-									href="https://twitter.com/codelayers"><i
-										class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!--end item-->
-
-
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="fe-feature-box-12 margin-bottom">
-						<div class="img-box">
-							<img src="http://placehold.it/800x800" alt=""
-								class="img-responsive" />
-						</div>
-						<div class="text-box text-center">
-							<h5 class="uppercase less-mar-1">Alexander</h5>
-							<span class="text-gyellow">Financial Adviser</span> <br /> <br />
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-								Suspendisse et justo et Praesent Lorem ipsum dolor sit amet</p>
-							<br />
-							<ul class="social-icons">
-								<li><a target="_blank"
-									href="https://www.facebook.com/codelayers"><i
-										class="fa fa-facebook"></i></a></li>
-								<li><a target="_blank"
-									href="https://twitter.com/codelayers"><i
-										class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!--end item-->
-
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="fe-feature-box-12">
-						<div class="img-box">
-							<img src="http://placehold.it/800x800" alt=""
-								class="img-responsive" />
-						</div>
-						<div class="text-box text-center">
-							<h5 class="uppercase less-mar-1">Addison</h5>
-							<span class="text-gyellow">Savings Adviser</span> <br /> <br />
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-								Suspendisse et justo et Praesent Lorem ipsum dolor sit amet</p>
-							<br />
-							<ul class="social-icons">
-								<li><a target="_blank"
-									href="https://www.facebook.com/codelayers"><i
-										class="fa fa-facebook"></i></a></li>
-								<li><a target="_blank"
-									href="https://twitter.com/codelayers"><i
-										class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!--end item-->
-
 			</div>
 		</div>
 		<input type="hidden" id="payName" value="<sec:authentication property="principal.NAME"/>">
+		
+		<form action="../payComplete" method="post" id="frm">
+			<input type="hidden" id="payNo" name="payNo" value="">
+	   		<input type="hidden" id="id" name="id" value="<sec:authentication property="principal.username"/>">
+	 		<input type="hidden" id="payType" name="payType" value="">
+			<input type="hidden" id="payCat" name="payCat" value="관리비">
+			<input type="hidden" id="payStatus" name="payStatus" value="">
+			<input type="hidden" id="impUid" name="imp_uid" value="">
+			<input type="hidden" id="mfTotal" name="mfTotal" value="">
+		</form>
 	</section>
 	<div class="clearfix"></div>
 	<!-- end section -->
@@ -630,8 +227,7 @@
 	var myChart = new Chart(ctx, {
 		type : 'bar',
 		data : {
-			labels : [ "January", "February", "March", "April", "May", "June",
-					"July" ],
+			labels : [ "January", "February", "March", "April", "May", "June", "July" ],
 			datasets : [ {
 				label : "My First dataset",
 				backgroundColor : "rgba(255,99,132,0.2)",
@@ -782,9 +378,8 @@
 			alert('세대주만 결제할 수 있습니다.');
 		}
 		
-	})
-
-	
+	});
+		
 	function paymentFnc(name, houseInfo, phone) {
 
 	IMP.init('imp57655457');
@@ -792,38 +387,28 @@
 	IMP.request_pay({
 		pg : 'inicis', // version 1.1.0부터 지원.
 		pay_method : 'card',
-		merchant_uid : 'merchant_' + new Date().getTime(),
+		merchant_uid : 'merchant_' + new Date().getTime() + '1234',
 		name : '관리비_' + houseInfo + '_' + date,
 		buyer_name : name,
 		buyer_tel : phone,
 		buyer_email : "8841258@naver.com",
-		amount : '100', //판매 가격
-	}, function(rsp) {
-		if (rsp.success) {
-			$.ajax({
-				url: "feeCreditCard",
-				type: "POST",
-				data: {imp_uid: rsp.imp_uid},
-				success: function(data) {
-					console.log(data);
-					
-		        	if(rsp.paid_amount == data.response.amount){
-			        	alert("결제가 완료되었습니다.");
-		        	} else {
-		        		alert("결제가 실패하였습니다.");
-		        	}
-					
-					
-				},
-				error: () => alert('AJAX 에러')
-			})
-		} else {
-			var msg = '결제에 실패하였습니다.';
-			msg += '에러내용 : ' + rsp.error_msg;
-			alert(msg);
-		}
-
-	});
+		amount : $('#price').val(), //판매 가격
+		}, function(rsp) {
+				if(rsp.success){
+					console.log(rsp);
+		        	alert("결제가 완료되었습니다."); 
+		        	$('#payNo').val(rsp.merchant_uid);
+		        	$('#payType').val(rsp.pay_method);
+		        	$('#payStatus').val(rsp.status);
+		        	$('#impUid').val(rsp.imp_uid);
+		        	$('#mfTotal').val(rsp.paid_amount);
+		      		frm.submit();
+			} else {
+				var msg = '결제에 실패하였습니다.';
+				msg += '에러내용 : ' + rsp.error_msg;
+				alert(msg);
+			}
+		})
 	}
 	
 	//원형 차트

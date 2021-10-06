@@ -77,6 +77,7 @@
 
 					</div>
 				</div>
+				${pay }
 				<div class="clearfix"></div>
 				<div class="feature-box">
 					<div class="pricing-table-2 active margin-bottom">
@@ -85,20 +86,20 @@
 								<i class="fa fa-check" aria-hidden="true"></i>
 							</div>
 						</div>
-						<h3 class="font-weight-6 title text-center"
-							style="margin-top: 10px;">결제 정보</h3>
+						${pay }
+						<h3 class="font-weight-6 title text-center" style="margin-top: 10px;">결제 정보</h3>
 						<br> <br>
 						<ul class="plan_features" style="font-size: 18px;">
-							<li>　<span class="pull-left font-weight-7">결제 번호</span> <span
-								class="pull-right">merchant_75d575755545646</span></li>
-							<li>　<span class="pull-left font-weight-7">결제 품목</span> <span
-								class="pull-right">관리비</span></li>
-							<li>　<span class="pull-left font-weight-7">이름</span> <span
-								class="pull-right">김 푸</span></li>
-							<li>　<span class="pull-left font-weight-7">결제 방법</span> <span
-								class="pull-right">카드(신한카드)</span></li>
-							<li>　<span class="pull-left font-weight-7">결제 금액</span> <span
-								class="pull-right">109,468 원</span></li>
+							<li><span class="pull-left font-weight-7">결제 번호</span>
+							<span class="pull-right"></span></li>
+							<li><span class="pull-left font-weight-7">결제 품목</span> 
+							<span class="pull-right"></span></li>
+							<li><span class="pull-left font-weight-7">이름</span> 
+							<span class="pull-right"></span></li>
+							<li>　<span class="pull-left font-weight-7">결제 방법</span> 
+							<span class="pull-right"></span></li>
+							<li><span class="pull-left font-weight-7">결제 금액</span> 
+							<span class="pull-right"> 원</span></li>
 						</ul>
 						<div class="clearfix" style="font-size: 14px;"></div>
 
