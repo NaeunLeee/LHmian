@@ -31,7 +31,6 @@ public class CommController {
 	
 	//10/02 주석 삭제 
 	// 리스트 조회
-	
 	@RequestMapping("myCommunityList")
 	public String getListno(Model model,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		String id = customUserDetails.getUsername();
