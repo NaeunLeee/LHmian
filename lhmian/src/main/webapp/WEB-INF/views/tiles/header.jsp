@@ -183,7 +183,7 @@
 														<ul class="dm-align-2">
 															<li>
 																<!-- 10/03 개인정보 조회/수정 링크 -->
-																<a href="myInfo">개인정보수정</a>
+																<a href="${pageContext.request.contextPath}/myInfo">개인정보수정</a>
 																<!-- ------------------------ -->
 															</li>
 															<li>
