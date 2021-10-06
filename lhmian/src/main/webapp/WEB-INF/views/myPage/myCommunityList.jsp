@@ -101,6 +101,7 @@ table {
 			</c:forEach>
 		</tbody>
 	</table>
+
 	<br>
 	
 <!-- 폼 -->	
@@ -130,6 +131,7 @@ table {
 	<div style="margin:auto;">
 	<form id="actionForm" action="commlist" method="get"> <!-- 메소드 생략시 자동으로 get로 전환 -->
 		<select name="type" class="form-control" style="width: 100px; ">
+
 			<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
 			<option value="T" ${empty pageMaker.cri.type =='T' ? selected : ""}>제목검색</option>
 			<option value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>번호</option>
@@ -165,6 +167,5 @@ table {
 			$('[name="pageNum"]').val(p)
 			actionForm.submit();
 		})
-		//$('#board').DataTable();
 	
 </script>

@@ -2,17 +2,18 @@ package com.lh.app.comm.domain;
 
 import lombok.Data;
 
+// 10/06 추가
+
 @Data
-public class PageVO {
+public class MemPageVO {
 	private int startPage;
 	private int endPage;
 	private boolean prev, next;
 	private int total;				//전체 레코드 건수
-	private Criteria cri;			//pageNum, amount
-	private PersonalCriteria cri2;			//pageNum, amount
+	private PersonalCriteria cri;			//pageNum, amount
 	
 	
-	public PageVO(Criteria cri, int total) {
+	public MemPageVO(PersonalCriteria cri, int total) {
 		this.cri = cri;
 		this.total = total;
 		this.endPage = (int) (Math.ceil(cri.getPageNum()/10.0))*10;

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.comm.domain.CommVO;
 import com.lh.app.comm.domain.Criteria;
+import com.lh.app.comm.domain.MemPageVO;
+import com.lh.app.comm.domain.PersonalCriteria;
 import com.lh.app.comm.domain.PageVO;
 import com.lh.app.comm.service.CommService;
 import com.lh.app.comm.service.ReplyService;
@@ -25,23 +27,37 @@ public class CommController {
 
 	@Autowired
 	CommService commService;
-	// @SessionAttributes("cri")
 	@Autowired
 	ReplyService replyService;
-	
-	//10/02 주석 삭제 
-	// 리스트 조회
+
+	// 10/06 수정 ----------------------------------------------------------------------------------------
+	// 회원 게시글 리스트 조회
 	@RequestMapping("myCommunityList")
-	public String getListno(Model model,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	public String getListno(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails,
+			PersonalCriteria cri) {
 		String id = customUserDetails.getUsername();
-		
-		model.addAttribute("list", commService.getListno(id));
-		System.out.println(commService.getListno(id).toString());
-		/*model.addAttribute("pageMaker", new PageVO(cri, total));*/
+		cri.setId(id);
+		int total = commService.getCntMember(cri);
+		model.addAttribute("list", commService.getListno(cri));
+		model.addAttribute("pageMaker", new MemPageVO(cri, total));
 		return "myPage/myCommunityList";
 	}
-	
 
+	// 회원 댓글 리스트 조회
+	@RequestMapping("myComment")
+	public String getComment(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails, @ModelAttribute("cri") Criteria cri) {
+		int total = commService.getCntCmt(cri);
+		String id = customUserDetails.getUsername();
+		cri.setId(id);
+		System.out.println("cri======" + cri);
+		System.out.println(total);
+		model.addAttribute("list", commService.getComment(cri));
+		model.addAttribute("pageMaker", new PageVO(cri, total));
+		return "myPage/myComment";
+	}
+
+	// 10/06 수정 끝----------------------------------------------------------------------------------------
+	
 	// 리스트 조회
 	@RequestMapping("commlist")
 	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
@@ -52,7 +68,7 @@ public class CommController {
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "community/commlist";
 	}
-	
+
 	// 등록폼
 	@GetMapping("register")
 	public String registerForm() {
@@ -68,7 +84,7 @@ public class CommController {
 
 	// 단건 조회
 	@GetMapping("get") // 수정폼
-	public String get(@RequestParam("commNo") Long commNo, Model model) { // 10/03 criteria 삭제 
+	public String get(@RequestParam("commNo") Long commNo, Model model) { // 10/03 criteria 삭제
 		CommVO vo = new CommVO();
 		commService.viewCount(commNo);
 		vo.setCommNo(commNo);

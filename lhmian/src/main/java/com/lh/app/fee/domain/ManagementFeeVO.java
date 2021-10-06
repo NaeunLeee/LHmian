@@ -1,13 +1,18 @@
 package com.lh.app.fee.domain;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
 public class ManagementFeeVO {
 	public String mfDate;
+	public Date yearMonth;
 	public String year;
 	public String month;
 	public String houseInfo;
+	public String dong;
+	public String hosu;
 	public String payNo;
 	public Long mfFee;
 	public Long mfHeat;
@@ -21,4 +26,5 @@ public class ManagementFeeVO {
 	public Long mfTotal;
 	public Long mfAvg;
 	public Long lastMonthTotal;
+	public String paid;
 }
