@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lh.app.cs.domain.CsCriteria;
 import com.lh.app.cs.domain.CsVO;
+import com.lh.app.cs.domain.MyCsCriteria;
 import com.lh.app.cs.mapper.CsMapper;
 
 @Service
@@ -49,6 +50,14 @@ public class CsServiceImpl implements CsService {
 
 	public int updateAnswer(CsVO vo) {
 		return csMapper.updateAnswer(vo);
+	}
+
+	public List<CsVO> listByWriter(MyCsCriteria cri) {
+		return csMapper.listByWriter(cri);
+	}
+
+	public int totalByWriter(MyCsCriteria cri) {
+		return csMapper.totalByWriter(cri);
 	}
 
 }

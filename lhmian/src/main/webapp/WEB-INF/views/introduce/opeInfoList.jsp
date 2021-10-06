@@ -151,17 +151,13 @@ table {
 <script>
 	$(function() {
 		var actionForm = $('#actionForm');
-		$('.move')
-				.on(
-						"click",
-						function(e) {
-							e.preventDefault();
-							var oiNo = $(this).attr("data-oiNo");
-							actionForm
-									.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
-							actionForm.attr("action", "opeInfoSelect");
-							actionForm.submit();
-						});
+		$('.move').on("click", function(e) {
+			e.preventDefault();
+			var oiNo = $(this).attr("data-oiNo");
+			actionForm.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
+			actionForm.attr("action", "opeInfoSelect");
+			actionForm.submit();
+		});
 
 		$('#pageBtn a').on("click", function(e) {
 			e.preventDefault();

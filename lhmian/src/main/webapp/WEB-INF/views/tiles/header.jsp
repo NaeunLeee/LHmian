@@ -197,7 +197,7 @@
 															</li>
 															<li>
 																<!-- 10/02 스케쥴 조회 링크 추가 시작-->
-																<a href="myCommunityList">작성글 조회</a>
+																<a href="${pageContext.request.contextPath}/myCommunityList">작성글 조회</a>
 																<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
 															</li>
 															<li>
