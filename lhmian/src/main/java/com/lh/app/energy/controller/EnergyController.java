@@ -56,4 +56,7 @@ public class EnergyController {
 		model.addAttribute("list", energyService.admList(vo));
 	}
 
+	@GetMapping("/no/test")
+		public void test() {
+		}
 }

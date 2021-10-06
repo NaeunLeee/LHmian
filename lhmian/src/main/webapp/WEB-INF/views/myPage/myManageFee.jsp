@@ -183,7 +183,8 @@
 			<input type="hidden" id="payCat" name="payCat" value="관리비">
 			<input type="hidden" id="payStatus" name="payStatus" value="">
 			<input type="hidden" id="impUid" name="imp_uid" value="">
-			<input type="hidden" id="mfTotal" name="mfTotal" value="">
+			<input type="hidden" id="mfDate" name="mfDate" value="">
+			<input type="hidden" id="mftotal" name="mfTotal" value="">
 		</form>
 	</section>
 	<div class="clearfix"></div>
@@ -371,7 +372,6 @@
 		console.log(phone);
 		
 		if (author == 'OWNER') {
-			
 			paymentFnc(name, houseInfo);
 			
 		} else {
@@ -382,26 +382,25 @@
 		
 	function paymentFnc(name, houseInfo, phone) {
 
-	IMP.init('imp57655457');
-	
+
 	IMP.request_pay({
 		pg : 'inicis', // version 1.1.0부터 지원.
 		pay_method : 'card',
-		merchant_uid : 'merchant_' + new Date().getTime() + '1234',
+		merchant_uid : 'merchant_' + new Date().getTime(),
 		name : '관리비_' + houseInfo + '_' + date,
 		buyer_name : name,
 		buyer_tel : phone,
 		buyer_email : "8841258@naver.com",
-		amount : $('#price').val(), //판매 가격
+		amount : 100, //판매 가격
 		}, function(rsp) {
 				if(rsp.success){
-					console.log(rsp);
 		        	alert("결제가 완료되었습니다."); 
 		        	$('#payNo').val(rsp.merchant_uid);
 		        	$('#payType').val(rsp.pay_method);
 		        	$('#payStatus').val(rsp.status);
 		        	$('#impUid').val(rsp.imp_uid);
-		        	$('#mfTotal').val(rsp.paid_amount);
+		        	$('#mfDate').val(date);
+		        	$('#mftotal').val($('#price').val());
 		      		frm.submit();
 			} else {
 				var msg = '결제에 실패하였습니다.';

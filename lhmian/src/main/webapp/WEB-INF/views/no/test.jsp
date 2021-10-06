@@ -95,3 +95,9 @@ background-color : lightblue;
 			<br>
 	</form>
 </div>
+					<script>
+					var date = new Date();
+					var mfDate = "";
+					mfDate = String(date.getFullYear()).substr(2,2) + String(date.getMonth()+1);
+					console.log(mfDate);
+					</script>
