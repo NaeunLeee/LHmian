@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
 <style>
 .tr_1 {
 	cursor: pointer;
@@ -24,6 +29,8 @@ table {
 	color: black;
 }
 </style>
+</head>
+<body>
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">

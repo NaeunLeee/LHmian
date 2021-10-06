@@ -46,9 +46,6 @@ public class CsController {
 	public String myCsList(Model model, @ModelAttribute("cri") MyCsCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		cri.setId(customUserDetails.getUsername());
 		model.addAttribute("list", csService.listByWriter(cri));
-		System.out.println(customUserDetails.getUsername());
-		System.out.println(cri.toString());
-		System.out.println(csService.listByWriter(cri).toString());
 		return "myPage/myCsList";
 	}
 
