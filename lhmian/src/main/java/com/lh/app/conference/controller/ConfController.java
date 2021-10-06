@@ -34,8 +34,9 @@ public class ConfController {
 	
 	// 단건 조회
 	@GetMapping("/resident/confSelect")
-	public String confSelect(Model model, ConfVO vo, @ModelAttribute("cri") ConfCriteria cri) {
+	public String confSelect(Model model, ConfVO vo, @ModelAttribute("cri") ConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		model.addAttribute("conf", confService.read(vo));
+		model.addAttribute("name", customUserDetails.getNAME());
 		return "resident/confSelect";
 	}
 	

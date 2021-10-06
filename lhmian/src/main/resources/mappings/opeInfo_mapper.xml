@@ -131,6 +131,9 @@
 	SET OI_TITLE = #{oiTitle}
 	  , OI_CONTENT = #{oiContent}
 	  , OI_UPDATE = SYSDATE
+	  , OI_FILENAME = #{oiFilename}
+	  , OI_FILEID = #{oiFileid}
+	  , OI_FILEPATH = #{oiFilepath}
 	WHERE OI_NO = #{oiNo}
 </update>
 
@@ -138,5 +141,13 @@
 	DELETE FROM OPERATION_INFO
 	WHERE OI_NO = #{oiNo}
 </delete>
+
+<update id="deleteFile">
+	UPDATE OPERATION_INFO
+	SET OI_FILENAME = ''
+	  , OI_FILEID = ''
+	  , OI_FILEPATH = ''
+	WHERE OI_NO = #{oiNo}
+</update>
 
 </mapper>

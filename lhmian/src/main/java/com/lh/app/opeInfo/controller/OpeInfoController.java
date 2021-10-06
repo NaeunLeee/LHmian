@@ -156,6 +156,15 @@ public class OpeInfoController {
 		return "redirect:/admin/admOpeInfoList";
 	}
 	
+	// 첨부파일 삭제
+	@PostMapping("/admin/opeInfoDelFile")
+	@ResponseBody
+	public OpeInfoVO  opeInfoDelFile(@RequestBody OpeInfoVO vo) {
+		opeInfoService.deleteFile(vo);
+		return opeInfoService.read(vo);
+	}
+	
+	
 	// 첨부파일 다운로드
 	@GetMapping("/introduce/opeInfoDownload")
 	public void fileDownload(@RequestParam Map<String, Object> commandMap

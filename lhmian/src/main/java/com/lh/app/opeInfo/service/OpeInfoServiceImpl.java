@@ -48,6 +48,11 @@ public class OpeInfoServiceImpl implements OpeInfoService {
 	public int delete(OpeInfoVO vo) {
 		return opeInfoMapper.delete(vo);
 	}
+	
+	// 파일 삭제
+	public int deleteFile(OpeInfoVO vo) {
+		return opeInfoMapper.deleteFile(vo);
+	}
 
 
 	
