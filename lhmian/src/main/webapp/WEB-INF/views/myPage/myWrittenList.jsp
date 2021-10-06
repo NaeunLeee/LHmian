@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
 <style>
 .tr_1 {
 	cursor: pointer;
@@ -26,13 +28,27 @@ table {
 	background-color: white;
 }
 
-.pagination>li>a {
-	color: black;
+.tabstyle-8 {
+	width: 50%;
+	margin: auto;
+}
+
+.tabstyle-8 .responsive-tabs li {
+	background-color: #f5f5f5;
 }
 
 .tabstyle-8 .responsive-tabs li a {
 	margin: 0px 10px 0px;
-	background-color: ;
+	padding: 10px;
+}
+
+.btn.appstore.white {
+	color: #101010;
+	background-color: #fff;
+}
+.btn.appstore.white:hover {
+	color: #fff;
+	background-color: #101010;
 }
 
 </style>
@@ -93,21 +109,18 @@ table {
 						<div class="tab-navbar-main bborder tabstyle-8">
 							<ul class="responsive-tabs">
 								<li>
-									<a href="#example-1-tab-1" class="btn btn-medium border light btn-anim-1 uppercase" target="_self">
-										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										커뮤니티
+									<a href="#example-1-tab-1" class="btn btn-white" target="_self">
+										<i class="bi bi-people-fill" style="margin-right: 10px;"></i>커뮤니티
 									</a>
 								</li>
 								<li>
-									<a href="#example-1-tab-2" class="btn btn-medium border light btn-anim-1 uppercase" target="_self">
-										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										민 원
+									<a href="#example-1-tab-2" class="btn btn-white" target="_self">
+										<i class="bi bi-megaphone" style="margin-right: 10px;"></i>민 원
 									</a>
 								</li>
 								<li>
-									<a href="#example-1-tab-3" class="btn btn-medium border light btn-anim-1 uppercase" target="_self">
-										<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-										입주자 대표회의
+									<a href="#example-1-tab-3" class="btn appstore white" target="_self">
+										<i class="bi bi-patch-check" style="margin-right: 10px;"></i>입주자 대표회의
 									</a>
 								</li>
 							</ul>
