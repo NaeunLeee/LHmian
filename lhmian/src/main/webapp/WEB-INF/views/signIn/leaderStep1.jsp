@@ -6,22 +6,26 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.error-msg {
-	padding: 7px 0;
-	color: red;
-}
+	.error-msg {
+		padding: 7px 0;
+		color: red;
+	}
+	
+	.correct-msg {
+		padding: 7px 0;
+		color: green;
+	}
+	.smart-forms .form-body {
+		padding-bottom: 40px;
+	}
+	
+	.time {
+		color: red;
+	}
 
-.correct-msg {
-	padding: 7px 0;
-	color: green;
-}
-.smart-forms .form-body {
-	padding-bottom: 40px;
-}
-
-.time {
-	color: red;
-}
+	div .form-body .btn {
+		height: 50px;
+	}
 </style>
 <script>
 	$(function() {

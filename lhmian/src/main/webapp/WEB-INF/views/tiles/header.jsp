@@ -28,7 +28,28 @@
 <link rel="stylesheet/less" type="text/css" href="${pageContext.request.contextPath}/resources/less/skin.less">
 <!-- Skin stylesheet -->
 
+<style>
+	/* a태그 색깔 없애기 */
+	a {
+		color: black;
+		text-decoration: none;
+	}
+	a:link {
+		color: black;
+		text-decoration: none;
+	}
+	
+	a:visited {
+		color: black;
+		text-decoration: none;
+	}
+	
+	a:hover {
+		color: black;
+		text-decoration: underline;
+	}
 
+</style>
 </head>
 <body>
 	<div class="wrapper-boxed">
