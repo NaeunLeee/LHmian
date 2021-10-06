@@ -11,21 +11,6 @@
 <title>관리비</title>
 </head>
 <style>
-/* a태그 색깔 없애기 */
-a:link {
-	color: black;
-	text-decoration: none;
-}
-
-a:visited {
-	color: black;
-	text-decoration: none;
-}
-
-a:hover {
-	color: black;
-	text-decoration: underline;
-}
 
 .tabstyle-9 .responsive-tabs li a {
 	line-height: 1px;
@@ -790,7 +775,6 @@ a:hover {
 		console.log(phone);
 		
 		if (author == 'OWNER') {
-			alert('dsfa');
 			
 			paymentFnc(name, houseInfo);
 			
@@ -809,7 +793,7 @@ a:hover {
 		pg : 'inicis', // version 1.1.0부터 지원.
 		pay_method : 'card',
 		merchant_uid : 'merchant_' + new Date().getTime(),
-		name : 'fee_' + houseInfo + '_' + date,
+		name : '관리비_' + houseInfo + '_' + date,
 		buyer_name : name,
 		buyer_tel : phone,
 		buyer_email : "8841258@naver.com",

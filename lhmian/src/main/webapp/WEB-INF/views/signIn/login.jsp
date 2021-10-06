@@ -10,20 +10,40 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <style>
-.find-util {
-	padding: 0 20px;
-	text-align: center;
-}
+	.find-util {
+		padding: 0 20px;
+		text-align: center;
+	}
+	
+	.find-util a {
+		color: black;
+		padding: 0 10px;
+		cursor: pointer;
+	}
 
-.find-util a {
-	padding: 0 10px;
-	cursor: pointer;
-}
+	.find-util a:link {
+		color: black;
+		text-decoration: none;
+	}
+	
+	.find-util a:visited {
+		color: black;
+		text-decoration: none;
+	}
+	
+	.find-util a:hover {
+		color: black;
+		text-decoration: underline;
+	}
 
-.id-error-msg, .pw-error-msg, .login-error-msg {
-	padding: 7px 0;
-	color: red;
-}
+	.id-error-msg, .pw-error-msg, .login-error-msg {
+		padding: 7px 0;
+		color: red;
+	}
+	div .form-body .btn {
+		height: 50px;
+	}
+
 </style>
 <script>
 	$(function() {
