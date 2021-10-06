@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lh.app.conference.domain.ConfCriteria;
 import com.lh.app.conference.domain.ConfVO;
+import com.lh.app.conference.domain.MyConfCriteria;
 import com.lh.app.conference.mapper.ConfMapper;
 
 @Service
@@ -27,7 +28,15 @@ public class ConfServiceImpl implements ConfService {
 	public ConfVO read(ConfVO vo) {
 		return confMapper.read(vo);
 	}
-
+	
+	public List<ConfVO> listByWriter(MyConfCriteria cri) {
+		return confMapper.listByWriter(cri);
+	}
+	
+	public int totalByWriter(MyConfCriteria cri) {
+		return confMapper.totalByWriter(cri);
+	}
+	
 	public int insert(ConfVO vo) {
 		return confMapper.insert(vo);
 	}
@@ -39,5 +48,6 @@ public class ConfServiceImpl implements ConfService {
 	public int delete(ConfVO vo) {
 		return confMapper.delete(vo);
 	}
+
 
 }

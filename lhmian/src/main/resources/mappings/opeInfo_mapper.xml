@@ -20,6 +20,7 @@
 	</trim>
 </sql>
 
+<!-- 총 게시글 수 -->
 <select id="getTotalCount" resultType="int">
 	
 	SELECT COUNT(*) FROM
@@ -30,6 +31,7 @@
 	
 </select>
 
+<!-- 게시글 전체 조회 -->
 <select id="getList" resultType="opeInfoVO">
 	<![CDATA[
 		SELECT OI_NO
@@ -65,6 +67,7 @@
 	]]>
 </select>
 
+<!-- 게시글 단건 조회 -->
 <select id="read" resultType="opeInfoVO" parameterType="opeInfoVO">
 	
 	SELECT OI_NO
@@ -81,6 +84,7 @@
 	
 </select>
 
+<!-- 게시글 첨부파일 아이디로 단건 조회 -->
 <select id="readByFileid" resultType="opeInfoVO" >
 
 	SELECT OI_NO
@@ -97,7 +101,7 @@
 	
 </select>
 
-
+<!-- 게시글 등록 -->
 <insert id="insert">
 	<selectKey keyProperty="oiNo" resultType="int" order="BEFORE">
 		SELECT OI_SEQ.NEXTVAL FROM DUAL
@@ -126,6 +130,7 @@
 	)
 </insert>
 
+<!-- 게시글 수정 -->
 <update id="update">
 	UPDATE OPERATION_INFO
 	SET OI_TITLE = #{oiTitle}
@@ -137,11 +142,13 @@
 	WHERE OI_NO = #{oiNo}
 </update>
 
+<!-- 게시글 삭제 -->
 <delete id="delete">
 	DELETE FROM OPERATION_INFO
 	WHERE OI_NO = #{oiNo}
 </delete>
 
+<!-- 첨부파일 삭제 -->
 <update id="deleteFile">
 	UPDATE OPERATION_INFO
 	SET OI_FILENAME = ''

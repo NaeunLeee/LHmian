@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lh.app.cs.domain.CsCriteria;
 import com.lh.app.cs.domain.CsVO;
+import com.lh.app.cs.domain.MyCsCriteria;
 
 public interface CsService {
 
@@ -14,6 +15,10 @@ public interface CsService {
 
 	// 단건 조회
 	public CsVO read(CsVO vo);
+	
+	// id로 게시글 전체 조회
+	public List<CsVO> listByWriter(MyCsCriteria cri);
+	public int totalByWriter(MyCsCriteria cri);	
 
 	// 마이리스트
 	public List<CsVO> myList(CsVO vo);

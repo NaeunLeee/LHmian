@@ -13,12 +13,16 @@
 					<when test="type=='W'.toString()">
 						CONF_WRITER like '%' || #{keyword} || '%'
 					</when>
+					<when test="type=='C'.toString()">
+						CONF_CONTENT like '%' || #{keyword} || '%'
+					</when>
 				</choose>
 			</trim>
 		</foreach>
 	</trim>
 </sql>
 
+<!-- 총 게시글 수 -->
 <select id="getTotalCount" resultType="int">
 
 	SELECT COUNT(*) FROM
@@ -29,6 +33,7 @@
 
 </select>
 
+<!-- 게시글 전체 조회 -->
 <select id="getList" resultType="confVO">
 
 	<![CDATA[
@@ -60,6 +65,7 @@
 	
 </select>
 
+<!-- 게시글 단건 조회 -->
 <select id="read" resultType="confVO" parameterType="confVO">
 	
 	SELECT CONF_NO
@@ -73,6 +79,7 @@
 
 </select>
 
+<!-- 게시글 등록 -->
 <insert id="insert">
 	<selectKey keyProperty="confNo" resultType="int" order="BEFORE">
 		SELECT CONF_SEQ.NEXTVAL FROM DUAL
@@ -96,6 +103,7 @@
 	
 </insert>
 
+<!-- 게시글 수정 -->
 <update id="update">
 	
 	UPDATE CONFERENCE
@@ -106,9 +114,54 @@
 	
 </update>
 
+<!-- 게시글 삭제 -->
 <delete id="delete">
+
 	DELETE FROM CONFERENCE
 	WHERE CONF_NO = #{confNo}
+	
 </delete>
+
+<!-- 작성자 총 게시글 수 -->
+<select id="totalByWriter" resultType="int">
+	SELECT COUNT(*) FROM
+	CONFERENCE
+	WHERE
+		<include refid="criteria"></include>
+	CONF_WRITER = #{confWriter}
+</select>
+
+<!-- 작성자로 게시글 전체 조회 -->
+<select id="listByWriter" resultType="confVO">
+
+	<![CDATA[
+		SELECT CONF_NO
+			 , CONF_TITLE
+			 , CONF_CONTENT
+			 , CONF_WRITER
+			 , CONF_DATE
+			 , CONF_UPDATE
+		FROM (
+			SELECT 
+			/*+INDEX_DESC(CONFERENCE CONFERENCE_PK)*/
+			ROWNUM RN
+				 , CONF_NO
+				 , CONF_TITLE
+				 , CONF_CONTENT
+				 , CONF_WRITER
+				 , CONF_DATE
+				 , CONF_UPDATE
+			FROM CONFERENCE
+			WHERE 
+			]]>
+				<include refid="criteria"></include>
+			<![CDATA[
+				CONF_WRITER = #{confWriter} AND
+				ROWNUM <= #{pageNum} * #{amount}
+		)
+		WHERE RN > (#{pageNum} - 1) * #{amount}
+	]]>
+	
+</select>
 
 </mapper>

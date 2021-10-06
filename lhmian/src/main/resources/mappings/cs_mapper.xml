@@ -156,4 +156,53 @@
 	WHERE CS_NO = #{csNo}
 </update>
 
+<!-- 작성자 총 게시글 수 -->
+<select id="totalByWriter" resultType="int">
+	SELECT COUNT(*)
+	FROM CUSTOMSERVICE
+	WHERE
+		<include refid="criteria"></include>
+	ID = #{id}
+</select>
+
+<!-- 작성자로 게시글 전체 조회 -->
+<select id="listByWriter" resultType="confVO">
+	<![CDATA[
+		SELECT a.CS_NO 
+			 , a.ID
+			 , a.HOUSE_INFO
+			 , a.CS_TITLE
+			 , a.CS_CONTENT
+			 , a.CS_DATE
+			 , a.CS_UPDATE
+			 , a.CS_ANSWER
+			 , a.CS_ANSDATE
+			 , b.NAME
+		FROM (
+			SELECT
+			/*+INDEX_DESC(CUSTOMSERVICE CUSTOMSERVICE_PK)*/
+			ROWNUM RN
+				 , CS_NO
+				 , ID
+				 , HOUSE_INFO
+				 , CS_TITLE
+				 , CS_CONTENT
+				 , CS_DATE
+				 , CS_UPDATE
+				 , CS_ANSWER
+				 , CS_ANSDATE
+			FROM CUSTOMSERVICE
+			WHERE
+			]]>
+				<include refid="criteria"></include>
+			<![CDATA[
+				ID = #{id} AND
+				ROWNUM <= #{pageNum} * #{amount}
+		) a
+		JOIN MEMBER b
+		ON a.ID = b.ID
+		WHERE RN > (#{pageNum} -1) * #{amount}
+	]]>
+</select>
+
 </mapper>
