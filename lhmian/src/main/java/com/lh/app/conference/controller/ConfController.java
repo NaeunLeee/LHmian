@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lh.app.conference.domain.ConfCriteria;
 import com.lh.app.conference.domain.ConfPageVO;
 import com.lh.app.conference.domain.ConfVO;
+import com.lh.app.conference.domain.MyConfCriteria;
 import com.lh.app.conference.service.ConfService;
 import com.lh.app.signIn.etc.CustomUserDetails;
 
@@ -39,6 +40,15 @@ public class ConfController {
 		model.addAttribute("name", customUserDetails.getNAME());
 		return "resident/confSelect";
 	}
+	
+	// 작성자 이름으로 전체 게시글 조회
+	@GetMapping("/myPage/myConfList")
+	public String myConfList(Model model, @ModelAttribute("cri") MyConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		cri.setConfWriter(customUserDetails.getNAME());
+		model.addAttribute("list", confService.listByWriter(cri));
+		return "myPage/myConfList";
+	}
+	
 	
 	// 등록 폼
 	@GetMapping("/resident/confInsert")

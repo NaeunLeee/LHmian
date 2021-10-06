@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lh.app.cs.domain.CsCriteria;
 import com.lh.app.cs.domain.CsPageVO;
 import com.lh.app.cs.domain.CsVO;
+import com.lh.app.cs.domain.MyCsCriteria;
 import com.lh.app.cs.service.CsService;
 import com.lh.app.signIn.etc.CustomUserDetails;
 
@@ -40,11 +41,11 @@ public class CsController {
 		return "office/csSelect";
 	}
 
-	// 마이리스트
+	// 작성자 이름으로 전체 게시글 조회
 	@GetMapping("/myPage/myCsList")
-	public String myCsList(Model model, CsVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setId(customUserDetails.getUsername());
-		model.addAttribute("myList", csService.myList(vo));
+	public String myCsList(Model model, @ModelAttribute("cri") MyCsCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		cri.setId(customUserDetails.getUsername());
+		model.addAttribute("list", csService.listByWriter(cri));
 		return "myPage/myCsList";
 	}
 

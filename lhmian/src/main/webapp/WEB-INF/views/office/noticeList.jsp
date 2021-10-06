@@ -55,7 +55,7 @@ table {
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="">관리사무소</a></li>
+							<li><a href="${pageContext.request.contextPath}/office/office">관리사무소</a></li>
 							<li class="current"><a href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a></li>
 						</ol>
 					</div>
@@ -63,6 +63,7 @@ table {
 			</div>
 		</div>
 	</section>
+	
 	<section class="sec-padding section-light">
 		<div class="container">
 			<div class="row">

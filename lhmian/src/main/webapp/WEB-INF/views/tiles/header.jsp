@@ -197,7 +197,7 @@
 															</li>
 															<li>
 																<!-- 10/02 스케쥴 조회 링크 추가 시작-->
-																<a href="myCommunityList">작성글 조회</a>
+																<a href="${pageContext.request.contextPath}/myCommunityList">작성글 조회</a>
 																<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
 															</li>
 															<li>
@@ -212,7 +212,7 @@
 														<ul class="dm-align-2">
 															<li>
 																<!-- 10/03 개인정보 조회/수정 링크 -->
-																<a href="#">관리비</a>
+																<a href="${pageContext.request.contextPath}/admin/feeList">관리비</a>
 																<!-- ------------------------ -->
 															</li>
 															<li>
