@@ -46,6 +46,11 @@ public class HomeController {
 		return "myPage/myPage";
 	}
 	
+	@RequestMapping("/myPage/myWrittenList")
+	public String myWrittenList() {
+		return "myPage/myWrittenList";
+	}
+	
 	@RequestMapping("/admin/adminPage")
 	public String adminPage() {
 		return "admin/adminPage";
