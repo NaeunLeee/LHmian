@@ -31,10 +31,10 @@ public class EnergyController {
 	// 기간조회(전체조회)-사용자
 	@GetMapping("/myEnergyPeriod")
 	@ResponseBody
-	public List<EnergyVO> myPeriod(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	public List<EnergyVO> myPeriod(EnergyVO vo, Model model,
+			@AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
 		System.out.println(energyService.getList(vo));
-		//model.addAttribute("engList", energyService.getList(vo));
 		List<EnergyVO> result = energyService.getList(vo);
 		return result;
 	}
@@ -51,28 +51,9 @@ public class EnergyController {
 
 	// 전체조회-관리자
 	@GetMapping("/admin/admEnergyCon")
-	@ResponseBody
-	public void admList(EnergyVO vo, Model model) {
-		model.addAttribute("admList", energyService.getList(vo));
-	}
-
-	// 단건 조회-관리자
-	@GetMapping("/admEnergy")
-	@ResponseBody
-	public String admRead(EnergyVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	public void admList(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-
-		Gson gson = new Gson();
-
-		String result = gson.toJson(energyService.read(vo));
-
-		return result;
+		model.addAttribute("list", energyService.admList(vo));
 	}
 
-	// 테스트페이지
-	@GetMapping("/no/test")
-	public void test(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		model.addAttribute("engList", energyService.getList(vo));
-	}
 }

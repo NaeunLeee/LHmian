@@ -42,4 +42,18 @@ SELECT MF_DATE,
 		AND HOUSE_INFO = #{houseInfo}
 	ORDER BY MF_DATE
 </select>
+
+<select id="admList" resultType="EnergyVO">
+	SELECT MF_DATE,
+			HOUSE_INFO,
+			ENG,
+			GAS,
+			ELECTRIC,
+			WATER,
+			TRASH,
+			TRASH_FOOD
+		FROM
+			ENERGY_USAGE
+		ORDER BY MF_DATE
+</select>
 </mapper>
