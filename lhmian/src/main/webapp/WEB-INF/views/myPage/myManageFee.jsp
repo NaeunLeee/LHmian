@@ -51,9 +51,9 @@
 				<div class="row">
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Shortcodes</a></li>
-							<li class="current"><a href="#">Pricing Badges</a></li>
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/myPage/myPage">마이 페이지</a></li>
+							<li class="current"><a href="#">관리비 조회</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
