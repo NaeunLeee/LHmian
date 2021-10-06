@@ -2,8 +2,86 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<div align="center">
-	<table border="1">
+<style>
+.tr_1 {
+	cursor: pointer;
+	text-align: center;
+}
+
+th {
+	text-align: center;
+	background-color: #EEEEEE;
+}
+
+.tr_1:hover {
+	background-color: #f5f5f5;
+}
+
+table {
+	background-color: white;
+}
+.pagination>li>a {
+	color: black;
+}
+
+.form-control {
+	display: inline-block;
+}
+</style>
+
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class=" clearfix"></div>
+</div>
+	<section>
+		<div class="pagenation-holder-no-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<ol class="breadcrumb-gray">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="">관리사무소</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="sec-padding section-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">공지사항</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title" style="font-size: 13px;">공지사항... 어쩌구..ㅋㅋ</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+		<div class="container" align="center">
+			<div class="text-box white padding-4 col-7">
+	<table class="table" >
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -15,7 +93,7 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${list}" var="comm">
-				<tr>
+				<tr class="move tr_1" data-noticeNo="${notice.noticeNo}">
 					<td>${comm.commNo}</td>
 					<td>${comm.id}</td>
 					<td><a class="move" href="${comm.commNo}">${comm.commTitle}</a></td>
@@ -25,6 +103,8 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	
 	<form id="actionForm" action="commlist" method="get"> <!-- 메소드 생략시 자동으로 get로 전환 -->
 		<select name="type">
 			<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
