@@ -142,17 +142,33 @@ itemTemplate:
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<section>
+      <div class="pagenation-holder">
+        <div class="container">
+          <div class="row" style="float:left">
+              <ol class="breadcrumb">
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
+                <li class="current"><a href="${pageContext.request.contextPath}/introduce/arrangement">배치도</a></li>
+              </ol>
+            </div>
+            </div>
+        
+        </div>
+    </section>
+<div class="clearfix"></div>
+
 
  <section class="sec-padding">
   <div class="container">
   <div class="row">
   
   <div class="col-md-12">
-  <img src="http://placehold.it/2000x900" alt="" class="img-responsive"/>                           
+  <img src="${pageContext.request.contextPath }/resources/images/sliders/배치도.jpg" alt="" class="img-responsive"/>                           
   </div>
   <!--end item-->
   
-  <div class="col-divider-margin-6"></div>
+<!--   <div class="col-divider-margin-6"></div>
   
     <div class="col-md-12">
   <ul class="port-project-info">
@@ -163,7 +179,7 @@ itemTemplate:
     <li><span>Website:</span> <a href="#" class="text-gyellow">www.example.com</a></li>
 </ul>
 <div class="clearfix"></div>
-  </div>
+  </div> -->
   <!--end item-->
 
   

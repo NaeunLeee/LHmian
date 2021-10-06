@@ -5,18 +5,14 @@
 <section>
       <div class="pagenation-holder">
         <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <h4>평형도</h4>
-            </div>
-            <div class="col-md-6">
+          <div class="row" style="float:left">
               <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">우리 아파트</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
                 <li class="current"><a href="${pageContext.request.contextPath}/introduce/phaseDiagram">평형도</a></li>
               </ol>
             </div>
-          </div>
+           
         </div>
       </div>
     </section>
@@ -127,11 +123,11 @@
 			data-start="1000" 
 			data-responsive_offset="off" 
 			data-responsive="on"			
-			style="z-index: 5;text-transform:left;"> <img src="${pageContext.request.contextPath }/resources/images/sliders/phase-100.png" alt="" data-ww="['650px','302px','450','290']" data-hh="['550px','260px','387','249']" data-no-retina style="width: 250px;"> </div>
+			style="z-index: 5;text-transform:left;"> <img src="${pageContext.request.contextPath }/resources/images/sliders/평형도세대별1.png" alt="" data-ww="['600px','302px','450','290']" data-hh="['600px','260px','387','249']" data-no-retina style="width: 250px;"> </div>
             
             <!-- LAYER NR. 2 -->
             <div class="tp-caption ce3-text-1 tp-resizeme" 
-			data-x="['left','left','left','left']" data-hoffset="['700','395','80','80']" 
+			data-x="['left','left','left','left']" data-hoffset="['710','395','80','80']" 
 			data-y="['top','top','top','top']" data-voffset="['210','180','180','120']"
 			data-width="none"
 			data-height="none"
@@ -148,7 +144,7 @@
             
             <!-- LAYER NR. 3 -->
             <div class="tp-caption roboto bold text-dark tp-resizeme" 
-            data-x="['left','left','left','left']" data-hoffset="['730','450','100','100']" 
+            data-x="['left','left','left','left']" data-hoffset="['750','450','100','100']" 
 			data-y="['top','top','top','top']" data-voffset="['180','180','420','220']"
             data-width="['auto','auto','auto','auto']"
             data-height="['auto','auto','auto','auto']"
@@ -203,7 +199,7 @@
              -->
             <!-- LAYER NR. 3 -->
             <div class="tp-caption br-text-3 tp-resizeme" 
-			data-x="['left','left','left','left']" data-hoffset="['730','450','100','100']" 
+			data-x="['left','left','left','left']" data-hoffset="['750','450','100','100']" 
 			data-y="['top','top','top','top']" data-voffset="['300','300','580','380']" 
 			data-width="none"
 			data-height="none"
@@ -222,7 +218,7 @@
             
             <!-- LAYER NR. 4 -->
             <div class="tp-caption sbut2"
-			data-x="['left','left','left','left']" data-hoffset="['730','450','100','100']" 
+			data-x="['left','left','left','left']" data-hoffset="['750','450','100','100']" 
 			data-y="['top','top','top','top']" data-voffset="['470','450','680','480']"
 			data-speed="800"
 			data-start="3000"
@@ -255,7 +251,7 @@
 			data-start="1000" 
 			data-responsive_offset="off" 
 			data-responsive="on"			
-			style="z-index: 5;text-transform:left;"> <img src="${pageContext.request.contextPath }/resources/images/sliders/phase-100.png" class="img-responsive" alt=""  data-ww="['580px','302px','450','290']" data-hh="['480px','260px','387','249']" data-no-retina > </div>
+			style="z-index: 5;text-transform:left;"> <img src="${pageContext.request.contextPath }/resources/images/sliders/평면도74.png" class="img-responsive" alt=""  data-ww="['580px','302px','450','290']" data-hh="['480px','260px','387','249']" data-no-retina > </div>
 			
             
             <!-- LAYER NR. 3 -->
@@ -271,7 +267,7 @@
 			data-start="1500" 
 			data-responsive_offset="off" 
 			data-responsive="on"			
-			style="z-index: 5;text-transform:left;"> <img src="${pageContext.request.contextPath }/resources/images/sliders/phase-100.png" class="img-responsive" alt=""  data-ww="['580px','302px','450','290']" data-hh="['480px','260px','387','249']" data-no-retina > </div>
+			style="z-index: 5;text-transform:left;"> <img src="${pageContext.request.contextPath }/resources/images/sliders/평면도74-1.png" class="img-responsive" alt=""  data-ww="['580px','302px','450','290']" data-hh="['480px','260px','387','249']" data-no-retina > </div>
             
  		</li>
         </ul>

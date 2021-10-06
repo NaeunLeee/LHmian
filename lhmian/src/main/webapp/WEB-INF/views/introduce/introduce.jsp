@@ -8,28 +8,28 @@
 h1{
 	font-size: 47px;
 }
+
+#sync2 .item {
+	border: none;
+}
+
+
 </style>
 
 <section>
-	<div class="pagenation-holder">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<h4>아파트 소개</h4>
-				</div>
-				<div class="col-md-6">
-					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
-						<li class="current"><a
-							href="${pageContext.request.contextPath}/introduce/introduce">아파트
-								소개</a></li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+      <div class="pagenation-holder">
+        <div class="container">
+          <div class="row" style="float:left">
+              <ol class="breadcrumb">
+                <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
+                <li class="current"><a href="${pageContext.request.contextPath}/introduce/arrangement">아파트 소개</a></li>
+              </ol>
+            </div>
+            </div>
+            
+          </div>
+    </section>
 <div class="clearfix"></div>
 <!-- end section -->
 <section class="sec-padding">
@@ -283,35 +283,35 @@ h1{
 					<!-- <div class="ce4-title-line-1 align-left"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">Our History</h4> -->
 						<div id="sync1" class="owl-carousel">
-							<div class="item">
-								<img src="${pageContext.request.contextPath }/resources/images/sliders/아파트1.jpg" alt="">
+							<div class="item" style="border:none;">
+								<img src="${pageContext.request.contextPath }/resources/images/sliders/아파트1-big.jpg" alt="">
 							</div>
 							<div class="item">
-								<img src="http://placehold.it/1500x600" alt="">
+								<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로2-big.jpg" alt="">
 							</div>
 							<div class="item">
-								<img src="http://placehold.it/1500x600" alt="">
+								<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로3-big.jpg" alt="">
 							</div>
 							<div class="item">
-								<img src="http://placehold.it/1500x600" alt="">
+								<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로1-big.jpg" alt="">
 							</div>
 						</div>
 						<div class="col-xs-12">
 							<div id="sync2" class="owl-carousel">
 								<div class="item">
-									<img src="${pageContext.request.contextPath }/resources/images/sliders/아파트1.jpg" alt=""
+									<img src="${pageContext.request.contextPath }/resources/images/sliders/아파트1-sm.jpg" alt=""
 										class="img-responsive">
 								</div>
 								<div class="item">
-									<img src="http://placehold.it/200x150" alt=""
+									<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로2-sm.jpg" alt=""
 										class="img-responsive">
 								</div>
 								<div class="item">
-									<img src="http://placehold.it/200x150" alt=""
+									<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로3-sm.jpg" alt=""
 										class="img-responsive">
 								</div>
 								<div class="item">
-									<img src="http://placehold.it/200x150" alt=""
+									<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로1-sm.jpg" alt=""
 										class="img-responsive">
 								</div>
 
