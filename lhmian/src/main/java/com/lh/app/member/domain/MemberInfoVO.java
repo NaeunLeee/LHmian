@@ -13,7 +13,10 @@ public class MemberInfoVO {
 	private String carType;
 	private String rownum;
 	
-	//10/05 추가부분
+	//10-05 추가부분
 	private String newpw;
 	private String carNo;
+	
+	//10-06 추가부분
+	private String position;
 }

@@ -24,4 +24,7 @@ public interface OpeInfoMapper {
 	// 삭제
 	public int delete(OpeInfoVO vo);
 	
+	// 파일 삭제
+	public int deleteFile(OpeInfoVO vo);
+	
 }

@@ -74,7 +74,7 @@
 					</form>
 					<div>
 						<input type="file" class="file" name="uploadFile" class="form-control" style="float: left;">
-						<button type="button" id="uploadBtn" class="btn btn-default" style="float: left; margin-left: 200px;">파일 첨부</button>
+						<button type="button" id="uploadBtn" class="btn btn-default" style="float: left; margin-left: 200px;">파일 첨부</button><br>
 						<ul id="uploaded"></ul>
 					</div>
 				</div>

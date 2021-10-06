@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,8 +26,10 @@
 	</div>
 	<br>
 	<div align="center">
+	<c:if test="${conf.confWriter eq name}">
 		<button type="button" id="modifyBtn">수정</button>
 		<button type="button" id="deleteBtn">삭제</button>
+	</c:if>	
 		<button type="button" onclick="location.href='../resident/confList'">목록</button>
 	</div>
 </div>
