@@ -77,7 +77,9 @@
 
 					</div>
 				</div>
+				${uid }
 				${pay }
+				${fpay }
 				<div class="clearfix"></div>
 				<div class="feature-box">
 					<div class="pricing-table-2 active margin-bottom">

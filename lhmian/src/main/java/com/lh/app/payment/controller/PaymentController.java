@@ -1,6 +1,7 @@
 package com.lh.app.payment.controller;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,34 +28,17 @@ public class PaymentController {
 
 	// 결제정보 넘기기 및 결제완료페이지 연결
 
-	
-	/*
-	 * @PostMapping("/payComplete") public String creditCard(Model model, Locale
-	 * locale, String imp_uid, PaymentVO vo, ManagementFeeVO
-	 * fvo, @AuthenticationPrincipal CustomUserDetails info)throws
-	 * IamportResponseException, IOException { System.out.println("결제중....");
-	 * this.api = new IamportClient("3453433373716908",
-	 * "efc0888a66eaa69d340e654d7ba2782e583f94ee2cd039ec3f9318a2a8a9a73fa261a5ad7df75ff5"
-	 * );
-	 * 
-	 * fvo.setHouseInfo(info.getHOUSEINFO());
-	 * 
-	 * // db insert 작업 System.out.println(vo); paymentService.insert(vo);
-	 * paymentService.update(fvo); model.addAttribute("pay",
-	 * api.paymentByImpUid(imp_uid));
-	 * 
-	 * return
-	 * 
-	 * "pay/payComplete"; }
-	 */
-
 	@PostMapping("/payComplete")
-	public String creditCard(Model model, PaymentVO vo, ManagementFeeVO fvo,
-			@AuthenticationPrincipal CustomUserDetails info) throws IamportResponseException, IOException {
+	public String creditCard(Model model, Locale locale, String imp_uid, PaymentVO vo, ManagementFeeVO fvo, @AuthenticationPrincipal CustomUserDetails info) throws IamportResponseException, IOException {
+		System.out.println("결제중....");
+		this.api = new IamportClient("3453433373716908", "efc0888a66eaa69d340e654d7ba2782e583f94ee2cd039ec3f9318a2a8a9a73fa261a5ad7df75ff5");
+
 		fvo.setHouseInfo(info.getHOUSEINFO());
 
 		// db insert 작업
-		System.out.println(fvo.getMfTotal());
+		System.out.println(vo);
+		System.out.println(fvo);
+		model.addAttribute("uid", api.paymentByImpUid(imp_uid));
 		model.addAttribute("pay", paymentService.insert(vo));
 		model.addAttribute("fpay", paymentService.update(fvo));
 		return "pay/payComplete";
