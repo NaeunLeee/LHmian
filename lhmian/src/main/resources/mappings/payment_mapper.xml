@@ -22,6 +22,6 @@
 <update id="update">
 	UPDATE MANAGEMENT_FEE 
 		SET PAY_NO = #{payNo} 
-		WHERE HOUSE_INFO = #{houseInfo} and mf_total = #{mfTotal}
+		WHERE HOUSE_INFO = #{houseInfo} AND MF_DATE = #{mfDate}
 </update>
 </mapper>
