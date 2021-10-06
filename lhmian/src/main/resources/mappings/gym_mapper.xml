@@ -38,4 +38,16 @@
     WHERE SUBSTR(GX_TITLE, 1, 1) = '스'
 </select>
 
+<select id="gxRead" resultType="gxVO">
+	SELECT GX_CODE
+		 , GX_TITLE
+		 , GX_MON
+		 , GX_TUE
+		 , GX_WED
+		 , GX_THU
+		 , GX_FRI
+	FROM GX
+	WHERE GX_CODE = #{gxCode} 
+</select>
+
 </mapper>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.member.mapper.MemberMapper">
 
-		<sql id="criteria">
+	<sql id="criteria">
 		<trim prefix="(" suffix=")AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
 				<trim prefix="OR">
@@ -21,17 +21,15 @@
 			</foreach>
 		</trim>
 	</sql>
-	
+
 	<select id="getTotalCount" resultType="int">
-	
-	SELECT COUNT(*) FROM
-	MEMBER
-	WHERE
+		SELECT COUNT(ROWNUM) FROM
+		MEMBER
+		WHERE
 		<include refid="criteria"></include>
-	ID > 0
-	
+		ROWNUM > 0
 	</select>
-	
+
 	<select id="getList" resultType="memberVO">
 		<![CDATA[
 		SELECT *
@@ -48,25 +46,107 @@
 			FROM MEMBER
 			WHERE
 			]]>
-			<include refid="criteria"></include>
+		<include refid="criteria"></include>
 			<![CDATA[
 			ROWNUM <= #{pageNum} * #{amount}
 		)
 		WHERE RN > (#{pageNum} - 1) * #{amount}
 	]]>
 	</select>
-	
-	<select id="read" resultType="MemberVO" parameterType="long">
-		SELECT *
-		FROM MEMBER
-		WHERE id=#{id}
+
+	<select id="read" resultType="MemberInfoVO">
+		SELECT DISTINCT M.ID, M.PHONE,
+		M.HOUSE_INFO,
+		M.PASSWORD,
+		LISTAGG(C.CAR_CODE, '/') WITHIN GROUP (ORDER
+		BY C.CAR_CODE) OVER(PARTITION BY
+		C.HOUSE_INFO) AS carCode
+		,
+		LISTAGG(C.CAR_TYPE, '/') WITHIN GROUP (ORDER BY C.CAR_TYPE)
+		OVER(PARTITION BY C.HOUSE_INFO) AS carType
+		FROM MEMBER M
+		JOIN GENERATION
+		G
+		ON (M.HOUSE_INFO = G.HOUSE_INFO)
+		JOIN CARLIST C
+		ON (G.HOUSE_INFO =
+		C.HOUSE_INFO)
+		WHERE M.ID = #{id}
 	</select>
-	
+
+	<select id="getListcar" resultType="MemberInfoVO">
+		SELECT
+		C.CAR_NO,C.CAR_TYPE,C.CAR_CODE
+		FROM MEMBER M
+		JOIN GENERATION G
+		ON
+		M.HOUSE_INFO = G.HOUSE_INFO
+		JOIN CARLIST C
+		ON G.HOUSE_INFO =
+		C.HOUSE_INFO
+		WHERE M.ID = #{id}
+	</select>
+
+	<!-- 회원 차량정보 수정 -->
+	<update id="updateCar">
+		UPDATE CARLIST SET
+		CAR_CODE = #{carCode},
+		CAR_TYPE =
+		#{carType}
+		WHERE
+		CAR_NO = #{carNo}
+	</update>
+
+	<!-- 회원 비밀번호 수정 -->
+	<update id="updatePw">
+		UPDATE member SET
+		password = #{password}
+		WHERE id =
+		#{id}
+	</update>
+
+	<!-- 회원 전화번호 수정 -->
+	<update id="updatePhone">
+		UPDATE MEMBER SET
+		phone = #{phone}
+		WHERE id = #{id}
+	</update>
+
 	<delete id="delete">
 		DELETE
 		FROM MEMBER
 		WHERE ID=#{id}
 	</delete>
 
-	
+	<!-- 10/05 추가 부분 -->
+	<!-- 예약내역 쿼리문 2개 작성 VO명은 일치 시킬것 -->
+	<select id="readlib" resultType="MemberInfoVO">
+		SELECT P.PAY_NO
+		, P.PAY_DATE
+		, P.PAY_CAT
+		, L.LIB_STARTDATE AS startDate
+		, L.LIB_PERIOD AS period
+		, L.LIB_PRICE AS price
+		FROM
+		PAYMENT P
+		JOIN LIBRARY L
+		ON (P.PAY_NO =
+		L.PAY_NO)
+		WHERE P.ID = #{id};
+	</select>
+
+	<select id="readgym" resultType="MemberInfoVO">
+		SELECT P.PAY_NO
+		, P.PAY_DATE
+		, P.PAY_CAT
+		, G.GYM_STARTDATE AS STARTDATE
+		, G.GYM_PERIOD AS PERIOD
+		, G.GYM_PRICE AS PRICE
+		FROM
+		PAYMENT P
+		JOIN GYM G
+		ON (P.PAY_NO = G.PAY_NO)
+		WHERE P.ID = #{id};
+	</select>
+
 </mapper>

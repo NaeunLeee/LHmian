@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lh.app.comm.domain.Criteria;
 import com.lh.app.member.domain.MemberCriteria;
+import com.lh.app.member.domain.MemberInfoVO;
 import com.lh.app.member.mapper.MemberMapper;
 import com.lh.app.signIn.domain.MemberVO;
 
@@ -35,7 +37,6 @@ public class MemberServiceImpl implements MemberService {
 	 * return mapper.update(vo); }
 	 */
 
-	// 0928 추가 ----------------------------------------------------
 	// 회원삭제
 	@Override
 	public int delete(MemberVO vo) {
@@ -44,9 +45,37 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO read(MemberVO vo) {
+	public MemberInfoVO read(MemberInfoVO vo) {
 		// TODO Auto-generated method stub
 		return mapper.read(vo);
 	}
+	
+	//10/05 추가 (이광호)
+	@Override
+	public int updatePw(MemberInfoVO vo) {
+		
+		return mapper.updatePw(vo);
+	}
 
+	@Override
+	public List<MemberInfoVO> getListcar(String id) {
+		// TODO Auto-generated method stub
+		return mapper.getListcar(id);
+	}
+	
+	//차량 정보 수정 (10/05)
+	@Override
+	public int updateCar(MemberInfoVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.updateCar(vo);
+	}
+
+	
+	//10/05 추가
+	@Override
+	public int updatePhone(MemberInfoVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.updatePhone(vo);
+	}
+	
 }

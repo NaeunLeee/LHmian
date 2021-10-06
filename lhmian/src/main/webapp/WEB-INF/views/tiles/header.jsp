@@ -53,7 +53,7 @@
 									<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
 								</sec:authorize>
 							</li>
-							<li><a href="#">회원가입</a></li>
+							<li><a href="${pageContext.request.contextPath}/leaderStep1">회원가입</a></li>
 						</ul>
 					</div>
 				</div>
@@ -87,7 +87,7 @@
 													<a href="${pageContext.request.contextPath}/">Home</a> 
 												</li>
 												<li>
-													<a href="#">우리 아파트</a> 
+													<a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a> 
 													<ul class="dm-align-2">
 														<li>
 															<a href="${pageContext.request.contextPath}/introduce/introduce">아파트 소개</a> 
@@ -108,7 +108,7 @@
 													</ul>
 												</li>
 												<li class="right">
-													<a href="#">관리 사무소</a>
+													<a href="${pageContext.request.contextPath}/office/office">관리 사무소</a>
 													<ul class="dm-align-2">
 														<li>
 															<a href="${pageContext.request.contextPath}/office/noticeList">공지사항</a>
@@ -118,7 +118,7 @@
 														</li>
 														<li>
 															<!-- 10/02 스케쥴 조회 링크 추가 -->
-															<a href="schedule">일정</a>
+															<a href="${pageContext.request.contextPath}/schedule">일정</a>
 															<!-- --------  끝  -------- -->
 														</li>
 														<li>
@@ -132,7 +132,7 @@
 													</ul>
 												</li>
 												<li class="right">
-													<a href="#">입주민 공간</a>
+													<a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a>
 													<ul class="dm-align-2">
 														<li>
 															<a href="${pageContext.request.contextPath}/resident/confList">입주자 대표회의</a>
@@ -152,37 +152,63 @@
 															<a href="${pageContext.request.contextPath}/facility/library">독서실</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/facility/gym">헬스장</a>
+															<a href="${pageContext.request.contextPath}/facility/gym">피트니스 센터</a>
 														</li>
 													</ul>
 												</li>
-												<li class="right">
-													<a href="${pageContext.request.contextPath}/myPage/myPage">마이 페이지</a>
-													<ul class="dm-align-2">
-														<li>
-															<!-- 10/03 개인정보 조회/수정 링크 -->
-															<a href="myInfo">개인정보수정</a>
-															<!-- ------------------------ -->
-														</li>
-														<li>
-															<a href="#">관리비 조회</a>
-														</li>
-														<li>
-															<a href="#">에너지 사용량</a>
-														</li>
-														<li>
-															<a href="#">주민 투표</a>
-														</li>
-														<li>
-															<!-- 10/02 스케쥴 조회 링크 추가 시작-->
-															<a href="myCommunityList">작성글 조회</a>
-															<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
-														</li>
-														<li>
-															<a href="#">시설이용내역</a>
-														</li>
-													</ul>
-												</li>
+												<%-- <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
+													<li class="right">
+														<a href="${pageContext.request.contextPath}/myPage/myPage">마이 페이지</a>
+														<ul class="dm-align-2">
+															<li>
+																<!-- 10/03 개인정보 조회/수정 링크 -->
+																<a href="myInfo">개인정보수정</a>
+																<!-- ------------------------ -->
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
+															</li>
+															<li>
+																<a href="#">주민 투표</a>
+															</li>
+															<li>
+																<!-- 10/02 스케쥴 조회 링크 추가 시작-->
+																<a href="myCommunityList">작성글 조회</a>
+																<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
+															</li>
+															<li>
+																<a href="myFac">시설이용내역</a>
+															</li>
+														</ul>
+													</li>
+												<%-- </sec:authorize>
+												<sec:authorize access="hasRole('ROLE_ADMIN')"> --%>
+													<li class="right">
+														<a href="${pageContext.request.contextPath}/admin/adminPage">관리자 페이지</a>
+														<ul class="dm-align-2">
+															<li>
+																<!-- 10/03 개인정보 조회/수정 링크 -->
+																<a href="#">관리비</a>
+																<!-- ------------------------ -->
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admMemberList">회원 관리</a>
+															</li>
+															<li>
+																<a href="#">시설물 관리</a>
+															</li>
+															<li>
+																<a href="#">게시글 관리</a>
+															</li>
+														</ul>
+													</li>
+												<%-- </sec:authorize> --%>
 											</ul>
 										</div>
 									</div>
@@ -225,6 +251,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+ 
+<script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
  
 <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
 (Load Extensions only on Local File Systems ! 

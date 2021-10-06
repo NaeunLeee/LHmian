@@ -10,9 +10,45 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<style>
+	.thumbs img {
+		width: 100px;
+		height: 100px;
+	}
+	#mainImg img {
+		width: 450px;
+		height: 300px;
+	}
+</style>
 
 </head>
 <body>
+
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
+							<div class="text text-center">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class=" clearfix"></div>
+</div>
+
 	<section>
 		<div class="pagenation-holder-no-bottom">
 			<div class="container">
@@ -42,7 +78,6 @@
 				</div>
 				<div class="clearfix"></div>
 				<!--end title-->
-
 			</div>
 		</div>
 	</section>
@@ -52,29 +87,31 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 margin-bottom">
-					<img src="${pageContext.request.contextPath}/resources/images/library.jpg" alt="독서실" class="img-responsive">
+					<div id="mainImg">
+						<img src="${pageContext.request.contextPath}/resources/images/library_1.jpg" alt="독서실" class="img-responsive">
+					</div>
 				</div>
 				<div class="col-md-6 margin-bottom">
 					<h5 class="font-weight-4">LHmian 한사랑 독서실</h5>
-					<p>독서실 설명 블라블라블라~~~</p>
+					<p>LHmian의 자라나는 새싹들을 위한, 준비된 미래형 독서실</p>
 					<br />
 					<ul class="iconlist gyellow">
 						<li><i class="fa fa-check"></i> 
 							쾌적한 환경
 						</li>
 						<li><i class="fa fa-check"></i> 
-							Etiam enim Suspendisse imperdiet cursus nisi Maecenas
+							전 좌석 LAN선, 기가 WIFI 설치 완료
 						</li>
 						<li><i class="fa fa-check"></i> 
-							Nullam turpis Cras dapibus orci rutrum
+							컴퓨터실, 휴게실 무료 이용 가능
 						</li>
 						<li><i class="fa fa-check"></i> 
-							Etiam enim Suspendisse imperdiet cursus nisi Maecenas
+							백색소음기 구비
 						</li>
 					</ul>
 					<br /> <br />
 					<button type="button" id="reservation"
-						class="btn btn-dark-3 btn-round" data-toggle="modal"
+						class="btn btn-dark" data-toggle="modal"
 						data-target="#libModal">등록</button>
 				</div>
 				<!--end item-->
@@ -85,42 +122,40 @@
 	<!-- end section -->
 
 	<div class="divider-line solid light"></div>
+	<br><br>
 	<section class="moreless-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<ul class="ce4-clients noborder grid-cols-6 hover-2">
-						<li>
-							<a href="#">
-								<img src="http://placehold.it/400x300" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="http://placehold.it/400x300" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="http://placehold.it/400x300" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="http://placehold.it/400x300" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="http://placehold.it/400x300" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="http://placehold.it/400x300" alt="">
-							</a>
-						</li>
-					</ul>
+					<div class="thumbs">
+						<ul class="ce4-clients noborder grid-cols-6 hover-2">
+							<li>
+								<a href="${pageContext.request.contextPath}/resources/images/library_1.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/library_1.jpg" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/resources/images/library_2.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/library_2.jpg" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/resources/images/library_3.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/library_3.jpg" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/resources/images/library_4.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/library_4.jpg" alt="">
+								</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/resources/images/library_5.jpg">
+									<img src="${pageContext.request.contextPath}/resources/images/library_5.jpg" alt="">
+								</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 				<!--end item-->
 			</div>
@@ -140,39 +175,46 @@
 	<div class="modal" id="libModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
+				<form id="libForm" name="libForm" method="post" action="libraryPay" target="popup_window">
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h5 class="modal-title">독서실 등록</h5>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">독서실 등록</h4>
+					</div>
 				</div>
-
 				<!-- Modal body -->
 				<div class="modal-body">
-					<div>
-						<form id="libForm" name="libForm">
-							이름 | <sec:authentication property="principal.NAME" /> <br> <br> 
-							날짜 | <input type="text" id="selectDate"><br> <br> 
-							기간 | <select id="libPeriod" name="libPeriod">
-										<option value="" selected>선택</option>
-										<option value="1">1일</option>
-										<option value="7">1주</option>
-										<option value="30">1달</option>
-										<option value="90">3달</option>
-										<option value="180">6달</option>
-										<option value="365">1년</option>
-								   </select><br> <br> 
-							금액 | <input type="text" id="libPrice" name="libPrice" readonly="readonly">원
-						</form>
+					<div style="margin: 0px 20px 0px;">
+						<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">이 름</label></h5>
+							<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br> 
+						<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="libStartdate">시작 날짜</label></h5>
+							<input type="text" id="libStartdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
+						<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="libPeriod">기 간</label></h5> 
+							<select id="libPeriod" name="libPeriod" class="form-control">
+								<option value="" selected>선택</option>
+								<option value="1">1일</option>
+								<option value="7">1주</option>
+								<option value="30">1달</option>
+								<option value="90">3달</option>
+								<option value="180">6달</option>
+								<option value="365">1년</option>
+						   </select><br>
+						<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="libPrice">금 액 (원)</label></h5> 
+							<input type="text" id="libPrice" name="libPrice" class="form-control" readonly="readonly">
 					</div>
 					<br>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
 					<div align="center">
-						<button type="button">등록</button>
-						&nbsp;
-						<button type="button" data-dismiss="modal">취소</button>
+						<button type="submit" id="doPay" class="btn btn-gyellow">결제하기</button>
+						<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
 					</div>
 				</div>
 
+					</form>
 			</div>
 		</div>
 	</div>
@@ -181,7 +223,7 @@
 
 <script>
 	// 날짜 선택 DatePicker
-	$("#selectDate").datepicker();
+	$("#libStartdate").datepicker();
 
 	$.datepicker.setDefaults({
 		dateFormat : 'yy-mm-dd',
@@ -221,6 +263,18 @@
 		$('#libPrice').val(price);
 
 	});
+	
+    $(".thumbs a").click(function() {           					 //클릭 시
+        var imgPath = $(this).attr("href");     				  //클릭한 a태그의 하이퍼링크를 변수저장
+        $("#mainImg>img").attr({src:imgPath}) 					  //메인 이미지의 주소 속성에 할당
+        				 .hide()                                 //fadein()효과를 보여주기 위해 숨김처리
+        				 .fadeIn();                              //fadeIn()
+        return false;                           //<a> 의 본래기능 (하이퍼링크) 작동방지
+    });
+
+   	$('#doPay').on('click', function() {
+   		window.open("", "popup_window", "width=500, height=700, scrollbars=yes");
+   	});
 </script>
 
 </html>

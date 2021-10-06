@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class introduceController {
 
+	@RequestMapping("/introduce/myApt")
+	public String myApt() {
+		return "introduce/myApt";
+	}
+	
 	@RequestMapping("/introduce/introduce")
 	public String introduce() {
 		return "introduce/introduce";

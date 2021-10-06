@@ -28,4 +28,7 @@ public interface SignInService {
 	
 	//카카오 로그인시, 회원가입 이력 조회
 	public int kakaoIdCheck(Integer id);
+	
+	//id로 회원조회
+	public MemberVO memberSelect(MemberVO vo);
 }

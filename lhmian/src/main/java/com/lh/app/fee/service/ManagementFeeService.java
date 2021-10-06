@@ -10,4 +10,10 @@ public interface ManagementFeeService {
 	
 	//특정 월 관리비 내역
 	public ManagementFeeVO selectFee(ManagementFeeVO vo);
+	
+	//관리비 전체 평균
+	public ManagementFeeVO selectAvg();
+	
+	//제일 최근 관리비 출력(이전달 관리비와 함께)
+	public ManagementFeeVO selectCurrentFee(ManagementFeeVO vo);
 }

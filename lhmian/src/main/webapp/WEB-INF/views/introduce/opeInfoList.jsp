@@ -9,25 +9,50 @@
 <title>LHmian | 운영 정보 공개</title>
 
 <style>
-tr {
+.tr_1 {
 	cursor: pointer;
+	text-align: center;
 }
 
-tr:hover {
-	background-color: lightyellow;
+th {
+	text-align: center;
+	background-color: #EEEEEE;
+}
+
+.tr_1:hover {
+	background-color: #f5f5f5;
 }
 
 table {
-	text-align: center;
 	background-color: white;
-	box-shadow: 5px 5px 5px grey;
+}
+.pagination>li>a {
+	color: black;
 }
 </style>
 
 </head>
 <body>
-	<br>
-	<br>
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class=" clearfix"></div>
+</div>
 	<section>
 		<div class="pagenation-holder-no-bottom">
 			<div class="container">
@@ -59,61 +84,63 @@ table {
 		</div>
 
 		<div class="container" align="center">
-			<div class="col-7">
-				<table border="1" class="table">
-					<tr>
-						<th>글 번호</th>
-						<th>카테고리</th>
-						<th>제목</th>
-						<th>작성일자</th>
-					</tr>
-					<c:forEach items="${list}" var="info">
+			<div class="text-box white padding-4 col-7">
+				<table class="table">
+					<thead>
 						<tr>
-							<td>${info.oiNo}</td>
-							<td>${info.oiType}</td>
-							<td><a class="move" href="${info.oiNo}">${info.oiTitle}</a></td>
-							<td><fmt:formatDate value="${info.oiDate}"
-									pattern="yy-MM-dd" /></td>
+							<th>No</th>
+							<th>카테고리</th>
+							<th>제목</th>
+							<th>작성일자</th>
 						</tr>
-					</c:forEach>
+					</thead>
+					<tbody>
+						<c:forEach items="${list}" var="info">
+							<tr class="move tr_1" data-oiNo="${info.oiNo}">
+								<td>${info.oiNo}</td>
+								<td>${info.oiType}</td>
+								<td>${info.oiTitle}</td>
+								<td><fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /></td>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
-			</div>
-			<br>
-			<div id="pageBtn">
-				<ul class="pagination hover-orange">
-					<c:if test="${pageMaker.prev == true}">
-						<li>
-							<a href="${pageMaker.startPage-1}">
-								<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-							</a>
-						</li>
-					</c:if>
-					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-						<li><a href="${num}">${num}</a></li>
-					</c:forEach>
-					<c:if test="${pageMaker.next == true}">
-						<li>
-							<a href="${pageMaker.endPage+1}">
-								<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-							</a>
-						</li>
-					</c:if>
-				</ul>
-			</div>
+				<div style="float: left; margin-top: 20px;">
+					<form id="actionForm" action="opeInfoList" method="get">
+						<select name="type" class="form-control" style="width: 100px; float: left;">
+							<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
+							<option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
+							<option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
+							<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>
+						</select> 
+						<input name="keyword" class="form-control" style="width: 200px; float: left;" value="${pageMaker.cri.keyword}"> 
+						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+						<button type="submit" class="btn btn-dark" style="float: left;">검색</button>
+					</form>
+				</div>
+				<div id="pageBtn" style="margin: auto; width: 50%">
+					<ul class="pagination hover-orange">
+						<c:if test="${pageMaker.prev == true}">
+							<li>
+								<a href="${pageMaker.startPage-1}">
+									<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+								</a>
+							</li>
+						</c:if>
+						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+							<li><a href="${num}">${num}</a></li>
+						</c:forEach>
+						<c:if test="${pageMaker.next == true}">
+							<li>
+								<a href="${pageMaker.endPage+1}">
+									<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+								</a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 
-			<div>
-				<form id="actionForm" action="opeInfoList" method="get">
-					<select name="type">
-						<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-						<option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-						<option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
-						<option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>
-					</select> 
-					<input name="keyword" value="${pageMaker.cri.keyword}"> 
-					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-					<button type="submit">검색</button>
-				</form>
 			</div>
 			<br><br><br><br><br><br>
 		</div>
@@ -123,14 +150,13 @@ table {
 
 <script>
 	$(function() {
-
 		var actionForm = $('#actionForm');
 		$('.move')
 				.on(
 						"click",
 						function(e) {
 							e.preventDefault();
-							var oiNo = $(this).attr("href");
+							var oiNo = $(this).attr("data-oiNo");
 							actionForm
 									.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
 							actionForm.attr("action", "opeInfoSelect");

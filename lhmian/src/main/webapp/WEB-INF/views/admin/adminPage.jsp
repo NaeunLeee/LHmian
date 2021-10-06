@@ -9,6 +9,7 @@
 <style>
 	.ce4-feature-box-12 {
 		cursor: pointer;
+		background-color: white;
 	}
 </style>
 
@@ -16,19 +17,14 @@
 <body>
 
 <div></div><br><br><br><br>
-    <section class="sec-padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 nopadding">
-            <div class="sec-title-container text-center">
+    <section class="sec-padding section-light">
+		<div class="container">
+		<div class="row">
+		  <div class="sec-title-container text-center">
               <div class="ce4-title-line-1"></div>
               <h4 class="uppercase font-weight-7 less-mar-1"><sec:authentication property="principal.NAME" /> 님 환영합니다!</h4>
               <div class="clearfix"></div>
-            </div>
           </div>
-          <div class="clearfix"></div>
-          <!--end title-->
-          
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="ce4-feature-box-12 margin-bottom">
               <div class="icon-plain-msmall left icon"><span class="icon-pencil"></span></div>

@@ -11,19 +11,44 @@
 <style>
 	tr {
 		cursor: pointer;
+		text-align: center;
 	}
-	tr:hover {
+	.tr_1:hover {
 		background-color: lightyellow;
 	}
 	table {
-		text-align: center;
 		background-color: white;
-		box-shadow: 5px 5px 5px grey;
+	}
+	th {
+		text-align: center;
 	}
 </style>
 
 </head>
 <body>
+
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
+							<div class="text text-center">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class=" clearfix"></div>
+</div>
 
 	<section>
 		<div class="pagenation-holder-no-bottom">
@@ -59,6 +84,21 @@
 					<div class="text-box white padding-4">
 						<div align="center">
 							<div>
+								<form id="actionForm" action="confList" method="get">
+									<select name="type" class="form-control" style="width: 100px; float: left;">
+										<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
+										<option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
+										<option value="W" ${empty pageMaker.cri.type == 'W' ? selected : ""}>작성자</option>
+										<option value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected' : ''}"/>>전체</option>
+									</select>
+									<input name="keyword" class="form-control" style="width: 300px; float: left;" value="${pageMaker.cri.keyword}"> 
+									<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
+									<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+									<button type="submit" class="btn btn-gyellow" style="float: left;">검색</button>
+								</form>
+								<button style="float: right;" type="button" class="btn btn-default" onclick="location.href='confInsert'">글 쓰기</button>
+							</div><br><br><br>
+							<div>
 								<table class="table">
 									<tr>
 										<th class="col-1">글 번호</th>
@@ -67,7 +107,7 @@
 										<th class="col-3">작성일자</th>
 									</tr>
 									<c:forEach items="${list}" var="conf">
-										<tr>
+										<tr class="tr_1">
 											<td>${conf.confNo}</td>
 											<td><a class="move" href="${conf.confNo}">${conf.confTitle}</a></td>
 											<td>${conf.confWriter}</td>
@@ -76,12 +116,9 @@
 										</tr>
 									</c:forEach>
 								</table>
-								<button type="button" onclick="location.href='confInsert'">글
-									쓰기</button>
 							</div>
-							<br>
 							<div id="pageBtn">
-								<ul class="pagination hover-orange">
+								<ul class="pagination style-1 hover-orange">
 									<c:if test="${pageMaker.prev == true}">
 										<li>
 											<a href="${pageMaker.startPage-1}">
@@ -101,30 +138,6 @@
 									</c:if>
 								</ul>
 							</div>
-
-							<form id="actionForm" action="confList" method="get">
-								<div style="float: left;">
-									<select name="type" class="form-control">
-										<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-										<option value="T"
-											${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-										<option value="W"
-											${empty pageMaker.cri.type == 'W' ? selected : ""}>작성자</option>
-										<option value="TW"
-											<c:out value="${pageMaker.cri.type eq 'TW' ? 'selected' : ''}"/>>전체</option>
-									</select>
-								</div>
-								&nbsp;&nbsp;
-								<div style="float: left;">
-									<input name="keyword" class="form-control"
-										value="${pageMaker.cri.keyword}"> <input type="hidden"
-										name="pageNum" value="${pageMaker.cri.pageNum}"> <input
-										type="hidden" name="amount" value="${pageMaker.cri.amount}">
-								</div>
-								&nbsp;&nbsp;
-								<button type="submit" class="btn btn-small" style="float: left;">검색</button>
-							</form>
-							<br>
 							<br>
 						</div>
 					</div>
