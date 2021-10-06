@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.payment.mapper.PaymentMapper">
+<insert id="insert">
+	INSERT INTO PAYMENT (
+		   PAY_NO
+		 , ID
+		 , PAY_DATE
+		 , PAY_TYPE
+		 , PAY_CAT
+		 , PAY_STATUS
+	) VALUES (
+		   #{payNo}
+		 , #{id}
+		 , DEFAULT
+		 , #{payType}
+		 , #{payCat}
+		 , #{payStatus}
+	)
+</insert>
+
+<update id="update">
+	UPDATE MANAGEMENT_FEE 
+		SET PAY_NO = #{payNo} 
+		WHERE HOUSE_INFO = #{houseInfo} and mf_total = #{mfTotal}
+</update>
+</mapper>
