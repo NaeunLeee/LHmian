@@ -43,7 +43,7 @@
 		]]>
 	</select>
 	
-	<!-- 10/06 수정 -->
+	<!-- 10/06 17:40 수정 -->
 	<select id="getListno" resultType="CommVO">
 		SELECT
 		*
@@ -54,13 +54,13 @@
 		ID,
 		COMM_DATE,COMM_HIT
 		FROM COMMUNITY
-		WHERE
+		WHERE 
 		<include refid="criteria"></include>
 		<![CDATA[ 
 		ROWNUM <= #{pageNum} * #{amount} 
+		AND ID = #{id}
 		)
 		WHERE RN > (#{pageNum} -1) * #{amount} 
-		AND ID = #{id}
 		]]>
 	</select>
 
