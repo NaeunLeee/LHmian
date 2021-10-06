@@ -148,11 +148,11 @@ itemTemplate:
   <div class="row">
   
   <div class="col-md-12">
-  <img src="http://placehold.it/2000x900" alt="" class="img-responsive"/>                           
+  <img src="${pageContext.request.contextPath }/resources/images/sliders/배치도.jpg" alt="" class="img-responsive"/>                           
   </div>
   <!--end item-->
   
-  <div class="col-divider-margin-6"></div>
+<!--   <div class="col-divider-margin-6"></div>
   
     <div class="col-md-12">
   <ul class="port-project-info">
@@ -163,7 +163,7 @@ itemTemplate:
     <li><span>Website:</span> <a href="#" class="text-gyellow">www.example.com</a></li>
 </ul>
 <div class="clearfix"></div>
-  </div>
+  </div> -->
   <!--end item-->
 
   

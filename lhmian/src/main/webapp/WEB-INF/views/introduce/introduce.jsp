@@ -8,6 +8,12 @@
 h1{
 	font-size: 47px;
 }
+
+#sync2 .item {
+	border: none;
+}
+
+
 </style>
 
 <section>
@@ -283,35 +289,35 @@ h1{
 					<!-- <div class="ce4-title-line-1 align-left"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">Our History</h4> -->
 						<div id="sync1" class="owl-carousel">
-							<div class="item">
-								<img src="${pageContext.request.contextPath }/resources/images/sliders/아파트1.jpg" alt="">
+							<div class="item" style="border:none;">
+								<img src="${pageContext.request.contextPath }/resources/images/sliders/아파트1-big.jpg" alt="">
 							</div>
 							<div class="item">
-								<img src="http://placehold.it/1500x600" alt="">
+								<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로2-big.jpg" alt="">
 							</div>
 							<div class="item">
-								<img src="http://placehold.it/1500x600" alt="">
+								<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로3-big.jpg" alt="">
 							</div>
 							<div class="item">
-								<img src="http://placehold.it/1500x600" alt="">
+								<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로1-big.jpg" alt="">
 							</div>
 						</div>
 						<div class="col-xs-12">
 							<div id="sync2" class="owl-carousel">
 								<div class="item">
-									<img src="${pageContext.request.contextPath }/resources/images/sliders/아파트1.jpg" alt=""
+									<img src="${pageContext.request.contextPath }/resources/images/sliders/아파트1-sm.jpg" alt=""
 										class="img-responsive">
 								</div>
 								<div class="item">
-									<img src="http://placehold.it/200x150" alt=""
+									<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로2-sm.jpg" alt=""
 										class="img-responsive">
 								</div>
 								<div class="item">
-									<img src="http://placehold.it/200x150" alt=""
+									<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로3-sm.jpg" alt=""
 										class="img-responsive">
 								</div>
 								<div class="item">
-									<img src="http://placehold.it/200x150" alt=""
+									<img src="${pageContext.request.contextPath }/resources/images/sliders/아크로1-sm.jpg" alt=""
 										class="img-responsive">
 								</div>
 
