@@ -38,6 +38,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/tabs/css/responsive-tabs.css" media="all" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/jFlickrFeed/style.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/gym.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mechanic.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <!-- Template's stylesheets END -->
 </head>
