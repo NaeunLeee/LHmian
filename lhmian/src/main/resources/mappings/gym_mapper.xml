@@ -50,4 +50,23 @@
 	WHERE GX_CODE = #{gxCode} 
 </select>
 
+<insert id="gxRegister">
+	INSERT INTO GYM
+		( GYM_NO
+		, PAY_NO
+		, GYM_STARTDATE
+		, GX_CODE
+		, GYM_PERIOD
+		, GYM_PRICE )
+	VALUES (
+		  #{gymNo}
+		, #{payNo}
+		, #{gymStartdate}
+		, #{gxCode}
+		, #{gymPeriod}
+		, #{gymPrice}
+	)
+	
+</insert>
+
 </mapper>

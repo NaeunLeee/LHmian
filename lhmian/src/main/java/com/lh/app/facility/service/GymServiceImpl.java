@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lh.app.facility.domain.GxVO;
+import com.lh.app.facility.domain.GymVO;
 import com.lh.app.facility.mapper.GymMapper;
 
 @Service
@@ -28,6 +29,10 @@ public class GymServiceImpl implements GymService {
 
 	public GxVO gxRead(GxVO vo) {
 		return gymMapper.gxRead(vo);
+	}
+
+	public int gxRegister(GymVO vo) {
+		return gymMapper.gxRegister(vo);
 	}
 
 }
