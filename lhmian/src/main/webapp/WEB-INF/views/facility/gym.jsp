@@ -28,7 +28,7 @@
 		background-color: #EEEEEE;
 	}
 </style>
-
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
 	<div class="header-inner-tmargin">
@@ -331,7 +331,7 @@
 			<!-- Modal Footer -->
 			<div class="modal-footer">
 				<div align="center">
-					<button type="submit" id="doPay" class="btn btn-gyellow">결제하기</button>
+					<button type="button" id="payBtn" class="btn btn-gyellow">결제하기</button>
 					<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
 				</div>
 			</div>
@@ -398,6 +398,54 @@
 	
 		$('#gymModal').modal('show');
 	});
+	
+	$('#payBtn').on('click', function() {
+		
+		let author = null;
+		let houseInfo = null;
+		let phone = null;
+		let name = null;
+		
+		<sec:authorize access="isAuthenticated()">
+			author = '<sec:authentication property="principal.AUTHOR"/>';
+			houseInfo = '<sec:authentication property="principal.HOUSEINFO"/>';
+			phone = '<sec:authentication property="principal.PHONE"/>';
+			name = '<sec:authentication property="principal.HOUSEINFO" />';
+		</sec:authorize>
+		
+		paymentFnc(name, houseInfo, phone);
+		
+	});
+
+	function paymentFnc(name, houseInfo, phone) {
+
+
+		IMP.request_pay({
+			pg : 'inicis', // version 1.1.0부터 지원.
+			pay_method : 'card',
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			name : '피트니스_' + houseInfo + '_' + date,
+			buyer_name : name,
+			buyer_tel : phone,
+			buyer_email : "nue.an.2@gmail.com",
+			amount : 100, //판매 가격
+			}, function(rsp) {
+					if(rsp.success){
+			        	alert("결제가 완료되었습니다."); 
+			        	$('#payNo').val(rsp.merchant_uid);
+			        	$('#payType').val(rsp.pay_method);
+			        	$('#payStatus').val(rsp.status);
+			        	$('#impUid').val(rsp.imp_uid);
+			        	$('#mfDate').val(date);
+			        	$('#mftotal').val($('#price').val());
+			      		frm.submit();
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+					alert(msg);
+				}
+			})
+		}
 
 </script>
 

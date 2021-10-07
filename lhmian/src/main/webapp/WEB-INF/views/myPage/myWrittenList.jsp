@@ -28,28 +28,32 @@ table {
 	background-color: white;
 }
 
-.tabstyle-8 {
-	width: 50%;
-	margin: auto;
-}
-
-.tabstyle-8 .responsive-tabs li {
+/* .tabstyle-7 .responsive-tabs li {
 	background-color: #f5f5f5;
 }
 
-.tabstyle-8 .responsive-tabs li a {
+.tabstyle-7 .responsive-tabs li a {
 	margin: 0px 10px 0px;
 	padding: 10px;
 }
 
-.btn.appstore.white {
+.btn-white {
 	color: #101010;
 	background-color: #fff;
+	border: 1px solid lightgray;
 }
-.btn.appstore.white:hover {
+.btn-white:hover {
 	color: #fff;
 	background-color: #101010;
+} */
+
+.tab-navicon {
+	background-color: #fff;
 }
+.tab-navicon:hover {
+	background-color: #101010;
+}
+
 
 </style>
 
@@ -103,193 +107,158 @@ table {
 					</div>
 					<div class="clearfix"></div>
 				</div>
-			<div class="row sec-padding">
-				<div class="col-md-12">
-					<div class="col-md-12 col-centered">
-						<div class="tab-navbar-main bborder tabstyle-8">
-							<ul class="responsive-tabs">
-								<li>
-									<a href="#example-1-tab-1" class="btn btn-white" target="_self">
-										<i class="bi bi-people-fill" style="margin-right: 10px;"></i>커뮤니티
-									</a>
-								</li>
-								<li>
-									<a href="#example-1-tab-2" class="btn btn-white" target="_self">
-										<i class="bi bi-megaphone" style="margin-right: 10px;"></i>민 원
-									</a>
-								</li>
-								<li>
-									<a href="#example-1-tab-3" class="btn appstore white" target="_self">
-										<i class="bi bi-patch-check" style="margin-right: 10px;"></i>입주자 대표회의
-									</a>
-								</li>
-							</ul>
+		<div>
+			<section class="sec-tpadding-2">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 margin-bottom">
+							<div class="tab-navbar-main-style-7 tabstyle-7">
+								<ul class="responsive-tabs">
+									<li>
+										<div class="tab-navicon">
+											<a href="#example-1-tab-1" target="_self">커뮤니티</a>
+										</div>
+									</li>
+									<li>
+										<div class="tab-navicon"> 
+											<a href="#example-1-tab-2" class="no-border" target="_self">민 원</a>
+										</div>
+									</li>
+									<li>
+										<div class="tab-navicon"> 
+											<a href="#example-1-tab-3" class="no-border" target="_self">입주자 대표회의</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="clearfix"></div>
+							<div class="tab-content-style-7">
+								<div class="responsive-tabs-content">
+									<div id="example-1-tab-1" class="responsive-tabs-panel">
+										<div style="margin: 30px 50px 20px;">
+											<div style="margin-left: 20px;">
+												<div class="title-line-3 align-left"></div>
+												<h4 class="uppercase font-weight-7 less-mar-1">커뮤니티 - 내 게시글</h4><br>
+											</div>
+											<div>
+												<table class="table">
+													<thead>
+														<tr>
+															<th>번호</th>
+															<th>제목</th>
+															<th>작성일자</th>
+															<th>조회수</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach items="${commList}" var="comm">
+															<tr class="tr_1" onclick="location.href='${pageContext.request.contextPath}/get?commNo=${comm.commNo}'">
+																<td>${comm.commNo}</td>
+																<td>${comm.commTitle}</td>
+																<td><fmt:formatDate value="${comm.commDate}" type="both" pattern="yy-MM-dd" /></td>
+																<td>${comm.commHit}</td>		
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+											<div style="margin-left: 20px;">
+												<div class="title-line-3 align-left"></div>
+												<h4 class="uppercase font-weight-7 less-mar-1">커뮤니티 - 내 댓글</h4><br>
+											</div>
+											<div>
+												<table class="table">
+													<thead>
+														<tr>
+															<th>번호</th>
+															<th>내용</th>
+															<th>작성일자</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach items="${replyList}" var="cmt">
+															<tr class="tr_1" onclick="location.href='${pageContext.request.contextPath}/get?commNo=${cmt.commNo}'">
+																<td>${cmt.rownum}</td>
+																<td>${cmt.cmtContent}</td>
+																<td><fmt:formatDate value="${cmt.cmtDate}" type="both" pattern="yy-MM-dd" /></td>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+									<!--end panel 1-->
+										
+									<div class="clearfix"></div>
+									<br />
+									<div id="example-1-tab-2" class="responsive-tabs-panel">
+										<div style="margin: 30px 50px 20px;">
+											<div style="margin-left: 20px;">
+												<div class="title-line-3 align-left"></div>
+												<h4 class="uppercase font-weight-7 less-mar-1">민원 - 내 게시글</h4><br>
+											</div>
+											<table class="table">
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>제목</th>
+														<th>작성일자</th>
+														<th>상태</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${csList}" var="cs">
+														<tr class="tr_1" onclick="location.href='${pageContext.request.contextPath}/office/csSelect?csNo=${cs.csNo}'">
+															<td>${cs.csNo}</td>
+															<td>${cs.csTitle}</td>
+															<td><fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" /></td>
+															<td>
+																<c:if test="${not empty cs.csAnswer}">답변완료</c:if>
+																<c:if test="${empty cs.csAnswer}">처리중</c:if>
+															</td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+											
+										</div>
+									</div>
+									<!--end panel 2-->
+									
+									<div class="clearfix"></div>
+									<br />
+									<div id="example-1-tab-3" class="responsive-tabs-panel">
+										<div style="margin: 30px 50px 20px;">
+											<div style="margin-left: 20px;">
+												<div class="title-line-3 align-left"></div>
+												<h4 class="uppercase font-weight-7 less-mar-1">입주자 대표회의 - 내 게시글</h4><br>
+											</div>
+											<table class="table">
+												<tr>
+													<th>No</th>
+													<th>제목</th>
+													<th>작성일자</th>
+													<th>최종수정</th>
+												</tr>
+												<c:forEach items="${confList}" var="conf">
+													<tr class="tr_1" onclick="location.href='${pageContext.request.contextPath}/resident/confSelect?confNo=${conf.confNo}'">
+														<td>${conf.confNo}</td>
+														<td>${conf.confTitle}</td>
+														<td><fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /></td>
+														<td><fmt:formatDate value="${conf.confUpdate}" pattern="yy-MM-dd" /></td>
+													</tr>
+												</c:forEach>
+											</table>
+											
+										</div>
+									</div>
+									<!--end panel 3-->
+								</div>
+							</div>
+							<!--end column-->
 						</div>
 					</div>
-					<div class="clearfix"></div>
-					<div>
-						<div class="responsive-tabs-content more-mar-1">
-							<div id="example-1-tab-1" class="responsive-tabs-panel">
-								<div class="responsive-tab-title ttitle"></div>
-								<div class="col-md-5">
-									<div class="tabstyle-8-feature-box">
-										<img src="${pageContext.request.contextPath}/resources/images/ce4-47.png" alt="" class="img-responsive" />
-									</div>
-								</div>
-								<!--end item-->
-								<div class="col-md-7">
-									<div class="tabstyle-8-feature-box-2">
-										<h4 class="uppercase">responsive design</h4>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing
-											elit. Suspendisse et justo. Praesent mattis commodo augue
-											Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus
-											a est Curabitur eget orci Cras laoreet ligula.</p>
-										<br />
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Pellentesque sit amet augue eu orci
-												cursus fermentum vestibulum in dolor.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Maecenas fringilla orci ultrices nulla
-												consectetur, id suscipit erat vulputate.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Nullam efficitur velit ut interdum
-												pellentesque.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="clearfix"></div>
-										<br /> <a class="btn btn-dark-3 uppercase" href="#">Read
-											more</a> <a class="btn btn-gyellow uppercase" href="#">Buy Now</a>
-									</div>
-								</div>
-								<!--end item-->
-	
-							</div>
-							<!--end panel 1-->
-	
-							<div id="example-1-tab-2" class="responsive-tabs-panel">
-								<div class="responsive-tab-title ttitle"></div>
-								<div class="col-md-5">
-									<div class="tabstyle-8-feature-box">
-										<img src="images/ce4-47.png" alt="" class="img-responsive" />
-									</div>
-								</div>
-								<!--end item-->
-								<div class="col-md-7">
-									<div class="tabstyle-8-feature-box-2">
-										<h4 class="uppercase">Layered PSD Files</h4>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing
-											elit. Suspendisse et justo. Praesent mattis commodo augue
-											Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus
-											a est Curabitur eget orci Cras laoreet ligula.</p>
-										<br />
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Pellentesque sit amet augue eu orci
-												cursus fermentum vestibulum in dolor.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Maecenas fringilla orci ultrices nulla
-												consectetur, id suscipit erat vulputate.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Nullam efficitur velit ut interdum
-												pellentesque.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="clearfix"></div>
-										<br /> <a class="btn btn-dark-3 uppercase" href="#">Read
-											more</a> <a class="btn btn-gyellow uppercase" href="#">Buy Now</a>
-									</div>
-								</div>
-								<!--end item-->
-	
-							</div>
-							<!--end panel 2-->
-	
-							<div id="example-1-tab-3" class="responsive-tabs-panel">
-								<div class="responsive-tab-title ttitle"></div>
-								<div class="col-md-5">
-									<div class="tabstyle-8-feature-box">
-										<img src="images/ce4-47.png" alt="" class="img-responsive" />
-									</div>
-								</div>
-								<!--end item-->
-								<div class="col-md-7">
-									<div class="tabstyle-8-feature-box-2">
-										<h4 class="uppercase">Branding design</h4>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing
-											elit. Suspendisse et justo. Praesent mattis commodo augue
-											Aliquam ornare hendrerit augue Cras tellus In pulvinar lectus
-											a est Curabitur eget orci Cras laoreet ligula.</p>
-										<br />
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Pellentesque sit amet augue eu orci
-												cursus fermentum vestibulum in dolor.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Maecenas fringilla orci ultrices nulla
-												consectetur, id suscipit erat vulputate.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="iconlist-2">
-											<div class="icon dark">
-												<i class="fa fa-check text-gyellow"></i>
-											</div>
-											<div class="text">Nullam efficitur velit ut interdum
-												pellentesque.</div>
-										</div>
-										<!--end item-->
-	
-										<div class="clearfix"></div>
-										<br /> <a class="btn btn-dark-3 uppercase" href="#">Read
-											more</a> <a class="btn btn-gyellow uppercase" href="#">Buy Now</a>
-									</div>
-								</div>
-								<!--end item-->
-	
-							</div>
-							<!--end panel 3-->
-						</div>
 				</div>
-			</div>
+			</section>
 		</div>
 	</div>
 
