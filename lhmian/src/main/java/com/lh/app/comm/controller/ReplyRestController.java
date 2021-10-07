@@ -39,7 +39,8 @@ public class ReplyRestController {
 
 	// 등록
 	@PostMapping("/") // post : 파라미터 질의문자열 (query string) -> ?id=100&pw=111&name=choi
-	public ReplyVO insert(ReplyVO vo) { // form에 값 넘겨줌
+	public ReplyVO insertRe(ReplyVO vo) { // form에 값 넘겨줌
+		System.out.println(vo.toString());
 		replyService.insertRe(vo);
 		return vo;
 	}
