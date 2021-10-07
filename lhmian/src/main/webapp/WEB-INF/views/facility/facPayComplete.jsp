@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,8 +96,14 @@
 							<span class="pull-right"></span>${pay.payCat}</li>
 							<li><span class="pull-left font-weight-7">결제 방법</span> 
 							<span class="pull-right">${pay.payType}</span></li>
-							<li><span class="pull-left font-weight-7">결제 금액</span> 
-							<span class="pull-right">${gym.gymPrice}원</span></li>
+							<li><span class="pull-left font-weight-7">결제 금액</span>
+							<c:if test="${not empty gym.gymPrice}">
+								<span class="pull-right">${gym.gymPrice}원</span>
+							</c:if>
+							<c:if test="${empty gym.gymPrice}">
+								<span class="pull-right">${lib.libPrice}원</span>
+							</c:if>
+							</li>
 						</ul>
 						<div class="clearfix" style="font-size: 14px;"></div>
 
