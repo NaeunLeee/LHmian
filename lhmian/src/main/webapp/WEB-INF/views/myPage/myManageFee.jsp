@@ -11,7 +11,6 @@
 <title>관리비</title>
 </head>
 <style>
-
 .tabstyle-9 .responsive-tabs li a {
 	line-height: 1px;
 }
@@ -41,6 +40,10 @@
 .select-box select:focus {
 	background: white;
 }
+
+.btn {
+	padding: 0;
+}
 </style>
 <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -52,7 +55,9 @@
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/myPage/myPage">마이 페이지</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/myPage/myPage">마이
+									페이지</a></li>
 							<li class="current"><a href="#">관리비 조회</a></li>
 						</ol>
 					</div>
@@ -127,19 +132,19 @@
 				</div>
 				<div class="col-md-6 margin-bottom-3">
 
-					<div class="text-box white padding-3">
-						<div class="col-md-7" style="height: 44.84px; align-self: center">
-							<h4 class="font-weight-5 col-centered">지금 바로 관리비를 결제하세요!</h4>
-						</div>
-						<div class="col-md-5 text-right">
-
+					<div class="text-box white" style="padding: 30px 40px 20px 40px;">
+						<div class="col-md-12">
 							<input type="hidden" id="price" name="price">
-							<button type="button" id="payBtn"
-								class="btn btn-medium btn-dark uppercase">
-								<span>결제하기</span>
-							</button>
+							<ul class="opening-list" style="font-size: 30px;">
+								<li><span class="pull-left">결제 상태</span> <span
+									id="paidStatus" class="pull-right"></span></li>
+								<li id="showPayBtn" style="padding: 0"></li>
+							</ul>
+
 
 						</div>
+
+
 					</div>
 
 				</div>
@@ -174,17 +179,19 @@
 				</div>
 			</div>
 		</div>
-		<input type="hidden" id="payName" value="<sec:authentication property="principal.NAME"/>">
-		
+		<input type="hidden" id="payName"
+			value="<sec:authentication property="principal.NAME"/>">
+
 		<form action="../payComplete" method="post" id="frm">
-			<input type="hidden" id="payNo" name="payNo" value="">
-	   		<input type="hidden" id="id" name="id" value="<sec:authentication property="principal.username"/>">
-	 		<input type="hidden" id="payType" name="payType" value="">
-			<input type="hidden" id="payCat" name="payCat" value="관리비">
-			<input type="hidden" id="payStatus" name="payStatus" value="">
-			<input type="hidden" id="impUid" name="imp_uid" value="">
-			<input type="hidden" id="mfDate" name="mfDate" value="">
-			<input type="hidden" id="mftotal" name="mfTotal" value="">
+			<input type="hidden" id="payNo" name="payNo" value=""> <input
+				type="hidden" id="id" name="id"
+				value="<sec:authentication property="principal.username"/>">
+			<input type="hidden" id="payType" name="payType" value=""> <input
+				type="hidden" id="payCat" name="payCat" value="관리비"> <input
+				type="hidden" id="payStatus" name="payStatus" value=""> <input
+				type="hidden" id="impUid" name="imp_uid" value=""> <input
+				type="hidden" id="mfDate" name="mfDate" value=""> <input
+				type="hidden" id="mftotal" name="mfTotal" value="">
 		</form>
 	</section>
 	<div class="clearfix"></div>
@@ -284,9 +291,22 @@
 	$('#mfElevator').text(comma(${currentFee.mfElevator}));
 	$('#mfTrash').text(comma(${currentFee.mfTrash}));
 	$('#mfTotal').text(comma(currentMfTotal));
+
+	const paidStatus = '${currentFee.payNo}';
+	
+	if (paidStatus == "") {
+		$('#paidStatus').removeClass('smaller').addClass('bigger').text('미납');
+		const str = '<a id="payBtn" class="pull-right btn"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;결제하러 가기</a>'
+		$('#showPayBtn').html(str);
+	} else {
+		$('#paidStatus').removeClass('bigger').addClass('smaller').text('납부완료');
+		$('#showPayBtn').empty();
+	}
 	
 	$('#month').text(month + "월 관리비");
 	
+	console.log(${currentFee.mfElevator});
+	console.log(${currentFee.payNo});
 	
 	$('#dateSelectBox').on('change', function() {
 		date = $('#dateSelectBox option:selected').val();
@@ -314,6 +334,17 @@
 				pieChart(data);
 				
 				$('#price').val(data.mfTotal);
+				
+				if (data.payNo == null) {
+					$('#paidStatus').removeClass('smaller').addClass('bigger').text('미납');
+					const str = '<a id="payBtn" class="pull-right btn"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;결제하러 가기</a>'
+					$('#showPayBtn').html(str);
+				} else {
+					$('#paidStatus').removeClass('bigger').addClass('smaller').text('납부완료');
+					$('#showPayBtn').empty();
+		
+				}
+				
 				
 			}
 			
@@ -355,7 +386,8 @@
 		}
 	}
 	
-	$('#payBtn').on('click', function() {
+	//동적으로 생성된 버튼에는 이런 식으로 이벤트를 걸어줘야 한다.
+	$(document).on('click', '#payBtn', function() {
 		let author = null;
 		let houseInfo = null;
 		let name = $('#payName').val();
@@ -381,7 +413,7 @@
 	});
 		
 	function paymentFnc(name, houseInfo, phone) {
-
+	IMP.init('imp57655457');
 
 	IMP.request_pay({
 		pg : 'inicis', // version 1.1.0부터 지원.
