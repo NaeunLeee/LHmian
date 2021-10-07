@@ -159,7 +159,7 @@
 															<a href="${pageContext.request.contextPath}/resident/confList">입주자 대표회의</a>
 														</li>
 														<li>
-															<a href="#">투표</a>
+															<a href="${pageContext.request.contextPath}/resident/voteList">투표</a>
 														</li>
 														<li>
 															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
@@ -220,9 +220,6 @@
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admMemberList">회원 관리</a>
-															</li>
-															<li>
-																<a href="#">시설물 관리</a>
 															</li>
 															<li>
 																<a href="#">게시글 관리</a>
