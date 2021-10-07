@@ -8,20 +8,37 @@
 <meta charset="UTF-8">
 
 <style>
-	#oiType {
+/*  	#oiType {
 		width: 80px;
 		float: left;
 		margin-right: 10px;
-		border: 1px solid lightgray;
+		 border: 1px solid lightgray; 
 		text-align: center;
 		font-weight: bold;
 	}
 	#oiTitle {
 		width: 300px;
 		float: left;
-		border: 1px solid lightgray;
+		border: 1px solid lightgray; 
 		padding-left: 10px;
-	}
+	} 
+	
+.oiType {
+	width: 80px;
+	float: left;
+	margin-right: 10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.oiTitle {
+	width: 300px;
+	float: left;
+	 border: 1px solid lightgray; 
+	padding-left: 10px;
+	font-size:16px;
+	
+} */
 </style>
 
 </head>
@@ -48,7 +65,7 @@
 </div>
 	<section>
 		<div class="pagenation-holder-no-bottom">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
@@ -73,17 +90,25 @@
 					</div>
 				</div>
 				<div class="clearfix"></div>
+				
+				
 				<div class="text-box white padding-4 col-7">
-					<div>
-						<div id="oiType"><h5>${info.oiType}</h5></div>
-						<div id="oiTitle"><h5>${info.oiTitle}</h5></div>
-						<div style="float: right;">
-							작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" />
+						<div class="text-box">
+							<div class="col-md-12">
+								<div class="col" style="width:100px; font-size:12px;">${info.oiType}</div>
+								</div>
+							<div class="text-box">
+							<h4 class="col-md-8 font-weight-7" style="margin-top: 5px;">${info.oiTitle}</h4>
+							<h6 class="col-md-4" style="float: right; text-align: end;">
+							작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" /></h6>
 						</div>
+						</div>
+						
 						<hr>
 						<div class="text-box padding-2 border" style="margin-bottom: 20px;">
 							${info.oiContent}
 						</div>
+						
 						<c:if test="${info.oiFileid != null}">
 							<div class="col-md-1">
 								첨부파일
@@ -92,14 +117,14 @@
 								<a href="opeInfoDownload?oiFileid=${info.oiFileid}">${info.oiFilename}</a>
 							</div>
 						</c:if>
-					</div>
+				
 					<br>
 					<div align="center">
 						<button type="button" class="btn btn-default" onclick="location.href='../introduce/opeInfoList'">목 록</button>
 					</div>
 				</div>
 			</div>
-		</div>
+			</div>
 	</section>
 </body>
 
