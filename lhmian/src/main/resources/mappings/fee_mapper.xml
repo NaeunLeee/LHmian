@@ -31,6 +31,7 @@
 			   CASE WHEN SUBSTR(MF_DATE, 3, 1) = '0' THEN SUBSTR(MF_DATE, 4, 1)
 			   ELSE SUBSTR(MF_DATE, 3, 2)
 			   END AS MONTH, 
+			   PAY_NO,
 			   HOUSE_INFO, 
 			   MF_FEE, 
 			   MF_HEAT, 
@@ -62,6 +63,7 @@
 			   ELSE SUBSTR(MF_DATE, 3, 2)
 			   END AS MONTH, 
 			   HOUSE_INFO, 
+			   PAY_NO,
 			   MF_FEE, 
 			   MF_HEAT, 
 			   MF_ELECT,

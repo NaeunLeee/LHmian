@@ -32,16 +32,27 @@ body {
 .fee-table {
 	margin: 30px 150px 150px 150px;
 }
+
+.sec-padding {
+	padding: 80px 0 0 0;
+}
 </style>
 </head>
 <body>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">세대 관리비 조회</div>
-			<div class="col-md-6"></div>
+	<section class="sec-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-top text-center">
+
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	</section>
+	<div class="clearfix"></div>
+	<!--end title-->
 	<div class="col-md-2">
 		<div class="left-side-bar">
 			<ul>
@@ -83,11 +94,38 @@ body {
 		</div>
 	</div>
 
-	dsfdsf
-
-
+	<span style="color:white">ss</span>
 </body>
 <script>
-	$('#feeList').DataTable();
+	// Korean
+	const lang_kor = {
+		"decimal" : "",
+		"emptyTable" : "데이터가 없습니다.",
+		"info" : "_START_ - _END_ 건 (총 _TOTAL_ 건)",
+		"infoEmpty" : "0명",
+		"infoFiltered" : "(전체 _MAX_ 건 중 검색결과)",
+		"infoPostFix" : "",
+		"thousands" : ",",
+		"lengthMenu" : "_MENU_ 건씩 보기",
+		"loadingRecords" : "로딩중...",
+		"processing" : "처리중...",
+		"search" : "검색 : ",
+		"zeroRecords" : "검색된 데이터가 없습니다.",
+		"paginate" : {
+			"first" : "첫 페이지",
+			"last" : "마지막 페이지",
+			"next" : "다음",
+			"previous" : "이전"
+		},
+		"aria" : {
+			"sortAscending" : " :  오름차순 정렬",
+			"sortDescending" : " :  내림차순 정렬"
+		}
+	};
+
+	$('#feeList').DataTable({
+		language : lang_kor
+	//or lang_eng	
+	});
 </script>
 </html>
