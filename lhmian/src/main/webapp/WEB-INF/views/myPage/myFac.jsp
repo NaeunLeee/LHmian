@@ -104,8 +104,6 @@ table {
 			</c:forEach>
 		</tbody>
 	</table>
-		<button type="button" onclick="location.href='register'"
-			class="btn btn-border light" style="float:right; margin-right:20px; padding: 4px 13px;">글작성</button>
 			<br><br>
 			
 			
@@ -133,21 +131,11 @@ table {
 		
 		<div style="margin:auto;">
  	<form id="actionForm" action="myFac" method="get">
+ 		<!-- 10/07 수정 -->
 		<select name="type" class="form-control" style="width: 100px;">
 			<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-			<option value="T" ${empty pageMaker.cri.type =='T' ? selected : ""}>제목검색</option>
-			<option value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>번호</option>
-			<option value="W"
-				<c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
-			<option value="TC"
-				<c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목
-				or 내용</option>
-			<option value="TW"
-				<c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목
-				or 작성자</option>
-			<option value="TWC"
-				<c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected':''}"/>>제목
-				or 작성자 or 내용</option>
+			<option value="T" ${empty pageMaker.cri.type =='T' ? selected : ""}>이용시설</option>
+			<option value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>기간</option>
 		</select> 
 		<input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}"> <input
 			type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">

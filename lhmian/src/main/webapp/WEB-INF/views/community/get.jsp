@@ -23,10 +23,8 @@
 	</div>
 
 	<div class="form-group">
-		<label>Writer</label> <input class="form-control" id="id" name="id" value="${list.id}" readonly="readonly"
-			disabled="disabled">
+		<label>Writer</label> <input class="form-control" id="id" name="id" disabled="disabled" value="${list.id}">
 	</div>
-
 	<div class="form-group">
 		<label>Date</label> <input class="form-control" name="commDate" value="<fmt:formatDate pattern = " yyyy/MM/dd"
 			value="${list.commDate}" />"
@@ -39,8 +37,8 @@
 		readonly="readonly" disabled="disabled">
 	</div>
 	<!-- 10/07 수정 -->
-	<c:set var="id" value="${list.id}"></c:set>
-	<c:set var="login" value="${login}"></c:set>
+	<c:set var="id" value="${list.id}"/>
+	<c:set var="login" value="${login}"/>
 	<c:if test="${id eq login}">
 		<button type="button" id="btnModify">수정</button>
 		<button type="submit" id="btnDelete">삭제</button>
@@ -51,13 +49,11 @@
 		<div class="panel-heading">
 			<form id="replyForm">
 				<input type="hidden" name="commNo" value="${list.commNo}"> <input type="hidden" id="cmtWriter"
-					name="cmtWriter" value="노잼">
+					name="cmtWriter" value="${login}">
 				<textarea rows="10" cols="100" id="cmtContent" name="cmtContent"></textarea>
 				<button type="button" id="saveReply">댓글등록</button>
 			</form>
 		</div>
-
-
 
 		<!-- 댓글 목록 -->
 		<h3>댓글 목록</h3>
@@ -117,36 +113,37 @@
 	function showList() {
 		//초기화
 		$('.chat').empty();
-
+		
+		
+		// 10/07 수정
 		function makeLi(datas) {
-			return '<li class="left clearfix">' +
-				'	<div id="' + datas.cmtNo + '">' +
-				'			<strong class="primary-font">' +
-				datas.cmtWriter +
-				'</strong>' +
-				'			<small class="pull-right text-muted">' +
-				datas.cmtDate +
-				'</small>' +
-				'		<p>' +
-				datas.cmtContent +
-				'</p>' +
-				'<div id="test">' +
-				'</div>' +
-				'<div>' +
-				// 10/07 수정
-				'<c:if test="${'+datas.cmtWriter+' eq login}">'
-				'<input type="hidden" id="cmtNo2" value="' + datas.cmtNo + '">' +
-				'<button type="button" class="test" id="cmtUpdate" data-num="' + datas.cmtNo + '">수정</button>' +
-				'&nbsp' +
-				'<button type="button" id="cmtDelete" onclick="button2_click(this);" data-num="' +
-				datas.cmtNo + '">삭제</button>' + 
-				'</c:if>' +
-				'</div>' +
-				'	</div>' +
-				'<br>' +
-				'</li>';
+			var str = "";
+			if(datas.cmtWriter == '<sec:authentication property="principal.username" />'){
+				str = '<input type="hidden" id="cmtNo2" value="'+ datas.cmtNo +'">'
+					+ '<button type="button" class="test" id="cmtUpdate" data-num="'+ datas.cmtNo + '">수정</button>'
+					+ '&nbsp'
+					+ '<button type="button" id="cmtDelete" onclick="button2_click(this);" data-num="'
+					+ datas.cmtNo + '">삭제</button>'
+				}
+			return '<li class="left clearfix">'
+			+ '	<div id="'+ datas.cmtNo +'">'
+			+ '			<strong class="primary-font">'
+			+ datas.cmtWriter
+			+ '</strong>'
+			+ '			<small class="pull-right text-muted">'
+			+ datas.cmtDate
+			+ '</small>'
+			+ '		<p>'
+			+ datas.cmtContent
+			+ '</p>'
+			+ '<div id="test">' + '</div>'
+			+ str
+			+'	</div>' + '<br>'
+			+ '</li>';
+			
+			
+			
 		}
-		3
 
 		$.ajax({
 			url: './reply/',
@@ -177,12 +174,12 @@
 
 		let reply = $("input[name='cmtContent']").val();
 		let replyer = $("input[name='cmtWriter']").val();
-
+		
 		if (reply == "" || replyer == "") {
 			alert("내용을 입력 해주시거나 회원만 등록 가능합니다.")
 			return;
 		}
-
+		
 		$.ajax({
 			url: "./reply/",
 			method: "post",
@@ -261,14 +258,18 @@
 				contentType: 'application/json',
 				success: function (result) {
 					console.log(result);
-					var str2 = '<input id="test" name="test" value="' + result.cmtContent + '">'
+					var str2 = '<input id="test" class="test" name="test" value="' + result.cmtContent + '">'
 					$("#test0").html(str2);
 
 					$(document)
-						.one(
-							"click",
+						.one("click",
 							"#cmtUpdate2",
 							function () {
+							console.log($(this));
+							var cmtContent = $(this).parents("div").children("#test0").children(".test").val();
+							console.log(cmtContent);
+							
+							
 								if (confirm('수정할까요??')) {
 									$
 										.ajax({
@@ -279,9 +280,7 @@
 											data: JSON
 												.stringify({
 													cmtNo: num,
-													cmtContent: $(
-															"#test")
-														.val()
+													cmtContent: cmtContent
 												}),
 											success: function (
 												data) {

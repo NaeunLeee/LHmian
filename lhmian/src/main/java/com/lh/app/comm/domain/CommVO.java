@@ -13,6 +13,7 @@ public class CommVO {
 	private String login;
 	private String commTitle;
 	private String commContent;
+	
 	private Date commDate;
 	private Date commUpdate;
 	private int commHit;
