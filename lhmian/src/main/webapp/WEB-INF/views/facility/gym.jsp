@@ -411,7 +411,6 @@
 	$('.registerBtn').on("click", function() {
 		$('#gxTitle').val($(this).attr("data-gxTitle"));
 		$('#code').val($(this).attr("data-gxCode"));
-	
 		$('#gymModal').modal('show');
 	});
 	
@@ -426,7 +425,7 @@
 		let price = $('#price').val();
 		
 		$('#gymStartdate').val($('#startdate').val());
-		$('#gxCode').val($('#code').attr('data-gxCode'));
+		$('#gxCode').val($('.registerBtn').attr('data-gxCode'));
 		$('#gymPeriod').val($('#period').val());
 		$('#gymPrice').val(price);
 		
