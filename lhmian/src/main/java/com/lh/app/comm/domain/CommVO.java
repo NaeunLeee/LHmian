@@ -8,6 +8,9 @@ import lombok.Data;
 public class CommVO {
 	private long commNo;
 	private String id;
+	
+	// 10/07 login 추가
+	private String login;
 	private String commTitle;
 	private String commContent;
 	private Date commDate;

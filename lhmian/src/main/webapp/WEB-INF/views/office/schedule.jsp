@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 	<div class="container">
-		<h3>schedule</h3>
+		<div align="center">
+			<h3>schedule</h3>
+		</div>
 		<div id="wrapper">
 			<div id="loading"></div>
 			<div id="calendar"></div>
@@ -16,9 +11,9 @@
 
 		<div class="panel panel-default">
 
-			<div class="panel-heading">
+			<div class="panel-heading" style="display: none;">
 				<h3 class="panel-title">필터</h3>
-			</div>
+			
 
 			<div class="panel-body">
 
@@ -42,7 +37,7 @@
 						</label>
 					</div>
 				</div>
-
+				</div>
 			</div>
 		</div>
 	</div>
@@ -62,5 +57,3 @@
 		src="${pageContext.request.contextPath}/fullcalendar/vendor/js/bootstrap-datetimepicker.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/fullcalendar/js/main2.js"></script>
-</body>
-</html>

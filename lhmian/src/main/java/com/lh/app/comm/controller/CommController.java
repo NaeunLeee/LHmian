@@ -30,7 +30,8 @@ public class CommController {
 	@Autowired
 	ReplyService replyService;
 
-	// 10/06 수정 ----------------------------------------------------------------------------------------
+	// 10/06 수정
+	// ----------------------------------------------------------------------------------------
 	// 회원 게시글 리스트 조회
 	@RequestMapping("myCommunityList")
 	public String getListno(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails,
@@ -45,7 +46,8 @@ public class CommController {
 
 	// 회원 댓글 리스트 조회
 	@RequestMapping("myComment")
-	public String getComment(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails, @ModelAttribute("cri") Criteria cri) {
+	public String getComment(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails,
+			@ModelAttribute("cri") Criteria cri) {
 		int total = commService.getCntCmt(cri);
 		String id = customUserDetails.getUsername();
 		cri.setId(id);
@@ -56,8 +58,9 @@ public class CommController {
 		return "myPage/myComment";
 	}
 
-	// 10/06 수정 끝----------------------------------------------------------------------------------------
-	
+	// 10/06 수정
+	// 끝----------------------------------------------------------------------------------------
+
 	// 리스트 조회
 	@RequestMapping("commlist")
 	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
@@ -83,12 +86,16 @@ public class CommController {
 	}
 
 	// 단건 조회
-	@GetMapping("get") // 수정폼
-	public String get(@RequestParam("commNo") Long commNo, Model model) { // 10/03 criteria 삭제
+	@GetMapping("get") // 10/07 수정
+	public String get(@RequestParam("commNo") Long commNo, Model model,
+			@AuthenticationPrincipal CustomUserDetails customUserDetails) { // 10/03 criteria 삭제
 		CommVO vo = new CommVO();
 		commService.viewCount(commNo);
+		String id = customUserDetails.getUsername();
+		System.out.println(id);
 		vo.setCommNo(commNo);
 		model.addAttribute("list", commService.read(vo));
+		model.addAttribute("login",id);
 		return "community/get";
 	}
 
