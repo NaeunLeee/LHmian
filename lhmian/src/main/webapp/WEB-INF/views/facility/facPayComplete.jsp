@@ -56,7 +56,7 @@
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a href="${pageContext.request.contextPath}/facility/facilityList">편의 시설</a></li>
 							<li><a href="${pageContext.request.contextPath}/facility/gym">피트니스 센터</a></li>
-							<li class="current"><a href="#">Pricing Badges</a></li>
+							<li class="current"><a href="#">결제 내역</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
@@ -89,18 +89,20 @@
 						<br> <br>
 						<ul class="plan_features" style="font-size: 18px;">
 							<li><span class="pull-left font-weight-7">결제 번호</span>
-							<span class="pull-right"></span>${pay.payNo }</li>
+							<span class="pull-right"></span>${pay.payNo}</li>
 							<li><span class="pull-left font-weight-7">결제 품목</span> 
-							<span class="pull-right"></span>${pay.payCat }</li>
+							<span class="pull-right"></span>${pay.payCat}</li>
 							<li><span class="pull-left font-weight-7">결제 방법</span> 
-							<span class="pull-right">${pay.payType }</span></li>
+							<span class="pull-right">${pay.payType}</span></li>
 							<li><span class="pull-left font-weight-7">결제 금액</span> 
-							<span class="pull-right">${fpay.mfTotal } 원</span></li>
+							<span class="pull-right">${gym.gymPrice}원</span></li>
 						</ul>
 						<div class="clearfix" style="font-size: 14px;"></div>
 
 						<div class="text-center">
-							<button type="button" class="btn btn-gyellow btn-half-fullwidth uppercase">마이페이지 가기</button>
+							<button type="button" 
+									onclick="location.href='${pageContext.request.contextPath}/myFac'"
+									class="btn btn-gyellow btn-half-fullwidth uppercase">시설 이용 내역</button>
 						</div>
 					</div>
 				</div>
@@ -109,5 +111,6 @@
 		</div>
 	</section>
 	<!--end title-->
+
 </body>
 </html>
