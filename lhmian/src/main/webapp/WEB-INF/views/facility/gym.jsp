@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <style>
 	.thumbs img {
@@ -28,7 +29,6 @@
 		background-color: #EEEEEE;
 	}
 </style>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
 	<div class="header-inner-tmargin">
@@ -103,7 +103,7 @@
 							쾌적한 환경
 						</li>
 						<li><i class="fa fa-check"></i> 
-							어쩌구
+							체계적인
 						</li>
 						<li><i class="fa fa-check"></i> 
 							저쩌구
@@ -313,18 +313,18 @@
 						<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br>
 					<h5><i class="bi bi-patch-exclamation"></i>&nbsp;&nbsp;<label for="gxTitle">프로그램명</label></h5>
 						<input type="text" id="gxTitle" name="gxTitle" class="form-control" readonly="readonly"><br>
-					<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="gymStartdate">시작 날짜</label></h5>
-						<input type="text" id="gymStartdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
-					<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="gymPeriod">기 간</label></h5> 
-						<select id="gymPeriod" name="gymPeriod" class="form-control">
+					<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="startdate">시작 날짜</label></h5>
+						<input type="text" id="startdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
+					<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="period">기 간</label></h5> 
+						<select id="period" name="period" class="form-control">
 								<option value="" selected>선택</option>
 								<option value="90">3달</option>
 								<option value="180">6달</option>
 								<option value="365">1년</option>
 						</select><br>
-					<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="gymPrice">금 액 (원)</label></h5>
-						<input type="text" id="gymPrice" name="gymPrice" class="form-control" readonly="readonly">
-						<input type="hidden" id="gxCode" name="gxCode">
+					<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="price">금 액 (원)</label></h5>
+						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
+						<input type="hidden" id="code" name="code">
 				</div>
 				<br>
 			</div>
@@ -339,7 +339,21 @@
 		</div>
 	</div>
 </div>
+<!-- Modal End -->
 
+<form action="gymPayComplete" method="post" id="frm">
+	<input type="hidden" id="payNo" name="payNo" value="">
+	<input type="hidden" id="id" name="id" value="<sec:authentication property="principal.username"/>">
+	<input type="hidden" id="payType" name="payType" value=""> 
+	<input type="hidden" id="payCat" name="payCat" value="헬스장"> 
+	<input type="hidden" id="payStatus" name="payStatus" value=""> 
+	<input type="hidden" id="impUid" name="imp_uid" value="">
+	
+	<input type="hidden" id="gymStartdate" name="gymStartdate" value="">
+	<input type="hidden" id="gxCode" name="gxCode" value="">
+	<input type="hidden" id="gymPeriod" name="gymPeriod" value="">
+	<input type="hidden" id="gymPrice" name="gymPrice" value="">
+</form>
 
 </body>
 
@@ -358,12 +372,13 @@
    	});
    	
 	// 날짜 선택 DatePicker
-	$("#gymStartdate").datepicker();
+	$("#startdate").datepicker();
 
 	$.datepicker.setDefaults({
-		dateFormat : 'yy-mm-dd',
+		dateFormat : 'yy/mm/dd',
 		prevText : '이전 달',
 		nextText : '다음 달',
+		minDate: 0,
 		monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월',
 				'10월', '11월', '12월' ],
 		monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
@@ -376,7 +391,7 @@
 	});
 	
 	// 금액
-	$("#gymPeriod").on("change", function() {
+	$("#period").on("change", function() {
 	
 		var period = $(this).val();
 		var price = "";
@@ -389,22 +404,31 @@
 			price = 80000;
 		}
 	
-		$('#gymPrice').val(price);
+		$('#price').val(price);
 	});
 
+	// 등록버튼 클릭 시
 	$('.registerBtn').on("click", function() {
 		$('#gxTitle').val($(this).attr("data-gxTitle"));
-		$('#gxCode').val($(this).attr("data-gxTitle"));
+		$('#code').val($(this).attr("data-gxCode"));
 	
 		$('#gymModal').modal('show');
 	});
 	
+	
+	// 결제버튼 클릭 시
 	$('#payBtn').on('click', function() {
 		
 		let author = null;
 		let houseInfo = null;
 		let phone = null;
 		let name = null;
+		let price = $('#price').val();
+		
+		$('#gymStartdate').val($('#startdate').val());
+		$('#gxCode').val($('#code').attr('data-gxCode'));
+		$('#gymPeriod').val($('#period').val());
+		$('#gymPrice').val(price);
 		
 		<sec:authorize access="isAuthenticated()">
 			author = '<sec:authentication property="principal.AUTHOR"/>';
@@ -419,16 +443,16 @@
 
 	function paymentFnc(name, houseInfo, phone) {
 
-
+		IMP.init('imp57655457');
 		IMP.request_pay({
 			pg : 'inicis', // version 1.1.0부터 지원.
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : '피트니스_' + houseInfo + '_' + date,
+			name : '피트니스_' + houseInfo,
 			buyer_name : name,
 			buyer_tel : phone,
 			buyer_email : "nue.an.2@gmail.com",
-			amount : 100, //판매 가격
+			amount : $('#price').val(), //판매 가격
 			}, function(rsp) {
 					if(rsp.success){
 			        	alert("결제가 완료되었습니다."); 
@@ -436,16 +460,15 @@
 			        	$('#payType').val(rsp.pay_method);
 			        	$('#payStatus').val(rsp.status);
 			        	$('#impUid').val(rsp.imp_uid);
-			        	$('#mfDate').val(date);
-			        	$('#mftotal').val($('#price').val());
 			      		frm.submit();
 				} else {
 					var msg = '결제에 실패하였습니다.';
 					msg += '에러내용 : ' + rsp.error_msg;
 					alert(msg);
 				}
-			})
-		}
+			
+		})
+	}
 
 </script>
 

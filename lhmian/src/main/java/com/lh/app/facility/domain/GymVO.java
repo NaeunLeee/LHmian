@@ -9,7 +9,7 @@ public class GymVO {
 
 	private String gymNo;
 	private String payNo;
-	private Date gymStartDate;
+	private Date gymStartdate;
 	private String gxCode;
 	private int gymLocker;
 	private int gymPeriod;
