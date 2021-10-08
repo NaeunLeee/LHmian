@@ -102,12 +102,11 @@ table {
 										<th class="col-3">작성일자</th>
 									</tr>
 									<c:forEach items="${list}" var="conf">
-										<tr class="tr_1">
+										<tr class="tr_1 move" data-confNo="${conf.confNo}">
 											<td>${conf.confNo}</td>
-											<td><a class="move" href="${conf.confNo}">${conf.confTitle}</a></td>
+											<td>${conf.confTitle}</td>
 											<td>${conf.confWriter}</td>
-											<td><fmt:formatDate value="${conf.confDate}"
-													pattern="yy-MM-dd" /></td>
+											<td><fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /></td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -174,17 +173,13 @@ table {
 
 <script>
 	var actionForm = $('#actionForm');
-	$('.move')
-			.on(
-					"click",
-					function(e) {
-						e.preventDefault();
-						var confNo = $(this).attr("href");
-						actionForm
-								.append('<input type="hidden" name="confNo" value="' + confNo + '">');
-						actionForm.attr("action", "confSelect");
-						actionForm.submit();
-					});
+	$('.move').on("click", function(e) {
+		e.preventDefault();
+		var confNo = $(this).attr("data-confNo");
+		actionForm.append('<input type="hidden" name="confNo" value="' + confNo + '">');
+		actionForm.attr("action", "confSelect");
+		actionForm.submit();
+	});
 
 	$('#pageBtn a').on("click", function(e) {
 		e.preventDefault();
