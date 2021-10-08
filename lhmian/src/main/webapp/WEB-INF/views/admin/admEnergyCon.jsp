@@ -10,7 +10,12 @@
 body {
 	background: #f5f5f5;
 }
-
+th {
+	width : 150px;
+}
+tr { 
+	text-align : center;
+	}
 .left-side-bar li {
 	padding: 12px 23px;
 	border-top: 1px solid #e9e9e9;
