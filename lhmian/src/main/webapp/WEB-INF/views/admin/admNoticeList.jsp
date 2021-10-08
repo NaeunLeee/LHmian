@@ -1,34 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
 <style>
-.tr_1 {
-	cursor: pointer;
-	text-align: center;
-}
-
-th {
-	text-align: center;
-	background-color: #EEEEEE;
-}
-
-.tr_1:hover {
-	background-color: #f5f5f5;
-}
-
-table {
-	background-color: white;
-}
-.pagination>li>a {
-	color: black;
-}
-
-.form-control {
-	display: inline-block;
-}
+	.container {
+		width: 85%;
+	}
+	.tr_1 {
+	   cursor: pointer;
+	   text-align: center;
+	}
+	
+	th {
+	   text-align: center;
+	   background-color: #EEEEEE;
+	}
+	
+	.tr_1:hover {
+	   background-color: #f5f5f5;
+	}
+	
+	table {
+	   background-color: white;
+	}
+	.pagination>li>a {
+	   color: black;
+	}
+	
+	.form-control {
+	   display: inline-block;
+	}
 </style>
 
+
+</head>
+<body>
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
@@ -49,63 +62,74 @@ table {
 	</section>
 	<div class=" clearfix"></div>
 </div>
-	<section>
-		<div class="pagenation-holder-no-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<ol class="breadcrumb-gray">
-							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="">관리사무소</a></li>
-							<li class="current"><a href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a></li>
-						</ol>
-					</div>
+<section class="sec-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-12 col-xs-12 section-white">
+				<div class="pages-sidebar-item">
+					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
+					<ul class="pages-sidebar-links">
+						<li><a href="#">관리비</a></li>
+						<li><a href="#">에너지 사용량</a></li>
+						<li><a href="#">회원 관리</a></li>
+						<li><a class="active" href="#">게시글 관리</a></li>
+					</ul>
 				</div>
 			</div>
-		</div>
-	</section>
-	<section class="sec-padding section-light">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 nopadding">
-					<div class="sec-title-container-padding-topbottom text-center">
-						<div class="pl-title-line-1"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">공지사항</h4>
-						<div class="clearfix"></div>
-						<p class="by-sub-title" style="font-size: 13px;">공지사항... 어쩌구..ㅋㅋ</p>
-					</div>
+			<div class="col-md-8">
+				<div></div><br><br>
+				<div class="sec-title-container less-padding-3 text-left">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">게시글 관리</h4>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">게시글을 조회 및 수정합니다.</p>
 				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-
-		<div class="container" align="center">
-			<div class="text-box white padding-4 col-7">
-	<table class="table" >
-	<thead>
-		<tr>
-		<th>no</th>
-		<th>제목</th>
-		<th>작성일</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach var="notice" items="${list}">
-			<tr class="move tr_1" data-noticeNo="${notice.noticeNo}">
-				<td>${notice.noticeNo}</td>
-				<td>${notice.noticeTitle}</td>
-				<td><fmt:formatDate value="${notice.noticeDate}" type="both"
-				pattern="yy-MM-dd"/></td>
-			</tr>
-		</c:forEach>
-		</tbody>
-	</table>
-<button class="btn btn-border light" type="button" onclick="location.href='../admin/admNoticeInsert'" style="float:right; margin-right:20px; padding: 4px 13px;">글등록</button>
-<br>
-
-<br>
-<!-- 폼 -->
-	
+				
+				<ul class="nav nav-tabs nav-justified">
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admOpeInfoList">운영 정보 공개</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">투표</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">분실물 보관소</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admSchedule">일정 관리</a>
+					</li>
+				</ul>
+				
+     			<div class="container" align="center">
+					<div class="text-box white padding-4 col-7">
+					<table class="table" >
+						<thead>
+					         <tr>
+					            <th>No</th>
+					            <th>제목</th>
+					            <th>작성일자</th>
+					         </tr>
+						</thead>
+						<tbody>
+							<c:forEach var="notice" items="${list}">
+								<tr class="move tr_1" data-noticeNo="${notice.noticeNo}">
+									<td>${notice.noticeNo}</td>
+									<td>${notice.noticeTitle}</td>
+									<td><fmt:formatDate value="${notice.noticeDate}" type="both"
+									pattern="yy-MM-dd"/></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<button class="btn btn-border light" style="float:right; margin-right:20px; padding: 4px 13px;" type="button" onclick="location.href='admOpeInfoInsert'">글 쓰기</button>
+					<br><br>
+     
 <div id="pageButton" style="margin:auto; width: 50%">
 			<ul class="pagination hover-orange">
 				<c:if test="${pageMaker.prev == true}">
@@ -142,36 +166,48 @@ table {
 		<button type="submit" class="btn btn-dark">검색</button>
 	</form>
 </div>
-</div>
-</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
 
-	var actionForm = $("#actionForm")
-	$(".move").on("click", function(e){
-		e.preventDefault();				//a의 원래 기능 막고
-		var noticeNo = $(this).attr("data-noticeNo")
-		actionForm.append('<input type="hidden" name="noticeNo" value="'+ noticeNo +'">')
-		actionForm.attr("action", "admNoticeSelect");
-		actionForm.submit();
-	});
-	
-	$("#pageButton a").on("click", function(e){ //페이지 번호 눌렀을 때. pagebutton 안써주면 헤더, 푸터에 걸린 a태그도 다 링크 걸림
-		e.preventDefault();		//a, submit
-		var p = $(this).attr("href")
-		$('[name="pageNum"]').val(p);
-		actionForm.submit();
-	});
-	
+<div class="clearfix"></div>
+<!-- end section -->
 
-	$(document).ready (function() {
-		var result = '${message}';
-		
-		if (result === '') {
-			return;
-		} else {
-			alert(result);
-		}
-	});
+</body>
+
+<script>
+
+
+var actionForm = $("#actionForm")
+$(".move").on("click", function(e){
+	e.preventDefault();				//a의 원래 기능 막고
+	var noticeNo = $(this).attr("data-noticeNo")
+	actionForm.append('<input type="hidden" name="noticeNo" value="'+ noticeNo +'">')
+	actionForm.attr("action", "admNoticeSelect");
+	actionForm.submit();
+});
+
+$("#pageButton a").on("click", function(e){ //페이지 번호 눌렀을 때. pagebutton 안써주면 헤더, 푸터에 걸린 a태그도 다 링크 걸림
+	e.preventDefault();		//a, submit
+	var p = $(this).attr("href")
+	$('[name="pageNum"]').val(p);
+	actionForm.submit();
+});
+
+
+$(document).ready (function() {
+	var result = '${message}';
+	
+	if (result === '') {
+		return;
+	} else {
+		alert(result);
+	}
+});
+   
 </script>
+
+</html>
