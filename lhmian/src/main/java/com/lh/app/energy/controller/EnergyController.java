@@ -51,9 +51,8 @@ public class EnergyController {
 
 	// 전체조회-관리자
 	@GetMapping("/admin/admEnergyCon")
-	public void admList(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		model.addAttribute("list", energyService.admList(vo));
+	public void admList( Model model) {
+		model.addAttribute("list", energyService.admList());
 	}
 
 	@GetMapping("/no/test")
