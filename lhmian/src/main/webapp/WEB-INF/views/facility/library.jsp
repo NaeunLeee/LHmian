@@ -285,10 +285,6 @@
         return false;                           //<a> 의 본래기능 (하이퍼링크) 작동방지
     });
 
-   	$('#payBtn').on('click', function() {
-   		window.open("", "popup_window", "width=500, height=700, scrollbars=yes");
-   	});
-   	
 	// 결제버튼 클릭 시
 	$('#payBtn').on('click', function() {
 		
@@ -309,7 +305,11 @@
 			name = '<sec:authentication property="principal.HOUSEINFO" />';
 		</sec:authorize>
 		
-		paymentFnc(name, houseInfo, phone);
+		if ($('#libStartdate').val() != "" && $('#libPeriod').val() != "") {
+			paymentFnc(name, houseInfo, phone);
+		} else {
+			alert('양식을 모두 입력해 주세요.');
+		}
 		
 	});
 

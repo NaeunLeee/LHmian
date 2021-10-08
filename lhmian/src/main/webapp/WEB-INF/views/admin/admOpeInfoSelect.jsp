@@ -12,80 +12,117 @@
 	#uploadDiv {
 		display: none;
 	}
+	.bi.bi-x-circle-fill {
+		cursor: pointer;
+	}
+	.container {
+		width: 80%;
+	}
 </style>
 </head>
 <body>
-	<div class="header-inner-tmargin">
-		<section class="section-side-image clearfix">
-			<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-				<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-					<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-				</div>
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
 			</div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-						<div class="header-inner">
-							<div class="overlay">
-								<div class="text text-center"></div>
-							</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
 						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<div class=" clearfix"></div>
-	</div>
-
-	<section>
-		<div class="pagenation-holder-no-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<ol class="breadcrumb-gray">
-							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/adminPage">관리자 페이지</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/admOpeInfoList">운영 정보 목록</a></li>
-							<li class="current"><a href="#">운영 정보 게시</a></li>
-						</ol>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
-<div align="center">
-	<h3>운영 정보</h3>
-	<hr>
-		<div>
-			${info.oiType} | <input id="oiTitle" type="text" value="${info.oiTitle}" disabled="disabled">&nbsp;
-			작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" />
-			<hr>
-			<textarea id="oiContent" rows="5" cols="33" disabled="disabled">${info.oiContent}</textarea><br>
-			<c:if test="${info.oiFileid != null}">
-				<div id="fileDiv" data-oiFileid="${info.oiFileid}" data-oiFilename="${info.oiFilename}" data-oiFilepath="${info.oiFilepath}">
-					첨부파일 | <a href="opeInfoDownload?oiFileid=${info.oiFileid}">${info.oiFilename}</a>
-					<button type="button" id="fileDelBtn">파일삭제</button>
-				</div>
-			</c:if>
-			<div id="uploadDiv">
-				<c:if test="${info.oiFileid == null}">
-					<input type="file" class="file" name="uploadFile" class="form-control">
-					<button type="button" id="uploadBtn" class="btn btn-default">파일 첨부</button><br>
-					<ul id="uploaded"></ul>
-				</c:if>
-			</div>
-			<form id="deleteForm" name="deleteForm" action="opeInfoDelete" method="post">
-				<input id="oiNo" name="oiNo" type="hidden" value="${info.oiNo}">
-			</form>
-		</div>
-		<br>
-		<div align="center">
-			<button type="button" id="modifyBtn">수정</button>
-			<button type="button" id="deleteBtn">삭제</button>
-			<button type="button" onclick="location.href='../admin/admOpeInfoList'">목록</button>
-		</div>
+	<div class=" clearfix"></div>
 </div>
+<section class="sec-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-12 col-xs-12 section-white">
+				<div class="pages-sidebar-item">
+					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
+					<ul class="pages-sidebar-links">
+						<li><a href="#">관리비</a></li>
+						<li><a href="#">에너지 사용량</a></li>
+						<li><a href="#">회원 관리</a></li>
+						<li><a class="active" href="#">게시글 관리</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div></div><br><br>
+				<div class="sec-title-container less-padding-3 text-left">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">게시글 관리</h4>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">게시글을 조회 및 수정합니다.</p>
+				</div>
+				<ul class="nav nav-tabs nav-justified">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">운영 정보 공개</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">투표</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">분실물 보관소</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">일정 관리</a>
+					</li>
+				</ul>
+				<div class="row">
+					<div class="text-box white padding-4 col-7">
+							<div class="text-box">
+								<div class="col-md-12">
+									<div class="col" style="width:100px; font-size:12px;">${info.oiType}</div>
+								</div>
+								<div class="text-box">
+								<h4 class="col-md-8 font-weight-7" style="margin-top: 5px;">${info.oiTitle}</h4>
+								<h6 class="col-md-4" style="float: right; text-align: end;">
+								작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" /></h6>
+							</div>
+							</div>
+							
+							<hr>
+							<div class="text-box padding-2 border" style="margin-bottom: 20px;">
+								${info.oiContent}
+							</div>
+							<div>
+								<c:if test="${info.oiFileid != null}">
+									<div class="col-md-2">
+										첨부파일
+									</div>
+									<div class="col-md-10">
+										<a href="opeInfoDownload?oiFileid=${info.oiFileid}">${info.oiFilename}</a>&nbsp;&nbsp;
+										<i class="bi bi-x-circle-fill" id="fileDelBtn"></i>
+									</div>
+								</c:if>
+							</div>
+						<br><br><br>
+						<div align="center">
+							<button type="button" class="btn btn-default" id="modifyBtn">수정</button>
+							<button type="button" class="btn btn-default" id="deleteBtn">삭제</button>
+							<button type="button" class="btn btn-default" onclick="location.href='../admin/admOpeInfoList'">목록</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

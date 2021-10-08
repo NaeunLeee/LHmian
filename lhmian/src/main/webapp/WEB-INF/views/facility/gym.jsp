@@ -437,7 +437,12 @@
 			name = '<sec:authentication property="principal.HOUSEINFO" />';
 		</sec:authorize>
 		
-		paymentFnc(name, houseInfo, phone);
+		
+		if ($('#gymStartdate').val() != "" && $('#gymPeriod').val() != "") {
+			paymentFnc(name, houseInfo, phone);
+		} else {
+			alert('양식을 모두 입력해 주세요.');
+		}
 		
 	});
 
