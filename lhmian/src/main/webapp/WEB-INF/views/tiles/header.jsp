@@ -159,7 +159,7 @@
 															<a href="${pageContext.request.contextPath}/resident/confList">입주자 대표회의</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/resident/voteList">투표</a>
+															<a href="${pageContext.request.contextPath}/voteList">투표</a>
 														</li>
 														<li>
 															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
@@ -197,7 +197,7 @@
 															</li>
 															<li>
 																<!-- 10/02 스케쥴 조회 링크 추가 시작-->
-																<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
+																<a href="${pageContext.request.contextPath}/myPage/myOpeInfoList">작성글 조회</a>
 																<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
 															</li>
 															<li>
@@ -222,7 +222,7 @@
 																<a href="${pageContext.request.contextPath}/admMemberList">회원 관리</a>
 															</li>
 															<li>
-																<a href="#">게시글 관리</a>
+																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
 															</li>
 														</ul>
 													</li>

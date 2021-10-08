@@ -24,6 +24,12 @@ public class EventController {
 	public String admSked() {
 		return "admin/admSked";
 	}
+	
+	// 스케줄폼
+	@GetMapping("/admin/admSchedule")
+	public String admSchedule() {
+		return "admin/admSchedule";
+	}
 
 	// 스케줄폼
 	@GetMapping("schedule")

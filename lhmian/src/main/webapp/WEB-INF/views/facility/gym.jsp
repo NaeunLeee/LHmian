@@ -315,6 +315,7 @@
 						<input type="text" id="gxTitle" name="gxTitle" class="form-control" readonly="readonly"><br>
 					<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="startdate">시작 날짜</label></h5>
 						<input type="text" id="startdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
+						<span id=""></span>
 					<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="period">기 간</label></h5> 
 						<select id="period" name="period" class="form-control">
 								<option value="" selected>선택</option>
