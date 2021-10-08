@@ -24,4 +24,49 @@
 		SET PAY_NO = #{payNo} 
 		WHERE HOUSE_INFO = #{houseInfo} AND MF_DATE = #{mfDate}
 </update>
+
+<!-- 개인 결제내역 조회-관리비, 헬스, 독서실 -->
+<select id="getList" resultType="paymentVO">
+SELECT PAY_NO
+	 , ID
+	 , PAY_DATE
+	 , PAY_TYPE
+	 , PAY_CAT
+	 , PAY_STATUS
+	FROM
+		PAYMENT
+	WHERE ID = #{id}
+	ORDER BY PAY_DATE DESC
+</select>
+
+<!-- 결제취소할 경우 테이블에서 삭제x, 결제상태만 '결제취소'로 변경 -->
+<update id="updateStatus">
+	UPDATE PAYMENT
+		SET PAY_STATUS = #{payStatus} 
+		WHERE PAY_NO = #{payNo}
+</update>
+
+<!-- 결제단건조회-모달 -->
+<select id="read" resultType="PaymentVO" parameterType="paymentVO">
+	SELECT PAY_NO
+	 , PAY_DATE
+	 , PAY_TYPE
+	 , PAY_CAT
+	 ,
+	 <choose>
+		 <when test="payCat != null and payCat.equals('관리비')">
+	        (SELECT MF_TOTAL FROM MANAGEMENT_FEE WHERE PAY_NO = #{payNo}) AS PRICE
+		 </when>
+		 <when test="payCat != null and payCat.equals('독서실')">
+	         (SELECT LIB_PRICE FROM LIBRARY WHERE PAY_NO = #{payNo}) AS PRICE
+		 </when>
+		 <otherwise>
+       		(SELECT GYM_PRICE FROM GYM WHERE PAY_NO = #{payNo}) AS PRICE
+    	</otherwise>
+	 </choose>
+	FROM
+		PAYMENT
+		WHERE PAY_NO = #{payNo}
+</select>
+
 </mapper>
