@@ -43,6 +43,7 @@
 	<security:http pattern="/js/**" security="none" />
 	<security:http pattern="/less/**" security="none" />
 	<security:http pattern="/php/**" security="none" />
+	
 
 	<security:http use-expressions="true">
 		<!-- 인터셉트 처리 -->
