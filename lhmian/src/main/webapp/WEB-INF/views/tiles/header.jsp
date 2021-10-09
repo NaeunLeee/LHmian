@@ -222,6 +222,9 @@
 																<a href="${pageContext.request.contextPath}/admMemberList">회원 관리</a>
 															</li>
 															<li>
+																<a href="${pageContext.request.contextPath}/admin/admVoteList">투표 관리</a>
+															</li>
+															<li>
 																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
 															</li>
 														</ul>
