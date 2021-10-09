@@ -182,6 +182,8 @@ width : 560px;
 					+  '			</div>'
 					+  '		</div>'
 					+  '	</section>'
+					+  '<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">'
+					+  '<input type="hidden" name="payStatus" value="결제취소">'
 					+  '</form>'
 				$("#cancelModal .modal-body").html(tag);
 			}
@@ -190,7 +192,7 @@ width : 560px;
 	
 	//모달 취소버튼
 	$('#cancelBtn').on('click', function() {
-		if (confirm('수정하시겠습니까?')) {
+		if (confirm('취소하시겠습니까?')) {
 			frm.submit();
 		}
 	});

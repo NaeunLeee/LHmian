@@ -43,6 +43,7 @@ tr:hover {
 	<br>
 	<form id="deleteForm" name="deleteForm" action="csDeleteBoard" method="post">
 		<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</form>
 	<div align="center">
 	<%-- 	<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
@@ -64,6 +65,7 @@ tr:hover {
 		<c:if test="${not empty cs.csAnswer}">
 		<button type="button" id="csUpdateBtn" class="btn btn-gyellow-yj">답변 수정</button>
 		</c:if>
+        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</form>
 </div>
 <br>
@@ -73,6 +75,8 @@ tr:hover {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+let csrfHeaderName = "${_csrf.headerName}";
+let csrfTokenValue = "${_csrf.token}";
 $('#modifyBtn').on("click", function() {
 	if ($(this).attr('id') == 'modifyBtn') {
 		if (confirm('수정하시겠습니까?')) {
@@ -84,6 +88,9 @@ $('#modifyBtn').on("click", function() {
 		if (confirm('수정사항을 반영하시겠습니까?')) {
 			$.ajax({
 				url: "csUpdateBoard",
+				beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		         },
 				type: "post",
 				dataType: "json",
 				data: JSON.stringify({
@@ -123,6 +130,9 @@ $('#csUpdateBtn').on('click', function() {
 	if(confirm('답변을 수정하시겠습니까?')) { 
 		$.ajax({
 			url: "csAnswerUpdate",
+			beforeSend: function(xhr) {
+	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	         },
 			type: "post",
 			data: JSON.stringify({ csAnswer: $('#csAnswer').val() }),
 			contentType: 'application/json',
