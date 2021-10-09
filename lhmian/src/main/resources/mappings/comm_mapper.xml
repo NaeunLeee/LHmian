@@ -43,7 +43,7 @@
 		]]>
 	</select>
 	
-	<!-- 10/06 17:40 수정 -->
+	<!-- 10/07 17:50 수정 -->
 	<select id="getListno" resultType="CommVO">
 		SELECT
 		*
@@ -64,7 +64,6 @@
 		]]>
 	</select>
 
-	<!-- 10/06 수정 -->
 	<select id="getComment" resultType="ReplyVO">
 		SELECT
 		*
@@ -74,7 +73,7 @@
 		ROWNUM, B.ID, B.COMM_NO,C.CMT_CONTENT, C.CMT_DATE
 		FROM COMMENTS C
 		JOIN COMMUNITY B
-		ON (C.COMM_NO = B.COMM_NO)
+		ON (C.CMT_WRITER = B.ID)
 		WHERE
 		<include refid="criteria"></include>
 		<![CDATA[ 
@@ -107,14 +106,12 @@
 		COMM_NO > 0
 	</select>
 	
-	<!-- 10/06 추가 -->
 	<select id="getCntMember" resultType="int">
 		SELECT COUNT(*) FROM
 		COMMUNITY
 		WHERE ID = #{id}
 	</select>
 
-	<!-- 10/06 추가 -->
 	<select id="getCntCmt" resultType="int">
 		SELECT COUNT(*) FROM
 		COMMENTS C
@@ -133,8 +130,7 @@
 		COMM_SEQ.NEXTVAL,
 		#{commTitle},
 		#{commContent},
-		#{id}||''||
-		COMM_SEQ.NEXTVAL)
+		#{id})
 		<!-- 아이디 임시로 'test'+seq 로 제작, 로그인 시큐리티 활성화 후 수정 필요 -->
 	</insert>
 

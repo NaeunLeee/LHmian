@@ -92,6 +92,15 @@ public class CsController {
 
 		return "redirect:/office/csList";
 	}
+	
+	// 관리자 전체 조회
+	@GetMapping("/admin/admCsList")
+	public String admCsList(Model model, @ModelAttribute("cri") CsCriteria cri) {
+		int total = csService.getTotalCount(cri);
+		model.addAttribute("list", csService.getList(cri));
+		model.addAttribute("pageMaker", new CsPageVO(cri, total));
+		return "admin/admCsList";
+	}
 
 	// 답변등록
 	@PostMapping("/office/csAnswer")

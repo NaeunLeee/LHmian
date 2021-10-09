@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <style>
 .icon {
@@ -42,9 +42,10 @@
 	padding: 0px;
 }
 
-	.btn {
-		height: 50px;
-	}
+.btn {
+	height: 50px;
+}
+
 </style>
 <body>
 
@@ -54,9 +55,10 @@
 				<div class="row">
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Shortcodes</a></li>
-							<li class="current"><a href="#">Pricing Badges</a></li>
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/facility/facilityList">편의 시설</a></li>
+							<li><a href="${pageContext.request.contextPath}/facility/gym">피트니스 센터</a></li>
+							<li class="current"><a href="#">결제 내역</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
@@ -73,8 +75,6 @@
 						<h4 class="uppercase font-weight-7 less-mar-1">결제 완료</h4>
 						<div class="clearfix"></div>
 						<p class="by-sub-title">결제가 완료되었습니다!</p>
-
-
 					</div>
 				</div>
 
@@ -90,32 +90,32 @@
 						<h3 class="font-weight-6 title text-center" style="margin-top: 10px;">결제 정보</h3>
 						<br> <br>
 						<ul class="plan_features" style="font-size: 18px;">
-							<li>　<span class="pull-left font-weight-7">결제 번호</span>
-							<span class="pull-right">${pay.payNo }</span></li>
-							<li>　<span class="pull-left font-weight-7">결제 품목</span> 
-							<span class="pull-right">${pay.payCat }</span></li>
-							<li>　<span class="pull-left font-weight-7">이름</span> 
-							<span class="pull-right">${pay.payCat }_${fpay.houseInfo }_${fpay.mfDate }</span></li>
-							<li>　<span class="pull-left font-weight-7">결제 방법</span> 
-							<span class="pull-right">${pay.payType }</span></li>
-							<li>　<span class="pull-left font-weight-7">결제 금액</span> 
-							<span class="pull-right">${fpay.mfTotal } 원</span></li>
+							<li><span class="pull-left font-weight-7">결제 번호</span>
+							<span class="pull-right"></span>${pay.payNo}</li>
+							<li><span class="pull-left font-weight-7">결제 품목</span> 
+							<span class="pull-right"></span>${pay.payCat}</li>
+							<li><span class="pull-left font-weight-7">결제 방법</span> 
+							<span class="pull-right">${pay.payType}</span></li>
+							<li><span class="pull-left font-weight-7">결제 금액</span>
+							<c:if test="${not empty gym.gymPrice}">
+								<span class="pull-right">${gym.gymPrice}원</span>
+							</c:if>
+							<c:if test="${empty gym.gymPrice}">
+								<span class="pull-right">${lib.libPrice}원</span>
+							</c:if>
+							</li>
 						</ul>
 						<div class="clearfix" style="font-size: 14px;"></div>
 
 						<div class="text-center">
-						<button type="button" class="btn btn-gyellow btn-half-fullwidth uppercase">마이페이지 가기</button>
+							<button type="button" 
+									onclick="location.href='${pageContext.request.contextPath}/myFac'"
+									class="btn btn-gyellow btn-half-fullwidth uppercase">시설 이용 내역</button>
 						</div>
 					</div>
-
-
-
 				</div>
 			</div>
 			<!--end item-->
-
-
-
 		</div>
 	</section>
 	<!--end title-->

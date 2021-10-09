@@ -7,10 +7,9 @@
 
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <style>
 	.thumbs img {
@@ -110,7 +109,7 @@
 						</li>
 					</ul>
 					<br /> <br />
-					<button type="button" id="reservation"
+					<button type="button" id="registerBtn"
 						class="btn btn-dark" data-toggle="modal"
 						data-target="#libModal">등록</button>
 				</div>
@@ -188,45 +187,58 @@
 				<div class="modal-body">
 					<div style="margin: 0px 20px 0px;">
 						<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">이 름</label></h5>
-							<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br> 
-						<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="libStartdate">시작 날짜</label></h5>
-							<input type="text" id="libStartdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
-						<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="libPeriod">기 간</label></h5> 
-							<select id="libPeriod" name="libPeriod" class="form-control">
-								<option value="" selected>선택</option>
-								<option value="1">1일</option>
-								<option value="7">1주</option>
-								<option value="30">1달</option>
-								<option value="90">3달</option>
-								<option value="180">6달</option>
-								<option value="365">1년</option>
-						   </select><br>
-						<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="libPrice">금 액 (원)</label></h5> 
-							<input type="text" id="libPrice" name="libPrice" class="form-control" readonly="readonly">
+						<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br> 
+						<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="startdate">시작 날짜</label></h5>
+						<input type="text" id="startdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
+						<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="period">기 간</label></h5> 
+						<select id="period" name="period" class="form-control">
+							<option value="" selected>선택</option>
+							<option value="1">1일</option>
+							<option value="7">1주</option>
+							<option value="30">1달</option>
+							<option value="90">3달</option>
+							<option value="180">6달</option>
+							<option value="365">1년</option>
+					   </select><br>
+						<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="price">금 액 (원)</label></h5> 
+						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
 					</div>
 					<br>
 				</div>
 				<!-- Modal Footer -->
 				<div class="modal-footer">
 					<div align="center">
-						<button type="submit" id="doPay" class="btn btn-gyellow">결제하기</button>
+						<button type="button" id="payBtn" class="btn btn-gyellow">결제하기</button>
 						<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
 					</div>
 				</div>
 
-					</form>
+				</form>
 			</div>
 		</div>
 	</div>
+	
+<form action="libPayComplete" method="post" id="frm">
+	<input type="hidden" id="payNo" name="payNo" value="">
+	<input type="hidden" id="id" name="id" value="<sec:authentication property="principal.username"/>">
+	<input type="hidden" id="payType" name="payType" value=""> 
+	<input type="hidden" id="payCat" name="payCat" value="헬스장"> 
+	<input type="hidden" id="payStatus" name="payStatus" value=""> 
+	<input type="hidden" id="impUid" name="imp_uid" value="">
+	
+	<input type="hidden" id="libStartdate" name="libStartdate" value="">
+	<input type="hidden" id="libPeriod" name="libPeriod" value="">
+	<input type="hidden" id="libPrice" name="libPrice" value="">
+</form>
 
 </body>
 
 <script>
 	// 날짜 선택 DatePicker
-	$("#libStartdate").datepicker();
+	$('#startdate').datepicker();
 
 	$.datepicker.setDefaults({
-		dateFormat : 'yy-mm-dd',
+		dateFormat : 'yy/mm/dd',
 		prevText : '이전 달',
 		nextText : '다음 달',
 		monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월',
@@ -241,7 +253,7 @@
 	});
 
 	// 금액
-	$("#libPeriod").on("change", function() {
+	$("#period").on("change", function() {
 
 		var period = $(this).val();
 		var price = "";
@@ -260,10 +272,11 @@
 			price = 99000;
 		}
 
-		$('#libPrice').val(price);
+		$('#price').val(price);
 
 	});
 	
+	// 이미지
     $(".thumbs a").click(function() {           					 //클릭 시
         var imgPath = $(this).attr("href");     				  //클릭한 a태그의 하이퍼링크를 변수저장
         $("#mainImg>img").attr({src:imgPath}) 					  //메인 이미지의 주소 속성에 할당
@@ -272,9 +285,63 @@
         return false;                           //<a> 의 본래기능 (하이퍼링크) 작동방지
     });
 
-   	$('#doPay').on('click', function() {
-   		window.open("", "popup_window", "width=500, height=700, scrollbars=yes");
-   	});
+	// 결제버튼 클릭 시
+	$('#payBtn').on('click', function() {
+		
+		let author = null;
+		let houseInfo = null;
+		let phone = null;
+		let name = null;
+		let price = $('#price').val();
+		
+		$('#libStartdate').val($('#startdate').val());
+		$('#libPeriod').val($('#period').val());
+		$('#libPrice').val(price);
+		
+		<sec:authorize access="isAuthenticated()">
+			author = '<sec:authentication property="principal.AUTHOR"/>';
+			houseInfo = '<sec:authentication property="principal.HOUSEINFO"/>';
+			phone = '<sec:authentication property="principal.PHONE"/>';
+			name = '<sec:authentication property="principal.HOUSEINFO" />';
+		</sec:authorize>
+		
+		if ($('#libStartdate').val() != "" && $('#libPeriod').val() != "") {
+			paymentFnc(name, houseInfo, phone);
+		} else {
+			alert('양식을 모두 입력해 주세요.');
+		}
+		
+	});
+
+	function paymentFnc(name, houseInfo, phone) {
+
+		IMP.init('imp57655457');
+		IMP.request_pay({
+			pg : 'inicis', // version 1.1.0부터 지원.
+			pay_method : 'card',
+			merchant_uid : 'merchant_' + new Date().getTime(),
+			name : '독서실_' + houseInfo,
+			buyer_name : name,
+			buyer_tel : phone,
+			buyer_email : "nue.an.2@gmail.com",
+			amount : $('#price').val(), //판매 가격
+			}, function(rsp) {
+					if(rsp.success){
+			        	alert("결제가 완료되었습니다."); 
+			        	$('#payNo').val(rsp.merchant_uid);
+			        	$('#payType').val(rsp.pay_method);
+			        	$('#payStatus').val(rsp.status);
+			        	$('#impUid').val(rsp.imp_uid);
+			      		frm.submit();
+				} else {
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+					alert(msg);
+				}
+			
+		})
+	}
+   	
 </script>
 
 </html>

@@ -4,6 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 운영 정보 등록</title>
+<script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+
+<style>
+	.ck-editor__editable {
+	    min-height: 400px;
+	}
+</style>
+
 </head>
 <body>
 	<div class="header-inner-tmargin">
@@ -52,9 +60,9 @@
 					<div class="col-xs-12 nopadding">
 						<div class="sec-title-container-padding-topbottom text-center">
 							<div class="pl-title-line-1"></div>
-							<h4 class="uppercase font-weight-7 less-mar-1">입주자 대표회의</h4>
+							<h4 class="uppercase font-weight-7 less-mar-1">운영 정보 게시</h4>
 							<div class="clearfix"></div>
-							<p class="by-sub-title">입주자 대표회의... 설명이 필요해..</p>
+							<p class="by-sub-title">운영 정보를 게시하세요.</p>
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -65,16 +73,16 @@
 								<option value="재무제표">재무제표</option>
 								<option value="안전관리">안전관리</option>
 							</select> &nbsp;&nbsp; 
-							<input type="text" name="oiTitle" class="form-control" style="width: 500px; float: left;" placeholder="제목을 입력하세요.">
+							<input type="text" name="oiTitle" class="form-control" style="width: 700px; float: left;" placeholder="제목을 입력하세요.">
 							<hr>
 						</div>
 						<div>
-							<textarea rows="10" cols="50" name="oiContent" class="form-control"></textarea>
+							<textarea id="oiContent" name="oiContent" class="form-control"></textarea>
 						</div>
 					</form>
 					<div>
 						<input type="file" class="file" name="uploadFile" class="form-control" style="float: left;">
-						<button type="button" id="uploadBtn" class="btn btn-default" style="float: left; margin-left: 200px;">파일 첨부</button><br>
+						<button type="button" id="uploadBtn" class="btn btn-default" style="float: right;">파일 첨부</button><br>
 						<ul id="uploaded"></ul>
 					</div>
 				</div>
@@ -105,60 +113,50 @@
 		;
 
 		// 파일 첨부 버튼 이벤트
-		$('#uploadBtn')
-				.on(
-						"click",
-						function() {
-							var formData = new FormData(document.frm);
-							var inputFile = $('[name="uploadFile"]');
-							var files = inputFile[0].files;
+		$('#uploadBtn').on("click",	function() {
+			var formData = new FormData(document.frm);
+			var inputFile = $('[name="uploadFile"]');
+			var files = inputFile[0].files;
 
-							for (i = 0; i < files.length; i++) {
-								if (!checkExtension(files[i].name)) {
-									return;
-								} else {
-									formData.append("uploadFile", files[i]);
-								}
-							}
+			for (i = 0; i < files.length; i++) {
+				if (!checkExtension(files[i].name)) {
+					return;
+				} else {
+					formData.append("uploadFile", files[i]);
+				}
+			}
 
-							$
-									.ajax({
-										processData : false,
-										contentType : false,
-										url : "opeInfoFileAttach",
-										data : formData,
-										type : 'POST',
-										success : function(datas) {
-											var li = "";
-											var str = "";
+			$.ajax({
+				processData : false,
+				contentType : false,
+				url : "opeInfoFileAttach",
+				data : formData,
+				type : 'POST',
+				success : function(datas) {
+					var li = "";
+					var str = "";
 
-											for (i = 0; i < datas.length; i++) {
-												var obj = datas[i];
-												var fileCallPath = encodeURIComponent(obj.oiFilepath
-														+ "/"
-														+ obj.oiFileid
-														+ "_" + obj.oiFilename);
-												var fileLink = fileCallPath
-														.replace(new RegExp(
-																/\\/g), "/");
+					for (i = 0; i < datas.length; i++) {
+						var obj = datas[i];
+						var fileCallPath = encodeURIComponent(obj.oiFilepath + "/"
+											+ obj.oiFileid + "_" + obj.oiFilename);
+						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 
-												li += "<li>";
-												li += "<span> "
-														+ obj.oiFilename
-														+ "</span>";
-												li += "</li>";
+						li += "<li>";
+						li += "<span> " + obj.oiFilename + "</span>";
+						li += "</li>";
 
-												str += "<input type='hidden' name='oiFilename' value='" + obj.oiFilename + "'>";
-												str += "<input type='hidden' name='oiFileid' value='" + obj.oiFileid + "'>";
-												str += "<input type='hidden' name='oiFilepath' value='" + obj.oiFilepath + "'>";
+						str += "<input type='hidden' name='oiFilename' value='" + obj.oiFilename + "'>";
+						str += "<input type='hidden' name='oiFileid' value='" + obj.oiFileid + "'>";
+						str += "<input type='hidden' name='oiFilepath' value='" + obj.oiFilepath + "'>";
 
-											}
-											$('#uploaded').html(li);
-											$('#frm').append(str);
-										}
-									});
+					}
+					$('#uploaded').html(li);
+					$('#frm').append(str);
+				}
+			});
 
-						});
+		});
 
 		// 등록 버튼 이벤트
 		$('#insertBtn').on("click", function() {
@@ -166,6 +164,10 @@
 		});
 
 	});
+	
+    ClassicEditor.create(document.querySelector('#oiContent'))
+    			 .catch(error => { console.error(error); });
+	
 </script>
 
 </html>

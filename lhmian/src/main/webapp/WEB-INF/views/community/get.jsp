@@ -126,14 +126,13 @@ textarea {
 	</div>
 	</section>
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$("#btnDelete").on("click", function() {
+	$("#btnDelete").on("click", function () {
 		if (confirm('삭제할까요??'))
 			$.post("deleteComm", {
-				commNo : $("#commNo").val()
-			}, function(result) {
+				commNo: $("#commNo").val()
+			}, function (result) {
 				if (result == true) {
 
 					alert("성공")
@@ -141,31 +140,30 @@ textarea {
 				}
 			});
 	});
-	
-	
 
 	$("#btnModify").on("click", function() {
 		$("#commContent").attr("readonly", false);
 		$("#commTitle").attr("readonly", false);
+
 		$("#btnModify").attr('id', 'update').html('완료');
-		$("#update").on("click", function() {
+		$("#update").on("click", function () {
 			$.ajax({
-				url : "updateComm",
-				type : "put",
-				dataType : "json",
-				data : JSON.stringify({
-					commNo : $("#commNo").val(),
-					commContent : $("#commContent").val(),
+				url: "updateComm",
+				type: "put",
+				dataType: "json",
+				data: JSON.stringify({
+					commNo: $("#commNo").val(),
+					commContent: $("#commContent").val(),
 				}),
-				contentType : 'application/json',
-				success : function(data) {
+				contentType: 'application/json',
+				success: function (data) {
 					alert("수정이 완료 되었습니다");
 					$("#commContent").attr("disabled", true);
 					$("#update").attr('id', 'btnModify').html('수정');
-					
+
 					console.log(data);
 				},
-				error : function() {
+				error: function () {
 					alert("입력되지 않았습니다."); // 실패 시 처리
 				}
 			});
@@ -177,36 +175,45 @@ textarea {
 	function showList() {
 		//초기화
 		$('.chat').empty();
-
+		
+		
+		// 10/07 수정
 		function makeLi(datas) {
-			return '<li class="left clearfix">'
-					+ '	<div id="'+ datas.cmtNo +'">'
-					+ '			<strong class="primary-font">'
-					+ datas.cmtWriter
-					+ '</strong>'
-					+ '			<small class="pull-right text-muted">'
-					+ datas.cmtDate
-					+ '</small>'
-					+ '		<p>'
-					+ datas.cmtContent
-					+ '</p>'
-					+ '<div id="test">' + '</div>'
-					+ '<input type="hidden" id="cmtNo2" value="'+ datas.cmtNo +'">'
-					+ '<button type="button" class="test" id="cmtUpdate" data-num="'	+ datas.cmtNo + '">수정</button>'
+			var str = "";
+			if(datas.cmtWriter == '<sec:authentication property="principal.username" />'){
+				str = '<input type="hidden" id="cmtNo2" value="'+ datas.cmtNo +'">'
+					+ '<button type="button" class="test" id="cmtUpdate" data-num="'+ datas.cmtNo + '">수정</button>'
 					+ '&nbsp'
 					+ '<button type="button" id="cmtDelete" onclick="button2_click(this);" data-num="'
-					+ datas.cmtNo + '">삭제</button>' + '	</div>' + '<br>'
-					+ '</li>';
+					+ datas.cmtNo + '">삭제</button>'
+				}
+			return '<li class="left clearfix">'
+			+ '	<div id="'+ datas.cmtNo +'">'
+			+ '			<strong class="primary-font">'
+			+ datas.cmtWriter
+			+ '</strong>'
+			+ '			<small class="pull-right text-muted">'
+			+ datas.cmtDate
+			+ '</small>'
+			+ '		<p>'
+			+ datas.cmtContent
+			+ '</p>'
+			+ '<div id="test">' + '</div>'
+			+ str
+			+'	</div>' + '<br>'
+			+ '</li>';
+			
+			
+			
 		}
-		3
 
 		$.ajax({
-			url : './reply/',
-			data : {
-				commNo : $("#commNo").val()
+			url: './reply/',
+			data: {
+				commNo: $("#commNo").val()
 			},
-			dataType : 'json',
-			success : function(datas) {
+			dataType: 'json',
+			success: function (datas) {
 				console.log(datas);
 				let str = "";
 				for (i = 0; i < datas.list.length; i++) {
@@ -215,7 +222,7 @@ textarea {
 				}
 				$(".chat").html(str);
 			},
-			error : function(e) {
+			error: function (e) {
 				console.log(e);
 			}
 		});
@@ -224,26 +231,26 @@ textarea {
 	showList();
 
 	//등록처리
-	$("#saveReply").on("click", function(e) {
+	$("#saveReply").on("click", function (e) {
 		e.preventDefault();
 
 		let reply = $("input[name='cmtContent']").val();
 		let replyer = $("input[name='cmtWriter']").val();
-
+		
 		if (reply == "" || replyer == "") {
 			alert("내용을 입력 해주시거나 회원만 등록 가능합니다.")
 			return;
 		}
-
+		
 		$.ajax({
-			url : "./reply/",
-			method : "post",
-			data : $("#replyForm").serialize(),
-			dataType : "json",
-			success : function(data) {
+			url: "./reply/",
+			method: "post",
+			data: $("#replyForm").serialize(),
+			dataType: "json",
+			success: function (data) {
 				showList();
 			},
-			error : function() {
+			error: function () {
 				alert("등록 실패");
 			}
 		});
@@ -254,20 +261,20 @@ textarea {
 	//수정
 	function cmtUpdate(b) {
 		$.ajax({
-			url : "./reply/",
-			type : "put",
-			dataType : "json",
-			data : JSON.stringify({
-				cmtContent : $("#cmtContent").val(),
-				cmtNo : b
+			url: "./reply/",
+			type: "put",
+			dataType: "json",
+			data: JSON.stringify({
+				cmtContent: $("#cmtContent").val(),
+				cmtNo: b
 			}),
-			contentType : 'application/json',
-			success : function(datas) {
+			contentType: 'application/json',
+			success: function (datas) {
 				alert("성공")
 				console.log(datas)
 				showList();
 			},
-			error : function() {
+			error: function () {
 				alert("error"); // 실패 시 처리
 			}
 		});
@@ -276,90 +283,117 @@ textarea {
 	//삭제
 	function cmtDelete(b) {
 		$.ajax({
-			url : "./reply/" + b,
-			type : "delete",
-			dataType : "json",
-			data : JSON.stringify({
-				cmtNo : b
+			url: "./reply/" + b,
+			type: "delete",
+			dataType: "json",
+			data: JSON.stringify({
+				cmtNo: b
 			}),
-			contentType : 'application/json',
-			success : function(result) {
+			contentType: 'application/json',
+			success: function (result) {
 				if (result == true) {
 					alert("성공")
 					showList();
 				}
 			},
-			error : function() {
+			error: function () {
 				alert("삭제 실패"); // 실패 시 처리
 			}
 		});
 	}
-	
-	$(document).on("click", "#cmtUpdate", function(e){
-		e.preventDefault();
-		var num = $(this).data("num")
-		
-		console.log(num);
-		
-		$(this).parent().children("#cmtUpdate").html("완료");
-		$(this).attr("id","cmtUpdate2");
-		$(this).parent().children('p').remove();
-		$(this).parent().children('div').attr('id','test0');
-		$.ajax({
-			url : "./reply/" + num,
-			type : "get",
-			dataType : "json",
-			contentType : 'application/json',
-			success : function(result) {
-				console.log(result);
-				var str2 = '<input id="test" name="test" value="'+result.cmtContent+'">'
-				$("#test0").html(str2);
-				
-				
-				$(document).one("click", "#cmtUpdate2", function(){
-					if (confirm('수정할까요??')){
-					$.ajax({
-						url : "./reply/",
-						type : 'put',
-						dataType : "json",
-						contentType: 'application/json; charset=utf-8',
-						data : JSON.stringify({
-							cmtNo : num, 
-							cmtContent : $("#test").val()	
-						}),
-						success : function(data) {
-							console.log(data);
-							showList();
+
+	$(document)
+		.on("click", "#cmtUpdate", function (e) {
+			e.preventDefault();
+			var num = $(this).data("num")
+
+			console.log(num);
+
+			$(this).parent().children("#cmtUpdate").html("완료");
+			$(this).attr("id", "cmtUpdate2");
+			$(this).parent().children('p').remove();
+			$(this).parent().children('div').attr('id', 'test0');
+			$.ajax({
+				url: "./reply/" + num,
+				type: "get",
+				dataType: "json",
+				contentType: 'application/json',
+				success: function (result) {
+					console.log(result);
+					var str2 = '<input id="test" class="test" name="test" value="' + result.cmtContent + '">'
+					$("#test0").html(str2);
+
+					$(document)
+						.one("click",
+							"#cmtUpdate2",
+							function () {
+							console.log($(this));
+							var cmtContent = $(this).parents("div").children("#test0").children(".test").val();
+							console.log(cmtContent);
 							
-						},
-						error : function(){
-							alert("수정실패");
-							console.log($("#test").val());
-						}
-					});
-					}
-				});
-				
-			},
-			error : function(result) {
-				console.log(result);
-				alert("실패"); // 실패 시 처리
-			}
+							
+								if (confirm('수정할까요??')) {
+									$
+										.ajax({
+											url: "./reply/",
+											type: 'put',
+											dataType: "json",
+											contentType: 'application/json; charset=utf-8',
+											data: JSON
+												.stringify({
+													cmtNo: num,
+													cmtContent: cmtContent
+												}),
+											success: function (
+												data) {
+												console
+													.log(data);
+												showList();
+
+											},
+											error: function () {
+												alert("수정실패");
+												console
+													.log($(
+															"#test")
+														.val());
+											}
+										});
+								}
+							});
+
+				},
+				error: function (result) {
+					console.log(result);
+					alert("실패"); // 실패 시 처리
+				}
+			});
+
 		});
-		
-	});
-	
-	
+
 	// 삭제 버튼
 	function button2_click(tabInfo) { // 함수에서 this를 사용하면 값이 정확히 넘어가지 않는다. 
-								      // 이 때문에 태그에서 함수를 사용할때 태그내부 함수()에 this를 넣어주면 그 태그에 있는 모든 정보를 담아준다.
-									  // 이를 이용하여 정보를 갖고 올 수 있다.
-		if(confirm("삭제 하시겠습니까?")){
+		// 이 때문에 태그에서 함수를 사용할때 태그내부 함수()에 this를 넣어주면 그 태그에 있는 모든 정보를 담아준다.
+		// 이를 이용하여 정보를 갖고 올 수 있다.
+		if (confirm("삭제 하시겠습니까?")) {
 			console.log("삭제버튼을 누르셨습니다.");
 			var b = $(tabInfo).data("num");
 			console.log(b);
 			cmtDelete(b);
 		}
 
+	}
+
+	var id = $("#id").val();
+	var login = '<sec:authentication property="principal.username" />';
+
+	if (id == login) {
+		console.log("일치");
+		console.log(id);
+		console.log(login);
+	} else {
+		console.log("불일치");
+		console.log(id);
+		console.log(login);
 	}
 </script>

@@ -12,5 +12,5 @@ public interface EnergyService {
 	public EnergyVO read(EnergyVO vo);
 
 	// 전체조회-전체(관리자)
-	public List<EnergyVO> admList(EnergyVO vo);
+	public List<EnergyVO> admList();
 }

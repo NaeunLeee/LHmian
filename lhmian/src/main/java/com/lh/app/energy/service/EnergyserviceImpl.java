@@ -25,7 +25,7 @@ public class EnergyserviceImpl implements EnergyService {
 	}
 
 	@Override
-	public List<EnergyVO> admList(EnergyVO vo) {
-		return energyMapper.admList(vo);
+	public List<EnergyVO> admList() {
+		return energyMapper.admList();
 	}
 }

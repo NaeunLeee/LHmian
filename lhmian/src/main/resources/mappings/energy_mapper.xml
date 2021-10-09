@@ -45,7 +45,9 @@ SELECT MF_DATE,
 
 <select id="admList" resultType="EnergyVO">
 	SELECT MF_DATE,
-			HOUSE_INFO,
+	 		TO_DATE(MF_DATE, 'YYMM') AS YEAR_MONTH,
+	 		SUBSTR(HOUSE_INFO, 1, 3) || '동' AS DONG,
+            SUBSTR(HOUSE_INFO, 4, 4) || '호' AS HOSU,
 			ENG,
 			GAS,
 			ELECTRIC,
@@ -54,6 +56,6 @@ SELECT MF_DATE,
 			TRASH_FOOD
 		FROM
 			ENERGY_USAGE
-		ORDER BY MF_DATE
+		ORDER BY YEAR_MONTH DESC
 </select>
 </mapper>

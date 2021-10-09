@@ -126,10 +126,7 @@ var calendar = $('#calendar').fullCalendar({
     });
   },
 
-  eventAfterAllRender: function (view) {
-    if (view.name == "month") $(".fc-content").css('height', 'auto');
-  },
-
+  
   select: function (startDate, endDate, jsEvent, view) {
 
    /* $(".fc-body").unbind('click');
