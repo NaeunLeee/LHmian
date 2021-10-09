@@ -21,6 +21,8 @@
 		<input type="hidden" id="id" name="id" value="${id }">
 		<br><br>
 		<button>변경</button><button type="button" id="closeBtn">닫기</button>
+		<!-- CSRF 토큰 -->
+        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	 </form>
 	 </c:if>
 	 
