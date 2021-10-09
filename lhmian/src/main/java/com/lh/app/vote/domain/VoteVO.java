@@ -2,6 +2,9 @@ package com.lh.app.vote.domain;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class VoteVO {
 	private int voteNo;
 	private String voteTitle;
@@ -11,4 +14,6 @@ public class VoteVO {
 	private int voteCount;
 	private String voteFinal;
 	private Date voteUpdate;
+	private Double percent;
+	private String over;
 }

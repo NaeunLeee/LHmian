@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.vote.mapper.VoteMapper">
+
+	<select id="voteList" resultType="VoteVO">
+		SELECT VOTE_NO, 
+	       VOTE_TITLE, 
+	       VOTE_START,
+	       VOTE_END,
+	       ROUND(VOTE_COUNT / (SELECT COUNT(*) FROM MEMBER) * 100, 1) PERCENT,
+	       CASE WHEN VOTE_END > SYSDATE THEN '진행중'
+	       ELSE '투표마감' END AS OVER
+		FROM VOTE
+	</select>
+	
+</mapper>

@@ -93,7 +93,7 @@
 	</select>
 	
 	<select id="admSelectFeeList" resultType="ManagementFeeVO">
-		SELECT /*+ INDEX(IDX) */
+		SELECT /*+ INDEX(MANAGEMENT_FEE IDX) */
 			   MF_DATE,
 			   TO_DATE(MF_DATE, 'YYMM')-1 AS YEAR_MONTH,
 		       SUBSTR(HOUSE_INFO, 1, 3) || '동' AS DONG,
@@ -113,7 +113,6 @@
 			   CASE WHEN PAY_NO IS NULL THEN '미납'
                ELSE '납부완료' END PAID
 		FROM MANAGEMENT_FEE
-        ORDER BY 1 DESC
 	</select>
 
 </mapper>
