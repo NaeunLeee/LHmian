@@ -63,7 +63,7 @@
 		<security:access-denied-handler
 			ref="customAccessDeniedHandler" />
 		<!-- csrf. true=>닫음. false=>csrf 지옥 시작... -->
-		<security:csrf disabled="true" />
+		<security:csrf disabled="false" />
 	</security:http>
 
 	<!-- 로그인 DB 연동 -->

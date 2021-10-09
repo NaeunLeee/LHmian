@@ -136,6 +136,12 @@ public class OpeInfoController {
 		return opeInfoService.read(vo);
 	}
 	
+	// 수정 폼
+	@GetMapping("/admin/opeInfoUpdate")
+	public String opeInfoUpdateForm(OpeInfoVO vo) {
+		return "admin/admOpeInfoUpdate";
+	}
+	
 	// 삭제
 	@PostMapping("/admin/opeInfoDelete")
 	public String delete(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
