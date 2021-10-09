@@ -29,7 +29,8 @@
 				#{author}, 
 				#{key}, 
 				#{password},
-				#{status})
+				#{status},
+				'FOLLOWER')
 	</insert>
 	
 	<select id="findId" resultType="MemberVO">

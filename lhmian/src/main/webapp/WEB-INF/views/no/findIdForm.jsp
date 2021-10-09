@@ -31,7 +31,7 @@
 					</label>
 					<div class="pw-error-msg" style="display: none"></div>
 				</div>
-
+				
 			</div>
 		</form>
 	</div>
