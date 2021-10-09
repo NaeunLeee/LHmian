@@ -57,5 +57,6 @@ SELECT MF_DATE,
 		FROM
 			ENERGY_USAGE
 		ORDER BY 1 DESC
+
 </select>
 </mapper>
