@@ -6,28 +6,32 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.error-msg {
-		padding: 7px 0;
-		color: red;
-	}
-	
-	.correct-msg {
-		padding: 7px 0;
-		color: green;
-	}
-	.smart-forms .form-body {
-		padding-bottom: 40px;
-	}
-	
-	.time {
-		color: red;
-	}
+.error-msg {
+	padding: 7px 0;
+	color: red;
+}
 
-	div .form-body .btn {
-		height: 50px;
-	}
+.correct-msg {
+	padding: 7px 0;
+	color: green;
+}
+
+.smart-forms .form-body {
+	padding-bottom: 40px;
+}
+
+.time {
+	color: red;
+}
+
+div .form-body .btn {
+	height: 50px;
+}
 </style>
 <script>
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+
 	$(function() {
 
 		//input box 숫자만 입력 가능
@@ -52,6 +56,9 @@
 			$.ajax({
 				url : 'sendKey',
 				type : 'POST',
+				beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		         },
 				data : JSON.stringify(json),
 				contentType : "application/json",
 				success : function(data) { //문자 발송에 성공시 data: 인증번호, 실패시 data: "fail" 메세지
@@ -149,7 +156,7 @@
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="#">홈</a></li>
-							<li class="current"><a href="leaderStep1">회원가입</a></li>
+							<li class="current"><a href="signup/leaderStep1">회원가입</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
@@ -179,6 +186,9 @@
 					<div class="form-body bg-light">
 						<form id="frm" name="frm" action="leaderStep2-1" method="POST"
 							autocomplete="off">
+							<!-- CSRF 토큰 -->
+							<input type="hidden" name="${_csrf.parameterName }"
+								value="${_csrf.token }">
 							<!-- 카카오 로그인으로 넘어오면 고유 id 넘어옴 -->
 							<input type="hidden" id="id" name="id" value="${kakaoId }">
 							<!-- 휴대폰 번호 입력 폼 -->
@@ -194,15 +204,16 @@
 								</label>
 								<p class="sendKey-msg"></p>
 							</div>
-							<button id="sendKey" name="sendKey" class="btn btn-gyellow btn-fullwidth uppercase"
-								type="button">인증번호 전송</button>
+							<button id="sendKey" name="sendKey"
+								class="btn btn-gyellow btn-fullwidth uppercase" type="button">인증번호
+								전송</button>
 						</form>
 						<!-- 인증번호 입력 폼 생성 공간 -->
-					<div id="box"></div>
+						<div id="box"></div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 </body>
 </html>

@@ -1,41 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.error-msg {
-		padding: 7px 0;
-		color: red;
-	}
-	
-	.correct-msg {
-		padding: 7px 0;
-		color: green;
-	}
-	
-	.gubun-msg {
-		padding-top: 12px;
-	}
-	
-	.smart-forms .section {
-		margin-bottom: 5px;
-	}
-	
-	.smart-forms .section-gubun {
-		margin: 15px 0;
-	}
-	
-	.gubun {
-		   font-size: 16px !important;
-	}
-	
-	.btn {
-		margin-top: 18px !important;
-	}
+.error-msg {
+	padding: 7px 0;
+	color: red;
+}
 
+.correct-msg {
+	padding: 7px 0;
+	color: green;
+}
+
+.gubun-msg {
+	padding-top: 12px;
+}
+
+.smart-forms .section {
+	margin-bottom: 5px;
+}
+
+.smart-forms .section-gubun {
+	margin: 15px 0;
+}
+
+.gubun {
+	font-size: 16px !important;
+}
+
+.btn {
+	margin-top: 18px !important;
+}
 </style>
 </head>
 <script>
@@ -48,6 +47,10 @@
 	//아이디, 비밀번호 검증 성공여부
 	let idToken;
 	let passwordToken;
+	
+	//CSRF
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
 	
 	$(function() {
 
@@ -82,6 +85,9 @@
 			$.ajax({
 				url: 'authKey',
 				type: 'POST',
+				beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		         },
 				data: {authKey : authKey},
 				success: function(data) {
 					$('.name-msg').css('display', 'block');
@@ -223,43 +229,48 @@
 				<div class="smart-forms smart-container wrap-3">
 					<!-- 정보 입력 폼 -->
 					<div class="form-body bg-light">
-						<form id="frm" name="frm" action="memberSignUp" method="POST" autocomplete="off">
+						<form id="frm" name="frm" action="memberSignUp" method="POST"
+							autocomplete="off">
+							<!-- CSRF 토큰 -->
+							<input type="hidden" name="${_csrf.parameterName }"
+								value="${_csrf.token }">
 							<!-- 카카오 아이디 -->
 							<input type="hidden" id="id" name="id" value="${kakaoId }"><br>
 							<!-- 세대 인증번호 입력 -->
 							<div class="section">
 								<label for="key">
 									<h6 class="less-mar-4">
-										세대 인증번호
-										<span class="font-weight-5 hint--bottom-right hint--medium"
-										data-hint="세대 인증번호란? 관리사무소에서 문자로 받은 어쩌구">
-										<i class="fa fa-question-circle"></i></span>
+										세대 인증번호 <span
+											class="font-weight-5 hint--bottom-right hint--medium"
+											data-hint="세대 인증번호란? 관리사무소에서 발급받은 회원가입 "> <i
+											class="fa fa-question-circle"></i></span>
 									</h6>
-								</label>
-								<label class="field prepend-icon"> <input type="text"
-									name="key" id="key" class="gui-input" placeholder="세대 인증번호"> <span class="field-icon"><i
-										class="fa fa-key"></i></span>
+								</label> <label class="field prepend-icon"> <input type="text"
+									name="key" id="key" class="gui-input" placeholder="세대 인증번호">
+									<span class="field-icon"><i class="fa fa-key"></i></span>
 								</label>
 								<div class="key-msg" style="display: none"></div>
 							</div>
-								<button type="button" style="display:inline" id="authKeyBtn" name="authKeyBtn" class="btn btn-dark btn-fullwidth">세대 인증</button>
+							<button type="button" style="display: inline" id="authKeyBtn"
+								name="authKeyBtn" class="btn btn-dark btn-fullwidth">세대
+								인증</button>
 							<!-- 동, 호수 인풋박스가 나타나는 곳 -->
-							<div class="donghosu" style="display:none"></div>
+							<div class="donghosu" style="display: none"></div>
 							<!-- 동호수 히든 -->
 							<input type="hidden" id="houseInfo" name="houseInfo">
 							<!-- 구분 라디오박스 -->
 							<div class="section-gubun">
-							<div>
-								<h6 class="less-mar-4">
-									<span class="font-weight-5">구분</span>
-								</h6>
-							</div>
-							<label class="control control--radio gubun" style="display:inline">세대주
-								<input type="radio" name="author" value="OWNER">
+								<div>
+									<h6 class="less-mar-4">
+										<span class="font-weight-5">구분</span>
+									</h6>
+								</div>
+								<label class="control control--radio gubun"
+									style="display: inline">세대주 <input type="radio"
+									name="author" value="OWNER">
 									<div class="control__indicator dark"></div>
-							</label>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<label class="control control--radio gubun" style="display:inline">세대원
+								</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
+									class="control control--radio gubun" style="display: inline">세대원
 									<input type="radio" name="author" value="MEMBER">
 									<div class="control__indicator dark"></div>
 								</label>
@@ -272,9 +283,8 @@
 										<span class="font-weight-5">이름</span>
 									</h6>
 								</label> <label class="field prepend-icon"> <input type="text"
-									name="name" id="name" class="gui-input"
-									placeholder="이름"> <span class="field-icon"><i
-										class="fa fa-smile-o"></i></span>
+									name="name" id="name" class="gui-input" placeholder="이름">
+									<span class="field-icon"><i class="fa fa-smile-o"></i></span>
 								</label>
 								<div class="name-msg" style="display: none"></div>
 							</div>
@@ -285,8 +295,8 @@
 										<span class="font-weight-5">핸드폰 번호</span>
 									</h6>
 								</label> <label class="field prepend-icon"> <input type="text"
-									name="phone" id="phone" class="gui-input"
-									value="${phone }" readonly> <span class="field-icon"><i
+									name="phone" id="phone" class="gui-input" value="${phone }"
+									readonly> <span class="field-icon"><i
 										class="fa fa-phone"></i></span>
 								</label>
 							</div>
@@ -294,7 +304,8 @@
 							<div class="section">
 								<!--  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ아악ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ carCode로 해라 -->
 							</div>
-							<button type="button" id="signUp" name="signUp" class="btn btn-gyellow btn-fullwidth">회원가입</button>
+							<button type="button" id="signUp" name="signUp"
+								class="btn btn-gyellow btn-fullwidth">회원가입</button>
 							<button type="button" onclick="location.href='login'"
 								class="btn btn-dark-3 btn-fullwidth">취소</button>
 						</form>
@@ -303,28 +314,5 @@
 			</div>
 		</div>
 	</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

@@ -192,6 +192,8 @@
 				type="hidden" id="impUid" name="imp_uid" value=""> <input
 				type="hidden" id="mfDate" name="mfDate" value=""> <input
 				type="hidden" id="mftotal" name="mfTotal" value="">
+				<!-- CSRF 토큰 -->
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 		</form>
 	</section>
 	<div class="clearfix"></div>
@@ -262,6 +264,9 @@
 
 </script>
 <script>
+
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
 	
 	//이번달 관리비 합계
 	const currentMfTotal = ${currentFee.mfTotal};
@@ -314,6 +319,9 @@
 		$.ajax({
 			url: 'dateChange',
 			type: 'POST',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
 			data: {
 				mfDate: date
 			},

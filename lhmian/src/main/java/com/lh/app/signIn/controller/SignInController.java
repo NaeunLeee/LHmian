@@ -41,32 +41,32 @@ public class SignInController {
     }
 
     //휴대폰 인증 페이지
-	@GetMapping("/leaderStep1")
+	@GetMapping("/signIn/leaderStep1")
 	public String leaderStep1() {
 
 		return "signIn/leaderStep1";
 	}
 	
 	//프론트용~~~~~~~~~~~~~ 나중에 지워야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	@GetMapping("/leaderStep2-1")
+	@GetMapping("/signIn/leaderStep2-1")
 	public String test() {
 		return "signIn/leaderStep2-1";
 	}
 	
 	//프론트용~~~~~~~~~~~~~ 나중에 지워야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	@GetMapping("/leaderStep2-2")
+	@GetMapping("/signIn/leaderStep2-2")
 	public String test2() {
 		return "signIn/leaderStep2-2";
 	}
 	
 	//프론트용~~~~~~~~~~~~~ 나중에 지워야함~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	@GetMapping("/leaderStep3")
+	@GetMapping("/signIn/leaderStep3")
 	public String test3() {
 		return "signIn/leaderStep3";
 	}
 	
 	//
-	@PostMapping("/leaderStep2-1")
+	@PostMapping("signIn/leaderStep2-1")
 	public String leaderStep2One(MemberVO vo, Model model) {
 		
 		System.out.println(vo.getPhone());
@@ -92,7 +92,7 @@ public class SignInController {
 	}
 
 	//회원 가입
-	@PostMapping("/memberSignUp")
+	@PostMapping("/signIn/memberSignUp")
 	public String memberSignUp(MemberVO vo) {
 		
 		String page = "";
@@ -137,7 +137,7 @@ public class SignInController {
 	
 	
 	//세대원 인증 키를 통해 동호수 반환
-	@PostMapping("/authKey")
+	@PostMapping("/signIn/authKey")
 	@ResponseBody
 	public GenerationVO authKey(GenerationVO vo) {
 		System.out.println(vo.getAuthKey());
@@ -146,7 +146,7 @@ public class SignInController {
 	
 	
 	//id 중복체크
-	@PostMapping("/idCheck")
+	@PostMapping("/signIn/idCheck")
 	@ResponseBody
 	public int idCheck(MemberVO vo) {
 		
@@ -157,13 +157,13 @@ public class SignInController {
 	}
 	
 	//아이디 찾기 폼
-	@GetMapping("/findIdForm")
+	@GetMapping("/find/findIdForm")
 	public String findIdForm() {
 		return "no/findIdForm";
 	}
 	
 	//아이디 찾기
-	@PostMapping("/findId")
+	@PostMapping("/find/findId")
 	public String findId(MemberVO vo, Model model) {
 		vo = signInService.findId(vo);
 		
@@ -176,13 +176,13 @@ public class SignInController {
 	}
 	
 	//비밀번호 찾기 폼
-	@GetMapping("/findPasswordForm")
+	@GetMapping("/find/findPasswordForm")
 	public String findPasswordForm() {
 		return "no/findPasswordForm";
 	}
 	
 	//비밀번호 찾기
-	@PostMapping("/findPassword")
+	@PostMapping("/find/findPassword")
 	public String findPassword(MemberVO vo, Model model) {
 		
 		int result = signInService.findPassword(vo);
@@ -195,7 +195,7 @@ public class SignInController {
 	}
 	
 	//비밀번호 변경
-	@PostMapping("/updatePassword")
+	@PostMapping("/find/updatePassword")
 	public String updatePassword(MemberVO vo, Model model) {
 		String page = "";
 		String rawPassword = vo.getPassword();
@@ -210,7 +210,7 @@ public class SignInController {
 	}
 
 	//인증 버튼 클릭시
-	@PostMapping("/sendKey")
+	@PostMapping("/signIn/sendKey")
 	@ResponseBody
 	public String sendKey(@RequestBody HashMap<String, String> map) {
 		//넘어온 휴대폰 번호
