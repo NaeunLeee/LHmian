@@ -161,13 +161,14 @@ a:hover {
 															<!-- --------  끝  -------- -->
 														</li>
 														<li>
-															<%-- <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
-															<a
-															href="${pageContext.request.contextPath}/itemLost/lostList">분실물
-																보관소</a> <%-- 	</sec:authorize>
+
+															<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
+																<a href="${pageContext.request.contextPath}/itemLost/lostList">분실물 보관소</a>
+															</sec:authorize>
+
 															<sec:authorize access="hasRole('ROLE_ADMIN')">
 																<a href="${pageContext.request.contextPath}/itemLost/admLostList">분실물 보관소</a>
-															</sec:authorize> --%>
+															</sec:authorize>
 														</li>
 													</ul></li>
 												<li class="right"><a
@@ -215,33 +216,63 @@ a:hover {
 															href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글
 																조회</a> <!-- 10/02 스케쥴 조회 링크 추가 끝 -->
 														</li>
-														<li><a href="myFac">시설이용내역</a></li>
-													</ul></li>
-												<%-- </sec:authorize>
-												<sec:authorize access="hasRole('ROLE_ADMIN')"> --%>
-												<li class="right"><a
-													href="${pageContext.request.contextPath}/admin/adminPage">관리자
-														페이지</a>
-													<ul class="dm-align-2">
-														<li>
-															<!-- 10/03 개인정보 조회/수정 링크 --> <a
-															href="${pageContext.request.contextPath}/admin/feeList">관리비</a>
-															<!-- ------------------------ -->
-														</li>
-														<li><a
-															href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지
-																사용량</a></li>
-														<li><a
-															href="${pageContext.request.contextPath}/admMemberList">회원
-																관리</a></li>
-														<li><a
-															href="${pageContext.request.contextPath}/admin/admVoteList">투표
-																관리</a></li>
-														<li><a
-															href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글
-																관리</a></li>
-													</ul></li>
-												<%-- </sec:authorize> --%>
+
+													</ul>
+												</li>
+												<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
+													<li class="right">
+														<a href="${pageContext.request.contextPath}/myPage/myPage">마이 페이지</a>
+														<ul class="dm-align-2">
+															<li>
+																<!-- 10/03 개인정보 조회/수정 링크 -->
+																<a href="${pageContext.request.contextPath}/myInfo">개인정보수정</a>
+																<!-- ------------------------ -->
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
+															</li>
+															<li>
+																<a href="#">주민 투표</a>
+															</li>
+															<li>
+																<!-- 10/02 스케쥴 조회 링크 추가 시작-->
+																<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
+																<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
+															</li>
+															<li>
+																<a href="myFac">시설이용내역</a>
+															</li>
+														</ul>
+													</li>
+												</sec:authorize>
+												<sec:authorize access="hasRole('ROLE_ADMIN')">
+													<li class="right">
+														<a href="${pageContext.request.contextPath}/admin/adminPage">관리자 페이지</a>
+														<ul class="dm-align-2">
+															<li>
+																<!-- 10/03 개인정보 조회/수정 링크 -->
+																<a href="${pageContext.request.contextPath}/admin/feeList">관리비</a>
+																<!-- ------------------------ -->
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admMemberList">회원 관리</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admVoteList">투표 관리</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
+															</li>
+														</ul>
+													</li>
+												</sec:authorize>
+
 											</ul>
 										</div>
 									</div>

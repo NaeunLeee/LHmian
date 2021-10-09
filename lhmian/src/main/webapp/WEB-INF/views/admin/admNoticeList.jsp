@@ -37,6 +37,17 @@
 	.form-control {
 	   display: inline-block;
 	}
+	
+	.nav-tabs.nav-justified>li>a {
+		margin: 0px 1px 0px;
+		background-color: #f5f5f5;
+	}
+	.nav-tabs.nav-justified>li>a:hover {
+		background-color: #C8C6C6;
+	}
+	.nav-tabs.nav-justified>li>.active {
+		background-color: #C8C6C6;
+	}
 </style>
 
 
@@ -65,7 +76,7 @@
 <section class="sec-padding">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2 col-sm-12 col-xs-12 section-white">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
 				<div class="pages-sidebar-item">
 					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
 					<ul class="pages-sidebar-links">
@@ -76,7 +87,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-10 col-sm-6 col-xs-12">
 				<div></div><br><br>
 				<div class="sec-title-container less-padding-3 text-left">
 					<div class="title-line-3 align-left"></div>
@@ -106,8 +117,7 @@
 					</li>
 				</ul>
 				
-     			<div class="container" align="center">
-					<div class="text-box white padding-4 col-7">
+					<div class="text-box white padding-4 col-10">
 					<table class="table" >
 						<thead>
 					         <tr>
@@ -120,7 +130,7 @@
 							<c:forEach var="notice" items="${list}">
 								<tr class="move tr_1" data-noticeNo="${notice.noticeNo}">
 									<td>${notice.noticeNo}</td>
-									<td>${notice.noticeTitle}</td>
+									<td align="left">${notice.noticeTitle}</td>
 									<td><fmt:formatDate value="${notice.noticeDate}" type="both"
 									pattern="yy-MM-dd"/></td>
 								</tr>
@@ -130,7 +140,7 @@
 					<button class="btn btn-border light" style="float:right; margin-right:20px; padding: 4px 13px;" type="button" onclick="location.href='admOpeInfoInsert'">글 쓰기</button>
 					<br><br>
      
-<div id="pageButton" style="margin:auto; width: 50%">
+<div id="pageButton" align="center">
 			<ul class="pagination hover-orange">
 				<c:if test="${pageMaker.prev == true}">
 					<li>
@@ -152,9 +162,9 @@
 			</ul>
 		</div>
 		
-		<div style="margin:auto;">
+		<div align="center">
 		<form id="actionForm" action="admNoticeList" method="get">
-		<select name="type" class="form-control" style="width: 100px; ">
+		<select name="type" class="form-control" style="width: 100px;">
 			<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
 			<option value="T" ${pageMaker.cri.type=='T' ? 'selected' : ""}>제목</option>
 			<option value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>내용</option>
@@ -167,7 +177,6 @@
 	</form>
 </div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>

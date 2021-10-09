@@ -18,6 +18,16 @@
 	.container {
 		width: 80%;
 	}
+	.nav-tabs.nav-justified>li>a {
+		margin: 0px 1px 0px;
+		background-color: #f5f5f5;
+	}
+	.nav-tabs.nav-justified>li>a:hover {
+		background-color: #C8C6C6;
+	}
+	.nav-tabs.nav-justified>li>.active {
+		background-color: #C8C6C6;
+	}
 </style>
 </head>
 <body>
@@ -44,7 +54,7 @@
 <section class="sec-padding">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2 col-sm-12 col-xs-12 section-white">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
 				<div class="pages-sidebar-item">
 					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
 					<ul class="pages-sidebar-links">
@@ -55,7 +65,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-10 col-sm-6 col-xs-12">
 				<div></div><br><br>
 				<div class="sec-title-container less-padding-3 text-left">
 					<div class="title-line-3 align-left"></div>
@@ -84,7 +94,7 @@
 					</li>
 				</ul>
 				<div class="row">
-					<div class="text-box white padding-4 col-7">
+					<div class="text-box white padding-4 col-10">
 							<div class="text-box">
 								<div class="col-md-12">
 									<div class="col" style="width:100px; font-size:12px;">${info.oiType}</div>
@@ -97,7 +107,7 @@
 							</div>
 							
 							<hr>
-							<div class="text-box padding-2 border" style="margin-bottom: 20px;">
+							<div class="text-box padding-2 border" style="margin-bottom: 20px; min-height: 400px;">
 								${info.oiContent}
 							</div>
 							<div>
@@ -185,66 +195,6 @@
 		});
 	});
 
-	// 게시글 수정
-	$('#modifyBtn').on("click", function() {
-		
-		if ($(this).attr('id') == 'modifyBtn') {
-	
-			if (confirm('내용 수정 후에 완료 버튼을 눌러주세요.')) {
-				$('#oiTitle').attr("disabled", false);
-				$('#oiContent').attr("disabled", false);
-				$('#uploadDiv').css('display', 'block');
-				$(this).attr('id', 'updateBtn').html('완료');
-			}
-			
-		} else if ($(this).attr('id') == 'updateBtn') {
-			
-			if (confirm('수정사항을 반영하시겠습니까?')) {
-				var oiFileid;
-				var oiFilename;
-				var oiFilepath;
-				
-				// 내용만 수정할 때 첨부파일 정보는 그대로 db에 넘겨주기 위해
-				if ($('#fileDiv').attr('data-oiFileid') != null) {
-					oiFileid = $('#fileDiv').attr('data-oiFileid');
-					oiFilename = $('#fileDiv').attr('data-oiFilename');
-					oiFilepath = $('#fileDiv').attr('data-oiFilepath');
-				} else if ($('#fileDiv').attr('data-oiFileid') == null) {
-					oiFileid = $('#oiFileid').val();
-					oiFilename = $('#oiFilename').val();
-					oiFilepath = $('#oiFilepath').val();
-				}
-				
-				$.ajax({
-					url: "opeInfoUpdate",
-					type: "post",
-					dataType: "json",
-					data: JSON.stringify({
-						oiNo: $('#oiNo').val(),
-						oiTitle: $('#oiTitle').val(),
-						oiContent: $('#oiContent').val(),
-						oiFileid: oiFileid,
-						oiFilename: oiFilename,
-						oiFilepath: oiFilepath
-					}),
-					contentType: 'application/json',
-					success: function (data) {
-						alert("수정이 완료되었습니다!");
-						console.log(data);
-					},
-					error: function() {
-						alert("수정에 실패했습니다. 다시 시도해주세요.");
-					}
-				});
-				
-				$('#oiTitle').attr('disabled', true);
-				$('#oiContent').attr('disabled', true);
-				$(this).attr('id', 'modifyBtn').html('수정');
-			}
-		}
-		
-	});
-	
 	// 게시글 삭제
  	$('#deleteBtn').on("click", function() {
 		if (confirm('정말로 삭제하시겠습니까?')) {

@@ -202,6 +202,7 @@
 					   </select><br>
 						<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="price">금 액 (원)</label></h5> 
 						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					</div>
 					<br>
 				</div>
@@ -229,6 +230,7 @@
 	<input type="hidden" id="libStartdate" name="libStartdate" value="">
 	<input type="hidden" id="libPeriod" name="libPeriod" value="">
 	<input type="hidden" id="libPrice" name="libPrice" value="">
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 
 </body>
