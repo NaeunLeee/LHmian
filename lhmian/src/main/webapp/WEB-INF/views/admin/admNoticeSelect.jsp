@@ -1,32 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
 
 <style>
-textarea {
-	resize:none;
-	border:none;
-	overflow: hidden;
-}
-
-#noticeContent {
-	margin-bottom: 20px;
-	width: 100%;
-	min-height: 200px;
-	
-}
-
-#noticeTitle {
-	font-size: 20px;
-	height: 35px;
-
-}
-
-
+	#uploadDiv {
+		display: none;
+	}
+	.bi.bi-x-circle-fill {
+		cursor: pointer;
+	}
+	.container {
+		width: 85%;
+	}
+	.nav-tabs.nav-justified>li>a {
+		margin: 0px 1px 0px;
+		background-color: #f5f5f5;
+	}
+	.nav-tabs.nav-justified>li>a:hover {
+		background-color: #C8C6C6;
+	}
+	.nav-tabs.nav-justified>li>.active {
+		background-color: #C8C6C6;
+	}
 </style>
+</head>
+<body>
 
-
+<!-- 10/10 관리자 게시글 형식에 맞춰 수정 (이나은) -->
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
@@ -47,144 +52,95 @@ textarea {
 	</section>
 	<div class=" clearfix"></div>
 </div>
-	<section>
-		<div class="pagenation-holder-no-bottom">
-			<div class="container-fluid">
+<section class="sec-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
+				<div class="pages-sidebar-item">
+					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
+					<ul class="pages-sidebar-links">
+						<li><a href="#">관리비</a></li>
+						<li><a href="#">에너지 사용량</a></li>
+						<li><a href="#">회원 관리</a></li>
+						<li><a class="active" href="#">게시글 관리</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-6 col-xs-12">
+				<div></div><br><br>
+				<div class="sec-title-container less-padding-3 text-left">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">게시글 관리</h4>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">게시글을 조회 및 수정합니다.</p>
+				</div>
+				<ul class="nav nav-tabs nav-justified">
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admOpeInfoList">운영 정보 공개</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">투표</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">분실물 보관소</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled" href="#">일정 관리</a>
+					</li>
+				</ul>
 				<div class="row">
-					<div class="col-md-6">
-						<ol class="breadcrumb-gray">
-							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
-							<li class="current"><a href="#">운영 정보 공개</a></li>
-						</ol>
+					<div class="text-box white padding-4 col-10">
+							<div class="text-box">
+								<div class="text-box">
+								<h4 class="col-md-8 font-weight-7" style="margin-top: 5px;">${notice.noticeTitle}</h4>
+								<h6 class="col-md-4" style="float: right; text-align: end;">
+								작성일자 : <fmt:formatDate value="${notice.noticeDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${notice.noticeUpdate}" pattern="yy-MM-dd" /></h6>
+								<form id="deleteForm" name="deleteForm" action="admNoticeDelete" method="post">
+									<input type="hidden" id="noticeNo" name="noticeNo" value="${notice.noticeNo}">
+									<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+								</form>
+							</div>
+							</div>
+							<hr>
+							<div class="text-box padding-2 border" style="margin-bottom: 20px; min-height: 400px;">
+								${notice.noticeContent}
+							</div>
+						<br><br><br>
+						<div align="center">
+							<button type="button" class="btn btn-default" id="modifyBtn">수정</button>
+							<button type="button" class="btn btn-default" id="deleteBtn">삭제</button>
+							<button type="button" class="btn btn-default" onclick="location.href='admNoticeList'">목록</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<section class="sec-padding section-light">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 nopadding">
-					<div class="sec-title-container-padding-topbottom text-center">
-						<div class="pl-title-line-1"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">공지사항</h4>
-						<div class="clearfix"></div>
-						<p class="by-sub-title">공지사항 투명한 ... 어쩌구..ㅋㅋ</p>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				
-				
-				<div class="text-box white padding-4 col-7">
-						<div class="text-box">
-							<textarea readonly id="noticeTitle" class="col-md-8 font-weight-7" style="background-color:transparent">${notice.noticeTitle}</textarea>
-							<h6 class="col-md-4" style="float: right; text-align: end;">
-					작성일자 : <fmt:formatDate value="${notice.noticeDate}" pattern="yy-MM-dd" /> | 최종수정 :<fmt:formatDate value="${notice.noticeUpdate}" pattern="yy-MM-dd" /></h6>
-</div>
-
-
-	<hr>
- 	<textarea onkeyup="adjustHeight();" class="text-box padding-2 border form-control" rows="5" name="noticeContent" id="noticeContent" 
- 	 readonly style="background-color:transparent;">
-		${notice.noticeContent}
-	</textarea> 
-	<div class="padding-4 col-sm-12 " align="right">
-		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="btnModify">수정</button>
-		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="btnDelete">삭제</button>
-		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" onclick="location.href='../admin/admNoticeList'" >목록</button>
 	</div>
-	
-	
-<%-- 	<div class="text-box padding-2 border" style="margin-bottom: 20px;">
-		${notice.noticeContent}
-	</div> --%>
-	
-
-<%-- 	<div>
-		<label>내용</label>
-		<textarea class="form-control" name="noticeContent" id="noticeContent"
-			rows="3" disabled="disabled">${notice.noticeContent}</textarea>
-	</div>
- --%>	
-	
-	
-	<form role="form" action="delete" id="frm" name="frm" method="post">
-		<input id="noticeNo" name="noticeNo" type="hidden" value="${notice.noticeNo}">
-	</form>
-</div>
-
-<br>
-
-</div>
-</div>
 </section>
+</body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-$("#btnDelete").on("click", function() {
-	if (confirm('삭제하겠습니까?'))
-		$.post("admNoticeDelete", {
-			noticeNo : $("#noticeNo").val()
-		}, function(result) {
-			if (result == true) {
-				alert("삭제되었습니다.")
-				window.location.href = "admNoticeList";
-			}
-		});
-});
-	
-	
- 	 $("#btnModify").on("click", function(){
-		$("#noticeTitle").removeAttr("readonly");
-		$("#noticeContent").removeAttr("readonly");
-		/* $("#noticeContent").attr("min-height", "500"); */
-		$("#btnModify").attr('id','update').html('완료');
-		document.getElementById('update').onclick = function(){
-			$.ajax({
-				url: "admNoticeUpdate",
-				type: "post",
-				data: JSON.stringify({
-					noticeTitle	: $("#noticeTitle").val(),
-					noticeContent: $("#noticeContent").val(),
-					noticeNo: $("#noticeNo").val()
-				}),
-				contentType: 'application/json',
-				success: function (data) {
-					alert("수정이 완료 되었습니다");
-					console.log(data);
-					history.back();
-					// location.href = "admNoticeList";
-				},
-				error: function () {
-					alert("입력되지 않았습니다."); // 실패 시 처리
-				}
-			});
-		};
-	}); 
- 	 
- 	 
- 	
-  	function adjustHeight() {
- 		  var textEle = $('textarea');
- 		  textEle[0].style.height = 'auto';
- 		  var textEleHeight = textEle.prop('scrollHeight');
- 		  textEle.css('height', textEleHeight);
- 		};
 
- 		adjustHeight(); 
- 		
-/*  	$('document').ready(function(){
- 		$('textarea'.keyup(function(e){
- 			
- 			$(this).css('height','auto');
- 			$(this).height(this.scrollHeight);
- 		});
- 	}); */
+<script>
+	// 게시글 삭제
+ 	$('#deleteBtn').on("click", function() {
+		if (confirm('정말로 삭제하시겠습니까?')) {
+			$('#deleteForm').submit();
+		}
+	});
  	
-/* 	function modify(){
-		alert("수정 완료!");
-	} */
-		 
-	
+	$('#modifyBtn').on("click", function() {
+		if (confirm('수정하시겠습니까?')) {
+			$(location).attr('href','admNoticeUpdate?noticeNo=' + $('#noticeNo').val());
+		}
+	})
+ 	
 </script>
+
+</html>

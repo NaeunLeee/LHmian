@@ -16,7 +16,7 @@
 		cursor: pointer;
 	}
 	.container {
-		width: 80%;
+		width: 85%;
 	}
 	.nav-tabs.nav-justified>li>a {
 		margin: 0px 1px 0px;
@@ -103,7 +103,10 @@
 								<h4 class="col-md-8 font-weight-7" style="margin-top: 5px;">${info.oiTitle}</h4>
 								<h6 class="col-md-4" style="float: right; text-align: end;">
 								작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" /></h6>
-								<input type="hidden" id="oiNo" name="oiNo" value="${info.oiNo}">
+								<form id="deleteForm" name="deleteForm" action="admOpeInfoDelete" method="post">
+									<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+									<input type="hidden" id="oiNo" name="oiNo" value="${info.oiNo}">
+								</form>
 							</div>
 							</div>
 							
@@ -126,7 +129,7 @@
 						<div align="center">
 							<button type="button" class="btn btn-default" id="modifyBtn">수정</button>
 							<button type="button" class="btn btn-default" id="deleteBtn">삭제</button>
-							<button type="button" class="btn btn-default" onclick="location.href='../admin/admOpeInfoList'">목록</button>
+							<button type="button" class="btn btn-default" onclick="location.href='admOpeInfoList'">목록</button>
 						</div>
 					</div>
 				</div>
@@ -139,93 +142,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
-	// 첨부파일 확장자 체크
-	function checkExtension(filename) {
-		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-		if (regex.test(filename)) {
-			alert("해당 종류의 파일은 업로드할 수 없습니다.");
-			return false;
-		}
-		return true;
-	};
-	
-	// 첨부파일 업로드 함수
-	$('#uploadBtn').on("click", function() {
-		var formData = new FormData(document.frm);
-		var inputFile = $('[name="uploadFile"]');
-		var files = inputFile[0].files;
-	
-		// 파일이 여러개 들어올 걸 대비해서... -> 너무 복잡해져서 파일은 일단 하나만..ㅠ
-		for (i = 0; i < files.length; i++) {
-			if (!checkExtension(files[i].name)) {
-				return;
-			} else {
-				formData.append("uploadFile", files[i]);
-			}
-		}
-	
-		$.ajax({
-			processData : false,
-			contentType : false,
-			url : "opeInfoFileAttach",
-			data : formData,
-			type : 'POST',
-			success : function(datas) {
-				var li = "";
-				var str = "";
-	
-				for (i=0; i<datas.length; i++) {
-					var obj = datas[i];
-					var fileCallPath 
-						= encodeURIComponent(obj.oiFilepath + "/" + obj.oiFileid + "_" + obj.oiFilename);
-					var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
-	
-					li += "<li>";
-					li += "<span> "+ obj.oiFilename + "</span>";
-					li += "</li>";
-	
-					str += "<input type='hidden' id='oiFilename' name='oiFilename' value='" + obj.oiFilename + "'>";
-					str += "<input type='hidden' id='oiFileid' name='oiFileid' value='" + obj.oiFileid + "'>";
-					str += "<input type='hidden' id='oiFilepath' name='oiFilepath' value='" + obj.oiFilepath + "'>";
-	
-				}
-				$('#uploaded').html(li);
-				$('#frm').append(str);
-			}
-		});
-	});
-
 	// 게시글 삭제
  	$('#deleteBtn').on("click", function() {
 		if (confirm('정말로 삭제하시겠습니까?')) {
 			$('#deleteForm').submit();
 		}
 	});
- 	
- 	// 첨부파일 삭제
-	$('#fileDelBtn').on("click", function() {
-		if (confirm('첨부파일을 삭제하시겠습니까?')) {
-			
-			$.ajax ({
-				url: "opeInfoDelFile",
-				type: "post",
-				dataType: "json",
-				data: JSON.stringify({
-					oiNo: $('#oiNo').val(),
-				}),
-				contentType: 'application/json',
-				success: function (data) {
-					alert('삭제가 완료되었습니다.');
-					console.log(data);
-					$('#fileDiv').empty();
-				},
-				error: function (data) {
-					alert('다시 시도해주세요.');
-				}
-			})
-		}
-	})
 	
 	$('#modifyBtn').on("click", function() {
 		if (confirm('수정하시겠습니까?')) {

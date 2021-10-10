@@ -55,12 +55,33 @@ public class NoticeController {
 		return "admin/admNoticeSelect";
 	}
 
-	// 관리자 글삭제
+	// 관리자 글삭제 (ajax)
+//	@PostMapping("/admin/admNoticeDelete")
+//	@ResponseBody
+//	public boolean admNoticeDelete(NoticeVO vo) {
+//		service.delete(vo);
+//		return true;
+//	}
+	
+	// 관리자 글삭제 (ajax 없이 페이지로) (10/10 추가 - 이나은)
 	@PostMapping("/admin/admNoticeDelete")
-	@ResponseBody
-	public boolean admNoticeDelete(NoticeVO vo) {
-		service.delete(vo);
-		return true;
+	public String delete(NoticeVO vo, RedirectAttributes rttr, @ModelAttribute("cri") NoticeCriteria cri) {
+		
+		int n = service.delete(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "삭제가 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "삭제에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		return "redirect:/admin/admNoticeList";
+		
 	}
 
 	// 등록 폼
@@ -72,17 +93,44 @@ public class NoticeController {
 	// 등록
 	@PostMapping("/admin/admNoticeInsert")
 	public String admNoticeInsert(NoticeVO vo, RedirectAttributes rttr) {
-		service.insert(vo);
-		rttr.addFlashAttribute("message", "등록 성공했습니다.");
+		int n = service.insert(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "공지사항 한 건이 정상적으로 등록되었습니다.");
+		} else {
+			rttr.addFlashAttribute("message", "다시 시도해주세요.");
+		}
+		
 		return "redirect:/admin/admNoticeList";
 	}
 
-	// 관리자 공지사항 수정
-	@ResponseBody
-	@PostMapping("/admin/admNoticeUpdate")
-	public String update(@RequestBody NoticeVO vo) {
-		// System.out.println(vo.getNoticeTitle() + "/" + vo.getNoticeContent());
-		service.update(vo);
-		return "";
+	// 관리자 공지사항 수정 폼
+	@GetMapping("/admin/admNoticeUpdate")
+	public String updateForm(NoticeVO vo, Model model) {
+		model.addAttribute("notice", service.read(vo));
+		return "admin/admNoticeUpdate";
 	}
+	
+	// 관리자 공지사항 수정 (ajax 없이 페이지로) (10/10 추가 - 이나은)
+	@PostMapping("/admin/admNoticeUpdate")
+	public String update(RedirectAttributes rttr, NoticeVO vo) {
+		int n = service.update(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		return "redirect:/admin/admNoticeList";
+	}
+	
+	// 관리자 공지사항 수정 (ajax)
+//	@ResponseBody
+//	@PostMapping("/admin/admNoticeUpdate")
+//	public String update(@RequestBody NoticeVO vo) {
+//		// System.out.println(vo.getNoticeTitle() + "/" + vo.getNoticeContent());
+//		service.update(vo);
+//		return "";
+//	}
 }
