@@ -154,13 +154,11 @@ public class OpeInfoController {
 			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
 		}
 		
-		rttr.addAttribute("info", opeInfoService.read(vo));
-		
 		return "redirect:/admin/admOpeInfoList";
 	}
 	
 	// 삭제
-	@PostMapping("/admin/opeInfoDelete")
+	@PostMapping("/admin/admOpeInfoDelete")
 	public String delete(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
 		
 		int n = opeInfoService.delete(vo);

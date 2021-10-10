@@ -103,12 +103,13 @@
 				<div>
 					<form id="frm" name="frm" action="admOpeInfoInsert" method="post">
 						<div>
-							<select name="oiType" class="form-control" style="width: 18%; float: left;">
+							<select name="oiType" id="oiType" class="form-control" style="width: 18%; float: left;">
+								<option value="" selected>카테고리</option>
 								<option value="관리규약">관리규약</option>
 								<option value="재무제표">재무제표</option>
 								<option value="안전관리">안전관리</option>
 							</select> &nbsp;&nbsp; 
-							<input type="text" name="oiTitle" class="form-control" style="width: 80%; float: left;" placeholder="제목을 입력하세요.">
+							<input type="text" id="oiTitle" name="oiTitle" class="form-control" style="width: 80%; float: left;" placeholder="제목을 입력하세요.">
 							<hr>
 						</div>
 						<div>
@@ -124,12 +125,11 @@
 				</div>
 				</div>
 				<br>
+			</div><br><br>
+			<div align="center">
+				<button type="button" id="insertBtn" class="btn btn-dark">등	록</button>
+				<button type="button" class="btn btn-default" onclick="location.href='admOpeInfoList'">목 록</button>
 			</div>
-		</div><br><br>
-		<div align="center">
-			<button type="button" id="insertBtn" class="btn btn-gyellow">등	록</button>
-			<button type="reset" class="btn btn-default">취 소</button>
-			<button type="button" class="btn btn-default" onclick="location.href='../admin/admOpeInfoList'">목 록</button>
 		</div>
 	</section>
 </body>
@@ -197,7 +197,12 @@
 
 		// 등록 버튼 이벤트
 		$('#insertBtn').on("click", function() {
-			$('#frm').submit();
+			
+		    if ($('#oiType').val() == "" || $('#oiTitle').val() == "") {
+		    	alert('양식을 모두 입력해주세요.');
+		    } else {
+				$('#frm').submit();
+		    }
 		});
 
 	});
@@ -205,6 +210,9 @@
     ClassicEditor.create(document.querySelector('#oiContent'))
     			 .catch(error => { console.error(error); });
 	
+
+    
+    
 </script>
 
 </html>
