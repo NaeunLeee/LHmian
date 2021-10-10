@@ -16,4 +16,7 @@ public class VoteVO {
 	private Date voteUpdate;
 	private Double percent;
 	private String over;
+	
+	public String vcContent;
+	public int vcQuesNo;
 }

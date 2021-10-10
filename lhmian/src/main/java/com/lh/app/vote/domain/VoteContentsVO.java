@@ -10,5 +10,5 @@ public class VoteContentsVO {
 	public int voteNo;
 	public String vcContent;
 	public Date vcUpdate;
-	public int vcQuestNo;
+	public int vcQuesNo;
 }

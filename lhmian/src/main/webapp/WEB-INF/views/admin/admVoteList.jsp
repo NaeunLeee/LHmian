@@ -16,6 +16,7 @@ a.link {
 	cursor: default; !important /*마우스 커서를 포인트에서 디폴트로 변경*/
 }
 .btn.btn-medium {
+	width: 98px;
     padding: 5px 20px;
     font-size: 14px;
 }

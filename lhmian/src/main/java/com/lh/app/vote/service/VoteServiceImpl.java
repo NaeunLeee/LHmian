@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lh.app.vote.domain.VoteContentsVO;
 import com.lh.app.vote.domain.VoteVO;
 import com.lh.app.vote.mapper.VoteMapper;
 
@@ -17,6 +18,30 @@ public class VoteServiceImpl implements VoteService {
 	public List<VoteVO> voteList() {
 		// TODO Auto-generated method stub
 		return voteMapper.voteList();
+	}
+
+	@Override
+	public int voteInsert(VoteVO vo) {
+		// TODO Auto-generated method stub
+		return voteMapper.voteInsert(vo);
+	}
+
+	@Override
+	public int voteContentsInsert(VoteContentsVO vo) {
+		// TODO Auto-generated method stub
+		return voteMapper.voteContentsInsert(vo);
+	}
+
+	@Override
+	public List<VoteVO> voteSelect(VoteVO vo) {
+		// TODO Auto-generated method stub
+		return voteMapper.voteSelect(vo);
+	}
+
+	@Override
+	public VoteVO voteSelectTitle(VoteVO vo) {
+		// TODO Auto-generated method stub
+		return voteMapper.voteSelectTitle(vo);
 	}
 
 }
