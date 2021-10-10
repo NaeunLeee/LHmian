@@ -15,6 +15,7 @@
 			<input type="hidden" name="confWriter" value="${name}">
 			<hr>
 			<textarea rows="20" cols="50" name="confContent"></textarea>
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 		</div>
 		<div align="center">
 			<button type="submit">등 록</button>

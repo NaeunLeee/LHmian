@@ -326,6 +326,7 @@
 					<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="price">금 액 (원)</label></h5>
 						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
 						<input type="hidden" id="code" name="code">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				</div>
 				<br>
 			</div>
@@ -354,6 +355,7 @@
 	<input type="hidden" id="gxCode" name="gxCode" value="">
 	<input type="hidden" id="gymPeriod" name="gymPeriod" value="">
 	<input type="hidden" id="gymPrice" name="gymPrice" value="">
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 
 </body>
@@ -437,7 +439,12 @@
 			name = '<sec:authentication property="principal.HOUSEINFO" />';
 		</sec:authorize>
 		
-		paymentFnc(name, houseInfo, phone);
+		
+		if ($('#gymStartdate').val() != "" && $('#gymPeriod').val() != "") {
+			paymentFnc(name, houseInfo, phone);
+		} else {
+			alert('양식을 모두 입력해 주세요.');
+		}
 		
 	});
 

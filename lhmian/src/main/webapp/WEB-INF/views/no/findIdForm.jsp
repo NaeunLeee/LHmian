@@ -31,7 +31,9 @@
 					</label>
 					<div class="pw-error-msg" style="display: none"></div>
 				</div>
-
+				<button>찾기</button><button type="button" id="closeBtn">닫기</button>
+				<!-- CSRF 토큰 -->
+                <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			</div>
 		</form>
 	</div>

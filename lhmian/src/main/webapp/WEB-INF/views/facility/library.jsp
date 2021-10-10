@@ -202,6 +202,7 @@
 					   </select><br>
 						<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="price">금 액 (원)</label></h5> 
 						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					</div>
 					<br>
 				</div>
@@ -229,6 +230,7 @@
 	<input type="hidden" id="libStartdate" name="libStartdate" value="">
 	<input type="hidden" id="libPeriod" name="libPeriod" value="">
 	<input type="hidden" id="libPrice" name="libPrice" value="">
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 
 </body>
@@ -285,10 +287,6 @@
         return false;                           //<a> 의 본래기능 (하이퍼링크) 작동방지
     });
 
-   	$('#payBtn').on('click', function() {
-   		window.open("", "popup_window", "width=500, height=700, scrollbars=yes");
-   	});
-   	
 	// 결제버튼 클릭 시
 	$('#payBtn').on('click', function() {
 		
@@ -309,7 +307,11 @@
 			name = '<sec:authentication property="principal.HOUSEINFO" />';
 		</sec:authorize>
 		
-		paymentFnc(name, houseInfo, phone);
+		if ($('#libStartdate').val() != "" && $('#libPeriod').val() != "") {
+			paymentFnc(name, houseInfo, phone);
+		} else {
+			alert('양식을 모두 입력해 주세요.');
+		}
 		
 	});
 

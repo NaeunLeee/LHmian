@@ -20,11 +20,6 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public int delete(PaymentVO vo) {
-		return paymentMapper.delete(vo);
-	}
-
-	@Override
 	public List<PaymentVO> getList(PaymentVO vo) {
 		return paymentMapper.getList(vo);
 	}
@@ -37,6 +32,11 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int update(ManagementFeeVO vo) {
 		return paymentMapper.update(vo);
+	}
+
+	@Override
+	public int updateStatus(PaymentVO vo) {
+		return paymentMapper.updateStatus(vo);
 	}
 
 }

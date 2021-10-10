@@ -1,71 +1,131 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<div class="container">
-	<sec:authentication property="principal.username" />
-	<form action="deleteComm" id="frm" name="frm" method="post">
-		<div class="form-group">
-			<label>commNo</label> <input class="form-control" id="commNo" name="commNo" value="${list.commNo}"
-				readonly="readonly" disabled="disabled">
-		</div>
-	</form>
-	<div class="form-group">
-		<label>Title</label> <input class="form-control" id="commTitle" name="commTitle" value="${list.commTitle}"
-			disabled="disabled">
-	</div>
 
-	<div>
-		<label>Text area</label>
-		<textarea class="form-control" name="commContent" id="commContent" rows="3"
-			disabled="disabled">${list.commContent}</textarea>
-	</div>
+<style>
+textarea {
+	resize:none;
+	border:none;
+	overflow: hidden;
+}
 
-	<div class="form-group">
-		<label>Writer</label> <input class="form-control" id="id" name="id" disabled="disabled" value="${list.id}">
-	</div>
-	<div class="form-group">
-		<label>Date</label> <input class="form-control" name="commDate" value="<fmt:formatDate pattern = " yyyy/MM/dd"
-			value="${list.commDate}" />"
-		readonly="readonly" disabled="disabled">
-	</div>
+#commContent {
+	margin-bottom: 20px;
+	width: 100%;
+	min-height: 200px;
+	
+}
 
-	<div class="form-group">
-		<label>Update Date</label> <input class="form-control" name="commUpdate" value="<fmt:formatDate pattern = "
-			yyyy/MM/dd" value="${list.commUpdate}" />"
-		readonly="readonly" disabled="disabled">
-	</div>
-	<!-- 10/07 수정 -->
-	<c:set var="id" value="${list.id}"/>
-	<c:set var="login" value="${login}"/>
-	<c:if test="${id eq login}">
-		<button type="button" id="btnModify">수정</button>
-		<button type="submit" id="btnDelete">삭제</button>
-	</c:if>
-	<hr>
-	<div>
-		<!-- 댓글 등록 -->
-		<div class="panel-heading">
-			<form id="replyForm">
-				<input type="hidden" name="commNo" value="${list.commNo}"> <input type="hidden" id="cmtWriter"
-					name="cmtWriter" value="${login}">
-				<textarea rows="10" cols="100" id="cmtContent" name="cmtContent"></textarea>
-				<button type="button" id="saveReply">댓글등록</button>
-			</form>
-		</div>
+#commTitle {
+	font-size: 20px;
+	height: 35px;
 
-		<!-- 댓글 목록 -->
-		<h3>댓글 목록</h3>
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">댓글</h1>
-				<ul class="chat">
-				</ul>
+}
+
+.info {
+	padding-right: 5px;
+	
+}
+</style>
+
+
+<body>
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
 			</div>
 		</div>
-	</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class=" clearfix"></div>
 </div>
+	<section>
+		<div class="pagenation-holder-no-bottom">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						<ol class="breadcrumb-gray">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
+							<li class="current"><a href="#">운영 정보 공개</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<hr>
+				<section class="section-light">
+				<div class="container">
+				<div class="row">
+				<div class="text-box white padding-4 col-7" style="margin-top:50px; ">
+							<div class="text-box">
+							<textarea readonly id="commTitle" class="col-md-8 font-weight-7" style="background-color:transparent; font-size:20px">${list.commTitle}</textarea>
+							<h6 class="padding-4 col-md-12">
+							<span class="info" style="font-size:14px;">${list.id}</span>
+							<span class="info">조회 ${list.commHit}</span>
+							<span class="info">작성일자 <fmt:formatDate value="${list.commDate}" pattern="yy-MM-dd" /> | 최종수정 <fmt:formatDate value="${list.commUpdate}" pattern="yy-MM-dd" /></span>
+							</h6>	
+							
+							
+						</div>
+						
+						<hr>
+						<textarea readonly class="text-box padding-2 form-control" rows="5" name="commContent" id="commContent" 
+					 	  style="background-color:transparent; border:none;">${list.commContent}</textarea> 
+
+
+
+
+
+
+<div class="padding-4 col-sm-12 " align="right">
+		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="btnModify">수정</button>
+		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="btnDelete">삭제</button>
+		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" onclick="location.href='../admin/admNoticeList'" >목록</button>
+	</div>
+	
+	<form role="form" action="deleteComm" id="frm" name="frm" method="post">
+		<input id="commNo" name="commNo" type="hidden" value="${list.commNo}">
+	</form>
+	</div>
+	
+	
+	<!-- 댓글 목록 -->
+	<div class="text-box white padding-4 col-7" style="margin-bottom:80px;">
+		<div class="text-box">
+		<ul class="chat" style="padding: 0 15px;">
+			</ul>
+		
+	<!-- 댓글 등록 -->
+	<div class="panel-heading" style="border:1px solid lightgray">
+		<form id="replyForm">
+			<input type="hidden" name="commNo" value="${list.commNo}"> 
+			<input type="hidden" id="cmtWriter" name="cmtWriter" value="노잼">
+			<textarea rows="10" style="width:100%" id="cmtContent" name="cmtContent"></textarea>
+			<div class="col-md-12" style="padding:0">
+				<button type="button" id="saveReply" style="float:right">댓글등록</button>
+			</div>
+		</form>
+	</div>
+	</div>
+	</div>
+
+	</div>
+	</div>
+	</section>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$("#btnDelete").on("click", function () {
@@ -81,8 +141,10 @@
 			});
 	});
 
-	$("#btnModify").on("click", function () {
-		$("#commContent").attr("disabled", false);
+	$("#btnModify").on("click", function() {
+		$("#commContent").attr("readonly", false);
+		$("#commTitle").attr("readonly", false);
+
 		$("#btnModify").attr('id', 'update').html('완료');
 		$("#update").on("click", function () {
 			$.ajax({

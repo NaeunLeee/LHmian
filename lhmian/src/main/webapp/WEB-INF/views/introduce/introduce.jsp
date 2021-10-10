@@ -1,20 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <head>
- <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-</head>
+
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+
 <style>
-h1{
-	font-size: 47px;
-}
 
-#sync2 .item {
-	border: none;
-}
-
+	h1 {
+		font-size: 47px;
+	}
+	
+	#sync2 .item {
+		border: none;
+	}
 
 </style>
+
+</head>
 
 <section>
       <div class="pagenation-holder">

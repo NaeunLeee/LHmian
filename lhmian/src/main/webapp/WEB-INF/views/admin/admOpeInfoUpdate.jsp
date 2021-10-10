@@ -31,6 +31,12 @@
 	}
 </style>
 
+<script>
+	$(function() {
+		$('#oiType').val(attr('data-oiType')).prop("selected",true);
+	});
+</script>
+
 </head>
 <body>
 	<div class="header-inner-tmargin">
@@ -103,16 +109,16 @@
 				<div>
 					<form id="frm" name="frm" action="admOpeInfoInsert" method="post">
 						<div>
-							<select name="oiType" class="form-control" style="width: 18%; float: left;">
+							<select name="oiType" id="oiType" class="form-control" style="width: 18%; float: left;" data-oiType="${info.oiType}">
 								<option value="관리규약">관리규약</option>
 								<option value="재무제표">재무제표</option>
 								<option value="안전관리">안전관리</option>
 							</select> &nbsp;&nbsp; 
-							<input type="text" name="oiTitle" class="form-control" style="width: 80%; float: left;" placeholder="제목을 입력하세요.">
+							<input type="text" name="oiTitle" class="form-control" style="width: 80%; float: left;" value="${info.oiTitle}">
 							<hr>
 						</div>
 						<div>
-							<textarea id="oiContent" name="oiContent" class="form-control"></textarea>
+							<textarea id="oiContent" name="oiContent" class="form-control">${info.oiContent}</textarea>
 							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 						</div>
 					</form>

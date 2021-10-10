@@ -22,6 +22,7 @@
 		<textarea id="confContent" rows="5" cols="33" disabled="disabled">${conf.confContent}</textarea>
 		<form id="deleteForm" name="deleteForm" action="confDelete" method="post">
 			<input id="confNo" name="confNo" type="hidden" value="${conf.confNo}">
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 		</form>
 	</div>
 	<br>
@@ -40,8 +41,11 @@
 
 <script>
 
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+
+
 	$('#modifyBtn').on("click", function() {
-		
 		if ($(this).attr('id') == 'modifyBtn') {
 	
 			if (confirm('수정하시겠습니까?')) {
@@ -64,6 +68,9 @@
 						confContent: $('#confContent').val()
 					}),
 					contentType: 'application/json',
+					beforeSend: function(xhr) {
+			            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
 					success: function (data) {
 						alert("수정이 완료되었습니다!");
 						console.log(data);

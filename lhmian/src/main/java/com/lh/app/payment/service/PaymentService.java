@@ -10,12 +10,12 @@ public interface PaymentService {
 	// 결제 정보 db로
 	public int insert(PaymentVO vo);
 
-	// 결제취소
-	public int delete(PaymentVO vo);
-
-	//개인관리비 결제정보 업데이트
+	// 개인관리비 결제정보 업데이트
 	public int update(ManagementFeeVO vo);
-	
+
+	// 결제취소시 상태변경
+	public int updateStatus(PaymentVO vo);
+
 	// 전체조회
 	public List<PaymentVO> getList(PaymentVO vo);
 

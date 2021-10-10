@@ -56,6 +56,7 @@ SELECT MF_DATE,
 			TRASH_FOOD
 		FROM
 			ENERGY_USAGE
-		ORDER BY MF_DATE DESC
+		ORDER BY 1 DESC
+
 </select>
 </mapper>

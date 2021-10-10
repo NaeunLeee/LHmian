@@ -96,13 +96,13 @@ table {
                   <tr class="move tr_1" data-csNo="${cs.csNo}">
                      <td>${cs.csNo}</td>
                      <c:if test="${cs.csAnswer != null}">
-                        <td>답변완료</td>
+                        <td style="color: #14279B;">답변완료</td>
                      </c:if>
                      <c:if test="${cs.csAnswer == null}">
-                        <td>처리중</td>
+                        <td style="color: #FF0000;">처리중</td>
                      </c:if>
                      <%-- <td onclick="location.href='../office/csSelect?csNo=${cs.csNo}'">${cs.csTitle}</td> --%>
-                     <td>${cs.csTitle}</td>
+                     <td style="text-align: left;">${cs.csTitle}</td>
                      <td>${cs.name}</td>
                      <td><fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" /></td>
                   </tr>

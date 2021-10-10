@@ -1,6 +1,3 @@
-<!-- 작업일자 : 2021.09.24. 
-     수정일자 :
-     담당자 : 윤지민 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -59,14 +56,14 @@
 		const password = $('#password').val();
 
 		$('#findId').on('click', function() {
-			window.open("findIdForm", "아이디 찾기", "width=500, height=400");
+			window.open("find/findIdForm", "아이디 찾기", "width=500, height=400");
 
 		})
 
 		$('#findPassword').on(
 				'click',
 				function() {
-					window.open("findPasswordForm", "비밀번호 찾기",
+					window.open("find/findPasswordForm", "비밀번호 찾기",
 							"width=500, height=400");
 
 				})
@@ -210,7 +207,7 @@
 								<!-- 아이디/비번찾기, 회원가입 -->
 								<div class="find-util">
 									<a id="findId">아이디 찾기</a>|<a id="findPassword">비밀번호 찾기</a>| <a
-										href="leaderStep1">회원가입</a>
+										href="signIn/leaderStep1">회원가입</a>
 								</div>
 							</div>
 							<div class="spacer-t30 spacer-b30">
@@ -223,6 +220,10 @@
 									onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=5986adbc56a3444841aed3bd67e4976d&redirect_uri=http://localhost:8091/app/kakaoLogin&response_type=code'">
 							</div>
 						</div>
+
+						<!-- CSRF 토큰 -->
+
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					</form>
 
 				</div>

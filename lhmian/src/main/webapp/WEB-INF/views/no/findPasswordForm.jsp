@@ -13,6 +13,8 @@
 		휴대폰 번호 <input type="text" id="phone" name="phone">
 		<br><br>
 		<button>찾기</button><button type="button" id="closeBtn">닫기</button>
+		<!-- CSRF 토큰 -->
+        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	 </form>
 </body>
 </html>

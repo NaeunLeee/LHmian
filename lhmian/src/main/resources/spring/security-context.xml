@@ -43,15 +43,25 @@
 	<security:http pattern="/js/**" security="none" />
 	<security:http pattern="/less/**" security="none" />
 	<security:http pattern="/php/**" security="none" />
+
 	<!-- 10/10 추가 fullcalendar -->
 	<security:http pattern="/fullcalendar/**" security="none" />
 	<security:http>
-		<!-- 인터셉트 처리 -->
-<!-- 		<security:intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')" 
-			/> 
 
+	
+
+	<security:http use-expressions="true">
+
+		<!-- 인터셉트 처리 -->
+  		<security:intercept-url pattern="/" access="permitAll()" />
+  		<security:intercept-url pattern="/kakaoLogin" access="permitAll()" />
+		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+  		<security:intercept-url pattern="/signIn/**" access="isAnonymous()" />   
+  		<security:intercept-url pattern="/login/**" access="isAnonymous()" />
+  		<security:intercept-url pattern="/find/**" access="isAnonymous()" />
+		<security:intercept-url pattern="/introduce/**" access="permitAll()" />  
 		<security:intercept-url pattern="/**"
-			access="permitAll()" /> -->
+			access="isAuthenticated()" />
 		<!-- 커스텀 로그인 -->
 		<security:form-login login-page="/login"
 			login-processing-url="/loginDo" username-parameter="id"
