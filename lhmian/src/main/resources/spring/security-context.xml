@@ -46,10 +46,6 @@
 
 	<!-- 10/10 추가 fullcalendar -->
 	<security:http pattern="/fullcalendar/**" security="none" />
-	<security:http>
-
-	
-
 	<security:http use-expressions="true">
 
 		<!-- 인터셉트 처리 -->
