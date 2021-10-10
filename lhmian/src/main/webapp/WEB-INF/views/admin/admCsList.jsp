@@ -199,17 +199,14 @@
 $(function() {
 
     var actionForm = $('#actionForm');
-    $('.move')
-          .on(
-                "click",
-                function(e) {
-                   e.preventDefault();
-                   var csNo = $(this).attr("data-csNo");
-                   actionForm
-                         .append('<input type="hidden" name="csNo" value="' + csNo + '">');
-                   actionForm.attr("action", "csSelect");
-                   actionForm.submit();
-                });
+    $('.move').on("click", function(e) {
+		e.preventDefault();
+		var csNo = $(this).attr("data-csNo");
+		actionForm
+		      .append('<input type="hidden" name="csNo" value="' + csNo + '">');
+		actionForm.attr("action", "admCsSelect");
+		actionForm.submit();
+    });
 
     $('#pageBtn a').on("click", function(e) {
        e.preventDefault();
