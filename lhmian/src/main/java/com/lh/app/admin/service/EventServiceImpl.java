@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lh.app.admin.domain.EventVO;
 import com.lh.app.admin.mapper.EventMapper;
+import com.lh.app.comm.domain.Criteria;
 
 @Service
 public class EventServiceImpl implements EventService{
@@ -44,5 +45,20 @@ public class EventServiceImpl implements EventService{
 		// TODO Auto-generated method stub
 		return eventMapper.getList();
 	}
+	
+	
+	// 10/09 추가
+	@Override
+	public List<EventVO> getListview(Criteria cri) {
+		// TODO Auto-generated method stub
+		return eventMapper.getListview(cri);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return eventMapper.getTotalCount(cri);
+	}
+
 
 }

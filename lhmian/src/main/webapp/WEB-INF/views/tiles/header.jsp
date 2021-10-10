@@ -200,6 +200,7 @@
 																<a href="${pageContext.request.contextPath}/myPage/myOpeInfoList">작성글 조회</a>
 																<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
 															</li>
+															
 															<li>
 																<a href="myFac">시설이용내역</a>
 															</li>
@@ -223,6 +224,10 @@
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
+															</li>
+															<!-- 10/10 -->
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admSkedview">일정 관리</a>
 															</li>
 														</ul>
 													</li>
