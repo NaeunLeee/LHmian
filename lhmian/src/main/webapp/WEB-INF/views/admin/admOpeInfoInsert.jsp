@@ -113,6 +113,7 @@
 						</div>
 						<div>
 							<textarea id="oiContent" name="oiContent" class="form-control"></textarea>
+							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 						</div>
 					</form>
 					<div>
