@@ -276,6 +276,10 @@ a:hover {
 	<script
 		src="${pageContext.request.contextPath}/resources/js/functions/functions.js"></script>
 	<!-- Scripts END -->
+	
+	<!-- 윤지민님 전용 -->
+		<script
+		src="${pageContext.request.contextPath}/resources/js/yjmFunction/functions.js"></script>
 
 	<!-- Template scripts -->
 	<script

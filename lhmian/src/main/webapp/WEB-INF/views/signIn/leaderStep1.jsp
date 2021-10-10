@@ -71,7 +71,7 @@ div .form-body .btn {
 								  + '	<label for="phone">'
 								  +	'		<h6 class="less-mar-4">'
 								  +	'			<span class="font-weight-5">인증 번호 </span>'
-								  + '			<span class="icon-alarmclock"></span>&nbsp;'
+								  + '			<i class="bi bi-alarm"></i>&nbsp;'
 								  + '			<span class="time"></span>'
 								  + '       </h6>'
 								  + '	</label>'
