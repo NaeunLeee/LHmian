@@ -103,6 +103,7 @@
 								<h4 class="col-md-8 font-weight-7" style="margin-top: 5px;">${info.oiTitle}</h4>
 								<h6 class="col-md-4" style="float: right; text-align: end;">
 								작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" /></h6>
+								<input type="hidden" id="oiNo" name="oiNo" value="${info.oiNo}">
 							</div>
 							</div>
 							
@@ -226,6 +227,11 @@
 		}
 	})
 	
+	$('#modifyBtn').on("click", function() {
+		if (confirm('수정하시겠습니까?')) {
+			$(location).attr('href','admOpeInfoUpdate?oiNo=' + $('#oiNo').val());
+		}
+	})
  	
 </script>
 
