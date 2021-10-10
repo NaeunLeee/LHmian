@@ -84,7 +84,7 @@
 												</h5>
 											</div>
 											<div class="col-md-11">
-												<input id="vcContent" name="vcContent" class="input-1">
+												<input id="vcContent" name="vcContent" class="input-1" required>
 											</div>
 										</div>
 										<div class="row question-label">
@@ -94,7 +94,7 @@
 												</h5>
 											</div>
 											<div class="col-md-11" style="margin-bottom: 15px;">
-												<input id="vcContent" name="vcContent" class="input-1">
+												<input id="vcContent" name="vcContent" class="input-1" required>
 												<button type="button" id="plusBtn"
 													class="btn btn-tiny border border-dark">
 													<i class="bi bi-plus-lg"></i> 추가
@@ -103,7 +103,7 @@
 										</div>
 									</div>
 									<div class="col-md-12 text-center">
-										<button type="submit" id="insert" class="btn btn-gyellow-yj">등록</button>
+										<button type="button" id="insert" class="btn btn-gyellow-yj">등록</button>
 										<button type="button" class="btn btn-gyellow-yj" onclick="goBack();">취소</button>
 									</div>
 								</div>
@@ -159,7 +159,7 @@
 								+ '</h5>'
 								+ '</div>'
 								+ '<div class="col-md-11">'
-								+ '<input id="vcContent" name="vcContent" class="input-1">'
+								+ '<input id="vcContent" name="vcContent" class="input-1" required>'
 								+ '<button type="button" id="plusBtn"'
 						  + 'class="btn btn-tiny border border-dark">'
 								+ '<i class="bi bi-plus-lg"></i> 추가</button>'
@@ -202,9 +202,38 @@
 						}
 					})
 
-/* 			$('#insert').on('click', function() {
-				console.log($('#frm').serializeObject());
-			}) */
+		console.log($('.question-label').eq(0).val());
+					
+ 			$('#insert').on('click', function() {
+				if ($('#voteTitle').val() == "") {
+					alert('제목을 입력하세요.');
+					return;
+				}
+				
+				if ($('#voteStart').val() == "") {
+					alert('투표 시작 날짜를 입력하세요.');
+					return;
+				}
+				
+				if ($('#voteEnd').val() == "") {
+					alert('투표 종료 날짜를 입력하세요.');
+					return;
+				}
+				
+				for (let i=0; i < $('.question-label').length; i++) {
+					if ($('.question-label').eq(i).find("input").val() == "") {
+						alert('문항을 입력하세요.');
+						return;
+					}
+				}
+				
+				//datepicker에서 시작날짜 sysdate 이전 선택 못하게 하기
+				//종료날짜는 시작날짜 이후가 되도록 하기, 몇일 이상 기간 못잡게 하기
+				
+				$('#frm').submit();
+			}) 
+			
+			
 
 </script>
 </html>

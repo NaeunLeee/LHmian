@@ -166,7 +166,7 @@
 															<a href="${pageContext.request.contextPath}/resident/confList">입주자 대표회의</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/voteList">투표</a>
+															<a href="${pageContext.request.contextPath}/resident/voteList">투표</a>
 														</li>
 														<li>
 															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
