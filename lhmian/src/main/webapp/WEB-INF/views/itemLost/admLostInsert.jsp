@@ -27,7 +27,7 @@ textarea {
 <div align ="center">
 	<h4>분실물 등록</h4>
 	<hr>
-		<form method="post" action="admLostInsert" enctype="multipart/form-data">
+		<form method="post" action="admLostInsert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
 			<section class="sec-padding-yj">
 				<div class="container">
 					<div class="row">

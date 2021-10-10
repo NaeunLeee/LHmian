@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lh.app.fee.domain.ManagementFeeVO;
 import com.lh.app.payment.domain.PaymentVO;
@@ -39,13 +40,11 @@ public class PaymentController {
 		fvo.setHouseInfo(info.getHOUSEINFO());
 		// db insert 작업
 		fvo.setMfTotal(Long.parseLong(price));
-		System.out.println(fvo.getMfTotal());
 		paymentService.insert(vo);
 		paymentService.update(fvo);
 		model.addAttribute("uid", api.paymentByImpUid(imp_uid));
 		model.addAttribute("pay", vo);
 		model.addAttribute("fpay", fvo);
-		System.out.println(fvo);
 		return "pay/payComplete";
 	}
 
@@ -53,7 +52,6 @@ public class PaymentController {
 	@RequestMapping("myPaidList")
 	public String list(PaymentVO vo, Model model, @AuthenticationPrincipal CustomUserDetails userId) {
 		vo.setId(userId.getUsername());
-		System.out.println(vo);
 		model.addAttribute("pay", paymentService.getList(vo));
 		return "pay/myPaidList";
 	}
@@ -62,7 +60,6 @@ public class PaymentController {
 	@GetMapping("/cancleForm")
 	@ResponseBody
 	public PaymentVO deleteForm(PaymentVO vo) {
-		System.out.println(vo.getPrice());
 		vo.setPrice(vo.getPrice());
 		PaymentVO result = paymentService.read(vo);
 		return result;
@@ -70,8 +67,14 @@ public class PaymentController {
 
 	// 결제취소
 	@PostMapping("/cancle")
-	public void delete(PaymentVO vo) {
+	public String delete(PaymentVO vo, RedirectAttributes rttr) {
 		vo.setPayStatus(vo.getPayStatus());
-		paymentService.updateStatus(vo);
+		int n = paymentService.updateStatus(vo);
+		if(n == 1) {
+			rttr.addFlashAttribute("message", "취소가 완료되었습니다.");
+		} else {
+			rttr.addFlashAttribute("message", "취소에 실패했습니다.");
+		}
+		return "redirect:/myPaidList";
 	}
 }

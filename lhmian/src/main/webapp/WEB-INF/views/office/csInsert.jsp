@@ -23,6 +23,7 @@
 			<button type="reset" class="btn btn-gyellow-yj">취 소</button>
 			<button type="button" onclick="location.href='../office/csList'" class="btn btn-gyellow-yj">목 록</button>
 		</div>
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</form>
 </div>
 <br>
