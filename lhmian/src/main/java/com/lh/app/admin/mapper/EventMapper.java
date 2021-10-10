@@ -3,6 +3,7 @@ package com.lh.app.admin.mapper;
 import java.util.List;
 
 import com.lh.app.admin.domain.EventVO;
+import com.lh.app.comm.domain.Criteria;
 
 public interface EventMapper {
 	
@@ -23,4 +24,10 @@ public interface EventMapper {
 
 	// 전체 조회
 	public List<EventVO> getList();
+	
+	// 전체 조회
+	public List<EventVO> getListview(Criteria cri);
+	
+	// 게시글 수
+	public int getTotalCount(Criteria cri);
 }

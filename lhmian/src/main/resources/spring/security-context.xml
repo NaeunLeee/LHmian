@@ -43,9 +43,15 @@
 	<security:http pattern="/js/**" security="none" />
 	<security:http pattern="/less/**" security="none" />
 	<security:http pattern="/php/**" security="none" />
+
+	<!-- 10/10 추가 fullcalendar -->
+	<security:http pattern="/fullcalendar/**" security="none" />
+	<security:http>
+
 	
 
 	<security:http use-expressions="true">
+
 		<!-- 인터셉트 처리 -->
   		<security:intercept-url pattern="/" access="permitAll()" />
   		<security:intercept-url pattern="/kakaoLogin" access="permitAll()" />
