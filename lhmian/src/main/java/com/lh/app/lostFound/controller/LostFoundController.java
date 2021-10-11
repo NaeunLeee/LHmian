@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,8 +53,8 @@ public class LostFoundController {
 			throws IllegalStateException, IOException {
 		MultipartFile ufile = file;
 		//String filePath = "C:\\Users\\HOME\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; // 집
-		String filePath = "C:\\Users\\arido\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //노트북
-		// String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
+		//String filePath = "C:\\Users\\arido\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //노트북
+		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
 		// 서버저장
 		if (!ufile.isEmpty() && ufile.getSize() > 0) {
 			String fileName = ufile.getOriginalFilename();
@@ -102,19 +101,22 @@ public class LostFoundController {
 	// 수정
 	//썅!!!
 	@PostMapping("/itemLost/lostModify")
-	public String modify(LostFoundVO vo, @RequestParam("lostChangeImg") MultipartFile file, RedirectAttributes rttr)
-			throws IllegalStateException, IOException {
+	public String modify(LostFoundVO vo, @RequestParam("lostChangeImg") MultipartFile file, RedirectAttributes rttr) throws IllegalStateException, IOException {
 		// 파일은 수정하지 않을 경우를 대비해 단건조회
-		//LostFoundVO oldVo = lostFoundService.read(vo);
+		LostFoundVO oldVo = lostFoundService.read(vo);
 		// 새파일
 		MultipartFile ufile = file;
-		String filePath = "C:\\Users\\arido\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //노트북
+		//String filePath = "C:\\Users\\arido\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //노트북
 		//if(file != null) {
 		//String filePath = "C:\\Users\\HOME\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; // 집
-		// String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
+		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
 		// 서버저장
 			if (!ufile.isEmpty() && ufile.getSize() > 0) {
 				// 기존 파일 삭제
+				File oldFile = new File(filePath, oldVo.getLostFile());
+				if(oldFile.exists()) {
+					oldFile.delete();
+				}
 				//lostFoundService.delFile(filePath, oldVo.getLostFile());
 				// 새파일 저장
 				String fileName = ufile.getOriginalFilename();
@@ -138,14 +140,19 @@ public class LostFoundController {
 	
 				ImageIO.write(newImg, "jpg", lostFile);
 				vo.setLostFile(fileName);
-				lostFoundService.update(vo);
-				rttr.addFlashAttribute("result", vo.getLostNo());
+				
+			}else {
+				vo.setLostFile(oldVo.getLostFile());
+//				lostFoundService.update(vo);
+//				rttr.addFlashAttribute("result", vo.getLostNo());
+			}
 			//}
-		}else {
+			lostFoundService.update(vo);
+			rttr.addFlashAttribute("result", vo.getLostNo());
 			// 파일은 수정하지 않는 경우
 			//vo.setLostFile(oldVo.getLostFile());
 			//System.out.println("제발되라");
-		}
+		
 		return "redirect:/itemLost/admLostList";
 	}
 
