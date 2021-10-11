@@ -101,16 +101,25 @@ public class CsController {
 		model.addAttribute("pageMaker", new CsPageVO(cri, total));
 		return "admin/admCsList";
 	}
+	
+	// 관리자 단건 조회
+	@GetMapping("/admin/admCsSelect")
+	public String admCsSelect(Model model, @ModelAttribute("cri") CsCriteria cri, CsVO vo) {
+		model.addAttribute("cs", csService.read(vo));
+		return "admin/admCsSelect";
+	}
 
 	// 답변등록
 	@PostMapping("/office/csAnswer")
 	public String csAnswerInsert(RedirectAttributes rttr, CsVO vo) {
 		int n = csService.insertAnswer(vo);
+		
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "등록이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "등록에 실패했습니다. 다시 시도해주세요.");
 		}
+		
 		return "redirect:/office/csSelect?csNo=" + vo.getCsNo();
 	}
 
