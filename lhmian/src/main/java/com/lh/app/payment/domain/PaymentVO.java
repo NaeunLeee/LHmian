@@ -16,4 +16,6 @@ private String payType;
 private String payCat;
 private String payStatus;
 private int price;
+
+
 }

@@ -331,7 +331,7 @@
 
 	function paymentFnc(name, houseInfo, phone) {
 
-		IMP.init('imp57655457');
+		IMP.init('imp24006420');
 		IMP.request_pay({
 			pg : 'inicis', // version 1.1.0부터 지원.
 			pay_method : 'card',
