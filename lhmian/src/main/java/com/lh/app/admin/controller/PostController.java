@@ -10,19 +10,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.admin.domain.PostVO;
 import com.lh.app.admin.service.PostService;
 import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.domain.PageVO;
+import com.lh.app.signIn.domain.MemberVO;
+import com.mchange.v2.cfg.PropertiesConfigSource.Parse;
+
+// 10/11 택배 기능 추가
 
 @Controller
 public class PostController {
 
 	@Autowired
 	PostService postService;
-	
-	// 10/11 controller 추가
 	
 	//택배 리스트 조회
 	@RequestMapping("admin/admPost")
@@ -35,37 +39,43 @@ public class PostController {
 		return "admin/admPost";
 	}
 	
-	@GetMapping("/{cmtNo}") // queryString 방식
-	public PostVO read(@PathVariable Long postNo, PostVO vo) {
-		vo.setPostNo(postNo);
-		return postService.read(vo);
-	}
-
 	// 등록
-
-	@PostMapping("/") // post : 파라미터 질의문자열 (query string) ->?id=100&pw=111&name=choi
-	public PostVO insertRe(PostVO vo) { // form에 값 넘겨줌
-		System.out.println(vo.toString());
+	@RequestMapping("admin/insertPost") // post : 파라미터 질의문자열 (query string) ->?id=100&pw=111&name=choi
+	@ResponseBody
+	public PostVO insert(@RequestParam("num") String num,PostVO vo) { // form에 값 넘겨줌
+		System.out.println(num);
+		vo.setHouseInfo(Integer.parseInt(num));
 		postService.insert(vo);
 		return vo;
 	}
 
 	// 수정
+	@RequestMapping("admin/updatePost")
+	@ResponseBody
+	public boolean updatePost(@RequestParam Long[] chk) throws Exception { // json type을 이용하려면 Requestbody룰 이용하여야한다.
+		// 삭제할 사용자 ID마다 반복해서 사용자 삭제
+		for (int i = 0; i < chk.length; i++) {
+			PostVO vo = new PostVO();
+			vo.setPostNo(chk[i]);
 
-	@PutMapping("/") // put, delete : 파라미터 json만 가능 -> { id:100, pw:"111",name:"choi"}
-	public PostVO update(@RequestBody PostVO vo) { // RequestBody 필요
-		System.out.println(vo.toString());
-		postService.update(vo);
-		return vo;
+			postService.update(vo);
+		}
+		// 목록 페이지로 이동
+		return true;
 	}
-
+	
 	// 삭제
+	@RequestMapping("admin/deletePost")
+	@ResponseBody
+	public boolean deletePost(@RequestParam Long[] chk) throws Exception { // json type을 이용하려면 Requestbody룰 이용하여야한다.
+		// 삭제할 사용자 ID마다 반복해서 사용자 삭제
+		for (int i = 0; i < chk.length; i++) {
+			PostVO vo = new PostVO();
+			vo.setPostNo(chk[i]);
 
-	@DeleteMapping("/{cmtNo}")
-	public boolean delete(@PathVariable Long postNo, PostVO vo) {
-		vo.setPostNo(postNo);
-		int r = postService.delete(vo);
-		return r == 1 ? true : false;
+			postService.delete(vo);
+		}
+		return true;
 	}
 
 }

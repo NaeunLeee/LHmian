@@ -47,4 +47,29 @@
 		POST
 	</select>
 	
+	<insert id="insert">
+		<selectKey keyProperty="postNo" resultType="long" order="BEFORE">
+			SELECT
+			POST_SEQ.NEXTVAL
+			FROM DUAL
+		</selectKey>
+		INSERT INTO POST(
+			POST_NO,HOUSE_INFO)
+		VALUES(
+			#{postNo}	
+			,#{houseInfo}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE POST SET 
+		POST_STATUS = 'Y'
+		WHERE POST_NO = #{postNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM POST
+		WHERE POST_NO = #{postNo} 
+	</delete>
+	
 </mapper>
