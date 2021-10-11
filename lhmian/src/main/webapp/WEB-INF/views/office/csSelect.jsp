@@ -250,7 +250,14 @@ alt="답변" class="ec-common-rwd-image" style="font-size:20px"></img> -->
 <script>
 let csrfHeaderName = "${_csrf.headerName}";
 let csrfTokenValue = "${_csrf.token}";
+
 $('#modifyBtn').on("click", function() {
+	if (confirm('수정하시겠습니까?')) {
+		$(location).attr('href','csUpdateBoard?csNo=' + $('#csNo').val());
+	}
+});
+
+/* $('#modifyBtn').on("click", function() {
 	if ($(this).attr('id') == 'modifyBtn') {
 		if (confirm('수정하시겠습니까?')) {
 			$('#csTitle').attr("readonly", false);
@@ -285,7 +292,7 @@ $('#modifyBtn').on("click", function() {
 			$(this).attr('id', 'modifyBtn').html('수정');
 		}
 	}
-});
+}); */
 
 $('#deleteBtn').on("click", function() {
 	if (confirm('정말로 삭제하시겠습니까?')) {

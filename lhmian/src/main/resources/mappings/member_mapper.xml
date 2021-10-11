@@ -7,14 +7,23 @@
 			<foreach collection="typeArr" item="type">
 				<trim prefix="OR">
 					<choose>
-						<when test="type=='T'.toString()">
-							ID like '%' ||#{keyword} || '%'
+						<when test="type=='N'.toString()">
+							NAME like '%' || #{keyword} || '%'
 						</when>
 						<when test="type=='C'.toString()">
-							HOUSE_INFO like '%' ||#{keyword} || '%'
+							HOUSE_INFO like '%' || #{keyword} || '%'
 						</when>
 						<when test="type=='A'.toString()">
-							PHONE like '%' ||#{keyword} || '%'
+							PHONE like '%' || #{keyword} || '%'
+						</when>
+						<when test="type=='L'.toString()">
+							POSITION = 'LEADER'
+						</when>
+						<when test="type=='U'.toString()">
+							HOUSE_INFO IN ( 
+								SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+     					 		WHERE PAY_NO IS NULL 
+     					 	)
 						</when>
 					</choose>
 				</trim>
@@ -43,6 +52,7 @@
 			, HOUSE_INFO
 			, AUTHOR
 			, KEY
+			, POSITION
 			FROM MEMBER
 			WHERE
 			]]>

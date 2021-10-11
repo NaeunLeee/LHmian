@@ -155,7 +155,15 @@ textarea:focus {
 			});
 	});
 
-	$("#btnModify").on("click", function() {
+	// 수정 버튼 이벤트 (10/11 추가: 이나은)
+	$('#btnModify').on("click", function() {
+		if (confirm('수정하시겠습니까?')) {
+			$(location).attr('href','commUpdate?commNo=' + $('#commNo').val());
+		}
+	})
+	
+	// 수정 버튼 (ajax 있을 때...)
+/* 	$("#btnModify").on("click", function() {
 		$("#commContent").attr("readonly", false);
 		$("#commTitle").attr("readonly", false);
 
@@ -183,7 +191,7 @@ textarea:focus {
 			});
 		});
 
-	});
+	}); */
 
 	// 댓글 보여주기
 	function showList() {

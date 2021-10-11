@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lh.app.comm.domain.CommVO;
 import com.lh.app.comm.domain.Criteria;
@@ -72,15 +73,17 @@ public class CommController {
 		return "community/commlist";
 	}
 
-	// 등록폼
+	// 등록폼 (10/11 수정:이나은)
 	@GetMapping("register")
-	public String registerForm() {
+	public String registerForm(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		model.addAttribute("name", customUserDetails.getNAME());
 		return "community/register";
 	}
 
 	// 등록
 	@PostMapping("insertComm")
-	public String insertComm(@ModelAttribute("cvo") CommVO vo) {
+	public String insertComm(@ModelAttribute("cvo") CommVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		vo.setId(customUserDetails.getNAME());
 		commService.insert(vo);
 		return "redirect:commlist";
 	}
@@ -105,12 +108,27 @@ public class CommController {
 		return "community/get";
 	}
 
-	// 수정
-	@PutMapping("updateComm")
-	@ResponseBody
-	public CommVO updateComm(@RequestBody CommVO vo) {
+	// 수정 (ajax)
+//	@PutMapping("updateComm")
+//	@ResponseBody
+//	public CommVO updateComm(@RequestBody CommVO vo) {
+//		commService.update(vo);
+//		return vo;
+//	}
+	
+	// 수정 폼 (10/11 추가: 이나은)
+	@GetMapping("commUpdate")
+	public String commUpdateForm(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails, CommVO vo) {
+		model.addAttribute("comm", commService.read(vo));
+		model.addAttribute("user", customUserDetails);
+		return "community/commUpdate";
+	}
+	
+	// 수정 처리 (10/11 추가: 이나은)
+	@PostMapping("commUpdate")
+	public String commUpdate(CommVO vo) {
 		commService.update(vo);
-		return vo;
+		return "redirect:commlist";
 	}
 
 	// 삭제

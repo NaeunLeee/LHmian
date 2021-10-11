@@ -68,14 +68,36 @@ public class CsController {
 		return "redirect:/office/csSelect?csNo=" + vo.getCsNo();
 	}
 
-	// 수정
-	@PostMapping("/office/csUpdateBoard")
-	@ResponseBody
-	public CsVO csUpdate(@RequestBody CsVO vo) {
-		csService.updateBoard(vo);
-		return csService.read(vo);
-	}
+	// 수정 (ajax)
+//	@PostMapping("/office/csUpdateBoard")
+//	@ResponseBody
+//	public CsVO csUpdate(@RequestBody CsVO vo) {
+//		csService.updateBoard(vo);
+//		return csService.read(vo);
+//	}
 
+	// 수정 폼 (ajax 없이..) (10/11 추가: 이나은)
+	@GetMapping("/office/csUpdateBoard")
+	public String csUpdateForm(Model model, CsVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		model.addAttribute("cs", csService.read(vo));
+		model.addAttribute("user", customUserDetails);
+		return "office/csUpdate";
+	}
+	
+	// 수정 처리 (ajax 없이..) (10/11 추가: 이나은)
+	@PostMapping("/office/csUpdateBoard")
+	public String csUpdate(RedirectAttributes rttr, CsVO vo) {
+		int n = csService.updateBoard(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		return "redirect:/office/csList";
+	}
+	
 	// 삭제
 	@PostMapping("/office/csDeleteBoard")
 	public String delete(RedirectAttributes rttr, CsVO vo, @ModelAttribute("cri") CsCriteria cri) {

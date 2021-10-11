@@ -14,7 +14,7 @@
 	}
 </style>
 
-<!-- CKeditor 적용을 위한 일부 수정(10/11): 이나은 -->
+<!-- 10/11 추가: 이나은 -->
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
@@ -67,20 +67,21 @@
 
 		<div class="container" align="center">
 			<div class="text-box white padding-4 col-7">
-				<form id="frm" name="frm" action="csInsert" method="post">
+				<form id="frm" name="frm" action="csUpdateBoard" method="post">
 					<div>
-						<input type="text" id="csTitle" name="csTitle" class="form-control" placeholder="제목을 입력하세요.">
+						<input type="text" id="csTitle" name="csTitle" class="form-control" value="${cs.csTitle}">
 						<hr>
 					</div>
 					<div>
-						<textarea id="csContent" name="csContent"></textarea>
+						<textarea id="csContent" name="csContent">${cs.csContent}</textarea>
 					</div>
-					<input type="hidden" name="id" value="${user.username}">
+					<input type="hidden" name="csNo" id="csNo" value="${cs.csNo}">
+					<input type="hidden" name="id" id="id" value="${user.username}">
 					<input type="hidden" name="houseInfo" value="${user.HOUSEINFO}">
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					<br><br>
 					<div align="center">
-						<button type="button" id="registerBtn" class="btn btn-gyellow-yj">등록</button>
+						<button type="button" id="updateBtn" class="btn btn-gyellow-yj">수정</button>
 						<button type="button" onclick="location.href='csList'" class="btn btn-gyellow-yj">목록</button>
 					</div>
 				</form>
@@ -88,7 +89,7 @@
 		</div>
 	</section>
 <script>
-	$("#registerBtn").on("click", function () {
+	$("#updateBtn").on("click", function () {
 		
 		if ($('#csTitle').val() == "") {
 			alert('양식을 모두 입력해주세요.');
