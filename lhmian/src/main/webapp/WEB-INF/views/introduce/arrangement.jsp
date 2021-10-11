@@ -142,6 +142,12 @@ itemTemplate:
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.col-divider-margin-6{
+	margin-top:130px
+}
+</style>
+
 <section>
       <div class="pagenation-holder">
         <div class="container">
@@ -158,14 +164,100 @@ itemTemplate:
     </section>
 <div class="clearfix"></div>
 
+ <section>
+      <div class="divider-line solid light"></div>
+      <div class="container">
+        <div class="row sec-padding">
+          <div class="col-xs-12 nopadding">
+            <div class="sec-title-container text-center">
+              <h5 class="uppercase font-weight-4 nopadding">자연에 예술 조경을 더해 명품 대단지를 완성하다</h5>
+              <h2 class="uppercase font-weight-7 less-mar-1">Awesome Feature<span class="text-gyellow">s.</span></h2>
+              <div class="ce4-title-line-1 less-mar"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <!--end title-->
+          
+          <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 40px"> <br/>
+            <div class="ce4-feature-box-19 margin-bottom">
+              <h5 class="uppercase title font-weight-5 nopadding title">엘리시아가든</h5>
+              <div class="title-line"></div>
+              <br/>
+              <p>단지를 대표하는 <br>소나무와 함께 넓게 펼쳐진 <br>중심 커뮤니티</p>
+            </div>
+            <!--end feature box-->
+            
+            <div class="col-divider-margin-6"></div>
+            <div class="ce4-feature-box-19 margin-bottom">
+              <h5 class="uppercase title font-weight-5 nopadding title">조명폰드</h5>
+              <div class="title-line"></div>
+              <br/>
+              <p>주위를 감싸는 수경시설과 그늘아래에서 여유를 즐기는 감성 공간</p>
+            </div>
+            <!--end feature box-->
+            
+            <div class="col-divider-margin-6"></div>
+            <div class="ce4-feature-box-19 margin-bottom">
+              <h5 class="uppercase title font-weight-5 nopadding title">바닥분수</h5>
+              <div class="title-line"></div>
+              <br/>
+              <p>타원형의 광장을 따라 바닥분수와 휴게공간이 연결되는 생동감 넘치는 공간</p>
+            </div>
+            <!--end feature box--> 
+            
+          </div>
+          <!--end item-->
+          
+          <div class="col-md-6 col-sm-6 col-xs-12"> <img src="${pageContext.request.contextPath }/resources/images/sliders/세로배치도.jpg" alt="" class="img-responsive"/> </div>
+          <!--end item-->
+          
+          <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 40px"> <br/>
+            <div class="ce4-feature-box-19 margin-bottom">
+              <h5 class="uppercase title font-weight-5 nopadding title">산책로</h5>
+              <div class="title-line"></div>
+              <br/>
+              <p>구릉형 지형을 따라 걷고 사색하며 눈앞에 펼쳐진 경관을 감상할 수 있는 산책로</p>
+            </div>
+            <!--end feature box-->
+            
+            <div class="col-divider-margin-6"></div>
+            <div class="ce4-feature-box-19 margin-bottom">
+              <h5 class="uppercase title font-weight-5 nopadding title">어린이 놀이터</h5>
+              <div class="title-line"></div>
+              <br/>
+              <p>자녀와 부모가 함께 즐기는 다목적 공간으로 흥미로운 이야기가 있는 테마형 어린이놀이터</p>
+            </div>
+            <!--end feature box-->
+            
+            <div class="col-divider-margin-6"></div>
+            <div class="ce4-feature-box-19 margin-bottom">
+              <h5 class="uppercase title font-weight-5 nopadding title">주민운동시설</h5>
+              <div class="title-line"></div>
+              <br/>
+              <p>가족의 건전한 여가 활동과 삶의 활기를 찾는 운동공간</p>
+            </div>
+            <!--end feature box--> 
+            
+          </div>
+          <!--end item--> 
+        </div>
+      </div>
+    </section>
 
- <section class="sec-padding">
+
+
+
+
+
+
+
+<%--  <section class="sec-padding">
   <div class="container">
   <div class="row">
   
   <div class="col-md-12">
   <img src="${pageContext.request.contextPath }/resources/images/sliders/배치도.jpg" alt="" class="img-responsive"/>                           
-  </div>
+  </div> --%>
   <!--end item-->
   
 <!--   <div class="col-divider-margin-6"></div>
@@ -182,10 +274,10 @@ itemTemplate:
   </div> -->
   <!--end item-->
 
-  
+  <!-- 
   </div>
   </div>
-  </section>
+  </section> -->
 <div class="clearfix"></div>
   <!-- end section -->
   
