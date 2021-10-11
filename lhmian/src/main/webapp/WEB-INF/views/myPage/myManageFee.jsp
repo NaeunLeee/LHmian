@@ -311,6 +311,7 @@
 	$('#month').text(month + "월 관리비");
 	
 	console.log(${currentFee.mfElevator});
+
 	//console.log(${currentFee.payNo});
 	
 	$('#dateSelectBox').on('change', function() {

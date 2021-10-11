@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <body>
 	  <div class="container">
-		 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-		
+
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
@@ -155,6 +154,11 @@
     <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/editEvent.js"></script>
     <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/etcSetting.js"></script>
     <script>
+    // 10/11 토큰 추가 
+    
+   		let csrfHeaderName = "${_csrf.headerName}";
+    	let csrfTokenValue = "${_csrf.token}";
+    	
     	window.onbeforeunload = function(e){
     		window.location.href = "admin/admSkedview";
     	}

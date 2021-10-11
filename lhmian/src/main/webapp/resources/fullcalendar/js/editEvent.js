@@ -1,6 +1,3 @@
-/* ****************
- *  일정 편집
- * ************** */
 var editEvent = function (event, element, view) {
 
     $('#deleteEvent').data('id', event.eventNo); //클릭한 이벤트 ID
@@ -85,6 +82,9 @@ var editEvent = function (event, element, view) {
             url: "updateEvent",
             method : "post",
             dataType : "json",
+            beforeSend: function(xhr) {
+            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+         	},
             data : JSON.stringify({
             	title : event.title,
             	description : event.description,
@@ -125,6 +125,9 @@ $('#deleteEvent').on('click', function () {
         type: "post",
         url: "deleteEvent",
         dataType : "json",
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+        },
         data:  {eventNo :$(this).data('id')},
         traditional : true,
         success: function (response) {
