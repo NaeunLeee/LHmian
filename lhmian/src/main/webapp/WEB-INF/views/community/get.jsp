@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <style>
 textarea {
 	resize:none;
 	border:none;
-	overflow: hidden;
+/* 	overflow: hidden; */
 }
+
+textarea:focus {
+    outline: none;
+}
+
+.void {
+	white-space: pre-wrap;	/* 공백, 엔터키 보존 */
+}
+
+::-webkit-scrollbar {	/* 스크롤바 투명하게 하기*/
+  display: none;
+}	
 
 #commContent {
 	margin-bottom: 20px;
@@ -57,8 +70,8 @@ textarea {
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
-							<li class="current"><a href="#">운영 정보 공개</a></li>
+							<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/commlist">커뮤니티</a></li>
 						</ol>
 					</div>
 				</div>
@@ -73,19 +86,20 @@ textarea {
 							<div class="text-box">
 							<textarea readonly id="commTitle" class="col-md-8 font-weight-7" style="background-color:transparent; font-size:20px">${list.commTitle}</textarea>
 							<h6 class="padding-4 col-md-12">
-							<span class="info" style="font-size:14px;">${list.id}</span>
-							<span class="info">조회 ${list.commHit}</span>
-							<span class="info">작성일자 <fmt:formatDate value="${list.commDate}" pattern="yy-MM-dd" /> | 최종수정 <fmt:formatDate value="${list.commUpdate}" pattern="yy-MM-dd" /></span>
+							<span class="info" style="font-size:14px;">${list.id}</span> |
+							<span class="info"><i class="bi bi-eye"></i> ${list.commHit}</span>
+							<span class="info"><i class="bi bi-calendar"></i> 작성일자 : <fmt:formatDate value="${list.commDate}" pattern="yy-MM-dd" /> <c:if test="${list.commUpdate != null}"> | 최종수정 : <fmt:formatDate value="${list.commUpdate}" pattern="yy-MM-dd" /></c:if></span>
 							</h6>	
 							
 							
 						</div>
 						
 						<hr>
-						<textarea readonly class="text-box padding-2 form-control" rows="5" name="commContent" id="commContent" 
-					 	  style="background-color:transparent; border:none;">${list.commContent}</textarea> 
-
-
+						<%-- <textarea readonly class="text-box padding-2 " rows="5" name="commContent" id="commContent" 
+					 	  style="background-color:transparent; border:none; margin-top:20px;">${list.commContent}</textarea>  --%>
+						<!-- 수정 폼 체크에디터 사용해서 따로 만든대서 div로 바깠어요~!! -->
+						<div class="text-box padding-2 void" name="commContent" id="commContent" 
+					 	  style="background-color:transparent; border:none; margin-top:20px;">${list.commContent}</div>
 
 
 
@@ -93,17 +107,16 @@ textarea {
 <div class="padding-4 col-sm-12 " align="right">
 		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="btnModify">수정</button>
 		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="btnDelete">삭제</button>
-		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" onclick="location.href='../admin/admNoticeList'" >목록</button>
+		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" onclick="location.href='./commlist'" >목록</button>
 	</div>
 	
 	<form role="form" action="deleteComm" id="frm" name="frm" method="post">
 		<input id="commNo" name="commNo" type="hidden" value="${list.commNo}">
 	</form>
-	</div>
 	
-	
+	<div class="divider" style="margin:0; padding:25px 0;"></div>
 	<!-- 댓글 목록 -->
-	<div class="text-box white padding-4 col-7" style="margin-bottom:80px;">
+	
 		<div class="text-box">
 		<ul class="chat" style="padding: 0 15px;">
 			</ul>
@@ -113,12 +126,13 @@ textarea {
 		<form id="replyForm">
 			<input type="hidden" name="commNo" value="${list.commNo}"> 
 			<input type="hidden" id="cmtWriter" name="cmtWriter" value="노잼">
-			<textarea rows="10" style="width:100%" id="cmtContent" name="cmtContent"></textarea>
-			<div class="col-md-12" style="padding:0">
-				<button type="button" id="saveReply" style="float:right">댓글등록</button>
-			</div>
+			<textarea rows="7" style="width:100%" id="cmtContent" name="cmtContent"
+			placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."></textarea>
 		</form>
 	</div>
+			<div class="col-md-12" style="padding:0; margin-top:15px">
+				<button class="btn btn-border light" type="button" id="saveReply" style="float:right">댓글등록</button>
+			</div>
 	</div>
 	</div>
 
@@ -158,7 +172,7 @@ textarea {
 				contentType: 'application/json',
 				success: function (data) {
 					alert("수정이 완료 되었습니다");
-					$("#commContent").attr("disabled", true);
+					$("#commContent").attr("readonly", true);
 					$("#update").attr('id', 'btnModify').html('수정');
 
 					console.log(data);
@@ -190,12 +204,13 @@ textarea {
 			return '<li class="left clearfix">'
 			+ '	<div id="'+ datas.cmtNo +'">'
 			+ '			<strong class="primary-font">'
+			+ '<i class="bi bi-person-circle">' + '</i>' + ' '
 			+ datas.cmtWriter
 			+ '</strong>'
 			+ '			<small class="pull-right text-muted">'
 			+ datas.cmtDate
 			+ '</small>'
-			+ '		<p>'
+			+ '		<p class="void">'
 			+ datas.cmtContent
 			+ '</p>'
 			+ '<div id="test">' + '</div>'
@@ -396,4 +411,7 @@ textarea {
 		console.log(id);
 		console.log(login);
 	}
+	
+	
 </script>
+

@@ -56,8 +56,8 @@ table {
                <div class="col-md-6">
                   <ol class="breadcrumb-gray">
                      <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                     <li><a href="">입주민 공간</a></li>
-                     <li class="current"><a href="${pageContext.request.contextPath}/commList">커뮤니티</a></li>
+							<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/commlist">커뮤니티</a></li>
                   </ol>
                </div>
             </div>
@@ -102,7 +102,7 @@ table {
          </c:forEach>
       </tbody>
    </table>
-   <button type="button" onclick="location.href='register'"  class="btn btn-border light" style="float:right; margin-right:20px; padding: 4px 13px;">글작성</button>
+   <button type="button" onclick="location.href='register'" class="btn btn-border light" style="float:right; margin-right:20px; padding: 4px 13px;">글작성</button>
    <br>
    
    <!-- 폼 -->
