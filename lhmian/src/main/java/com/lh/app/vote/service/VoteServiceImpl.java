@@ -51,4 +51,16 @@ public class VoteServiceImpl implements VoteService {
 		return voteMapper.insertVoteInfo(vo);
 	}
 
+	@Override
+	public VoteVO voteParticipate(VoteVO vo) {
+		// TODO Auto-generated method stub
+		return voteMapper.voteParticipate(vo);
+	}
+
+	@Override
+	public int voteCountUpdate(VoteVO vo) {
+		// TODO Auto-generated method stub
+		return voteMapper.voteCountUpdate(vo);
+	}
+
 }

@@ -18,4 +18,8 @@ public interface VoteService {
 	public VoteVO voteSelectTitle(VoteVO vo);
 	
 	public int insertVoteInfo(HouseVoteInfoVO vo);
+	
+	public int voteCountUpdate(VoteVO vo);
+	
+	public VoteVO voteParticipate(VoteVO vo);
 }

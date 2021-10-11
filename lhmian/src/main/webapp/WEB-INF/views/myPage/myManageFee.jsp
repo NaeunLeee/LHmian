@@ -82,7 +82,7 @@
 
 
 				<div class="col-md-6">
-					<div class="text-box white padding-4 margin-bottom-3">
+					<div class="text-box white padding-4 margin-bottom-3" style="height:755px">
 						<div class="col-md-6">
 							<h4 id="month" class="font-weight-7 text-gray"></h4>
 						</div>
@@ -165,7 +165,7 @@
 			</div>
 			<div class="clearfix"></div>
 			<div class="row">
-				<div class="col-md-6 text-center margin-bottom">
+				<div class="col-md-12 text-center margin-bottom">
 					<div class="text-box white padding-4">
 						<iframe class="chartjs-hidden-iframe"
 							style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
