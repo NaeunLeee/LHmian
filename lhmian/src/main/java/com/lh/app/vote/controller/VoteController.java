@@ -1,12 +1,15 @@
 package com.lh.app.vote.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lh.app.signIn.etc.CustomUserDetails;
+import com.lh.app.vote.domain.HouseVoteInfoVO;
 import com.lh.app.vote.domain.VoteContentsVO;
 import com.lh.app.vote.domain.VoteVO;
 import com.lh.app.vote.service.VoteService;
@@ -78,5 +81,17 @@ public class VoteController {
 		}
 		
 		return "redirect:admVoteList";
+	}
+	
+	@PostMapping("/resident/vote") 
+	public String vote(HouseVoteInfoVO vo, @AuthenticationPrincipal CustomUserDetails info){
+		
+		vo.setHouseInfo(info.getHOUSEINFO());
+		
+		int result = voteService.insertVoteInfo(vo);
+		
+		System.out.println(result + "건 등록");
+		
+		return "redirect:voteList";
 	}
 }

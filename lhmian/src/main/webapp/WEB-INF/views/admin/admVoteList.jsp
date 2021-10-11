@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,15 +11,30 @@
 table {
 	background-color: white;
 }
+
 a.link {
-	pointer-events: none; !important /*이벤트를 막음*/
-	cursor: default; !important /*마우스 커서를 포인트에서 디폴트로 변경*/
+	pointer-events: none;
+	!
+	important /*이벤트를 막음*/
+	cursor
+	:
+	default;
+	!
+	important /*마우스 커서를 포인트에서 디폴트로 변경*/
 }
+
 .btn.btn-medium {
 	width: 98px;
-    padding: 5px 20px;
-    font-size: 14px;
+	padding: 5px 20px;
+	font-size: 14px;
 }
+
+.btn.focus, .btn:focus, .btn:hover {
+    color: white;
+    text-decoration: none;
+    cursor: default;
+}
+
 </style>
 </head>
 <body>
@@ -38,20 +53,17 @@ a.link {
 					<tbody>
 						<c:forEach var="list" items="${list }">
 							<tr>
-								<td>
-									<c:if test="${list.over eq '투표마감'}">
-										<a class="btn btn-medium btn-grey xround-5 style="color:#727272;">${list.over }</a>
-									</c:if>
-									<c:if test="${list.over eq '진행중'}">
+								<td><c:if test="${list.over eq '투표마감'}">
+										<a class="btn btn-medium btn-grey xround-5" style="color:#727272;">${list.over }</a>
+									</c:if> <c:if test="${list.over eq '진행중'}">
 										<a class="btn btn-medium btn-yellow-dark xround-5">${list.over }</a>
-									</c:if>	
-								</td>
+									</c:if> <c:if test="${list.over eq '진행예정'}">
+										<a class="btn btn-medium btn-yellow-dark xround-5" style="background-color:#A5C768;">${list.over }</a>
+									</c:if></td>
 								<td>${list.voteTitle }</td>
-								<td>
-								<fmt:formatDate value="${list.voteStart }"
-									pattern="yyyy-MM-dd" /> ~ 
-								<fmt:formatDate value="${list.voteEnd }"
-									pattern="yyyy-MM-dd" /></td>
+								<td><fmt:formatDate value="${list.voteStart }"
+										pattern="yyyy-MM-dd" /> ~ <fmt:formatDate
+										value="${list.voteEnd }" pattern="yyyy-MM-dd" /></td>
 								<td>${list.percent }%</td>
 							</tr>
 						</c:forEach>
