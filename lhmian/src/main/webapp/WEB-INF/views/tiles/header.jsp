@@ -231,9 +231,11 @@
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
 															</li>
-															<!-- 10/10 -->
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admSkedview">일정 관리</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admPost">택배 관리</a>
 															</li>
 														</ul>
 													</li>

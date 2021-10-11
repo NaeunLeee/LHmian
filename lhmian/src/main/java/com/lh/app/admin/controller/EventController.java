@@ -18,7 +18,7 @@ import com.lh.app.admin.service.EventService;
 import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.domain.PageVO;
 
-// 10/10 admin 경로 설정 + vo,service,controller 추가
+// 10/11 주석삭제 및 내용 교체
 
 @Controller
 public class EventController {
@@ -27,7 +27,7 @@ public class EventController {
 	EventService eventService;
 
 	// 스케줄폼
-		@GetMapping("admin/admSked")
+	@RequestMapping("admin/admSked")
 		public String admSked() {
 			return "admin/admSked";
 		}
@@ -70,13 +70,12 @@ public class EventController {
 		return eventService.getList();
 	}
 	
-	// 10/09 스케쥴 뷰 리스트 조회
 	@RequestMapping("admin/admSkedview")
 	public String getListview(Model model,Criteria cri) {
 		int total = eventService.getTotalCount(cri);
 		model.addAttribute("list", eventService.getListview(cri));
 		model.addAttribute("pageMaker", new PageVO(cri, total));
-		return "/admin/admSkedview";
+		return "admin/admSkedview";
 	}
 	
 	// 수정

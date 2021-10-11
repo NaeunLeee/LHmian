@@ -141,10 +141,14 @@ var calendar = $('#calendar').fullCalendar({
     console.log(newDates);
 
     //리사이즈한 일정 업데이트
+    // 10/11 POST ajax token add addEvent,main,editEvent
     $.ajax({
       url: "updateEvent",
       method : "post",
       dataType : "json",
+      beforeSend: function(xhr) {
+            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+         	},
       contentType : 'application/json',
       data: JSON.stringify({
             	title : event.title,
@@ -189,6 +193,9 @@ var calendar = $('#calendar').fullCalendar({
       url: "updateEvent",
       method : "post",
       dataType : "json",
+      beforeSend: function(xhr) {
+            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+         	},
       contentType : 'application/json',
       data: JSON.stringify({
             	title : event.title,
