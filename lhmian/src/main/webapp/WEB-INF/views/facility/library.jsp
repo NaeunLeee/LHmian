@@ -109,9 +109,7 @@
 						</li>
 					</ul>
 					<br /> <br />
-					<button type="button" id="registerBtn"
-						class="btn btn-dark" data-toggle="modal"
-						data-target="#libModal">등록</button>
+					<button type="button" id="registerBtn" class="btn btn-dark">등록</button>
 				</div>
 				<!--end item-->
 			</div>
@@ -236,6 +234,23 @@
 </body>
 
 <script>
+
+	let author = null;
+	
+	<sec:authorize access="isAuthenticated()">
+		author = '<sec:authentication property="principal.AUTHOR"/>';
+	</sec:authorize>
+
+	$('#registerBtn').on("click", function() {
+		if (author == 'ADMIN') {
+			alert('관리자 계정은 등록할 수 없습니다.');
+		} else {
+			$('#libModal').modal('show');
+		}
+		
+	});
+	
+	
 	// 날짜 선택 DatePicker
 	$('#startdate').datepicker();
 
@@ -287,10 +302,10 @@
         return false;                           //<a> 의 본래기능 (하이퍼링크) 작동방지
     });
 
+	
 	// 결제버튼 클릭 시
 	$('#payBtn').on('click', function() {
 		
-		let author = null;
 		let houseInfo = null;
 		let phone = null;
 		let name = null;
@@ -301,7 +316,6 @@
 		$('#libPrice').val(price);
 		
 		<sec:authorize access="isAuthenticated()">
-			author = '<sec:authentication property="principal.AUTHOR"/>';
 			houseInfo = '<sec:authentication property="principal.HOUSEINFO"/>';
 			phone = '<sec:authentication property="principal.PHONE"/>';
 			name = '<sec:authentication property="principal.HOUSEINFO" />';

@@ -114,18 +114,16 @@
 							<div class="text-box padding-2 border" style="margin-bottom: 20px; min-height: 400px;">
 								${info.oiContent}
 							</div>
-							<div>
-								<c:if test="${info.oiFileid != null}">
-									<div class="col-md-2">
-										첨부파일
+							<c:if test="${info.oiFileid != null}">
+								<div style="padding: 10px;">
+									<div class="col-md-3">
+										<i class="bi bi-file-earmark-arrow-down"></i>&nbsp;&nbsp;첨부파일
 									</div>
-									<div class="col-md-10">
+									<div class="col-md-9">
 										<a href="opeInfoDownload?oiFileid=${info.oiFileid}">${info.oiFilename}</a>&nbsp;&nbsp;
-										<i class="bi bi-x-circle-fill" id="fileDelBtn"></i>
 									</div>
-								</c:if>
-							</div>
-						<br><br><br>
+								</div>
+							</c:if>
 						<div align="center">
 							<button type="button" class="btn btn-default" id="modifyBtn">수정</button>
 							<button type="button" class="btn btn-default" id="deleteBtn">삭제</button>
@@ -154,7 +152,7 @@
 			$(location).attr('href','admOpeInfoUpdate?oiNo=' + $('#oiNo').val());
 		}
 	})
- 	
+	
 </script>
 
 </html>
