@@ -104,7 +104,7 @@
 						</div>
 						</div>
 						<hr>
-						<div class="text-box padding-2 border" style="margin-bottom: 20px; min-height: 400px;">
+						<div class="text-box padding-2 border" style="margin-bottom: 20px; min-height: 200px;">
 							${cs.csContent}
 						</div>
 						<br><br><br>
@@ -115,19 +115,25 @@
 					</div>
 				</div>
 				<div class="row">
-					<!-- 답변 등록 -->
-					<div align="center">
-						<form id="replyForm" action="csAnswer" method="post">
-							<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
-							<textarea rows="10" cols="100" id="csAnswer" name="csAnswer" class="form-control">${cs.csAnswer}</textarea><br>
-							<c:if test="${empty cs.csAnswer}">
-								<button type="button" id="saveAnswer" class="btn btn-gyellow-yj">답변 등록</button>
-							</c:if>
-							<c:if test="${not empty cs.csAnswer}">
-								<button type="button" id="csUpdateBtn" class="btn btn-gyellow-yj">답변 수정</button>
-							</c:if>
-					        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-						</form>
+					<div class="text-box light padding-4 col-10">
+						<!-- 답변 등록 -->
+						<div class="sec-title-container less-padding-3 text-left">
+							<div class="title-line-3 align-left"></div>
+							<h4 class="uppercase font-weight-7 less-mar-1">답변</h4>
+						</div>
+						<div align="center">
+							<form id="replyForm" action="csAnswer" method="post">
+								<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
+								<textarea rows="10" cols="70" id="csAnswer" name="csAnswer" class="form-control">${cs.csAnswer}</textarea><br>
+								<c:if test="${empty cs.csAnswer}">
+									<button type="button" id="saveAnswer" class="btn btn-gyellow-yj">답변 등록</button>
+								</c:if>
+								<c:if test="${not empty cs.csAnswer}">
+									<button type="button" id="csUpdateBtn" class="btn btn-dark">답변 수정</button>
+								</c:if>
+						        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>

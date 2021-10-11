@@ -67,8 +67,11 @@ public class PaymentController {
 
 	// 결제취소
 	@PostMapping("/cancle")
-	public String delete(PaymentVO vo, RedirectAttributes rttr) {
+	public String delete(Model model, PaymentVO vo, RedirectAttributes rttr, Locale locale, String imp_uid) throws IamportResponseException, IOException {
+		this.api = new IamportClient("3453433373716908",
+				"efc0888a66eaa69d340e654d7ba2782e583f94ee2cd039ec3f9318a2a8a9a73fa261a5ad7df75ff5");
 		vo.setPayStatus(vo.getPayStatus());
+		model.addAttribute("uid", api.paymentByImpUid(imp_uid));
 		int n = paymentService.updateStatus(vo);
 		if(n == 1) {
 			rttr.addFlashAttribute("message", "취소가 완료되었습니다.");

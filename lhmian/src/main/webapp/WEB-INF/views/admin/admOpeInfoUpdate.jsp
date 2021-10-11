@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,7 +106,7 @@
 				<div>
 					<form id="frm" name="frm" action="admOpeInfoUpdate" method="post">
 						<div>
-							<select name="oiType" id="oiType" class="form-control" style="width: 18%; float: left;">
+							<select name="oiType" id="oiType" class="form-control" style="width: 18%; float: left;" data-oiType="${info.oiType}">
 								<option value="관리규약">관리규약</option>
 								<option value="재무제표">재무제표</option>
 								<option value="안전관리">안전관리</option>
@@ -115,19 +117,33 @@
 						<div>
 							<textarea id="oiContent" name="oiContent" class="form-control">${info.oiContent}</textarea>
 							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+							<input type="hidden" id="oiNo" name="oiNo" value="${info.oiNo}">
 						</div>
 					</form>
-					<div>
-						<input type="file" class="file" name="uploadFile" class="form-control" style="float: left;">
-						<button type="button" id="uploadBtn" class="btn btn-default" style="float: right;">파일 첨부</button><br>
-						<ul id="uploaded"></ul>
+					<div id="uploadedFile" style="padding: 10px;">
+						<c:if test="${info.oiFileid != null}">
+							<div class="col-md-3">
+								<i class="bi bi-file-earmark-arrow-down"></i>&nbsp;&nbsp;첨부파일
+							</div>
+							<div class="col-md-9">
+								<a href="opeInfoDownload?oiFileid=${info.oiFileid}">${info.oiFilename}</a>&nbsp;&nbsp;
+								<i class="bi bi-x-circle-fill" id="fileDelBtn"></i>
+							</div>
+						</c:if>
+					</div>
+					<div id="fileUpload">
+						<c:if test="${info.oiFileid == null}">
+							<input type="file" class="file" name="uploadFile" class="form-control" style="float: left;">
+							<button type="button" id="uploadBtn" class="btn btn-default" style="float: right;">파일 첨부</button><br>
+							<ul id="uploaded"></ul>
+						</c:if>
 					</div>
 				</div>
 				</div>
 				<br>
 			</div><br><br>
 			<div align="center">
-				<button type="button" id="updateBtn" class="btn btn-dark">등록</button>
+				<button type="button" id="updateBtn" class="btn btn-dark">수정</button>
 				<button type="button" class="btn btn-default" onclick="location.href='admOpeInfoList'">목록</button>
 			</div>
 		</div>
@@ -137,7 +153,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+
 	$(function() {
+		
+		$('#oiType').val($('#oiType').attr('data-oiType')).prop("selected", true);
+		
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 
 		function checkExtension(filename) {
@@ -150,7 +173,7 @@
 		;
 
 		// 파일 첨부 버튼 이벤트
-		$('#uploadBtn').on("click",	function() {
+		$(document).on("click", '#uploadBtn', function() {
 			var formData = new FormData(document.frm);
 			var inputFile = $('[name="uploadFile"]');
 			var files = inputFile[0].files;
@@ -169,6 +192,9 @@
 				url : "opeInfoFileAttach",
 				data : formData,
 				type : 'POST',
+				beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		        },
 				success : function(datas) {
 					var li = "";
 					var str = "";
@@ -204,6 +230,35 @@
 				$('#frm').submit();
 		    }
 		});
+		
+		// 첨부파일 삭제
+		$('#fileDelBtn').on("click", function() {
+			if (confirm('파일을 삭제하시겠습니까?')) {
+				$.ajax({
+					url: 'opeInfoDelFile',
+					beforeSend: function(xhr) {
+			            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			        },
+			        type: 'POST',
+			        data: JSON.stringify({ 
+			        	oiNo: $('#oiNo').val()
+			        }),
+			        contentType: 'application/json',
+			        success: function() {
+			        	$('#uploadedFile').empty();
+			        	alert('삭제되었습니다.');
+			        	
+			        	var str = "";
+			        	
+			        	str += '<input type="file" class="file" name="uploadFile" class="form-control" style="float: left;">';
+			        	str += '<button type="button" id="uploadBtn" class="btn btn-default" style="float: right;">파일 첨부</button><br>';
+			        	str += '<ul id="uploaded"></ul>';
+			        	
+			        	$('#fileUpload').html(str);
+			        }
+				});
+			}
+		})
 		
 	});
 	

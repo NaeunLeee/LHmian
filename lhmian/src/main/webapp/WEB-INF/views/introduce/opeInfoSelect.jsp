@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,6 +10,21 @@
 <meta charset="UTF-8">
 
 <style>
+textarea {
+	resize:none;
+	border:none;
+/* 	overflow: hidden; */
+}
+
+.void {
+	white-space: pre-wrap;	/* 공백, 엔터키 보존 */
+}
+
+::-webkit-scrollbar {	/* 스크롤바 투명하게 하기*/
+  display: none;
+}					
+
+
 /*  	#oiType {
 		width: 80px;
 		float: left;
@@ -98,18 +115,28 @@
 								<div class="col" style="width:100px; font-size:12px;">${info.oiType}</div>
 								</div>
 							<div class="text-box">
-							<h4 class="col-md-8 font-weight-7" style="margin-top: 5px;">${info.oiTitle}</h4>
+							<h4 class="col-md-8 font-weight-7" style="margin-top:5px; font-size:20px;">${info.oiTitle}</h4>
 							<h6 class="col-md-4" style="float: right; text-align: end;">
-							작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" /></h6>
+							<i class="bi bi-calendar"></i> 작성일자 : <fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" />
+							<c:if test="${info.oiUpdate != null}"> | 최종수정 : <fmt:formatDate value="${info.oiUpdate}" pattern="yy-MM-dd" /></c:if></h6>
 						</div>
 						</div>
 						
-						<hr>
-						<div class="text-box padding-2 border" style="margin-bottom: 20px;">
+<%-- 						<div class="text-box padding-2 border" style="margin-bottom: 20px; ">
 							${info.oiContent}
-						</div>
+						</div> --%>
+						
+						<!-- 체크에디터 html 태그 제거 -->
+						<%-- <textarea class="text-box padding-2 form-control" style="margin-bottom: 20px; background-color:transparent; 
+						border:none;"><c:out value='${info.oiContent.replaceAll("\\\<.*?\\\>","")}' /></textarea> --%>
+						
+						<div class="divider" style="margin-bottom:10px"></div>
+						<div class="text-box padding-2 void" style="margin-bottom: 20px; ">${info.oiContent}</div>
+						
 						
 						<c:if test="${info.oiFileid != null}">
+						
+						<div class="divider" style="margin-bottom: 15px;"></div>
 							<div class="col-md-1">
 								첨부파일
 							</div>
@@ -118,7 +145,7 @@
 							</div>
 						</c:if>
 				
-					<br>
+						<div class="divider" style="padding-top:15px;"></div>
 					<div align="center">
 						<button type="button" class="btn btn-default" onclick="location.href='../introduce/opeInfoList'">목 록</button>
 					</div>
@@ -129,3 +156,4 @@
 </body>
 
 </html>
+
