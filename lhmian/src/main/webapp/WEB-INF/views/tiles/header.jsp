@@ -200,14 +200,11 @@
 																<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
 															</li>
 															<li>
-																<a href="#">주민 투표</a>
-															</li>
-															<li>
 																<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
 															</li>
 															
 															<li>
-																<a href="myFac">시설이용내역</a>
+																<a href="${pageContext.request.contextPath}/myFac">시설이용내역</a>
 															</li>
 														</ul>
 													</li>

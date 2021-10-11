@@ -76,7 +76,7 @@ public class CommController {
 	// 등록폼 (10/11 수정:이나은)
 	@GetMapping("register")
 	public String registerForm(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		model.addAttribute("name", customUserDetails.getNAME());
+		model.addAttribute("name", customUserDetails.getUsername());
 		return "community/register";
 	}
 
