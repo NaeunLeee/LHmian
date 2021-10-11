@@ -7,8 +7,9 @@
 	       VOTE_TITLE, 
 	       VOTE_START,
 	       VOTE_END,
-	       ROUND(VOTE_COUNT / (SELECT COUNT(*) FROM MEMBER) * 100, 1) PERCENT,
-	       CASE WHEN VOTE_END > SYSDATE THEN '진행중'
+	       ROUND(VOTE_COUNT / (SELECT COUNT(*) FROM MEMBER WHERE AUTHOR = 'OWNER') * 100, 1) PERCENT,
+	       CASE WHEN SYSDATE BETWEEN VOTE_START AND VOTE_END THEN '진행중'
+                WHEN SYSDATE <![CDATA[<]]> VOTE_START THEN '진행예정'
 	       ELSE '투표마감' END AS OVER
 		FROM VOTE
 	</select>
@@ -32,7 +33,8 @@
 			   V.VOTE_TITLE, 
 			   V.VOTE_START, 
 			   V.VOTE_END, 
-			   V.VOTE_DAY
+			   V.VOTE_DAY,
+			   SYSDATE - V.VOTE_END
 		FROM VOTE V
 		WHERE V.VOTE_NO = #{voteNo}
 	</select>
@@ -74,6 +76,19 @@
 			#{voteNo},
 			#{vcContent}, 
 			#{vcQuesNo}
+			)
+	</insert>
+	
+	<insert id="insertVoteInfo">
+		INSERT INTO HOUSE_VOTEINFO
+		VALUES
+			(
+			HV_SEQ.NEXTVAL, 
+			#{voteNo},
+			#{houseInfo},
+			'Y',
+			#{hvResult}, 
+			SYSDATE
 			)
 	</insert>
 	

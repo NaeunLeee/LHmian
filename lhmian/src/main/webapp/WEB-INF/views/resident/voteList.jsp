@@ -51,7 +51,9 @@
 }
 
 #vote-content {
-	height: 227px;!important;
+	height: 227px;
+	!
+	important;
 }
 </style>
 <body>
@@ -94,10 +96,14 @@
 
 								<c:if test="${list.over eq '투표마감'}">
 									<div class="date-box text-center"
-										style="background-color: #727272">${list.over}</div>
+										style="background-color: #727272" data-over="${list.over}">${list.over}</div>
 								</c:if>
 								<c:if test="${list.over eq '진행중'}">
-									<div class="date-box text-center">${list.over}</div>
+									<div class="date-box text-center" data-over="${list.over}">${list.over}</div>
+								</c:if>
+								<c:if test="${list.over eq '진행예정'}">
+									<div class="date-box text-center"
+										style="background-color: #A5C768" data-over="${list.over}">${list.over}</div>
 								</c:if>
 
 								<img
@@ -132,15 +138,16 @@
 </body>
 <script>
 	//투표마감된 부분에 회색 커튼 치기
-/* 	const box = $('.pr-feature-box-4');
+
+	/* 	 const box = $('.pr-feature-box-4');
 
 	 for (let i=0; i < $(box).length; i++) {
-	 console.log($(box).eq(i).children().children());
-	 if ($(box).eq(i).children().children() == '투표마감') {
-	 $('#vote-content').css({'background-color':'#727272', 'opacity':'0.3'});
-	 console.log('ddd');
+	 console.log($(box).eq(i).children().children().attr('data-over'));
+	 if ($(box).eq(i).children().children().attr('data-over') == '투표마감') {
+	 console.log($('#vote-content'));
+
 	 }
 	
-	 } */
+	 }  */
 </script>
 </html>
