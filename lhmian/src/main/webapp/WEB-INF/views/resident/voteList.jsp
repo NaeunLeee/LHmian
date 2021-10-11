@@ -125,6 +125,12 @@
 											class="bi bi-pencil-square"></i> &nbsp;투표하기</a>
 									</div>
 								</c:if>
+								<c:if test="${list.over eq '투표마감'}">
+									<div class="text-right">
+										<a class="btn btn-light" href="voteResult?no=${list.voteNo }"><i
+											class="bi bi-pencil-square"></i> &nbsp;결과보기</a>
+									</div>
+								</c:if>
 							</div>
 						</div>
 					</div>

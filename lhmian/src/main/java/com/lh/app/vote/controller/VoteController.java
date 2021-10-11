@@ -28,16 +28,33 @@ public class VoteController {
 	}
 	
 	@GetMapping("/resident/vote")
-	public String voteSelect(@RequestParam("no") String voteNo, Model model) {
-		
+	public String voteSelect(@RequestParam("no") String voteNo, 
+			Model model, @AuthenticationPrincipal CustomUserDetails info) {
+	
 		VoteVO vo = new VoteVO();
 		
 		vo.setVoteNo(Integer.parseInt(voteNo));
+		vo.setHouseInfo(info.getHOUSEINFO());
 		
 		model.addAttribute("content", voteService.voteSelect(vo));
 		model.addAttribute("hanjul", voteService.voteSelectTitle(vo));
 		
+		VoteVO vo2 = voteService.voteParticipate(vo);
+		
+		//end가 1이면 투표 결과보는 페이지
+		
+		if (vo2 == null) {
+			model.addAttribute("participate", "no");
+		} else {
+			model.addAttribute("participate", "yes");
+		}
+		
 		return "resident/voteSelect";
+	}
+	
+	@GetMapping("/resident/voteResult")
+	public void voteResult(@RequestParam("no") String voteNo) {
+		
 	}
 	
 	@GetMapping("/admin/admVoteList")
@@ -90,7 +107,14 @@ public class VoteController {
 		
 		int result = voteService.insertVoteInfo(vo);
 		
+		VoteVO vvo = new VoteVO();
+		
+		vvo.setVoteNo(vo.getVoteNo());
+		
+		int plus = voteService.voteCountUpdate(vvo);
+		
 		System.out.println(result + "건 등록");
+		System.out.println(plus + "COUNT 증가");
 		
 		return "redirect:voteList";
 	}

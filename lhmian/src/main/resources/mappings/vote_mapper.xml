@@ -28,6 +28,18 @@
 		ORDER BY 1 DESC, 6
 	</select>
 	
+	<select id="voteParticipate" resultType="VoteVO">
+		SELECT V.VOTE_NO, 
+			   V.VOTE_TITLE, 
+			   V.VOTE_START, 
+			   V.VOTE_END, 
+			   V.VOTE_DAY,
+               HVC.HV_STATUS
+	    FROM VOTE V JOIN HOUSE_VOTEINFO HVC
+        ON V.VOTE_NO = HVC.VOTE_NO
+        WHERE V.VOTE_NO = #{voteNo}  AND HVC.HOUSE_INFO = #{houseInfo}
+	</select>
+	
 	<select id="voteSelectTitle" resultType="VoteVO">
 		SELECT V.VOTE_NO, 
 			   V.VOTE_TITLE, 
@@ -92,4 +104,9 @@
 			)
 	</insert>
 	
+	<update id="voteCountUpdate">
+		UPDATE VOTE
+		SET VOTE_COUNT = VOTE_COUNT+1
+		WHERE VOTE_NO = #{voteNo}
+	</update>
 </mapper>

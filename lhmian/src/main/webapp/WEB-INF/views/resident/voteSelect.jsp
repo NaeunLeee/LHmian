@@ -24,6 +24,11 @@
 	width: 100%;
 	min-height: 600px;
 	background: #fafafa;
+	position: relative;
+}
+
+.mm-survey-container-absolute {
+	position: absolute;
 }
 
 .mm-survey-results-container {
@@ -274,54 +279,130 @@ input[type="radio"]+label span, input[type="radio"]:checked+label span {
 .mm-item-info {
 	float: right;
 }
+
+.pr-feature-box-4 {
+	width: 100%;
+	float: left;
+	padding: 10px;
+	border: 2px solid #fff;
+}
+
+.pr-feature-box-4 .img-box {
+	position: relative;
+	width: 100%;
+	float: left;
+}
+
+.pr-feature-box-4 .img-box .date-box {
+	position: absolute;
+	width: 40%;
+	float: left;
+	padding: 8px 15px;
+	left: 20px;
+	color: #fff;
+	font-size: 16px;
+	bottom: 20px;
+	background-color: #ecae3d;
+}
+
+.pr-feature-box-4 .title-line {
+	width: 50%;
+	margin: 10px 50% 27px 0;
+	height: 1px;
+	background-color: #e4e4e4;
+}
+
+input[type="radio"]:checked+label {
+	background-color: #fff1d8;
+}
+
+.sec-title-container-padding-topbottom {
+    padding-bottom: 0;
+}
 </style>
 </head>
 <body>
-	<div class="container">
-		<div class="col-sm-12">
-			<div class="mm-survey">
-				<div class="mm-survey-bottom">
-					<div class="mm-survey-container">
+	<section>
+		<div class="pagenation-holder-no-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<ol class="breadcrumb-gray">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/myPage/myPage">마이
+									페이지</a></li>
+							<li class="current"><a href="#">투표</a></li>
+						</ol>
+					</div>
+					<div class="col-md-6"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="sec-padding section-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">투표하기</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title">투표를 어쩌구~~~~~~~~~~~~~~~~~~</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<!--end title-->
 
-						<div class="mm-survey-page active" data-page="1">
-							<div class="mm-survery-content">
-								<div class="mm-survey-question">
-									<p>
-										<a class="btn btn-medium btn-yellow-dark xround-5">진행중</a>
-										${hanjul.voteTitle }
-									</p>
-								</div>
-								<form id="frm" action="vote" method="POST">
-									<!-- csrf -->
-									<input type="hidden" name="${_csrf.parameterName }"
-										value="${_csrf.token }"> <input type="hidden"
-										name="voteNo" value="${hanjul.voteNo }">
-									<c:forEach var="content" items="${content }">
-										<div class="mm-survey-item">
-											<input type="radio" id="${content.vcQuesNo }" name="hvResult"
-												value="${content.vcQuesNo }" /> <label
-												for="${content.vcQuesNo }"><span></span>
-												<p>${content.vcQuesNo }.${content.vcContent }</p></label>
+
+				<div class="container">
+						<div class="col-sm-12">
+							<div class="mm-survey">
+								<div class="mm-survey-bottom">
+					<div class="pr-feature-box-4 margin-bottom">
+									<div class="mm-survey-container">
+
+										<div class="mm-survey-page active" data-page="1">
+											<div class="mm-survery-content">
+												<div class="mm-survey-question">
+													<p>
+														<a class="btn btn-medium btn-yellow-dark xround-5">진행중</a>
+														${hanjul.voteTitle }
+													</p>
+												</div>
+												<form id="frm" action="vote" method="POST">
+													<!-- csrf -->
+													<input type="hidden" name="${_csrf.parameterName }"
+														value="${_csrf.token }"> <input type="hidden"
+														name="voteNo" value="${hanjul.voteNo }">
+													<c:forEach var="content" items="${content }">
+														<div class="mm-survey-item">
+															<input type="radio" id="${content.vcQuesNo }"
+																name="hvResult" value="${content.vcQuesNo }" /> <label
+																for="${content.vcQuesNo }"><span></span>
+																<p>${content.vcQuesNo }.${content.vcContent }</p></label>
+														</div>
+													</c:forEach>
+												</form>
+											</div>
 										</div>
-									</c:forEach>
-								</form>
+										안내문~~~~<br> 투표는 한번 하면 취소할 수 어쩌구~~
+									</div>
+
+									<div class="mm-survey-controller">
+										<div class="mm-next-btn">
+											<button id="submit" disabled="true">제출</button>
+										</div>
+										<button type="button" onclick="goBack();">취소</button>
+									</div>
+								</div>
 							</div>
 						</div>
-						안내문~~~~<br> 투표는 한번 하면 취소할 수 어쩌구~~
-					</div>
-
-					<div class="mm-survey-controller">
-						<div class="mm-next-btn">
-							<button disabled="true">제출</button>
-						</div>
-						<button type="button" onclick="goBack();">취소</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-
+	</section>
 
 </body>
 <script>
@@ -330,6 +411,16 @@ input[type="radio"]+label span, input[type="radio"]:checked+label span {
 	 const now = new Date();
 	
 	 console.log(endDate - now); */
+	 
+	 const participate = '${participate}';
+	 
+	 if (participate == "yes") {
+		 $('.mm-survey-container').css('opacity', '0.2');
+		 $('input[name="hvResult"]').attr('disabled', 'true');
+		 $('label').css('cursor', 'default');
+		 $('#submit').remove();
+		
+	 }
 
 	jQuery('.mm-prev-btn').hide();
 

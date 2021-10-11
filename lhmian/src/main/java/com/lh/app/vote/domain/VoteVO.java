@@ -19,4 +19,7 @@ public class VoteVO {
 	
 	public String vcContent;
 	public int vcQuesNo;
+	
+	public String hvStatus;
+	public String houseInfo;
 }

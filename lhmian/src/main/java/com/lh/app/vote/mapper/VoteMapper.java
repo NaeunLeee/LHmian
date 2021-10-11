@@ -18,4 +18,8 @@ public interface VoteMapper {
 	public VoteVO voteSelectTitle(VoteVO vo);
 	
 	public int insertVoteInfo(HouseVoteInfoVO vo);
+	
+	public VoteVO voteParticipate(VoteVO vo);
+	
+	public int voteCountUpdate(VoteVO vo);
 }
