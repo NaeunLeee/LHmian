@@ -60,25 +60,29 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th><input type="checkbox" name="chkAll" id="chkAll"></th>
 						<th>번호</th>
-						<th>제목</th>
-						<th>내용</th>
-						<th>기간</th>
-						<th>카테고리</th>
+						<th>세대</th>
+						<th>도착날짜</th>
+						<th>수령여부</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${list}" var="sked">
-						<tr class="move tr_1" data-commNo="${sked.eventNo}">
-							<td>${sked.eventNo}</td>
-							<td>${sked.title}</td>
-							<td>${sked.description}</td>
-							<td>${sked.start}~ ${sked.end}</td>
-							<td>${sked.type}</td>
+					<c:forEach items="${list}" var="post">
+						<tr>
+							<td><input type="checkbox" name="chk" id="${post.houseInfo}"
+						value="${post.houseInfo}"></td>
+							<td>${post.postNo}</td>
+							<td>${post.houseInfo}</td>
+							<td>${post.postDate}</td>
+							<td>${post.postStatus}</td>
 					</c:forEach>
 				</tbody>
 			</table>
-			<button type="button" id="btnShow" class="btn btn-border light" style="float: right; margin-right: 20px; padding: 4px 13px;">일정생성</button>
+			<button type="button" id="btnIn" class="btn btn-border light"
+				style="float: right; margin-right: 20px; padding: 4px 13px;">택배등록</button>
+			<button type="button" id="btnGet" class="btn btn-border light"
+				style="float: right; margin-right: 20px; padding: 4px 13px;">수령완료</button>
 			<br>
 
 			<!-- 폼 -->
@@ -102,25 +106,13 @@
 			</div>
 
 			<div style="margin: auto;">
-				<form id="actionForm" method="get">
+				<form id="actionForm" action="admPost" method="get">
 					<!-- 메소드 생략시 자동으로 get로 전환 -->
 					<select name="type" class="form-control" style="width: 100px;">
 						<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-						<option value="T"
-							${empty pageMaker.cri.type =='T' ? selected : ""}>제목검색</option>
-						<option value="C"
-							${empty pageMaker.cri.type =='C' ? selected : ""}>번호</option>
-						<option value="W"
-							<c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
-						<option value="TC"
-							<c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목
-							or 내용</option>
-						<option value="TW"
-							<c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목
-							or 작성자</option>
-						<option value="TWC"
-							<c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected':''}"/>>제목
-							or 작성자 or 내용</option>
+						<option value="T" ${empty pageMaker.cri.type =='T' ? selected : ""}>세대번호</option>
+						<option value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>도착날짜</option>
+						<option value="W" ${empty pageMaker.cri.type =='W' ? selected : ""}>수령유무</option>
 					</select> <input name="keyword" class="form-control" style="width: 200px;"
 						value="${pageMaker.cri.keyword}"> <input type="hidden"
 						name="pageNum" value="${pageMaker.cri.pageNum}"> <input
@@ -134,15 +126,21 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	
-	//토큰추가
-	
-	$("#btnShow").on("click",function(){
-		window.open("admSked", "sked", "width=1200,height=1200");
-	});
-	
 	let csrfHeaderName = "${_csrf.headerName}";
 	let csrfTokenValue = "${_csrf.token}";
 	console.log(csrfHeaderName, csrfTokenValue);
 	
+	$("#pageButton a").on("click",function(e){
+        e.preventDefault();   //a, submit
+        var p = $(this).attr("href") //클릭한 값
+        $('[name="pageNum"]').val(p)
+        actionForm.submit();
+     });
+	
+     $("#chkAll").click(function() {
+		if ($("#chkAll").is(":checked"))
+			$("input[name=chk]").prop("checked", true);
+		else
+			$("input[name=chk]").prop("checked", false);
+	 });
 </script>

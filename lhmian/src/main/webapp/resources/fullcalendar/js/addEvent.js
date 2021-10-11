@@ -1,10 +1,4 @@
-// 토큰 추가 --> 작동은 안됨...
-let csrfHeaderName = "${_csrf.headerName}";
-let csrfTokenValue = "${_csrf.token}";
-
 var eventModal = $('#eventModal');
-
-
 
 var modalTitle = $('.modal-title');
 var editAllDay = $('#edit-allDay');
@@ -18,10 +12,6 @@ var editDesc = $('#edit-desc');
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
 
-
-/* ****************
- *  새로운 일정 생성
- * ************** */
 var newEvent = function(start, end, eventType) {
 
 	$("#contextMenu").hide(); //메뉴 숨김
@@ -95,7 +85,7 @@ var newEvent = function(start, end, eventType) {
 			,
 			// 토큰 추가 --> 작동은 안됨...
 			beforeSend: function(xhr) {
-            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+            	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
          	},
 			contentType: 'application/json',
 			success: function(response) {
