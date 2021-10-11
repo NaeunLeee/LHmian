@@ -1,5 +1,7 @@
 package com.lh.app.member.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -7,15 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lh.app.comm.domain.Criteria;
-import com.lh.app.comm.domain.PageVO;
-import com.lh.app.comm.domain.ReplyVO;
 import com.lh.app.member.domain.MemberCriteria;
 import com.lh.app.member.domain.MemberInfoVO;
 import com.lh.app.member.domain.MemberPageVO;
@@ -37,6 +37,16 @@ public class MemberController {
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new MemberPageVO(cri, total));
 		return "admin/admMemberList";
+	}
+	
+	// 전체조회 (ajax) (10/11 추가: 이나은)
+	@PostMapping("/admin/admMemberList")
+	@ResponseBody
+	public List<MemberVO> admMemberList(Model model, @RequestBody @ModelAttribute("cri") MemberCriteria cri) {
+		int total = service.getTotalCount(cri);
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("pageMaker", new MemberPageVO(cri, total));
+		return service.getList(cri);
 	}
 
 	// 단건조회
@@ -60,7 +70,7 @@ public class MemberController {
 		return vo;
 	}
 
-	@RequestMapping("/deleteUser")
+	@PostMapping("admin/deleteUser")
 	@ResponseBody
 	public boolean deleteUser(@RequestParam String[] chk) throws Exception { // json type을 이용하려면 Requestbody룰 이용하여야한다.
 		// 삭제할 사용자 ID마다 반복해서 사용자 삭제
