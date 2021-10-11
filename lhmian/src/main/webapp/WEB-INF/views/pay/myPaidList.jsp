@@ -142,9 +142,12 @@ width : 560px;
 			</div>
 		</div>
 	</section>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	//수정모달
 	function payCancel(n) {
+		let csrfHeaderName = "${_csrf.headerName}";
+		   let csrfTokenValue = "${_csrf.token}";
 		$(cancelModal).modal('show');
 		$.ajax({
 			url : "cancleForm",
@@ -186,16 +189,26 @@ width : 560px;
 					+  '<input type="hidden" name="payStatus" value="결제취소">'
 					+  '</form>'
 				$("#cancelModal .modal-body").html(tag);
+					
+				//모달 취소버튼
+				$('#cancelBtn').on('click', function() {
+					$.ajax({
+						url : "https://api.iamport.kr/payments/cancel",
+						type : "post",
+						data : {merchant_uid : data.payNo},
+						beforeSend: function(xhr) {xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);},
+						 crossDomain: true,
+						success : function() {
+							if (confirm('취소하시겠습니까?')) {
+								frm.submit();	
+							}
+						}
+					})
+				});
 			}
 		});
 	};
 	
-	//모달 취소버튼
-	$('#cancelBtn').on('click', function() {
-		if (confirm('취소하시겠습니까?')) {
-			frm.submit();
-		}
-	});
 </script>
 <!-- <script>
 	// 숨겨진 지역들

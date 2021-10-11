@@ -91,7 +91,7 @@
 			<div class="row">
 				<div class="col-md-6 margin-bottom">
 					<div id="mainImg">
-						<img src="${pageContext.request.contextPath}/resources/images/gym_1.jpg" alt="독서실" class="img-responsive">
+						<img src="${pageContext.request.contextPath}/resources/images/gym_1.jpg" alt="헬스장" class="img-responsive">
 					</div>
 				</div>
 				<div class="col-md-6 margin-bottom">

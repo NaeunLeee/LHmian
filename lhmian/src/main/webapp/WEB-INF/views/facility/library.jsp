@@ -223,7 +223,7 @@
 	<input type="hidden" id="payNo" name="payNo" value="">
 	<input type="hidden" id="id" name="id" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" id="payType" name="payType" value=""> 
-	<input type="hidden" id="payCat" name="payCat" value="헬스장"> 
+	<input type="hidden" id="payCat" name="payCat" value="독서실"> 
 	<input type="hidden" id="payStatus" name="payStatus" value=""> 
 	<input type="hidden" id="impUid" name="imp_uid" value="">
 	
