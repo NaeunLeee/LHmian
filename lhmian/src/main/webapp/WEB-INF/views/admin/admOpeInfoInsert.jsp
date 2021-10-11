@@ -137,6 +137,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+
+
 	$(function() {
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 
@@ -169,6 +174,9 @@
 				url : "opeInfoFileAttach",
 				data : formData,
 				type : 'POST',
+				beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
 				success : function(datas) {
 					var li = "";
 					var str = "";

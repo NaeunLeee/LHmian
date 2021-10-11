@@ -109,9 +109,24 @@ public class CsController {
 		return "admin/admCsSelect";
 	}
 
-	// 답변등록
-	@PostMapping("/office/csAnswer")
-	public String csAnswerInsert(RedirectAttributes rttr, CsVO vo) {
+	// 관리자 게시글 삭제 (10/11 추가: 이나은)
+	@PostMapping("/admin/admCsDelete")
+	public String admCsDelete(RedirectAttributes rttr, @ModelAttribute("cri") CsCriteria cri, CsVO vo) {
+		
+		int n = csService.deleteBoard(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
+		} else {
+			rttr.addFlashAttribute("message", "다시 시도해주세요.");
+		}
+		
+		return "redirect:/admin/admCsList";
+	}
+	
+	// 답변등록 (10/11 일부수정: 이나은)
+	@PostMapping("/admin/csAnswer")
+	public String csAnswer(RedirectAttributes rttr, CsVO vo) {
 		int n = csService.insertAnswer(vo);
 		
 		if (n == 1) {
@@ -120,11 +135,11 @@ public class CsController {
 			rttr.addFlashAttribute("message", "등록에 실패했습니다. 다시 시도해주세요.");
 		}
 		
-		return "redirect:/office/csSelect?csNo=" + vo.getCsNo();
+		return "redirect:/admin/admCsSelect?csNo=" + vo.getCsNo();
 	}
-
-	// 답변수정
-	@PostMapping("/office/csAnswerUpdate")
+	
+	// 답변수정 (10/11 일부수정: 이나은)
+	@PostMapping("/admin/csAnswerUpdate")
 	@ResponseBody
 	public CsVO csAnswerUpdate(@RequestBody CsVO vo) {
 		csService.updateAnswer(vo);

@@ -31,7 +31,7 @@ public class MemberController {
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	// 전체조회
-	@GetMapping("admMemberList")
+	@GetMapping("/admin/admMemberList")
 	public String memberList(Model model, @ModelAttribute("cri") MemberCriteria cri) {
 		int total = service.getTotalCount(cri);
 		model.addAttribute("list", service.getList(cri));
