@@ -82,7 +82,7 @@ textarea:focus {
 				<section class="section-light">
 				<div class="container">
 				<div class="row">
-				<div class="text-box white padding-4 col-7" style="margin-top:50px; ">
+				<div class="text-box white padding-4 col-7" style="margin:80px 0; ">
 							<div class="text-box">
 							<textarea readonly id="commTitle" class="col-md-8 font-weight-7" style="background-color:transparent; font-size:20px">${list.commTitle}</textarea>
 							<h6 class="padding-4 col-md-12">
