@@ -51,11 +51,13 @@ public class EnergyController {
 
 	// 전체조회-관리자
 	@GetMapping("/admin/admEnergyCon")
-	public void admList( Model model) {
+	public void admList(Model model) {
 		model.addAttribute("list", energyService.admList());
 	}
 
 	@GetMapping("/no/test")
-		public void test() {
-		}
+	public void test(Model model) {
+		model.addAttribute("size", energyService.admList().size());
+		model.addAttribute("test", energyService.admList());
+	}
 }
