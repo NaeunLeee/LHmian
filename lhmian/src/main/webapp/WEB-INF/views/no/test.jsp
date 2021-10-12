@@ -1,103 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
-.btn {
-	background-color: lightPink;
-	border: 1px solid lightPink;
+.rand {
+	font-family: Helvetica, sans-serif;
+	word-wrap: break;
+	width: 100px;
+	height: 100px;
+	background: steelblue;
+	padding: 10px;
+	text-align: center;
+	position: relative;
+	z-index: -1;
 }
 
-.main__form_window {
-	border: 1px solid lightGray;
-	width : 400px;
-	margin : auto;
+.new_pos {
+	background: #ccc;
+	border: 1px solid #000;
+	padding: 5px;
+	box-shadow: 0 0 20px #555;
+	-webkit-transition: all .2s ease-in;
+	transition: all .2s ease-in;
 }
 
-table {
-width : 400px;
-}
-tr {
-height : 30px;
-border-bottom : 1px solid lightGray;
+.new_pos:hover {
+	background: #bbb;
+	box-shadow: 0 0 20px #222;
 }
 
-th {
-text-align : center;
-padding : 5px;
+.new_pos:active {
+	box-shadow: 0 0 20px #000;
+	background: #aaa;
 }
 
-td {
-padding-left : 10px;
-padding : 5px 0 5px 5px;
+*:focus {
+	outline: none;
 }
 
-input {
-width : 200x;
+body {
+	overflow: hidden;
+	height: 500px;
 }
 
-textarea {
-width : 250px;
-}
-button {
-margin : 5px 0 5px 280px;
-padding : 5px;
-
-}
-
-button:hover {
-background-color : lightblue;
+.new_pos {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	cursor: pointer;
 }
 </style>
-<div class="main__header" align="center">
-	<h5>진료기록 작성</h5>
-</div>
-<div class="main__form_window" align="center">
-	<form id=myform method="POST">
-		<input type="hidden" value="date">
-		<table>
-			<tr>
-				<th>예약번호</th>
-				<td><input id="bookingNo" value=""></td>
-			</tr>
-			<tr>
-				<th>환자이름</th>
-				<td><input width="30px" type="text" id="ptName" value=""></td>
-			</tr>
-			<tr>
-				<th>주민번호</th>
-				<td><input type="text" value=""></td>
-			</tr>
-			<tr>
-				<th>증상 1</th>
-				<td><input type="text" value="symptom"></td>
-			</tr>
-			<tr>
-				<th>증상 2</th>
-				<td><input type="text" value="symptom"></td>
-			</tr>
-			<tr>
-				<th>증상 3</th>
-				<td><input type="text" value="symptom"></td>
-			</tr>
-			<tr>
-				<th>환자 평가</th>
-				<td><textarea id="pt_assessment" name="pt_assessment" cols="30" rows="8"></textarea></td>
-			</tr>
-			<tr>
-				<th>환자진단</th>
-				<td><input id="pt_diagnosis" name="pt_diagnosis" type="text" value="진단명"></td>
-			</tr>
-			<tr>
-				<th>처방</th>
-				<td><textarea id="prescription" name="prescription" cols="30" rows="5"></textarea></td>
-			</tr>
-		</table>
-			<button class="btn">처방전 보내기</button>
-			<br>
-	</form>
-</div>
-					<script>
-					var date = new Date();
-					var mfDate = "";
-					mfDate = String(date.getFullYear()).substr(2,2) + String(date.getMonth()+1);
-					console.log(mfDate);
-					</script>
+<c:forEach items="${test}" var="list">
+	<div class="rand_pos" class="rand">
+		<p>일반관리비 : ${list}</p>
+	</div>
+</c:forEach>
+
+<script language="JavaScript"> 
+window.onload = pageLoad;
+function pageLoad(){
+	
+console.log(${size});
+		var bodyWidth = document.body.clientWidth
+		var bodyHeight = document.body.clientHeight;
+		for(let i=0; i<${size}; i++) {	
+		eval("randPosX" + i) = Math.floor((Math.random() * bodyWidth));
+		eval("randPosY" + i) = Math.floor((Math.random() * bodyHeight));
+		$('.rand_pos').css('left', eval("randPosX" + i));
+		$('.rand_pos').css('top', eval("randPosY" + i));
+		}
+	};
+</script>
