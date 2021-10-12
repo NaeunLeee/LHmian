@@ -2,7 +2,7 @@ package com.lh.app.visit.mapper;
 
 import java.util.List;
 
-import com.lh.app.visit.domain.VisitCriteria;
+import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.visit.domain.VisitVO;
 
 public interface VisitMapper {
@@ -20,4 +20,7 @@ public interface VisitMapper {
 
 	// 삭제
 	public int delete(VisitVO vo);
+	
+	//세대리스트 불러오기
+	public List<GenerationVO> generation(GenerationVO vo);
 }

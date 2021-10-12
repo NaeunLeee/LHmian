@@ -6,30 +6,43 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.etc.CustomUserDetails;
 import com.lh.app.visit.domain.VisitVO;
-import com.lh.app.visit.mapper.VisitMapper;
+import com.lh.app.visit.service.VisitService;
 
 @Controller
 public class VisitController {
 
-	@Autowired VisitMapper visitService;
+	@Autowired VisitService visitService;
 	
-	//전체조회
-	@GetMapping("/visit/visitList")
-	public String list(Model model, VisitVO vo, @AuthenticationPrincipal CustomUserDetails user) {
+	//세대리스트
+	@GetMapping("/visit/generation")
+	public String generation(Model model, GenerationVO vo) {
+		model.addAttribute("generation", visitService.generation(vo));
+		return "visit/generationList";
+	}
+	
+	
+	//세대선택, 전체조회
+	@GetMapping("/no/visitList")
+	public String list(Model model, VisitVO vo) {
 		//int total = visitService.getTotalCount(cri);
-		vo.setHouseInfo(Integer.parseInt(user.getHOUSEINFO()));
 		model.addAttribute("list", visitService.getList(vo));
 		//model.addAttribute("pageMaker", new VisitPageVO(cri, total));
-		return "visit/visitList";
+		return "no/visitList";
 	}
 
 	//등록
-	@PostMapping("/visit/visitInsert")
-	public String visitInsert(RedirectAttributes rttr, VisitVO vo) {
+	@PostMapping("/no/visitInsert")
+	@ResponseBody
+	public String visitInsert(RedirectAttributes rttr, VisitVO vo,@AuthenticationPrincipal CustomUserDetails user ) {
+		vo.setHouseInfo(1234);
+		vo.setWriterInfo(Integer.parseInt(user.getHOUSEINFO()));
+		vo.setVisitWriter(user.getNAME());
 		int n = visitService.insert(vo);
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
@@ -40,7 +53,7 @@ public class VisitController {
 	}
 	
 	//수정
-	@PostMapping("/visit/visitUpdate")
+	@PostMapping("/no/visitUpdate")
 	public String update(VisitVO vo, RedirectAttributes rttr) {
 		int n = visitService.update(vo);
 		if(n==1) {
@@ -48,7 +61,7 @@ public class VisitController {
 		}else {
 			rttr.addFlashAttribute("message", "수정이 실패했습니다.");
 		}
-		return "redirect:/visit/visitList";
+		return "redirect:/no/visitList";
 	}
 	//삭제
 	@PostMapping("/visitDelete")
@@ -59,6 +72,6 @@ public class VisitController {
 		}else {
 			rttr.addFlashAttribute("message", "수정이 실패했습니다.");
 		}
-		return "redirect:/visit/visitList";
+		return "redirect:/no/visitList";
 	}
 }
