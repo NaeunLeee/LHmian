@@ -71,6 +71,10 @@ public class VoteController {
 			list.add(vo);
 		}
 
+		VoteVO vvo = new VoteVO();
+		vvo.setVoteNo(no);
+		
+		model.addAttribute("info", voteService.voteSelectTitle(vvo));
 		model.addAttribute("list", list);
 		
 	}

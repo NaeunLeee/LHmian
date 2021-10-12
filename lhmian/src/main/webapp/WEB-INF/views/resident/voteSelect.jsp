@@ -320,6 +320,11 @@ input[type="radio"]:checked+label {
     padding-bottom: 0;
 }
 </style>
+<script>
+if (participate == "yes") {
+	 alert('이미 참여한 투표입니다.');
+}
+</script>
 </head>
 <body>
 	<section>
@@ -361,7 +366,7 @@ input[type="radio"]:checked+label {
 								<div class="mm-survey-bottom">
 					<div class="pr-feature-box-4 margin-bottom">
 									<div class="mm-survey-container">
-
+										
 										<div class="mm-survey-page active" data-page="1">
 											<div class="mm-survery-content">
 												<div class="mm-survey-question">
@@ -415,11 +420,12 @@ input[type="radio"]:checked+label {
 	 const participate = '${participate}';
 	 
 	 if (participate == "yes") {
-		 $('.mm-survey-container').css('opacity', '0.2');
+		 $('.mm-survey-container').css('opacity', '0.3');
 		 $('input[name="hvResult"]').attr('disabled', 'true');
 		 $('label').css('cursor', 'default');
 		 $('#submit').remove();
 		
+		 alert('이미 참여한 투표입니다.');
 	 }
 
 	jQuery('.mm-prev-btn').hide();
