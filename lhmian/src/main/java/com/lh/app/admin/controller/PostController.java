@@ -1,5 +1,7 @@
 package com.lh.app.admin.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import com.lh.app.admin.domain.PostVO;
 import com.lh.app.admin.service.PostService;
 import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.domain.PageVO;
+import com.lh.app.member.service.MemberService;
 import com.lh.app.signIn.domain.MemberVO;
 import com.mchange.v2.cfg.PropertiesConfigSource.Parse;
 
@@ -28,23 +31,24 @@ public class PostController {
 	@Autowired
 	PostService postService;
 	
-	//택배 리스트 조회
+	// 택배 리스트 조회
 	@RequestMapping("admin/admPost")
-	public String getListview(Model model,Criteria cri) {
+	public String getListview(Model model, Criteria cri) {
 		int total = postService.getTotalCount(cri);
 		model.addAttribute("list", postService.getList(cri));
 		model.addAttribute("pageMaker", new PageVO(cri, total));
+		model.addAttribute("option", cri.getOption());
 		System.out.println("cri======" + cri);
 		System.out.println(total);
 		return "admin/admPost";
 	}
-	
+
 	// 등록
 	@RequestMapping("admin/insertPost") // post : 파라미터 질의문자열 (query string) ->?id=100&pw=111&name=choi
 	@ResponseBody
 	public PostVO insert(@RequestBody PostVO vo) { // form에 값 넘겨줌
 		System.out.println(vo.toString());
-		
+
 		postService.insert(vo);
 		return vo;
 	}
@@ -63,7 +67,7 @@ public class PostController {
 		// 목록 페이지로 이동
 		return true;
 	}
-	
+
 	// 삭제
 	@RequestMapping("admin/deletePost")
 	@ResponseBody
@@ -76,6 +80,25 @@ public class PostController {
 			postService.delete(vo);
 		}
 		return true;
+	}
+	
+	// 10/12 추가
+	// 인증 버튼 클릭시
+	@PostMapping("admin/sendKey")
+	@ResponseBody
+	public String sendKey(@RequestBody HashMap<String, String> map) {
+		// 넘어온 휴대폰 번호
+		System.out.println(map.get("phone"));
+
+		return postService.smsAPI(map.get("phone"));
+	}
+	
+	// 전화번호 조회 --> 문자서비스로 이동시킬 것
+	@RequestMapping("admin/readPhone")
+	@ResponseBody
+	public String readPhone(@RequestBody MemberVO vo) {
+		String phone = postService.readPhone(vo);
+		return phone;
 	}
 
 }

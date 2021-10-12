@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.lh.app.admin.domain.PostVO;
 import com.lh.app.comm.domain.Criteria;
+import com.lh.app.signIn.domain.MemberVO;
 
 public interface PostService {
 	// 등록
@@ -21,4 +22,10 @@ public interface PostService {
 	public int getTotalCount(Criteria cri);
 
 	public int delete(PostVO vo);
+
+	// 10/12 전화번호 조회
+	// 단건 조회
+	public String readPhone(MemberVO vo);
+
+	public String smsAPI(String phone);
 }
