@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@ ul, li {
 }
 
 ul {
-	width: 500px;
+	width: 600px;
 	margin: 0 auto
 }
 
@@ -25,13 +26,14 @@ li {
 	overflow: hidden;
 }
 
-h2 {
+h3 {
+	margin-top: 5px;
+	margin-bottom: 5px;
 	float: left;
-	width: 6em;
 	margin-right: 5px;
-	color: #f1c40f;
+	word-break: break-all;
 }
-/* 进度热度 */
+
 .percent {
 	margin-top: 8px;
 	font-size: 0;
@@ -45,13 +47,14 @@ h2 {
 
 .percent-bar {
 	display: block;
-	background: #f1c40f;
+	background: #dadada;
 	height: 25px;
 	width: 0;
 }
 </style>
 </head>
 <body>
+<!-- f1c40f  -->
 	<section>
 		<div class="pagenation-holder-no-bottom">
 			<div class="container">
@@ -87,33 +90,21 @@ h2 {
 
 
 				<ul>
-					<li>
-						<h2>html</h2>
-						<div class="percent">
-							<span class="percent-bar" data-per="90"></span>
-						</div>
-					</li>
-					<li>
-						<h2>css3</h2>
-						<div class="percent">
-							<span class="percent-bar" data-per="27"></span>
-						</div>
-					</li>
-					<li>
-						<h2>javascript</h2>
-						<div class="percent">
-							<span class="percent-bar" data-per="70"></span>
-						</div>
-					</li>
-					<li>
-						<h2>nodejs</h2>
-						<div class="percent">
-							<span class="percent-bar" data-per="50"></span>
-						</div>
-					</li>
+					<c:forEach var="list" items="${list }">
+						<li>
+							<h3>${list.vcQuesNo }.
+								<span class="vc-content">${list.vcContent }</span>&nbsp;&nbsp;&nbsp;
+								<span class="percent-value" data-value="${list.percent}">${list.percent }%</span>
+							</h3>
+							<br>
+							<div class="percent">
+								<div class="percent-bar" data-per="${list.percent }"></div>
+							</div>
+						</li>
+					</c:forEach>
 				</ul>
 
-
+				<span class="text-highlight yellow"></span>
 
 			</div>
 		</div>
@@ -152,7 +143,6 @@ h2 {
 
 			$body.queue('jq.progressbar', _queue);
 
-			// 触发堆栈
 			fnDequeue();
 
 			return this;
@@ -163,6 +153,20 @@ h2 {
 		duration : 500
 	});
 
-
+	let max = 0;
+	for (let i = 0; i < $('.percent-value').length; i++) {
+		console.log($('.percent-value').eq(i).attr('data-value'));
+		if ($('.percent-value').eq(i).attr('data-value') > max) {
+			max = $('.percent-value').eq(i).attr('data-value');
+		}
+	}
+	for (let i = 0; i < $('.percent-value').length; i++) {
+		if ($('.percent-value').eq(i).attr('data-value') == max) {
+			console.log($(this));
+			$('.percent-value').eq(i).addClass('text-highlight yellow');
+			$('.percent-value').eq(i).prev().addClass('text-highlight yellow');
+			$('.percent-value').parent().parent().eq(0).children().children().css('background', '#f1c40f');
+		}
+	}
 </script>
 </html>
