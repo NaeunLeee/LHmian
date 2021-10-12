@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@ ul, li {
 }
 
 ul {
-	width: 600px;
+	width: 500px;
 	margin: 0 auto
 }
 
@@ -32,6 +33,7 @@ h3 {
 	float: left;
 	margin-right: 5px;
 	word-break: break-all;
+	color: #878787;
 }
 
 .percent {
@@ -54,7 +56,7 @@ h3 {
 </style>
 </head>
 <body>
-<!-- f1c40f  -->
+	<!-- f1c40f  -->
 	<section>
 		<div class="pagenation-holder-no-bottom">
 			<div class="container">
@@ -73,38 +75,37 @@ h3 {
 			</div>
 		</div>
 	</section>
-	<section class="sec-padding section-light">
+	<section class="sec-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 nopadding">
 					<div class="sec-title-container-padding-topbottom text-center">
 						<div class="pl-title-line-1"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">투표 결과</h4>
+						<h1 class="uppercase font-weight-7 less-mar-1">${info.voteTitle }</h1>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">투표를 어쩌구~~~~~~~~~~~~~~~~~~</p>
+						<p class="by-sub-title">
+							투표 기간&nbsp;&nbsp;
+							<fmt:formatDate value="${info.voteStart }" pattern="yyyy-MM-dd" />
+							~
+							<fmt:formatDate value="${info.voteEnd }" pattern="yyyy-MM-dd" />
+						</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
 				<!--end title-->
-
-
-
 				<ul>
 					<c:forEach var="list" items="${list }">
 						<li>
-							<h3>${list.vcQuesNo }.
+							<h3 data-value="${list.percent}">${list.vcQuesNo }.
 								<span class="vc-content">${list.vcContent }</span>&nbsp;&nbsp;&nbsp;
-								<span class="percent-value" data-value="${list.percent}">${list.percent }%</span>
-							</h3>
-							<br>
-							<div class="percent">
+								<span class="percent-value">${list.percent }%</span>
+							</h3> <br>
+							<div class="percent pull-right">
 								<div class="percent-bar" data-per="${list.percent }"></div>
 							</div>
 						</li>
 					</c:forEach>
 				</ul>
-
-				<span class="text-highlight yellow"></span>
 
 			</div>
 		</div>
@@ -154,18 +155,20 @@ h3 {
 	});
 
 	let max = 0;
-	for (let i = 0; i < $('.percent-value').length; i++) {
-		console.log($('.percent-value').eq(i).attr('data-value'));
-		if ($('.percent-value').eq(i).attr('data-value') > max) {
-			max = $('.percent-value').eq(i).attr('data-value');
+	console.log($('h3').length);
+	for (let i = 0; i < $('h3').length; i++) {
+		if ($('h3').eq(i).attr('data-value') > max) {
+			max = $('h3').eq(i).attr('data-value');
 		}
 	}
-	for (let i = 0; i < $('.percent-value').length; i++) {
-		if ($('.percent-value').eq(i).attr('data-value') == max) {
-			console.log($(this));
-			$('.percent-value').eq(i).addClass('text-highlight yellow');
-			$('.percent-value').eq(i).prev().addClass('text-highlight yellow');
-			$('.percent-value').parent().parent().eq(0).children().children().css('background', '#f1c40f');
+
+	for (let i = 0; i < $('h3').length; i++) {
+		console.log($('h3').eq(i).attr('data-value'));
+		if ($('h3').eq(i).attr('data-value') === max) {
+			$('.percent-value').parent().eq(i)
+					.addClass('text-highlight yellow');
+			$('.percent-value').parent().parent().eq(0).children().children()
+					.css('background', '#f1c40f');
 		}
 	}
 </script>
