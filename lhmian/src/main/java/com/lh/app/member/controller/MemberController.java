@@ -1,5 +1,8 @@
 package com.lh.app.member.controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -115,5 +118,13 @@ public class MemberController {
 		service.updatePhone(vo);
 		return vo;
 	}
+	
+	// sms 전송 (10/12 추가: 이나은)
+	@PostMapping("/admin/sendSms")
+	@ResponseBody
+	public Long sendKey(@RequestBody List<HashMap<String, String>> list) {
+		return service.smsAPI(list);
+	}
+	
 	
 }

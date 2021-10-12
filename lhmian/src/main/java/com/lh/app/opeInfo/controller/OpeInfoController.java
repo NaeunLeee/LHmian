@@ -240,57 +240,57 @@ public class OpeInfoController {
 	}
 	
 	// 첨부파일 다운로드
-	@GetMapping("/admin/opeInfoDownload")
-	public void admFileDownload(@RequestParam Map<String, Object> commandMap
-			, HttpServletRequest request
-			, HttpServletResponse response) throws IOException {
-		
-		String oiFileid = (String) commandMap.get("oiFileid");
-		
-		// oiFileid로 첨부파일 검색
-		OpeInfoVO vo = opeInfoService.readByFileid(oiFileid);
-		String oiFilename = "";
-		
-		if (vo != null) {
-			oiFilename = vo.getOiFilename();
-		}
-		
-		File uFile = new File("c:/opeInfoFile", oiFileid + oiFilename);
-		long fSize = uFile.length();
-		
-		if (fSize > 0) {
-			String mimetype = "application/x-msdownload";
-			response.setContentType(mimetype);
-			response.setHeader("Content-Disposition", 
-					"attachment;filename=\"" 
-							+ URLEncoder.encode(oiFilename, "utf-8") + "\"");
-			
-			BufferedInputStream in = null;
-			BufferedOutputStream out = null;
-			try {
-				in = new BufferedInputStream(new FileInputStream(uFile));
-				out = new BufferedOutputStream(response.getOutputStream());
-				FileCopyUtils.copy(in, out);
-				out.flush();
-			} catch (IOException ex) {
-			} finally {
-				in.close();
-				response.getOutputStream().flush();
-				response.getOutputStream().close();
-			}
-		} else {
-			response.setContentType("application/x-msdownload");
-			PrintWriter printwriter = response.getWriter();
-			printwriter.println("<html>");
-			printwriter.println("<h2>Could not get file name:<br>" + oiFileid + "</h2>");
-			printwriter.println("<center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
-			printwriter.println("&copy; webAccess");
-			printwriter.println("</html>");
-			printwriter.flush();
-			printwriter.close();
-		}
-		
-	}
+//	@GetMapping("/admin/opeInfoDownload")
+//	public void admFileDownload(@RequestParam Map<String, Object> commandMap
+//			, HttpServletRequest request
+//			, HttpServletResponse response) throws IOException {
+//		
+//		String oiFileid = (String) commandMap.get("oiFileid");
+//		
+//		// oiFileid로 첨부파일 검색
+//		OpeInfoVO vo = opeInfoService.readByFileid(oiFileid);
+//		String oiFilename = "";
+//		
+//		if (vo != null) {
+//			oiFilename = vo.getOiFilename();
+//		}
+//		
+//		File uFile = new File("c:/opeInfoFile", oiFileid + oiFilename);
+//		long fSize = uFile.length();
+//		
+//		if (fSize > 0) {
+//			String mimetype = "application/x-msdownload";
+//			response.setContentType(mimetype);
+//			response.setHeader("Content-Disposition", 
+//					"attachment;filename=\"" 
+//							+ URLEncoder.encode(oiFilename, "utf-8") + "\"");
+//			
+//			BufferedInputStream in = null;
+//			BufferedOutputStream out = null;
+//			try {
+//				in = new BufferedInputStream(new FileInputStream(uFile));
+//				out = new BufferedOutputStream(response.getOutputStream());
+//				FileCopyUtils.copy(in, out);
+//				out.flush();
+//			} catch (IOException ex) {
+//			} finally {
+//				in.close();
+//				response.getOutputStream().flush();
+//				response.getOutputStream().close();
+//			}
+//		} else {
+//			response.setContentType("application/x-msdownload");
+//			PrintWriter printwriter = response.getWriter();
+//			printwriter.println("<html>");
+//			printwriter.println("<h2>Could not get file name:<br>" + oiFileid + "</h2>");
+//			printwriter.println("<center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
+//			printwriter.println("&copy; webAccess");
+//			printwriter.println("</html>");
+//			printwriter.flush();
+//			printwriter.close();
+//		}
+//		
+//	}
 
 	
 	

@@ -129,7 +129,7 @@
 							<tbody id="tbody">
 								<c:forEach var="member" items="${list}">
 									<tr class="move tr_1">
-										<td><input type="checkbox" name="chk" id="${member.id}" value="${member.id}" data-name="${member.name}"></td>
+										<td><input type="checkbox" name="chk" id="${member.id}" value="${member.id}" data-name="${member.name}" data-phone="${member.phone}"></td>
 										<td>${member.name}</td>
 										<td>
 											<c:set var="donghosu" value="${member.houseInfo}"/>
@@ -137,8 +137,8 @@
 											<c:if test="${member.position eq 'FOLLOWER'}">일반</c:if>
 										</td>
 										<td id="test"> 
-											<c:if test="${member.author eq 'OWNER'}"> 세대주</c:if>
-											<c:if test="${member.author eq 'MEMBER'}"> 세대원</c:if>
+											<c:if test="${member.author eq 'OWNER'}">세대주</c:if>
+											<c:if test="${member.author eq 'MEMBER'}">세대원</c:if>
 										</td>
 										<td>
 											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 8)}호
@@ -194,21 +194,25 @@
 					<!-- Modal body -->
 					<div class="modal-body">
 						<div style="margin: 0px 20px 0px;">
-							<h3><div id="memInfo"></div></h3>
+							<blockquote><span id="memInfo"></span></blockquote>
 							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-							<textarea rows="10" cols="40" class="form-control"></textarea>
+							<textarea id="smsContent" rows="10" cols="30" class="form-control"></textarea>
 						</div>
+						<div style="margin-right: 20px; float: right;">
+							(&nbsp;<span id="checkLength"></span>&nbsp;/ 200 )
+						</div>
+						<br>
 						<hr>
-						<div>
-						총 보낼 문자 갯수 ~개<br>
-						총 금액 ~원
+						<div align="right" style="margin-right: 20px;">
+							<h4>총 <span id="number"></span> 개</h4>
+							<h4>총 금액 <span id="price"></span> 원</h4>
 						</div>
 					</div>
 					<!-- Modal Footer -->
 					<div class="modal-footer">
 						<div align="center">
-							<button type="button" class="btn btn-gyellow">전송</button>
-							<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
+							<button type="button" id="send" class="btn btn-gyellow">전송</button>
+							<button type="button" id="close" class="btn btn-default">취소</button>
 						</div>
 					</div>
 				</form>
@@ -221,15 +225,6 @@
 
 	let csrfHeaderName = "${_csrf.headerName}";
 	let csrfTokenValue = "${_csrf.token}";
-
-/* 	var actionForm = $("#actionForm")
-	$(".move").on("click", function(e) {
-		e.preventDefault(); //a의 원래 기능 막고
-		var noticeNo = $(this).attr("href")
-		actionForm.append('<input type="hidden" name="id" value="'+ id +'">')
-		actionForm.attr("action", "admMemberList");
-		actionForm.submit();
-	}); */
 
 	$("#pageButton a").on("click", function(e) { //페이지 번호 눌렀을 때. pagebutton 안써주면 헤더, 푸터에 걸린 a태그도 다 링크 걸림
 		e.preventDefault(); //a, submit
@@ -323,29 +318,96 @@
 	 });
 	 
 	// 모달창에 체크된 값 넘겨주기 (10/12 추가: 이나은)
-	 
+	let type = null;
+	
 	$('#showModal').on("click", function() {
 		
 		var cnt = $("input[name='chk']:checked").length;
 		var arr = new Array();
 		
 		$("input[name='chk']:checked").each(function() {
-			arr.push($(this).attr('data-name'));
+			const json = {
+				"name" : $(this).attr('data-name'),
+				"phone" : $(this).attr('data-phone'),
+			};
+			arr.push(json);
 		});
-
+			
  		if (cnt == 0) {
 			alert("선택된 회원이 없습니다.");
 		} else if (cnt == 1) {
-			console.log(arr[0]);
-			$('#memInfo').html(arr[0] + '님 에게 전송');
+			$('#memInfo').html(arr[0].name + '님에게 전송');
+			$('#number').html(cnt);
+			$('#price').html('30');
+			$('#smsModal').show();
 		} else {
-			$('#memInfo').html(arr[0] + '님 외 ' + cnt + '명에게 전송');
+			$('#memInfo').html(arr[0].name + '님 외 ' + (cnt-1) + '명에게 전송');
+			$('#number').html(cnt);
+			$('#price').html(cnt*30);
+			$('#smsModal').show();
 		} 
 		
-		$('#smsModal').show();
+ 		
 	});
-	 
-	 
+
+	$('#close').on("click", function() {
+		$('#smsModal').hide();
+	});
+
+	// 문자 글자수 실시간 체크
+	$("#smsContent").keyup(function(e) {
+		var content = $(this).val();
+		$('#checkLength').html(content.length); //실시간 글자수 카운팅
+		if (content.length > 200) {
+			alert("최대 200자까지 입력 가능합니다.");
+			$(this).val(content.substring(0, 200));
+			$('#checkLength').html('200');
+		}
+	});
+	
+	$('#send').on("click", function() {
+		
+		var cnt = $("input[name='chk']:checked").length;
+		var arr = new Array();
+		
+		$("input[name='chk']:checked").each(function() {
+			const json = {
+				"name" : $(this).attr('data-name'),
+				"phone" : $(this).attr('data-phone'),
+				"content" : $('#smsContent').val()
+			};
+			arr.push(json);
+		});
+		
+		if (confirm('문자를 전송하시겠습니까?')) {
+			$.ajax({
+				url: 'sendSms',
+				type: 'POST',
+				data: JSON.stringify(arr),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(data) {
+					console.log(data);
+				}
+			});
+		}
+	});
+	
+/* 	function getTextLength(str) {
+	    var len = 0;
+	    for (var i = 0; i < str.length; i++) {
+	        if (escape(str.charAt(i)).length == 6) {
+	            len++;
+	        }
+	        len++;
+	    }
+	    return len;
+	} */
+		
+
+	
 /* 	 $(document).ready(function() {
 		 
 		 var test = "${member.phone}";
