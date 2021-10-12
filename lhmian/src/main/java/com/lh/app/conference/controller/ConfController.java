@@ -71,13 +71,13 @@ public class ConfController {
 		return "redirect:/resident/confList";
 	}
 	
-	// 수정
-	@PostMapping("/resident/confUpdate")
-	@ResponseBody
-	public ConfVO confUpdate(@RequestBody ConfVO vo) {
-		confService.update(vo);
-		return confService.read(vo);
-	}
+	// 수정 (ajax)
+//	@PostMapping("/resident/confUpdate")
+//	@ResponseBody
+//	public ConfVO confUpdate(@RequestBody ConfVO vo) {
+//		confService.update(vo);
+//		return confService.read(vo);
+//	}
 	
 	// 삭제
 	@PostMapping("/resident/confDelete")
@@ -98,5 +98,26 @@ public class ConfController {
 		return "redirect:/resident/confList";
 	}
 	
+	// 수정 폼
+	@GetMapping("/resident/confUpdate")
+	public String confUpdateForm (Model model, ConfVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		model.addAttribute("conf", confService.read(vo));
+		model.addAttribute("user", customUserDetails);
+		return "resident/confUpdate";
+	}
+	
+	// 수정
+	@PostMapping("/resident/confUpdate")
+	public String confUpdate (RedirectAttributes rttr, ConfVO vo) {
+		int n = confService.update(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		return "redirect:/resident/confList";
+	}
 	
 }

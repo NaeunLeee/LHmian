@@ -41,6 +41,9 @@
 	.nav-tabs.nav-justified>li>.active {
 		background-color: #C8C6C6;
 	}
+	#notpaid, #leader, #owner {
+		margin: 0px 5px 0px;
+	}
 </style>
 
 <!-- 10/11 전체수정: 이나은 -->
@@ -86,19 +89,20 @@
 					<div class="clearfix"></div>
 					<p class="by-sub-title">LHmian의 모든 회원을 조회합니다.</p>
 				</div>
-				<div style="float: left; margin-left: 50px;">
+				<div style="float: left; margin-left: 50px;" id="criteriaForm" data-option="${option}">
 					<form id="actionForm" action="admMemberList" method="get">
+						<button type="button" class="btn btn-default" onclick="location.href='admMemberList'">전체조회</button>
 						<select name="type" class="form-control" style="width: 100px; ">
 							<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
 							<option value="N" ${pageMaker.cri.type=='N' ? 'selected' : ""}>이름</option>
 							<option value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>동호수</option>
 							<option value="A" ${pageMaker.cri.type=='A' ? 'selected' : ""}>휴대폰번호</option>
 						</select> 
-						<input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}"> 
-						<button type="submit" class="btn btn-dark">검색</button>&nbsp;&nbsp;
-						
-						관리비미납&nbsp;<input type="checkbox" id="notpaid" name="notpaid">&nbsp;&nbsp;
-						입주민대표&nbsp;<input type="checkbox" id="leader" name="leader">
+						<input name="keyword" class="form-control" style="width: 200px; margin-right: 10px;" value="${pageMaker.cri.keyword}"> 
+						<label for="notpaid">관리비미납</label><input type="checkbox" id="notpaid" name="option" value="N">
+						<label for="leader">입주민대표</label><input type="checkbox" id="leader" name="option" value="L">
+						<label for="owner">세대주</label><input type="checkbox" id="owner" name="option" value="O">
+						<button type="submit" class="btn btn-dark">검색</button>
 						
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}"><br>
@@ -106,8 +110,8 @@
 					</form>
 				</div>
 				<div>
-					<button class="btn btn-border light" onclick="deleteMember()" type="button" id="btnDelete" style="float:right; margin-right:20px; padding: 4px 13px;">회원삭제</button>
-					<button class="btn btn-border light" type="button" id="sendMessage" style="float:right; margin-right:20px; padding: 4px 13px;">문자보내기</button>
+					<button class="btn btn-default" onclick="deleteMember()" type="button" id="btnDelete" style="float:right; margin-right:50px; padding: 4px 13px;">회원삭제</button>
+					<button class="btn btn-gyellow" type="button" id="showModal" style="float:right; margin-right:10px; padding: 4px 13px;">SMS전송</button>
 				</div>
 				<div class="text-box white padding-4 col-10">
 					<form id="frm"> <!-- 0928 form 추가 -->
@@ -125,7 +129,7 @@
 							<tbody id="tbody">
 								<c:forEach var="member" items="${list}">
 									<tr class="move tr_1">
-										<td><input type="checkbox" name="chk" id="${member.id}" value="${member.id}"></td>
+										<td><input type="checkbox" name="chk" id="${member.id}" value="${member.id}" data-name="${member.name}"></td>
 										<td>${member.name}</td>
 										<td>
 											<c:set var="donghosu" value="${member.houseInfo}"/>
@@ -136,7 +140,9 @@
 											<c:if test="${member.author eq 'OWNER'}"> 세대주</c:if>
 											<c:if test="${member.author eq 'MEMBER'}"> 세대원</c:if>
 										</td>
-										<td>${member.houseInfo}</td>
+										<td>
+											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 8)}호
+										</td>
 										<td id="phone">${member.phone}</td>
 									</tr>
 								</c:forEach>
@@ -170,10 +176,45 @@
 				</div>
 			</div>
 		</div>
-</div>
+	</div>
 </section>
 
-
+	<!-- The Modal -->
+	<div class="modal" id="smsModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="smsForm" name="smsForm">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<div style="margin-left: 20px;">
+							<div class="title-line-3 align-left"></div>
+							<h4 class="uppercase font-weight-7 less-mar-1">SMS 전송</h4>
+						</div>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div style="margin: 0px 20px 0px;">
+							<h3><div id="memInfo"></div></h3>
+							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+							<textarea rows="10" cols="40" class="form-control"></textarea>
+						</div>
+						<hr>
+						<div>
+						총 보낼 문자 갯수 ~개<br>
+						총 금액 ~원
+						</div>
+					</div>
+					<!-- Modal Footer -->
+					<div class="modal-footer">
+						<div align="center">
+							<button type="button" class="btn btn-gyellow">전송</button>
+							<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -257,6 +298,52 @@
 			}
 		}
 	}
+	 
+	 // 체크된 값이 페이지가 새로고침 되도 그대로 체크되어 있도록... (10/12 추가: 이나은)
+	 let option = $('#criteriaForm').attr('data-option');
+	 $(document).ready(function() {
+		
+		 if (option.indexOf('N') != -1) {
+			 $('#notpaid').prop("checked", true);
+		 } else {
+			 $('#notpaid').prop("checked", false);
+		 }
+		 
+		 if (option.indexOf('L') != -1) {
+			 $('#leader').prop("checked", true);
+		 } else {
+			 $('#leader').prop("checked", false);
+		 }
+		 
+		 if (option.indexOf('O') != -1) {
+			 $('#owner').prop("checked", true);
+		 } else {
+			 $('#owner').prop("checked", false);
+		 }
+	 });
+	 
+	// 모달창에 체크된 값 넘겨주기 (10/12 추가: 이나은)
+	 
+	$('#showModal').on("click", function() {
+		
+		var cnt = $("input[name='chk']:checked").length;
+		var arr = new Array();
+		
+		$("input[name='chk']:checked").each(function() {
+			arr.push($(this).attr('data-name'));
+		});
+
+ 		if (cnt == 0) {
+			alert("선택된 회원이 없습니다.");
+		} else if (cnt == 1) {
+			console.log(arr[0]);
+			$('#memInfo').html(arr[0] + '님 에게 전송');
+		} else {
+			$('#memInfo').html(arr[0] + '님 외 ' + cnt + '명에게 전송');
+		} 
+		
+		$('#smsModal').show();
+	});
 	 
 	 
 /* 	 $(document).ready(function() {
