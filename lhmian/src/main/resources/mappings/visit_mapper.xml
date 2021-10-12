@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.visit.mapper.VisitMapper">
-<!-- 	<sql id="criteria">
-	<trim prefix="(" suffix=")AND" prefixOverrides="OR">
-	<foreach collection="typeArr" item="type">
-	<trim prefix="OR">
-	<choose>
-	<when test="type=='T'.toString()">
 	
-	</when>
-	</choose>
-	</trim>
-	</foreach>
-	</trim>
-	</sql> -->
+	<select id="generation" resultType="GenerationVO">
+		SELECT HOUSE_INFO
+		FROM GENERATION
+	</select>
 	
 	<select id="getList" resultType="VisitVO">
 		SELECT VISIT_NO,
@@ -25,4 +17,20 @@
 		FROM VISIT
 		WHERE HOUSE_INFO = #{houseInfo}
 	</select>
+	
+	<insert id="insert">
+	INSERT  VISIT_NO,
+	HOUSE_INFO,
+	VISIT_CONTENT,
+	VISIT_DATE,
+	VISIT_WRITER,
+	WRITER_INFO
+	INTO VISIT VALUES(VISIT_SEQ.NEXTVAL,
+	#{???},
+	#{visitContent},
+	DEFAULT,
+	#{visitWriter},
+	#{houseInfo})
+	WHERE HOUSE_INFO = #{???}
+	</insert>
 </mapper>

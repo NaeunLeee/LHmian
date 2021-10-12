@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lh.app.visit.domain.VisitCriteria;
+import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.visit.domain.VisitVO;
+import com.lh.app.visit.mapper.VisitMapper;
 
 @Service
 public class VisitServiceImpl implements VisitService {
 
-	@Autowired VisitService visitMapper;
+	@Autowired VisitMapper visitMapper;
 	
 	@Override
 	public List<VisitVO> getList(VisitVO vo) {
@@ -36,6 +37,11 @@ public class VisitServiceImpl implements VisitService {
 	@Override
 	public int delete(VisitVO vo) {
 		return visitMapper.delete(vo);
+	}
+
+	@Override
+	public List<GenerationVO> generation(GenerationVO vo) {
+		return visitMapper.generation(vo);
 	}
 
 }
