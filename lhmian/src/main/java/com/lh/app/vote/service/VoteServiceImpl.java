@@ -63,4 +63,16 @@ public class VoteServiceImpl implements VoteService {
 		return voteMapper.voteCountUpdate(vo);
 	}
 
+	@Override
+	public VoteContentsVO voteResult(VoteContentsVO vo) {
+		// TODO Auto-generated method stub
+		return voteMapper.voteResult(vo);
+	}
+
+	@Override
+	public int voteContentsCount(int voteNo) {
+		// TODO Auto-generated method stub
+		return voteMapper.voteContentsCount(voteNo);
+	}
+
 }

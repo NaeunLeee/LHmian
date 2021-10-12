@@ -1,5 +1,8 @@
 package com.lh.app.vote.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -53,7 +56,22 @@ public class VoteController {
 	}
 	
 	@GetMapping("/resident/voteResult")
-	public void voteResult(@RequestParam("no") String voteNo) {
+	public void voteResult(@RequestParam("no") String voteNo, Model model) {
+		
+		int no = Integer.parseInt(voteNo);
+
+		List<VoteContentsVO> list = new ArrayList<VoteContentsVO>();
+		
+		for (int i=1; i < voteService.voteContentsCount(no) + 1; i++) {
+			VoteContentsVO vo = new VoteContentsVO();
+			vo.setVoteNo(no);
+			vo.setVcQuesNo(i);
+			vo = voteService.voteResult(vo);
+			System.out.println(vo);
+			list.add(vo);
+		}
+
+		model.addAttribute("list", list);
 		
 	}
 	

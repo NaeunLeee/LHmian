@@ -19,7 +19,11 @@ public interface VoteMapper {
 	
 	public int insertVoteInfo(HouseVoteInfoVO vo);
 	
+	public VoteContentsVO voteResult(VoteContentsVO vo);
+	
 	public VoteVO voteParticipate(VoteVO vo);
 	
 	public int voteCountUpdate(VoteVO vo);
+	
+	public int voteContentsCount(int voteNo);
 }

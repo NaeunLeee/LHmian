@@ -51,6 +51,21 @@
 		WHERE V.VOTE_NO = #{voteNo}
 	</select>
 	
+	<select id="voteResult" resultType="VoteContentsVO">
+		SELECT VC_QUES_NO, 
+		VC_CONTENT, 
+		ROUND((SELECT COUNT(*) FROM HOUSE_VOTEINFO WHERE HV_RESULT = #{vcQuesNo} AND VOTE_NO = #{voteNo}) / (SELECT COUNT(*) FROM HOUSE_VOTEINFO WHERE VOTE_NO = #{voteNo}) * 100, 1) AS PERCENT
+		FROM VOTE_CONTENTS
+		WHERE VOTE_NO = #{voteNo}
+		AND VC_QUES_NO = #{vcQuesNo}
+	</select>
+	
+	<select id="voteContentsCount" resultType="int">
+		SELECT COUNT(VC_QUES_NO)
+		FROM VOTE_CONTENTS 
+		WHERE VOTE_NO = #{voteNo} 
+	</select>
+	
 	<insert id="voteInsert">
 		INSERT INTO VOTE
 			   (
