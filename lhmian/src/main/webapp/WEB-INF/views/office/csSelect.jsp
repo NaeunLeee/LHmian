@@ -79,8 +79,26 @@ textarea:focus {
 
 .reply{
 	border:1px solid black;
-	padding: 8px 12px;
-	
+	padding: 8px 12px;	
+}
+
+.div_reply{
+	width:11%; 
+	padding-left:30px; 
+	padding-right:0; 
+	padding-top:3px;
+}
+
+.div_reply_wrap{
+	padding-left:40px; 
+	padding-top:20px; 
+	margin-bottom:30px
+}
+
+.re-cal{
+	text-align:right; 
+	margin-top:0; 
+	margin-bottom:30px
 }
 </style>
 <body>
@@ -152,16 +170,25 @@ textarea:focus {
 	<div class="divider" style="margin:0; padding:25px 0;"></div>
 
 <!-- 답변 -->
-<c:if test="${not empty cs.csAnswer}">
+<c:if test="${not empty cs.csAnswer}"><%-- 
 <div class="col-md-12" style="padding-top:15px">
 <span style="float:right; font-size:12px"><i class="bi bi-calendar"></i> 답변일자 : <fmt:formatDate value="${cs.csAnsdate}" pattern="yy-MM-dd" /></span>
-</div>
-<div class="col-md-12" style="padding: 20px 5px">
-              <div class="col-md-1" style="width:11%; padding-left:20px">
+</div> --%>
+<div class="col-md-12 div_reply_wrap">
+              <div class="col-md-1 div_reply">
               <span class="reply"><i class="fa fa-reply" aria-hidden="true"></i>
-               &nbsp;답변</span></div>
+               &nbsp;RE</span></div>
                 <div class="col-md-10" style="padding:0px; width:89%">
-              <span class="border white void">${cs.csAnswer}</span>
+                
+              <span class="font-weight-7 void" style="font-size:20px">${cs.csTitle}</span><p></p>
+		<div class="text-box">
+		<!-- <h6 class="col-md-4" style="font-size:14px; padding:0px; margin-top:0px">| 관리자</h6> -->
+		<h6 class="info col-md-12 padding-4 re-cal">
+		<i class="bi bi-calendar"></i> 답변일자 : <fmt:formatDate value="${cs.csAnsdate}" pattern="yy-MM-dd" />
+		
+			</h6>
+	</div>
+              <div>${cs.csAnswer}</div>
               
               </div>
                 </div>
