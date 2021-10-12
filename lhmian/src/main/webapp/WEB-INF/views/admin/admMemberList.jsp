@@ -191,9 +191,6 @@
 		});
 	});
 
-	
-	 //선택삭제 기능 09.28 광호 + 한솔 
-	 
 	function deleteMember() {
 		var cnt = $("input[name='chk']:checked").length;
 		var arr = new Array();

@@ -67,18 +67,20 @@
 							<th>번호</th>
 							<th>세대</th>
 							<th>도착날짜</th>
+							<th>이름</th>
 							<th>수령여부</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${list}" var="post">
 							<tr>
-								<td><input type="checkbox" name="chk" id="${post.postNo}"
-									value="${post.postNo}"></td>
+								<td><input type="checkbox" name="chk" id="${post.postNo}" value="${post.postNo}"></td>
 								<td>${post.postNo}</td>
 								<td>${post.houseInfo}</td>
 								<td>${post.postDate}</td>
+								<td>${post.name}</td>
 								<td>${post.postStatus}</td>
+							</tr>	
 						</c:forEach>
 					</tbody>
 				</table>
@@ -107,7 +109,9 @@
 						<div class="modal-body">
 							<!-- 세대 정보 -->
 							<p>세대 정보</p>
-							<br> <input type="text" name="" class="houseInfo"><br>
+							<input type="text" name="" class="houseInfo"><br>
+							<p>이름</p>
+							<input type="text" name="" class="name"><br>
 						</div>
 
 						<!-- Modal footer -->
@@ -120,6 +124,7 @@
 					</div>
 				</div>
 			</div>
+
 
 
 
@@ -166,6 +171,8 @@
 	</div>
 </section>
 
+<c:if test="${post.status eq 'Y'}"></c:if>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	let csrfHeaderName = "${_csrf.headerName}";
@@ -188,13 +195,16 @@
 
 	$("#btnInsert").on("click", function() {
 		var num = $(".houseInfo").val();
+		var name = $(".name").val();
 		if (checkNum(num) == true) {
 			$.ajax({
 				type : "POST",
 				url : "insertPost",
-				data : ({
-					num : num
+				data : JSON.stringify({
+					houseInfo : num,
+					name : name
 				}),
+				contentType : "application/json",
 				dataType : "json",
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
@@ -234,12 +244,9 @@
 		}
 		return true; //확인이 완료되었을 때
 	}
-	
-	
-	
-	
+
 	function selectMember(select) {
-		
+
 		var cnt = $("input[name='chk']:checked").length;
 		var arr = new Array();
 		$("input[name='chk']:checked").each(function() {
@@ -257,8 +264,8 @@
 				type : "POST",
 				url : select,
 				data : /* JSON.stringify({
-								arr : arr
-							}) */$("#frm").serialize(),
+																				arr : arr
+																			}) */$("#frm").serialize(),
 				traditional : true,
 				dataType : "json",
 				beforeSend : function(xhr) {
@@ -277,19 +284,19 @@
 			});
 		}
 	}
-	
+
 	var select = "";
-	
-	$("#btnGet").on("click",function(){
-		
+
+	$("#btnGet").on("click", function() {
+
 		select = "updatePost";
 		selectMember(select);
 	});
-	
-	$("#btnDel").on("click",function(){
-		
+
+	$("#btnDel").on("click", function() {
+
 		select = "deletePost";
 		selectMember(select);
 	});
-	
+
 </script>

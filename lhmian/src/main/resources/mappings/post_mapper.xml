@@ -30,8 +30,12 @@
 		(
 		SELECT
 		/*+INDEX_DESC(POST POST_PK)*/
-		ROWNUM RN, POST_NO, HOUSE_INFO, POST_STATUS,
-		POST_DATE
+		ROWNUM RN, 
+		POST_NO, 
+		HOUSE_INFO, 
+		POST_STATUS,
+		POST_DATE, 
+		NAME <!-- name 추가 -->
 		FROM POST
 		WHERE
 		<include refid="criteria"></include>
@@ -54,10 +58,11 @@
 			FROM DUAL
 		</selectKey>
 		INSERT INTO POST(
-			POST_NO,HOUSE_INFO)
+			POST_NO,HOUSE_INFO,NAME)
 		VALUES(
 			#{postNo}	
 			,#{houseInfo}
+			,#{name}
 		)
 	</insert>
 	
