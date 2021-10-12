@@ -1,5 +1,6 @@
 package com.lh.app.member.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.lh.app.member.domain.AdmMemberCri;
@@ -37,5 +38,11 @@ public interface MemberMapper {
 
 	// 전화번호 정보 수정 
 	public int updatePhone(MemberInfoVO vo);
+	
+	
+	// SMS 전송 (10/12 추가: 이나은)
+	public Long smsAPI(List<HashMap<String, String>> list);
+	
+	
 	
 }
