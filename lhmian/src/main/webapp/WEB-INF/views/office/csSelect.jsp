@@ -79,8 +79,26 @@ textarea:focus {
 
 .reply{
 	border:1px solid black;
-	padding: 8px 12px;
-	
+	padding: 8px 12px;	
+}
+
+.div_reply{
+	width:11%; 
+	padding-left:30px; 
+	padding-right:0; 
+	padding-top:3px;
+}
+
+.div_reply_wrap{
+	padding-left:40px; 
+	padding-top:20px; 
+	margin-bottom:30px
+}
+
+.re-cal{
+	text-align:right; 
+	margin-top:0; 
+	margin-bottom:30px
 }
 </style>
 <body>
@@ -152,16 +170,25 @@ textarea:focus {
 	<div class="divider" style="margin:0; padding:25px 0;"></div>
 
 <!-- 답변 -->
-<c:if test="${not empty cs.csAnswer}">
+<c:if test="${not empty cs.csAnswer}"><%-- 
 <div class="col-md-12" style="padding-top:15px">
 <span style="float:right; font-size:12px"><i class="bi bi-calendar"></i> 답변일자 : <fmt:formatDate value="${cs.csAnsdate}" pattern="yy-MM-dd" /></span>
-</div>
-<div class="col-md-12" style="padding: 20px 5px">
-              <div class="col-md-1" style="width:11%; padding-left:20px">
+</div> --%>
+<div class="col-md-12 div_reply_wrap">
+              <div class="col-md-1 div_reply">
               <span class="reply"><i class="fa fa-reply" aria-hidden="true"></i>
-               &nbsp;답변</span></div>
+               &nbsp;RE</span></div>
                 <div class="col-md-10" style="padding:0px; width:89%">
-              <span class="border white void">${cs.csAnswer}</span>
+                
+              <span class="font-weight-7 void" style="font-size:20px">${cs.csTitle}</span><p></p>
+		<div class="text-box">
+		<!-- <h6 class="col-md-4" style="font-size:14px; padding:0px; margin-top:0px">| 관리자</h6> -->
+		<h6 class="info col-md-12 padding-4 re-cal">
+		<i class="bi bi-calendar"></i> 답변일자 : <fmt:formatDate value="${cs.csAnsdate}" pattern="yy-MM-dd" />
+		
+			</h6>
+	</div>
+              <div>${cs.csAnswer}</div>
               
               </div>
                 </div>
@@ -214,6 +241,7 @@ alt="답변" class="ec-common-rwd-image" style="font-size:20px"></img> -->
 	<br>
 	<form id="deleteForm" name="deleteForm" action="csDeleteBoard" method="post">
 		<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
+		<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</form>
 	<div align="center">
 		<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
@@ -238,6 +266,7 @@ alt="답변" class="ec-common-rwd-image" style="font-size:20px"></img> -->
 		<c:if test="${not empty cs.csAnswer}">
 		<button type="button" id="csUpdateBtn" class="btn btn-gyellow-yj">답변 수정</button>
 		</c:if>
+        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</form>
 </div>
 <br> --%>
@@ -246,7 +275,16 @@ alt="답변" class="ec-common-rwd-image" style="font-size:20px"></img> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+let csrfHeaderName = "${_csrf.headerName}";
+let csrfTokenValue = "${_csrf.token}";
+
 $('#modifyBtn').on("click", function() {
+	if (confirm('수정하시겠습니까?')) {
+		$(location).attr('href','csUpdateBoard?csNo=' + $('#csNo').val());
+	}
+});
+
+/* $('#modifyBtn').on("click", function() {
 	if ($(this).attr('id') == 'modifyBtn') {
 		if (confirm('수정하시겠습니까?')) {
 			$('#csTitle').attr("readonly", false);
@@ -257,6 +295,9 @@ $('#modifyBtn').on("click", function() {
 		if (confirm('수정사항을 반영하시겠습니까?')) {
 			$.ajax({
 				url: "csUpdateBoard",
+				beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		         },
 				type: "post",
 				dataType: "json",
 				data: JSON.stringify({
@@ -278,7 +319,7 @@ $('#modifyBtn').on("click", function() {
 			$(this).attr('id', 'modifyBtn').html('수정');
 		}
 	}
-});
+}); */
 
 $('#deleteBtn').on("click", function() {
 	if (confirm('정말로 삭제하시겠습니까?')) {
@@ -296,6 +337,9 @@ $('#csUpdateBtn').on('click', function() {
 	if(confirm('답변을 수정하시겠습니까?')) { 
 		$.ajax({
 			url: "csAnswerUpdate",
+			beforeSend: function(xhr) {
+	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	         },
 			type: "post",
 			data: JSON.stringify({ csAnswer: $('#csAnswer').val() }),
 			contentType: 'application/json',
