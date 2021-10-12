@@ -31,11 +31,35 @@
 		</trim>
 	</sql>
 
+	<sql id="admCriteria">
+		<trim prefix="(" suffix=")AND" prefixOverrides="AND">
+			<foreach collection="optionArr" item="option">
+				<trim prefix="AND">
+					<choose>
+						<when test="option=='L'.toString()">
+							POSITION = 'LEADER'
+						</when>
+						<when test="option=='N'.toString()">
+							HOUSE_INFO IN ( 
+								SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+     					 		WHERE PAY_NO IS NULL 
+     					 	)
+						</when>
+						<when test="option=='O'.toString()">
+							AUTHOR = 'OWNER'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(ROWNUM) FROM
 		MEMBER
 		WHERE
-		<include refid="criteria"></include>
+			<include refid="criteria"></include>
+			<include refid="admCriteria"></include>
 		ROWNUM > 0
 	</select>
 
@@ -56,7 +80,8 @@
 			FROM MEMBER
 			WHERE
 			]]>
-		<include refid="criteria"></include>
+				<include refid="criteria"></include>
+				<include refid="admCriteria"></include>
 			<![CDATA[
 			ROWNUM <= #{pageNum} * #{amount}
 		)

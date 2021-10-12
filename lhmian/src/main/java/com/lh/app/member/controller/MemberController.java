@@ -1,7 +1,5 @@
 package com.lh.app.member.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lh.app.member.domain.MemberCriteria;
+import com.lh.app.member.domain.AdmMemberCri;
+import com.lh.app.member.domain.AdmMemberPageVO;
 import com.lh.app.member.domain.MemberInfoVO;
-import com.lh.app.member.domain.MemberPageVO;
 import com.lh.app.member.service.MemberService;
 import com.lh.app.signIn.domain.MemberVO;
 import com.lh.app.signIn.etc.CustomUserDetails;
@@ -30,24 +28,34 @@ public class MemberController {
 	MemberService service;
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
-	// 전체조회
+	// 전체조회 (기존..)
+//	@GetMapping("/admin/admMemberList")
+//	public String memberList(Model model, @ModelAttribute("cri") MemberCriteria cri) {
+//		int total = service.getTotalCount(cri);
+//		model.addAttribute("list", service.getList(cri));
+//		model.addAttribute("pageMaker", new MemberPageVO(cri, total));
+//		return "admin/admMemberList";
+//	}
+	
+	// 전체조회 (10/12 수정: 이나은)
 	@GetMapping("/admin/admMemberList")
-	public String memberList(Model model, @ModelAttribute("cri") MemberCriteria cri) {
+	public String memberList(Model model, @ModelAttribute("cri") AdmMemberCri cri) {
 		int total = service.getTotalCount(cri);
 		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new MemberPageVO(cri, total));
+		model.addAttribute("pageMaker", new AdmMemberPageVO(cri, total));
+		model.addAttribute("option", cri.getOption());
 		return "admin/admMemberList";
 	}
 	
 	// 전체조회 (ajax) (10/11 추가: 이나은)
-	@PostMapping("/admin/admMemberList")
-	@ResponseBody
-	public List<MemberVO> admMemberList(Model model, @RequestBody @ModelAttribute("cri") MemberCriteria cri) {
-		int total = service.getTotalCount(cri);
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new MemberPageVO(cri, total));
-		return service.getList(cri);
-	}
+//	@PostMapping("/admin/admMemberList")
+//	@ResponseBody
+//	public List<MemberVO> admMemberList(Model model, @RequestBody @ModelAttribute("cri") MemberCriteria cri) {
+//		int total = service.getTotalCount(cri);
+//		model.addAttribute("list", service.getList(cri));
+//		model.addAttribute("pageMaker", new MemberPageVO(cri, total));
+//		return service.getList(cri);
+//	}
 
 	// 단건조회
 	@GetMapping("myInfo")

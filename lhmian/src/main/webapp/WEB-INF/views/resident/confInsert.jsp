@@ -79,7 +79,7 @@
 					<br><br>
 					<div align="center">
 						<button type="button" id="registerBtn" class="btn btn-gyellow">등록</button>
-						<button type="button" class="btn btn-default" onclick="loction.href='confList'">목록</button>
+						<button type="button" class="btn btn-default" onclick="location.href='confList'">목록</button>
 					</div>
 				</form>
 			</div>
