@@ -14,4 +14,6 @@ public class PostVO {
 	
 	// 10/12 추가
 	private String name;
+	
+	
 }

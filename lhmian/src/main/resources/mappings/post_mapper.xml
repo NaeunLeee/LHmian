@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.admin.mapper.PostMapper">
-<!-- 10/11 추가 -->
+	
 
 	<sql id="criteria">
 		<trim prefix="(" suffix=")AND" prefixOverrides="OR">
@@ -14,15 +14,19 @@
 						<when test="type=='C'.toString()">
 							POST_DATE LIKE '%' ||#{keyword}|| '%'
 						</when>
-						<when test="type=='W'.toString()">
-							POST_STATUS '%' ||#{keyword}|| '%'
+						<!-- 10/12 추가 -->
+						<when test="option=='Y'.toString()">
+							POST_STATUS = 'Y'
+						</when>
+						<when test="option=='N'.toString()">
+							POST_STATUS = 'N'
 						</when>
 					</choose>
 				</trim>
 			</foreach>
 		</trim>
 	</sql>
-	
+
 	<select id="getList" resultType="PostVO">
 		SELECT
 		*
@@ -30,11 +34,11 @@
 		(
 		SELECT
 		/*+INDEX_DESC(POST POST_PK)*/
-		ROWNUM RN, 
-		POST_NO, 
-		HOUSE_INFO, 
+		ROWNUM RN,
+		POST_NO,
+		HOUSE_INFO,
 		POST_STATUS,
-		POST_DATE, 
+		POST_DATE,
 		NAME <!-- name 추가 -->
 		FROM POST
 		WHERE
@@ -46,35 +50,45 @@
 		]]>
 	</select>
 	
+	<!-- 10/12 수정 -->
 	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM
-		POST
+		SELECT COUNT(*) FROM POST
+		WHERE
+		<include refid="criteria"></include>
+		ROWNUM > 0
 	</select>
 	
+	<!-- 10/12 추가 -->
+	<select id="readPhone" resultType="PostVO">
+		SELECT PHONE FROM MEMBER
+		WHERE HOUSE_INFO = #{houseInfo} AND NAME = {name};
+	</select>
+
 	<insert id="insert">
-		<selectKey keyProperty="postNo" resultType="long" order="BEFORE">
+		<selectKey keyProperty="postNo" resultType="long"
+			order="BEFORE">
 			SELECT
 			POST_SEQ.NEXTVAL
 			FROM DUAL
 		</selectKey>
 		INSERT INTO POST(
-			POST_NO,HOUSE_INFO,NAME)
+		POST_NO,HOUSE_INFO,NAME)
 		VALUES(
-			#{postNo}	
-			,#{houseInfo}
-			,#{name}
+		#{postNo}
+		,#{houseInfo}
+		,#{name}
 		)
 	</insert>
-	
+
 	<update id="update">
-		UPDATE POST SET 
+		UPDATE POST SET
 		POST_STATUS = 'Y'
 		WHERE POST_NO = #{postNo}
 	</update>
-	
+
 	<delete id="delete">
 		DELETE FROM POST
-		WHERE POST_NO = #{postNo} 
+		WHERE POST_NO = #{postNo}
 	</delete>
-	
+
 </mapper>

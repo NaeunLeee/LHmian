@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- 10/11 추가 -->
 
@@ -73,14 +74,16 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${list}" var="post">
+							<c:set value="${post.houseInfo}" var="house" />
 							<tr>
-								<td><input type="checkbox" name="chk" id="${post.postNo}" value="${post.postNo}"></td>
+								<td><input type="checkbox" name="chk" id="${post.postNo}"
+									value="${post.postNo}"></td>
 								<td>${post.postNo}</td>
-								<td>${post.houseInfo}</td>
+								<td>${fn:substring(house, 0, 3)}동${fn:substring(house, 3, 8)}호</td>
 								<td>${post.postDate}</td>
 								<td>${post.name}</td>
 								<td>${post.postStatus}</td>
-							</tr>	
+							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -125,10 +128,6 @@
 				</div>
 			</div>
 
-
-
-
-
 			<!-- 폼 -->
 			<div id="pageButton" style="margin: auto; width: 50%">
 				<ul class="pagination hover-orange">
@@ -149,18 +148,22 @@
 				</ul>
 			</div>
 
-			<div style="margin: auto;">
+			<div style="float: left; margin-left: 50px;" id="criteriaForm"
+				data-option="${option}">
 				<form id="actionForm" action="admPost" method="get">
 					<!-- 메소드 생략시 자동으로 get로 전환 -->
 					<select name="type" class="form-control" style="width: 100px;">
-						<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
+						<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
 						<option value="T"
-							${empty pageMaker.cri.type =='T' ? selected : ""}>세대번호</option>
+							${empty pageMaker.cri.type=='T' ? selected : "" }>세대번호</option>
 						<option value="C"
-							${empty pageMaker.cri.type =='C' ? selected : ""}>도착날짜</option>
+							${empty pageMaker.cri.type=='C' ? selected : "" }>도착날짜</option>
 						<option value="W"
-							${empty pageMaker.cri.type =='W' ? selected : ""}>수령유무</option>
-					</select> <input name="keyword" class="form-control" style="width: 200px;"
+							${empty pageMaker.cri.type=='W' ? selected : "" }>수령유무</option>
+					</select> <label for="Y">Y</label><input type="checkbox" id="Y"
+						name="option" value="Y"> <label for="N">N</label><input
+						type="checkbox" id="N" name="option" value="N"> <input
+						name="keyword" class="form-control" style="width: 200px;"
 						value="${pageMaker.cri.keyword}"> <input type="hidden"
 						name="pageNum" value="${pageMaker.cri.pageNum}"> <input
 						type="hidden" name="amount" value="${pageMaker.cri.amount}">
@@ -171,7 +174,7 @@
 	</div>
 </section>
 
-<c:if test="${post.status eq 'Y'}"></c:if>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -179,42 +182,42 @@
 	let csrfTokenValue = "${_csrf.token}";
 	console.log(csrfHeaderName, csrfTokenValue);
 
-	$("#pageButton a").on("click", function(e) {
+	$("#pageButton a").on("click", function (e) {
 		e.preventDefault(); //a, submit
 		var p = $(this).attr("href") //클릭한 값
 		$('[name="pageNum"]').val(p)
 		actionForm.submit();
 	});
 
-	$("#chkAll").click(function() {
+	$("#chkAll").click(function () {
 		if ($("#chkAll").is(":checked"))
 			$("input[name=chk]").prop("checked", true);
 		else
 			$("input[name=chk]").prop("checked", false);
 	});
 
-	$("#btnInsert").on("click", function() {
+	$("#btnInsert").on("click", function () {
 		var num = $(".houseInfo").val();
 		var name = $(".name").val();
 		if (checkNum(num) == true) {
 			$.ajax({
-				type : "POST",
-				url : "insertPost",
-				data : JSON.stringify({
-					houseInfo : num,
-					name : name
+				type: "POST",
+				url: "insertPost",
+				data: JSON.stringify({
+					houseInfo: num,
+					name: name
 				}),
-				contentType : "application/json",
-				dataType : "json",
-				beforeSend : function(xhr) {
+				contentType: "application/json",
+				dataType: "json",
+				beforeSend: function (xhr) {
 					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 				},
-				success : function(result) {
+				success: function (result) {
 					alert("등록완료");
 					$("#myModal").hide();
 					location.reload();
 				},
-				error : function() {
+				error: function () {
 					alert("존재하지 않는 번호입니다.");
 				}
 			});
@@ -249,7 +252,7 @@
 
 		var cnt = $("input[name='chk']:checked").length;
 		var arr = new Array();
-		$("input[name='chk']:checked").each(function() {
+		$("input[name='chk']:checked").each(function () {
 			arr.push($(this).attr('id'));
 		});
 
@@ -257,27 +260,24 @@
 
 		if (cnt == 0) {
 			alert("선택된 회원이 없습니다.");
-		}
-
-		else {
+		} else {
 			$.ajax({
-				type : "POST",
-				url : select,
-				data : /* JSON.stringify({
-																				arr : arr
-																			}) */$("#frm").serialize(),
-				traditional : true,
-				dataType : "json",
-				beforeSend : function(xhr) {
+				type: "POST",
+				url: select,
+				data:
+					$("#frm").serialize(),
+				traditional: true,
+				dataType: "json",
+				beforeSend: function (xhr) {
 					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 				},
 				//contentType : "application/json",
-				success : function(result) {
+				success: function (result) {
 					if (result == true) {
 						location.reload();
 					}
 				},
-				error : function() {
+				error: function () {
 					alert("서버통신 오류");
 					console.log(arr);
 				}
@@ -287,16 +287,63 @@
 
 	var select = "";
 
-	$("#btnGet").on("click", function() {
+	$("#btnGet").on("click", function () {
 
 		select = "updatePost";
 		selectMember(select);
 	});
 
-	$("#btnDel").on("click", function() {
+	$("#btnDel").on("click", function () {
 
 		select = "deletePost";
 		selectMember(select);
 	});
-
+	
+	// 10/12 추가
+	let option = $('#criteriaForm').attr('data-option');
+	 $(document).ready(function() {
+		
+		 if (option.indexOf('N') != -1) {
+			 $('#N').prop("checked", true);
+		 } else {
+			 $('#N').prop("checked", false);
+		 }
+		 
+		 if (option.indexOf('Y') != -1) {
+			 $('#Y').prop("checked", true);
+		 } else {
+			 $('#Y').prop("checked", false);
+		 }
+		 
+	 });
+	 
+	 
+	 function sendSms(){
+   	 const phone = $('#phone').val(); 	 
+	 var phonejson = {
+			 "phone" : 
+	 }	 
+		 
+	 $.ajax({
+			url : 'sendKey',
+			type : 'POST',
+			beforeSend: function(xhr) {
+	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	         },
+			data : JSON.stringify(phonejson),
+			contentType : "application/json",
+			success : function(data) { //문자 발송에 성공시 data: 인증번호, 실패시 data: "fail" 메세지
+				if (data !== "fail") {
+					success = true;
+					alert("송신완료");
+				} else {
+					alert("송신실패");
+				}
+			},
+			error : function() {
+				alert('AJAX 에러');
+			}
+		});
+	 }
+	 
 </script>
