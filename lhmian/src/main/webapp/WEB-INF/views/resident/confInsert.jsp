@@ -64,7 +64,6 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-
 		<div class="container" align="center">
 			<div class="text-box white padding-4 col-7">
 				<form id="frm" name="frm" action="confInsert" method="post">
@@ -77,6 +76,7 @@
 						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 						<input type="hidden" name="confWriter" value="${name}">
 					</div>
+					<br><br>
 					<div align="center">
 						<button type="button" id="registerBtn" class="btn btn-gyellow">등록</button>
 						<button type="button" class="btn btn-default" onclick="loction.href='confList'">목 록</button>
