@@ -42,9 +42,9 @@ public class PostController {
 	// 등록
 	@RequestMapping("admin/insertPost") // post : 파라미터 질의문자열 (query string) ->?id=100&pw=111&name=choi
 	@ResponseBody
-	public PostVO insert(@RequestParam("num") String num,PostVO vo) { // form에 값 넘겨줌
-		System.out.println(num);
-		vo.setHouseInfo(Integer.parseInt(num));
+	public PostVO insert(@RequestBody PostVO vo) { // form에 값 넘겨줌
+		System.out.println(vo.toString());
+		
 		postService.insert(vo);
 		return vo;
 	}
