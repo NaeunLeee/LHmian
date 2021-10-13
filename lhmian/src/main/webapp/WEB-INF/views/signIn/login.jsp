@@ -56,7 +56,7 @@
 		const password = $('#password').val();
 
 		$('#findId').on('click', function() {
-			window.open("find/findIdForm", "아이디 찾기", "width=500, height=400");
+			window.open("find/findIdForm", "아이디 찾기", "width=750, height=550");
 
 		})
 
@@ -64,7 +64,7 @@
 				'click',
 				function() {
 					window.open("find/findPasswordForm", "비밀번호 찾기",
-							"width=500, height=400");
+							"width=600, height=500");
 
 				})
 
