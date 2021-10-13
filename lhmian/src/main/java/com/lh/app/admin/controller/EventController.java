@@ -18,7 +18,6 @@ import com.lh.app.admin.service.EventService;
 import com.lh.app.comm.domain.Criteria;
 import com.lh.app.comm.domain.PageVO;
 
-// 10/11 주석삭제 및 내용 교체
 
 @Controller
 public class EventController {
@@ -37,13 +36,9 @@ public class EventController {
 	public String admSchedule() {
 		return "/admin/admSchedule";
 	}
-
-	// 스케줄폼
-	@GetMapping("office/schedule")
-	public String schedule() {
-		return "office/schedule";
-	}
 	
+	// 10/13 스케줄(schedule) 삭제
+
 	// 등록
 	@PostMapping("/admin/insertEvent")
 	@ResponseBody
@@ -76,6 +71,14 @@ public class EventController {
 		model.addAttribute("list", eventService.getListview(cri));
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "admin/admSkedview";
+	}
+	
+	@RequestMapping("office/schedule")
+	public String schedule(Model model,Criteria cri) {
+		int total = eventService.getTotalCount(cri);
+		model.addAttribute("list", eventService.getListview(cri));
+		model.addAttribute("pageMaker", new PageVO(cri, total));
+		return "office/schedule";
 	}
 	
 	// 수정

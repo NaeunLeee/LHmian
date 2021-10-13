@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.admin.mapper.PostMapper">
-	
 
+	<!-- 10/13 post_status 수정 -->
 	<sql id="criteria">
 		<trim prefix="(" suffix=")AND" prefixOverrides="OR">
 			<foreach collection="typeArr" item="type">
 				<trim prefix="OR">
 					<choose>
+						<when test="type==''.toString()">
+						</when>
 						<when test="type=='T'.toString()">
-							HOUSE_INFO LIKE '%' ||#{keyword}|| '%'
+							HOUSE_INFO = #{keyword}
 						</when>
 						<when test="type=='C'.toString()">
-							POST_DATE LIKE '%' ||#{keyword}|| '%'
+							POST_DATE = #{keyword}
 						</when>
-						<!-- 10/12 추가 -->
-						<when test="option=='Y'.toString()">
+						<when test="type=='Y'.toString()">
 							POST_STATUS = 'Y'
 						</when>
-						<when test="option=='N'.toString()">
+						<when test="type=='N'.toString()">
 							POST_STATUS = 'N'
 						</when>
 					</choose>
@@ -27,6 +28,7 @@
 		</trim>
 	</sql>
 
+	<!-- 10/13 조건추가 -->
 	<select id="getList" resultType="PostVO">
 		SELECT
 		*
@@ -43,25 +45,70 @@
 		FROM POST
 		WHERE
 		<include refid="criteria"></include>
+		<trim prefix="(" suffix=")AND">
+			<if test="type =='T,Y'">
+				POST_STATUS = 'Y'
+				AND
+				HOUSE_INFO = #{keyword}
+			</if>
+			<if test="type =='C,Y'">
+				POST_STATUS = 'Y'
+				AND
+				POST_DATE = #{keyword}
+			</if>
+			<if test="type =='T,N'">
+				POST_STATUS = 'N'
+				AND
+				HOUSE_INFO = #{keyword}
+			</if>
+			<if test="type =='C,N'">
+				POST_STATUS = 'N'
+				AND
+				POST_DATE = #{keyword}
+			</if>
+		</trim>
 		<![CDATA[ 
 		ROWNUM <= #{pageNum} * #{amount} 
 		)
 		WHERE RN > (#{pageNum} -1) * #{amount}
 		]]>
 	</select>
-	
-	<!-- 10/12 수정 -->
+
+	<!-- 10/13 조건추가 -->
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM POST
 		WHERE
+			<trim prefix="(" suffix=")AND">
+			<if test="type =='T,Y'">
+				POST_STATUS = 'Y'
+				AND
+				HOUSE_INFO = #{keyword}
+			</if>
+			<if test="type =='C,Y'">
+				POST_STATUS = 'Y'
+				AND
+				POST_DATE = #{keyword}
+			</if>
+			<if test="type =='T,N'">
+				POST_STATUS = 'N'
+				AND
+				HOUSE_INFO = #{keyword}
+			</if>
+			<if test="type =='C,N'">
+				POST_STATUS = 'N'
+				AND
+				POST_DATE = #{keyword}
+			</if>
+		</trim>
 		<include refid="criteria"></include>
 		ROWNUM > 0
 	</select>
-	
+
 	<!-- 10/12 추가 -->
 	<select id="readPhone" resultType="PostVO">
 		SELECT PHONE FROM MEMBER
-		WHERE HOUSE_INFO = #{houseInfo} AND NAME = {name};
+		WHERE
+		HOUSE_INFO = #{houseInfo} AND NAME = {name};
 	</select>
 
 	<insert id="insert">
@@ -83,7 +130,8 @@
 	<update id="update">
 		UPDATE POST SET
 		POST_STATUS = 'Y'
-		WHERE POST_NO = #{postNo}
+		WHERE POST_NO =
+		#{postNo}
 	</update>
 
 	<delete id="delete">

@@ -146,7 +146,7 @@
 															<a href="${pageContext.request.contextPath}/office/csList">민원</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/schedule">일정</a>
+															<a href="${pageContext.request.contextPath}/office/schedule">일정</a>
 														</li>
 														<li>
 															<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">

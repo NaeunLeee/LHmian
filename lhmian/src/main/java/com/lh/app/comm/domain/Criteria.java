@@ -8,22 +8,24 @@ public class Criteria {
    private String id;
    private int pageNum = 1;
    private int amount = 10;
+   
+   // 10/13 type 추가
    private String type;
+   
+   
+   
    private String keyword;
-   // 10/12 추가 option
-   private String option;
    public Criteria() {}
    public Criteria(int pageNum, int amount) {
       this.pageNum = pageNum;
       this.amount = amount;
    }
    
+   // 10/13 preType 추가
+   private String preType;
+   
    public String[] getTypeArr() {
 	   return type == null ? new String[]{} : type.split("");
    }
    
-   // 10/12 추가 option 
-   public String[] getOptionArr() {
-		return type == null ? new String[]{} : option.split("");
-	}
 }
