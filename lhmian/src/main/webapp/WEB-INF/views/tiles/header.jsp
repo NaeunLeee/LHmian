@@ -196,32 +196,52 @@
 														</li>
 													</ul>
 												</li>
-												<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
-													<li class="right">
-														<a href="${pageContext.request.contextPath}/myPage/myPage" id="main-menu-padding">마이 페이지</a>
-														<ul class="dm-align-2">
-															<li>
-																<!-- 10/03 개인정보 조회/수정 링크 -->
-																<a href="${pageContext.request.contextPath}/myInfo">개인정보수정</a>
-																<!-- ------------------------ -->
-															</li>
-															<li>
-																<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
-															</li>
-															<li>
-																<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
-															</li>
-															<li>
-																<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
-															</li>
-															
-															<li>
-																<a href="${pageContext.request.contextPath}/myFac">시설이용내역</a>
-															</li>
-														</ul>
-													</li>
-												</sec:authorize>
-												<sec:authorize access="hasRole('ROLE_ADMIN')">
+											</ul>
+										</div>
+									</div>
+								</div>
+						<div class="col-sm-4">
+									<div class="main-nav">
+										<ul class="nav navbar-nav top-nav">
+											<li class="visible-xs menu-icon">
+												<a href="javascript:void(0)" class="navbar-toggle collapsed"
+												   data-toggle="collapse" data-target="#menu" aria-expanded="false"> 
+												   <i aria-hidden="true" class="fa fa-bars"></i>
+												</a>
+											</li>
+										</ul>
+										<div id="menu" class="collapse" style="float:right; font-size:12px">
+											<ul class="nav navbar-nav">
+											<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
+												<li class="right">
+													<a href="${pageContext.request.contextPath}/myPage/myPage" id="main-menu-padding">마이 페이지</a>
+													<ul class="dm-align-2">
+														<li>
+															<!-- 10/03 개인정보 조회/수정 링크 -->
+															<a href="${pageContext.request.contextPath}/myInfo">개인정보수정</a>
+															<!-- ------------------------ -->
+														</li>
+														<li>
+															<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
+														</li>
+														<li>
+															<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
+														</li>
+														<li>
+															<a href="#">주민 투표</a>
+														</li>
+														<li>
+															<!-- 10/02 스케쥴 조회 링크 추가 시작-->
+															<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
+															<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
+														</li>
+														<li>
+															<a href="myFac">시설이용내역</a>
+														</li>
+													</ul>
+												</li>
+											</sec:authorize>
+											<sec:authorize access="hasRole('ROLE_ADMIN')">
 													<li class="right">
 														<a href="${pageContext.request.contextPath}/admin/adminPage" id="main-menu-padding">관리자 페이지</a>
 														<ul class="dm-align-2">
@@ -252,59 +272,24 @@
 														</ul>
 													</li>
 												</sec:authorize>
-											</ul>
-										</div>
-									</div>
-								</div>
-						<div class="col-sm-4">
-									<div class="main-nav">
-										<ul class="nav navbar-nav top-nav">
-											<li class="visible-xs menu-icon">
-												<a href="javascript:void(0)" class="navbar-toggle collapsed"
-												   data-toggle="collapse" data-target="#menu" aria-expanded="false"> 
-												   <i aria-hidden="true" class="fa fa-bars"></i>
-												</a>
+											
+										<sec:authorize access="isAnonymous()">
+											<li>
+												<a href="${pageContext.request.contextPath}/login" id="main-menu-padding">로그인</a>
 											</li>
-										</ul>
-										<div id="menu" class="collapse" style="float:right; font-size:12px">
-											<ul class="nav navbar-nav">
-											<li class="right">
-														<a href="${pageContext.request.contextPath}/myPage/myPage" id="main-menu-padding">마이 페이지</a>
-														<ul class="dm-align-2">
-															<li>
-																<!-- 10/03 개인정보 조회/수정 링크 -->
-																<a href="${pageContext.request.contextPath}/myInfo">개인정보수정</a>
-																<!-- ------------------------ -->
-															</li>
-															<li>
-																<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
-															</li>
-															<li>
-																<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
-															</li>
-															<li>
-																<a href="#">주민 투표</a>
-															</li>
-															<li>
-																<!-- 10/02 스케쥴 조회 링크 추가 시작-->
-																<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
-																<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
-															</li>
-															<li>
-																<a href="myFac">시설이용내역</a>
-															</li>
-														</ul>
-													</li>
-							<li>
-								<sec:authorize access="isAnonymous()">
-									<a href="${pageContext.request.contextPath}/login" id="main-menu-padding">로그인</a>
-								</sec:authorize>
-								<sec:authorize access="isAuthenticated()">
-									<a href="${pageContext.request.contextPath}/logout" id="main-menu-padding">로그아웃</a>
-								</sec:authorize>
-							</li>
-							<li><a href="${pageContext.request.contextPath}/leaderStep1" id="main-menu-padding">회원가입</a></li>
-						</ul>
+											<li>
+												<a href="${pageContext.request.contextPath}/leaderStep1" id="main-menu-padding">회원가입</a>
+											</li>
+										</sec:authorize> 
+										<sec:authorize access="isAuthenticated()">
+											<li>
+												<a href="#" onclick="document.getElementById('logout-form').submit();" id="main-menu-padding">로그아웃</a>
+												<form id="logout-form" action='${pageContext.request.contextPath}/logout' method="POST">
+													<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}" />
+												</form>
+											</li>
+										</sec:authorize>
+									</ul>
 								</div>
 							</div>
 						</div>
