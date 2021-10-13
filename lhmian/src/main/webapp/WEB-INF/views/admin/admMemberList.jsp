@@ -98,11 +98,11 @@
 							<option value="A" ${pageMaker.cri.type=='A' ? 'selected' : ""}>휴대폰번호</option>
 						</select> 
 						<input name="keyword" class="form-control" style="width: 200px; margin-right: 10px;" value="${pageMaker.cri.keyword}"> 
-							<label for="all">전체</label><input type="checkbox" id="all" name="option" value="A" checked>
+							<label for="all">전체</label><input type="checkbox" id="all" name="option" value="A" checked="checked">
 							<label for="notpaid">관리비미납</label><input type="checkbox" id="notpaid" name="option" value="N" onchange="checkOption()">
 							<label for="leader">입주민대표</label><input type="checkbox" id="leader" name="option" value="L" onchange="checkOption()">
 							<label for="owner">세대주</label><input type="checkbox" id="owner" name="option" value="O" onchange="checkOption()">
-						<button type="button" class="btn btn-dark" id="searchBtn">검색</button>
+						<button type="button" class="btn btn-dark" id="searchBtn" onclick="allChecked()">검색</button>
 						
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}"><br>
@@ -260,6 +260,7 @@
 
 	$("#pageButton a").on("click", function(e) { //페이지 번호 눌렀을 때. pagebutton 안써주면 헤더, 푸터에 걸린 a태그도 다 링크 걸림
 		e.preventDefault(); //a, submit
+		allChecked();
 		var p = $(this).attr("href")
 		$('[name="pageNum"]').val(p);
 		actionForm.submit();
@@ -277,14 +278,14 @@
 	}
 	
 	// 전체 버튼 자동 체크 후 submit
-	$('#searchBtn').on("click", function() {
+	function allChecked() {
 		if($("input[name='option']:checked").length == 0) {
 			$('#all').prop("checked", true);
 			actionForm.submit();
 		} else {
 			actionForm.submit();
 		}
-	});
+	}
 	
 	// 모두 선택
 	$(document).ready(function() {
