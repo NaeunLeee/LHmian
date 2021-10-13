@@ -62,7 +62,7 @@ public class VisitController {
 	}
 
 	// 삭제
-	@PostMapping("/visitDelete")
+	@PostMapping("/no/visitDelete")
 	public String delete(VisitVO vo, RedirectAttributes rttr) {
 		int n = visitService.delete(vo);
 		if (n == 1) {

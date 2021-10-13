@@ -34,4 +34,15 @@
 		#{visitWriter},
 		#{writerInfo})
 	</insert>
+	
+	<update id="update" parameterType="VisitVO">
+	UPDATE VISIT
+	SET VISIT_CONTENt = #{visitContent}
+	WHERE VISIT_NO = #{visitNo}
+	</update>
+	
+	<delete id="delete">
+	DELETE FROM VISIT
+	WHERE VISIT_NO = #{visitNo}
+	</delete>
 </mapper>

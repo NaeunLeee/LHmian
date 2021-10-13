@@ -36,9 +36,7 @@ padding : 100px;
 <script>
 	//세대 클릭시 새창으로 열림
 	function generation(n) {
-		//var windowWidth = window.screen.width;
-		//var windowHeight = window.screen.height;
-		openWin = window.open("../no/visitList?houseInfo=" + n,
+		window.open("../no/visitList?houseInfo=" + n,
 					"방명록",
 					"width=1000px, height=600px, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		};
