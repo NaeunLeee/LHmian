@@ -28,4 +28,7 @@ public interface ConfService {
 	// 삭제
 	public int delete(ConfVO vo);
 	
+	// 조회수 올리기
+	public int hitCount(ConfVO vo);
+	
 }

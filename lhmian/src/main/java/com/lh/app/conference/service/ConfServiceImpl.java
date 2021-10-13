@@ -49,5 +49,9 @@ public class ConfServiceImpl implements ConfService {
 		return confMapper.delete(vo);
 	}
 
+	public int hitCount(ConfVO vo) {
+		return confMapper.hitCount(vo);
+	}
+
 
 }

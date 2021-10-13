@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 
 <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+<link href="${pageContext.request.contextPath}/resources/js/file-upload/fileinput.css" rel="stylesheet" type="text/css" />
 
 <style>
 	.ck-editor__editable {
@@ -131,21 +132,24 @@
 							</div>
 						</c:if>
 					</div>
-					<div id="fileUpload">
+					<div id="fileUpload" style="margin-top: 10px;">
 						<c:if test="${info.oiFileid == null}">
-							<input type="file" class="file" name="uploadFile" class="form-control" style="float: left;">
-							<button type="button" id="uploadBtn" class="btn btn-default" style="float: right;">파일 첨부</button><br>
-							<ul id="uploaded"></ul>
+							<div style="width: 20%;">
+								<input type="file" class="file" id="uploadFile" name="uploadFile" style="float: left;">
+							</div>
+							<div style="width: 75%; float: right;">
+								<input type="text" id="uploaded" class="form-control" value="첨부파일 없음" readonly>
+							</div>
 						</c:if>
 					</div>
+				</div><br><br><br>
+				<div class="row" align="center">
+					<button type="button" id="updateBtn" class="btn btn-dark">수정</button>
+					<button type="button" class="btn btn-default" onclick="location.href='admOpeInfoList'">목록</button>
 				</div>
 				</div>
 				<br>
 			</div><br><br>
-			<div align="center">
-				<button type="button" id="updateBtn" class="btn btn-dark">수정</button>
-				<button type="button" class="btn btn-default" onclick="location.href='admOpeInfoList'">목록</button>
-			</div>
 		</div>
 	</section>
 </body>
@@ -173,7 +177,7 @@
 		;
 
 		// 파일 첨부 버튼 이벤트
-		$(document).on("click", '#uploadBtn', function() {
+		$(document).on("change", '#uploadFile', function() {
 			var formData = new FormData(document.frm);
 			var inputFile = $('[name="uploadFile"]');
 			var files = inputFile[0].files;
@@ -196,8 +200,8 @@
 		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 		        },
 				success : function(datas) {
-					var li = "";
 					var str = "";
+					var filename = "";
 
 					for (i = 0; i < datas.length; i++) {
 						var obj = datas[i];
@@ -205,16 +209,13 @@
 											+ obj.oiFileid + "_" + obj.oiFilename);
 						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 
-						li += "<li>";
-						li += "<span> " + obj.oiFilename + "</span>";
-						li += "</li>";
-
 						str += "<input type='hidden' name='oiFilename' value='" + obj.oiFilename + "'>";
 						str += "<input type='hidden' name='oiFileid' value='" + obj.oiFileid + "'>";
 						str += "<input type='hidden' name='oiFilepath' value='" + obj.oiFilepath + "'>";
-
+						
+						filename = obj.oiFilename;
 					}
-					$('#uploaded').html(li);
+					$('#uploaded').val(filename);
 					$('#frm').append(str);
 				}
 			});
@@ -250,9 +251,13 @@
 			        	
 			        	var str = "";
 			        	
-			        	str += '<input type="file" class="file" name="uploadFile" class="form-control" style="float: left;">';
-			        	str += '<button type="button" id="uploadBtn" class="btn btn-default" style="float: right;">파일 첨부</button><br>';
-			        	str += '<ul id="uploaded"></ul>';
+			        	str += '<div style="width: 20%">';
+			        	str += '<input type="file" class="file" id="uploadFile" name="uploadFile" style="float: left;">';
+			        	str += '</div>';
+			        	str += '<div style="width: 75%; float: right;">';
+			        	str += '<input type="text" id="uploaded" class="form-control" value="첨부파일 없음" readonly>';
+			        	str += '</div>';
+			        	
 			        	
 			        	$('#fileUpload').html(str);
 			        }

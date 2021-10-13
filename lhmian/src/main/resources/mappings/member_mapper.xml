@@ -48,6 +48,9 @@
 						<when test="option=='O'.toString()">
 							AUTHOR = 'OWNER'
 						</when>
+						<when test="option==''.toString()">
+							HOUSE_INFO > 0
+						</when>
 					</choose>
 				</trim>
 			</foreach>

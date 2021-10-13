@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 
 <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+<link href="${pageContext.request.contextPath}/resources/js/file-upload/fileinput.css" rel="stylesheet" type="text/css" />
 
 <style>
 	.ck-editor__editable {
@@ -117,19 +118,22 @@
 							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 						</div>
 					</form>
-					<div>
-						<input type="file" class="file" name="uploadFile" class="form-control" style="float: left;">
-						<button type="button" id="uploadBtn" class="btn btn-default" style="float: right;">파일 첨부</button><br>
-						<ul id="uploaded"></ul>
+					<div style="margin-top: 10px;">
+						<div style="width: 20%;">
+							<input type="file" class="file" id="uploadFile" name="uploadFile" style="float: left;">
+						</div>
+						<div style="width: 75%; float: right;">
+							<input type="text" id="uploaded" class="form-control" value="첨부파일 없음" readonly>
+						</div>
 					</div>
+				</div><br><br><br>
+				<div class="row" align="center">
+					<button type="button" id="insertBtn" class="btn btn-dark">등록</button>
+					<button type="button" class="btn btn-default" onclick="location.href='admOpeInfoList'">목록</button>
 				</div>
 				</div>
 				<br>
 			</div><br><br>
-			<div align="center">
-				<button type="button" id="insertBtn" class="btn btn-dark">등	록</button>
-				<button type="button" class="btn btn-default" onclick="location.href='admOpeInfoList'">목 록</button>
-			</div>
 		</div>
 	</section>
 </body>
@@ -138,6 +142,7 @@
 
 <script>
 
+	$(document).on('ready', function(){$("#file-0b").fileinput();});
 	let csrfHeaderName = "${_csrf.headerName}";
 	let csrfTokenValue = "${_csrf.token}";
 
@@ -155,7 +160,7 @@
 		;
 
 		// 파일 첨부 버튼 이벤트
-		$('#uploadBtn').on("click",	function() {
+		$('#uploadFile').on("change",	function() {
 			var formData = new FormData(document.frm);
 			var inputFile = $('[name="uploadFile"]');
 			var files = inputFile[0].files;
@@ -178,8 +183,8 @@
 		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 				},
 				success : function(datas) {
-					var li = "";
 					var str = "";
+					var filename = "";
 
 					for (i = 0; i < datas.length; i++) {
 						var obj = datas[i];
@@ -187,16 +192,14 @@
 											+ obj.oiFileid + "_" + obj.oiFilename);
 						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 
-						li += "<li>";
-						li += "<span> " + obj.oiFilename + "</span>";
-						li += "</li>";
-
 						str += "<input type='hidden' name='oiFilename' value='" + obj.oiFilename + "'>";
 						str += "<input type='hidden' name='oiFileid' value='" + obj.oiFileid + "'>";
 						str += "<input type='hidden' name='oiFilepath' value='" + obj.oiFilepath + "'>";
+						
+						filename = obj.oiFilename;
 
 					}
-					$('#uploaded').html(li);
+					$('#uploaded').val(filename);
 					$('#frm').append(str);
 				}
 			});

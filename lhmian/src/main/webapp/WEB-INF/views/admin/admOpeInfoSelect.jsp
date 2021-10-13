@@ -120,15 +120,15 @@
 										<i class="bi bi-file-earmark-arrow-down"></i>&nbsp;&nbsp;첨부파일
 									</div>
 									<div class="col-md-9">
-										<a href="opeInfoDownload?oiFileid=${info.oiFileid}">${info.oiFilename}</a>&nbsp;&nbsp;
+										<a href="${pageContext.request.contextPath}/introduce/opeInfoDownload?oiFileid=${info.oiFileid}">${info.oiFilename}</a>&nbsp;&nbsp;
 									</div>
 								</div>
 							</c:if>
-						<div align="center">
-							<button type="button" class="btn btn-default" id="modifyBtn">수정</button>
-							<button type="button" class="btn btn-default" id="deleteBtn">삭제</button>
-							<button type="button" class="btn btn-default" onclick="location.href='admOpeInfoList'">목록</button>
-						</div>
+					</div>
+					<div class="row" align="center" style="margin-top: 10px;">
+						<button type="button" class="btn btn-default" id="modifyBtn">수정</button>
+						<button type="button" class="btn btn-default" id="deleteBtn">삭제</button>
+						<button type="button" class="btn btn-dark" onclick="location.href='admOpeInfoList'">목록</button>
 					</div>
 				</div>
 			</div>
