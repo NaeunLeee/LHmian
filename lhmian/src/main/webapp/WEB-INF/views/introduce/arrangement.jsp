@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
 .col-divider-margin-6{
 	margin-top:130px
@@ -9,10 +10,12 @@
 .subtitle-gray{
 	color:#7d7878
 }
+
+
 </style>
 
 <section>
-      <div class="pagenation-holder">
+      <div class="pagenation-holder-no-bottom">
         <div class="container">
           <div class="row" style="float:left">
               <ol class="breadcrumb">
@@ -27,7 +30,7 @@
     </section>
 <div class="clearfix"></div>
 
- <section>
+ <section class="section-light">
       <div class="divider-line solid light"></div>
       <div class="container">
         <div class="row sec-padding">
@@ -163,9 +166,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/font-awesome/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/fonts/Simple-Line-Icons-Webfont/simple-line-icons.css" media="screen" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/et-line-font/et-line-font.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/revolution-slider/css/settings.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/revolution-slider/css/layers.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/revolution-slider/css/navigation.css">
 <link href="${pageContext.request.contextPath}/resources/js/tabs/css/responsive-tabs.css" rel="stylesheet" type="text/css" media="all" />
 <link href="${pageContext.request.contextPath}/resources/js/accordion/css/smk-accordion.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/jFlickrFeed/style.css" />

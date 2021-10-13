@@ -21,7 +21,7 @@
 </head>
 
 <section>
-      <div class="pagenation-holder">
+      <div class="pagenation-holder-no-bottom">
         <div class="container">
           <div class="row" style="float:left">
               <ol class="breadcrumb">
@@ -36,7 +36,7 @@
     </section>
 <div class="clearfix"></div>
 <!-- end section -->
-<section class="sec-padding">
+<section>
 	<div class="container">
 		<div class="row">
 
@@ -334,28 +334,18 @@
 	src="${pageContext.request.contextPath}/resources/js/megamenu/js/main.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/parallax/jquery.parallax-1.1.3.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/jFlickrFeed/jflickrfeed.min.js"></script>
+
 <!-- index 4 -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery/jquery.js"></script>
+	
 <script
 	src="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/less/less.min.js"
 	data-env="development"></script>
 <!-- End of index 4 -->
-<script>
-	$('#basicuse').jflickrfeed({
-						limit : 6,
-						qstrings : {
-							id : '133294431@N08'
-						},
-						itemTemplate : '<li>'
-								+ '<a href="{{image_b}}"><img src="{{image_s}}" alt="{{title}}" /></a>'
-								+ '</li>'
-					});
-</script>
+
 <script
 	src="${pageContext.request.contextPath}/resources/js/owl-carousel/owl.carousel.js"></script>
 <script

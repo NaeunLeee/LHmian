@@ -1,5 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
+
+
+<%-- <html>
 <head>
 </head>
 <body>
@@ -153,4 +154,62 @@
 	<div class="clearfix"></div>
 	<!-- END OF SLIDER WRAPPER -->
 
-</body>
+</body> --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+<div id="fullpage">
+	<div class="section" style="background: url(https://cdn.imweb.me/thumbnail/20210528/3b800594243d1.jpg) center center / cover no-repeat;">
+	<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center font-weight-8" style="top:55%; color:white">
+			<h1 style="font-weight:1000; font-size:85px; font-family:serif">LHmian</h1><br>
+			<h5 style="font-size:18px">삶을 더욱 풍요롭게 해 줄 안식처</h5>
+			</div>
+		</div>
+		</div>
+		</div>
+	<div class="section" style="background: url(https://cdn.imweb.me/thumbnail/20210528/16f133f94723b.jpg) center center / cover no-repeat;">
+		<div class="row">
+		<div class="col-md-12 text-left font-weight-8" style="top:200px; left:30px; color:white">
+			<h4 style="margin:0">도심 속 휴양지</h4><br>
+			<h5>삶의 감수성을 채울 수 있는 힐링을 위한 공간 </h5>
+			</div>
+		</div>
+		</div>
+	<div class="section" style="background: url(${pageContext.request.contextPath}/resources/images/main/메인3.jpg) center center / cover no-repeat;">
+	<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center font-weight-8" style="top:50%; color:white">
+			<h1 class="font-weight-9">아크로 포레스트 웅앵웅</h1><br>
+			<h5>LH미안~~~~~</h5>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="section" style="background: url(https://cdn.imweb.me/thumbnail/20210528/4999d67d71919.jpg) center center / cover no-repeat;">
+	<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center font-weight-8" style="top:50%; color:white">
+			<h1 style="font-weight:1000; font-size:55px">LHmian</h1><br>
+			<h5 >삶을 더욱 풍요롭게 해 줄 안식처</h5>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<link href="${pageContext.request.contextPath}/resources/ss/jquery.fullpage.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/ss/jquery.fullpage.js"></script>
+
+<script>
+$(document).ready(function() {	
+	$('#fullpage').fullpage({
+		//options here
+		autoScrolling:true,
+		scrollHorizontally: true
+	});
+
+});
+</script>
