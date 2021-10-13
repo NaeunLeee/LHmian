@@ -54,7 +54,7 @@
 	</div>
 
 	<section>
-		<div class="pagenation-holder-no-bottom">
+		<div class="pagenation-holder">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
@@ -69,7 +69,7 @@
 		</div>
 	</section>
 
-	<section class="sec-tpadding-2">
+	<section class="sec-tpadding-2 section-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 nopadding">
@@ -84,7 +84,7 @@
 				<!--end title-->
 			</div>
 		</div>
-	</section>
+
 	
 		<section class="sec-padding">
 		<div class="container">
@@ -95,21 +95,22 @@
 					</div>
 				</div>
 				<div class="col-md-6 margin-bottom">
-					<h5 class="font-weight-4">근손실없는피트니스</h5>
-					<p>LHmian의 자랑, 근손실없는피트니스 입니다.</p>
+					<h5 class="font-weight-4">근손실 없는 피트니스</h5>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">LHmian의 자랑, 근손실 없는 피트니스 입니다.</p>
 					<br />
 					<ul class="iconlist gyellow">
 						<li><i class="fa fa-check"></i> 
 							쾌적한 환경
 						</li>
 						<li><i class="fa fa-check"></i> 
-							체계적인
+							체계적인 관리
 						</li>
 						<li><i class="fa fa-check"></i> 
-							저쩌구
+							다양한 시설
 						</li>
 						<li><i class="fa fa-check"></i> 
-							블라블라
+							다양한 수상 경력 
 						</li>
 					</ul>
 				</div>
@@ -161,7 +162,7 @@
 		</div>
 	</section><br><br>
 	<div class="divider-line solid light"></div>
-	<section class="sec-tpadding-2">
+	<section class="sec-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 margin-bottom">
@@ -292,7 +293,7 @@
 			</div>
 		</div>
 	</section>
-<br><br><br><br><br><br>
+	</section>
 
 <!-- The Modal -->
 <div class="modal" id="gymModal">

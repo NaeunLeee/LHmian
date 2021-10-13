@@ -3,9 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <section>
-	<div class="pagenation-holder">
+	<div class="pagenation-holder-no-bottom">
 		<div class="container">
-			<div class="row" style="float: left">
+			<div class="row">
+			<div class="col-md-6">
 				<ol class="breadcrumb">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 					<li><a
@@ -14,6 +15,7 @@
 					<li class="current"><a
 						href="${pageContext.request.contextPath}/introduce/phaseDiagram">평형도</a></li>
 				</ol>
+			</div>
 			</div>
 
 		</div>
@@ -24,7 +26,7 @@
 
 
 
-<section class="sec-padding" style="padding-bottom: 20px;">
+<section>
 	<div class="container">
 		<div class="row">
 

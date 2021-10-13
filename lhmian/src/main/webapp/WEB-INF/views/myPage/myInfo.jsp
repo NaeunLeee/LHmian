@@ -38,6 +38,15 @@
 }
 </style>
 
+<div class="pagenation-holder-no-bread"></div>
+<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center section-light">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">개인 정보 수정</h4>
+					</div>
+				</div>
+
+<section class="section-light">
 <div class="container">
 	<table class="table">
 		<thead>
@@ -119,6 +128,8 @@
 			</div>
 		</div>
 	</div>
+	<div class="sec-padding"></div>
+	</section>
 	<!-- for문 같이 여러 폼 형식의 값을 보내고 싶을때는 클래스를 이용해서 보낸다. -->
 	<!-- id는 오로지 하나의 값만 인정된다. -->
 	

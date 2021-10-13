@@ -8,7 +8,7 @@ padding-left : 30px;
 }
 
 .col-md-12 {
-margin : 30px;
+	margin : 10px;
 }
 
 select {
@@ -28,22 +28,31 @@ margin : 0px 5px;
 padding-left : 65px;
 }
 
-.btn2 {
-margin-left : 324px;
-} 
+.margin-bottom {
+	margin-bottom:50px;
+	padding-bottom:0
+}
 </style>
-<hr>
-<div class="container">
+
+<section class="sec-padding section-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center margin-bottom">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">에너지 사용 내역</h4>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+	<div class="container" align="center">
 	<div class="row">
-		<h4 align="center">에너지 사용 내역</h4>
-	<hr>
-	<br><br>
-		<div class="col-md-2"></div>
-		<div class="btn1 col-md-8"></div>
-		<div class="col-md-2"></div>
-		<br><br>
-		<div class="btn2">
-			<button class="btn-yj" value="6" onclick="periodBtn(this)">6개월</button>
+		<div class="btn1 col-md-12"></div>
+		<div class="btn2 col-md-12">
+			<button class="btn-yj " value="6" onclick="periodBtn(this)">6개월</button>
 			<button class="btn-yj" value="12" onclick="periodBtn(this)">1년</button>
 		</div>
 		<div class="col-md-7 text-center margin-bottom">
@@ -52,7 +61,7 @@ margin-left : 324px;
 		</div>
 	</div>
 </div>
-<br>
+</section>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
 <script>

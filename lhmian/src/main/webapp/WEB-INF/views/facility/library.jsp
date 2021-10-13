@@ -49,7 +49,7 @@
 </div>
 
 	<section>
-		<div class="pagenation-holder-no-bottom">
+		<div class="pagenation-holder">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
@@ -64,7 +64,7 @@
 		</div>
 	</section>
 
-	<section class="sec-tpadding-2">
+	<section class="sec-tpadding-2 section-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 nopadding">
@@ -79,7 +79,6 @@
 				<!--end title-->
 			</div>
 		</div>
-	</section>
 	<hr>
 
 	<section class="sec-padding">
@@ -120,7 +119,7 @@
 	<div class="clearfix"></div>
 	<!-- end section -->
 
-	<div class="divider-line solid light"></div>
+	<div class="divider-line solid" style="color:#dcd9d9"></div>
 	<br><br>
 	<section class="moreless-padding">
 		<div class="container">
@@ -160,14 +159,10 @@
 			</div>
 		</div>
 	</section>
-	<hr>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<div class="clearfix"></div>
+		<div class="divider-line solid" style="color:#dcd9d9"></div>
+	<section class="sec-padding section-light"></section>
+	<div class="clearfix"style="border"></div>
+</section>
 	<!-- end section -->
 
 	<!-- The Modal -->

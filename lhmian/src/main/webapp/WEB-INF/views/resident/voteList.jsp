@@ -14,6 +14,23 @@
 </style>
 
 <body>
+	<section>
+		<div class="pagenation-holder-no-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<ol class="breadcrumb-gray">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/office/office">관리 사무소</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/itemLost/lostList">분실물 보관소</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="sec-padding section-light">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -26,8 +43,10 @@
 			</div>
 		</div>
 	</div>
-	<section class="sec-padding" style="padding: 80px 0 0 0">
-		<div class="container">
+	
+	<section class="sec-padding section-light">
+	<section class="sec-padding">
+		<div class="container section-light">
 			<div class="row">
 				<div class="col-md-4 col-sm-6 col-xs-12">
 					<div class="mc-feature-box-1">
@@ -187,6 +206,8 @@
 
 			</div>
 		</div>
+	</section>
+	</section>
 	</section>
 </body>
 

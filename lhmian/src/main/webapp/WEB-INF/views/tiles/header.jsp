@@ -49,12 +49,21 @@
 		text-decoration: underline;
 	}
 
+	.site-wrapper {
+		background: transparent;
+	    position: absolute;
+	    top: 0;
+	}
+	
+	#main-menu-padding{
+		    padding: 32px 10px 0 10px;
+	}
 </style>
 </head>
 <body>
 	<div class="wrapper-boxed">
 		<div class="site-wrapper">
-			<div class="topbar-transparent text-white bborder topbar-padding">
+			<%-- <div class="topbar-transparent text-white bborder topbar-padding">
 				<div class="container">
 					<div class="topbar-left-items">
 						<ul class="toplist toppadding pull-left paddtop1">
@@ -79,20 +88,20 @@
 					</div>
 				</div>
 			</div>
-			<div class="clearfix"></div>
+			<div class="clearfix"></div> --%>
 			<!--end topbar-->
 
 			<div class="col-md-12 nopadding">
 				<div class="header-section style1 noborder pin-style">
-					<div class="container">
+<!-- 					<div class="container"> -->
 						<div class="mod-menu">
-							<div class="row">
-								<div class="col-sm-2">
+							<div class="row"  style="margin:0; padding-bottom:30px; background-color:#1f1b1b42;">
+								<div class="col-sm-2" style="width:14%">
 									<a href="${pageContext.request.contextPath}/" title="" class="logo mar-4"> 
-										<img src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="">
+										<img src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="" style="width:150px; padding-left:20px;">
 									</a>
 								</div>
-								<div class="col-sm-10">
+								<div class="col-sm-6" style="padding-left:0">
 									<div class="main-nav">
 										<ul class="nav navbar-nav top-nav">
 											<li class="visible-xs menu-icon">
@@ -102,13 +111,13 @@
 												</a>
 											</li>
 										</ul>
-										<div id="menu" class="collapse">
+										<div id="menu" class="collapse" style="float:left; font-size:12px">
 											<ul class="nav navbar-nav">
 												<li class="mega-menu six-col active">
-													<a href="${pageContext.request.contextPath}/">Home</a> 
+													<a href="${pageContext.request.contextPath}/" id="main-menu-padding">Home</a> 
 												</li>
 												<li>
-													<a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a> 
+													<a href="${pageContext.request.contextPath}/introduce/myApt" id="main-menu-padding">우리 아파트</a> 
 													<ul class="dm-align-2">
 														<li>
 															<a href="${pageContext.request.contextPath}/introduce/introduce">아파트 소개</a> 
@@ -129,10 +138,10 @@
 													</ul>
 												</li>
 												<li class="right">
-													<a href="${pageContext.request.contextPath}/office/office">관리 사무소</a>
+													<a href="${pageContext.request.contextPath}/office/office" id="main-menu-padding">관리 사무소</a>
 													<ul class="dm-align-2">
 														<li>
-															<a href="${pageContext.request.contextPath}/office/noticeList">공지사항</a>
+															<a href="${pageContext.request.contextPath}/office/noticeList" >공지사항</a>
 														</li>
 														<li>
 															<a href="${pageContext.request.contextPath}/office/csList">민원</a>
@@ -153,7 +162,7 @@
 													</ul>
 												</li>
 												<li class="right">
-													<a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a>
+													<a href="${pageContext.request.contextPath}/resident/resident" id="main-menu-padding">입주민 공간</a>
 													<ul class="dm-align-2">
 														<li>
 															<a href="${pageContext.request.contextPath}/resident/confList">입주자 대표회의</a>
@@ -167,7 +176,7 @@
 													</ul>
 												</li>
 												<li class="right">
-													<a href="#">편의 시설</a>
+													<a href="#" id="main-menu-padding">편의 시설</a>
 													<ul class="dm-align-2">
 														<li>
 															<a href="${pageContext.request.contextPath}/facility/library">독서실</a>
@@ -178,8 +187,77 @@
 													</ul>
 												</li>
 												<%-- <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
+													<%-- <li class="right">
+														<a href="${pageContext.request.contextPath}/myPage/myPage" id="main-menu-padding">마이 페이지</a>
+														<ul class="dm-align-2">
+															<li>
+																<!-- 10/03 개인정보 조회/수정 링크 -->
+																<a href="${pageContext.request.contextPath}/myInfo">개인정보수정</a>
+																<!-- ------------------------ -->
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
+															</li>
+															<li>
+																<a href="#">주민 투표</a>
+															</li>
+															<li>
+																<!-- 10/02 스케쥴 조회 링크 추가 시작-->
+																<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
+																<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
+															</li>
+															<li>
+																<a href="myFac">시설이용내역</a>
+															</li>
+														</ul>
+													</li> --%>
+												<%-- </sec:authorize>
+												
+												<sec:authorize access="hasRole('ROLE_ADMIN')"> --%>
 													<li class="right">
-														<a href="${pageContext.request.contextPath}/myPage/myPage">마이 페이지</a>
+														<a href="${pageContext.request.contextPath}/admin/adminPage" id="main-menu-padding">관리자 페이지</a>
+														<ul class="dm-align-2">
+															<li>
+																<!-- 10/03 개인정보 조회/수정 링크 -->
+																<a href="${pageContext.request.contextPath}/admin/feeList">관리비</a>
+																<!-- ------------------------ -->
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admMemberList">회원 관리</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admCarList">차량 관리</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
+															</li>
+														</ul>
+													</li>
+												<%-- </sec:authorize> --%>
+											</ul>
+										</div>
+									</div>
+								</div>
+						<div class="col-sm-4">
+									<div class="main-nav">
+										<ul class="nav navbar-nav top-nav">
+											<li class="visible-xs menu-icon">
+												<a href="javascript:void(0)" class="navbar-toggle collapsed"
+												   data-toggle="collapse" data-target="#menu" aria-expanded="false"> 
+												   <i aria-hidden="true" class="fa fa-bars"></i>
+												</a>
+											</li>
+										</ul>
+										<div id="menu" class="collapse" style="float:right; font-size:12px">
+											<ul class="nav navbar-nav">
+											<li class="right">
+														<a href="${pageContext.request.contextPath}/myPage/myPage" id="main-menu-padding">마이 페이지</a>
 														<ul class="dm-align-2">
 															<li>
 																<!-- 10/03 개인정보 조회/수정 링크 -->
@@ -205,35 +283,20 @@
 															</li>
 														</ul>
 													</li>
-												<%-- </sec:authorize>
-												<sec:authorize access="hasRole('ROLE_ADMIN')"> --%>
-													<li class="right">
-														<a href="${pageContext.request.contextPath}/admin/adminPage">관리자 페이지</a>
-														<ul class="dm-align-2">
-															<li>
-																<!-- 10/03 개인정보 조회/수정 링크 -->
-																<a href="${pageContext.request.contextPath}/admin/feeList">관리비</a>
-																<!-- ------------------------ -->
-															</li>
-															<li>
-																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
-															</li>
-															<li>
-																<a href="${pageContext.request.contextPath}/admMemberList">회원 관리</a>
-															</li>
-															<li>
-																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
-															</li>
-														</ul>
-													</li>
-												<%-- </sec:authorize> --%>
-											</ul>
-										</div>
-									</div>
+							<li>
+								<sec:authorize access="isAnonymous()">
+									<a href="${pageContext.request.contextPath}/login" id="main-menu-padding">로그인</a>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+									<a href="${pageContext.request.contextPath}/logout" id="main-menu-padding">로그아웃</a>
+								</sec:authorize>
+							</li>
+							<li><a href="${pageContext.request.contextPath}/leaderStep1" id="main-menu-padding">회원가입</a></li>
+						</ul>
 								</div>
 							</div>
 						</div>
-					</div>
+<!-- 					</div> -->
 				</div>
 				<!--end menu-->
 

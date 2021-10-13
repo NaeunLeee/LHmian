@@ -44,6 +44,11 @@
 .btn {
 	padding: 0;
 }
+
+.pagenation-holder-no-bottom {
+	margin-top:90px; 
+	background-color:#f5f5f5
+}
 </style>
 <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>

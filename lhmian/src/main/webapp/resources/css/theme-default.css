@@ -3969,38 +3969,69 @@ background-color: #fff;
 
 /*============ pagenation ============ */
 .pagenation-holder {
-	border-bottom: 1px solid #f0f0f0;
+	/* border-bottom: 1px solid #f0f0f0; */
 	float: left;
 	margin: 0;
 	padding: 25px 0 10px;
 	width: 100%;
+	background-color:#f5f5f5
 }
-.pagenation-holder .breadcrumb {
-	float:right;
+
+.pagenation-holder .breadcrumb-gray {
+	float:left;
 	margin-bottom:0px;
-	background-color:#fff;
+	background-color:#f5f5f5;
 }
-.pagenation-holder .breadcrumb li {
+.pagenation-holder .breadcrumb-gray li {
     display: inline;
 }
-.pagenation-holder .breadcrumb li.current a {
+.pagenation-holder .breadcrumb-gray li.current a {
 	color:#ecae3d;
 }
-.pagenation-holder .breadcrumb li+li:before {
+.pagenation-holder .breadcrumb-gray li+li:before {
     content:"» ";
 }
+
+.back-gray {
+	background-color:#f5f5f5;
+}
+
+/* breadcrumbs 없는 버전 */
+.pagenation-holder-no-bread {
+	float: left;
+	margin: 0;
+	padding: 25px 0 10px;
+	width: 100%;
+	padding-top:77px
+}
+
+.pagenation-holder-no-bread .breadcrumb {
+	float:left;
+	margin-bottom:0px;
+	background-color:white;
+}
+.pagenation-holder-no-bread .breadcrumb li {
+    display: inline;
+}
+.pagenation-holder-no-bread .breadcrumb li.current a {
+	color:#ecae3d;
+}
+.pagenation-holder-no-bread .breadcrumb li+li:before {
+    content:"» ";
+}
+
 /* 2021-10-01 흰색, 구분선 없는버전 윤지민 */
 .pagenation-holder-no-bottom { 
 	float: left;
-	margin: 0;
+	margin:88px 0 0 0;
 	padding: 25px 0 25px;
 	width: 100%;
-	background-color: white;
+	background-color: #f5f5f5;
 }
 .pagenation-holder-no-bottom .breadcrumb {
 	float:left;
 	margin-bottom:0px;
-	background-color:#fff;
+	background-color:#f5f5f5;
 }
 .pagenation-holder-no-bottom .breadcrumb li {
     display: inline;
