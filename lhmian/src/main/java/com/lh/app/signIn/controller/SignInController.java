@@ -144,6 +144,14 @@ public class SignInController {
 		return signInService.authKey(vo);
 	}
 	
+	//핸드폰 번호로 가입 이력 조회
+	@PostMapping("/signIn/dataSelect")
+	@ResponseBody
+	public int dataSelect(@RequestBody MemberVO vo) {
+		
+		return signInService.dataSelect(vo);
+	}
+	
 	
 	//id 중복체크
 	@PostMapping("/signIn/idCheck")
@@ -189,6 +197,9 @@ public class SignInController {
 	public String findPassword(MemberVO vo, Model model) {
 		
 		int result = signInService.findPassword(vo);
+		
+		System.out.println(vo);
+		System.out.println(result);
 		
 		//있으면 1, 없으면 0
 		model.addAttribute("result", result);

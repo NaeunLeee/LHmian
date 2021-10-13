@@ -118,9 +118,24 @@ div .form-body .btn {
 							}
 							
 							if ($('#key').val() == data) {
-								alert('휴대폰 인증이 완료되었습니다.');
-								//다음 페이지로 넘어가기
-								$('#frm').submit();
+								//가입 이력 조회.....................
+								$.ajax({
+									url: 'dataSelect',
+									type : 'POST',
+									beforeSend: function(xhr) {
+							            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+							         },
+									data : JSON.stringify(json),
+									contentType : "application/json",
+									success: function(data) {
+										if (data == 0) {
+											alert('휴대폰 인증이 완료되었습니다.');
+											$('#frm').submit();
+										} else {
+											alert('해당 휴대폰 번호로 가입한 이력이 있습니다. 아이디/비밀번호 찾기를 진행해주세요.')
+										}
+									}
+								});
 							} else {
 								$('.certificate-msg').addClass('error-msg').text('인증번호가 일치하지 않습니다.');
 							}

@@ -32,8 +32,9 @@
 	font-size: 16px !important;
 }
 
-.btn {
+.btn-fullwidth {
 	margin-top: 18px !important;
+	height: 50px;
 }
 </style>
 </head>
@@ -188,6 +189,12 @@
 		})
 		
 		//--------------------------------- blur 끝 ---------------------------------
+		
+		//차량 등록 버튼
+		$('#carBtn').on('click', function() {
+			$('#carModal').show();
+		})
+		
    
         //세대 인증 버튼 클릭시
 		$('#authKeyBtn').on('click', function() {
@@ -343,7 +350,7 @@
 		let check = /(?=.*\d{1,20})(?=.*[~`!@#$%\^&*()-+=]{1,20})(?=.*[a-zA-Z]{1,20}).{8,20}$/.test(password);
 		
 		if (!check) {
-			return "영문자, 숫자, 특수문자를 모두 포함하여 8~12자로 입력해주세요"
+			return "영문자, 숫자, 특수문자를 모두 포함하여 8~12자로 입력해주세요."
 		}
 		
 		if(/(\w)\1\1/.test(password)){
@@ -541,7 +548,18 @@
 							<!-- 차량번호 -->
 							<div class="section">
 								<!--  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ아악ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ carCode로 해라 -->
+								<label for="carCode">
+									<h6 class="less-mar-4">
+										<span class="font-weight-5">차량 등록</span>
+									</h6>
+								</label> <label class="field prepend-icon"> <input type="text"
+									name="carCode" id="phone" class="gui-input" value="${phone }" style="width: 65%; margin-right: 3px;"
+									readonly> <span class="field-icon"><i
+										class="fa fa-truck"></i></span>
+								<button type="button" id="carBtn" class="btn btn-gyellow btn-medium" style="margin-top: 0;">차량 등록</button>
+								</label>
 							</div>
+							
 							<button type="button" id="signUp" name="signUp"
 								class="btn btn-gyellow btn-fullwidth">회원가입</button>
 							<button type="button" onclick="location.href='login'"
@@ -552,6 +570,55 @@
 			</div>
 		</div>
 	</section>
+	
+	<!-- The Modal -->
+<div class="modal" id="carModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form id="gymForm" name="gymForm" method="post" action="gymPay" target="popup_window">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<div style="margin-left: 20px;">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">차량 등록</h4>
+				</div>
+			</div>
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div style="margin: 0px 20px 0px;">
+					<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">이 름</label></h5>
+						<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br>
+					<h5><i class="bi bi-patch-exclamation"></i>&nbsp;&nbsp;<label for="gxTitle">프로그램명</label></h5>
+						<input type="text" id="gxTitle" name="gxTitle" class="form-control" readonly="readonly"><br>
+					<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="startdate">시작 날짜</label></h5>
+						<input type="text" id="startdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
+						<span id=""></span>
+					<h5><i class="bi bi-calendar-range"></i>&nbsp;&nbsp;<label for="period">기 간</label></h5> 
+						<select id="period" name="period" class="form-control">
+								<option value="" selected>선택</option>
+								<option value="90">3달</option>
+								<option value="180">6달</option>
+								<option value="365">1년</option>
+						</select><br>
+					<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="price">금 액 (원)</label></h5>
+						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
+						<input type="hidden" id="code" name="code">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+				</div>
+				<br>
+			</div>
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<div align="center">
+					<button type="button" id="payBtn" class="btn btn-gyellow">결제하기</button>
+					<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Modal End -->
 
 </body>
 </html>
