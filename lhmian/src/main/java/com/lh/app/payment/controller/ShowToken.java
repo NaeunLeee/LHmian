@@ -16,12 +16,14 @@ import com.google.gson.JsonParser;
 public class ShowToken {
 	public String showToken() {
 		HttpURLConnection conn = null;
-		String access_token ="";
-		
+		String access_token = "";
+
 		try {
+			// ajax의 url부분
 			URL url = new URL("https://api.iamport.kr/users/getToken");
 			conn = (HttpURLConnection) url.openConnection();
 
+			// ajax의 method, contentType, authorization부분
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
 			conn.setRequestProperty("Accept", "application/json");
@@ -29,6 +31,7 @@ public class ShowToken {
 
 			JsonObject obj = new JsonObject();
 
+			// 개인key를 입력해야 토큰이 발행됨
 			String imp_key = "3651333049760723";
 			String imp_secret = "deb5311b6f193c16f2e04e3f61037d0b12084b0ed326c1f160d41ee8f56e37dd5f09501441fdf076";
 
@@ -53,13 +56,13 @@ public class ShowToken {
 				}
 				br.close();
 				try {
-				
+
 					String tk = sb.toString();
 					JsonParser jsonParser = new JsonParser();
 					JsonElement element;
 					element = (JsonElement) jsonParser.parse(tk);
 					String code = element.getAsJsonObject().getAsJsonObject("response").get("access_token").getAsString();
-					//System.out.println(code);
+					// System.out.println(code);
 					access_token = code;
 					System.out.println(access_token);
 				} catch (Exception e) {

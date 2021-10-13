@@ -31,16 +31,17 @@ public class PaymentController {
 
 	// 결제정보 넘기기 및 결제완료페이지 연결
 	@PostMapping("/payComplete")
-	public String creditCard(Model model, Locale locale, String imp_uid, @RequestParam("mfTotal") String price, PaymentVO vo, ManagementFeeVO fvo, @AuthenticationPrincipal CustomUserDetails info)
-			throws IamportResponseException, IOException {
+	public String creditCard(Model model, Locale locale, String imp_uid, @RequestParam("mfTotal") String price, PaymentVO vo, ManagementFeeVO fvo, @AuthenticationPrincipal CustomUserDetails info) throws IamportResponseException, IOException {
 		System.out.println("결제중....");
-		this.api = new IamportClient("3453433373716908",
-				"efc0888a66eaa69d340e654d7ba2782e583f94ee2cd039ec3f9318a2a8a9a73fa261a5ad7df75ff5");
+		// 토큰 발급
+		this.api = new IamportClient("3453433373716908", "efc0888a66eaa69d340e654d7ba2782e583f94ee2cd039ec3f9318a2a8a9a73fa261a5ad7df75ff5");
 		fvo.setHouseInfo(info.getHOUSEINFO());
+		
 		// db insert 작업
 		fvo.setMfTotal(Long.parseLong(price));
 		paymentService.insert(vo);
 		paymentService.update(fvo);
+		
 		model.addAttribute("uid", api.paymentByImpUid(imp_uid));
 		model.addAttribute("pay", vo);
 		model.addAttribute("fpay", fvo);
@@ -76,7 +77,7 @@ public class PaymentController {
 		} else {
 			rttr.addFlashAttribute("message", "취소에 실패했습니다.");
 		}
-		System.out.println(result);
+		//System.out.println(result);
 		return "redirect:/myPaidList";
 	}
 }

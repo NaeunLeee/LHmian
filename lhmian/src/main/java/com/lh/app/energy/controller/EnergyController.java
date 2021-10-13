@@ -31,10 +31,9 @@ public class EnergyController {
 	// 기간조회(전체조회)-사용자
 	@GetMapping("/myEnergyPeriod")
 	@ResponseBody
-	public List<EnergyVO> myPeriod(EnergyVO vo, Model model,
-			@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	public List<EnergyVO> myPeriod(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		System.out.println(energyService.getList(vo));
+		//System.out.println(energyService.getList(vo));
 		List<EnergyVO> result = energyService.getList(vo);
 		return result;
 	}

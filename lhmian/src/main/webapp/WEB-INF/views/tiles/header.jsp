@@ -194,6 +194,10 @@
 																<!-- ------------------------ -->
 															</li>
 															<li>
+																<!-- 10/13 개인 결제 리스트 링크 -->
+																<a href="${pageContext.request.contextPath}/myPaidList">결제내역</a>
+															</li>
+															<li>
 																<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
 															</li>
 															<li>
@@ -202,7 +206,6 @@
 															<li>
 																<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
 															</li>
-															
 															<li>
 																<a href="${pageContext.request.contextPath}/myFac">시설이용내역</a>
 															</li>

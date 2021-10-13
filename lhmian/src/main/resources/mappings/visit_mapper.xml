@@ -4,17 +4,17 @@
 	
 	<select id="generation" resultType="GenerationVO">
 		SELECT HOUSE_INFO
-		FROM GENERATION
+			FROM GENERATION
 	</select>
 	
 	<select id="getList" resultType="VisitVO">
 		SELECT VISIT_NO,
-		HOUSE_INFO,
-		VISIT_CONTENT,
-		VISIT_DATE,
-		VISIT_UPDATE,
-		VISIT_WRITER,
-		WRITER_INFO
+			HOUSE_INFO,
+			VISIT_CONTENT,
+			VISIT_DATE,
+			VISIT_UPDATE,
+			VISIT_WRITER,
+			WRITER_INFO
 		FROM VISIT
 		WHERE HOUSE_INFO = #{houseInfo}
 	</select>
@@ -37,12 +37,12 @@
 	
 	<update id="update" parameterType="VisitVO">
 	UPDATE VISIT
-	SET VISIT_CONTENt = #{visitContent}
+		SET VISIT_CONTENt = #{visitContent}
 	WHERE VISIT_NO = #{visitNo}
 	</update>
 	
 	<delete id="delete">
 	DELETE FROM VISIT
-	WHERE VISIT_NO = #{visitNo}
+		WHERE VISIT_NO = #{visitNo}
 	</delete>
 </mapper>
