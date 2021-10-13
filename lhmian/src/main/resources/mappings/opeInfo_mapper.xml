@@ -133,7 +133,8 @@
 <!-- 게시글 수정 -->
 <update id="update">
 	UPDATE OPERATION_INFO
-	SET OI_TITLE = #{oiTitle}
+	SET OI_TYPE = #{oiType}
+	  , OI_TITLE = #{oiTitle}
 	  , OI_CONTENT = #{oiContent}
 	  , OI_UPDATE = SYSDATE
 	  , OI_FILENAME = #{oiFilename}

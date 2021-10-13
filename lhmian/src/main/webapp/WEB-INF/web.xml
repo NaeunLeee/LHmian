@@ -46,7 +46,7 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<!-- springSecurity -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -56,5 +56,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<!-- 서블릿 앞단에서 필터가 적용된다  -->
+	<!-- 서블릿 앞단에서 필터가 적용된다 -->
+
 </web-app>

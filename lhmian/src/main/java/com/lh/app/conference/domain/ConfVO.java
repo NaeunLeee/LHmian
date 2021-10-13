@@ -13,5 +13,6 @@ public class ConfVO {
 	private String confWriter;
 	private Date confDate;
 	private Date confUpdate;
+	private int confHit;
 
 }

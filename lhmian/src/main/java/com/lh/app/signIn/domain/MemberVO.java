@@ -12,4 +12,5 @@ public class MemberVO {
 	private String key;
 	private String password;
 	private String status;
+	private String position;
 }

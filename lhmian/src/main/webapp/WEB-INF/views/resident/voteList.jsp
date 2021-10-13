@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 
@@ -8,11 +12,52 @@
 <title>Insert title here</title>
 </head>
 <style>
-.mc-feature-box-1 .img-box .text-box {
-	bottom: -240px;
+.pr-feature-box-4 {
+	width: 100%;
+	float: left;
+	padding: 10px;
+	border: 2px solid #fff;
+}
+
+.pr-feature-box-4 .img-box {
+	position: relative;
+	width: 100%;
+	float: left;
+}
+
+.pr-feature-box-4 .img-box .date-box {
+	position: absolute;
+	width: 40%;
+	float: left;
+	padding: 8px 15px;
+	left: 20px;
+	color: #fff;
+	font-size: 16px;
+	bottom: 20px;
+	background-color: #ecae3d;
+}
+
+.pr-feature-box-4 .title-line {
+	width: 50%;
+	margin: 10px 50% 27px 0;
+	height: 1px;
+	background-color: #e4e4e4;
+}
+
+.col-md-4 {
+	padding: 0 10px 20px 10px;
+}
+
+.pr-feature-box-4 .img-box .date-box {
+	width: 30%;
+}
+
+#vote-content {
+	height: 227px;
+	!
+	important;
 }
 </style>
-
 <body>
 	<section>
 		<div class="pagenation-holder-no-bottom">
@@ -21,188 +66,79 @@
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/office/office">관리 사무소</a></li>
-							<li class="current"><a href="${pageContext.request.contextPath}/itemLost/lostList">분실물 보관소</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/myPage/myPage">마이
+									페이지</a></li>
+							<li class="current"><a href="#">투표</a></li>
 						</ol>
 					</div>
+					<div class="col-md-6"></div>
 				</div>
 			</div>
 		</div>
 	</section>
-
 	<section class="sec-padding section-light">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="sec-title-container-padding-top text-center">
-					<div class="gm-title-line-1"></div>
-					<h4 class="uppercase font-weight-7 less-mar-1">주민 투표</h4>
-					<div class="clearfix"></div>
-					<p class="by-sub-title">우리 아파트</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<section class="sec-padding section-light">
-	<section class="sec-padding">
-		<div class="container section-light">
-			<div class="row">
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="mc-feature-box-1">
-						<div class="img-box">
-							<div class="text-box">
-								<h4 class="uppercase less-mar-1 title raleway font-weight-5">외주업체 변경의 건</h4>
-								<div class="title-line"></div>
-								<div class="clearfix"></div>
-								<br>
-								<p>우리 아파트</p>
-								<br>
-								<div class="text-right">
-
-									<div class="text-right">
-										<a class="btn btn-light" href="#"><i class="bi bi-pencil-square"></i>
-									&nbsp;투표하기</a>
-									</div>
-								</div>
-							</div>
-							<img
-								src="${pageContext.request.contextPath}/resources/images/black_pooh.png"
-								alt="" class="img-responsive">
-						</div>
-					</div>
-				</div>
-				<!--end item-->
-
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="mc-feature-box-1">
-						<div class="img-box">
-							<div class="text-box">
-								<h4 class="uppercase less-mar-1 title raleway font-weight-5">free
-									auto services</h4>
-								<div class="title-line"></div>
-								<div class="clearfix"></div>
-								<br>
-								<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-									sit amet justo elite Suspendisse et justo.</p>
-								<br>
-								<div class="text-right">
-									<a class="btn btn-light" data-toggle="modal"
-										data-target="#vote">투표하기</a>
-								</div>
-							</div>
-							<img
-								src="${pageContext.request.contextPath}/resources/images/black_pooh.png"
-								alt="" class="img-responsive">
-						</div>
-					</div>
-				</div>
-				<!--end item-->
-
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="mc-feature-box-1">
-						<div class="img-box">
-							<div class="text-box">
-								<h4 class="uppercase less-mar-1 title raleway font-weight-5">free
-									auto services</h4>
-								<div class="title-line"></div>
-								<div class="clearfix"></div>
-								<br>
-								<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-									sit amet justo elite Suspendisse et justo.</p>
-								<br>
-								<div class="text-right">
-									<a class="btn btn-light" href="#vote">투표하기</a>
-								</div>
-							</div>
-							<img
-								src="${pageContext.request.contextPath}/resources/images/black_pooh.png"
-								alt="" class="img-responsive">
-						</div>
-					</div>
-				</div>
-				<!--end item-->
-
-			</div>
-		</div>
-	</section>
-
-	<section class="sec-padding">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="mc-feature-box-1">
-						<div class="img-box">
-							<div class="text-box">
-								<h4 class="uppercase less-mar-1 title raleway font-weight-5">free
-									auto services</h4>
-								<div class="title-line"></div>
-								<div class="clearfix"></div>
-								<br>
-								<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-									sit amet justo elite Suspendisse et justo.</p>
-								<br>
-								<div class="text-right">
-									<a class="btn btn-light" href="#vote">투표하기</a>
-								</div>
-							</div>
-							<img
-								src="${pageContext.request.contextPath}/resources/images/black_pooh.png"
-								alt="" class="img-responsive">
-						</div>
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">투표</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title">투표를 어쩌구~~~~~~~~~~~~~~~~~~</p>
 					</div>
 				</div>
-				<!--end item-->
+				<div class="clearfix"></div>
+				<!--end title-->
 
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="mc-feature-box-1">
-						<div class="img-box">
-							<div class="text-box">
-								<h4 class="uppercase less-mar-1 title raleway font-weight-5">free
-									auto services</h4>
-								<div class="title-line"></div>
-								<div class="clearfix"></div>
-								<br>
-								<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-									sit amet justo elite Suspendisse et justo.</p>
-								<br>
-								<div class="text-right">
-									<a class="btn btn-light" href="#vote">
-									<i class="bi bi-pencil-square"></i>
-									&nbsp;투표하기</a>
-								</div>
-							</div>
-							<img
-								src="${pageContext.request.contextPath}/resources/images/black_pooh.png"
-								alt="" class="img-responsive">
-						</div>
-					</div>
-				</div>
-				<!--end item-->
+				<c:forEach var="list" items="${list }">
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div class="pr-feature-box-4 margin-bottom">
+							<div class="img-box">
 
-				<div class="col-md-4 col-sm-6 col-xs-12">
-					<div class="mc-feature-box-1">
-						<div class="img-box">
-							<div class="text-box">
-								<h4 class="uppercase less-mar-1 title raleway font-weight-5">free
-									auto services</h4>
-								<div class="title-line"></div>
-								<div class="clearfix"></div>
-								<br>
-								<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-									sit amet justo elite Suspendisse et justo.</p>
-								<br>
-								<div class="text-right">
-									<a class="btn btn-light" href="#vote">투표하기</a>
-								</div>
+								<c:if test="${list.over eq '투표마감'}">
+									<div class="date-box text-center"
+										style="background-color: #727272" data-over="${list.over}">${list.over}</div>
+								</c:if>
+								<c:if test="${list.over eq '진행중'}">
+									<div class="date-box text-center" data-over="${list.over}">${list.over}</div>
+								</c:if>
+								<c:if test="${list.over eq '진행예정'}">
+									<div class="date-box text-center"
+										style="background-color: #A5C768" data-over="${list.over}">${list.over}</div>
+								</c:if>
+
+								<img
+									src="${pageContext.request.contextPath}/resources/images/black_pooh.png"
+									alt="" class="img-responsive">
 							</div>
-							<img
-								src="${pageContext.request.contextPath}/resources/images/black_pooh.png"
-								alt="" class="img-responsive">
+							<div id="vote-content" class="text-box white padding-4 text-left">
+								<h5>${list.voteTitle }</h5>
+								<div class="title-line"></div>
+								<p>
+									투표 기간<br>
+									<fmt:formatDate value="${list.voteStart }" pattern="yyyy-MM-dd" />
+									~
+									<fmt:formatDate value="${list.voteEnd }" pattern="yyyy-MM-dd" />
+								</p>
+								<c:if test="${list.over eq '진행중'}">
+									<div class="text-right">
+										<a id="voteBtn" class="btn btn-light" data-voteNo="${list.voteNo }"><i
+											class="bi bi-pencil-square"></i> &nbsp;투표하기</a>
+									</div>
+								</c:if>
+								<c:if test="${list.over eq '투표마감'}">
+									<div class="text-right">
+										<a class="btn btn-light" href="voteResult?no=${list.voteNo }"><i
+											class="bi bi-pencil-square"></i> &nbsp;결과보기</a>
+									</div>
+								</c:if>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!--end item-->
+				</c:forEach>
+
+
 
 			</div>
 		</div>
@@ -210,5 +146,24 @@
 	</section>
 	</section>
 </body>
+<script>
+	let author = null;
+		
+ 	<sec:authorize access="isAuthenticated()">
+		author = '<sec:authentication property="principal.AUTHOR"/>';
+	</sec:authorize>
+	
+	console.log(author);
+	 
+	 $('#voteBtn').on('click', function() {
+		 if (author == 'ADMIN') {
+			 alert('관리자 계정은 접근할 수 없습니다.');
+			 return;
+		 }
 
+		 $(location).attr('href', 'vote?no=' + $(this).attr('data-voteNo'));
+		 
+	 })
+
+</script>
 </html>

@@ -58,4 +58,15 @@
 		WHERE CAR_NO=#{carNo}
 	</delete>
 	
+	<!-- 해당 세대 차량 조회 -->
+	<select id="carByHouseInfo" resultType="carListVO" parameterType="Long">
+		SELECT CAR_NO
+			 , CAR_CODE
+			 , CAR_TYPE
+			 , CAR_DATE
+			 , HOUSE_INFO 
+		FROM CARLIST
+		WHERE HOUSE_INFO = #{houseInfo}
+	</select>
+	
 </mapper>

@@ -108,9 +108,7 @@
 						</li>
 					</ul>
 					<br /> <br />
-					<button type="button" id="registerBtn"
-						class="btn btn-dark" data-toggle="modal"
-						data-target="#libModal">등록</button>
+					<button type="button" id="registerBtn" class="btn btn-dark">등록</button>
 				</div>
 				<!--end item-->
 			</div>
@@ -197,6 +195,7 @@
 					   </select><br>
 						<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="price">금 액 (원)</label></h5> 
 						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					</div>
 					<br>
 				</div>
@@ -217,18 +216,36 @@
 	<input type="hidden" id="payNo" name="payNo" value="">
 	<input type="hidden" id="id" name="id" value="<sec:authentication property="principal.username"/>">
 	<input type="hidden" id="payType" name="payType" value=""> 
-	<input type="hidden" id="payCat" name="payCat" value="헬스장"> 
+	<input type="hidden" id="payCat" name="payCat" value="독서실"> 
 	<input type="hidden" id="payStatus" name="payStatus" value=""> 
 	<input type="hidden" id="impUid" name="imp_uid" value="">
 	
 	<input type="hidden" id="libStartdate" name="libStartdate" value="">
 	<input type="hidden" id="libPeriod" name="libPeriod" value="">
 	<input type="hidden" id="libPrice" name="libPrice" value="">
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 
 </body>
 
 <script>
+
+	let author = null;
+	
+	<sec:authorize access="isAuthenticated()">
+		author = '<sec:authentication property="principal.AUTHOR"/>';
+	</sec:authorize>
+
+	$('#registerBtn').on("click", function() {
+		if (author == 'ADMIN') {
+			alert('관리자 계정은 등록할 수 없습니다.');
+		} else {
+			$('#libModal').modal('show');
+		}
+		
+	});
+	
+	
 	// 날짜 선택 DatePicker
 	$('#startdate').datepicker();
 
@@ -280,10 +297,10 @@
         return false;                           //<a> 의 본래기능 (하이퍼링크) 작동방지
     });
 
+	
 	// 결제버튼 클릭 시
 	$('#payBtn').on('click', function() {
 		
-		let author = null;
 		let houseInfo = null;
 		let phone = null;
 		let name = null;
@@ -294,7 +311,6 @@
 		$('#libPrice').val(price);
 		
 		<sec:authorize access="isAuthenticated()">
-			author = '<sec:authentication property="principal.AUTHOR"/>';
 			houseInfo = '<sec:authentication property="principal.HOUSEINFO"/>';
 			phone = '<sec:authentication property="principal.PHONE"/>';
 			name = '<sec:authentication property="principal.HOUSEINFO" />';
@@ -310,7 +326,7 @@
 
 	function paymentFnc(name, houseInfo, phone) {
 
-		IMP.init('imp57655457');
+		IMP.init('imp24006420');
 		IMP.request_pay({
 			pg : 'inicis', // version 1.1.0부터 지원.
 			pay_method : 'card',

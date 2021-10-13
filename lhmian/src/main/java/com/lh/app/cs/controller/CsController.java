@@ -68,14 +68,36 @@ public class CsController {
 		return "redirect:/office/csSelect?csNo=" + vo.getCsNo();
 	}
 
-	// 수정
-	@PostMapping("/office/csUpdateBoard")
-	@ResponseBody
-	public CsVO csUpdate(@RequestBody CsVO vo) {
-		csService.updateBoard(vo);
-		return csService.read(vo);
-	}
+	// 수정 (ajax)
+//	@PostMapping("/office/csUpdateBoard")
+//	@ResponseBody
+//	public CsVO csUpdate(@RequestBody CsVO vo) {
+//		csService.updateBoard(vo);
+//		return csService.read(vo);
+//	}
 
+	// 수정 폼 (ajax 없이..) (10/11 추가: 이나은)
+	@GetMapping("/office/csUpdateBoard")
+	public String csUpdateForm(Model model, CsVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		model.addAttribute("cs", csService.read(vo));
+		model.addAttribute("user", customUserDetails);
+		return "office/csUpdate";
+	}
+	
+	// 수정 처리 (ajax 없이..) (10/11 추가: 이나은)
+	@PostMapping("/office/csUpdateBoard")
+	public String csUpdate(RedirectAttributes rttr, CsVO vo) {
+		int n = csService.updateBoard(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		return "redirect:/office/csList";
+	}
+	
 	// 삭제
 	@PostMapping("/office/csDeleteBoard")
 	public String delete(RedirectAttributes rttr, CsVO vo, @ModelAttribute("cri") CsCriteria cri) {
@@ -101,21 +123,45 @@ public class CsController {
 		model.addAttribute("pageMaker", new CsPageVO(cri, total));
 		return "admin/admCsList";
 	}
+	
+	// 관리자 단건 조회
+	@GetMapping("/admin/admCsSelect")
+	public String admCsSelect(Model model, @ModelAttribute("cri") CsCriteria cri, CsVO vo) {
+		model.addAttribute("cs", csService.read(vo));
+		return "admin/admCsSelect";
+	}
 
-	// 답변등록
-	@PostMapping("/office/csAnswer")
-	public String csAnswerInsert(RedirectAttributes rttr, CsVO vo) {
+	// 관리자 게시글 삭제 (10/11 추가: 이나은)
+	@PostMapping("/admin/admCsDelete")
+	public String admCsDelete(RedirectAttributes rttr, @ModelAttribute("cri") CsCriteria cri, CsVO vo) {
+		
+		int n = csService.deleteBoard(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
+		} else {
+			rttr.addFlashAttribute("message", "다시 시도해주세요.");
+		}
+		
+		return "redirect:/admin/admCsList";
+	}
+	
+	// 답변등록 (10/11 일부수정: 이나은)
+	@PostMapping("/admin/csAnswer")
+	public String csAnswer(RedirectAttributes rttr, CsVO vo) {
 		int n = csService.insertAnswer(vo);
+		
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "등록이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "등록에 실패했습니다. 다시 시도해주세요.");
 		}
-		return "redirect:/office/csSelect?csNo=" + vo.getCsNo();
+		
+		return "redirect:/admin/admCsSelect?csNo=" + vo.getCsNo();
 	}
-
-	// 답변수정
-	@PostMapping("/office/csAnswerUpdate")
+	
+	// 답변수정 (10/11 일부수정: 이나은)
+	@PostMapping("/admin/csAnswerUpdate")
 	@ResponseBody
 	public CsVO csAnswerUpdate(@RequestBody CsVO vo) {
 		csService.updateAnswer(vo);

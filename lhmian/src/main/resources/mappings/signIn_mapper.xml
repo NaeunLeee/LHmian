@@ -13,6 +13,12 @@
 		WHERE ID LIKE '%' || #{id} || '%'
 	</select>
 	
+	<select id="dataSelect" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER 
+		WHERE PHONE = #{phone}
+	</select>
+	
 	<select id="authKey" resultType="GenerationVO">
 		SELECT HOUSE_INFO
 		FROM GENERATION
@@ -29,7 +35,8 @@
 				#{author}, 
 				#{key}, 
 				#{password},
-				#{status})
+				#{status},
+				'FOLLOWER')
 	</insert>
 	
 	<select id="findId" resultType="MemberVO">

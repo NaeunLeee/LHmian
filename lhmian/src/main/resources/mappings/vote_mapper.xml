@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.vote.mapper.VoteMapper">
+
+	<select id="voteList" resultType="VoteVO">
+		SELECT /*+ INDEX_DESC(VOTE VOTE_PK) */ VOTE_NO, 
+	       VOTE_TITLE, 
+	       VOTE_START,
+	       VOTE_END,
+	       ROUND(VOTE_COUNT / (SELECT COUNT(*) FROM MEMBER WHERE AUTHOR = 'OWNER') * 100, 1) PERCENT,
+	       CASE WHEN SYSDATE BETWEEN VOTE_START AND VOTE_END THEN '진행중'
+                WHEN SYSDATE <![CDATA[<]]> VOTE_START THEN '진행예정'
+	       ELSE '투표마감' END AS OVER
+		FROM VOTE
+	</select>
+	
+	<select id="voteSelect" resultType="VoteVO">
+		SELECT V.VOTE_NO, 
+			   V.VOTE_TITLE, 
+			   V.VOTE_START, 
+			   V.VOTE_END, 
+			   V.VOTE_DAY,
+       		   VC.VC_QUES_NO, 
+       		   VC.VC_CONTENT
+	    FROM VOTE V, VOTE_CONTENTS VC
+		WHERE V.VOTE_NO = VC.VOTE_NO
+		  AND V.VOTE_NO = #{voteNo}
+		ORDER BY 1 DESC, 6
+	</select>
+	
+	<select id="voteParticipate" resultType="VoteVO">
+		SELECT V.VOTE_NO, 
+			   V.VOTE_TITLE, 
+			   V.VOTE_START, 
+			   V.VOTE_END, 
+			   V.VOTE_DAY,
+               HVC.HV_STATUS
+	    FROM VOTE V JOIN HOUSE_VOTEINFO HVC
+        ON V.VOTE_NO = HVC.VOTE_NO
+        WHERE V.VOTE_NO = #{voteNo}  AND HVC.HOUSE_INFO = #{houseInfo}
+	</select>
+	
+	<select id="voteSelectTitle" resultType="VoteVO">
+		SELECT V.VOTE_NO, 
+			   V.VOTE_TITLE, 
+			   V.VOTE_START, 
+			   V.VOTE_END, 
+			   V.VOTE_DAY,
+			   SYSDATE - V.VOTE_END
+		FROM VOTE V
+		WHERE V.VOTE_NO = #{voteNo}
+	</select>
+	
+	<select id="voteResult" resultType="VoteContentsVO">
+		SELECT VC_QUES_NO, 
+		VC_CONTENT, 
+		ROUND((SELECT COUNT(*) FROM HOUSE_VOTEINFO WHERE HV_RESULT = #{vcQuesNo} AND VOTE_NO = #{voteNo}) / (SELECT COUNT(*) FROM HOUSE_VOTEINFO WHERE VOTE_NO = #{voteNo}) * 100, 1) AS PERCENT
+		FROM VOTE_CONTENTS
+		WHERE VOTE_NO = #{voteNo}
+		AND VC_QUES_NO = #{vcQuesNo}
+	</select>
+	
+	<select id="voteContentsCount" resultType="int">
+		SELECT COUNT(VC_QUES_NO)
+		FROM VOTE_CONTENTS 
+		WHERE VOTE_NO = #{voteNo} 
+	</select>
+	
+	<insert id="voteInsert">
+		INSERT INTO VOTE
+			   (
+			    VOTE_NO, 
+			    VOTE_TITLE, 
+			    VOTE_START, 
+			    VOTE_END, 
+			    VOTE_DAY
+			    )
+		VALUES
+			(
+			VOTE_SEQ.NEXTVAL, 
+			#{voteTitle}, 
+			#{voteStart}, 
+			#{voteEnd}, 
+			#{voteEnd} + 3
+			)
+	</insert>
+	
+	<insert id="voteContentsInsert">
+		<selectKey keyProperty="voteNo" resultType="int" order="BEFORE">
+			SELECT VOTE_SEQ.CURRVAL FROM DUAL
+		</selectKey>
+	
+		INSERT INTO VOTE_CONTENTS
+			   (
+			    VC_NO,
+			    VOTE_NO, 
+			    VC_CONTENT, 
+			    VC_QUES_NO
+			    )
+		VALUES
+			(
+			VC_SEQ.NEXTVAL, 
+			#{voteNo},
+			#{vcContent}, 
+			#{vcQuesNo}
+			)
+	</insert>
+	
+	<insert id="insertVoteInfo">
+		INSERT INTO HOUSE_VOTEINFO
+		VALUES
+			(
+			HV_SEQ.NEXTVAL, 
+			#{voteNo},
+			#{houseInfo},
+			'Y',
+			#{hvResult}, 
+			SYSDATE
+			)
+	</insert>
+	
+	<update id="voteCountUpdate">
+		UPDATE VOTE
+		SET VOTE_COUNT = VOTE_COUNT+1
+		WHERE VOTE_NO = #{voteNo}
+	</update>
+</mapper>

@@ -36,7 +36,6 @@ import com.lh.app.opeInfo.service.OpeInfoService;
 import lombok.extern.java.Log;
 
 @Controller
-//@RequestMapping("/introduce/*")
 @Log
 public class OpeInfoController {
 
@@ -102,7 +101,7 @@ public class OpeInfoController {
 	public List<OpeInfoVO> opeInfoFileAttach(MultipartFile[] uploadFile, RedirectAttributes rttr) throws IllegalStateException, IOException {
 		List<OpeInfoVO> list = new ArrayList<OpeInfoVO>();
 		
-		String path = "c:/opeInfoFile";
+		String path = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\opeInfoFile";
 		
 		File dir = new File(path);
 		if (!dir.exists()) {
@@ -128,16 +127,38 @@ public class OpeInfoController {
 		return list;
 	}
 	
+	// 수정 (ajax..)
+//	@PostMapping("/admin/opeInfoUpdate")
+//	@ResponseBody
+//	public OpeInfoVO opeInfoUpdate(@RequestBody OpeInfoVO vo) {
+//		opeInfoService.update(vo);
+//		return opeInfoService.read(vo);
+//	}
+	
+	// 수정 폼
+	@GetMapping("/admin/admOpeInfoUpdate")
+	public String opeInfoUpdateForm(OpeInfoVO vo, Model model) {
+		model.addAttribute("info", opeInfoService.read(vo));
+		return "admin/admOpeInfoUpdate";
+	}
+	
 	// 수정
-	@PostMapping("/admin/opeInfoUpdate")
-	@ResponseBody
-	public OpeInfoVO opeInfoUpdate(@RequestBody OpeInfoVO vo) {
-		opeInfoService.update(vo);
-		return opeInfoService.read(vo);
+	@PostMapping("/admin/admOpeInfoUpdate")
+	public String opeInfoUpdate(RedirectAttributes rttr, OpeInfoVO vo) {
+		
+		int n = opeInfoService.update(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		return "redirect:/admin/admOpeInfoList";
 	}
 	
 	// 삭제
-	@PostMapping("/admin/opeInfoDelete")
+	@PostMapping("/admin/admOpeInfoDelete")
 	public String delete(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
 		
 		int n = opeInfoService.delete(vo);
@@ -181,7 +202,8 @@ public class OpeInfoController {
 			oiFilename = vo.getOiFilename();
 		}
 		
-		File uFile = new File("c:/opeInfoFile", oiFileid + oiFilename);
+		String path = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\opeInfoFile";
+		File uFile = new File(path, oiFileid + oiFilename);
 		long fSize = uFile.length();
 		
 		if (fSize > 0) {
@@ -217,59 +239,6 @@ public class OpeInfoController {
 		}
 		
 	}
-	
-	@GetMapping("/admin/opeInfoDownload")
-	public void admFileDownload(@RequestParam Map<String, Object> commandMap
-			, HttpServletRequest request
-			, HttpServletResponse response) throws IOException {
-		
-		String oiFileid = (String) commandMap.get("oiFileid");
-		
-		// oiFileid로 첨부파일 검색
-		OpeInfoVO vo = opeInfoService.readByFileid(oiFileid);
-		String oiFilename = "";
-		
-		if (vo != null) {
-			oiFilename = vo.getOiFilename();
-		}
-		
-		File uFile = new File("c:/opeInfoFile", oiFileid + oiFilename);
-		long fSize = uFile.length();
-		
-		if (fSize > 0) {
-			String mimetype = "application/x-msdownload";
-			response.setContentType(mimetype);
-			response.setHeader("Content-Disposition", 
-					"attachment;filename=\"" 
-							+ URLEncoder.encode(oiFilename, "utf-8") + "\"");
-			
-			BufferedInputStream in = null;
-			BufferedOutputStream out = null;
-			try {
-				in = new BufferedInputStream(new FileInputStream(uFile));
-				out = new BufferedOutputStream(response.getOutputStream());
-				FileCopyUtils.copy(in, out);
-				out.flush();
-			} catch (IOException ex) {
-			} finally {
-				in.close();
-				response.getOutputStream().flush();
-				response.getOutputStream().close();
-			}
-		} else {
-			response.setContentType("application/x-msdownload");
-			PrintWriter printwriter = response.getWriter();
-			printwriter.println("<html>");
-			printwriter.println("<h2>Could not get file name:<br>" + oiFileid + "</h2>");
-			printwriter.println("<center><h3><a href='javascript: history.go(-1)'>Back</a></h3></center>");
-			printwriter.println("&copy; webAccess");
-			printwriter.println("</html>");
-			printwriter.flush();
-			printwriter.close();
-		}
-		
-	}
-
 	
 	
 }

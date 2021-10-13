@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.visit.mapper.VisitMapper">
+	
+	<select id="generation" resultType="GenerationVO">
+		SELECT HOUSE_INFO
+		FROM GENERATION
+	</select>
+	
+	<select id="getList" resultType="VisitVO">
+		SELECT VISIT_NO,
+		HOUSE_INFO,
+		VISIT_CONTENT,
+		VISIT_DATE,
+		VISIT_UPDATE,
+		VISIT_WRITER,
+		WRITER_INFO
+		FROM VISIT
+		WHERE HOUSE_INFO = #{houseInfo}
+	</select>
+	
+	<insert id="insert">
+	INSERT INTO VISIT 
+		(VISIT_NO,
+		HOUSE_INFO,
+		VISIT_CONTENT,
+		VISIT_DATE,
+		VISIT_WRITER,
+		WRITER_INFO)
+	VALUES(VISIT_SEQ.NEXTVAL,
+		#{houseInfo},
+		#{visitContent},
+		DEFAULT,
+		#{visitWriter},
+		#{writerInfo})
+	</insert>
+</mapper>

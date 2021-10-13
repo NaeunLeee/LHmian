@@ -10,7 +10,43 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
-
+	.container {
+		width: 85%;
+	}
+	.tr_1 {
+	   cursor: pointer;
+	   text-align: center;
+	}
+	
+	th {
+	   text-align: center;
+	   background-color: #EEEEEE;
+	}
+	
+	.tr_1:hover {
+	   background-color: #f5f5f5;
+	}
+	
+	table {
+	   background-color: white;
+	}
+	.pagination>li>a {
+	   color: black;
+	}
+	
+	.form-control {
+	   display: inline-block;
+	}
+	.nav-tabs.nav-justified>li>a {
+		margin: 0px 1px 0px;
+		background-color: #f5f5f5;
+	}
+	.nav-tabs.nav-justified>li>a:hover {
+		background-color: #C8C6C6;
+	}
+	.nav-tabs.nav-justified>li>.active {
+		background-color: #C8C6C6;
+	}
 </style>
 
 
@@ -89,16 +125,16 @@
 
 </body>
 
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/moment.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/fullcalendar.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/ko.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/select2.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/js/main.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/js/addEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/js/editEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/js/etcSetting.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/moment.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/fullcalendar.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/ko.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/select2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/addEvent.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/editEvent.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/etcSetting.js"></script>
 
 </html>

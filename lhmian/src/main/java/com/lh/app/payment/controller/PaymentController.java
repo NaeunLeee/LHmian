@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lh.app.fee.domain.ManagementFeeVO;
 import com.lh.app.payment.domain.PaymentVO;
@@ -30,8 +31,7 @@ public class PaymentController {
 
 	// 결제정보 넘기기 및 결제완료페이지 연결
 	@PostMapping("/payComplete")
-	public String creditCard(Model model, Locale locale, String imp_uid, @RequestParam("mfTotal") String price,
-			PaymentVO vo, ManagementFeeVO fvo, @AuthenticationPrincipal CustomUserDetails info)
+	public String creditCard(Model model, Locale locale, String imp_uid, @RequestParam("mfTotal") String price, PaymentVO vo, ManagementFeeVO fvo, @AuthenticationPrincipal CustomUserDetails info)
 			throws IamportResponseException, IOException {
 		System.out.println("결제중....");
 		this.api = new IamportClient("3453433373716908",
@@ -39,39 +39,44 @@ public class PaymentController {
 		fvo.setHouseInfo(info.getHOUSEINFO());
 		// db insert 작업
 		fvo.setMfTotal(Long.parseLong(price));
-		System.out.println(fvo.getMfTotal());
 		paymentService.insert(vo);
 		paymentService.update(fvo);
 		model.addAttribute("uid", api.paymentByImpUid(imp_uid));
 		model.addAttribute("pay", vo);
 		model.addAttribute("fpay", fvo);
-		System.out.println(fvo);
 		return "pay/payComplete";
 	}
 
 	// 전체조회
-	@RequestMapping("myPaidList")
+	@RequestMapping("/myPaidList")
 	public String list(PaymentVO vo, Model model, @AuthenticationPrincipal CustomUserDetails userId) {
 		vo.setId(userId.getUsername());
-		System.out.println(vo);
 		model.addAttribute("pay", paymentService.getList(vo));
 		return "pay/myPaidList";
 	}
 
 	// 결제취소폼
-	@GetMapping("/cancleForm")
+	@GetMapping("/cancelForm")
 	@ResponseBody
-	public PaymentVO deleteForm(PaymentVO vo) {
-		System.out.println(vo.getPrice());
+	public PaymentVO deleteForm(Model model, PaymentVO vo) throws IamportResponseException, IOException {
 		vo.setPrice(vo.getPrice());
 		PaymentVO result = paymentService.read(vo);
 		return result;
 	}
 
 	// 결제취소
-	@PostMapping("/cancle")
-	public void delete(PaymentVO vo) {
+	@PostMapping("/cancel")
+	public String delete(Model model, PaymentVO vo, RedirectAttributes rttr) {
+		RefundTicket rft = new RefundTicket();
+		int result = rft.refundTicket(vo);
 		vo.setPayStatus(vo.getPayStatus());
-		paymentService.updateStatus(vo);
+		int n = paymentService.updateStatus(vo);
+		if(n == 1) {
+			rttr.addFlashAttribute("message", "취소가 완료되었습니다.");
+		} else {
+			rttr.addFlashAttribute("message", "취소에 실패했습니다.");
+		}
+		System.out.println(result);
+		return "redirect:/myPaidList";
 	}
 }

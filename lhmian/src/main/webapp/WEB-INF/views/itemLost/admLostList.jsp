@@ -170,7 +170,7 @@ function lostModify(n) {
 		data : {lostNo : n},
 		success : function(data) {
 			var tag ="";
-			tag += '<form method="post" id="frm" action="lostModify" enctype="multipart/form-data">'
+			tag += '<form method="post" id="frm" action="lostModify?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">'
 				+  '	<section class="sec-padding-yj">'
 				+  '		<div class="container">'
 				+  '			<div class="row">'

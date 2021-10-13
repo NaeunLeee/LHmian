@@ -56,7 +56,7 @@ public class FacController {
 		return "facility/facilityList";
 	}
 	
-	// 편의 시설 메뉴
+	// 독서실 메뉴
 	@RequestMapping("/facility/library")
 	public String library() {
 		return "facility/library";
@@ -93,7 +93,7 @@ public class FacController {
 	// 독서실 결제
 	@PostMapping("/facility/libPayComplete")
 	public String libPay(Model model, Locale locale, String imp_uid, PaymentVO payVo, LibraryVO libVo, @AuthenticationPrincipal CustomUserDetails info) throws IamportResponseException, IOException {
-		this.api = new IamportClient("3453433373716908", "efc0888a66eaa69d340e654d7ba2782e583f94ee2cd039ec3f9318a2a8a9a73fa261a5ad7df75ff5");
+		this.api = new IamportClient("3651333049760723", "deb5311b6f193c16f2e04e3f61037d0b12084b0ed326c1f160d41ee8f56e37dd5f09501441fdf076");
 		facService.payInsert(payVo);
 		facService.libInsert(libVo);
 		model.addAttribute("uid", api.paymentByImpUid(imp_uid));

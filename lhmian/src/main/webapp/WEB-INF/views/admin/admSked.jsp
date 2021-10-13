@@ -142,15 +142,25 @@
     <!-- /.container -->
 
 	<!-- 10/01 resources -> fullcalendar로 수정함 -->
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/moment.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/fullcalendar.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/ko.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/select2.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/vendor/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/js/main.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/js/addEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/js/editEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/fullcalendar/js/etcSetting.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/moment.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/fullcalendar.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/ko.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/select2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/addEvent.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/editEvent.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/fullcalendar/js/etcSetting.js"></script>
+    <script>
+    // 10/11 토큰 추가 
+    
+   		let csrfHeaderName = "${_csrf.headerName}";
+    	let csrfTokenValue = "${_csrf.token}";
+    	
+    	window.onbeforeunload = function(e){
+    		window.location.href = "admin/admSkedview";
+    	}
+    </script>
 </body>

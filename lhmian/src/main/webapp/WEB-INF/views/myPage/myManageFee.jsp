@@ -87,7 +87,8 @@
 
 
 				<div class="col-md-6">
-					<div class="text-box white padding-4 margin-bottom-3">
+					<div class="text-box white padding-4 margin-bottom-3"
+						style="height: 755px">
 						<div class="col-md-6">
 							<h4 id="month" class="font-weight-7 text-gray"></h4>
 						</div>
@@ -170,6 +171,113 @@
 			</div>
 			<div class="clearfix"></div>
 			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12 margin-bottom">
+					<div class="tab-navbar-main-style-7 tabstyle-7">
+						<ul class="responsive-tabs">
+							<li class="active"><a href="#example-7-tab-1" target="_self">
+									<div class="tab-navicon"></div> Home Pages
+							</a></li>
+							<li><a href="#example-7-tab-2" target="_self">
+									<div class="tab-navicon"></div> Psd Files
+							</a></li>
+							<li><a href="#example-7-tab-3" class="no-border"
+								target="_self">
+									<div class="tab-navicon"></div> Branding
+							</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"></div>
+					<div class="tab-content-style-7">
+						<div class="text-box white padding-4">
+							<div class="responsive-tabs-content">
+								<div id="example-7-tab-1" class="responsive-tabs-panel"
+									style="display: block;">
+									<div class="responsive-tab-title ttitle">
+										<p>
+											<strong> </strong>
+										</p>
+										<div class="tab-navicon"></div>
+										<strong> Home Pages</strong>
+										<p></p>
+									</div>
+									<br>
+									<h5 class="uppercase">What we Do</h5>
+									<h6 class="raleway">Lorem ipsum dolor sit amet
+										consectetuer adipiscing elit Suspendisse et justo.</h6>
+									<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
+										Suspendisse et justo Praesent mattisLorem ipsum dolor sit amet
+										consectetuer sit amet justo et.</p>
+									<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
+										Suspendisse et justo Praesent mattisLorem ipsum dolor sit amet
+										consectetuer</p>
+
+									<!--end item-->
+
+								</div>
+								<!--end panel 1-->
+								<div class="clearfix"></div>
+								<br>
+								<div id="example-7-tab-2" class="responsive-tabs-panel"
+									style="display: none;">
+									<div class="responsive-tab-title ttitle">
+										<p>
+											<strong> </strong>
+										</p>
+										<div class="tab-navicon"></div>
+										<strong> Psd Files </strong>
+										<p></p>
+									</div>
+									<br>
+									<iframe class="chartjs-hidden-iframe"
+										style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
+
+									<h4 class="text-center">Line Chart</h4>
+									<br>
+
+									<canvas id="myLineChart" width="400" height="400"
+										style="display: block; width: 400px; height: 400px;"></canvas>
+
+									<!--end item-->
+
+								</div>
+								<!--end panel 2-->
+
+								<div class="clearfix"></div>
+								<br>
+								<div id="example-7-tab-3" class="responsive-tabs-panel"
+									style="display: none;">
+									<div class="responsive-tab-title ttitle">
+										<p>
+											<strong> </strong>
+										</p>
+										<div class="tab-navicon"></div>
+										<strong> Branding</strong>
+										<p></p>
+									</div>
+									<br>
+									<h5 class="uppercase">Branding</h5>
+									<h6 class="raleway">Lorem ipsum dolor sit amet
+										consectetuer adipiscing elit Suspendisse et justo.</h6>
+									<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
+										Suspendisse et justo Praesent mattisLorem ipsum dolor sit amet
+										consectetuer sit amet justo et.</p>
+									<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
+										Suspendisse et justo Praesent mattisLorem ipsum dolor sit amet
+										consectetuer</p>
+
+									<!--end item-->
+
+								</div>
+								<!--end panel 3-->
+
+							</div>
+						</div>
+					</div>
+					<!--end column-->
+
+				</div>
+
+
 				<div class="col-md-6 text-center margin-bottom">
 					<div class="text-box white padding-4">
 						<iframe class="chartjs-hidden-iframe"
@@ -184,6 +292,9 @@
 				</div>
 			</div>
 		</div>
+
+
+
 		<input type="hidden" id="payName"
 			value="<sec:authentication property="principal.NAME"/>">
 
@@ -197,12 +308,16 @@
 				type="hidden" id="impUid" name="imp_uid" value=""> <input
 				type="hidden" id="mfDate" name="mfDate" value=""> <input
 				type="hidden" id="mftotal" name="mfTotal" value="">
+			<!-- CSRF 토큰 -->
+			<input type="hidden" name="${_csrf.parameterName }"
+				value="${_csrf.token }">
 		</form>
 	</section>
 	<div class="clearfix"></div>
 	<!-- end section -->
 </body>
 <script>
+
 	var ctx = document.getElementById("myLineChart");
 	var myLineChart = Chart.Line(ctx, {
 		type : 'line',
@@ -267,6 +382,9 @@
 
 </script>
 <script>
+
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
 	
 	//이번달 관리비 합계
 	const currentMfTotal = ${currentFee.mfTotal};
@@ -311,7 +429,8 @@
 	$('#month').text(month + "월 관리비");
 	
 	console.log(${currentFee.mfElevator});
-	console.log(${currentFee.payNo});
+
+	//console.log(${currentFee.payNo});
 	
 	$('#dateSelectBox').on('change', function() {
 		date = $('#dateSelectBox option:selected').val();
@@ -319,6 +438,9 @@
 		$.ajax({
 			url: 'dateChange',
 			type: 'POST',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
 			data: {
 				mfDate: date
 			},

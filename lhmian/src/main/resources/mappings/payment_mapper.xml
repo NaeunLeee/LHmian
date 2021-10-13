@@ -53,17 +53,10 @@ SELECT PAY_NO
 	 , PAY_TYPE
 	 , PAY_CAT
 	 ,
-	 <choose>
-		 <when test="payCat != null and payCat.equals('관리비')">
-	        (SELECT MF_TOTAL FROM MANAGEMENT_FEE WHERE PAY_NO = #{payNo}) AS PRICE
-		 </when>
-		 <when test="payCat != null and payCat.equals('독서실')">
-	         (SELECT LIB_PRICE FROM LIBRARY WHERE PAY_NO = #{payNo}) AS PRICE
-		 </when>
-		 <otherwise>
-       		(SELECT GYM_PRICE FROM GYM WHERE PAY_NO = #{payNo}) AS PRICE
-    	</otherwise>
-	 </choose>
+	 CASE WHEN PAY_CAT = '관리비' THEN (SELECT MF_TOTAL FROM MANAGEMENT_FEE WHERE PAY_NO = #{payNo})
+		  WHEN PAY_CAT = '독서실' THEN (SELECT LIB_PRICE FROM LIBRARY WHERE PAY_NO = #{payNo})
+			   ELSE (SELECT GYM_PRICE FROM GYM WHERE PAY_NO = #{payNo})
+			   END AS PRICE
 	FROM
 		PAYMENT
 		WHERE PAY_NO = #{payNo}

@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 	    private String HOUSEINFO;
 	    private String AUTHOR;
 	    private String STATUS;
+	    private String POSITION;
 	    
 	    
 	    @Override
@@ -99,6 +100,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 	 
 	    public void setSTATUS(String status) {
 	    	STATUS = status;
+	    }
+	    
+	    public String getPOSITION() {
+	        return POSITION;
+	    }
+	 
+	    public void setPOSITION(String position) {
+	    	STATUS = position;
 	    }
 	 
 	}

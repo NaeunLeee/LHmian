@@ -91,7 +91,7 @@
 			<div class="row">
 				<div class="col-md-6 margin-bottom">
 					<div id="mainImg">
-						<img src="${pageContext.request.contextPath}/resources/images/gym_1.jpg" alt="독서실" class="img-responsive">
+						<img src="${pageContext.request.contextPath}/resources/images/gym_1.jpg" alt="헬스장" class="img-responsive">
 					</div>
 				</div>
 				<div class="col-md-6 margin-bottom">
@@ -310,9 +310,9 @@
 			<!-- Modal body -->
 			<div class="modal-body">
 				<div style="margin: 0px 20px 0px;">
-					<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">이 름</label></h5>
+					<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">차종</label></h5>
 						<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br>
-					<h5><i class="bi bi-patch-exclamation"></i>&nbsp;&nbsp;<label for="gxTitle">프로그램명</label></h5>
+					<h5><i class="bi bi-patch-exclamation"></i>&nbsp;&nbsp;<label for="gxTitle">차량 번호</label></h5>
 						<input type="text" id="gxTitle" name="gxTitle" class="form-control" readonly="readonly"><br>
 					<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="startdate">시작 날짜</label></h5>
 						<input type="text" id="startdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>
@@ -327,6 +327,7 @@
 					<h5><i class="bi bi-cash-coin"></i>&nbsp;<label for="price">금 액 (원)</label></h5>
 						<input type="text" id="price" name="price" class="form-control" readonly="readonly">
 						<input type="hidden" id="code" name="code">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 				</div>
 				<br>
 			</div>
@@ -355,6 +356,7 @@
 	<input type="hidden" id="gxCode" name="gxCode" value="">
 	<input type="hidden" id="gymPeriod" name="gymPeriod" value="">
 	<input type="hidden" id="gymPrice" name="gymPrice" value="">
+	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 </form>
 
 </body>
@@ -409,21 +411,31 @@
 		$('#price').val(price);
 	});
 
+	let author = null;
+	
+	<sec:authorize access="isAuthenticated()">
+		author = '<sec:authentication property="principal.AUTHOR"/>';
+	</sec:authorize>
+	
 	// 등록버튼 클릭 시
 	$('.registerBtn').on("click", function() {
-		$('#gxTitle').val($(this).attr("data-gxTitle"));
-		$('#code').val($(this).attr("data-gxCode"));
-		$('#gymModal').modal('show');
+		
+		if (author == 'ADMIN') {
+			alert('관리자 계정은 등록할 수 없습니다.');
+		} else {
+			$('#gxTitle').val($(this).attr("data-gxTitle"));
+			$('#code').val($(this).attr("data-gxCode"));
+			$('#gymModal').modal('show');
+		}
 	});
 	
 	
 	// 결제버튼 클릭 시
 	$('#payBtn').on('click', function() {
 		
-		let author = null;
+		let name = null;
 		let houseInfo = null;
 		let phone = null;
-		let name = null;
 		let price = $('#price').val();
 		
 		$('#gymStartdate').val($('#startdate').val());
@@ -432,7 +444,6 @@
 		$('#gymPrice').val(price);
 		
 		<sec:authorize access="isAuthenticated()">
-			author = '<sec:authentication property="principal.AUTHOR"/>';
 			houseInfo = '<sec:authentication property="principal.HOUSEINFO"/>';
 			phone = '<sec:authentication property="principal.PHONE"/>';
 			name = '<sec:authentication property="principal.HOUSEINFO" />';

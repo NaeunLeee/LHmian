@@ -26,28 +26,30 @@ public class ConfController {
 	
 	// 전체 조회
 	@GetMapping("/resident/confList")
-	public String confList(Model model, @ModelAttribute("cri") ConfCriteria cri) {
+	public String confList(Model model, @ModelAttribute("cri") ConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		int total = confService.getTotalCount(cri);
 		model.addAttribute("list", confService.getList(cri));
 		model.addAttribute("pageMaker", new ConfPageVO(cri, total));
+		model.addAttribute("user", customUserDetails);
 		return "resident/confList";
 	}
 	
 	// 단건 조회
 	@GetMapping("/resident/confSelect")
 	public String confSelect(Model model, ConfVO vo, @ModelAttribute("cri") ConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		confService.hitCount(vo);
 		model.addAttribute("conf", confService.read(vo));
 		model.addAttribute("name", customUserDetails.getNAME());
 		return "resident/confSelect";
 	}
 	
 	// 작성자 이름으로 전체 게시글 조회
-	@GetMapping("/myPage/myConfList")
-	public String myConfList(Model model, @ModelAttribute("cri") MyConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		cri.setConfWriter(customUserDetails.getNAME());
-		model.addAttribute("list", confService.listByWriter(cri));
-		return "myPage/myConfList";
-	}
+//	@GetMapping("/myPage/myConfList")
+//	public String myConfList(Model model, @ModelAttribute("cri") MyConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+//		cri.setConfWriter(customUserDetails.getNAME());
+//		model.addAttribute("list", confService.listByWriter(cri));
+//		return "myPage/myConfList";
+//	}
 	
 	
 	// 등록 폼
@@ -71,13 +73,13 @@ public class ConfController {
 		return "redirect:/resident/confList";
 	}
 	
-	// 수정
-	@PostMapping("/resident/confUpdate")
-	@ResponseBody
-	public ConfVO confUpdate(@RequestBody ConfVO vo) {
-		confService.update(vo);
-		return confService.read(vo);
-	}
+	// 수정 (ajax)
+//	@PostMapping("/resident/confUpdate")
+//	@ResponseBody
+//	public ConfVO confUpdate(@RequestBody ConfVO vo) {
+//		confService.update(vo);
+//		return confService.read(vo);
+//	}
 	
 	// 삭제
 	@PostMapping("/resident/confDelete")
@@ -98,5 +100,26 @@ public class ConfController {
 		return "redirect:/resident/confList";
 	}
 	
+	// 수정 폼
+	@GetMapping("/resident/confUpdate")
+	public String confUpdateForm (Model model, ConfVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		model.addAttribute("conf", confService.read(vo));
+		model.addAttribute("user", customUserDetails);
+		return "resident/confUpdate";
+	}
+	
+	// 수정
+	@PostMapping("/resident/confUpdate")
+	public String confUpdate (RedirectAttributes rttr, ConfVO vo) {
+		int n = confService.update(vo);
+		
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
+		} else {
+			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		return "redirect:/resident/confList";
+	}
 	
 }

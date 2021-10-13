@@ -38,6 +38,16 @@
 	.form-control {
 	   display: inline-block;
 	}
+	.nav-tabs.nav-justified>li>a {
+		margin: 0px 1px 0px;
+		background-color: #f5f5f5;
+	}
+	.nav-tabs.nav-justified>li>a:hover {
+		background-color: #C8C6C6;
+	}
+	.nav-tabs.nav-justified>li>.active {
+		background-color: #C8C6C6;
+	}
 </style>
 
 
@@ -66,7 +76,7 @@
 <section class="sec-padding">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2 col-sm-12 col-xs-12 section-white">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
 				<div class="pages-sidebar-item">
 					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
 					<ul class="pages-sidebar-links">
@@ -77,7 +87,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-10 col-sm-6 col-xs-12">
 				<div></div><br><br>
 				<div class="sec-title-container less-padding-3 text-left">
 					<div class="title-line-3 align-left"></div>
@@ -105,8 +115,7 @@
 						<a class="nav-link disabled" href="#">일정 관리</a>
 					</li>
 				</ul>
-     			<div class="container" align="center">
-					<div class="text-box white padding-4 col-7">
+					<div class="text-box white padding-4 col-10">
 					<table class="table" >
 						<thead>
 			               <tr>
@@ -127,8 +136,7 @@
 			                     <c:if test="${cs.csAnswer == null}">
 			                        <td style="color: #FF0000;">처리중</td>
 			                     </c:if>
-			                     <%-- <td onclick="location.href='../office/csSelect?csNo=${cs.csNo}'">${cs.csTitle}</td> --%>
-			                     <td>${cs.csTitle}</td>
+			                     <td align="left">${cs.csTitle}</td>
 			                     <td>${cs.name}</td>
 			                     <td><fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" /></td>
 			                  </tr>
@@ -138,7 +146,7 @@
 					<br><br>
      
    <!-- 폼 -->
-   <div id="pageButton" style="margin:auto; width: 50%">
+   <div id="pageButton" align="center">
          <ul class="pagination hover-orange">
             <c:if test="${pageMaker.prev == true}">
                <li>
@@ -160,7 +168,7 @@
          </ul>
       </div>
 
-   <div style="margin:auto;">
+   <div align="center">
       <form id="actionForm" action="csList" method="get">
          <select name="type" class="form-control" style="width: 100px; ">
             <option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
@@ -169,14 +177,13 @@
             <option value="TC"
                <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>
          </select> 
-         <input name="keyword" value="${pageMaker.cri.keyword}"> 
+         <input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}"> 
          <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
          <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
          <button type="submit" class="btn btn-dark">검색</button>
       </form>
    </div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -192,17 +199,14 @@
 $(function() {
 
     var actionForm = $('#actionForm');
-    $('.move')
-          .on(
-                "click",
-                function(e) {
-                   e.preventDefault();
-                   var csNo = $(this).attr("data-csNo");
-                   actionForm
-                         .append('<input type="hidden" name="csNo" value="' + csNo + '">');
-                   actionForm.attr("action", "csSelect");
-                   actionForm.submit();
-                });
+    $('.move').on("click", function(e) {
+		e.preventDefault();
+		var csNo = $(this).attr("data-csNo");
+		actionForm
+		      .append('<input type="hidden" name="csNo" value="' + csNo + '">');
+		actionForm.attr("action", "admCsSelect");
+		actionForm.submit();
+    });
 
     $('#pageBtn a').on("click", function(e) {
        e.preventDefault();

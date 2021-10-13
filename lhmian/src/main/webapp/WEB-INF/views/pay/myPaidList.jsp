@@ -142,18 +142,21 @@ width : 560px;
 			</div>
 		</div>
 	</section>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	//수정모달
 	function payCancel(n) {
+		let csrfHeaderName = "${_csrf.headerName}";
+		   let csrfTokenValue = "${_csrf.token}";
 		$(cancelModal).modal('show');
 		$.ajax({
-			url : "cancleForm",
+			url : "cancelForm",
 			type: "get",
 			data : {payNo : n},
 			success : function(data) {
 				console.log(data);
 				var tag ="";
-				tag += '<form method="post" id="frm" action="cancle">'
+				tag += '<form method="post" id="frm" action="cancel">'
 					+  '	<section class="sec-padding-yj cancel">'
 					+  '		<div class="container cancel-container">'
 					+  '			<div class="row">'
@@ -164,7 +167,7 @@ width : 560px;
 					+  '					</tr>'
 					+  '					<tr>'
 					+  '					  <th>결제일</th>'
-					+  '					  <td>' + data.payDate + '</td>'
+					+  '					  <td>' + data.payDate  + '</td>'
 					+  '					</tr>'
 					+  '					<tr>'
 					+  '					  <th>결제방식</th>'
@@ -182,6 +185,8 @@ width : 560px;
 					+  '			</div>'
 					+  '		</div>'
 					+  '	</section>'
+					+  '<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">'
+					+  '<input type="hidden" name="payStatus" value="결제취소">'
 					+  '</form>'
 				$("#cancelModal .modal-body").html(tag);
 			}
@@ -190,10 +195,11 @@ width : 560px;
 	
 	//모달 취소버튼
 	$('#cancelBtn').on('click', function() {
-		if (confirm('수정하시겠습니까?')) {
-			frm.submit();
+		if (confirm('취소하시겠습니까?')) {
+			frm.submit();	
 		}
 	});
+	
 </script>
 <!-- <script>
 	// 숨겨진 지역들

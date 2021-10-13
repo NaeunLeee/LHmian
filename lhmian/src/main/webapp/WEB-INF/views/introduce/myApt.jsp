@@ -32,11 +32,13 @@
 		</section>
 		<div class=" clearfix"></div>
 	</div>
+	<br><br><br>
+	<div>
 	<section class="sec-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="location.href='${pageContext.request.contextPath}/introduce/introduce'" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='introduce'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span class="icon-pencil"></span>
 						</div>
@@ -52,7 +54,7 @@
 				<!--end item-->
 
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="#" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='arrangement'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span class="icon-layers"></span>
 						</div>
@@ -68,7 +70,7 @@
 				<!--end item-->
 
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="location.href='${pageContext.request.contextPath}/introduce/phaseDiagram'" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='phaseDiagram'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span class="icon-camera"></span>
 						</div>
@@ -87,7 +89,7 @@
 				<div class="col-divider-margin-3"></div>
 
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="location.href='${pageContext.request.contextPath}/introduce/opeInfoList'" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='opeInfoList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span class="icon-hotairballoon"></span>
 						</div>
@@ -103,7 +105,7 @@
 				<!--end item-->
 
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="#" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='map'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span class="icon-bike"></span>
 						</div>
@@ -122,6 +124,6 @@
 	</section>
 	<div class="clearfix"></div>
 	<!-- end section -->
-
+</div><br><br><br>
 </body>
 </html>

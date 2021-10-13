@@ -3,9 +3,10 @@ package com.lh.app.admin.service;
 import java.util.List;
 
 import com.lh.app.admin.domain.EventVO;
+import com.lh.app.comm.domain.Criteria;
 
 public interface EventService {
-	
+
 	// CRUD
 	// 등록
 	public int insert(EventVO vo);
@@ -21,4 +22,10 @@ public interface EventService {
 
 	// 전체 조회
 	public List<EventVO> getList();
+
+	// 전체 조회
+	public List<EventVO> getListview(Criteria cri);
+	
+	// 게시글 수
+	public int getTotalCount(Criteria cri);
 }

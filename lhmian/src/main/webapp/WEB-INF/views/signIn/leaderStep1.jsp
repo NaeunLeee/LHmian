@@ -6,28 +6,32 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.error-msg {
-		padding: 7px 0;
-		color: red;
-	}
-	
-	.correct-msg {
-		padding: 7px 0;
-		color: green;
-	}
-	.smart-forms .form-body {
-		padding-bottom: 40px;
-	}
-	
-	.time {
-		color: red;
-	}
+.error-msg {
+	padding: 7px 0;
+	color: red;
+}
 
-	div .form-body .btn {
-		height: 50px;
-	}
+.correct-msg {
+	padding: 7px 0;
+	color: green;
+}
+
+.smart-forms .form-body {
+	padding-bottom: 40px;
+}
+
+.time {
+	color: red;
+}
+
+div .form-body .btn {
+	height: 50px;
+}
 </style>
 <script>
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+
 	$(function() {
 
 		//input box 숫자만 입력 가능
@@ -52,6 +56,9 @@
 			$.ajax({
 				url : 'sendKey',
 				type : 'POST',
+				beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		         },
 				data : JSON.stringify(json),
 				contentType : "application/json",
 				success : function(data) { //문자 발송에 성공시 data: 인증번호, 실패시 data: "fail" 메세지
@@ -64,7 +71,7 @@
 								  + '	<label for="phone">'
 								  +	'		<h6 class="less-mar-4">'
 								  +	'			<span class="font-weight-5">인증 번호 </span>'
-								  + '			<span class="icon-alarmclock"></span>&nbsp;'
+								  + '			<i class="bi bi-alarm"></i>&nbsp;'
 								  + '			<span class="time"></span>'
 								  + '       </h6>'
 								  + '	</label>'
@@ -106,14 +113,29 @@
 						$('#certificate').on('click', function() {
 							
 							if (timeout) {
-								$('.certificate-msg').addClass('error-msg').text('인증번호 시간이 지났습니다.');
+								$('.certificate-msg').addClass('error-msg').text('인증번호 시간이 지났습니다. 인증을 다시 진행해주세요.');
 								return;
 							}
 							
 							if ($('#key').val() == data) {
-								alert('휴대폰 인증이 완료되었습니다.');
-								//다음 페이지로 넘어가기
-								$('#frm').submit();
+								//가입 이력 조회.....................
+								$.ajax({
+									url: 'dataSelect',
+									type : 'POST',
+									beforeSend: function(xhr) {
+							            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+							         },
+									data : JSON.stringify(json),
+									contentType : "application/json",
+									success: function(data) {
+										if (data == 0) {
+											alert('휴대폰 인증이 완료되었습니다.');
+											$('#frm').submit();
+										} else {
+											alert('해당 휴대폰 번호로 가입한 이력이 있습니다. 아이디/비밀번호 찾기를 진행해주세요.')
+										}
+									}
+								});
 							} else {
 								$('.certificate-msg').addClass('error-msg').text('인증번호가 일치하지 않습니다.');
 							}
@@ -131,14 +153,6 @@
 
 	})
 
-	//숫자만 입력가능한 keyup 이벤트 함수
-	function onlyNumberFunc(t) {
-		var regexp = /[^0-9]/gi;
-		t.onkeyup = function(e) {
-			var v = this.value;
-			this.value = v.replace(regexp, '');
-		}
-	}
 </script>
 </head>
 <body>
@@ -149,7 +163,7 @@
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="#">홈</a></li>
-							<li class="current"><a href="leaderStep1">회원가입</a></li>
+							<li class="current"><a href="signup/leaderStep1">회원가입</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
@@ -179,6 +193,9 @@
 					<div class="form-body bg-light">
 						<form id="frm" name="frm" action="leaderStep2-1" method="POST"
 							autocomplete="off">
+							<!-- CSRF 토큰 -->
+							<input type="hidden" name="${_csrf.parameterName }"
+								value="${_csrf.token }">
 							<!-- 카카오 로그인으로 넘어오면 고유 id 넘어옴 -->
 							<input type="hidden" id="id" name="id" value="${kakaoId }">
 							<!-- 휴대폰 번호 입력 폼 -->
@@ -194,15 +211,16 @@
 								</label>
 								<p class="sendKey-msg"></p>
 							</div>
-							<button id="sendKey" name="sendKey" class="btn btn-gyellow btn-fullwidth uppercase"
-								type="button">인증번호 전송</button>
+							<button id="sendKey" name="sendKey"
+								class="btn btn-gyellow btn-fullwidth uppercase" type="button">인증번호
+								전송</button>
 						</form>
 						<!-- 인증번호 입력 폼 생성 공간 -->
-					<div id="box"></div>
+						<div id="box"></div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 </body>
 </html>

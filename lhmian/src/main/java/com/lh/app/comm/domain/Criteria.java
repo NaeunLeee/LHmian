@@ -5,13 +5,15 @@ import lombok.Data;
 @Data
 public class Criteria {
    
-   // 10/06 추가	
    private String id;
-   
-   
    private int pageNum = 1;
    private int amount = 10;
+   
+   // 10/13 type 추가
    private String type;
+   
+   
+   
    private String keyword;
    public Criteria() {}
    public Criteria(int pageNum, int amount) {
@@ -19,7 +21,11 @@ public class Criteria {
       this.amount = amount;
    }
    
+   // 10/13 preType 추가
+   private String preType;
+   
    public String[] getTypeArr() {
 	   return type == null ? new String[]{} : type.split("");
    }
+   
 }

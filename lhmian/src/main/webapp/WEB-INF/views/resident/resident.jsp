@@ -51,7 +51,7 @@
 				<!--end item-->
 
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="#" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='${pageContext.request.contextPath}/voteList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span class="icon-layers"></span>
 						</div>
