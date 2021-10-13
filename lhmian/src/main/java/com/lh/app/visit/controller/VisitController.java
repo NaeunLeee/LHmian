@@ -17,32 +17,29 @@ import com.lh.app.visit.service.VisitService;
 @Controller
 public class VisitController {
 
-	@Autowired VisitService visitService;
-	
-	//세대리스트
+	@Autowired
+	VisitService visitService;
+
+	// 세대리스트
 	@GetMapping("/visit/generation")
 	public String generation(Model model, GenerationVO vo) {
 		model.addAttribute("generation", visitService.generation(vo));
 		return "visit/generationList";
 	}
-	
-	
-	//세대선택, 전체조회
+
+	// 세대선택, 전체조회
 	@GetMapping("/no/visitList")
 	public String list(Model model, VisitVO vo) {
-		//int total = visitService.getTotalCount(cri);
 		model.addAttribute("list", visitService.getList(vo));
-		//model.addAttribute("pageMaker", new VisitPageVO(cri, total));
 		return "no/visitList";
 	}
 
-	//등록
+	// 등록
 	@PostMapping("/no/visitInsert")
 	@ResponseBody
-	public String visitInsert(RedirectAttributes rttr, VisitVO vo,@AuthenticationPrincipal CustomUserDetails user ) {
-		vo.setHouseInfo(1234);
-		vo.setWriterInfo(Integer.parseInt(user.getHOUSEINFO()));
+	public String visitInsert(RedirectAttributes rttr, VisitVO vo, @AuthenticationPrincipal CustomUserDetails user) {
 		vo.setVisitWriter(user.getNAME());
+		vo.setWriterInfo(Integer.parseInt(user.getHOUSEINFO()));
 		int n = visitService.insert(vo);
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "등록이 완료되었습니다.");
@@ -51,25 +48,26 @@ public class VisitController {
 		}
 		return "redirect:/visit/visitList";
 	}
-	
-	//수정
+
+	// 수정
 	@PostMapping("/no/visitUpdate")
 	public String update(VisitVO vo, RedirectAttributes rttr) {
 		int n = visitService.update(vo);
-		if(n==1) {
-			rttr.addFlashAttribute("message", "수정이 완료되었습니다.");			
-		}else {
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
+		} else {
 			rttr.addFlashAttribute("message", "수정이 실패했습니다.");
 		}
 		return "redirect:/no/visitList";
 	}
-	//삭제
+
+	// 삭제
 	@PostMapping("/visitDelete")
 	public String delete(VisitVO vo, RedirectAttributes rttr) {
-		int n =visitService.delete(vo);
-		if(n==1) {
-			rttr.addFlashAttribute("message", "수정이 완료되었습니다.");			
-		}else {
+		int n = visitService.delete(vo);
+		if (n == 1) {
+			rttr.addFlashAttribute("message", "수정이 완료되었습니다.");
+		} else {
 			rttr.addFlashAttribute("message", "수정이 실패했습니다.");
 		}
 		return "redirect:/no/visitList";
