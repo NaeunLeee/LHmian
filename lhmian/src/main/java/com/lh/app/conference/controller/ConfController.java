@@ -44,12 +44,12 @@ public class ConfController {
 	}
 	
 	// 작성자 이름으로 전체 게시글 조회
-	@GetMapping("/myPage/myConfList")
-	public String myConfList(Model model, @ModelAttribute("cri") MyConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		cri.setConfWriter(customUserDetails.getNAME());
-		model.addAttribute("list", confService.listByWriter(cri));
-		return "myPage/myConfList";
-	}
+//	@GetMapping("/myPage/myConfList")
+//	public String myConfList(Model model, @ModelAttribute("cri") MyConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+//		cri.setConfWriter(customUserDetails.getNAME());
+//		model.addAttribute("list", confService.listByWriter(cri));
+//		return "myPage/myConfList";
+//	}
 	
 	
 	// 등록 폼

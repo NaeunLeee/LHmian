@@ -89,5 +89,10 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return n;
 	}
+
+	// position 수정 (10/13 추가: 이나은)
+	public int updatePosition(MemberInfoVO vo) {
+		return mapper.updatePosition(vo);
+	}
 	
 }

@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lh.app.carList.service.CarListService;
 import com.lh.app.member.domain.AdmMemberCri;
 import com.lh.app.member.domain.AdmMemberPageVO;
 import com.lh.app.member.domain.MemberInfoVO;
 import com.lh.app.member.service.MemberService;
+import com.lh.app.signIn.domain.CarListVO;
 import com.lh.app.signIn.domain.MemberVO;
 import com.lh.app.signIn.etc.CustomUserDetails;
 
@@ -30,6 +32,8 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	@Autowired
+	CarListService carService;
 	
 	// 전체조회 (기존..)
 //	@GetMapping("/admin/admMemberList")
@@ -50,16 +54,6 @@ public class MemberController {
 		return "admin/admMemberList";
 	}
 	
-	// 전체조회 (ajax) (10/11 추가: 이나은)
-//	@PostMapping("/admin/admMemberList")
-//	@ResponseBody
-//	public List<MemberVO> admMemberList(Model model, @RequestBody @ModelAttribute("cri") MemberCriteria cri) {
-//		int total = service.getTotalCount(cri);
-//		model.addAttribute("list", service.getList(cri));
-//		model.addAttribute("pageMaker", new MemberPageVO(cri, total));
-//		return service.getList(cri);
-//	}
-
 	// 단건조회
 	@GetMapping("myInfo")
 	public String myInfo(Model model, MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
@@ -125,6 +119,21 @@ public class MemberController {
 	public Long sendKey(@RequestBody List<HashMap<String, String>> list) {
 		return service.smsAPI(list);
 	}
+	
+	// position 수정 (10/13 추가: 이나은)
+	@PostMapping("/admin/updatePosition")
+	@ResponseBody
+	public int updatePosition(@RequestBody MemberInfoVO vo) {
+		return service.updatePosition(vo);
+	}
+	
+	// 차량 조회 (10/13 추가: 이나은)
+	@PostMapping("/admin/carByHouseInfo")
+	@ResponseBody
+	public List<CarListVO> carByHouseInfo(@RequestBody MemberInfoVO vo) {
+		return carService.carByHouseInfo(vo);
+	}
+	
 	
 	
 }

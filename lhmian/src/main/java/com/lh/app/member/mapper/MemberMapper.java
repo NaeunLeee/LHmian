@@ -43,6 +43,7 @@ public interface MemberMapper {
 	// SMS 전송 (10/12 추가: 이나은)
 	public Long smsAPI(List<HashMap<String, String>> list);
 	
-	
+	// position 수정 (10/13 추가: 이나은)
+	public int updatePosition(MemberInfoVO vo);
 	
 }

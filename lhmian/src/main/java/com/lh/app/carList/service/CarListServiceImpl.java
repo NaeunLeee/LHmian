@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lh.app.carList.domain.CarListCriteria;
 import com.lh.app.carList.mapper.CarListMapper;
+import com.lh.app.member.domain.MemberInfoVO;
 import com.lh.app.signIn.domain.CarListVO;
 
 @Service
@@ -16,21 +17,19 @@ public class CarListServiceImpl implements CarListService{
 	CarListMapper mapper;
 
 	//전체조회
-	@Override
 	public List<CarListVO> getList(CarListCriteria cri) {
-		// TODO Auto-generated method stub
 		return mapper.getList(cri);
 	}
-	@Override
 	public int getTotalCount(CarListCriteria cri) {
-		// TODO Auto-generated method stub
 		return mapper.getTotalCount(cri);
 	}
-
-	@Override
 	public int delete(CarListVO vo) {
-		// TODO Auto-generated method stub
 		return mapper.delete(vo);
+	}
+	
+	//동호수로 차량 조회 (10/13 추가: 이나은)
+	public List<CarListVO> carByHouseInfo(MemberInfoVO vo) {
+		return mapper.carByHouseInfo(vo);
 	}
 	
 }

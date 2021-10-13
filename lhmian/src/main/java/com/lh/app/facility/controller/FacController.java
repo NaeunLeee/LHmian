@@ -56,7 +56,7 @@ public class FacController {
 		return "facility/facilityList";
 	}
 	
-	// 편의 시설 메뉴
+	// 독서실 메뉴
 	@RequestMapping("/facility/library")
 	public String library() {
 		return "facility/library";

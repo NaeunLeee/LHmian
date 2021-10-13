@@ -98,11 +98,11 @@
 							<option value="A" ${pageMaker.cri.type=='A' ? 'selected' : ""}>휴대폰번호</option>
 						</select> 
 						<input name="keyword" class="form-control" style="width: 200px; margin-right: 10px;" value="${pageMaker.cri.keyword}"> 
-							<label for="all">전체</label><input type="checkbox" id="all" name="option" value="" checked>
-							<label for="notpaid">관리비미납</label><input type="checkbox" id="notpaid" name="option" value="N">
-							<label for="leader">입주민대표</label><input type="checkbox" id="leader" name="option" value="L">
-							<label for="owner">세대주</label><input type="checkbox" id="owner" name="option" value="O">
-						<button type="submit" class="btn btn-dark">검색</button>
+							<label for="all">전체</label><input type="checkbox" id="all" name="option" value="A" checked>
+							<label for="notpaid">관리비미납</label><input type="checkbox" id="notpaid" name="option" value="N" onchange="checkOption()">
+							<label for="leader">입주민대표</label><input type="checkbox" id="leader" name="option" value="L" onchange="checkOption()">
+							<label for="owner">세대주</label><input type="checkbox" id="owner" name="option" value="O" onchange="checkOption()">
+						<button type="button" class="btn btn-dark" id="searchBtn">검색</button>
 						
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}"><br>
@@ -124,6 +124,7 @@
 									<th>구분</th>
 									<th>동호수</th>
 									<th>휴대폰번호</th>
+									<th>차량</th>
 								</tr>
 							</thead>
 							<tbody id="tbody">
@@ -132,11 +133,13 @@
 										<td><input type="checkbox" name="chk" id="${member.id}" value="${member.id}" data-name="${member.name}" data-phone="${member.phone}"></td>
 										<td>${member.name}</td>
 										<td>
-											<c:set var="donghosu" value="${member.houseInfo}"/>
-											<c:if test="${member.position eq 'LEADER'}">${fn:substring(donghosu, 0, 3)}동 대표</c:if>
-											<c:if test="${member.position eq 'FOLLOWER'}">일반</c:if>
+											<select name="position" class="position form-control" style="width: 100px;" data-id="${member.id}">
+												<option value="LEADER" ${member.position eq 'LEADER' ? 'selected' : ""}>동대표</option>
+												<option value="FOLLOWER" ${member.position eq 'FOLLOWER' ? 'selected' : ""}>일반</option>
+											</select> 
 										</td>
 										<td id="test"> 
+											<c:set var="donghosu" value="${member.houseInfo}"/>
 											<c:if test="${member.author eq 'OWNER'}">세대주</c:if>
 											<c:if test="${member.author eq 'MEMBER'}">세대원</c:if>
 										</td>
@@ -144,6 +147,7 @@
 											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 8)}호
 										</td>
 										<td id="phone">${member.phone}</td>
+										<td><button type="button" class="carBtn btn btn-default" data-houseInfo="${member.houseInfo}">차량정보</button></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -179,7 +183,7 @@
 	</div>
 </section>
 
-	<!-- The Modal -->
+	<!-- SMS Modal -->
 	<div class="modal" id="smsModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -212,13 +216,41 @@
 					<div class="modal-footer">
 						<div align="center">
 							<button type="button" id="send" class="btn btn-gyellow">전송</button>
-							<button type="button" id="close" class="btn btn-default">취소</button>
+							<button type="button" id="closeSMS" class="btn btn-default">취소</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<!-- Modal End -->
+	
+	<!-- CarList Modal -->
+	<div class="modal" id="carListModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">차량 정보</h4>
+					</div>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div id="cars" style="margin: 0px 20px 0px;"></div>
+					<br>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<div align="center">
+						<button type="button" id="closeCars" class="btn btn-default" data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -233,6 +265,28 @@
 		actionForm.submit();
 	});
 
+	// '전체' 체크박스 체크
+	function checkOption() {
+		if ($('#all').is(":checked")) {
+			$('#all').prop("checked", false);
+		} else {
+			if ($("input[name='option']:checked").length == 0) {
+				$('#all').prop("checked", true);
+			}
+		}
+	}
+	
+	// 전체 버튼 자동 체크 후 submit
+	$('#searchBtn').on("click", function() {
+		if($("input[name='option']:checked").length == 0) {
+			$('#all').prop("checked", true);
+			actionForm.submit();
+		} else {
+			actionForm.submit();
+		}
+	});
+	
+	// 모두 선택
 	$(document).ready(function() {
 		$("#chkAll").click(function() {
 			if ($("#chkAll").is(":checked"))
@@ -252,6 +306,7 @@
 		});
 	});
 
+	// 회원 삭제
 	function deleteMember() {
 		var cnt = $("input[name='chk']:checked").length;
 		var arr = new Array();
@@ -297,7 +352,7 @@
 	 // 체크된 값이 페이지가 새로고침 되도 그대로 체크되어 있도록... (10/12 추가: 이나은)
 	 let option = $('#criteriaForm').attr('data-option');
 	 $(document).ready(function() {
-		
+		 
 		 if (option.indexOf('N') != -1) {
 			 $('#notpaid').prop("checked", true);
 		 } else {
@@ -315,6 +370,13 @@
 		 } else {
 			 $('#owner').prop("checked", false);
 		 }
+		 
+		 if (option.indexOf('A') != -1) {
+			 $('#all').prop("checked", true);
+		 } else {
+			 $('#all').prop("checked", false);
+		 }
+		 
 	 });
 	 
 	// 모달창에 체크된 값 넘겨주기 (10/12 추가: 이나은)
@@ -350,7 +412,8 @@
  		
 	});
 
-	$('#close').on("click", function() {
+	// 모달창 닫기가 왜 안되는지..? 결국 함수로 만듦...ㅋㅋ
+	$('#closeSMS').on("click", function() {
 		$('#smsModal').hide();
 	});
 
@@ -365,6 +428,7 @@
 		}
 	});
 	
+	// 문자 전송
 	$('#send').on("click", function() {
 		
 		var cnt = $("input[name='chk']:checked").length;
@@ -398,6 +462,86 @@
 				}
 			});
 		}
+	});
+	
+	// 직책 변경
+	$('.position').on("change", function() {
+		if(confirm('변경하시겠습니까?')) {
+			$.ajax({
+				url: 'updatePosition',
+				type: 'POST',
+				data: JSON.stringify({
+					id: $(this).attr('data-id'),
+					position: $('.position').val()
+				}),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(data) {
+					alert('변경이 완료되었습니다.');
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			});	
+		}
+	});
+	
+	// 차량 정보 모달 띄우기
+	$('.carBtn').on("click", function() {
+		
+		var str = "";
+		
+		$.ajax({
+			url: 'carByHouseInfo',
+			type: 'POST',
+			data: JSON.stringify({
+				houseInfo: $(this).attr('data-houseInfo')
+			}),
+			contentType: 'application/json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.length == 0) {
+					alert('등록된 차량이 없습니다.');
+				} else {
+					str += '<table class="table">';
+					str += '<thead>';
+					str += '<tr>';
+					str += '<th>식별번호</th>';
+					str += '<th>차량번호</th>';
+					str += '<th>차종</th>';
+					str += '<th>등록일자</th>';
+					str += '</tr>';
+					str += '</thead>';
+					str += '<tbody>';
+					for (i=0; i<data.length; i++) {
+						str += '<tr class="tr_1">';
+						str += '<td>' + data[i].carNo + '</>';
+						str += '<td>' + data[i].carCode + '</>';
+						str += '<td>' + data[i].carType + '</>';
+						str += '<td><fmt:formatDate value="'+ data[i].carDate + '" pattern="yy-MM-dd" />';
+						str += '</tr>';
+					}
+					str += '</tbody>';
+					str += '</table>';
+					$('#cars').html(str);
+					$('#carListModal').show();
+				}
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		});
+		
+	});
+	// 차량 정보 모달 내리기...
+	$('#closeCars').on("click", function() {
+		$('#carListModal').hide();
+		$('#cars').empty();
 	});
 	
 /* 	function getTextLength(str) {
