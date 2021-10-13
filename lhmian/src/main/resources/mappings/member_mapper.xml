@@ -48,7 +48,7 @@
 						<when test="option=='O'.toString()">
 							AUTHOR = 'OWNER'
 						</when>
-						<when test="option==''.toString()">
+						<when test="option=='A'.toString()">
 							HOUSE_INFO > 0
 						</when>
 					</choose>
@@ -187,4 +187,11 @@
 		WHERE P.ID = #{id};
 	</select>
 
+	<!-- position 수정 (10/13 추가: 이나은) -->
+	<update id="updatePosition">
+		UPDATE MEMBER
+		SET POSITION = #{position}
+		WHERE ID = #{id}
+	</update>
+	
 </mapper>
