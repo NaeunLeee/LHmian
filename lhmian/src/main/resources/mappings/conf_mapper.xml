@@ -43,6 +43,7 @@
 			 , CONF_WRITER
 			 , CONF_DATE
 			 , CONF_UPDATE
+			 , CONF_HIT
 		FROM (
 			SELECT 
 			/*+INDEX_DESC(CONFERENCE CONFERENCE_PK)*/
@@ -53,6 +54,7 @@
 				 , CONF_WRITER
 				 , CONF_DATE
 				 , CONF_UPDATE
+				 , CONF_HIT
 			FROM CONFERENCE
 			WHERE
 			]]>
@@ -73,11 +75,19 @@
 		 , CONF_CONTENT
 		 , CONF_WRITER
 		 , CONF_DATE
-		 , CONF_UPDATE 
+		 , CONF_UPDATE
+		 , CONF_HIT
 	FROM CONFERENCE
 	WHERE CONF_NO = #{confNo}
 
 </select>
+
+<!-- 조회수 올리기 -->
+<update id="hitCount">
+	UPDATE CONFERENCE
+	SET CONF_HIT = CONF_HIT + 1
+	WHERE CONF_NO = #{confNo}
+</update>
 
 <!-- 게시글 등록 -->
 <insert id="insert">
@@ -141,6 +151,7 @@
 			 , CONF_WRITER
 			 , CONF_DATE
 			 , CONF_UPDATE
+			 , CONF_HIT
 		FROM (
 			SELECT 
 			/*+INDEX_DESC(CONFERENCE CONFERENCE_PK)*/
@@ -151,6 +162,7 @@
 				 , CONF_WRITER
 				 , CONF_DATE
 				 , CONF_UPDATE
+				 , CONF_HIT
 			FROM CONFERENCE
 			WHERE 
 			]]>

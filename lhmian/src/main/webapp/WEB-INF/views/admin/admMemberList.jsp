@@ -41,7 +41,7 @@
 	.nav-tabs.nav-justified>li>.active {
 		background-color: #C8C6C6;
 	}
-	#notpaid, #leader, #owner {
+	#all, #notpaid, #leader, #owner {
 		margin: 0px 5px 0px;
 	}
 </style>
@@ -91,7 +91,6 @@
 				</div>
 				<div style="float: left; margin-left: 50px;" id="criteriaForm" data-option="${option}">
 					<form id="actionForm" action="admMemberList" method="get">
-						<button type="button" class="btn btn-default" onclick="location.href='admMemberList'">전체조회</button>
 						<select name="type" class="form-control" style="width: 100px; ">
 							<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
 							<option value="N" ${pageMaker.cri.type=='N' ? 'selected' : ""}>이름</option>
@@ -99,9 +98,10 @@
 							<option value="A" ${pageMaker.cri.type=='A' ? 'selected' : ""}>휴대폰번호</option>
 						</select> 
 						<input name="keyword" class="form-control" style="width: 200px; margin-right: 10px;" value="${pageMaker.cri.keyword}"> 
-						<label for="notpaid">관리비미납</label><input type="checkbox" id="notpaid" name="option" value="N">
-						<label for="leader">입주민대표</label><input type="checkbox" id="leader" name="option" value="L">
-						<label for="owner">세대주</label><input type="checkbox" id="owner" name="option" value="O">
+							<label for="all">전체</label><input type="checkbox" id="all" name="option" value="" checked>
+							<label for="notpaid">관리비미납</label><input type="checkbox" id="notpaid" name="option" value="N">
+							<label for="leader">입주민대표</label><input type="checkbox" id="leader" name="option" value="L">
+							<label for="owner">세대주</label><input type="checkbox" id="owner" name="option" value="O">
 						<button type="submit" class="btn btn-dark">검색</button>
 						
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
@@ -389,7 +389,12 @@
 					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 				},
 				success: function(data) {
-					console.log(data);
+					$('#smsModal').hide();
+					$('#smsContent').val('');
+					alert(data + '건의 전송이 완료되었습니다.');
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
 				}
 			});
 		}

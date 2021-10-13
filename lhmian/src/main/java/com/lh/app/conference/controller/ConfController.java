@@ -26,16 +26,18 @@ public class ConfController {
 	
 	// 전체 조회
 	@GetMapping("/resident/confList")
-	public String confList(Model model, @ModelAttribute("cri") ConfCriteria cri) {
+	public String confList(Model model, @ModelAttribute("cri") ConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		int total = confService.getTotalCount(cri);
 		model.addAttribute("list", confService.getList(cri));
 		model.addAttribute("pageMaker", new ConfPageVO(cri, total));
+		model.addAttribute("user", customUserDetails);
 		return "resident/confList";
 	}
 	
 	// 단건 조회
 	@GetMapping("/resident/confSelect")
 	public String confSelect(Model model, ConfVO vo, @ModelAttribute("cri") ConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		confService.hitCount(vo);
 		model.addAttribute("conf", confService.read(vo));
 		model.addAttribute("name", customUserDetails.getNAME());
 		return "resident/confSelect";
