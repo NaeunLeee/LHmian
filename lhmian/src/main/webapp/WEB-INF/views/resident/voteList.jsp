@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 
@@ -121,7 +123,7 @@
 								</p>
 								<c:if test="${list.over eq '진행중'}">
 									<div class="text-right">
-										<a class="btn btn-light" href="vote?no=${list.voteNo }"><i
+										<a id="voteBtn" class="btn btn-light" data-voteNo="${list.voteNo }"><i
 											class="bi bi-pencil-square"></i> &nbsp;투표하기</a>
 									</div>
 								</c:if>
@@ -143,17 +145,23 @@
 	</section>
 </body>
 <script>
-	//투표마감된 부분에 회색 커튼 치기
-
-	/* 	 const box = $('.pr-feature-box-4');
-
-	 for (let i=0; i < $(box).length; i++) {
-	 console.log($(box).eq(i).children().children().attr('data-over'));
-	 if ($(box).eq(i).children().children().attr('data-over') == '투표마감') {
-	 console.log($('#vote-content'));
-
-	 }
+	let author = null;
+		
+ 	<sec:authorize access="isAuthenticated()">
+		author = '<sec:authentication property="principal.AUTHOR"/>';
+	</sec:authorize>
 	
-	 }  */
+	console.log(author);
+	 
+	 $('#voteBtn').on('click', function() {
+		 if (author == 'ADMIN') {
+			 alert('관리자 계정은 접근할 수 없습니다.');
+			 return;
+		 }
+
+		 $(location).attr('href', 'vote?no=' + $(this).attr('data-voteNo'));
+		 
+	 })
+
 </script>
 </html>

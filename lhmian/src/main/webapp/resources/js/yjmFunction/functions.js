@@ -29,3 +29,12 @@ jQuery.fn.serializeObject = function() {
     
     return obj;
 };
+
+	//숫자만 입력가능한 keyup 이벤트 함수
+	function onlyNumberFunc(t) {
+		var regexp = /[^0-9]/gi;
+		t.onkeyup = function(e) {
+			var v = this.value;
+			this.value = v.replace(regexp, '');
+		}
+	}

@@ -321,9 +321,11 @@ input[type="radio"]:checked+label {
 }
 </style>
 <script>
-if (participate == "yes") {
-	 alert('이미 참여한 투표입니다.');
-}
+	const participate = '${participate}';
+	
+	if (participate == "yes") {
+		 alert('이미 참여한 투표입니다.');
+	}
 </script>
 </head>
 <body>
@@ -416,16 +418,12 @@ if (participate == "yes") {
 	 const now = new Date();
 	
 	 console.log(endDate - now); */
-	 
-	 const participate = '${participate}';
-	 
+
 	 if (participate == "yes") {
 		 $('.mm-survey-container').css('opacity', '0.3');
 		 $('input[name="hvResult"]').attr('disabled', 'true');
 		 $('label').css('cursor', 'default');
 		 $('#submit').remove();
-		
-		 alert('이미 참여한 투표입니다.');
 	 }
 
 	jQuery('.mm-prev-btn').hide();

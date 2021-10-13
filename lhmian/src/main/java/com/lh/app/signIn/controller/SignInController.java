@@ -167,11 +167,14 @@ public class SignInController {
 	public String findId(MemberVO vo, Model model) {
 		vo = signInService.findId(vo);
 		
+		if (vo == null) {
+			System.out.println("데이터 없음");
+		} else if (vo.getId().contains("kakao")) {
+			vo.setId("kakao");
+		}
 		
-		System.out.println(vo);
-		
-		model.addAttribute("member", vo);
-		
+		model.addAttribute("member", vo);			
+
 		return "no/findId";
 	}
 	
@@ -213,6 +216,16 @@ public class SignInController {
 	@PostMapping("/signIn/sendKey")
 	@ResponseBody
 	public String sendKey(@RequestBody HashMap<String, String> map) {
+		//넘어온 휴대폰 번호
+		System.out.println(map.get("phone"));
+		
+		return signInService.smsAPI(map.get("phone"));
+	}
+	
+	//인증 버튼 클릭시
+	@PostMapping("/find/sendKey")
+	@ResponseBody
+	public String findSendKey(@RequestBody HashMap<String, String> map) {
 		//넘어온 휴대폰 번호
 		System.out.println(map.get("phone"));
 		

@@ -113,7 +113,7 @@ div .form-body .btn {
 						$('#certificate').on('click', function() {
 							
 							if (timeout) {
-								$('.certificate-msg').addClass('error-msg').text('인증번호 시간이 지났습니다.');
+								$('.certificate-msg').addClass('error-msg').text('인증번호 시간이 지났습니다. 인증을 다시 진행해주세요.');
 								return;
 							}
 							
@@ -138,14 +138,6 @@ div .form-body .btn {
 
 	})
 
-	//숫자만 입력가능한 keyup 이벤트 함수
-	function onlyNumberFunc(t) {
-		var regexp = /[^0-9]/gi;
-		t.onkeyup = function(e) {
-			var v = this.value;
-			this.value = v.replace(regexp, '');
-		}
-	}
 </script>
 </head>
 <body>
