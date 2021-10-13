@@ -12,8 +12,9 @@ import com.lh.app.visit.mapper.VisitMapper;
 @Service
 public class VisitServiceImpl implements VisitService {
 
-	@Autowired VisitMapper visitMapper;
-	
+	@Autowired
+	VisitMapper visitMapper;
+
 	@Override
 	public List<VisitVO> getList(VisitVO vo) {
 		return visitMapper.getList(vo);

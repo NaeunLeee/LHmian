@@ -13,24 +13,25 @@
 		VISIT_CONTENT,
 		VISIT_DATE,
 		VISIT_UPDATE,
-		VISIT_WRITER
+		VISIT_WRITER,
+		WRITER_INFO
 		FROM VISIT
 		WHERE HOUSE_INFO = #{houseInfo}
 	</select>
 	
 	<insert id="insert">
-	INSERT  VISIT_NO,
-	HOUSE_INFO,
-	VISIT_CONTENT,
-	VISIT_DATE,
-	VISIT_WRITER,
-	WRITER_INFO
-	INTO VISIT VALUES(VISIT_SEQ.NEXTVAL,
-	#{???},
-	#{visitContent},
-	DEFAULT,
-	#{visitWriter},
-	#{houseInfo})
-	WHERE HOUSE_INFO = #{???}
+	INSERT INTO VISIT 
+		(VISIT_NO,
+		HOUSE_INFO,
+		VISIT_CONTENT,
+		VISIT_DATE,
+		VISIT_WRITER,
+		WRITER_INFO)
+	VALUES(VISIT_SEQ.NEXTVAL,
+		#{houseInfo},
+		#{visitContent},
+		DEFAULT,
+		#{visitWriter},
+		#{writerInfo})
 	</insert>
 </mapper>
