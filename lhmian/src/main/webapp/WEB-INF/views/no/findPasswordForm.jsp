@@ -147,9 +147,15 @@ width: 380px;
 							return;
 						}
 						
+						if ($('#key').val() == "") {
+							alert('인증번호를 입력해주세요.');
+							return;
+						}
+						
 						if ($('#key').val() == data) {
 							alert('휴대폰 인증이 완료되었습니다.');
 							certificateSuccess = true;
+							$('#phone').attr('readonly', true);
 						} else {
 							alert('인증번호가 일치하지 않습니다.');
 						}
@@ -164,8 +170,6 @@ width: 380px;
 		}) 
 
 	})
-	
-	
 	
 	$('#passwordFindBtn').on('click', function() {
 		if ($('#id').val() == "") {

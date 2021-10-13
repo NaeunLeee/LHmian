@@ -112,4 +112,10 @@ public class SignInServiceImpl implements SignInService {
 		return signInMapper.memberSelect(vo);
 	}
 
+	@Override
+	public int dataSelect(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return signInMapper.dataSelect(vo);
+	}
+
 }

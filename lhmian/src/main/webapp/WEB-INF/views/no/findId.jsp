@@ -5,11 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ID 찾기</title>
+<title>아이디 찾기</title>
 </head>
 <body>
 	<div class="container">
-
 		<div class="form-body">
 			<div class="sec-title-container-nopadding">
 				<div class="gm-title-line-1 text-center"></div>

@@ -309,9 +309,9 @@
 			<!-- Modal body -->
 			<div class="modal-body">
 				<div style="margin: 0px 20px 0px;">
-					<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">이 름</label></h5>
+					<h5><i class="bi bi-person-circle"></i>&nbsp;&nbsp;<label for="name">차종</label></h5>
 						<input type="text" id="name" class="form-control" readonly="readonly" value="<sec:authentication property="principal.NAME" />"><br>
-					<h5><i class="bi bi-patch-exclamation"></i>&nbsp;&nbsp;<label for="gxTitle">프로그램명</label></h5>
+					<h5><i class="bi bi-patch-exclamation"></i>&nbsp;&nbsp;<label for="gxTitle">차량 번호</label></h5>
 						<input type="text" id="gxTitle" name="gxTitle" class="form-control" readonly="readonly"><br>
 					<h5><i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label for="startdate">시작 날짜</label></h5>
 						<input type="text" id="startdate" class="form-control" readonly="readonly" placeholder="날짜 선택"><br>

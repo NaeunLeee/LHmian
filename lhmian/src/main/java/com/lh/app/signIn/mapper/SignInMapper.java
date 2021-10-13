@@ -27,4 +27,7 @@ public interface SignInMapper {
 	
 	//id로 회원조회
 	public MemberVO memberSelect(MemberVO vo);
+	
+	//휴대폰 번호로 가입 이력 조회
+	public int dataSelect(MemberVO vo);
 }

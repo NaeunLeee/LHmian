@@ -64,7 +64,7 @@
 				'click',
 				function() {
 					window.open("find/findPasswordForm", "비밀번호 찾기",
-							"width=600, height=500");
+							"width=600, height=750");
 
 				})
 
