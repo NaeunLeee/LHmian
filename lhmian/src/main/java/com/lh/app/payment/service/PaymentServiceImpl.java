@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lh.app.fee.domain.ManagementFeeVO;
+import com.lh.app.payment.domain.PaymentCriteria;
 import com.lh.app.payment.domain.PaymentVO;
 import com.lh.app.payment.mapper.PaymentMapper;
 
@@ -17,11 +18,6 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int insert(PaymentVO vo) {
 		return paymentMapper.insert(vo);
-	}
-
-	@Override
-	public List<PaymentVO> getList(PaymentVO vo) {
-		return paymentMapper.getList(vo);
 	}
 
 	@Override
@@ -37,6 +33,18 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int updateStatus(PaymentVO vo) {
 		return paymentMapper.updateStatus(vo);
+	}
+
+
+
+	@Override
+	public List<PaymentVO> getList(PaymentCriteria cri) {
+		return paymentMapper.getList(cri);
+	}
+	
+	@Override
+	public int getTotalCount(PaymentCriteria cri) {
+		return paymentMapper.getTotalCount(cri);
 	}
 
 }
