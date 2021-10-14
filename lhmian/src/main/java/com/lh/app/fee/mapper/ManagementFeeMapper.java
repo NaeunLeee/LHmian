@@ -19,4 +19,13 @@ public interface ManagementFeeMapper {
 	
 	//관리자 전체 관리비 출력
 	public List<ManagementFeeVO> admSelectFeeList();
+	
+	//월 기준 이전 6개월 관리비 출력
+	public List<ManagementFeeVO> sixMonthsSelect(ManagementFeeVO vo);
+	
+	//최근 월 기준 이전 6개월 관리비 출력
+	public List<ManagementFeeVO> sixMonthsCurrent(ManagementFeeVO vo);
+	
+	//해당 월의 홀수 동, 짝수 동 관리비 평균 출력
+	public ManagementFeeVO samePyeongAvg(ManagementFeeVO vo);
 }

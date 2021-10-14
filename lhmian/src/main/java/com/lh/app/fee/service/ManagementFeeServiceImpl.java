@@ -43,4 +43,22 @@ public class ManagementFeeServiceImpl implements ManagementFeeService {
 		return managementFeeMapper.admSelectFeeList();
 	}
 
+	@Override
+	public List<ManagementFeeVO> sixMonthsSelect(ManagementFeeVO vo) {
+		// TODO Auto-generated method stub
+		return managementFeeMapper.sixMonthsSelect(vo);
+	}
+
+	@Override
+	public List<ManagementFeeVO> sixMonthsCurrent(ManagementFeeVO vo) {
+		// TODO Auto-generated method stub
+		return managementFeeMapper.sixMonthsCurrent(vo);
+	}
+
+	@Override
+	public ManagementFeeVO samePyeongAvg(ManagementFeeVO vo) {
+		// TODO Auto-generated method stub
+		return managementFeeMapper.samePyeongAvg(vo);
+	}
+
 }

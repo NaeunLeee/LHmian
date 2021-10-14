@@ -46,8 +46,8 @@
 }
 
 .pagenation-holder-no-bottom {
-	margin-top:90px; 
-	background-color:#f5f5f5
+	margin-top: 90px;
+	background-color: #f5f5f5
 }
 </style>
 <script type="text/javascript"
@@ -155,34 +155,19 @@
 
 				</div>
 
-				<div class="col-md-6 text-center margin-bottom">
-					<div class="text-box white padding-4">
-						<iframe class="chartjs-hidden-iframe"
-							style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
 
-						<h4 class="uppercase">관리비</h4>
-						<br>
-						<div id="pieChart">
-							<canvas id="myPieChart" width="300" height="300"
-								style="display: block; width: 300px; height: 300px;"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-12 margin-bottom">
 					<div class="tab-navbar-main-style-7 tabstyle-7">
 						<ul class="responsive-tabs">
 							<li class="active"><a href="#example-7-tab-1" target="_self">
-									<div class="tab-navicon"></div> Home Pages
+									<div class="tab-navicon"></div> 월 사용액
 							</a></li>
 							<li><a href="#example-7-tab-2" target="_self">
-									<div class="tab-navicon"></div> Psd Files
+									<div class="tab-navicon"></div> 6개월 비교
 							</a></li>
 							<li><a href="#example-7-tab-3" class="no-border"
 								target="_self">
-									<div class="tab-navicon"></div> Branding
+									<div class="tab-navicon"></div> 동일 평형 평균
 							</a></li>
 						</ul>
 					</div>
@@ -197,21 +182,20 @@
 											<strong> </strong>
 										</p>
 										<div class="tab-navicon"></div>
-										<strong> Home Pages</strong>
+										<strong> 월 사용액 </strong>
 										<p></p>
 									</div>
 									<br>
-									<h5 class="uppercase">What we Do</h5>
-									<h6 class="raleway">Lorem ipsum dolor sit amet
-										consectetuer adipiscing elit Suspendisse et justo.</h6>
-									<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-										Suspendisse et justo Praesent mattisLorem ipsum dolor sit amet
-										consectetuer sit amet justo et.</p>
-									<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-										Suspendisse et justo Praesent mattisLorem ipsum dolor sit amet
-										consectetuer</p>
+									<iframe class="chartjs-hidden-iframe"
+										style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
 
-									<!--end item-->
+									<h4 class="text-center">관리비</h4>
+									<br>
+									<div id="pieChart">
+										<canvas id="myPieChart" width="300" height="300"
+											style="display: block; width: 300px; height: 300px;"></canvas>
+									</div>
+
 
 								</div>
 								<!--end panel 1-->
@@ -224,19 +208,19 @@
 											<strong> </strong>
 										</p>
 										<div class="tab-navicon"></div>
-										<strong> Psd Files </strong>
+										<strong> 6개월 </strong>
 										<p></p>
 									</div>
 									<br>
 									<iframe class="chartjs-hidden-iframe"
 										style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
 
-									<h4 class="text-center">Line Chart</h4>
+									<h4 class="text-center">6개월 비교</h4>
 									<br>
-
-									<canvas id="myLineChart" width="400" height="400"
-										style="display: block; width: 400px; height: 400px;"></canvas>
-
+									<div id="lineChart">
+										<canvas id="myLineChart" width="400" height="400"
+											style="display: block; width: 400px; height: 400px;"></canvas>
+									</div>
 									<!--end item-->
 
 								</div>
@@ -255,16 +239,11 @@
 										<p></p>
 									</div>
 									<br>
-									<h5 class="uppercase">Branding</h5>
-									<h6 class="raleway">Lorem ipsum dolor sit amet
-										consectetuer adipiscing elit Suspendisse et justo.</h6>
-									<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-										Suspendisse et justo Praesent mattisLorem ipsum dolor sit amet
-										consectetuer sit amet justo et.</p>
-									<p>Lorem ipsum dolor sit amet consectetuer adipiscing elit
-										Suspendisse et justo Praesent mattisLorem ipsum dolor sit amet
-										consectetuer</p>
-
+									<h5 class="text-center"> 동일 평형 평균</h5>
+									<div id="barChart">
+										<canvas id="myChart" width="555" height="555"
+											style="display: block; width: 555px; height: 555px;"></canvas>
+									</div>
 									<!--end item-->
 
 								</div>
@@ -277,19 +256,6 @@
 
 				</div>
 
-
-				<div class="col-md-6 text-center margin-bottom">
-					<div class="text-box white padding-4">
-						<iframe class="chartjs-hidden-iframe"
-							style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; inset: 0px;"></iframe>
-
-						<h4 class="uppercase">Line Chart</h4>
-						<br>
-
-						<canvas id="myLineChart" width="400" height="400"
-							style="display: block; width: 400px; height: 400px;"></canvas>
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -318,76 +284,11 @@
 </body>
 <script>
 
-	var ctx = document.getElementById("myLineChart");
-	var myLineChart = Chart.Line(ctx, {
-		type : 'line',
-		data : {
-			labels : [ "January", "February", "March", "April", "May", "June",
-					"July" ],
-			datasets : [ {
-				label : "My First dataset",
-				fill : false,
-				lineTension : 0.1,
-				backgroundColor : "rgba(75,192,192,0.4)",
-				borderColor : "rgba(75,192,192,1)",
-				borderCapStyle : 'butt',
-				borderDash : [],
-				borderDashOffset : 0.0,
-				borderJoinStyle : 'miter',
-				pointBorderColor : "rgba(75,192,192,1)",
-				pointBackgroundColor : "#fff",
-				pointBorderWidth : 1,
-				pointHoverRadius : 5,
-				pointHoverBackgroundColor : "rgba(75,192,192,1)",
-				pointHoverBorderColor : "rgba(220,220,220,1)",
-				pointHoverBorderWidth : 2,
-				pointRadius : 1,
-				pointHitRadius : 10,
-				data : [ 65, 59, 80, 81, 56, 55, 40 ],
-			} ]
-		},
-
-	});
-</script>
-
-<script>
-	var ctx = document.getElementById("myChart");
-	var myChart = new Chart(ctx, {
-		type : 'bar',
-		data : {
-			labels : [ "January", "February", "March", "April", "May", "June", "July" ],
-			datasets : [ {
-				label : "My First dataset",
-				backgroundColor : "rgba(255,99,132,0.2)",
-				borderColor : "rgba(255,99,132,1)",
-				borderWidth : 1,
-				hoverBackgroundColor : "rgba(255,99,132,0.4)",
-				hoverBorderColor : "rgba(255,99,132,1)",
-				data : [ 65, 59, 80, 81, 56, 55, 40 ],
-			} ]
-		},
-		options : {
-			scales : {
-				yAxes : [ {
-					ticks : {
-						beginAtZero : true
-					}
-				} ]
-			}
-		}
-	});
-</script>
-
-<script>
-
-</script>
-<script>
-
 	let csrfHeaderName = "${_csrf.headerName}";
 	let csrfTokenValue = "${_csrf.token}";
 	
-	//이번달 관리비 합계
-	const currentMfTotal = ${currentFee.mfTotal};
+	//이번달 관리비 합계 => 밑에서 ajax 할때마다 바뀜
+	let currentMfTotal = ${currentFee.mfTotal};
 	//저번달 관리비 합계
 	const lastMfTotal = ${currentFee.lastMonthTotal};
 	//관리비 전체 평균
@@ -401,6 +302,10 @@
 	avgDiff(mfAvg, currentMfTotal);
 	//원형 차트 표시
 	pieChart(${currentFeeJson});
+	//선형 차트 표시
+	myLineChart(${sixMonth});
+	
+	myBarChart(mfAvg, currentMfTotal);
 	
 	$('#price').val(currentMfTotal);
 
@@ -427,8 +332,6 @@
 	}
 	
 	$('#month').text(month + "월 관리비");
-	
-	console.log(${currentFee.mfElevator});
 
 	//console.log(${currentFee.payNo});
 	
@@ -460,6 +363,9 @@
 				compareLastMonth(data.lastMonthTotal, data.mfTotal);
 				pieChart(data);
 				
+				//현재 관리비에 바뀐 관리비 합계 셋팅
+				currentMfTotal = data.mfTotal;
+				
 				$('#price').val(data.mfTotal);
 				
 				if (data.payNo == null) {
@@ -476,6 +382,39 @@
 			}
 			
 			})
+		
+		$.ajax({
+			url: 'dateChange2',
+			type: 'POST',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			data: {
+				mfDate: date
+			},
+			success: function(data) {
+				console.log(data);
+				myLineChart(data);
+			}
+			
+		})
+			
+		$.ajax({
+			url: 'samePyeongAvg',
+			type: 'POST',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			data: {
+				mfDate: date
+			},
+			success: function(data) {
+				console.log(data);
+				console.log
+				date % 1 == 1 ? myBarChart(data.oddAvg, currentMfTotal) : myBarChart(data.evenAvg, currentMfTotal)
+			}
+			
+		})	
 		
 		
 	})
@@ -597,6 +536,83 @@
 
 		});
 	}
+	
+	//선형 차트
+	function myLineChart(data) {
+		const idLineChart = document.getElementById("lineChart");
+		const canvasTag = '<canvas id="myLineChart" width="300" height="300"'
+						+ 'style="display: block; width: 300px; height: 300px;"></canvas>';
+		idLineChart.innerHTML = canvasTag;
+
+		var ctx = document.getElementById("myLineChart");
+		var myLineChart = Chart.Line(ctx, {
+			type : 'line',
+			data : {
+				labels : [ data[0].month + "월", data[1].month + "월", data[2].month + "월", data[3].month + "월", data[4].month + "월", data[5].month + "월"],
+				datasets : [ {
+					label : "My First dataset",
+					fill : false,
+					lineTension : 0.1,
+					backgroundColor : "rgba(75,192,192,0.4)",
+					borderColor : "rgba(75,192,192,1)",
+					borderCapStyle : 'butt',
+					borderDash : [],
+					borderDashOffset : 0.0,
+					borderJoinStyle : 'miter',
+					pointBorderColor : "rgba(75,192,192,1)",
+					pointBackgroundColor : "#fff",
+					pointBorderWidth : 1,
+					pointHoverRadius : 5,
+					pointHoverBackgroundColor : "rgba(75,192,192,1)",
+					pointHoverBorderColor : "rgba(220,220,220,1)",
+					pointHoverBorderWidth : 2,
+					pointRadius : 1,
+					pointHitRadius : 10,
+					data : [ data[0].mfTotal, data[1].mfTotal, data[2].mfTotal, data[3].mfTotal, data[4].mfTotal, data[5].mfTotal ],
+				} ]
+			},
+
+		});
+	}
+	
+	//막대 차트
+	function myBarChart(samePyeongAvg, ThisMonthTotal) {
+		const idBarChart = document.getElementById("barChart");
+		const canvasTag = '<canvas id="myChart" width="300" height="300"'
+						+ 'style="display: block; width: 300px; height: 300px;"></canvas>';
+		idBarChart.innerHTML = canvasTag;
+
+		var ctx = document.getElementById("myChart");
+		var myChart = new Chart(ctx, {
+			type : 'bar',
+			data : {
+				labels : [ "동일 평형 평균", "이번 달" ],
+				datasets : [ {
+					label : "My First dataset",
+					backgroundColor : "rgba(255,99,132,0.2)",
+					borderColor : "rgba(255,99,132,1)",
+					borderWidth : 1,
+					hoverBackgroundColor : "rgba(255,99,132,0.4)",
+					hoverBorderColor : "rgba(255,99,132,1)",
+					data : [ samePyeongAvg, ThisMonthTotal ],
+				} ]
+			},
+			options : {
+				scales : {
+					yAxes : [ {
+						ticks : {
+							beginAtZero : true
+						}
+					} ]
+				}
+			}
+		});
+	}
+	
+	function yearMonthFnc(num) {
+		return data[num].year + "월 " 
+	}
+		
 	
 </script>
 </html>
