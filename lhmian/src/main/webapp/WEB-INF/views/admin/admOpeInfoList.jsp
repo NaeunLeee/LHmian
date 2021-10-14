@@ -111,7 +111,7 @@
 						<a class="nav-link disabled" href="#">분실물 보관소</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link disabled" href="#">일정 관리</a>
+						<a class="nav-link disabled" href="${pageContext.request.contextPath}/admin/admSked">일정 관리</a>
 					</li>
 				</ul>
 					<div class="text-box white padding-4 col-10">

@@ -112,10 +112,14 @@ textarea:focus {
 
 
 					<div class="padding-4 col-sm-12 " align="right">
+					
+						<c:if test="${login eq list.id}">	<!-- 10/14 시큐리티 적용 -->
 						<button type="button" class="btn btn-border light"
 							style="padding: 4px 13px;" id="btnModify">수정</button>
 						<button type="button" class="btn btn-border light"
 							style="padding: 4px 13px;" id="btnDelete">삭제</button>
+						</c:if>	
+							
 						<button type="button" class="btn btn-border light"
 							style="padding: 4px 13px;" onclick="location.href='./commlist'">목록</button>
 					</div>
