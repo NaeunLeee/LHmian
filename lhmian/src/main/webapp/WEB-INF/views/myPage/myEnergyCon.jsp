@@ -17,6 +17,7 @@ display : block;
 
 .btn-yj {
 display : inline-block;
+
 }
 
 .btn-month {
@@ -42,6 +43,7 @@ padding-left : 65px;
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">에너지 사용 내역</h4>
 						<div class="clearfix"></div>
+						<p class="by-sub-title" style="font-size: 13px;">월별, 기간별로 세대의 에너지 사용 내역을 확인 할 수 있습니다. </p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -53,7 +55,7 @@ padding-left : 65px;
 		<div class="btn1 col-md-12"></div>
 		<div class="btn2 col-md-12">
 			<button class="btn-yj " value="6" onclick="periodBtn(this)">6개월</button>
-			<button class="btn-yj" value="12" onclick="periodBtn(this)">1년</button>
+			<button class="btn-yj" value="12" onclick="periodBtn(this)" style="margin-left:5px">1년</button>
 		</div>
 		<div class="col-md-7 text-center margin-bottom">
 		</div>
