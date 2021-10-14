@@ -161,6 +161,7 @@
 						<div style="margin-left: 20px;">
 							<div class="title-line-3 align-left"></div>
 							<h4 class="uppercase font-weight-7 less-mar-1">차량 조회 및 등록</h4>
+							* 차량 등록은 세대 당 최대 2대까지 가능합니다.
 						</div>
 					</div>
 					<!-- Modal body -->
@@ -246,7 +247,7 @@
 		});
 	});
 	
-	//선택삭제
+	//선택삭제 (10/14 crsf 토큰키 추가 및 일부 수정: 이나은)
 	function deleteCar() {
 		var cnt = $("input[name='chk']:checked").length;
 		var arr = new Array();
@@ -258,25 +259,28 @@
 		
 		if (cnt == 0) {
 			alert("선택된 차량이 없습니다.");
-		}
-		
-		else {
-			$.ajax({
-				type : "POST",
-				url : "deleteCar",
-				data : $("#frm").serialize(),
-				traditional : true,			//배열 전송 시 traditional 씀
-				dataType : "json",
-				success : function(result) {
-					if (result == true) {
-						alert("삭제 완료되었습니다.");
-						location.reload();
+		} else {
+			if (confirm(cnt + '대의 차량을 삭제하시겠습니까?')) {
+				$.ajax ({
+					type : "POST",
+					url : "deleteCar",
+					data : $("#frm").serialize(),
+					traditional : true,			//배열 전송 시 traditional 씀
+					dataType : "json",
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
+					success : function(result) {
+						if (result == true) {
+							alert("삭제 완료되었습니다.");
+							location.reload();
+						}
+					},
+					error : function() {
+						alert("삭제 실패하였습니다.");
 					}
-				},
-				error : function() {
-					alert("삭제 실패하였습니다.");
-				}
-			});
+				});
+			}
 		}
 	}
 	
@@ -351,7 +355,7 @@
 						
 					} else {
 						for (i=0; i<data.length; i++) {
-							str += '<tr>';
+							str += '<tr data-carNo="' + data[i].carNo + '">';
 							str += '<td><input type="text" class="delType form-control" name="carType" value="' + data[i].carType + '" readonly></td>';
 							str += '<td><input type="text" class="delCode form-control" name="carCode" value="' + data[i].carCode + '" readonly></td>';
 							str += '<td><button type="button" class="deleteCar btn btn-default">삭제</button></td>';
@@ -375,7 +379,22 @@
 		}
 	});
 	
-/* 	$('.insertCar').on("click", function() {
+	// 차량 한대 삭제
+	$(document).on('click', '[class=deleteCar]', function(event) {
+		console.log($(this).attr('data-carNo'));
+	});
+ 	/* $('.deleteCar').on("click", function() {
+		console.log('클릭됨');
+		console.log($(this).attr('data-carNo'));
+	}); */ 
+	
+	// 차량번호 등록시 공백 자동제거
+	function replaceSpace(str) {
+		str.replace(/ /g, "");
+	}
+	
+	// 차량 등록
+/*  	$('.insertCar').on("click", function() {
 		$.ajax({
 			url: 'admin/insertCar',
 			type: 'POST',
@@ -387,6 +406,6 @@
 				
 			}
 		});
-	}); */
+	});  */
 	
 </script>

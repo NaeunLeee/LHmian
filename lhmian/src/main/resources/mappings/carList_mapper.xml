@@ -81,7 +81,7 @@
 			#{carNo}
 		  , #{carCode}
 		  , #{carType}
-		  , #{carDate}
+		  , SYSDATE
 		  , #{houseInfo}
 		)
 	</insert>
