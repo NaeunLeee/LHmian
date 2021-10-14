@@ -67,8 +67,7 @@
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/myPage/myPage">마이
-									페이지</a></li>
+								href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
 							<li class="current"><a href="#">투표</a></li>
 						</ol>
 					</div>

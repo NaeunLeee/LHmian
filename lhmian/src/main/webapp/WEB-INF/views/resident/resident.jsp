@@ -34,6 +34,19 @@
 	<section class="sec-padding">
 		<div class="container">
 			<div class="row">
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">입주민 공간</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title">입주민 공간.. 에 대한... 설명....</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='${pageContext.request.contextPath}/resident/confList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
@@ -51,7 +64,7 @@
 				<!--end item-->
 
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="location.href='${pageContext.request.contextPath}/voteList'" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='${pageContext.request.contextPath}/resident/voteList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span class="icon-layers"></span>
 						</div>

@@ -186,7 +186,7 @@
 													</ul>
 												</li>
 												<li class="right">
-													<a href="#" id="main-menu-padding">편의 시설</a>
+													<a href="${pageContext.request.contextPath}/facility/facilityList" id="main-menu-padding">편의 시설</a>
 													<ul class="dm-align-2">
 														<li>
 															<a href="${pageContext.request.contextPath}/facility/library">독서실</a>
@@ -228,15 +228,12 @@
 															<a href="${pageContext.request.contextPath}/myPage/myEnergyCon">에너지 사용량</a>
 														</li>
 														<li>
-															<a href="#">주민 투표</a>
-														</li>
-														<li>
 															<!-- 10/02 스케쥴 조회 링크 추가 시작-->
 															<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
 															<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
 														</li>
 														<li>
-															<a href="myFac">시설이용내역</a>
+															<a href="${pageContext.request.contextPath}/myFac">시설이용내역</a>
 														</li>
 													</ul>
 												</li>
@@ -272,10 +269,10 @@
 											
 										<sec:authorize access="isAnonymous()">
 											<li>
-												<a href="${pageContext.request.contextPath}/login" id="main-menu-padding">로그인</a>
+												<a href="${pageContext.request.contextPath}/signIn/leaderStep1" id="main-menu-padding">회원가입</a>
 											</li>
 											<li>
-												<a href="${pageContext.request.contextPath}/leaderStep1" id="main-menu-padding">회원가입</a>
+												<a href="${pageContext.request.contextPath}/login" id="main-menu-padding">로그인</a>
 											</li>
 										</sec:authorize> 
 										<sec:authorize access="isAuthenticated()">
