@@ -255,9 +255,6 @@
 																<a href="${pageContext.request.contextPath}/admin/admMemberList">회원 관리</a>
 															</li>
 															<li>
-																<a href="${pageContext.request.contextPath}/admin/admVoteList">투표 관리</a>
-															</li>
-															<li>
 																<a href="${pageContext.request.contextPath}/admCarList">차량 관리</a>
 															</li>
 															<li>

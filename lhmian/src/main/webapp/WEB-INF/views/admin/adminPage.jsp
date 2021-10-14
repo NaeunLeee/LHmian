@@ -68,19 +68,6 @@
           <div class="col-divider-margin-3"></div>
           
           <div class="col-md-4 col-sm-12 col-xs-12">
-            <div class="ce4-feature-box-12 margin-bottom" onclick="location.href='admVoteList'">
-              <div class="icon-plain-msmall left icon"><span class="icon-hotairballoon"></span></div>
-              <div class="text-box-right less-padding-2">
-                <h5 class="uppercase title font-weight-5 nopadding title">투표 관리</h5>
-                <div class="title-line"></div>
-              </div>
-              <br/>
-              <p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum dolor consectetuer adipiscing elit Suspendisse.</p>
-            </div>
-          </div>
-          <!--end item-->
-          
-          <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="ce4-feature-box-12 margin-bottom" onclick="location.href='admOpeInfoList'">
               <div class="icon-plain-msmall left icon"><span class="icon-bike"></span></div>
               <div class="text-box-right less-padding-2">

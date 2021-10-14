@@ -109,7 +109,7 @@
 								</c:if>
 
 								<img
-									src="${pageContext.request.contextPath}/resources/images/black_pooh.png"
+									src="${pageContext.request.contextPath}/resources/images/${list.uploadImg}"
 									alt="" class="img-responsive">
 							</div>
 							<div id="vote-content" class="text-box white padding-4 text-left">

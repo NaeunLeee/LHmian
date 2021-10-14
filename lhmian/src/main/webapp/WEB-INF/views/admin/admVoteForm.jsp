@@ -8,6 +8,9 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="${pageContext.request.contextPath}/resources/js/file-upload/fileinput.css" rel="stylesheet" type="text/css" />
 <style>
 .input-1 {
 	height: 40px;
@@ -21,10 +24,6 @@
 	margin-right: 5px;
 }
 
-.col-md-11 {
-	margin-bottom: 15px;
-}
-
 #question-area {
 	margin-bottom: 20px;
 }
@@ -32,91 +31,182 @@
 .btn-dark-3 {
 	height: 30px;
 }
+
+.container {
+	width: 85%;
+}
+
+.tr_1 {
+	cursor: pointer;
+	text-align: center;
+}
+
+th {
+	text-align: center;
+	background-color: #EEEEEE;
+}
+
+.tr_1:hover {
+	background-color: #f5f5f5;
+}
+
+table {
+	background-color: white;
+}
+
+.pagination>li>a {
+	color: black;
+}
+
+.form-control {
+	display: inline-block;
+}
+
+.nav-tabs.nav-justified>li>a {
+	margin: 0px 1px 0px;
+	background-color: #f5f5f5;
+}
+
+.nav-tabs.nav-justified>li>a:hover {
+	background-color: #C8C6C6;
+}
+
+.nav-tabs.nav-justified>li>.active {
+	background-color: #C8C6C6;
+}
+
+.bogi {
+	margin-bottom: 15px;
+}
 </style>
 </head>
 <body>
-	<section class="sec-padding ">
-		<div class="col-xs-12 nopadding">
-			<div class="sec-title-container-padding-topbottom text-center">
-				<div class="pl-title-line-1"></div>
-				<h4 class="uppercase font-weight-7 less-mar-1">투표 등록</h4>
-				<div class="clearfix"></div>
-				<p class="by-sub-title">투표를 등록하세요.</p>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<!--end title-->
+	<section class="sec-padding">
 		<div class="container">
 			<div class="row">
-				<div class="text-box section-light padding-4 col-7">
-					<div class="col-md-12" style="float: none; margin: 0 auto;">
-						<form id="frm" action="voteCreate" method="POST" autocomplete="off">
-							<!-- csrf -->
-							<input type="hidden" name="${_csrf.parameterName }"
-								value="${_csrf.token }">
-							<div class="form-body">
-								<h5>제목</h5>
-								<input type="text" name="voteTitle" id="voteTitle"
-									class="input-1">
-								<div class="col-md-6" style="padding-left: 0;">
-									<h5>
-										<i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label
-											for="voteStart">시작</label>
-									</h5>
-									<input type="text" id="voteStart" name="voteStart"
-										class="input-1" placeholder="날짜 선택..."><br>
-								</div>
-								<div class="col-md-6" style="padding-right: 0;">
-									<h5>
-										<i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label
-											for="voteEnd">종료</label>
-									</h5>
-									<input type="text" id="voteEnd" name="voteEnd" class="input-1"
-										placeholder="날짜 선택..."><br>
-								</div>
-								<div class="col-md-12"
-									style="padding-left: 0; padding-right: 0;">
-									<div id="question-area" class="text-box white padding-3">
-										<div class="row question-label">
-											<div class="col-md-1" style="padding-right: 0;">
-												<h5>
-													<i class="bi bi-arrow-return-right"></i> 보기 1
-												</h5>
-											</div>
-											<div class="col-md-11">
-												<input id="vcContent" name="vcContent" class="input-1" required>
-											</div>
-										</div>
-										<div class="row question-label">
-											<div class="col-md-1" style="padding-right: 0;">
-												<h5>
-													<i class="bi bi-arrow-return-right"></i> 보기 2
-												</h5>
-											</div>
-											<div class="col-md-11" style="margin-bottom: 15px;">
-												<input id="vcContent" name="vcContent" class="input-1" required>
-												<button type="button" id="plusBtn"
-													class="btn btn-tiny border border-dark">
-													<i class="bi bi-plus-lg"></i> 추가
-												</button>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-12 text-center">
-										<button type="button" id="insert" class="btn btn-gyellow-yj">등록</button>
-										<button type="button" class="btn btn-gyellow-yj" onclick="goBack();">취소</button>
-									</div>
-								</div>
-							</div>
-						</form>
+				<div class="col-md-2 col-sm-6 col-xs-12 section-white">
+					<div class="pages-sidebar-item">
+						<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
+						<ul class="pages-sidebar-links">
+							<li><a href="#">관리비</a></li>
+							<li><a href="#">에너지 사용량</a></li>
+							<li><a href="#">회원 관리</a></li>
+							<li><a class="active" href="#">게시글 관리</a></li>
+						</ul>
 					</div>
 				</div>
+				<div class="col-md-10 col-sm-6 col-xs-12">
+					<div></div>
+					<br> <br>
+					<div class="sec-title-container less-padding-3 text-left">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">게시글 관리</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title">게시글을 조회 및 수정합니다.</p>
+					</div>
 
+					<ul class="nav nav-tabs nav-justified">
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/admOpeInfoList">운영
+								정보 공개</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">공지사항</a>
+						</li>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
+						</li>
+						<li class="nav-item"><a class="nav-link active"
+							href="${pageContext.request.contextPath}/admin/admVoteList">투표</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">분실물 보관소</a>
+						</li>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/admSchedule">일정
+								관리</a></li>
+					</ul>
+					<div class="text-box section-light padding-4 col-7">
+						<div class="col-md-12" style="float: none; margin: 0 auto;">
+							<form id="frm" action="voteCreate" method="POST"
+								enctype="multipart/form-data" autocomplete="off">
+								<!-- csrf -->
+								<input type="hidden" name="${_csrf.parameterName }"
+									value="${_csrf.token }">
+								<div class="form-body">
+									<h5>제목</h5>
+									<input type="text" name="voteTitle" id="voteTitle"
+										class="input-1">
+									<div class="col-md-6" style="padding-left: 0;">
+										<h5>
+											<i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label
+												for="voteStart">시작</label>
+										</h5>
+										<input type="text" id="voteStart" name="voteStart"
+											class="input-1" placeholder="날짜 선택..."><br>
+									</div>
+									<div class="col-md-6" style="padding-right: 0;">
+										<h5>
+											<i class="bi bi-calendar-check"></i>&nbsp;&nbsp;<label
+												for="voteEnd">종료</label>
+										</h5>
+										<input type="text" id="voteEnd" name="voteEnd" class="input-1"
+											placeholder="날짜 선택..."><br>
+									</div>
+									<div class="col-md-12"
+										style="padding-left: 0; padding-right: 0;">
+										<div id="question-area" class="text-box white padding-3">
+											<div class="row question-label">
+												<div class="col-md-2" style="padding-right: 0;">
+													<h5>
+														<i class="bi bi-arrow-return-right"></i> 보기 1
+													</h5>
+												</div>
+												<div class="bogi col-md-10">
+													<input id="vcContent" name="vcContent" class="input-1"
+														required>
+												</div>
+											</div>
+											<div class="row question-label">
+												<div class="col-md-2" style="padding-right: 0;">
+													<h5>
+														<i class="bi bi-arrow-return-right"></i> 보기 2
+													</h5>
+												</div>
+												<div class="bogi col-md-10" style="margin-bottom: 15px;">
+													<input id="vcContent" name="vcContent" class="input-1"
+														required>
+													<button type="button" id="plusBtn"
+														class="btn btn-tiny border border-dark">
+														<i class="bi bi-plus-lg"></i> 추가
+													</button>
+												</div>
+											</div>
+										</div>
+										<div style="margin-top: 10px;">
+											<div style="width: 20%;">
+												<input type="file" class="file" id="uploadImg"
+													name="uploadImg" accept="image/jpeg, image/png, image/jpg" style="float: left;">
+											</div>
+										</div>
+
+										<div class="col-md-12 text-center">
+											<button type="button" id="insert" class="btn btn-gyellow-yj">등록</button>
+											<button type="button" class="btn btn-gyellow-yj"
+												onclick="goBack();">취소</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 </body>
 <script>
+	
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+
 	$('#voteStart').datepicker();
 
 	$('#voteEnd').datepicker();
@@ -152,13 +242,13 @@
 
 						//보기 추가 태그
 						const plusQuestionTag = '<div class="row question-label">'
-								+ '<div class="col-md-1" style="padding-right: 0;">'
+								+ '<div class="col-md-2" style="padding-right: 0;">'
 								+ '<h5>'
 								+ '<i class="bi bi-arrow-return-right"></i> 보기 '
 								+ questionNum
 								+ '</h5>'
 								+ '</div>'
-								+ '<div class="col-md-11">'
+								+ '<div class="bogi col-md-10">'
 								+ '<input id="vcContent" name="vcContent" class="input-1" required>'
 								+ '<button type="button" id="plusBtn"'
 						  + 'class="btn btn-tiny border border-dark">'
@@ -202,38 +292,34 @@
 						}
 					})
 
-		console.log($('.question-label').eq(0).val());
-					
- 			$('#insert').on('click', function() {
-				if ($('#voteTitle').val() == "") {
-					alert('제목을 입력하세요.');
-					return;
-				}
-				
-				if ($('#voteStart').val() == "") {
-					alert('투표 시작 날짜를 입력하세요.');
-					return;
-				}
-				
-				if ($('#voteEnd').val() == "") {
-					alert('투표 종료 날짜를 입력하세요.');
-					return;
-				}
-				
-				for (let i=0; i < $('.question-label').length; i++) {
-					if ($('.question-label').eq(i).find("input").val() == "") {
-						alert('문항을 입력하세요.');
-						return;
-					}
-				}
-				
-				//datepicker에서 시작날짜 sysdate 이전 선택 못하게 하기
-				//종료날짜는 시작날짜 이후가 되도록 하기, 몇일 이상 기간 못잡게 하기
-				
-				$('#frm').submit();
-			}) 
-			
-			
 
+	$('#insert').on('click', function() {
+		if ($('#voteTitle').val() == "") {
+			alert('제목을 입력하세요.');
+			return;
+		}
+
+		if ($('#voteStart').val() == "") {
+			alert('투표 시작 날짜를 입력하세요.');
+			return;
+		}
+
+		if ($('#voteEnd').val() == "") {
+			alert('투표 종료 날짜를 입력하세요.');
+			return;
+		}
+
+		for (let i = 0; i < $('.question-label').length; i++) {
+			if ($('.question-label').eq(i).find("input").val() == "") {
+				alert('문항을 입력하세요.');
+				return;
+			}
+		}
+
+		//datepicker에서 시작날짜 sysdate 이전 선택 못하게 하기
+		//종료날짜는 시작날짜 이후가 되도록 하기, 몇일 이상 기간 못잡게 하기
+
+		$('#frm').submit();
+	})
 </script>
 </html>

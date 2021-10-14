@@ -141,8 +141,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
-	$(document).on('ready', function(){$("#file-0b").fileinput();});
 	let csrfHeaderName = "${_csrf.headerName}";
 	let csrfTokenValue = "${_csrf.token}";
 

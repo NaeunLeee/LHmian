@@ -7,6 +7,7 @@
 	       VOTE_TITLE, 
 	       VOTE_START,
 	       VOTE_END,
+	       UPLOAD_IMG,
 	       ROUND(VOTE_COUNT / (SELECT COUNT(*) FROM MEMBER WHERE AUTHOR = 'OWNER') * 100, 1) PERCENT,
 	       CASE WHEN SYSDATE BETWEEN VOTE_START AND VOTE_END THEN '진행중'
                 WHEN SYSDATE <![CDATA[<]]> VOTE_START THEN '진행예정'
@@ -74,6 +75,7 @@
 			    VOTE_START, 
 			    VOTE_END, 
 			    VOTE_DAY
+			    UPLOAD_IMG
 			    )
 		VALUES
 			(
@@ -81,7 +83,8 @@
 			#{voteTitle}, 
 			#{voteStart}, 
 			#{voteEnd}, 
-			#{voteEnd} + 3
+			#{voteEnd} + 3,
+			#{uploadImg}
 			)
 	</insert>
 	

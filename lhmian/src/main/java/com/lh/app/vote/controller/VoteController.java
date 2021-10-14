@@ -1,7 +1,14 @@
 package com.lh.app.vote.controller;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lh.app.signIn.etc.CustomUserDetails;
 import com.lh.app.vote.domain.HouseVoteInfoVO;
@@ -94,8 +102,39 @@ public class VoteController {
 	}
 	
 	@PostMapping("/admin/voteCreate")
-	public String voteCreate(VoteVO vo, VoteContentsVO vcvo) {
+	public String voteCreate(VoteVO vo, VoteContentsVO vcvo, @RequestParam("uploadImg") MultipartFile file) throws IllegalStateException, IOException {
+		MultipartFile ufile = file;
+		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\images";
+		// 서버저장
+		if (!ufile.isEmpty() && ufile.getSize() > 0) {
+			String fileName = ufile.getOriginalFilename();
+			File uploadImg = new File(filePath, fileName); // 경로 + 파일명
+			ufile.transferTo(uploadImg);
 
+//			// 리사이징
+//			Image image = null;
+//			// 바꿀 사이즈
+//			int width = 300;
+//			int height = 250;
+
+//			// 서버에 저장된 원본이미지 가져오기
+//			image = ImageIO.read(uploadImg);
+//			// 사이즈 지정하여 리사이징
+//			Image resizeImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+//			// 이미지 불러오기
+//			BufferedImage newImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+//			Graphics g = newImg.getGraphics();
+//			g.drawImage(resizeImage, 0, 0, null);
+//			g.dispose();
+//
+//			ImageIO.write(newImg, "jpg", uploadImg);
+
+			// 형성된 파일을 vo에 담아줌
+			vo.setUploadImg(fileName);
+		} else {
+			vo.setUploadImg("vote_basic.jpg");
+		}
+		
 		int result = 0;
 		
 		String str = vcvo.getVcContent();
