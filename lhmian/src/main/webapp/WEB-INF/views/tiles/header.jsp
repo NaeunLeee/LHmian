@@ -181,6 +181,9 @@
 															<a href="${pageContext.request.contextPath}/resident/voteList">투표</a>
 														</li>
 														<li>
+															<a href="${pageContext.request.contextPath}/visit/generation">방명록</a>
+														</li>
+														<li>
 															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
 														</li>
 													</ul>

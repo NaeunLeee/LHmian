@@ -82,7 +82,7 @@
 				<!--end item-->
 
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="location.href='${pageContext.request.contextPath}/schedule'" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='${pageContext.request.contextPath}/office/schedule'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span class="icon-camera"></span>
 						</div>

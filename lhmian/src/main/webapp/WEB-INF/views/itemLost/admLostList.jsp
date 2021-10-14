@@ -1,23 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/js/cubeportfolio/cubeportfolio.min.css">
+
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/cubeportfolio/cubeportfolio.min.css">
 <!-- Style Customizer's stylesheets -->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/js/style-customizer/css/spectrum.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/js/style-customizer/css/style-customizer.css">
-<link rel="stylesheet/less" type="text/css"
-	href="${pageContext.request.contextPath}/less/skin.less">
-<script
-	src="${pageContext.request.contextPath}/resources/js/style-customizer/js/spectrum.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/cubeportfolio/jquery.cubeportfolio.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/cubeportfolio/masonry.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/style-customizer/css/spectrum.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/style-customizer/css/style-customizer.css">
+<link rel="stylesheet/less" type="text/css" href="${pageContext.request.contextPath}/less/skin.less">
+<script src="${pageContext.request.contextPath}/resources/js/style-customizer/js/spectrum.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cubeportfolio/jquery.cubeportfolio.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/cubeportfolio/masonry.js"></script>
 
 <style>
+
 .cbp-caption-defaultWrap, .cbp-caption-activeWrap {
 	-webkit-transition: -webkit-transform 0.6s
 		cubic-bezier(0.19, 1, 0.22, 1);
@@ -93,10 +87,6 @@ resize: none;
 	white-space: pre-wrap;
 }
 
-h4 {
-margin : 0 0 0;
-}
-
 .modal-header {
 	border-bottom: 0;
 	padding-bottom:
@@ -113,6 +103,7 @@ margin : 0 0 0;
 
 
 </style>
+
 
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
@@ -201,7 +192,9 @@ margin : 0 0 0;
 								<div class="cbp-l-caption-body">
 									<div class="cbp-l-caption-title void">${item.lostContent}</div>
 									<div class="cbp-l-caption-desc">작성일자 : ${item.lostDate} / 수정일자 : ${item.lostUpdate}</div>
+
 								</div>
+								<button type="button" class="btn-yj btn-gyellow" onclick="lostModify(${item.lostNo})">수정</button>
 							</div>
 						</div>
 					</div>
@@ -242,12 +235,18 @@ margin : 0 0 0;
 								<button type="button" class="btn btn-gyellow" data-dismiss="modal" id="modalClose">닫기</button>
 							</div>
 						</div>
+						<div class="modal-body"></div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-gyellow" data-dismiss="modal" id="modalClose">닫기</button>
+							<button type="button" class="btn btn-gyellow" id="lostModal">저장</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	
+
 <script>
  //수정모달
 function lostModify(n) {
