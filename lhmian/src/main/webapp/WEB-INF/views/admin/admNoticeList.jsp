@@ -107,7 +107,7 @@
 						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">투표</a>
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admVoteList">투표</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">분실물 보관소</a>
