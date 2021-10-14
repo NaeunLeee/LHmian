@@ -55,7 +55,7 @@ width : 560px;
 	<div class=" clearfix"></div>
 </div>
 <section>
-	<div class="pagenation-holder-no-bottom">
+	<div class="pagenation-holder">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">

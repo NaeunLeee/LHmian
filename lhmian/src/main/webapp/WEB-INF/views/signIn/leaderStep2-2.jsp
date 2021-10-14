@@ -210,7 +210,7 @@
 		</div>
 	</section>
 
-	<section class="sec-padding">
+	<section class="sec-padding section-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
