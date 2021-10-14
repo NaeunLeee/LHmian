@@ -67,5 +67,11 @@ public class CarListController {
 		return service.insert(vo);
 	}
 	
+	// 차량 한대 삭제
+	@PostMapping("admin/deleteOneCar")
+	@ResponseBody
+	public int deleteOneCar(@RequestBody CarListVO vo) {
+		return service.delete(vo);
+	}
 	
 }
