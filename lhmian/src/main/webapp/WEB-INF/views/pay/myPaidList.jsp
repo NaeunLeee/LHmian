@@ -96,15 +96,17 @@ width : 560px;
 					<th>결제분류</th>
 					<th>결제상태</th>
 				</tr>
-				<c:forEach items="${pay}" var="payList">
-					<tr class="tr_1" onclick="payCancel('${payList.payNo}')">
-						<td>${payList.payNo}</td>
-						<td>${payList.payDate}</td>
-						<td>${payList.payType}</td>
-						<td>${payList.payCat}</td>
-						<td>${payList.payStatus}</td>
-					</tr>
-				</c:forEach>
+				<tbody>
+					<c:forEach items="${pay}" var="payList">
+						<tr class="tr_1" onclick="payCancel('${payList.payNo}')">
+							<td>${payList.payNo}</td>
+							<td>${payList.payDate}</td>
+							<td>${payList.payType}</td>
+							<td>${payList.payCat}</td>
+							<td>${payList.payStatus}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 			<!-- 더보기, 접기 버튼 -->
 			<!-- <div class="row">
@@ -114,6 +116,7 @@ width : 560px;
 			</div> -->
 			<!-- 더보기, 접기 버튼 -->
 		</div>
+		<button id="showMore">더보기</button>
 	</div>
 </section>
 <!-- 결제취소 모달 -->
@@ -144,6 +147,95 @@ width : 560px;
 	</section>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
+function pagination(){
+    var reqRow = 10;
+    var tr = $('tbody tr');
+    var totalRow = tr.length;
+    var pageNum = totalRow % reqRow;
+    
+    var page=$(this).text();
+    var temp=page-1;
+    var start=temp*reqRow;
+    
+    $(document).ready(function() {
+    	 for(var i=0; i< reqRow; i++){
+             tr.eq(start+i).show();
+         }
+    	//for(var j=1; j<pageNum; j++) {
+    		for(var i=1; i<=totalRow; i++) {
+	  			tr.each(function(i){
+	  				$(this).hide();
+	  		  		if(i+1 <= reqRow){
+	  		    		$tr.eq(i).show();
+		  		    }
+		  		});
+    		}
+   			//$('#showMore').on('click', function(){
+ 
+  			//});	
+    	}
+    };
+
+/* jQuery('.pagination').append("<li><a class=\"prev\">Previous</a></li>");
+
+    for(var i=1; i<=num_pages; i++){
+        jQuery('.pagination').append("<li><a>"+i+"</a></li>");
+  jQuery('.pagination li:nth-child(2)').addClass("active");
+  jQuery('.pagination a').addClass("pagination-link");
+    }
+
+jQuery('.pagination').append("<li><a class=\"next\">Next</a></li>");
+
+    $tr.each(function(i){
+  jQuery(this).hide();
+  if(i+1 <= req_num_row){
+            $tr.eq(i).show();
+        }
+    });
+
+    jQuery('.pagination a').click('.pagination-link', function(e){
+        e.preventDefault();
+        $tr.hide();
+        var page=jQuery(this).text();
+        var temp=page-1;
+        var start=temp*req_num_row;
+  var current_link = temp;
+  
+  jQuery('.pagination li').removeClass("active");
+        jQuery(this).parent().addClass("active");
+
+        for(var i=0; i< req_num_row; i++){
+            $tr.eq(start+i).show();
+        }
+  
+  if(temp >= 1){
+    jQuery('.pagination li:first-child').removeClass("disabled");
+  }
+  else {
+    jQuery('.pagination li:first-child').addClass("disabled");
+  }
+        
+    });
+
+jQuery('.prev').click(function(e){
+    e.preventDefault();
+    jQuery('.pagination li:first-child').removeClass("active");
+});
+
+jQuery('.next').click(function(e){
+    e.preventDefault();
+    jQuery('.pagination li:last-child').removeClass("active");
+}); */
+
+}
+
+/* jQuery('document').ready(function(){
+pagination();
+
+jQuery('.pagination li:first-child').addClass("disabled");
+
+}); */
+
 	//수정모달
 	function payCancel(n) {
 		let csrfHeaderName = "${_csrf.headerName}";
