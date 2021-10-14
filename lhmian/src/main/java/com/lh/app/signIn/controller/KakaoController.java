@@ -107,8 +107,8 @@ public class KakaoController {
 		}
 			
 		Integer kakaoId = kakaoProfile.getId();
-		System.out.println("카카오 아이디(번호) : " + kakaoId);
-		System.out.println("카카오 이메일 : " + kakaoProfile.getKakao_account().getEmail());
+		System.out.println("kakao id : " + kakaoId);
+		System.out.println("kakao email : " + kakaoProfile.getKakao_account().getEmail());
 
 		//회원가입 이력이 있는지 조회하는 로직
 		
