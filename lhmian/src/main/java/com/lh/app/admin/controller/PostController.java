@@ -60,11 +60,6 @@ public class PostController {
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		model.addAttribute("type", cri.getType());
 		
-		System.out.println("3."+cri.getPreType());
-		System.out.println("4."+cri.getType());
-		
-		System.out.println(cri);
-		
 		return "admin/admPost";
 		}
 	}

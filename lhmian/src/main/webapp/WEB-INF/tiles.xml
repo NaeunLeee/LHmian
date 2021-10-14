@@ -12,11 +12,7 @@
       <put-attribute name="content" value="/WEB-INF/views/no/{1}.jsp" />
    	</definition>
    	
-	<definition name="admin/admSked" template="/WEB-INF/views/tiles/fullcalendar.jsp">
-      <put-attribute name="content" value="/WEB-INF/views/admin/admSked.jsp" />
-   	</definition>
-   	
-   	<!-- 10/13 schedule 삭제 -->
+   	<!-- 10/14 schedul tiles 삭제 -->
    	
 	<definition name="*/*" extends="mainTemplate"> <!-- .tiles 를 붙여서 특정 페이지만 tiles 적용 -->
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />

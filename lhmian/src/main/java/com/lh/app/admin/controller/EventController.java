@@ -65,6 +65,20 @@ public class EventController {
 		return eventService.getList();
 	}
 	
+	@GetMapping("office/getList")
+	@ResponseBody
+	public List<EventVO> getListoffice(EventVO vo) {
+
+		if (vo.getResult() == 0) {
+			vo.setAllDay(false);
+		} else {
+			vo.setAllDay(true);
+		}
+		return eventService.getList();
+	}
+	
+	
+	
 	@RequestMapping("admin/admSkedview")
 	public String getListview(Model model,Criteria cri) {
 		int total = eventService.getTotalCount(cri);
@@ -75,9 +89,6 @@ public class EventController {
 	
 	@RequestMapping("office/schedule")
 	public String schedule(Model model,Criteria cri) {
-		int total = eventService.getTotalCount(cri);
-		model.addAttribute("list", eventService.getListview(cri));
-		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "office/schedule";
 	}
 	
