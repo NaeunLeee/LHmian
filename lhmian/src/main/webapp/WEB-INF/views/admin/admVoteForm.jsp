@@ -125,7 +125,7 @@ table {
 					</ul>
 					<div class="text-box section-light padding-4 col-7">
 						<div class="col-md-12" style="float: none; margin: 0 auto;">
-							<form id="frm" action="voteCreate" method="POST"
+							<form id="frm" action="voteCreate?${_csrf.parameterName }=${_csrf.token }" method="POST"
 								enctype="multipart/form-data" autocomplete="off">
 								<!-- csrf -->
 								<input type="hidden" name="${_csrf.parameterName }"
@@ -183,7 +183,7 @@ table {
 										<div style="margin-top: 10px;">
 											<div style="width: 20%;">
 												<input type="file" class="file" id="uploadImg"
-													name="uploadImg" accept="image/jpeg, image/png, image/jpg" style="float: left;">
+													name="file" accept="image/jpeg, image/png, image/jpg" style="float: left;">
 											</div>
 										</div>
 
@@ -203,9 +203,6 @@ table {
 	</section>
 </body>
 <script>
-	
-	let csrfHeaderName = "${_csrf.headerName}";
-	let csrfTokenValue = "${_csrf.token}";
 
 	$('#voteStart').datepicker();
 
