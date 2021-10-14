@@ -109,7 +109,7 @@
 
 								<img
 									src="${pageContext.request.contextPath}/resources/images/${list.uploadImg}"
-									alt="" class="img-responsive">
+									alt="" style="width: 346px; height: 252px"class="img-responsive">
 							</div>
 							<div id="vote-content" class="text-box white padding-4 text-left">
 								<h5>${list.voteTitle }</h5>

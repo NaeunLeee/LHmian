@@ -27,4 +27,7 @@ public class ManagementFeeVO {
 	public Long mfAvg;
 	public Long lastMonthTotal;
 	public String paid;
+	
+	public int oddAvg;
+	public int evenAvg;
 }

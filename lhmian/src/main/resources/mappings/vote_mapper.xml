@@ -74,7 +74,7 @@
 			    VOTE_TITLE, 
 			    VOTE_START, 
 			    VOTE_END, 
-			    VOTE_DAY
+			    VOTE_DAY,
 			    UPLOAD_IMG
 			    )
 		VALUES

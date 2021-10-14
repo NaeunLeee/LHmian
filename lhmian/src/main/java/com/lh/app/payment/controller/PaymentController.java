@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lh.app.fee.domain.ManagementFeeVO;
+import com.lh.app.payment.domain.PaymentCriteria;
+import com.lh.app.payment.domain.PaymentPageVO;
 import com.lh.app.payment.domain.PaymentVO;
 import com.lh.app.payment.service.PaymentService;
 import com.lh.app.signIn.etc.CustomUserDetails;
@@ -49,13 +52,15 @@ public class PaymentController {
 
 	// 전체조회
 	@RequestMapping("/myPaidList")
-	public String list(PaymentVO vo, Model model, @AuthenticationPrincipal CustomUserDetails userId) {
-		vo.setId(userId.getUsername());
-		model.addAttribute("pay", paymentService.getList(vo));
+	public String list(@ModelAttribute("cri") PaymentCriteria cri, Model model, @AuthenticationPrincipal CustomUserDetails userId) {
+		int total = paymentService.getTotalCount(cri);
+		cri.setId(userId.getUsername());
+		model.addAttribute("pay", paymentService.getList(cri));
+		model.addAttribute("pageMaker", new PaymentPageVO(cri, total));
 		return "pay/myPaidList";
 	}
 
-	// 결제취소폼
+	// 결제취소폼(단건조회)
 	@GetMapping("/cancelForm")
 	@ResponseBody
 	public PaymentVO deleteForm(Model model, PaymentVO vo) throws IamportResponseException, IOException {

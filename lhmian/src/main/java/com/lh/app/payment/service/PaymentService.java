@@ -3,6 +3,7 @@ package com.lh.app.payment.service;
 import java.util.List;
 
 import com.lh.app.fee.domain.ManagementFeeVO;
+import com.lh.app.payment.domain.PaymentCriteria;
 import com.lh.app.payment.domain.PaymentVO;
 
 public interface PaymentService {
@@ -17,7 +18,8 @@ public interface PaymentService {
 	public int updateStatus(PaymentVO vo);
 
 	// 전체조회
-	public List<PaymentVO> getList(PaymentVO vo);
+	public List<PaymentVO> getList(PaymentCriteria cri);
+	public int getTotalCount(PaymentCriteria cri);
 
 	// 단건조회
 	public PaymentVO read(PaymentVO vo);

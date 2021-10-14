@@ -1,5 +1,7 @@
 package com.lh.app.fee.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,7 @@ public class ManagementFeeController {
 			model.addAttribute("currentFee", managementFeeService.selectCurrentFee(vo));
 			model.addAttribute("currentFeeJson", gson.toJson(managementFeeService.selectCurrentFee(vo)));
 			model.addAttribute("avg", managementFeeService.selectAvg());
+			model.addAttribute("sixMonth", gson.toJson(managementFeeService.sixMonthsCurrent(vo)));
 		}
 
 		return "myPage/myManageFee";
@@ -48,4 +51,22 @@ public class ManagementFeeController {
 		return managementFeeService.selectFee(vo);
 
 	}
+	
+	@PostMapping("/dateChange2")
+	@ResponseBody
+	public List<ManagementFeeVO> dateChange2(ManagementFeeVO vo, @AuthenticationPrincipal CustomUserDetails user) {
+
+		vo.setHouseInfo(user.getHOUSEINFO());
+
+		return managementFeeService.sixMonthsSelect(vo);
+
+	}
+	
+	@PostMapping("/samePyeongAvg")
+	@ResponseBody
+	public ManagementFeeVO samePyeongAvg(ManagementFeeVO vo) {
+		
+		return managementFeeService.samePyeongAvg(vo);
+	}
+	
 }

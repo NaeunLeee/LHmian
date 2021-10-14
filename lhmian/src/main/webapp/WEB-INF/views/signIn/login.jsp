@@ -144,7 +144,7 @@
 	</section>
 
 	<!-- 로그인이 필요한 페이지입니다. -->
-	<section class="sec-padding">
+	<section class="sec-padding section-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
