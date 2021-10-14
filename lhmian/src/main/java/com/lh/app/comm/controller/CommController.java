@@ -52,8 +52,6 @@ public class CommController {
 		int total = commService.getCntCmt(cri);
 		String id = customUserDetails.getUsername();
 		cri.setId(id);
-		System.out.println("cri======" + cri);
-		System.out.println(total);
 		model.addAttribute("list", commService.getComment(cri));
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "myPage/myComment";
@@ -66,8 +64,6 @@ public class CommController {
 	@RequestMapping("commlist")
 	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
 		int total = commService.getTotalCount(cri);
-		System.out.println("cri======" + cri);
-		System.out.println(total);
 		model.addAttribute("list", commService.getList(cri));
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "community/commlist";
@@ -80,10 +76,10 @@ public class CommController {
 		return "community/register";
 	}
 
-	// 등록
+	// 등록 ( 10/14 수정)
 	@PostMapping("insertComm")
 	public String insertComm(@ModelAttribute("cvo") CommVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setId(customUserDetails.getNAME());
+		vo.setId(customUserDetails.getUsername());
 		commService.insert(vo);
 		return "redirect:commlist";
 	}
