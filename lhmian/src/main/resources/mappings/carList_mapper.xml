@@ -58,7 +58,7 @@
 		WHERE CAR_NO=#{carNo}
 	</delete>
 	
-	<!-- 해당 세대 차량 조회 -->
+	<!-- 해당 세대 차량 조회 (10/14 추가: 이나은) -->
 	<select id="carByHouseInfo" resultType="carListVO" parameterType="Long">
 		SELECT CAR_NO
 			 , CAR_CODE
@@ -68,5 +68,24 @@
 		FROM CARLIST
 		WHERE HOUSE_INFO = #{houseInfo}
 	</select>
+	
+	<!-- 관리자 차량 등록 -->
+	<insert id="insert">
+		INSERT INTO CARLIST (
+			CAR_NO
+		  , CAR_CODE
+		  , CAR_TYPE
+		  , CAR_DATE
+		  , HOUSE_INFO
+		) VALUES (
+			#{carNo}
+		  , #{carCode}
+		  , #{carType}
+		  , #{carDate}
+		  , #{houseInfo}
+		)
+	</insert>
+	
+	
 	
 </mapper>

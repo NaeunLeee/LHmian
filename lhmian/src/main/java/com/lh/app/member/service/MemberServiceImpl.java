@@ -94,5 +94,10 @@ public class MemberServiceImpl implements MemberService {
 	public int updatePosition(MemberInfoVO vo) {
 		return mapper.updatePosition(vo);
 	}
+
+	// 동호수에 따른 멤버 카운트 (10/14 추가: 이나은)
+	public int countByHouseInfo(MemberInfoVO vo) {
+		return mapper.countByHouseInfo(vo);
+	}
 	
 }
