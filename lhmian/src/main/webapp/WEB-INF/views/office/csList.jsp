@@ -56,7 +56,7 @@ table {
                <div class="col-md-6">
                   <ol class="breadcrumb-gray">
                      <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-                     <li><a href="">관리사무소</a></li>
+                     <li><a href="${pageContext.request.contextPath}/office/office">관리사무소</a></li>
                      <li class="current"><a href="${pageContext.request.contextPath}/office/csList">민원게시판</a></li>
                   </ol>
                </div>
@@ -81,8 +81,8 @@ table {
 
       <div class="container" align="center">
          <div class="text-box white padding-4 col-7">
-   <table class="table" >
-   <thead>
+		   <table class="table" >
+		  	 <thead>
                <tr>
                   <th>글 번호</th>
                   <th>상 태</th>

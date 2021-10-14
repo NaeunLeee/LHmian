@@ -35,6 +35,21 @@
 	<br><br><br>
 	<div>
 	<section class="sec-padding">
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 nopadding">
+					<div class="sec-title-container-padding-topbottom text-center">
+						<div class="pl-title-line-1"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">아파트 소개</h4>
+						<div class="clearfix"></div>
+						<p class="by-sub-title">아파트에 대해... 어쩌구.. 설명...</p>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-sm-12 col-xs-12">

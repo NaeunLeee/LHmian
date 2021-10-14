@@ -74,7 +74,7 @@
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/resident">입주민 공간</a></li>
+							<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
 							<li class="current"><a href="#">입주자 대표회의</a></li>
 						</ol>
 					</div>
