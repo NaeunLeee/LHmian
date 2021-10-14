@@ -35,7 +35,7 @@ public class SignInController {
 	}
 	
 	//접근 금지 페이지
-    @GetMapping("/accessDenied")
+    @GetMapping("/**/accessDenied")
     public String accessDeniedPage() throws Exception {
         return "/signIn/accessDenied";
     }

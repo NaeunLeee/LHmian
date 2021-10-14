@@ -37,6 +37,7 @@ public class CommController {
 	@RequestMapping("myCommunityList")
 	public String getListno(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails,
 			PersonalCriteria cri) {
+
 		String id = customUserDetails.getUsername();
 		cri.setId(id);
 		int total = commService.getCntMember(cri);
@@ -63,10 +64,40 @@ public class CommController {
 	// 리스트 조회
 	@RequestMapping("commlist")
 	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
-		int total = commService.getTotalCount(cri);
-		model.addAttribute("list", commService.getList(cri));
-		model.addAttribute("pageMaker", new PageVO(cri, total));
-		return "community/commlist";
+		if (cri.getType() == "" && cri.getPreType() == null) {
+
+			int total = commService.getTotalCount(cri);
+			model.addAttribute("list", commService.getList(cri));
+			model.addAttribute("pageMaker", new PageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			
+			System.out.println("1."+cri.getType());
+			System.out.println("2."+cri.getPreType());
+
+			return "community/commlist";
+		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))
+				) {
+			int total = commService.getTotalCount(cri);
+			model.addAttribute("list", commService.getList(cri));
+			model.addAttribute("pageMaker", new PageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			
+			System.out.println("3."+cri.getType());
+			System.out.println("4."+cri.getPreType());
+
+			return "community/commlist";
+		}  else {
+			cri.setPageNum(1);
+			int total = commService.getTotalCount(cri);
+			model.addAttribute("list", commService.getList(cri));
+			model.addAttribute("pageMaker", new PageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			
+			System.out.println("5."+cri.getType());
+			System.out.println("6."+cri.getPreType());
+
+			return "community/commlist";
+		}
 	}
 
 	// 등록폼 (10/11 수정:이나은)
@@ -78,7 +109,8 @@ public class CommController {
 
 	// 등록 ( 10/14 수정)
 	@PostMapping("insertComm")
-	public String insertComm(@ModelAttribute("cvo") CommVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	public String insertComm(@ModelAttribute("cvo") CommVO vo,
+			@AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setId(customUserDetails.getUsername());
 		commService.insert(vo);
 		return "redirect:commlist";
@@ -94,7 +126,7 @@ public class CommController {
 		System.out.println(id);
 		vo.setCommNo(commNo);
 		model.addAttribute("list", commService.read(vo));
-		model.addAttribute("login",id);
+		model.addAttribute("login", id);
 		return "community/get";
 	}
 
@@ -104,14 +136,6 @@ public class CommController {
 		return "community/get";
 	}
 
-	// 수정 (ajax)
-//	@PutMapping("updateComm")
-//	@ResponseBody
-//	public CommVO updateComm(@RequestBody CommVO vo) {
-//		commService.update(vo);
-//		return vo;
-//	}
-	
 	// 수정 폼 (10/11 추가: 이나은)
 	@GetMapping("commUpdate")
 	public String commUpdateForm(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails, CommVO vo) {
@@ -119,7 +143,7 @@ public class CommController {
 		model.addAttribute("user", customUserDetails);
 		return "community/commUpdate";
 	}
-	
+
 	// 수정 처리 (10/11 추가: 이나은)
 	@PostMapping("commUpdate")
 	public String commUpdate(CommVO vo) {

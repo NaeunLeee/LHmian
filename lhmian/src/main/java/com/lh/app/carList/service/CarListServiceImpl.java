@@ -32,4 +32,9 @@ public class CarListServiceImpl implements CarListService{
 		return mapper.carByHouseInfo(vo);
 	}
 	
+	// 차량 등록 (10/14 추가: 이나은)
+	public int insert(CarListVO vo) {
+		return mapper.insert(vo);
+	}
+	
 }

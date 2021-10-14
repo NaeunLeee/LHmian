@@ -116,7 +116,7 @@ table {
                </li>
             </c:if>
             <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-               <li><a href="${num}">${num}</a></li>
+               <li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
             </c:forEach>
             <c:if test="${pageMaker.next == true}">
                <li>
@@ -128,20 +128,22 @@ table {
          </ul>
       </div>
    
-   <div style="margin:auto;">
+   <!-- 10/14 id 및 내용 추가 -->
+   <div style="margin:auto;" id="criteriaForm" data-option="${type}">
    <form id="actionForm" action="commlist" method="get"> <!-- 메소드 생략시 자동으로 get로 전환 -->
       <select name="type" class="form-control" style="width: 100px; ">
          <option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-         <option value="T" ${empty pageMaker.cri.type =='T' ? selected : ""}>제목검색</option>
-         <option value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>번호</option>
-         <option value="W" <c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
-         <option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목 or 내용</option>
-         <option value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목 or 작성자</option>
-         <option value="TWC" <c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected':''}"/>>제목 or 작성자 or 내용</option>
+         <option id="T" value="T" ${pageMaker.cri.type =='T' ? selected : ""}>제목검색</option>
+         <option id="C" value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>번호</option>
+         <option id="W" value="W" <c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
+         <option id="TC" value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목 or 내용</option>
+         <option id="TW" value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목 or 작성자</option>
+         <option id="TWC" value="TWC" <c:out value="${pageMaker.cri.type eq 'TWC' ? 'selected':''}"/>>제목 or 작성자 or 내용</option>
       </select>
       <input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}">
       <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">      
       <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+      <input type="hidden" name="preType" id="preType" value="${type}">
       <button type="submit" class="btn btn-dark">검색</button>         
    </form>
 </div>
@@ -170,6 +172,47 @@ table {
          $('[name="pageNum"]').val(p)
          actionForm.submit();
       })
-      //$('#board').DataTable();
+      
+      
+      // 10/14 selected 추가
+      let option = $('#criteriaForm').attr('data-option');
+      $(document).ready(function() {
+		
+		 if (option.indexOf('T') != -1) {
+			 $('#T').prop("selected", true);
+		 } else {
+			 $('#T').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('C') != -1) {
+			 $('#C').prop("selected", true);
+		 } else {
+			 $('#C').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('C') != -1) {
+			 $('#C').prop("selected", true);
+		 } else {
+			 $('#C').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('TC') != -1) {
+			 $('#TC').prop("selected", true);
+		 } else {
+			 $('#TC').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('TW') != -1) {
+			 $('#TW').prop("selected", true);
+		 } else {
+			 $('#TW').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('TWC') != -1) {
+			 $('#TWC').prop("selected", true);
+		 } else {
+			 $('#TWC').prop("selected", false);
+		 }
+	 });
    
 </script>

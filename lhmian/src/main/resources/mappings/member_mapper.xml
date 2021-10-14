@@ -66,6 +66,13 @@
 		ROWNUM > 0
 	</select>
 
+	<!-- 세대정보로 멤버 수 조회 (10/14 추가: 이나은) -->
+	<select id="countByHouseInfo" resultType="int" parameterType="memberVO">
+		SELECT COUNT(*) FROM
+		MEMBER
+		WHERE HOUSE_INFO = #{houseInfo}
+	</select>
+
 	<select id="getList" resultType="memberVO">
 		<![CDATA[
 		SELECT *

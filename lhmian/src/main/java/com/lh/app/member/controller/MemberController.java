@@ -134,6 +134,11 @@ public class MemberController {
 		return carService.carByHouseInfo(vo);
 	}
 	
-	
+	// 전체 건수 ajax (10/14 추가: 이나은)
+	@PostMapping("/admin/countByHouseInfo")
+	@ResponseBody
+	public int memberTotal(@RequestBody MemberInfoVO vo) {
+		return service.countByHouseInfo(vo);
+	}
 	
 }
