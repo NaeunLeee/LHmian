@@ -43,5 +43,10 @@ public class LostFoundServiceImpl implements LostFoundService {
 		return lostFoundMapper.delFile(filePath, string);
 	}
 
+	@Override
+	public int getTotalLost() {
+		return lostFoundMapper.getTotalLost();
+	}
+
 
 }

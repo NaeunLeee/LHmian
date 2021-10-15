@@ -1,11 +1,13 @@
 package com.lh.app.visit.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lh.app.signIn.domain.GenerationVO;
+import com.lh.app.visit.domain.GenerationCriteria;
 import com.lh.app.visit.domain.VisitVO;
 import com.lh.app.visit.mapper.VisitMapper;
 
@@ -19,11 +21,6 @@ public class VisitServiceImpl implements VisitService {
 	public List<VisitVO> getList(VisitVO vo) {
 		return visitMapper.getList(vo);
 	}
-
-	/*
-	 * @Override public int getTotalCount(VisitCriteria cri) { return
-	 * visitMapper.getTotalCount(cri); }
-	 */
 
 	@Override
 	public int insert(VisitVO vo) {
@@ -41,8 +38,13 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public List<GenerationVO> generation(GenerationVO vo) {
-		return visitMapper.generation(vo);
+	public List<GenerationVO> generation(Map<String, String> searchParam) {
+		return visitMapper.generation(searchParam);
+	}
+
+	@Override
+	public int getOldCount(GenerationCriteria cri) {
+		return visitMapper.getOldCount(cri);
 	}
 
 }

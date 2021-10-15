@@ -181,10 +181,10 @@
 															<a href="${pageContext.request.contextPath}/resident/voteList">투표</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/visit/generation">방명록</a>
+															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
+															<a href="${pageContext.request.contextPath}/visit/generation">방명록</a>
 														</li>
 													</ul>
 												</li>
@@ -222,6 +222,11 @@
 														<li>
 															<!-- 10/03 개인정보 조회/수정 링크 -->
 															<a href="${pageContext.request.contextPath}/myInfo">개인정보수정</a>
+															<!-- ------------------------ -->
+														</li>
+														<li>
+															<!-- 10/15 개인결제리스트 -->
+															<a href="${pageContext.request.contextPath}/myPaidList">결제내역</a>
 															<!-- ------------------------ -->
 														</li>
 														<li>

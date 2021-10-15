@@ -174,8 +174,6 @@ margin-left : 300px;
 <script>
 	//수정모달
 	function payCancel(n) {
-		let csrfHeaderName = "${_csrf.headerName}";
-		let csrfTokenValue = "${_csrf.token}";
 		$(cancelModal).modal('show');
 		$.ajax({
 			url : "cancelForm",

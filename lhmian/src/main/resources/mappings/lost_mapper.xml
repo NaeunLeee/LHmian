@@ -62,5 +62,9 @@
       ]]>
    </delete>
 
+	<select id="getTotalLost" resultType="int">
+		SELECT COUNT(*)
+		FROM LOST_AND_FOUND
+	</select>
 
 </mapper>
