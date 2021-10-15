@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.energy.mapper.EnergyMapper">
+<select id="getTotalCount" resultType="int">
+	SELECT COUNT(*) FROM
+	ENERGY_USAGE
+</select>
 <select id="getList" resultType="EnergyVO">
 SELECT MF_DATE,
 		HOUSE_INFO,
@@ -54,9 +58,22 @@ SELECT MF_DATE,
 			WATER,
 			TRASH,
 			TRASH_FOOD
-		FROM
-			ENERGY_USAGE
-		ORDER BY 1 DESC
-
+		FROM (
+			SELECT  /*+ INDEX_DESC(ENERGY_USAGE EU_IDX) */
+			ROWNUM RN,	
+			MF_DATE,
+	 		HOUSE_INFO,
+			ENG,
+			GAS,
+			ELECTRIC,
+			WATER,
+			TRASH,
+			TRASH_FOOD
+			FROM ENERGY_USAGE	
+			<![CDATA[
+			WHERE MF_DATE > 0 AND ROWNUM <= #{pageNum} * #{amount}
+		)
+			]]>
+			WHERE RN > (#{pageNum} -1) * #{amount}
 </select>
 </mapper>
