@@ -58,7 +58,7 @@
 		<include refid="criteria"></include>
 		<![CDATA[ 
 		ROWNUM <= #{pageNum} * #{amount} 
-		AND ID = #{id}
+		AND id = #{id}
 		)
 		WHERE RN > (#{pageNum} -1) * #{amount} 
 		]]>
@@ -84,14 +84,16 @@
 		WHERE ROWNUM > (#{pageNum} -1) * #{amount} 
 		]]>
 	</select>
-
-	<select id="read" resultType="CommVO" parameterType="CommVO"> <!-- 파라미터 타입은 생략해도 가능 resultType은 필수 -->
+	
+	<!-- 10/15 COMM_HIT추가 -->
+	<select id="read" resultType="CommVO" parameterType="CommVO"> 
 		SELECT COMM_NO
 		,COMM_TITLE
 		,COMM_CONTENT
 		,ID
 		,COMM_DATE
 		,COMM_UPDATE
+		,COMM_HIT
 		FROM
 		COMMUNITY
 		WHERE
