@@ -61,14 +61,14 @@ public class CarListController {
 
 		
 	// 차량 등록
-	@PostMapping("admin/insertCar")
+	@PostMapping("/insertCar")
 	@ResponseBody
 	public int insertCar(CarListVO vo) {
 		return service.insert(vo);
 	}
 	
 	// 차량 한대 삭제
-	@PostMapping("admin/deleteOneCar")
+	@PostMapping("/deleteOneCar")
 	@ResponseBody
 	public int deleteOneCar(@RequestBody CarListVO vo) {
 		return service.delete(vo);

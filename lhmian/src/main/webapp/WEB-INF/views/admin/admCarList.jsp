@@ -352,13 +352,14 @@
 						str += '<td><input type="text" class="regCode form-control" name="carCode" placeholder="예) 15부1234"></td>';
 						str += '<td><button type="button" class="insertCar btn btn-default">추가</button></td>';
 						str += '</tr>';
+						str += '<input type="hidden" class="regHouseInfo" name="houseInfo" value="' + data[i].houseInfo + '">';
 						
 					} else {
 						for (i=0; i<data.length; i++) {
-							str += '<tr data-carNo="' + data[i].carNo + '">';
+							str += '<tr>';
 							str += '<td><input type="text" class="delType form-control" name="carType" value="' + data[i].carType + '" readonly></td>';
 							str += '<td><input type="text" class="delCode form-control" name="carCode" value="' + data[i].carCode + '" readonly></td>';
-							str += '<td><button type="button" class="deleteCar btn btn-default">삭제</button></td>';
+							str += '<td><button type="button" name="deleteCar" class="deleteCar btn btn-default" data-carNo="' + data[i].carNo + '">삭제</button></td>';
 							str += '</tr>';
 							if (data.length == 1) {
 								str += '<tr>';
@@ -366,6 +367,7 @@
 								str += '<td><input type="text" class="regCode form-control" name="carCode" placeholder="예) 15부1234"></td>';
 								str += '<td><button type="button" class="insertCar btn btn-default">추가</button></td>';
 								str += '</tr>';
+								str += '<input type="hidden" class="regHouseInfo" value="' + data[i].houseInfo + '">';
 							} 
 						}
 					}
@@ -380,32 +382,77 @@
 	});
 	
 	// 차량 한대 삭제
-	$(document).on('click', '[class=deleteCar]', function(event) {
+	$(document).on('click', '.deleteCar', function(event) {
+		
 		console.log($(this).attr('data-carNo'));
-	});
- 	/* $('.deleteCar').on("click", function() {
-		console.log('클릭됨');
-		console.log($(this).attr('data-carNo'));
-	}); */ 
-	
-	// 차량번호 등록시 공백 자동제거
-	function replaceSpace(str) {
-		str.replace(/ /g, "");
-	}
-	
-	// 차량 등록
-/*  	$('.insertCar').on("click", function() {
-		$.ajax({
-			url: 'admin/insertCar',
-			type: 'POST',
-			data: $('#registerForm').serialize(),
+		
+/*  		$.ajax ({
+			url: 'deleteOneCar',
+			type: 'POST'
+			data: JSON.stringify({
+				carNo: parseInt($(this).attr('data-carNo'))
+			}),
+			contentType: 'application/json',
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 			},
 			success: function(data) {
-				
+				$(this).parent().parent().remove();
+				alert(data + '건의 차량을 삭제했습니다.');
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		}); */
+		
+	});
+	
+	// 차량번호 등록시 공백 자동제거
+/* 	function replaceSpace(str) {
+		str.replace(/ /g, "");
+	} */
+	
+	// 차량 등록
+	$(document).on('click', '.insertCar', function() {
+		var regHouseInfo = $('.regHouseInfo');
+		var regType = $('.regType');
+		var regCode = $('.regCode');
+		
+		var carCode = $(regCode).val();
+		var houseInfo = parseInt($(regHouseInfo).val());
+		var carNo = parseInt(carCode.substring(3, 7)  + '' + houseInfo);
+		var carType = $(regType).val();
+		
+		$.ajax({
+			url: 'insertCar',
+			type: 'POST',
+			async: false,
+			contentType: 'application/json',
+			data: JSON.stringify({
+				carNo: carNo,
+				carType: carType,
+				carCode: carCode,
+				houseInfo: houseInfo
+			}),
+			dataType: 'json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			success: function(data) {
+				alert(data + '대의 차량이 등록되었습니다.');
+				regType.attr('readonly', true);
+				regCode.attr('readonly', true);
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+				console.log(carNo);
+				console.log(houseInfo);
+				console.log(carType);
+				console.log(carCode);
 			}
 		});
-	});  */
+		
+	});
+	
 	
 </script>
