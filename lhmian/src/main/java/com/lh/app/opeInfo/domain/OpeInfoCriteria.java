@@ -10,6 +10,9 @@ public class OpeInfoCriteria {
 	private String type;
 	private String keyword;
 
+	// 10/15 추가
+	private String preType;
+	
 	public OpeInfoCriteria() {}
 
 	public OpeInfoCriteria(int pageNum, int amount) {

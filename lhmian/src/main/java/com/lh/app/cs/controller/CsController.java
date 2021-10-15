@@ -26,7 +26,7 @@ public class CsController {
 	CsService csService;
 
 	// 전체 조회
-	@GetMapping("/office/csList")
+	@RequestMapping("/office/csList")
 	public String csList(Model model, @ModelAttribute("cri") CsCriteria cri) {
 		int total = csService.getTotalCount(cri);
 		model.addAttribute("list", csService.getList(cri));
