@@ -159,6 +159,19 @@ button{
 }
 
 
+.img-gray {
+	-webkit-filter: grayscale(100%);
+	filter: gray;
+	position:relative;
+	
+}
+
+.image-gray .text {
+  position:absolute;
+  top:40px;
+  left:80px;
+}
+
 
 </style>
 
@@ -224,12 +237,12 @@ button{
                <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive"/> </div>
               <div class="postinfo-box">
                 <!-- <h4 class="dosis uppercase title"><a href="#">Aliquam Rhoncus</a></h4> -->
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소: </span></div>
+                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소: ${item.foundLocation}</span></div>
                 <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득일자: ${item.lostDate}</span></div>
                 <br/>
                 <p class="void">${item.lostContent}</p>
                 <div class="col-sm-12" align="center">
-                <button type="button" class="btn btn-border light" onclick="lostModify(${item.lostNo})">수정</button>
+                	<button type="button" class="btn btn-border light" onclick="lostModify(${item.lostNo})">수정</button>
                 </div>
             </div>
             </div>
@@ -242,15 +255,17 @@ button{
           <div class="col-md-4 col-sm-6 col-xs-12"> 
            <div class="bg2-featurebox-3">
               <div class="img-box">
-               <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive"/> </div>
+               <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive img-gray"/> 
+               
+               </div>
+               
               <div class="postinfo-box">
                 <!-- <h4 class="dosis uppercase title"><a href="#">Aliquam Rhoncus</a></h4> -->
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소</span><%--  <span><i class="fa fa-folder"></i> 습득일자: ${item.lostDate}</span> --%></div>
+                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소: ${item.foundLocation}</span></div>
                 <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득일자: ${item.lostDate}</span></div>
                 <br/>
                  <p class="void">${item.lostContent}</p>
                 <div class="col-sm-12" align="center">
-                <button type="button" class="btn btn-border light" onclick="lostModify(${item.lostNo})">수정</button>
             </div>
             </div>
             </div>
@@ -353,11 +368,6 @@ button{
 								<button type="button" class="btn btn-gyellow" id="lostModal">저장</button>
 								<button type="button" class="btn btn-gyellow" data-dismiss="modal" id="modalClose">닫기</button>
 							</div>
-						</div>
-						<div class="modal-body"></div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-gyellow" data-dismiss="modal" id="modalClose">닫기</button>
-							<button type="button" class="btn btn-gyellow" id="lostModal">저장</button>
 						</div>
 					</div>
 				</div>

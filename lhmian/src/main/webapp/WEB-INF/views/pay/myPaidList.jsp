@@ -7,11 +7,6 @@
 	text-align: center;
 }
 
-.cancel-container {
-	width: 560px;
-	margin: 0px;
-}
-
 tr {
 	height: 40px;
 	border-bottom: 1px solid lightGray;
@@ -27,13 +22,22 @@ th {
 	background-color: #f5f5f5;
 }
 
-table {
+
+.table-1000 {
 	background-color: white;
 	width: 1000px;
 }
 
-.table-style-2 {
-	width: 560px;
+.table-500 {
+	width: 500px;
+}
+
+.h-50{
+	height:50px !important;
+}
+
+.p-15 {
+	padding-left:15px !important; 
 }
 
 .pagination>li>a {
@@ -43,6 +47,16 @@ table {
 .pagination {
 margin-left : 300px;
 }
+
+.modal-header{
+	border-bottom:0
+}
+
+.modal-footer{
+	border-top:0;
+	text-align:center
+}
+
 </style>
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
@@ -70,7 +84,7 @@ margin-left : 300px;
 				<div class="col-md-6">
 					<ol class="breadcrumb-gray">
 						<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-						<li><a href="">결제?</a></li>
+						<li><a href="${pageContext.request.contextPath}/myPage/myPage">마이페이지</a></li>
 						<li class="current"><a href="${pageContext.request.contextPath}/pay/myPaidList">나의 결제내역</a></li>
 					</ol>
 				</div>
@@ -86,7 +100,7 @@ margin-left : 300px;
 					<div class="pl-title-line-1"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">결제내역</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title" style="font-size: 13px;">결제... 어쩌구..ㅋㅋ</p>
+					<p class="by-sub-title" style="font-size: 13px;">나의 결제내역을 확인하세요.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -95,7 +109,7 @@ margin-left : 300px;
 
 	<div class="container" align="center">
 		<div class="text-box white padding-4 col-7">
-			<table>
+			<table class="table-1000">
 				<tr>
 					<th>결제번호</th>
 					<th>결제일</th>
@@ -143,8 +157,11 @@ margin-left : 300px;
 		</ul>
 	</div>
 </section>
+
+
+
 <!-- 결제취소 모달 -->
-<section class="sec-padding">
+<!-- <section class="sec-padding">
 	<div class="container">
 		<div class="row text-center">
 			<div id="cancelModal" tabindex="-1" role="dialog"
@@ -158,7 +175,27 @@ margin-left : 300px;
 							<div id="modal-switch-label" class="modal-title">
 								<h4>결제취소</h4>
 							</div>
-						</div>
+						</div> -->
+						
+	<section class="sec-padding">
+		<div class="container">
+			<div class="row text-center">
+				<div id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="modal-switch-label" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<br>
+							<div class="modal-header">
+								<button type="button" data-dismiss="modal" class="close">
+									<span aria-hidden="true">&times;</span><span class="sr-only">x</span>
+								</button>
+								<div id="modal-switch-label" class="modal-title">
+									<div class="text-center">
+										<div class="pl-title-line-1"></div>
+										<h4 class="h4-margin font-weight-7 less-mar-1">결제정보</h4>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							</div>
 						<div class="modal-body"></div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-gyellow" id="cancelBtn">결제취소</button>
@@ -186,28 +223,28 @@ margin-left : 300px;
 				var tag = "";
 				tag += '<form method="post" id="frm" action="cancel">'
 						+ '	<section class="sec-padding-yj cancel">'
-						+ '		<div class="container cancel-container">'
+						+ '		<div class="container cancel-container" align="center" style="width:100%">'
 						+ '			<div class="row">'
-						+ '				<table class="table-style-2">'
-						+ '					<tr class="tr">'
+						+ '				<table class="table-500">'
+						+ '					<tr class="h-50" style="border-top:1px solid lightgray">'
 						+ '					  <th>결제번호</th>'
-						+ '					  <td><input type="hidden" name="payNo" value="' + data.payNo + '">' + data.payNo + '</td>'
+						+ '					  <td class="p-15"><input type="hidden" name="payNo" value="' + data.payNo + '">' + data.payNo + '</td>'
 						+ '					</tr>'
-						+ '					<tr>'
+						+ '					<tr class="h-50">'
 						+ '					  <th>결제일</th>'
-						+ '					  <td>' + data.payDate + '</td>'
+						+ '					  <td class="p-15">' + data.payDate + '</td>'
 						+ '					</tr>'
-						+ '					<tr>'
+						+ '					<tr class="h-50">'
 						+ '					  <th>결제방식</th>'
-						+ '					  <td>' + data.payType + '</td>'
+						+ '					  <td class="p-15">' + data.payType + '</td>'
 						+ '					</tr>'
-						+ '					<tr>'
+						+ '					<tr class="h-50">'
 						+ '					  <th>결제분류</th>'
-						+ '					  <td>' + data.payCat + '</td>'
+						+ '					  <td class="p-15">' + data.payCat + '</td>'
 						+ '					</tr>'
-						+ '					<tr>'
+						+ '					<tr class="h-50">'
 						+ '					  <th>결제금액</th>'
-						+ '					  <td>' + data.price + '</td>'
+						+ '					  <td class="p-15">' + data.price + '</td>'
 						+ '					</tr>'
 						+ '				</table>'
 						+ '			</div>'
