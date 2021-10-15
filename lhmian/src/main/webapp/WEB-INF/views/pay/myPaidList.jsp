@@ -118,8 +118,8 @@ margin-left : 300px;
 		</div>
 	</div>
 	<form id="actionForm" action="myPaidList" method="get">
-	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-	<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	</form>
 	<div id="pageButton" style="margin: auto; width: 50%">
 		<ul class="pagination hover-orange">

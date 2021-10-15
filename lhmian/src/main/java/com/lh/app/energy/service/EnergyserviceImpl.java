@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lh.app.energy.domain.EnergyCriteria;
 import com.lh.app.energy.domain.EnergyVO;
 import com.lh.app.energy.mapper.EnergyMapper;
 
@@ -25,7 +26,12 @@ public class EnergyserviceImpl implements EnergyService {
 	}
 
 	@Override
-	public List<EnergyVO> admList() {
-		return energyMapper.admList();
+	public List<EnergyVO> admList(EnergyCriteria cri) {
+		return energyMapper.admList(cri);
+	}
+
+	@Override
+	public int getTotalCount(EnergyCriteria cri) {
+		return energyMapper.getTotalCount(cri);
 	}
 }

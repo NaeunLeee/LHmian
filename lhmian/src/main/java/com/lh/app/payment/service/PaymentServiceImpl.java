@@ -35,8 +35,6 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentMapper.updateStatus(vo);
 	}
 
-
-
 	@Override
 	public List<PaymentVO> getList(PaymentCriteria cri) {
 		return paymentMapper.getList(cri);
