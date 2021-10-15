@@ -72,7 +72,6 @@ table {
                   <div class="pl-title-line-1"></div>
                   <h4 class="uppercase font-weight-7 less-mar-1">커뮤니티</h4>
                   <div class="clearfix"></div>
-                  <p class="by-sub-title" style="font-size: 13px;">커뮤니티... 어쩌구..ㅋㅋ</p>
                </div>
             </div>
             <div class="clearfix"></div>

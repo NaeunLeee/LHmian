@@ -125,6 +125,7 @@ public class CommController {
 		String id = customUserDetails.getUsername();
 		System.out.println(id);
 		vo.setCommNo(commNo);
+		System.out.println(commService.read(vo));
 		model.addAttribute("list", commService.read(vo));
 		model.addAttribute("login", id);
 		return "community/get";

@@ -111,7 +111,9 @@
 					</tr>
 					<tr>
 						<th class="align-right">새 비밀번호</th>
-						<td><input type="password" class="input-text form-control" id="newpw" name="newpw" aria-describedby="basic-addon3">
+						<td><input type="password" class="input-text form-control" id="newpw" name="newpw" aria-describedby="basic-addon3" style="">
+							<!-- 10/15 추가 -->
+							<span>영문자, 숫자, 특수문자를 모두 포함하여 8~12자로 입력해주세요</span>
 							<div class="pw-msg" style="display: none"></div>
 						</td>
 					</tr>

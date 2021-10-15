@@ -41,6 +41,7 @@ textarea:focus {
 
 <body>
 	<div class="header-inner-tmargin">
+		${list.commHit}
 		<section class="section-side-image clearfix">
 			<div class="img-holder col-md-12 col-sm-12 col-xs-12">
 				<div class="background-imgholder"
@@ -89,7 +90,7 @@ textarea:focus {
 							style="background-color: transparent; font-size: 20px">${list.commTitle}</textarea>
 						<h6 class="padding-4 col-md-12">
 							<span class="info" style="font-size: 14px;">${list.id}</span> | <span
-								class="info"><i class="bi bi-eye"></i> ${list.commHit}</span> <span
+								class="info"><i class="bi bi-eye"></i>${list.commHit}</span> <span
 								class="info"><i class="bi bi-calendar"></i> 작성일자 : <fmt:formatDate
 									value="${list.commDate}" pattern="yy-MM-dd" /> <c:if
 									test="${list.commUpdate != null}"> | 최종수정 : <fmt:formatDate
