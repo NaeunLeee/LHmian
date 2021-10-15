@@ -242,4 +242,11 @@ public class SignInController {
 		
 		return signInService.smsAPI(map.get("phone"));
 	}
+	
+	//메인 팝업, 투표 결과 표시
+	@GetMapping("/popup/vote")
+	public String popupVote() {
+		
+		return "no/popupVote";
+	}
 }

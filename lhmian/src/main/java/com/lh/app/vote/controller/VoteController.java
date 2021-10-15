@@ -75,7 +75,6 @@ public class VoteController {
 			vo.setVoteNo(no);
 			vo.setVcQuesNo(i);
 			vo = voteService.voteResult(vo);
-			System.out.println(vo);
 			list.add(vo);
 		}
 
