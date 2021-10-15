@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lh.app.comm.domain.PageVO;
 import com.lh.app.opeInfo.domain.OpeInfoCriteria;
 import com.lh.app.opeInfo.domain.OpeInfoPageVO;
 import com.lh.app.opeInfo.domain.OpeInfoVO;
@@ -46,10 +47,29 @@ public class OpeInfoController {
 	// 전체 조회
 	@GetMapping("/introduce/opeInfoList")
 	public String opeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
+		if(cri.getType() == "" && cri.getPreType() == null) {
 		int total = opeInfoService.getTotalCount(cri);
 		model.addAttribute("list", opeInfoService.getList(cri));
 		model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+		model.addAttribute("type", cri.getType());
 		return "introduce/opeInfoList";
+		} else if( (cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			
+			return "introduce/opeInfoList";
+		}
+		else {
+		cri.setPageNum(1);
+		int total = opeInfoService.getTotalCount(cri);
+		model.addAttribute("list", opeInfoService.getList(cri));
+		model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+		model.addAttribute("type", cri.getType());
+		
+		return "introduce/opeInfoList";
+		}
 	}
 	
 	// 단건 조회

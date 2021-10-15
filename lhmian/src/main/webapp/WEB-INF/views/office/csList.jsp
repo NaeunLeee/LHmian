@@ -119,7 +119,7 @@ table {
    
    
    <!-- 폼 -->
-   <div id="pageButton" style="margin:auto; width: 50%">
+   <div id="pageBtn" style="margin:auto; width: 50%">
          <ul class="pagination hover-orange">
             <c:if test="${pageMaker.prev == true}">
                <li>
@@ -129,7 +129,7 @@ table {
                </li>
             </c:if>
             <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-               <li><a href="${num}">${num}</a></li>
+               <li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
             </c:forEach>
             <c:if test="${pageMaker.next == true}">
                <li>

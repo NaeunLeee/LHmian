@@ -327,31 +327,4 @@
 			 $('#C').prop("selected", false);
 		 }
 	 });
-	// function sendSms() {
-	// 	const phone = $('#phone').val();
-	// 	var phonejson = {
-	// 		"phone": 
-	// 	}
-
-	// 	$.ajax({
-	// 		url: 'sendKey',
-	// 		type: 'POST',
-	// 		beforeSend: function (xhr) {
-	// 			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-	// 		},
-	// 		data: JSON.stringify(phonejson),
-	// 		contentType: "application/json",
-	// 		success: function (data) { //문자 발송에 성공시 data: 인증번호, 실패시 data: "fail" 메세지
-	// 			if (data !== "fail") {
-	// 				success = true;
-	// 				alert("송신완료");
-	// 			} else {
-	// 				alert("송신실패");
-	// 			}
-	// 		},
-	// 		error: function () {
-	// 			alert('AJAX 에러');
-	// 		}
-	// 	});
-	// }
 </script>
