@@ -28,4 +28,8 @@ public interface VoteService {
 	public VoteVO voteParticipate(VoteVO vo);
 	
 	public int popupVoteCount();
+	
+	public HouseVoteInfoVO popupCurrentVoteResult();
+	
+	public VoteVO popupCurrentVoteTitle();
 }

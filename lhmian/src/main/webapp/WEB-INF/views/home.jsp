@@ -162,16 +162,15 @@
 	prefix="sec"%>
 <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
 	<script>
-	$(document).ready({
 	
-	const count = ${count};
+	let count = '${count}';
 	console.log(count);
-	if (count > 0) {
+	
+	if (count > '0') {
 		window.open("popup/vote", "주민 투표 결과",
 						"width=750, height=550, left=300, top=50");				
 		}
 
-			});
 	</script>
 </sec:authorize>
 

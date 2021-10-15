@@ -81,4 +81,16 @@ public class VoteServiceImpl implements VoteService {
 		return voteMapper.popupVoteCount();
 	}
 
+	@Override
+	public HouseVoteInfoVO popupCurrentVoteResult() {
+		// TODO Auto-generated method stub
+		return voteMapper.popupCurrentVoteResult();
+	}
+
+	@Override
+	public VoteVO popupCurrentVoteTitle() {
+		// TODO Auto-generated method stub
+		return voteMapper.popupCurrentVoteTitle();
+	}
+
 }

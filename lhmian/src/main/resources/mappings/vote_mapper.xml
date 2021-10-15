@@ -61,6 +61,24 @@
 		AND VC_QUES_NO = #{vcQuesNo}
 	</select>
 	
+	<select id="popupCurrentVoteResult" resultType="HouseVoteInfoVO">
+		SELECT A.*, 
+		         ( SELECT VC_CONTENT FROM VOTE_CONTENTS B WHERE A.HV_RESULT = B.VC_QUES_NO AND A.VOTE_NO = B.VOTE_NO) VC_CONTENT
+		FROM   (SELECT VOTE_NO, HV_RESULT, COUNT(*) MAX_COUNT
+		             FROM HOUSE_VOTEINFO 
+		             WHERE VOTE_NO = (select VOTE_NO FROM VOTE WHERE VOTE_END = (SELECT MAX(VOTE_END) FROM VOTE WHERE VOTE_END <![CDATA[<]]> SYSDATE))
+		             GROUP BY VOTE_NO, HV_RESULT
+		             ORDER BY MAX_COUNT DESC) A
+		WHERE ROWNUM = 1
+	</select>
+	
+	<select id="popupCurrentVoteTitle" resultType="VoteVO">
+		SELECT * FROM VOTE 
+		WHERE VOTE_END = (SELECT MAX(VOTE_END) 
+						  FROM VOTE 
+						  WHERE VOTE_END <![CDATA[<]]> SYSDATE)
+	</select>
+	
 	<select id="voteContentsCount" resultType="int">
 		SELECT COUNT(VC_QUES_NO)
 		FROM VOTE_CONTENTS 

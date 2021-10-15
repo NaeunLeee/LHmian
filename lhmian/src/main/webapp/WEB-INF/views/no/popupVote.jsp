@@ -1,38 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <div class="container">
 	<div class="form-body">
 		<div class="sec-title-container-nopadding">
 			<div class="gm-title-line-1 text-center"></div>
-			<h4 class="uppercase font-weight-7 less-mar-1 text-center">투표 결과</h4>
+			<h4 class="uppercase font-weight-7 less-mar-1 text-center">주민 투표 결과 공지</h4>
 			<div class="clearfix"></div>
 			<br> <br> <br>
 		</div>
-		<c:if test="${empty member }">
-			<h2>일치하는 회원정보가 없습니다.</h2>
-		</c:if>
+			<h4><fmt:formatDate value="${title.voteStart }" pattern="yyyy-MM-dd" />
+							~
+				<fmt:formatDate value="${title.voteEnd }" pattern="yyyy-MM-dd" /> 동안 시행한 [${title.voteTitle}] 안건에 대한 주민 투표 결과를 공지합니다.</h4>
 
-		<c:if test="${member.id eq 'kakao' }">
-			<h2>
-				카카오 계정으로 가입된 회원입니다.<br>
-			</h2>
-			<p class="by-sub-title">
-				- 카카오 계정으로 가입된 회원은 아이디를 찾을 수 없습니다.<br> - 카카오 로그인으로 진행해주세요.
-			</p>
-
-		</c:if>
-
-		<c:if test="${member.id ne 'kakao' }">
-			<c:if test="${not empty member }">
-				<h2>
-					${member.name } 님의 아이디는 ${member.id } 입니다.<br>
-				</h2>
-			</c:if>
-		</c:if>
+			<h5>결과</h5>
+			<br>
+		${result.vcContent } 당선~~~
 		<br>
 		<div class="btn-area text-center">
+			<a id="idFindBtn" class="btn btn-gyellow"> 결과 보러 가기 </a>
 			<a id="closeBtn" class="btn btn-dark-3"> 닫기 </a>
 		</div>
 

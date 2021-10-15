@@ -1,9 +1,7 @@
 package com.lh.app.signIn.controller;
 
 import java.util.HashMap;
-import java.util.Random;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,13 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
-import com.lh.app.signIn.etc.Coolsms;
 import com.lh.app.signIn.service.SignInService;
+import com.lh.app.vote.service.VoteService;
 
 @Controller
 public class SignInController {
@@ -27,6 +24,8 @@ public class SignInController {
 	
 	@Autowired
 	SignInService signInService;
+	@Autowired
+	VoteService voteService;
 
 	@GetMapping("/login")
 	public String loginForm() {
@@ -245,7 +244,10 @@ public class SignInController {
 	
 	//메인 팝업, 투표 결과 표시
 	@GetMapping("/popup/vote")
-	public String popupVote() {
+	public String popupVote(Model model) {
+		
+		model.addAttribute("title", voteService.popupCurrentVoteTitle());
+		model.addAttribute("result", voteService.popupCurrentVoteResult());
 		
 		return "no/popupVote";
 	}
