@@ -23,4 +23,7 @@ public interface LostFoundService {
 
 	// 단건조회
 	public LostFoundVO read(LostFoundVO vo);
+	
+	// 토탈 카운트
+	public int getTotalLost();
 }

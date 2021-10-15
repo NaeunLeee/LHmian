@@ -191,7 +191,24 @@ button{
 </section>
 
 
-
+<script>
+	var amount = 0;
+	var lostCount = 0;
+	var pageNum = 0;
+	
+	$(function() {
+		
+		lostList();
+		
+		$.ajax({
+			url : "lostCount",
+			method : "get",
+			success : function(data) {
+				lostCount = data;
+			}
+		});
+	});
+</script>
 
 
 
