@@ -93,21 +93,37 @@ button{
 	margin-bottom:20px;
 }
 
+.img-gray {
+	-webkit-filter: grayscale(100%);
+	filter: gray;
+	position:relative;
+	
+}
+
+.image-gray .text {
+  position:absolute;
+  top:40px;
+  left:80px;
+}
+
+
+.trans-15 {
+	background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
 </style>
 
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터2.jpg);">
+				<img class="nodisplay-image" src="${pageContext.request.contextPath }/resources/images/header/헤더푸터2.jpg" alt="" />
 			</div>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay">
-						</div>
+					<div class="header-inner trans-15">
 					</div>
 				</div>
 			</div>
@@ -171,7 +187,7 @@ button{
           <div class="col-md-4 col-sm-6 col-xs-12"> 
            <div class="bg2-featurebox-3">
               <div class="img-box">
-               <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive"/> </div>
+               <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive img-gray"/> </div>
               <div class="postinfo-box">
                 <!-- <h4 class="dosis uppercase title"><a href="#">Aliquam Rhoncus</a></h4> -->
                 <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소</span><%--  <span><i class="fa fa-folder"></i> 습득일자: ${item.lostDate}</span> --%></div>
