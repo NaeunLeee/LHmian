@@ -63,7 +63,7 @@ public class CarListController {
 	// 차량 등록
 	@PostMapping("/insertCar")
 	@ResponseBody
-	public int insertCar(CarListVO vo) {
+	public int insertCar(@RequestBody CarListVO vo) {
 		return service.insert(vo);
 	}
 	
