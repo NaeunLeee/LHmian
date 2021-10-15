@@ -26,4 +26,6 @@ public interface VoteService {
 	public int voteCountUpdate(VoteVO vo);
 	
 	public VoteVO voteParticipate(VoteVO vo);
+	
+	public int popupVoteCount();
 }

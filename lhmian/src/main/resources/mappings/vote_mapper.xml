@@ -67,6 +67,11 @@
 		WHERE VOTE_NO = #{voteNo} 
 	</select>
 	
+	<select id="popupVoteCount" resultType="int">
+		SELECT COUNT(*) FROM VOTE 
+		WHERE VOTE_END BETWEEN SYSDATE-1 AND SYSDATE+2
+	</select>
+	
 	<insert id="voteInsert">
 		INSERT INTO VOTE
 			   (
@@ -82,7 +87,7 @@
 			VOTE_SEQ.NEXTVAL, 
 			#{voteTitle}, 
 			#{voteStart}, 
-			#{voteEnd}, 
+			#{voteEnd} + 1, 
 			#{voteEnd} + 3,
 			#{uploadImg}
 			)
