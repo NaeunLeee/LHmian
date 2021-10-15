@@ -17,4 +17,5 @@ private Date lostDate;			// not null
 private Date lostUpdate; 		// null
 private String lostFile;		// not null
 private String lostStatus;		// not null
+private String foundLocation;
 }

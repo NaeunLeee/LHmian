@@ -30,6 +30,8 @@ textarea {
   resize : none;
   margin: 20px 0;
 }
+
+
 </style>
 
 
@@ -74,11 +76,15 @@ textarea {
     <section class="section-light sec-padding">
       <div class="container" align="center">
         <div class="row">
-			<form method="post" action="admLostInsert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
+			<form id="frm" method="post" action="admLostInsert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
 				<table class="table-style-2">
 					<tr>
 						<th>습득일자</th>
-						<td><input type="date"></td>
+						<td><input type="date" name="lostDate"></td>
+					</tr>
+					<tr>
+						<th>습득장소</th>
+						<td><input type="text" name="foundLocation"></td>
 					</tr>
 					<tr>
 						<th>분실물내용</th>
@@ -90,9 +96,14 @@ textarea {
 					</tr>
 				</table>
 				<br>
-					<button type="button" class="btn btn-default">등록</button>
 				</form>
+					<button type="button" class="btn btn-default">등록</button>
 			</div>
 		</div>
 	</section>
-
+	
+<script>
+$('.btn').on('click', function() {
+   frm.submit();
+})
+</script>
