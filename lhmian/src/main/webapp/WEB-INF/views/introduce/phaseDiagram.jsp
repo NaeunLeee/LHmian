@@ -9,9 +9,7 @@
 			<div class="col-md-6">
 				<ol class="breadcrumb">
 					<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/introduce/myApt">우리
-							아파트</a></li>
+					<li><a href="${pageContext.request.contextPath}/introduce/myApt">우리아파트</a></li>
 					<li class="current"><a
 						href="${pageContext.request.contextPath}/introduce/phaseDiagram">평형도</a></li>
 				</ol>
@@ -29,7 +27,6 @@
 <section>
 	<div class="container">
 		<div class="row">
-
 			<div class="clearfix">
 				<div id="js-filters-lightbox-gallery2"
 					class="cbp-l-filters-buttonCenter">
@@ -61,16 +58,16 @@
 <!-- end section -->
 <ul class="nav nav-pills">
 	<li class="nav-item active">
-		<a href="#sliderTest1" class="nav-link" data-toggle="tab">slider1`</a>
+		<a href="#sliderTest1" class="nav-link" id="show1" data-toggle="tab">slider1</a>
 	</li>
 	<li class="nav-item">
-		<a href="#sliderTest2" class="nav-link" data-toggle="tab">slider2</a>
+		<a href="#sliderTest2" class="nav-link" id="show2" data-toggle="tab">slider2</a>
 	</li>
 	<li class="nav-item">
-		<a href="#sliderTest3" class="nav-link" data-toggle="tab">slider3</a>
+		<a href="#sliderTest3" class="nav-link" id="show3" data-toggle="tab">slider3</a>
 	</li>
 	<li class="nav-item">
-		<a href="#sliderTest4" class="nav-link" data-toggle="tab">slider4</a>
+		<a href="#sliderTest4" class="nav-link" id="show4" data-toggle="tab">slider4</a>
 	</li>
 </ul>
 
@@ -730,11 +727,12 @@ The following part can be removed on Server for On Demand Loading) -->
 	var revapi4;
 	var revapi5;
 	var revapi6;
+	var revapi7;
 	
 	tpj(document).ready(function() {
-		if(tpj("#rev_slider").revolution == undefined){
+/* 		if(tpj("#rev_slider").revolution == undefined){
 			revslider_showDoubleJqueryError("#rev_slider");
-		}else{
+		}else{ */
 			revapi4 = tpj("#rev_slider").show().revolution({
 				sliderType:"standard",
 				jsFileLocation:"js/revolution-slider/js/",
@@ -789,6 +787,10 @@ The following part can be removed on Server for On Demand Loading) -->
 					disableFocusListener:false,
 				}
 			});
+			
+			function show1() {
+				revapi4.revshowslide(1)
+			};
 		
 		revapi5 = tpj("#rev_slider1").show().revolution({
 			sliderType:"standard",
@@ -967,9 +969,29 @@ The following part can be removed on Server for On Demand Loading) -->
 			disableFocusListener:false,
 			}
 		});
+
+		document.getElementById("show1").addEventListener ("click", show1, false);
+        function show1() {
+				revapi4.revshowslide(1)
+			};
+
+		document.getElementById("show2").addEventListener ("click", show2, false);
+        function show2() {
+           		 revapi5.revshowslide(1)
+        };
+        
+        document.getElementById("show3").addEventListener ("click", show3, false);
+        function show3() {
+				revapi6.revshowslide(1)
+			};
+			
+		document.getElementById("show4").addEventListener ("click", show4, false);
+        function show4() {
+        	    revapi7.revshowslide(1)
+        };
 	}
 	
-	});	/*ready*/
+);	/*ready*/
 	
 </script>
 
