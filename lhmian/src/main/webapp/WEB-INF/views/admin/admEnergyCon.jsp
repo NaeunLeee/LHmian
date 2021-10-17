@@ -35,10 +35,10 @@ tr {
 .pagination>li>a {
 	color: black;
 }
-/* 
+
 .pagination {
-	margin-left: 250PX;
-} */
+	margin-left: 25%;
+}
 </style>
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
@@ -80,9 +80,9 @@ tr {
 			<div class="col-xs-12 nopadding">
 				<div class="sec-title-container-padding-topbottom text-center">
 					<div class="pl-title-line-1"></div>
-					<h4 class="uppercase font-weight-7 less-mar-1">결제내역</h4>
+					<h4 class="uppercase font-weight-7 less-mar-1">에너지 사용 내역</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title" style="font-size: 13px;">결제... 어쩌구..ㅋㅋ</p>
+					<p class="by-sub-title" style="font-size: 13px;">월별, 기간별로 세대의 에너지 사용 내역을 확인 할 수 있습니다.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>

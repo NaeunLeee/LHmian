@@ -86,7 +86,7 @@ margin-left : 300px;
 					<div class="pl-title-line-1"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">결제내역</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title" style="font-size: 13px;">결제... 어쩌구..ㅋㅋ</p>
+					<p class="by-sub-title" style="font-size: 13px;">각종 편의시설 및 관리비의 결제내역을 확인 / 취소할 수 있습니다.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>
