@@ -12,22 +12,25 @@
 	.ck-editor__editable {
 	    min-height: 400px;
 	}
+	
+	.trans-15 {
+	background-color: rgba(0, 0, 0, 0.15) !important;
+}
+	
 </style>
 
 <!-- CKeditor 적용을 위한 일부 수정(10/11): 이나은 -->
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터2.jpg);">
 				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
 			</div>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay">
-						</div>
+					<div class="header-inner trans-15">
 					</div>
 				</div>
 			</div>
@@ -36,14 +39,14 @@
 	<div class=" clearfix"></div>
 </div>
 	<section>
-		<div class="pagenation-holder-no-bottom">
+		<div class="pagenation-holder">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a href="${pageContext.request.contextPath}/office/office">관리 사무소</a></li>
-							<li class="current"><a href="#">민원</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/office/csList">민원게시판</a></li>
 						</ol>
 					</div>
 				</div>
@@ -56,9 +59,9 @@
 				<div class="col-xs-12 nopadding">
 					<div class="sec-title-container-padding-topbottom text-center">
 						<div class="pl-title-line-1"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">민원</h4>
+						<h4 class="uppercase font-weight-7 less-mar-1">민원게시판</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">게시글 등록....</p>
+						<p class="by-sub-title">민원글을 등록해주세요.</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>

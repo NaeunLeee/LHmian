@@ -20,21 +20,79 @@ margin : 0;
 padding : 100px;
 }
 </style>
-<div align="center" class="gntList">
-	<%-- <c:forEach items="${generation}" var="houseInfo">
-		<c:if test="${houseInfo.houseInfo != 0}">
-			<div class="status">
-				<div class="cbp-item-yj web-design generation">
-					<button value="${houseInfo.houseInfo}" onclick="generation(${houseInfo.houseInfo})">
-						${houseInfo.houseInfo}
-					</button>
-				</div>
-			</div>
-		</c:if>
-	</c:forEach> --%>
+
+
+<div class="header-inner-tmargin">
+   <section class="section-side-image clearfix">
+      <div class="img-holder col-md-12 col-sm-12 col-xs-12">
+         <div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터9.jpg);">
+            <img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+         </div>
+      </div>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+               <div class="header-inner">
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <div class=" clearfix"></div>
 </div>
-<div id="showMore"></div>
-<!-- <button id="showMore">더보기</button> -->
+   <section>
+      <div class="pagenation-holder">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <ol class="breadcrumb-gray">
+                  	<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
+					<li class="current"><a href="${pageContext.request.contextPath}/visit/generation">방명록</a></li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section class="sec-padding section-light">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12 nopadding">
+               <div class="sec-title-container-padding-topbottom text-center">
+                  <div class="pl-title-line-1"></div>
+                  <h4 class="uppercase font-weight-7 less-mar-1">방명록</h4>
+                  <div class="clearfix"></div>
+                  <p class="by-sub-title" style="font-size: 13px;">자유롭게 방명록을 남겨보세요!</p>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+         </div>
+      </div>
+
+      <div class="container" align="center" style="width: 1400px">
+         <div class="text-box white padding-4 col-7">
+         	<div class="gntList">
+         	${generation }dd
+			<%-- <c:forEach items="${generation}" var="houseInfo">
+				<c:if test="${houseInfo.houseInfo != 0}">
+					<div class="status">
+						<img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="" class="img-responsive" />
+						<div class="cbp-item-yj web-design generation">
+							<button value="${houseInfo.houseInfo}" onclick="generation(${houseInfo.houseInfo})">
+								${houseInfo.houseInfo}
+							</button>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach> --%>
+			</div>
+			<div id="showMore"></div>
+		</div>
+	</div>
+</section>
+
 <script>
 let csrfHeaderName = "${_csrf.headerName}";
 let csrfTokenValue = "${_csrf.token}";
@@ -44,20 +102,21 @@ var amount = 0;
 var gntCount = 0;
 
 $(function() {
-	gntList();
+	//gntList();
 
 	//세대리스트 전체조회
-	$.ajax({
+	 /* $.ajax({
 		url : "generation",
 		method : "get",
 		success : function(data) {
+			console.log(data);
 			gntList = data;
 		}
-	})
+	}) */
 });
 
 //더보기  클릭시 세대리스트 추가(ajax 페이징)
-$(document).on('click', '#addBtn', function() {
+/* $(document).on('click', '#addBtn', function() {
 	var divCount = $('.gntList #generation').length;
 	pageNum = (divCount / 9) + 1;
 	amount = 9;
@@ -85,10 +144,10 @@ $(document).on('click', '#addBtn', function() {
 	if(pageNum == Math.ceil(gntCount/9)) {
 		$('#addBtn').remove();
 	}
-});
+}); */
 
 //페이지 로딩시 리스트 출력
-function gntList() {
+/* function gntList() {
 	pageNum = 1;
 	amount = 9;
 	
@@ -110,7 +169,7 @@ function gntList() {
 			}
 	});
 	$("#showMore").append($("<button style='height: 100%; width: 100%' type='button' id='addBtn'>더보기+</button>"));
-}
+} */
 
 /* $(document).on("click","#rdBtn",function(){
 	var cnt = $(".gntList #generation").length; // 현재 포스트 갯수 구하기

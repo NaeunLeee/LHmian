@@ -155,61 +155,163 @@
 	<!-- END OF SLIDER WRAPPER -->
 
 </body> --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
+	<script>
+	
+	let count = '${count}';
+	console.log(count);
+	
+	//if (count > '0') {
+		window.open("popup/vote", "주민 투표 결과",
+						"width=750, height=550, left=300, top=50");				
+	//	}
+
+	</script>
+</sec:authorize>
+
+<style>
+.scroll-down {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb 1s infinite;
+  animation: sdb 1s infinite;
+  box-sizing: border-box;
+
+}
+
+.scroll-down-text{
+	position: absolute;
+	top: 80%;
+	font-size:18px;
+	font-weight:800;
+	color: white;
+	text-align: center;
+	font-family: "Didot LT STD";
+	left:0
+}
+
+
+
+@-webkit-keyframes sdb {
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+  }
+  20% {
+    -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+  }
+  40% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+  }
+}
+@keyframes sdb {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  20% {
+    transform: rotate(-45deg) translate(-10px, 10px);
+  }
+  40% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+}
+
+.ment-1{
+	top:55%; 
+	color:white; 
+}
+
+.title-1{
+	font-weight:1000; 
+	font-size:85px; 
+	font-family:serif;
+	position: relative;
+}
+</style>
 
 
 <div id="fullpage">
+
 	<div class="section" style="background: url(https://cdn.imweb.me/thumbnail/20210528/3b800594243d1.jpg) center center / cover no-repeat;">
 	<div class="container">
 	<div class="row">
-		<div class="col-md-12 text-center font-weight-8" style="top:55%; color:white">
-			<h1 style="font-weight:1000; font-size:85px; font-family:serif">LHmian</h1><br>
-			<h5 style="font-size:18px">삶을 더욱 풍요롭게 해 줄 안식처</h5>
+		<div class="col-md-12 text-center font-weight-8 ment-1">
+			<h1 class="title-1">LHmian</h1><br>
+			<h5 style="font-size:18px;">삶을 더욱 풍요롭게 해 줄 안식처</h5>
+		</div>
+			<div class="scroll-down-text col-sm-12">Scroll down<br>
+			<span class="scroll-down"></span>
+
 			</div>
 		</div>
-		</div>
-		</div>
-	<div class="section" style="background: url(https://cdn.imweb.me/thumbnail/20210528/16f133f94723b.jpg) center center / cover no-repeat;">
+	</div>
+	</div>
+	<div class="section"
+		style="background: url(https://cdn.imweb.me/thumbnail/20210528/16f133f94723b.jpg) center center/cover no-repeat;">
 		<div class="row">
-		<div class="col-md-12 text-left font-weight-8" style="top:200px; left:30px; color:white">
-			<h4 style="margin:0">도심 속 휴양지</h4><br>
-			<h5>삶의 감수성을 채울 수 있는 힐링을 위한 공간 </h5>
+			<div class="col-md-12 text-left font-weight-8"
+				style="top: 200px; left: 30px; color: white">
+				<h4 style="margin: 0">도심 속 휴양지</h4>
+				<br>
+				<h5>삶의 감수성을 채울 수 있는 힐링을 위한 공간</h5>
 			</div>
-		</div>
-		</div>
-	<div class="section" style="background: url(${pageContext.request.contextPath}/resources/images/main/메인3.jpg) center center / cover no-repeat;">
-	<div class="container">
-	<div class="row">
-		<div class="col-md-12 text-center font-weight-8" style="top:50%; color:white">
-			<h1 class="font-weight-9">아크로 포레스트 웅앵웅</h1><br>
-			<h5>LH미안~~~~~</h5>
-			</div>
-		</div>
 		</div>
 	</div>
-	<div class="section" style="background: url(https://cdn.imweb.me/thumbnail/20210528/4999d67d71919.jpg) center center / cover no-repeat;">
-	<div class="container">
-	<div class="row">
-		<div class="col-md-12 text-center font-weight-8" style="top:50%; color:white">
-			<h1 style="font-weight:1000; font-size:55px">LHmian</h1><br>
-			<h5 >삶을 더욱 풍요롭게 해 줄 안식처</h5>
+	<div class="section"
+		style="background: url(${pageContext.request.contextPath}/resources/images/main/메인3.jpg) center center / cover no-repeat;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center font-weight-8"
+					style="top: 50%; color: white">
+					<h1 class="font-weight-9">아크로 포레스트 웅앵웅</h1>
+					<br>
+					<h5>LH미안~~~~~</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section"
+		style="background: url(https://cdn.imweb.me/thumbnail/20210528/4999d67d71919.jpg) center center/cover no-repeat;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center font-weight-8"
+					style="top: 50%; color: white">
+					<h1 style="font-weight: 1000; font-size: 55px">LHmian</h1>
+					<br>
+					<h5>삶을 더욱 풍요롭게 해 줄 안식처</h5>
+				</div>
 			</div>
 		</div>
 		</div>
-	</div>
 </div>
-<link href="${pageContext.request.contextPath}/resources/ss/jquery.fullpage.css" rel="stylesheet" type="text/css"/>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/ss/jquery.fullpage.js"></script>
+
+<link
+	href="${pageContext.request.contextPath}/resources/ss/jquery.fullpage.css"
+	rel="stylesheet" type="text/css" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/ss/jquery.fullpage.js"></script>
 
 <script>
-$(document).ready(function() {	
-	$('#fullpage').fullpage({
-		//options here
-		autoScrolling:true,
-		scrollHorizontally: true
-	});
+	$(document)
+			.ready(
+					function() {
+						$('#fullpage').fullpage({
+							//options here
+							autoScrolling : true,
+							scrollHorizontally : true
+						});
 
-});
+					});
 </script>

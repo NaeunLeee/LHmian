@@ -8,7 +8,8 @@
 			LOST_DATE,
 			LOST_UPDATE,
 			LOST_FILE,
-			LOST_STATUS
+			LOST_STATUS,
+			FOUND_LOCATION
 			
 		FROM 
 			LOST_AND_FOUND
@@ -37,13 +38,15 @@
 								LOST_DATE,
 								LOST_UPDATE,
 								LOST_FILE,
-								LOST_STATUS)	
+								LOST_STATUS,
+								FOUND_LOCATION)	
 						VALUES(#{lostNo}, 
 								#{lostContent}, 
-								DEFAULT,
+								#{lostDate},
 								#{lostUpdate, jdbcType = DATE}, 
 								#{lostFile}, 
-								DEFAULT)
+								DEFAULT,
+								#{foundLocation})
 	</insert>
 	
 	<update id="update" parameterType="LostFoundVO">

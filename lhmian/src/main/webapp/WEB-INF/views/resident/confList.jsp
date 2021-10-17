@@ -46,18 +46,18 @@
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터9.jpg);">
+				<img class="nodisplay-image" src="${pageContext.request.contextPath }/resources/images/header/헤더푸터9.jpg" alt="" />
 			</div>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
 					<div class="header-inner">
-						<div class="overlay">
+<!-- 						<div class="overlay">
 							<div class="text text-center">
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -135,7 +135,7 @@
 						</li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-						<li><a href="${num}">${num}</a></li>
+						<li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true}">
 						<li>

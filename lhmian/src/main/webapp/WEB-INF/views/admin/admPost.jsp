@@ -129,7 +129,7 @@
 							</a></li>
 					</c:if>
 					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-						<li><a href="${num}">${num}</a></li>
+						<li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
 					</c:forEach>
 					<c:if test="${pageMaker.next == true}">
 						<li><a href="${pageMaker.endPage+1}"> <span aria-hidden="true"><i
@@ -140,10 +140,10 @@
 			</div>
 			
 			<!-- 수정 -->
-			<div style="float: left; margin-left: 50px;" id="criteriaForm" data-option="${type}">
+			<div style="margin:auto;" id="criteriaForm" data-option="${type}">
 				<form id="actionForm" action="admPost" method="get" >
 					<!-- 메소드 생략시 자동으로 get로 전환 -->
-					<select name="type" class="form-control" style="width: 100px;">
+					<select name="type" class="form-control" style="width: 100px; display: inline;">
 						<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
 						<option id="T" value="T" ${empty type == 'T' ? selected : "" }>세대번호</option>
 						<option id="C" value="C" ${empty type == 'C' ? selected : "" }>도착날짜</option>
@@ -152,11 +152,11 @@
 						<input type="checkbox" id="Y" name="type" value="Y" ${pageMaker.cri.type eq ('Y'||'TY'||'CY') ? checked : "" }> 
 						<label for="N">N</label>
 						<input type="checkbox" id="N" name="type" value="N" ${pageMaker.cri.type eq ('N'||'TN'||'CN') ? checked : "" }> 
-						<input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}"> 
+						<input name="keyword" class="form-control" style="width: 200px; display: inline;" value="${pageMaker.cri.keyword}"> 
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 						<input type="hidden" name="preType" id="preType" value="${type}">
-					<button type="submit" class="btn btn-dark">검색</button>
+					<button type="submit" class="btn btn-dark" style="display: inline;">검색</button>
 				</form>
 			</div>
 		</div>
@@ -327,31 +327,4 @@
 			 $('#C').prop("selected", false);
 		 }
 	 });
-	// function sendSms() {
-	// 	const phone = $('#phone').val();
-	// 	var phonejson = {
-	// 		"phone": 
-	// 	}
-
-	// 	$.ajax({
-	// 		url: 'sendKey',
-	// 		type: 'POST',
-	// 		beforeSend: function (xhr) {
-	// 			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-	// 		},
-	// 		data: JSON.stringify(phonejson),
-	// 		contentType: "application/json",
-	// 		success: function (data) { //문자 발송에 성공시 data: 인증번호, 실패시 data: "fail" 메세지
-	// 			if (data !== "fail") {
-	// 				success = true;
-	// 				alert("송신완료");
-	// 			} else {
-	// 				alert("송신실패");
-	// 			}
-	// 		},
-	// 		error: function () {
-	// 			alert('AJAX 에러');
-	// 		}
-	// 	});
-	// }
 </script>

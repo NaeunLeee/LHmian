@@ -239,7 +239,7 @@
 										<p></p>
 									</div>
 									<br>
-									<h5 class="text-center"> 동일 평형 평균</h5>
+									<h4 class="text-center"> 동일 평형 평균</h4>
 									<div id="barChart">
 										<canvas id="myChart" width="555" height="555"
 											style="display: block; width: 555px; height: 555px;"></canvas>
@@ -550,24 +550,24 @@
 			data : {
 				labels : [ data[0].month + "월", data[1].month + "월", data[2].month + "월", data[3].month + "월", data[4].month + "월", data[5].month + "월"],
 				datasets : [ {
-					label : "My First dataset",
+					label : "관리비",
 					fill : false,
 					lineTension : 0.1,
-					backgroundColor : "rgba(75,192,192,0.4)",
-					borderColor : "rgba(75,192,192,1)",
+					backgroundColor : ["rgba(255,194,108,0.4)"],
+					borderColor : "rgba(255,194,108,1)",
 					borderCapStyle : 'butt',
 					borderDash : [],
 					borderDashOffset : 0.0,
 					borderJoinStyle : 'miter',
-					pointBorderColor : "rgba(75,192,192,1)",
+					pointBorderColor : "rgba(255,194,108,1)",
 					pointBackgroundColor : "#fff",
 					pointBorderWidth : 1,
 					pointHoverRadius : 5,
-					pointHoverBackgroundColor : "rgba(75,192,192,1)",
-					pointHoverBorderColor : "rgba(220,220,220,1)",
+					pointHoverBackgroundColor : "rgba(255,165,40,1)",
+					pointHoverBorderColor : "rgba(255,165,40,0.4)",
 					pointHoverBorderWidth : 2,
 					pointRadius : 1,
-					pointHitRadius : 10,
+					pointHitRadius : 5,
 					data : [ data[0].mfTotal, data[1].mfTotal, data[2].mfTotal, data[3].mfTotal, data[4].mfTotal, data[5].mfTotal ],
 				} ]
 			},
@@ -586,14 +586,14 @@
 		var myChart = new Chart(ctx, {
 			type : 'bar',
 			data : {
-				labels : [ "동일 평형 평균", "이번 달" ],
+				labels : [ "동일 평형 평균 관리비", "이번 달 관리비" ],
 				datasets : [ {
-					label : "My First dataset",
-					backgroundColor : "rgba(255,99,132,0.2)",
-					borderColor : "rgba(255,99,132,1)",
+					label : [ "관리비" ],
+					backgroundColor : ["rgba(255,169,72,0.2)", "rgba(255,99,132,0.2)"],
+					borderColor : ["rgba(255,169,72,1)", "rgba(255,99,132,1)", ],
 					borderWidth : 1,
-					hoverBackgroundColor : "rgba(255,99,132,0.4)",
-					hoverBorderColor : "rgba(255,99,132,1)",
+					hoverBackgroundColor : ["rgba(255,169,72,0.4)", "rgba(255,99,132,0.4)"],
+					hoverBorderColor : ["rgba(255,169,72,1)", "rgba(255,99,132,1)"],
 					data : [ samePyeongAvg, ThisMonthTotal ],
 				} ]
 			},

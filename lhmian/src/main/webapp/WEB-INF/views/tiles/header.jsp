@@ -266,7 +266,8 @@
 																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
 															</li>
 															<li>
-																<a href="${pageContext.request.contextPath}/admin/admSkedview">일정 관리</a>
+																<!-- 10/15 경로 변경 -->
+																<a href="${pageContext.request.contextPath}/admin/admSked">일정 관리</a>
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admPost">택배 관리</a>

@@ -16,6 +16,10 @@
 	border:none;
 }
 
+.padding-bottom-200{
+	padding-bottom: 200px;
+}
+
 
 </style>
 
@@ -53,7 +57,7 @@
 
 
 
-      <div class="container" align="center">
+      <div class="container padding-bottom-200" align="center">
 			<div class="text-box white padding-4 col-7">
 			
 		<div class="margin-bottom-4" id="map" style="width:100%; height:500px;"></div>
@@ -71,7 +75,8 @@
 	<div class="text-box col-md-6" align="left" style="border:none;">
 	<ul class="port-project-info">
 	    <li><h4 class="font-weight-6">대중교통</h4></li>
-	    <li><b><i class="fas fa-bus color-org"></i> 버스</b><br>약령시앞 : 204, 304, 349, 401, 410-1, 503, 518, 650, 706, 730, 909, 급행2, 북구2
+	    <li><b><i class="fas fa-bus color-org"></i> 버스</b><br>약령시앞 : 204, 304, 349, 401, 410-1, 503, 518, 650, 706, 730,
+	    909, 급행2, 북구2
 	    <li><b><i class="fas fa-subway color-org"></i> 지하철</b><br>1호선 : 중앙로역(1번 출구, 도보 1~2분)
    		<br>2호선 : 반월당역(14번 출구, 도보 5~7분)</li>
     </ul>

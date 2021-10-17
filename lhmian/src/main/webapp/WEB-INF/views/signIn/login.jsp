@@ -56,7 +56,7 @@
 		const password = $('#password').val();
 
 		$('#findId').on('click', function() {
-			window.open("find/findIdForm", "아이디 찾기", "width=750, height=550");
+			window.open("find/findIdForm", "아이디 찾기", "width=750, height=550, left=300, top=50");
 
 		})
 
@@ -64,7 +64,7 @@
 				'click',
 				function() {
 					window.open("find/findPasswordForm", "비밀번호 찾기",
-							"width=600, height=750");
+							"width=600, height=750, left=300, top=50");
 
 				})
 
@@ -212,7 +212,7 @@
 							</div>
 							<div class="spacer-t30 spacer-b30">
 								<div class="tagline">
-									<span> SNS 로그인 / 회원가입 </span>
+									<span style="background-color: #f5f5f5"> SNS 로그인 / 회원가입 </span>
 								</div>
 							</div>
 							<div class="section">

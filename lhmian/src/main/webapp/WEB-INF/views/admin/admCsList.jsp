@@ -145,8 +145,8 @@
 					</table>
 					<br><br>
      
-   <!-- 폼 -->
-   <div id="pageButton" align="center">
+   <!-- 10/15 id수정 -->
+   <div id="pageBtn" align="center">
          <ul class="pagination hover-orange">
             <c:if test="${pageMaker.prev == true}">
                <li>
@@ -156,7 +156,7 @@
                </li>
             </c:if>
             <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-               <li><a href="${num}">${num}</a></li>
+               <li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
             </c:forEach>
             <c:if test="${pageMaker.next == true}">
                <li>
@@ -167,9 +167,9 @@
             </c:if>
          </ul>
       </div>
-
+	<!-- 10/15 action 수정 -->
    <div align="center">
-      <form id="actionForm" action="csList" method="get">
+      <form id="actionForm" action="admCsList" method="get">
          <select name="type" class="form-control" style="width: 100px; ">
             <option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
             <option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>

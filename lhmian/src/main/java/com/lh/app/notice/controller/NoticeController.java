@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lh.app.comm.domain.PageVO;
 import com.lh.app.notice.domain.NoticeCriteria;
 import com.lh.app.notice.domain.NoticePageVO;
 import com.lh.app.notice.domain.NoticeVO;
@@ -24,12 +25,38 @@ public class NoticeController {
 	NoticeService service;
 
 	// 전체조회
+	// 10/16 수정 
 	@GetMapping("/office/noticeList")
 	public String noticeList(Model model, @ModelAttribute("cri") NoticeCriteria cri) {
+		if (cri.getType() == "" && cri.getPreType() == null) {
 		int total = service.getTotalCount(cri);
 		model.addAttribute("list", service.getList(cri));
 		model.addAttribute("pageMaker", new NoticePageVO(cri, total));
 		return "office/noticeList";
+		}	else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))
+				) {
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			
+			System.out.println("3."+cri.getType());
+			System.out.println("4."+cri.getPreType());
+
+			return "office/noticeList";
+		}  else {
+			cri.setPageNum(1);
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			
+			System.out.println("5."+cri.getType());
+			System.out.println("6."+cri.getPreType());
+
+			return "office/noticeList";
+		}
+		
 	}
 
 	// 관리자 전체조회

@@ -26,4 +26,10 @@ public interface VoteMapper {
 	public int voteCountUpdate(VoteVO vo);
 	
 	public int voteContentsCount(int voteNo);
+	
+	public int popupVoteCount();
+	
+	public HouseVoteInfoVO popupCurrentVoteResult();
+	
+	public VoteVO popupCurrentVoteTitle();
 }

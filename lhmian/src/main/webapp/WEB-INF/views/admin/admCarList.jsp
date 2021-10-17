@@ -7,6 +7,9 @@
 <!-- 10/14 관리자 페이지에 맞게 디자인 일부 수정: 이나은 -->
 <!-- 10/14 차량 등록 추가: 이나은 -->
 <style>
+	.container {
+		width: 85%;
+	}
 	.tr_1 {
 		text-align: center;
 	}
@@ -32,6 +35,13 @@
 	}
 	.container {
 		width: 85%;
+	}
+	.sec-title-container.less-padding-3.text-left {
+		padding-left: 30px;
+		padding-bottom: 0px; 
+	}
+	.text-bo.white.padding-4.col-7 {
+		padding-top: 5px;
 	}
 </style>
 
@@ -193,8 +203,7 @@
 					<!-- Modal Footer -->
 					<div class="modal-footer">
 						<div align="center">
-							<button type="button" id="register" class="btn btn-gyellow">저장</button>
-							<button type="button" data-dismiss="modal" class="btn btn-default">취소</button>
+							<button type="button" id="closeModal" data-dismiss="modal" class="btn btn-gyellow">닫기</button>
 						</div>
 					</div>
 				</form>
@@ -312,14 +321,19 @@
 		return cnt;
 	}
 	
-	// 차량 조회 (10/14 추가: 이나은)
+	// 조회 버튼 클릭 이벤트 (10/14 추가: 이나은)
 	$('#searchCars').on("click", function() {
-		
-		var str = "";
 		var dong = $('#dong').val();
 		var ho = $('#ho').val();
-		
 		var num = countByHouseInfo(dong, ho);
+		showCars(dong, ho, num);
+	});
+	
+	// 차량 조회 결과 (10/15 추가: 이나은)
+	function showCars(dong, ho, num) {
+		
+		var str = "";
+		var houseInfo = dong + ho;
 		
 		if (dong == '' || ho == '') {
 			alert('동호수를 모두 입력해주세요.');
@@ -330,7 +344,7 @@
 				url: 'admin/carByHouseInfo',
 				type: 'POST',
 				data: JSON.stringify({
-					houseInfo: dong + ho
+					houseInfo: houseInfo
 				}),
 				contentType: 'application/json',
 				beforeSend: function(xhr) {
@@ -352,13 +366,14 @@
 						str += '<td><input type="text" class="regCode form-control" name="carCode" placeholder="예) 15부1234"></td>';
 						str += '<td><button type="button" class="insertCar btn btn-default">추가</button></td>';
 						str += '</tr>';
+						str += '<input type="hidden" class="regHouseInfo" value="' + houseInfo + '">';
 						
 					} else {
 						for (i=0; i<data.length; i++) {
-							str += '<tr data-carNo="' + data[i].carNo + '">';
+							str += '<tr>';
 							str += '<td><input type="text" class="delType form-control" name="carType" value="' + data[i].carType + '" readonly></td>';
 							str += '<td><input type="text" class="delCode form-control" name="carCode" value="' + data[i].carCode + '" readonly></td>';
-							str += '<td><button type="button" class="deleteCar btn btn-default">삭제</button></td>';
+							str += '<td><button type="button" name="deleteCar" class="deleteCar btn btn-default" data-carNo="' + data[i].carNo + '">삭제</button></td>';
 							str += '</tr>';
 							if (data.length == 1) {
 								str += '<tr>';
@@ -366,6 +381,7 @@
 								str += '<td><input type="text" class="regCode form-control" name="carCode" placeholder="예) 15부1234"></td>';
 								str += '<td><button type="button" class="insertCar btn btn-default">추가</button></td>';
 								str += '</tr>';
+								str += '<input type="hidden" class="regHouseInfo" value="' + data[i].houseInfo + '">';
 							} 
 						}
 					}
@@ -377,35 +393,96 @@
 			});
 			
 		}
-	});
-	
-	// 차량 한대 삭제
-	$(document).on('click', '[class=deleteCar]', function(event) {
-		console.log($(this).attr('data-carNo'));
-	});
- 	/* $('.deleteCar').on("click", function() {
-		console.log('클릭됨');
-		console.log($(this).attr('data-carNo'));
-	}); */ 
-	
-	// 차량번호 등록시 공백 자동제거
-	function replaceSpace(str) {
-		str.replace(/ /g, "");
 	}
 	
-	// 차량 등록
-/*  	$('.insertCar').on("click", function() {
+	
+	// 차량 한대 삭제 (10/15 추가: 이나은)
+	$(document).on('click', '.deleteCar', function(event) {
+		
+		var dong = $('#dong').val();
+		var ho = $('#ho').val();
+		var num = countByHouseInfo(dong, ho);
+		
+		if (confirm('삭제하시겠습니까?')) {
+	  		$.ajax ({
+				url: 'deleteOneCar',
+				type: 'POST',
+				data: JSON.stringify({
+					carNo: parseInt($(this).attr('data-carNo'))
+				}),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(data) {
+					showCars(dong, ho, num);
+					alert(data + '건을 삭제했습니다.');
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			});
+		}
+		
+	});
+	
+	// 차량번호 등록시 공백 자동제거, 유효성 검사 (10/15 추가: 이나은)
+	$(document).on('change', '.regCode', function() {
+		var str = $('.regCode').val();
+/* 		var codeForm = /^[0-9]{2}[\s]*[가-힣]{1}[\s]*[0-9]{4}/gi;
+		
+		if (!codeForm.test(str)) {
+			alert('형식을 확인해주세요. (예: 15부1234)');
+		} else {
+			alert('올바른 형식입니다.');
+		} */
+		
+		var replaced = str.replace(/\s/gi, "");
+		$('.regCode').val(replaced);
+	});
+	
+	// 차량 등록 (10/15 추가: 이나은)
+	$(document).on('click', '.insertCar', function() {
+		
+		var houseInfo = $('.regHouseInfo').val();
+		var carCode = $('.regCode').val();
+		var carNo = parseInt(carCode.substring(3, 7) + '' + houseInfo);
+		var carType = $('.regType').val();
+		
 		$.ajax({
-			url: 'admin/insertCar',
+			url: 'insertCar',
 			type: 'POST',
-			data: $('#registerForm').serialize(),
+			async: false,
+			contentType: 'application/json',
+			data: JSON.stringify({
+				carNo: carNo,
+				carType: carType,
+				carCode: carCode,
+				houseInfo: houseInfo
+			}),
+			dataType: 'json',
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 			},
 			success: function(data) {
-				
+				alert(data + '대의 차량이 등록되었습니다.');
+				var dong = $('#dong').val();
+				var ho = $('#ho').val();
+				var num = countByHouseInfo(dong, ho);
+				showCars(dong, ho, num);
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
 			}
 		});
-	});  */
+		
+	});
+	
+	// 모달 닫기 (10/15 추가: 이나은)
+	$('#closeModal').on('click', function() {
+		$('#dong').val('');
+		$('#ho').val('');
+		$('#carList').empty();
+	});
 	
 </script>
