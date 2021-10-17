@@ -47,9 +47,9 @@ padding : 100px;
             <div class="row">
                <div class="col-md-6">
                   <ol class="breadcrumb-gray">
-                     <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
-							<li class="current"><a href="${pageContext.request.contextPath}/visit/generation">방명록</a></li>
+                  	<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
+					<li class="current"><a href="${pageContext.request.contextPath}/visit/generation">방명록</a></li>
                   </ol>
                </div>
             </div>
@@ -73,24 +73,24 @@ padding : 100px;
 
       <div class="container" align="center" style="width: 1400px">
          <div class="text-box white padding-4 col-7">
-
-	<c:forEach items="${generation}" var="houseInfo">
-
-		<c:if test="${houseInfo.houseInfo != 0}">
-			<div class="status">
-				<%-- <img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="
-						class="img-responsive" /> --%>
-				<div class="cbp-item-yj web-design generation">
-					<button value="${houseInfo.houseInfo}" onclick="generation(${houseInfo.houseInfo})">
-						${houseInfo.houseInfo}
-					</button>
-				</div>
+         	<div class="gntList">
+         	${generation }dd
+			<%-- <c:forEach items="${generation}" var="houseInfo">
+				<c:if test="${houseInfo.houseInfo != 0}">
+					<div class="status">
+						<img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="" class="img-responsive" />
+						<div class="cbp-item-yj web-design generation">
+							<button value="${houseInfo.houseInfo}" onclick="generation(${houseInfo.houseInfo})">
+								${houseInfo.houseInfo}
+							</button>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach> --%>
 			</div>
-		</c:if>
-	</c:forEach> --%>
-</div>
-
-</div>
+			<div id="showMore"></div>
+		</div>
+	</div>
 </section>
 
 <script>
@@ -102,20 +102,21 @@ var amount = 0;
 var gntCount = 0;
 
 $(function() {
-	gntList();
+	//gntList();
 
 	//세대리스트 전체조회
-	$.ajax({
+	 /* $.ajax({
 		url : "generation",
 		method : "get",
 		success : function(data) {
+			console.log(data);
 			gntList = data;
 		}
-	})
+	}) */
 });
 
 //더보기  클릭시 세대리스트 추가(ajax 페이징)
-$(document).on('click', '#addBtn', function() {
+/* $(document).on('click', '#addBtn', function() {
 	var divCount = $('.gntList #generation').length;
 	pageNum = (divCount / 9) + 1;
 	amount = 9;
@@ -143,10 +144,10 @@ $(document).on('click', '#addBtn', function() {
 	if(pageNum == Math.ceil(gntCount/9)) {
 		$('#addBtn').remove();
 	}
-});
+}); */
 
 //페이지 로딩시 리스트 출력
-function gntList() {
+/* function gntList() {
 	pageNum = 1;
 	amount = 9;
 	
@@ -168,7 +169,7 @@ function gntList() {
 			}
 	});
 	$("#showMore").append($("<button style='height: 100%; width: 100%' type='button' id='addBtn'>더보기+</button>"));
-}
+} */
 
 /* $(document).on("click","#rdBtn",function(){
 	var cnt = $(".gntList #generation").length; // 현재 포스트 갯수 구하기

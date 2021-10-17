@@ -45,7 +45,7 @@ th {
 }
 
 .pagination {
-margin-left : 300px;
+margin-left : 25%;
 }
 
 .modal-header{
@@ -100,7 +100,7 @@ margin-left : 300px;
 					<div class="pl-title-line-1"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">결제내역</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title" style="font-size: 13px;">나의 결제내역을 확인하세요.</p>
+					<p class="by-sub-title" style="font-size: 13px;">각종 편의시설 및 관리비의 결제내역을 확인 / 취소할 수 있습니다.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -157,45 +157,26 @@ margin-left : 300px;
 		</ul>
 	</div>
 </section>
-
-
-
-<!-- 결제취소 모달 -->
-<!-- <section class="sec-padding">
+						
+<section class="sec-padding">
 	<div class="container">
 		<div class="row text-center">
-			<div id="cancelModal" tabindex="-1" role="dialog"
-				aria-labelledby="modal-switch-label" class="modal fade">
+			<div id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="modal-switch-label" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
+					<br>
 						<div class="modal-header">
 							<button type="button" data-dismiss="modal" class="close">
 								<span aria-hidden="true">&times;</span><span class="sr-only">x</span>
 							</button>
 							<div id="modal-switch-label" class="modal-title">
-								<h4>결제취소</h4>
-							</div>
-						</div> -->
-						
-	<section class="sec-padding">
-		<div class="container">
-			<div class="row text-center">
-				<div id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="modal-switch-label" class="modal fade">
-					<div class="modal-dialog">
-						<div class="modal-content">
-						<br>
-							<div class="modal-header">
-								<button type="button" data-dismiss="modal" class="close">
-									<span aria-hidden="true">&times;</span><span class="sr-only">x</span>
-								</button>
-								<div id="modal-switch-label" class="modal-title">
-									<div class="text-center">
-										<div class="pl-title-line-1"></div>
-										<h4 class="h4-margin font-weight-7 less-mar-1">결제정보</h4>
-										<div class="clearfix"></div>
-									</div>
+								<div class="text-center">
+									<div class="pl-title-line-1"></div>
+									<h4 class="h4-margin font-weight-7 less-mar-1">결제정보</h4>
+									<div class="clearfix"></div>
 								</div>
 							</div>
+						</div>
 						<div class="modal-body"></div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-gyellow" id="cancelBtn">결제취소</button>

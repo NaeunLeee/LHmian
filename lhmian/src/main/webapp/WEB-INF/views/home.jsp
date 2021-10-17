@@ -165,11 +165,28 @@
 	
 	let count = '${count}';
 	console.log(count);
+	var cookieCheck = getCookie("popupYN");
 	
-	//if (count > '0') {
+	if (count > '0' && cookieCheck != "N") {
+
 		window.open("popup/vote", "주민 투표 결과",
 						"width=750, height=550, left=300, top=50");				
-	//	}
+	}
+
+	
+	function getCookie(name) { 
+		var cookie = document.cookie; 
+		if (document.cookie != "") { 
+			var cookie_array = cookie.split("; "); 
+			for ( var index in cookie_array) { 
+				var cookie_name = cookie_array[index].split("="); 
+				if (cookie_name[0] == "popupYN") { 
+					return cookie_name[1]; 
+					} 
+				} 
+			} 
+		return ; 
+		}
 
 	</script>
 </sec:authorize>

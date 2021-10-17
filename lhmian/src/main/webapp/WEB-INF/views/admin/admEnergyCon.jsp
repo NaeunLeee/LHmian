@@ -31,6 +31,7 @@ tr {
 .pagination>li>a {
 	color: black;
 }
+
 	.width-80 {
 		width:80%
 	}
@@ -42,9 +43,10 @@ tr {
 	}
 	
 /* 
+
 .pagination {
-	margin-left: 250PX;
-} */
+	margin-left: 25%;
+}
 </style>
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
@@ -83,6 +85,7 @@ tr {
 					</ul>
 				</div>
 			</div>
+
 			<div class="col-md-10 col-sm-6 col-xs-12">
 				<div></div><br><br>
 				<div class="sec-title-container less-padding-3 text-left padding-l40">
@@ -90,6 +93,7 @@ tr {
 					<h4 class="uppercase font-weight-7 less-mar-1">에너지 사용량</h4>
 					<div class="clearfix"></div>
 					<p class="by-sub-title">호수별로 각 에너지 사용량을 조회합니다.</p>
+
 				</div>
 				
 				

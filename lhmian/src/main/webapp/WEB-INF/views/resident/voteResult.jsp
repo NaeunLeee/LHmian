@@ -8,6 +8,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+.confetti {
+	margin: 0;
+	position: relative;
+}
+
+canvas {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
 * {
 	margin: 0;
 	padding: 0
@@ -65,9 +77,8 @@ h3 {
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/myPage/myPage">마이
-									페이지</a></li>
-							<li class="current"><a href="#">투표</a></li>
+								href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/resident/voteList">투표</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
@@ -75,9 +86,10 @@ h3 {
 			</div>
 		</div>
 	</section>
-	<section class="sec-padding">
+	<section class="sec-padding confetti">
 		<div class="container">
 			<div class="row">
+
 				<div class="col-xs-12 nopadding">
 					<div class="sec-title-container-padding-topbottom text-center">
 						<div class="pl-title-line-1"></div>
@@ -99,14 +111,14 @@ h3 {
 							<h3 data-value="${list.percent}">${list.vcQuesNo }.
 								<span class="vc-content">${list.vcContent }</span>&nbsp;&nbsp;&nbsp;
 								<span class="percent-value">${list.percent }%</span>
-							</h3> <br>
+							</h3>
 							<div class="percent pull-right">
 								<div class="percent-bar" data-per="${list.percent }"></div>
 							</div>
 						</li>
 					</c:forEach>
 				</ul>
-
+			<canvas id="canvas"></canvas>
 			</div>
 		</div>
 	</section>
@@ -155,7 +167,6 @@ h3 {
 	});
 
 	let max = 0;
-	console.log($('h3').length);
 	for (let i = 0; i < $('h3').length; i++) {
 		if ($('h3').eq(i).attr('data-value') > max) {
 			max = $('h3').eq(i).attr('data-value');
@@ -163,13 +174,81 @@ h3 {
 	}
 
 	for (let i = 0; i < $('h3').length; i++) {
-		console.log($('h3').eq(i).attr('data-value'));
 		if ($('h3').eq(i).attr('data-value') === max) {
 			$('.percent-value').parent().eq(i)
 					.addClass('text-highlight yellow');
-			$('.percent-value').parent().parent().eq(0).children().children()
-					.css('background', '#f1c40f');
+			console.log($('h3').next().eq(i).children().css('background-color', '#f1c40f'));
+
 		}
 	}
+	
+	//축하 꽃가루
+	const canvasEl = document.querySelector('#canvas');
+
+	const w = canvasEl.width = window.innerWidth;
+	const h = canvasEl.height = window.innerHeight * 2;
+
+	function loop() {
+	  requestAnimationFrame(loop);
+		ctx.clearRect(0,0,w,h);
+	  
+	  confs.forEach((conf) => {
+	    conf.update();
+	    conf.draw();
+	  })
+	}
+
+	function Confetti () {
+	  //construct confetti
+	  const colours = ['#fde132', '#009bde', '#ff6b00'];
+	  
+	  this.x = Math.round(Math.random() * w);
+	  this.y = Math.round(Math.random() * h)-(h/2);
+	  this.rotation = Math.random()*360;
+
+	  const size = Math.random()*(w/60);
+	  this.size = size < 15 ? 15 : size;
+
+	  this.color = colours[Math.floor(colours.length * Math.random())];
+
+	  this.speed = this.size/7;
+	  
+	  this.opacity = Math.random();
+
+	  this.shiftDirection = Math.random() > 0.5 ? 1 : -1;
+	}
+
+	Confetti.prototype.border = function() {
+	  if (this.y >= h) {
+	    this.y = h;
+	  }
+	}
+
+	Confetti.prototype.update = function() {
+	  this.y += this.speed;
+	  
+	  if (this.y <= h) {
+	    this.x += this.shiftDirection/3;
+	    this.rotation += this.shiftDirection*this.speed/100;
+	  }
+
+	  if (this.y > h) this.border();
+	};
+
+	Confetti.prototype.draw = function() {
+	  ctx.beginPath();
+	  ctx.arc(this.x, this.y, this.size, this.rotation, this.rotation+(Math.PI/2));
+	  ctx.lineTo(this.x, this.y);
+	  ctx.closePath();
+	  ctx.globalAlpha = this.opacity;
+	  ctx.fillStyle = this.color;
+	  ctx.fill();
+	};
+
+	const ctx = canvasEl.getContext('2d');
+	const confNum = Math.floor(w / 4);
+	const confs = new Array(confNum).fill().map(_ => new Confetti());
+
+	loop();
 </script>
 </html>
