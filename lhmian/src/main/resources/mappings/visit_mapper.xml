@@ -3,9 +3,9 @@
 <mapper namespace="com.lh.app.visit.mapper.VisitMapper">
 	<select id="getOldCount" resultType="int">
 	SELECT COUNT(*) FROM
-		ENERGY_USAGE
+		GENERATION
 	</select>
-	
+	  
 	<select id="generation" resultType="GenerationVO">
 		SELECT HOUSE_INFO
 		FROM  (
