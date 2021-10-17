@@ -23,7 +23,7 @@ public class CarListController {
 	CarListService service;
 	
 	//전체조회
-	@GetMapping("admCarList")
+	@GetMapping("/admin/admCarList")
 	public String carList(Model model, @ModelAttribute("cri") CarListCriteria cri) {
 		int total = service.getTotalCount(cri);
 		model.addAttribute("list", service.getList(cri));
@@ -46,7 +46,7 @@ public class CarListController {
 	
 	
 	//차량 선택 삭제
-		@RequestMapping("/deleteCar")
+		@RequestMapping("/admin/deleteCar")
 		@ResponseBody
 		public boolean deleteUser(@RequestParam Long[] chk) throws Exception {
 			for (int i=0; i<chk.length; i++) {
@@ -61,14 +61,14 @@ public class CarListController {
 
 		
 	// 차량 등록
-	@PostMapping("/insertCar")
+	@PostMapping("/admin/insertCar")
 	@ResponseBody
 	public int insertCar(@RequestBody CarListVO vo) {
 		return service.insert(vo);
 	}
 	
 	// 차량 한대 삭제
-	@PostMapping("/deleteOneCar")
+	@PostMapping("/admin/deleteOneCar")
 	@ResponseBody
 	public int deleteOneCar(@RequestBody CarListVO vo) {
 		return service.delete(vo);
