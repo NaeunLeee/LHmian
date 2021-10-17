@@ -99,4 +99,9 @@ public class HomeController {
 		return "resident/resident";
 	}
 	
+	@RequestMapping("/introduce/sitemap")
+	public String sitemap() {
+		return "introduce/sitemap";
+	}
+	
 }
