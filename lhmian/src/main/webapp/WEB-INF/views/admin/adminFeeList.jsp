@@ -29,44 +29,74 @@ body {
 	border-right: 1px solid #e9e9e9;
 }
 
-.fee-table {
-	margin: 30px 150px 150px 150px;
+.container {
+	width: 80%;
 }
 
-.sec-padding {
-	padding: 80px 0 0 0;
+.ui.grid {
+	padding-left: 40px;
+	margin: 0;
 }
+.padding-l40 {
+	padding-left: 40px;
+}
+
+.padding-t40{
+	padding-top: 25px;
+}
+h4 {
+	font-size:18px !important;
+}
+
 </style>
 </head>
 <body>
-
-	<section class="sec-padding">
-		<div class="container">
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+			</div>
+		</div>
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12 nopadding">
-					<div class="sec-title-container-padding-top text-center">
-
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay">
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<div class="clearfix"></div>
-	<!--end title-->
-	<div class="col-md-2">
-		<div class="left-side-bar">
-			<ul>
-				<li><a href="slider-kenburns.html">관리비</a></li>
-				<li><a href="slider-parallax.html">에너지 사용량</a></li>
-				<li><a href="slider-3d.html">회원 관리</a></li>
-				<li><a href="slider-carousel.html">시설물 관리</a></li>
-				<li style="border-bottom: 1px solid #e9e9e9;"><a
-					href="slider-gallery.html">게시글 관리</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="col-md-10">
-		<div class="pagenation-holder-no-bottom">관리비 조회</div>
+	<div class=" clearfix"></div>
+</div>
+<section class="sec-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
+				<div class="pages-sidebar-item">
+					<!-- <h5 class="uppercase pages-sidebar-item-title">관리자</h5> -->
+					<ul class="pages-sidebar-links">
+						<li><a class="active" href="feeList">관리비</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
+						<li><a href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-6 col-xs-12">
+				<div></div><br><br>
+				<div class="sec-title-container less-padding-3 text-left padding-l40">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">관리비</h4>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">호수별 관리비를 조회합니다.</p>
+				</div>
+				
 		<div class="fee-table">
 			<table id="feeList" class="ui celled table" style="width: 100%">
 				<thead>
@@ -93,6 +123,9 @@ body {
 			</table>
 		</div>
 	</div>
+	</div>
+	</div>
+	</section>
 
 	<span style="color:white">ss</span>
 </body>

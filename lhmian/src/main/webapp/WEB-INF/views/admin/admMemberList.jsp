@@ -4,7 +4,7 @@
 
 <style>
 	.container {
-		width: 85%;
+		width: 80%;
 	}
 	.tr_1 {
 	   cursor: pointer;
@@ -44,6 +44,15 @@
 	#all, #notpaid, #leader, #owner {
 		margin: 0px 5px 0px;
 	}
+	
+	.padding-l40{
+		padding-left: 40px
+	}
+	
+	.padding-t40{
+		padding-top: 40px
+	}
+	
 </style>
 
 <!-- 10/11 전체수정: 이나은 -->
@@ -70,26 +79,29 @@
 <section class="sec-padding">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
 				<div class="pages-sidebar-item">
-					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
+					<!-- <h5 class="uppercase pages-sidebar-item-title">관리자</h5> -->
 					<ul class="pages-sidebar-links">
 						<li><a href="feeList">관리비</a></li>
-						<li><a href="#">에너지 사용량</a></li>
-						<li><a class="active" href="#">회원 관리</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a class="active" href="admMemberList">회원 관리</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
 						<li><a href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-md-10 col-sm-6 col-xs-12">
 				<div></div><br><br>
-				<div class="sec-title-container less-padding-3 text-left">
+				<div class="sec-title-container less-padding-3 text-left padding-l40">
 					<div class="title-line-3 align-left"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">회원 관리</h4>
 					<div class="clearfix"></div>
 					<p class="by-sub-title">LHmian의 모든 회원을 조회합니다.</p>
 				</div>
-				<div style="float: left; margin-left: 50px;" id="criteriaForm" data-option="${option}">
+				<div style="float: left; margin-left: 40px;" id="criteriaForm" data-option="${option}">
 					<form id="actionForm" action="admMemberList" method="get">
 						<select name="type" class="form-control" style="width: 100px; ">
 							<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
@@ -113,7 +125,7 @@
 					<button class="btn btn-default" onclick="deleteMember()" type="button" id="btnDelete" style="float:right; margin-right:50px; padding: 4px 13px;">회원삭제</button>
 					<button class="btn btn-gyellow" type="button" id="showModal" style="float:right; margin-right:10px; padding: 4px 13px;">SMS전송</button>
 				</div>
-				<div class="text-box white padding-4 col-10">
+				<div class="text-box white padding-4">
 					<form id="frm"> <!-- 0928 form 추가 -->
 						<table class="ui celled table" id="memberTable">
 							<thead>
