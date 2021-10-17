@@ -255,6 +255,7 @@
 			</div>
 		</div>
 	</div>
+	</div>
 	<div class="section"
 		style="background: url(https://cdn.imweb.me/thumbnail/20210528/16f133f94723b.jpg) center center/cover no-repeat;">
 		<div class="row">
@@ -294,7 +295,6 @@
 		</div>
 </div>
 
-</div>
 <link
 	href="${pageContext.request.contextPath}/resources/ss/jquery.fullpage.css"
 	rel="stylesheet" type="text/css" />
