@@ -111,6 +111,8 @@
 							다양한 수상 경력 
 						</li>
 					</ul>
+					<br><br>
+					<button type="button" data-toggle="modal" data-target="#numModal" class="btn btn-dark" style="margin-right: 10px;">연락처</button>
 				</div>
 				<!--end item-->
 			</div>
@@ -341,6 +343,34 @@
 	</div>
 </div>
 <!-- Modal End -->
+
+	<!-- The Modal -->
+	<div class="modal" id="numModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">근손실없는헬스장 연락처</h4>
+					</div>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div style="margin-left: 20px;">
+						연락처 : 010-XXXX-XXXX
+					</div>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<div align="right">
+						<button type="button" data-dismiss="modal" class="btn btn-dark">닫기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 <form action="gymPayComplete" method="post" id="frm">
 	<input type="hidden" id="payNo" name="payNo" value="">
