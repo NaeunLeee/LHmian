@@ -124,8 +124,9 @@ table {
 			</ul>
 		</div>
 		
-		<div style="margin:auto;">
-		<form id="actionForm" action="admNoticeList" method="get">
+		<!-- 10/16 form action 변경 -->
+		<div style="margin:auto;" id="criteriaForm" data-option="${type}">
+		<form id="actionForm" action="noticeList" method="get" >
 		<select name="type" class="form-control" style="width: 100px; ">
 			<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
 			<option value="T" ${pageMaker.cri.type=='T' ? 'selected' : ""}>제목</option>
@@ -135,6 +136,7 @@ table {
 		<input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="preType" id="preType" value="${type}">
 		<button type="submit" class="btn btn-dark">검색</button>
 	</form>
 </div>
@@ -159,4 +161,34 @@ table {
 		$('[name="pageNum"]').val(p);
 		actionForm.submit();
 	});
+	
+	
+	// 10/14 selected 추가
+    let option = $('#criteriaForm').attr('data-option');
+    $(document).ready(function() {
+		
+		 if (option.indexOf('T') != -1) {
+			 $('#T').prop("selected", true);
+		 } else {
+			 $('#T').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('C') != -1) {
+			 $('#C').prop("selected", true);
+		 } else {
+			 $('#C').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('C') != -1) {
+			 $('#C').prop("selected", true);
+		 } else {
+			 $('#C').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('TC') != -1) {
+			 $('#TC').prop("selected", true);
+		 } else {
+			 $('#TC').prop("selected", false);
+		 }
+	 });
 </script>

@@ -131,14 +131,16 @@ table {
 					</ul>
 				</div>
 				
+				<!-- 10/16 option id 추가, keyword 수정 -->
+				
 				<div style="margin:auto;" id="criteriaForm" data-option="${type}">
 					<form id="actionForm" action="opeInfoList" method="get">
 						<select name="type" class="form-control" style="width: 100px;">
 							<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-							<option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-							<option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
+							<option id="T" value="T" ${pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
+							<option id="C" value="C" ${pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
 						</select> 
-						<input name="keyword" class="form-control" style="width: 200px; value="${pageMaker.cri.keyword}"> 
+						<input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}"> 
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 						<input type="hidden" name="preType" id="preType" value="${type}">
@@ -154,13 +156,6 @@ table {
 <script>
 	$(function() {
 		var actionForm = $('#actionForm');
-		$('.move').on("click", function(e) {
-			e.preventDefault();
-			var oiNo = $(this).attr("data-oiNo");
-			actionForm.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
-			actionForm.attr("action", "opeInfoSelect");
-			actionForm.submit();
-		});
 
 		$('#pageBtn a').on("click", function(e) {
 			e.preventDefault();
