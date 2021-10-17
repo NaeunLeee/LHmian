@@ -185,7 +185,7 @@
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   -webkit-animation: sdb 1s infinite;
-  animation: sdb 2s infinite;
+  animation: sdb 1s infinite;
   box-sizing: border-box;
 
 }
