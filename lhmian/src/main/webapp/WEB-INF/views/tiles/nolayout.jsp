@@ -62,6 +62,44 @@
 	href="/app/resources/js/tabs/css/responsive-tabs.css" media="all">
 <link rel="stylesheet" href="/app/resources/js/jFlickrFeed/style.css">
 <link rel="stylesheet" href="/app/resources/css/gym.css">
+<style>
+    input[type="checkbox"] {
+        -webkit-appearance: none;
+        position: relative;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        outline: none !important;
+        border: 1px solid #eeeeee;
+        border-radius: 2px;
+        background: #fbfbfb;
+    }
+ 
+    input[type="checkbox"]::before {
+        content: "\2713";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        overflow: hidden;
+        transform: scale(0) translate(-50%, -50%);
+        line-height: 1;
+    }
+ 
+    input[type="checkbox"]:hover {
+        border-color: rgba(170, 170, 170, 0.5);
+    }
+ 
+    input[type="checkbox"]:checked {
+        background-color: #ecae3d;
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+ 
+    input[type="checkbox"]:checked::before {
+        border-radius: 2px;
+        transform: scale(1) translate(-50%, -50%)
+    }
+</style>
 <script>
 	$(function() {
 		$('#closeBtn').on('click', function() {
