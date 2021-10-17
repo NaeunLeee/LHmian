@@ -181,10 +181,10 @@
 															<a href="${pageContext.request.contextPath}/resident/voteList">투표</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/visit/generation">방명록</a>
+															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
+															<a href="${pageContext.request.contextPath}/visit/generation">방명록</a>
 														</li>
 													</ul>
 												</li>
@@ -225,6 +225,11 @@
 															<!-- ------------------------ -->
 														</li>
 														<li>
+															<!-- 10/15 개인결제리스트 -->
+															<a href="${pageContext.request.contextPath}/myPaidList">결제내역</a>
+															<!-- ------------------------ -->
+														</li>
+														<li>
 															<a href="${pageContext.request.contextPath}/mypage/fee">관리비 조회</a>
 														</li>
 														<li>
@@ -261,7 +266,8 @@
 																<a href="${pageContext.request.contextPath}/admin/admOpeInfoList">게시글 관리</a>
 															</li>
 															<li>
-																<a href="${pageContext.request.contextPath}/admin/admSkedview">일정 관리</a>
+																<!-- 10/15 경로 변경 -->
+																<a href="${pageContext.request.contextPath}/admin/admSked">일정 관리</a>
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admPost">택배 관리</a>

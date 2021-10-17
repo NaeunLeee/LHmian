@@ -31,8 +31,6 @@ public class CommController {
 	@Autowired
 	ReplyService replyService;
 
-	// 10/06 수정
-	// ----------------------------------------------------------------------------------------
 	// 회원 게시글 리스트 조회
 	@RequestMapping("myCommunityList")
 	public String getListno(Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails,
@@ -57,9 +55,6 @@ public class CommController {
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "myPage/myComment";
 	}
-
-	// 10/06 수정
-	// 끝----------------------------------------------------------------------------------------
 
 	// 리스트 조회
 	@RequestMapping("commlist")
@@ -125,6 +120,7 @@ public class CommController {
 		String id = customUserDetails.getUsername();
 		System.out.println(id);
 		vo.setCommNo(commNo);
+		System.out.println(commService.read(vo));
 		model.addAttribute("list", commService.read(vo));
 		model.addAttribute("login", id);
 		return "community/get";

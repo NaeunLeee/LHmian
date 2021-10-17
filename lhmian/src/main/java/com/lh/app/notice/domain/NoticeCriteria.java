@@ -9,6 +9,11 @@ public class NoticeCriteria {
    private int amount = 10;
    private String type;
    private String keyword;
+   
+   //10/16 추가
+   private String preType;
+   
+   
    public NoticeCriteria() {}
    public NoticeCriteria(int pageNum, int amount) {
       this.pageNum = pageNum;

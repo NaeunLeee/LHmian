@@ -9,10 +9,7 @@ public class Criteria {
    private int pageNum = 1;
    private int amount = 10;
    
-   // 10/13 type 추가
    private String type;
-   
-   
    
    private String keyword;
    public Criteria() {}
@@ -21,7 +18,6 @@ public class Criteria {
       this.amount = amount;
    }
    
-   // 10/13 preType 추가
    private String preType;
    
    public String[] getTypeArr() {

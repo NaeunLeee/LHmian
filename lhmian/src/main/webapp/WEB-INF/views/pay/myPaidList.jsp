@@ -132,8 +132,8 @@ margin-left : 300px;
 		</div>
 	</div>
 	<form id="actionForm" action="myPaidList" method="get">
-	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-	<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	</form>
 	<div id="pageButton" style="margin: auto; width: 50%">
 		<ul class="pagination hover-orange">
@@ -211,8 +211,6 @@ margin-left : 300px;
 <script>
 	//수정모달
 	function payCancel(n) {
-		let csrfHeaderName = "${_csrf.headerName}";
-		let csrfTokenValue = "${_csrf.token}";
 		$(cancelModal).modal('show');
 		$.ajax({
 			url : "cancelForm",

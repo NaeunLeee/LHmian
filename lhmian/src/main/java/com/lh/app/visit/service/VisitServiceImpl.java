@@ -11,7 +11,7 @@ import com.lh.app.visit.mapper.VisitMapper;
 
 @Service
 public class VisitServiceImpl implements VisitService {
-
+  
 	@Autowired
 	VisitMapper visitMapper;
 
@@ -19,11 +19,6 @@ public class VisitServiceImpl implements VisitService {
 	public List<VisitVO> getList(VisitVO vo) {
 		return visitMapper.getList(vo);
 	}
-
-	/*
-	 * @Override public int getTotalCount(VisitCriteria cri) { return
-	 * visitMapper.getTotalCount(cri); }
-	 */
 
 	@Override
 	public int insert(VisitVO vo) {
@@ -43,6 +38,11 @@ public class VisitServiceImpl implements VisitService {
 	@Override
 	public List<GenerationVO> generation(GenerationVO vo) {
 		return visitMapper.generation(vo);
+	}
+
+	@Override
+	public int getOldCount() {
+		return visitMapper.getOldCount();
 	}
 
 }

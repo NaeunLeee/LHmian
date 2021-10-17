@@ -149,7 +149,7 @@
 					               </li>
 					            </c:if>
 					            <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-					               <li><a href="${num}">${num}</a></li>
+					               <li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
 					            </c:forEach>
 					            <c:if test="${pageMaker.next == true}">
 					               <li>
@@ -161,7 +161,8 @@
 						    </ul>
 					   </div>
 						<div align="center">
-							<form id="actionForm" action="/admin/admOpeInfoList" method="get">
+							<!-- 10/15 action 수정 -->
+							<form id="actionForm" action="admOpeInfoList" method="get">
 							   <select name="type" class="form-control" style="width: 100px; ">
 							      <option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
 							      <option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>

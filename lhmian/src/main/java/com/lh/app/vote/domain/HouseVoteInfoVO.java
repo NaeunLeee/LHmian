@@ -12,4 +12,7 @@ public class HouseVoteInfoVO {
 	public String hvStatus;
 	public String hvResult;
 	public Date sysdate;
+	
+	public int maxCount;
+	public String vcContent;
 }

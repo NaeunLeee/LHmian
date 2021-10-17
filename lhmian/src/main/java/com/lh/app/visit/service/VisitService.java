@@ -7,10 +7,9 @@ import com.lh.app.visit.domain.VisitVO;
 
 public interface VisitService {
 	// crud
-
+  
 	// 전체조회
 	public List<VisitVO> getList(VisitVO vo);
-	// public int getTotalCount(VisitCriteria cri);
 
 	// 등록
 	public int insert(VisitVO vo);
@@ -23,4 +22,7 @@ public interface VisitService {
 
 	// 세대리스트 불러오기
 	public List<GenerationVO> generation(GenerationVO vo);
+
+	// 전체 건수 카운트
+	public int getOldCount();
 }

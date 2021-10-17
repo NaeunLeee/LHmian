@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.visit.mapper.VisitMapper">
-	
+	<select id="getOldCount" resultType="int">
+	SELECT COUNT(*) FROM
+		GENERATION
+	</select>
+	  
 	<select id="generation" resultType="GenerationVO">
 		SELECT HOUSE_INFO
-		FROM GENERATION
+		FROM  (
+		SELECT 
+		ROWNUM RN,
+        HOUSE_INFO
+        FROM GENERATION
+			<![CDATA[
+			WHERE HOUSE_INFO != 0 AND ROWNUM <= #{pageNum} * #{amount}
+		)
+			]]>
+			WHERE RN > (#{pageNum} -1) * #{amount}
 	</select>
 	
 	<select id="getList" resultType="VisitVO">

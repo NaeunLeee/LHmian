@@ -38,7 +38,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		//admin이면 관리자 메인 페이지로 간다.
 		if (auth.equals("ADMIN")) {
-			response.sendRedirect("admin/adminPage");
+			response.sendRedirect("admin/admOpeInfoList");
 		//그 이외
 		} else {
 			RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();

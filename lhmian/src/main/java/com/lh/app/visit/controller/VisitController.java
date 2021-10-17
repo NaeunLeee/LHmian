@@ -1,5 +1,7 @@
 package com.lh.app.visit.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,15 +18,29 @@ import com.lh.app.visit.service.VisitService;
 
 @Controller
 public class VisitController {
-
+  
 	@Autowired
 	VisitService visitService;
 
 	// 세대리스트
 	@GetMapping("/visit/generation")
 	public String generation(Model model, GenerationVO vo) {
-		model.addAttribute("generation", visitService.generation(vo));
+		model.addAttribute("generation", vo.getHouseInfo());
 		return "visit/generationList";
+	}
+
+	//세대리스트 총 갯수 조회
+	@GetMapping("/gntCount")
+	@ResponseBody
+	public int gntCount() {
+		return visitService.getOldCount();
+	}
+	
+	// 세대리스트-페이징
+	@GetMapping("/gntList")
+	@ResponseBody
+	public List<GenerationVO> gntList(Model model, GenerationVO vo) {
+		return visitService.generation(vo);
 	}
 
 	// 세대선택, 전체조회
