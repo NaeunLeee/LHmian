@@ -9,21 +9,23 @@
 			<div class="gm-title-line-1 text-center"></div>
 			<h4 class="uppercase font-weight-7 less-mar-1 text-center">주민 투표 결과 공지</h4>
 			<div class="clearfix"></div>
-			<br> <br> <br>
+			<br> <br>
 		</div>
-			<h4><fmt:formatDate value="${title.voteStart }" pattern="yyyy-MM-dd" />
+			<h4 class=" text-center"><fmt:formatDate value="${title.voteStart }" pattern="yyyy-MM-dd" />
 							~
-				<fmt:formatDate value="${title.voteEnd }" pattern="yyyy-MM-dd" /> 동안 시행한 [${title.voteTitle}] 안건에 대한 주민 투표 결과를 공지합니다.</h4>
-
-			<h5>결과</h5>
-			<br>
-		${result.vcContent } 당선~~~
+				<fmt:formatDate value="${title.voteEnd }" pattern="yyyy-MM-dd" /> 동안 시행한<br>
+				[${title.voteTitle}]<br>
+				안건에 대한 주민 투표 결과를 공지합니다.</h4>
+		<br>
+			
+		${result.vcContent } 
+		<br>
+		<br>
 		<br>
 		<div class="btn-area text-center">
-			<a id="idFindBtn" class="btn btn-gyellow"> 결과 보러 가기 </a>
-			<a id="closeBtn" class="btn btn-dark-3"> 닫기 </a>
+			<a id="idFindBtn" class="btn btn-gyellow"> 자세한 투표 결과 보러 가기 </a>
 		</div>
 
 	</div>
-
+<span class="pull-right">오늘 하루 동안 이 창을 열지 않음</span>
 </div>

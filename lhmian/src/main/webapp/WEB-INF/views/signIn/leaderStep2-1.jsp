@@ -485,7 +485,7 @@
 									<h6 class="less-mar-4">
 										세대 인증번호 <span
 											class="font-weight-5 hint--bottom-right hint--medium"
-											data-hint="세대 인증번호란? 관리사무소에서 문자로 받은 어쩌구"> <i
+											data-hint="세대 인증번호란? 세대를 인증하기 위한 키로, 관리사무소에서 문자로 받을 수 있습니다. 문자가 오지 않았다면 관리사무소로 문의해주세요."> <i
 											class="fa fa-question-circle"></i></span>
 									</h6>
 								</label> <label class="field prepend-icon"> <input type="text"
