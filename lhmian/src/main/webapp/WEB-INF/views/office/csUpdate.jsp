@@ -12,22 +12,25 @@
 	.ck-editor__editable {
 	    min-height: 400px;
 	}
+	
+	.trans-15 {
+	background-color: rgba(0, 0, 0, 0.15) !important;
+}
+	
 </style>
 
 <!-- 10/11 추가: 이나은 -->
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터2.jpg);">
 				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
 			</div>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay">
-						</div>
+					<div class="header-inner trans-15">
 					</div>
 				</div>
 			</div>
@@ -36,7 +39,7 @@
 	<div class=" clearfix"></div>
 </div>
 	<section>
-		<div class="pagenation-holder-no-bottom">
+		<div class="pagenation-holder">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">

@@ -238,8 +238,8 @@ button{
                <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive"/> </div>
               <div class="postinfo-box">
                 <!-- <h4 class="dosis uppercase title"><a href="#">Aliquam Rhoncus</a></h4> -->
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소: ${item.foundLocation}</span></div>
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득일자: ${item.lostDate}</span></div>
+                <div class="blog-post-info"><span><i class="fas fa-map-marker-alt"></i>&nbsp 습득장소: </span></div>
+                <div class="blog-post-info"><span><i class="bi bi-calendar-check"></i> 습득일자: ${item.lostDate}</span></div>
                 <br/>
                 <p class="void">${item.lostContent}</p>
                 <div class="col-sm-12" align="center">
@@ -262,8 +262,8 @@ button{
                
               <div class="postinfo-box">
                 <!-- <h4 class="dosis uppercase title"><a href="#">Aliquam Rhoncus</a></h4> -->
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소: ${item.foundLocation}</span></div>
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득일자: ${item.lostDate}</span></div>
+                 <div class="blog-post-info"><span><i class="fas fa-map-marker-alt"></i>&nbsp 습득장소: </span></div>
+                <div class="blog-post-info"><span><i class="bi bi-calendar-check"></i> 습득일자: ${item.lostDate}</span></div>
                 <br/>
                  <p class="void">${item.lostContent}</p>
                 <div class="col-sm-12" align="center">

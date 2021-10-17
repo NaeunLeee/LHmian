@@ -129,7 +129,7 @@ textarea:focus {
 </div>
 	<section>
 		<div class="pagenation-holder">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">

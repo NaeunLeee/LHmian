@@ -174,18 +174,84 @@
 	</script>
 </sec:authorize>
 
+<style>
+.scroll-down {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb 1s infinite;
+  animation: sdb 2s infinite;
+  box-sizing: border-box;
+
+}
+
+.scroll-down-text{
+	position: absolute;
+	top: 80%;
+	font-size:18px;
+	font-weight:800;
+	color: white;
+	text-align: center;
+	font-family: "Didot LT STD";
+	left:0
+}
+
+
+
+@-webkit-keyframes sdb {
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+  }
+  20% {
+    -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+  }
+  40% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+  }
+}
+@keyframes sdb {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+  20% {
+    transform: rotate(-45deg) translate(-10px, 10px);
+  }
+  40% {
+    transform: rotate(-45deg) translate(0, 0);
+  }
+}
+
+.ment-1{
+	top:55%; 
+	color:white; 
+}
+
+.title-1{
+	font-weight:1000; 
+	font-size:85px; 
+	font-family:serif;
+	position: relative;
+}
+</style>
+
 
 <div id="fullpage">
-	<div class="section"
-		style="background: url(https://cdn.imweb.me/thumbnail/20210528/3b800594243d1.jpg) center center/cover no-repeat;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center font-weight-8"
-					style="top: 55%; color: white">
-					<h1 style="font-weight: 1000; font-size: 85px; font-family: serif">LHmian</h1>
-					<br>
-					<h5 style="font-size: 18px">삶을 더욱 풍요롭게 해 줄 안식처</h5>
-				</div>
+
+	<div class="section" style="background: url(https://cdn.imweb.me/thumbnail/20210528/3b800594243d1.jpg) center center / cover no-repeat;">
+	<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center font-weight-8 ment-1">
+			<h1 class="title-1">LHmian</h1><br>
+			<h5 style="font-size:18px;">삶을 더욱 풍요롭게 해 줄 안식처</h5>
+		</div>
+			<div class="scroll-down-text col-sm-12">Scroll down<br>
+			<span class="scroll-down"></span>
+
 			</div>
 		</div>
 	</div>
@@ -225,7 +291,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
+</div>
+
 </div>
 <link
 	href="${pageContext.request.contextPath}/resources/ss/jquery.fullpage.css"

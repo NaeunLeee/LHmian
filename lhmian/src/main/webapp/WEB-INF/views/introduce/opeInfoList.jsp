@@ -45,7 +45,7 @@ table {
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터2.jpg);">
+			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터6.jpg); background-position:50% 100px !important">
 				<img class="nodisplay-image" src="${pageContext.request.contextPath }/resources/images/header/헤더푸터2.jpg" alt="" />
 			</div>
 		</div>
