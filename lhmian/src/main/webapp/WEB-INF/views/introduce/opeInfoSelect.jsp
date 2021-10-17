@@ -63,7 +63,7 @@ textarea {
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터2.jpg);">
+			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터6.jpg); background-position:50% 100px !important">
 				<img class="nodisplay-image" src="${pageContext.request.contextPath }/resources/images/header/헤더푸터2.jpg" alt="" />
 			</div>
 		</div>
@@ -71,8 +71,6 @@ textarea {
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
 					<div class="header-inner">
-						<div class="overlay">
-						</div>
 					</div>
 				</div>
 			</div>
@@ -81,8 +79,8 @@ textarea {
 	<div class=" clearfix"></div>
 </div>
 	<section>
-		<div class="pagenation-holder-no-bottom">
-			<div class="container-fluid">
+		<div class="pagenation-holder">
+			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">

@@ -71,7 +71,8 @@
 	</li>
 </ul>
 
-<div class="tab-content">
+<div class="tab-content" style="height:720px">
+
 	<div id="sliderTest1" class="tab-pane fade active in">
 	
 <!-- START REVOLUTION SLIDER 5.0 -->
@@ -787,10 +788,7 @@ The following part can be removed on Server for On Demand Loading) -->
 					disableFocusListener:false,
 				}
 			});
-			
-			function show1() {
-				revapi4.revshowslide(1)
-			};
+
 		
 		revapi5 = tpj("#rev_slider1").show().revolution({
 			sliderType:"standard",

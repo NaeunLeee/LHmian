@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <%-- <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/js/cubeportfolio/cubeportfolio.min.css">
 <!-- Style Customizer's stylesheets -->
@@ -172,8 +173,8 @@ button{
                <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive"/> </div>
               <div class="postinfo-box">
                 <!-- <h4 class="dosis uppercase title"><a href="#">Aliquam Rhoncus</a></h4> -->
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소: </span></div>
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득일자: ${item.lostDate}</span></div>
+                <div class="blog-post-info"><span><i class="fas fa-map-marker-alt"></i>&nbsp 습득장소: </span></div>
+                <div class="blog-post-info"><span><i class="bi bi-calendar-check"></i> 습득일자: ${item.lostDate}</span></div>
                 <br/>
                 <p class="void">${item.lostContent}</p>
             </div>
@@ -190,8 +191,8 @@ button{
                <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive img-gray"/> </div>
               <div class="postinfo-box">
                 <!-- <h4 class="dosis uppercase title"><a href="#">Aliquam Rhoncus</a></h4> -->
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득장소</span><%--  <span><i class="fa fa-folder"></i> 습득일자: ${item.lostDate}</span> --%></div>
-                <div class="blog-post-info"><span><i class="fa fa-comments-o"></i> 습득일자: ${item.lostDate}</span></div>
+                 <div class="blog-post-info"><span><i class="fas fa-map-marker-alt"></i>&nbsp 습득장소: </span></div>
+                <div class="blog-post-info"><span><i class="bi bi-calendar-check"></i> 습득일자: ${item.lostDate}</span></div>
                 <br/>
                  <p class="void">${item.lostContent}</p>
             </div>

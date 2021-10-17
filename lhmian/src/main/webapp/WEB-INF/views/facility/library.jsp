@@ -28,7 +28,7 @@
 <div class="header-inner-tmargin">
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+			<div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/편의시설.jpg);">
 				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
 			</div>
 		</div>
@@ -36,10 +36,8 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
 					<div class="header-inner">
-						<div class="overlay">
 							<div class="text text-center">
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -117,7 +115,7 @@
 	<div class="clearfix"></div>
 	<!-- end section -->
 
-	<div class="divider-line solid" style="color:#dcd9d9"></div>
+	<!-- <div class="divider-line solid" style="color:#dcd9d9"></div> -->
 	<br><br>
 	<section class="moreless-padding">
 		<div class="container">
@@ -157,7 +155,7 @@
 			</div>
 		</div>
 	</section>
-		<div class="divider-line solid" style="color:#dcd9d9"></div>
+		<!-- <div class="divider-line solid" style="color:#dcd9d9"></div> -->
 	<section class="sec-padding section-light"></section>
 	<div class="clearfix"style="border"></div>
 </section>

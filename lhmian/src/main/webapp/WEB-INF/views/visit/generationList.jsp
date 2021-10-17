@@ -20,10 +20,64 @@ margin : 0;
 padding : 100px;
 }
 </style>
-<div align="center">
+
+<div class="header-inner-tmargin">
+   <section class="section-side-image clearfix">
+      <div class="img-holder col-md-12 col-sm-12 col-xs-12">
+         <div class="background-imgholder" style="background: url(${pageContext.request.contextPath }/resources/images/header/헤더푸터9.jpg);">
+            <img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
+         </div>
+      </div>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+               <div class="header-inner">
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <div class=" clearfix"></div>
+</div>
+   <section>
+      <div class="pagenation-holder">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <ol class="breadcrumb-gray">
+                     <li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/visit/generation">방명록</a></li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section class="sec-padding section-light">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12 nopadding">
+               <div class="sec-title-container-padding-topbottom text-center">
+                  <div class="pl-title-line-1"></div>
+                  <h4 class="uppercase font-weight-7 less-mar-1">방명록</h4>
+                  <div class="clearfix"></div>
+                  <p class="by-sub-title" style="font-size: 13px;">자유롭게 방명록을 남겨보세요!</p>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+         </div>
+      </div>
+
+      <div class="container" align="center" style="width: 1400px">
+         <div class="text-box white padding-4 col-7">
+
 	<c:forEach items="${generation}" var="houseInfo">
 		<c:if test="${houseInfo.houseInfo != 0}">
 			<div class="status">
+				<%-- <img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="
+						class="img-responsive" /> --%>
 				<div class="cbp-item-yj web-design generation">
 					<button value="${houseInfo.houseInfo}" onclick="generation(${houseInfo.houseInfo})">
 						${houseInfo.houseInfo}
@@ -33,6 +87,8 @@ padding : 100px;
 		</c:if>
 	</c:forEach>
 </div>
+</div>
+</section>
 <script>
 	//세대 클릭시 새창으로 열림
 	function generation(n) {
