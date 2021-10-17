@@ -28,13 +28,19 @@ tr {
 	border-bottom: 1px solid lightGray;
 }
 
-.sec-padding {
-	padding: 80px 0 0 0;
-}
-
 .pagination>li>a {
 	color: black;
 }
+	.width-80 {
+		width:80%
+	}
+	.padding-l40{
+		padding-left: 40px
+	}
+	.padding-t40{
+		padding-top: 40px
+	}
+	
 /* 
 .pagination {
 	margin-left: 250PX;
@@ -51,7 +57,8 @@ tr {
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
 					<div class="header-inner">
-						<div class="overlay"></div>
+						<div class="overlay">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -59,38 +66,34 @@ tr {
 	</section>
 	<div class=" clearfix"></div>
 </div>
-<section>
-	<div class="pagenation-holder">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<ol class="breadcrumb-gray">
-						<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-						<li><a href="">결제?</a></li>
-						<li class="current"><a href="${pageContext.request.contextPath}/pay/myPaidList">나의 결제내역</a></li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="sec-padding section-light">
-	<div class="container">
+<section class="sec-padding">
+	<div class="container width-80">
 		<div class="row">
-			<div class="col-xs-12 nopadding">
-				<div class="sec-title-container-padding-topbottom text-center">
-					<div class="pl-title-line-1"></div>
-					<h4 class="uppercase font-weight-7 less-mar-1">결제내역</h4>
-					<div class="clearfix"></div>
-					<p class="by-sub-title" style="font-size: 13px;">결제... 어쩌구..ㅋㅋ</p>
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
+				<div class="pages-sidebar-item">
+					<!-- <h5 class="uppercase pages-sidebar-item-title">관리자</h5> -->
+					<ul class="pages-sidebar-links">
+						<li><a href="feeList">관리비</a></li>
+						<li><a class="active" href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
+						<li><a href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
+					</ul>
 				</div>
 			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-
-	<div class="container" align="center">
-		<div class="text-box white padding-4 col-7">
+			<div class="col-md-10 col-sm-6 col-xs-12">
+				<div></div><br><br>
+				<div class="sec-title-container less-padding-3 text-left padding-l40">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">에너지 사용량</h4>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">호수별로 각 에너지 사용량을 조회합니다.</p>
+				</div>
+				
+				
+		<div class="text-box white padding-l40">
 			<table>
 				<thead>
 					<tr>
@@ -121,30 +124,36 @@ tr {
 					</c:forEach>
 				</tbody>
 			</table>
+			<!-- 테이블 -->
+			<br>
+			<div id="pageButton" align="center">
+				<ul class="pagination hover-orange">
+					<c:if test="${pageMaker.prev == true}">
+						<li><a href="${pageMaker.startPage-1}"> 
+								<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+							</a>
+						</li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+						<li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next == true}">
+						<li><a href="${pageMaker.endPage+1}"> 
+								<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+							</a>
+						</li>
+					</c:if>
+				</ul>
+			</div>
+			
 		</div>
 	</div>
 	<form id="actionForm" action="admEnergyCon" method="get">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	</form>
-	<div id="pageButton" style="margin: auto; width: 50%">
-		<ul class="pagination hover-orange">
-			<c:if test="${pageMaker.prev == true}">
-				<li><a href="${pageMaker.startPage-1}"> 
-						<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-					</a>
-				</li>
-			</c:if>
-			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-				<li><a href="${num}">${num}</a></li>
-			</c:forEach>
-			<c:if test="${pageMaker.next == true}">
-				<li><a href="${pageMaker.endPage+1}"> 
-						<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-					</a>
-				</li>
-			</c:if>
-		</ul>
+	
+	</div>
 	</div>
 </section>
 <br>
