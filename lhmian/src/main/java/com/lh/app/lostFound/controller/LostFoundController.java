@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -49,12 +50,12 @@ public class LostFoundController {
 
 	// 등록처리
 	@PostMapping("/itemLost/admLostInsert")
-	public String register(LostFoundVO vo, @RequestParam("lostImg") MultipartFile file, RedirectAttributes rttr)
+	public String register(LostFoundVO vo, @RequestParam("lostImg") MultipartFile file, RedirectAttributes rttr, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		MultipartFile ufile = file;
 		//String filePath = "C:\\Users\\HOME\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; // 집
 		//String filePath = "C:\\Users\\arido\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //노트북
-		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
+		String filePath = request.getSession().getServletContext().getRealPath("/lost_img"); //"C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
 		// 서버저장
 		if (!ufile.isEmpty() && ufile.getSize() > 0) {
 			String fileName = ufile.getOriginalFilename();
@@ -101,7 +102,7 @@ public class LostFoundController {
 	// 수정
 	//썅!!!
 	@PostMapping("/itemLost/lostModify")
-	public String modify(LostFoundVO vo, @RequestParam("lostChangeImg") MultipartFile file, RedirectAttributes rttr) throws IllegalStateException, IOException {
+	public String modify(LostFoundVO vo, @RequestParam("lostChangeImg") MultipartFile file, RedirectAttributes rttr, HttpServletRequest request) throws IllegalStateException, IOException {
 		// 파일은 수정하지 않을 경우를 대비해 단건조회
 		LostFoundVO oldVo = lostFoundService.read(vo);
 		// 새파일
@@ -109,7 +110,7 @@ public class LostFoundController {
 		//String filePath = "C:\\Users\\arido\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //노트북
 		//if(file != null) {
 		//String filePath = "C:\\Users\\HOME\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; // 집
-		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
+		String filePath = request.getSession().getServletContext().getRealPath("/lost_img");//"C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\lost_img"; //학원
 		// 서버저장
 			if (!ufile.isEmpty() && ufile.getSize() > 0) {
 				// 기존 파일 삭제
