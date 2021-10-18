@@ -138,7 +138,10 @@
 										<td onclick="event.cancelBubble=true;">
 											<input type="checkbox" name="chk" value="${gen.houseInfo}" data-name="${gen.name}" data-phone="${gen.phone}">
 										</td>
-										<td>${gen.houseInfo}</td>
+										<td>
+											<c:set var="donghosu" value="${gen.houseInfo}"/>
+											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 8)}호
+										</td>
 										<td onclick="event.cancelBubble=true;">
 											<select name="position" class="position form-control" style="width: 100px;" data-id="${gen.id}">
 												<option value="LEADER" ${gen.position eq 'LEADER' ? 'selected' : ""}>동대표</option>
@@ -210,15 +213,14 @@
 							<button type="button" class="btn btn-default" id="verify" style="margin-left: 20px;">인증번호 발급</button>
 							<hr>
 						</div>
-						<div id="existing"></div>
+						<div id="existing" align="center"></div>
 					</div>
 					<br>
 				</div>
 				<!-- Modal Footer -->
 				<div class="modal-footer">
 					<div align="center">
-						<button type="button" id="regGeneration" class="btn btn-dark">등록</button>
-						<button type="button" id="closeReg" class="btn btn-default">취소</button>
+						<button type="button" id="closeReg" class="btn btn-default">닫기</button>
 					</div>
 				</div>
 			</div>
@@ -581,7 +583,8 @@
 	$('#verify').on('click', function() {
 		
 		var houseInfo = $('#dong').val() + '' + $('#ho').val();
-		var str = '<p style="text-align: center; color: #E02401;">해당 세대는 이미 존재하므로 등록할 수 없습니다.</p>';
+		var str = '<p style="text-align: center; color: #E02401;">해당 세대는 이미 존재하므로 등록할 수 없습니다.</p><br>';
+		str += '<button type="button" class="re-verify btn btn-default">인증번호 재발급</button>';
 		
 		$.ajax({
 			url: 'countGen',
@@ -612,4 +615,6 @@
 		$('#ho').val('');
 		$('#existing').empty();
 	});
+	
+	
 </script>
