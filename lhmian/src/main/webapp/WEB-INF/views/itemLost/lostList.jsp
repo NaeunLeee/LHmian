@@ -111,6 +111,20 @@ button{
 .trans-15 {
 	background-color: rgba(0, 0, 0, 0.15) !important;
 }
+.text-in {
+/* 	padding: 5px 10px; */
+	background-color: black;
+	text-align: center;
+	position: absolute;
+	color: white;
+	font-size: 20px;
+	font-weight: 400;
+	top: 90%;
+	width: 100%;
+}
+.img-box {
+	position: relative;
+}
 
 </style>
 
@@ -188,7 +202,9 @@ button{
           <div class="col-md-4 col-sm-6 col-xs-12"> 
            <div class="bg2-featurebox-3">
               <div class="img-box">
-               <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive img-gray"/> </div>
+               <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive img-gray"/> 
+               	<div class="text-in"><p>수령완료</p></div>
+               </div>
               <div class="postinfo-box">
                 <!-- <h4 class="dosis uppercase title"><a href="#">Aliquam Rhoncus</a></h4> -->
                  <div class="blog-post-info"><span><i class="fas fa-map-marker-alt"></i>&nbsp 습득장소: </span></div>

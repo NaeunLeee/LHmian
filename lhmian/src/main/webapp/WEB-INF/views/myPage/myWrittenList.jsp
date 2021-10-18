@@ -26,6 +26,7 @@ th {
 
 table {
 	background-color: white;
+	margin-bottom: 60px;
 }
 
 /* .tabstyle-7 .responsive-tabs li {
@@ -59,26 +60,6 @@ table {
 
 </head>
 <body>
-	<div class="header-inner-tmargin">
-		<section class="section-side-image clearfix">
-			<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-				<div class="background-imgholder"
-					style="background: url(http://placehold.it/1500x1000);">
-					<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-				</div>
-			</div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-						<div class="header-inner">
-							<div class="overlay"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<div class=" clearfix"></div>
-	</div>
 	<section>
 		<div class="pagenation-holder-no-bottom">
 			<div class="container">
@@ -87,7 +68,7 @@ table {
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a href="${pageContext.request.contextPath}/myPage/myPage">마이 페이지</a></li>
-							<li class="current"><a href="#">작성글 조회</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a></li>
 						</ol>
 					</div>
 				</div>
@@ -102,13 +83,13 @@ table {
 							<div class="pl-title-line-1"></div>
 							<h4 class="uppercase font-weight-7 less-mar-1">작성글 조회</h4>
 							<div class="clearfix"></div>
-							<p class="by-sub-title">작성한 글을 조회하는 페이지...</p>
+							<p class="by-sub-title">작성한 글 및 댓글을 확인할 수 있습니다.</p>
 						</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 		<div>
-			<section class="sec-tpadding-2">
+			<section>
 				<div class="container">
 					<div class="row">
 						<div class="col-12 margin-bottom">
@@ -138,7 +119,7 @@ table {
 										<div style="margin: 30px 50px 20px;">
 											<div style="margin-left: 20px;">
 												<div class="title-line-3 align-left"></div>
-												<h4 class="uppercase font-weight-7 less-mar-1">커뮤니티 - 내 게시글</h4><br>
+												<h4 class="uppercase font-weight-7 less-mar-1">내 게시글</h4><br>
 											</div>
 											<div>
 												<table class="table">
@@ -163,7 +144,7 @@ table {
 											</div>
 											<div style="margin-left: 20px;">
 												<div class="title-line-3 align-left"></div>
-												<h4 class="uppercase font-weight-7 less-mar-1">커뮤니티 - 내 댓글</h4><br>
+												<h4 class="uppercase font-weight-7 less-mar-1">내 댓글</h4><br>
 											</div>
 											<div>
 												<table class="table">
@@ -194,7 +175,7 @@ table {
 										<div style="margin: 30px 50px 20px;">
 											<div style="margin-left: 20px;">
 												<div class="title-line-3 align-left"></div>
-												<h4 class="uppercase font-weight-7 less-mar-1">민원 - 내 게시글</h4><br>
+												<h4 class="uppercase font-weight-7 less-mar-1">내 게시글</h4><br>
 											</div>
 											<table class="table">
 												<thead>
@@ -230,7 +211,7 @@ table {
 										<div style="margin: 30px 50px 20px;">
 											<div style="margin-left: 20px;">
 												<div class="title-line-3 align-left"></div>
-												<h4 class="uppercase font-weight-7 less-mar-1">입주자 대표회의 - 내 게시글</h4><br>
+												<h4 class="uppercase font-weight-7 less-mar-1">내 게시글</h4><br>
 											</div>
 											<table class="table">
 												<tr>

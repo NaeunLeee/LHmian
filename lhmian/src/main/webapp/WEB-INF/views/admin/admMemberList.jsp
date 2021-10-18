@@ -58,7 +58,9 @@
 	.padding-t40{
 		padding-top: 40px !important;
 	}
-		
+	.sec-title-container {
+		padding-bottom: 30px
+	}
 	
 </style>
 

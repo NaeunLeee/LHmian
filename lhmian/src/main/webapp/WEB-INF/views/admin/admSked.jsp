@@ -10,6 +10,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
+container {
+	width: 80%
+}
+
 .tr_1 {
 	cursor: pointer;
 	text-align: center;
@@ -48,12 +52,24 @@ table {
 .nav-tabs.nav-justified>li>.active {
 	background-color: #C8C6C6;
 }
-
+.padding-l40{
+padding-left: 40px !important;
+}
+.padding-t40{
+	padding-top: 40px !important;
+}
+.select2-container {
+	width: 410px !important;
+}
 /* 10/15 스타일 추가 */
-#full {
+/* #full {
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 0px;
+} */
+
+body{
+	padding:0 !important;
 }
 </style>
 <link
@@ -71,14 +87,37 @@ table {
 	href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
 <link rel="stylesheet" type="text/css"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- 
 <body id="full">
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	 -->
+<section class="sec-padding-1">
 	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
+				<div class="pages-sidebar-item">
+					<!-- <h5 class="uppercase pages-sidebar-item-title">관리자</h5> -->
+					<ul class="pages-sidebar-links">
+						<li><a href="feeList">관리비</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
+						<li><a href="admOpeInfoList">게시글 관리</a></li>
+						<li><a class="active" href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-md-10 col-sm-6 col-xs-12 padding-l40">
+				<div></div><br><br>
+				<div class="text-left">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">일정 관리</h4>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">LHmian의 일정을 관리합니다.</p>
+
+				</div>
+				
 
 		<!-- 일자 클릭시 메뉴오픈 -->
 		<div id="contextMenu" class="dropdown clearfix">
@@ -214,7 +253,7 @@ table {
 				<div class="col-lg-6">
 					<label for="calendar_view">등록자별</label>
 					<div class="input-group">
-						<label class="checkbox-inline"> <input class='filter'
+						<label class="checkbox-inline" style="padding-top: 5px"> <input class='filter'
 							type="checkbox" value="관리자" checked>관리자
 						</label>
 					</div>
@@ -223,6 +262,9 @@ table {
 			</div>
 		</div>
 	</div>
+</div>
+</div>
+</section>
 	<!-- /.filter panel -->
 	<!-- 10/01 resources -> fullcalendar로 수정함 -->
 	<script

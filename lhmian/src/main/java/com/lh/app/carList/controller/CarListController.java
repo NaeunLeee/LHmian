@@ -23,7 +23,7 @@ public class CarListController {
 	CarListService service;
 	
 	//전체조회
-	@GetMapping("admCarList")
+	@GetMapping("/admin/admCarList")
 	public String carList(Model model, @ModelAttribute("cri") CarListCriteria cri) {
 		int total = service.getTotalCount(cri);
 		model.addAttribute("list", service.getList(cri));

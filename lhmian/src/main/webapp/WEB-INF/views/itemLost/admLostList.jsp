@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <%-- <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/js/cubeportfolio/cubeportfolio.min.css">
@@ -60,7 +61,7 @@
 
 
 .table-style-2 { 
-width : 500px;
+	width : 500px;
 }
 
 th {
@@ -175,6 +176,20 @@ button{
 .trans-15 {
 	background-color: rgba(0, 0, 0, 0.15) !important;
 }
+.text-in {
+/* 	padding: 5px 10px; */
+	background-color: black;
+	text-align: center;
+	position: absolute;
+	color: white;
+	font-size: 20px;
+	font-weight: 400;
+	top: 90%;
+	width: 100%;
+}
+.img-box {
+	position: relative;
+}
 
 </style>
 
@@ -257,7 +272,7 @@ button{
            <div class="bg2-featurebox-3">
               <div class="img-box">
                <img src="${pageContext.request.contextPath}/lost_img/${item.lostFile}" alt="" class="img-responsive img-gray"/> 
-               
+               <div class="text-in"><p>수령완료</p></div>
                </div>
                
               <div class="postinfo-box">
