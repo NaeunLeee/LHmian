@@ -34,10 +34,8 @@ public class EnergyController {
 	// 기간조회(전체조회)-사용자
 	@GetMapping("/myEnergyPeriod")
 	@ResponseBody
-	public List<EnergyVO> myPeriod(EnergyVO vo, Model model,
-			@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	public List<EnergyVO> myPeriod(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		System.out.println(energyService.getList(vo));
 		List<EnergyVO> result = energyService.getList(vo);
 		return result;
 	}
@@ -59,10 +57,4 @@ public class EnergyController {
 		model.addAttribute("list", energyService.admList(cri));
 		model.addAttribute("pageMaker", new EnergyPageVO(cri, total));
 	}
-
-	/*
-	 * @GetMapping("/no/test") public void test(Model model) {
-	 * model.addAttribute("size", energyService.admList().size());
-	 * model.addAttribute("test", energyService.admList()); }
-	 */
 }

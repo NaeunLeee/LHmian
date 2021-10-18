@@ -31,11 +31,11 @@ public class RefundTicket {
 
 			double amount = vo.getPrice();
 			String merchant_uid = vo.getPayNo();
-			
+
 			obj.add("merchant_uid", new Gson().toJsonTree(merchant_uid));
 			obj.add("amount", new Gson().toJsonTree(amount));
 			obj.add("access_token", new Gson().toJsonTree(token));
-			
+
 			BufferedWriter bw;
 			bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			bw.write(obj.toString());

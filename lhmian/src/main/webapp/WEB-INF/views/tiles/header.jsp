@@ -184,7 +184,7 @@
 															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/visit/generation">방명록</a>
+															<a href="${pageContext.request.contextPath}/visit/generationList">방명록</a>
 														</li>
 													</ul>
 												</li>

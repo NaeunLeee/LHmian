@@ -22,7 +22,6 @@ th {
 	background-color: #f5f5f5;
 }
 
-
 .table-1000 {
 	background-color: white;
 	width: 1000px;
@@ -32,12 +31,12 @@ th {
 	width: 500px;
 }
 
-.h-50{
-	height:50px !important;
+.h-50 {
+	height: 50px !important;
 }
 
 .p-15 {
-	padding-left:15px !important; 
+	padding-left: 15px !important;
 }
 
 .pagination>li>a {
@@ -45,19 +44,38 @@ th {
 }
 
 .pagination {
-margin-left : 25%;
+	margin-left: 25%;
 }
 
-.modal-header{
-	border-bottom:0
+.modal-header {
+	border-bottom: 0
 }
 
-.modal-footer{
-	border-top:0;
-	text-align:center
+.modal-footer {
+	border-top: 0;
+	text-align: center
 }
-
 </style>
+
+<div class="header-inner-tmargin">
+	<section class="section-side-image clearfix">
+		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
+			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
+				<img class="nodisplay-image" src="http://placehold.it/1500x1000"alt="" />
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
+					<div class="header-inner">
+						<div class="overlay"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class=" clearfix"></div>
+</div>
 
 <section>
 	<div class="pagenation-holder-no-bottom">
@@ -113,6 +131,7 @@ margin-left : 25%;
 			</table>
 		</div>
 	</div>
+	<!-- 페이징 -->
 	<form id="actionForm" action="myPaidList" method="get">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
@@ -121,13 +140,15 @@ margin-left : 25%;
 		<ul class="pagination hover-orange">
 			<c:if test="${pageMaker.prev == true}">
 				<li>
-					<a href="${pageMaker.startPage-1}"> 
-					<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+					<a href="${pageMaker.startPage-1}">
+						<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
 					</a>
 				</li>
 			</c:if>
 			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-				<li><a href="${num}">${num}</a></li>
+				<li>
+					<a href="${num}">${num}</a>
+				</li>
 			</c:forEach>
 			<c:if test="${pageMaker.next == true}">
 				<li>
@@ -139,14 +160,16 @@ margin-left : 25%;
 		</ul>
 	</div>
 </section>
-						
+
+
+<section class="sec-padding">
 
 	<div class="container">
 		<div class="row text-center">
 			<div id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="modal-switch-label" class="modal fade">
 				<div class="modal-dialog">
 					<div class="modal-content">
-					<br>
+						<br>
 						<div class="modal-header">
 							<button type="button" data-dismiss="modal" class="close">
 								<span aria-hidden="true">&times;</span><span class="sr-only">x</span>
@@ -177,7 +200,9 @@ margin-left : 25%;
 		$.ajax({
 			url : "cancelForm",
 			type : "get",
-			data : { payNo : num },
+			data : {
+				payNo : num
+			},
 			success : function(data) {
 				var tag = "";
 				tag += '<form method="post" id="frm" action="cancel">'
@@ -216,19 +241,18 @@ margin-left : 25%;
 			}
 		});
 		//결제 취소 건은 결제취소버튼 없음
-	if(status == '결제취소') {
-		$('#cancelBtn').hide();
-	}
+		if (status == '결제취소') {
+			$('#cancelBtn').hide();
+		}
 		//결제당일이 아니면 결제취소 불가
-	var today = new Date();
-	let year = today.getFullYear() + "";
-	let month = today.getMonth() + "";
-	let day = today.getDate() + "";
-	today = year+"-"+month+"-"+day;
-	if(date == today) {
-		$('#cancelBtn').hide();
-	}
-	 
+		var today = new Date();
+		let year = today.getFullYear() + "";
+		let month = today.getMonth() + "";
+		let day = today.getDate() + "";
+		today = year + "-" + month + "-" + day;
+		if (date == today) {
+			$('#cancelBtn').hide();
+		}
 	};
 
 	//모달 취소버튼
@@ -237,7 +261,7 @@ margin-left : 25%;
 			frm.submit();
 		}
 	});
-	
+
 	//페이징버튼
 	$('#pageButton a').on("click", function(e) {
 		e.preventDefault();
@@ -245,5 +269,4 @@ margin-left : 25%;
 		$('[name="pageNum"]').val(p);
 		$('#actionForm').submit();
 	})
-	
 </script>

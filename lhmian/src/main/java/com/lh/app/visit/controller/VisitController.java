@@ -18,38 +18,30 @@ import com.lh.app.visit.service.VisitService;
 
 @Controller
 public class VisitController {
-  
+
 	@Autowired
 	VisitService visitService;
 
-	/*
-	 * @GetMapping("/visit/generation") public String generation2(Model
-	 * model, @ModelAttribute("cri") GenerationCriteria cri) { int total =
-	 * visitService.getOldCount(cri); model.addAttribute("generation",
-	 * visitService.generation(cri)); model.addAttribute("pageMaker", new
-	 * GenerationPageVO(cri, total)); return "visit/generationList"; }
-	 */
-	
-	  //페이지로딩
-	  @GetMapping("/visit/generation")
-	  public void generation(Model model, GenerationVO vo) {
-		  model.addAttribute("generation",visitService.generation(vo));
-	  }
-	  
-	  //세대리스트 카운트
-	  @GetMapping("/gntCount")
-	  @ResponseBody
-	  public int gntCount() {
-		  return visitService.getOldCount();
-	  }
-	  
-	  //세대리스트 요청
-	  @GetMapping("/gntList")
-	  @ResponseBody
-	  public List<GenerationVO> gntList(GenerationVO vo, Model model) {
-		  return visitService.generation(vo);
-	  }  
-	  
+	// 페이지로딩
+	@GetMapping("/visit/generationList")
+	public void generation(Model model, GenerationVO vo) {
+		model.addAttribute("generation", visitService.generation(vo));
+	}
+
+	// 세대리스트 카운트
+	@GetMapping("/visit/gntCount")
+	@ResponseBody
+	public int gntCount() {
+		return visitService.getOldCount();
+	}
+
+	// 세대리스트 요청
+	@GetMapping("/visit/gntList")
+	@ResponseBody
+	public List<GenerationVO> gntList(GenerationVO vo, Model model) {
+		return visitService.generation(vo);
+	}
+
 	// 세대선택, 전체조회
 	@GetMapping("/no/visitList")
 	public String list(Model model, VisitVO vo) {
