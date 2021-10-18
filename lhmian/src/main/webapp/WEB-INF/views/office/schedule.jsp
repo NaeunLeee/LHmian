@@ -1,9 +1,7 @@
 <!-- 10/15 스타일 추가-->
 <style>
-#full {
-	padding-bottom: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
+body{
+	padding:0 !important;
 }
 </style>
 
@@ -19,13 +17,6 @@
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/resources/fullcalendar/vendor/css/bootstrap-datetimepicker.min.css' />
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
-<style>
-body{
-	padding:0
-}
-</style>
 
 	<section>
 		<div class="pagenation-holder-no-bottom">

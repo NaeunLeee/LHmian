@@ -88,6 +88,7 @@ button {
 .trans-15 {
 	background-color: rgba(0, 0, 0, 0.15) !important;
 }
+
 </style>
 
 <div class="header-inner-tmargin">
@@ -139,6 +140,7 @@ button {
 			<div class="clearfix"></div>
 		</div>
 	</div>
+
 
 	<section class="section-light">
 		<div class="container">
@@ -193,6 +195,7 @@ button {
 	</section>
 	<div class="clearfix"></div>
 	<!-- end section -->
+
 </section>
 
 <script>

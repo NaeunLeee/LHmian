@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <style>
 .cbp-caption-defaultWrap, .cbp-caption-activeWrap {
@@ -36,8 +37,10 @@
 	display: inline-block;
 }
 
+
 .table-style-2 {
 	width: 500px;
+
 }
 
 th {
@@ -147,6 +150,8 @@ button {
 .trans-15 {
 	background-color: rgba(0, 0, 0, 0.15) !important;
 }
+
+
 </style>
 
 
@@ -197,6 +202,7 @@ button {
 			</div>
 			<div class="clearfix"></div>
 		</div>
+
 	</div>
 	<div class="col-sm-12" align="center">
 		<button type="button" id="register" class="btn btn-default">등록</button>
@@ -224,6 +230,7 @@ button {
 									<div class="col-sm-12" align="center">
 										<button type="button" class="btn btn-border light" onclick="lostModify(${item.lostNo})">수정</button>
 									</div>
+
 								</div>
 							</div>
 						</div>

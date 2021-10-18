@@ -113,8 +113,9 @@
 					</form> --%>
 				</div>
 				<div>
-					<!-- <button class="btn btn-default" onclick="deleteMember()" type="button" id="btnDelete" style="float:right;">회원삭제</button> -->
-					<button class="btn btn-gyellow" type="button" id="showModal" style="float:right; margin-right: 5px;">SMS전송</button>
+					<button class="btn btn-dark" type="button" id="registerBtn" style="margin-right: 5px;">세대 등록</button>
+					<button class="btn btn-gyellow" type="button" id="showModal">SMS전송</button>
+					<button class="btn btn-default" type="button" id="deleteBtn" style="float:right;">세대 삭제</button>
 				</div>
 				<div class="text-box white padding-t40">
 					<form id="frm"> <!-- 0928 form 추가 -->
@@ -123,7 +124,9 @@
 								<tr style="text-align: center;">
 									<th><input type="checkbox" name="chkAll" id="chkAll"></th>
 									<th>동호수</th>
+									<th>권한</th>
 									<th>세대주</th>
+									<th>전화번호</th>
 									<th>구성원 수</th>
 									<th>관리비</th>
 									<th>차량</th>
@@ -131,18 +134,25 @@
 							</thead>
 							<tbody id="tbody">
 								<c:forEach var="gen" items="${list}">
-									<tr class="move tr_1">
-										<td>
-											<input type="checkbox" name="chk" id="" value="" data-name="" data-phone="">
+									<tr class="mem tr_1" data-houseInfo="${gen.houseInfo}">
+										<td onclick="event.cancelBubble=true;">
+											<input type="checkbox" name="chk" value="${gen.houseInfo}" data-name="${gen.name}" data-phone="${gen.phone}">
 										</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td>
-											<button type="button" class="feeBtn btn btn-default" data-houseInfo="">관리비</button>
+										<td>${gen.houseInfo}</td>
+										<td onclick="event.cancelBubble=true;">
+											<select name="position" class="position form-control" style="width: 100px;" data-id="${gen.id}">
+												<option value="LEADER" ${gen.position eq 'LEADER' ? 'selected' : ""}>동대표</option>
+												<option value="FOLLOWER" ${gen.position eq 'FOLLOWER' ? 'selected' : ""}>일반</option>
+											</select> 
 										</td>
-										<td>
-											<button type="button" class="carBtn btn btn-default" data-houseInfo="">차량정보</button>
+										<td>${gen.name}</td>
+										<td>${gen.phone}</td>
+										<td>${gen.familyNum}</td>
+										<td onclick="event.cancelBubble=true;"> <!-- 버튼 클릭시 tr 클릭 이벤트가 동시에 발생하지 않도록 -->
+											<button type="button" class="feeBtn btn btn-default" data-houseInfo="${gen.houseInfo}">관리비</button>
+										</td>
+										<td onclick="event.cancelBubble=true;">
+											<button type="button" class="carBtn btn btn-default" data-houseInfo="${gen.houseInfo}">차량정보</button>
 										</td>
 									</tr>
 								</c:forEach>
@@ -179,3 +189,427 @@
 	</div>
 </section>
 
+	<!-- Register Modal -->
+	<div class="modal" id="regModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">새 세대 등록</h4>
+					</div>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div id="newGen" style="margin: 0px 20px 0px;">
+						<div align="center" style="background-color: #f5f5f5;">
+							<br>
+							<input type="text" class="form-control" id="dong" style="width: 80px;">&nbsp;동
+							<input type="text" class="form-control" id="ho" style="width: 100px;">&nbsp;호&nbsp;&nbsp;
+							<button type="button" class="btn btn-default" id="verify" style="margin-left: 20px;">인증번호 발급</button>
+							<hr>
+						</div>
+						<div id="existing"></div>
+					</div>
+					<br>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<div align="center">
+						<button type="button" id="regGeneration" class="btn btn-dark">등록</button>
+						<button type="button" id="closeReg" class="btn btn-default">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+
+	<!-- Member Modal -->
+	<div class="modal" id="memberModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">세대별 회원정보</h4>
+					</div>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div id="members" style="margin: 0px 20px 0px;"></div>
+					<br>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<div align="center">
+						<button type="button" id="closeMem" class="btn btn-default" data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+
+	<!-- CarList Modal -->
+	<div class="modal" id="carListModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">차량 정보</h4>
+					</div>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div id="cars" style="margin: 0px 20px 0px;"></div>
+					<br>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<div align="center">
+						<button type="button" id="closeCars" class="btn btn-default" data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+	<!-- SMS Modal -->
+	<div class="modal" id="smsModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="smsForm" name="smsForm">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<div style="margin-left: 20px;">
+							<div class="title-line-3 align-left"></div>
+							<h4 class="uppercase font-weight-7 less-mar-1">SMS 전송</h4>
+						</div>
+					</div>
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div style="margin: 0px 20px 0px;">
+							<blockquote><span id="memInfo"></span></blockquote>
+							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+							<textarea id="smsContent" rows="10" cols="30" class="form-control"></textarea>
+						</div>
+						<div style="margin-right: 20px; float: right;">
+							(&nbsp;<span id="checkLength"></span>&nbsp;/ 200 )
+						</div>
+						<br>
+						<hr>
+						<div align="right" style="margin-right: 20px;">
+							<h4>총 <span id="number"></span> 개</h4>
+							<h4>총 금액 <span id="price"></span> 원</h4>
+						</div>
+					</div>
+					<!-- Modal Footer -->
+					<div class="modal-footer">
+						<div align="center">
+							<button type="button" id="send" class="btn btn-gyellow">전송</button>
+							<button type="button" id="closeSMS" class="btn btn-default">취소</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+
+<script>
+
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+	
+	
+	// 회원 정보 모달 띄우기
+	$('.mem').on('click', function() {
+		var str = '';
+		
+		$.ajax({
+			url: 'familyList',
+			type: 'POST',
+			data: JSON.stringify({
+				houseInfo: $(this).attr('data-houseInfo')
+			}),
+			contentType: 'application/json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			dataType: 'json',
+			success: function(data) {
+				str += '<table class="table">';
+				str += '<thead>';
+				str += '<tr>';
+				str += '<th>구분</th>';
+				str += '<th>아이디</th>';
+				str += '<th>이름</th>';
+				str += '<th>전화번호</th>';
+				str += '</tr>';
+				str += '</thead>';
+				str += '<tbody>';
+				for (i=0; i<data.length; i++) {
+					str += '<tr style="text-align: center;">';
+					str += '<td>' + (data[i].author == 'OWNER' ? '세대주' : '세대원') + '</td>';
+					str += '<td>' + data[i].id + '</td>';
+					str += '<td>' + data[i].name + '</td>';
+					str += '<td>'+ data[i].phone + '</td>';
+					str += '</tr>';
+				}
+				str += '</tbody>';
+				str += '</table>';
+				$('#members').html(str);
+				$('#memberModal').show();
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		});
+	
+	});
+	
+	// 회원 정보 모달 내리기...
+	$('#closeMem').on('click', function() {
+		$('#memberModal').hide();
+		$('#members').empty();
+	});
+	
+	// 차량 정보 모달 띄우기
+	$('.carBtn').on("click", function() {
+		
+		var str = "";
+		
+		$.ajax({
+			url: 'carByHouseInfo',
+			type: 'POST',
+			data: JSON.stringify({
+				houseInfo: $(this).attr('data-houseInfo')
+			}),
+			contentType: 'application/json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.length == 0) {
+					alert('등록된 차량이 없습니다.');
+				} else {
+					str += '<table class="table">';
+					str += '<thead>';
+					str += '<tr>';
+					str += '<th>식별번호</th>';
+					str += '<th>차량번호</th>';
+					str += '<th>차종</th>';
+					str += '<th>등록일자</th>';
+					str += '</tr>';
+					str += '</thead>';
+					str += '<tbody>';
+					for (i=0; i<data.length; i++) {
+						str += '<tr class="tr_1">';
+						str += '<td>' + data[i].carNo + '</td>';
+						str += '<td>' + data[i].carCode + '</td>';
+						str += '<td>' + data[i].carType + '</td>';
+						/* str += '<td><fmt:formatDate value="'+ data[i].carDate + '" pattern="yy-MM-dd" /></td>'; */
+						str += '<td>'+ data[i].carDate + '</td>';
+						str += '</tr>';
+					}
+					str += '</tbody>';
+					str += '</table>';
+					$('#cars').html(str);
+					$('#carListModal').show();
+				}
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		});
+		
+	});
+	
+	// 차량 정보 모달 내리기...
+	$('#closeCars').on("click", function() {
+		$('#carListModal').hide();
+		$('#cars').empty();
+	});
+	
+	// 직책 변경
+	$('.position').on("change", function() {
+		if(confirm('변경하시겠습니까?')) {
+			$.ajax({
+				url: 'updatePosition',
+				type: 'POST',
+				data: JSON.stringify({
+					id: $(this).attr('data-id'),
+					position: $('.position').val()
+				}),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(data) {
+					alert('변경이 완료되었습니다.');
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			});	
+		}
+	});
+	
+	// 모두 선택
+	$(document).ready(function() {
+		$("#chkAll").click(function() {
+			if ($("#chkAll").is(":checked"))
+				$("input[name=chk]").prop("checked", true);
+			else
+				$("input[name=chk]").prop("checked", false);
+		});
+
+		$("input[name=chk]").click(function() {
+			var total = $("input[name=chk]").length;
+			var checked = $("input[name=chk]:checked").length;
+
+			if (total != checked)
+				$("#chkAll").prop("checked", false);
+			else
+				$("#chkAll").prop("checked", true);
+		});
+	});
+	
+	
+	// 모달창에 체크된 값 넘겨주기 (10/12 추가: 이나은)
+	let type = null;
+	
+	$('#showModal').on("click", function() {
+		
+		var cnt = $("input[name='chk']:checked").length;
+		var arr = new Array();
+		
+		$("input[name='chk']:checked").each(function() {
+			const json = {
+				"name" : $(this).attr('data-name'),
+				"phone" : $(this).attr('data-phone'),
+			};
+			arr.push(json);
+		});
+			
+ 		if (cnt == 0) {
+			alert("선택된 회원이 없습니다.");
+		} else if (cnt == 1) {
+			$('#memInfo').html(arr[0].name + '님에게 전송');
+			$('#number').html(cnt);
+			$('#price').html('30');
+			$('#smsModal').show();
+		} else {
+			$('#memInfo').html(arr[0].name + '님 외 ' + (cnt-1) + '명에게 전송');
+			$('#number').html(cnt);
+			$('#price').html(cnt*30);
+			$('#smsModal').show();
+		} 
+		
+ 		
+	});
+
+	// 문자 글자수 실시간 체크
+	$("#smsContent").keyup(function(e) {
+		var content = $(this).val();
+		$('#checkLength').html(content.length); //실시간 글자수 카운팅
+		if (content.length > 200) {
+			alert("최대 200자까지 입력 가능합니다.");
+			$(this).val(content.substring(0, 200));
+			$('#checkLength').html('200');
+		}
+	});
+	
+	// 문자 전송
+	$('#send').on("click", function() {
+		
+		var cnt = $("input[name='chk']:checked").length;
+		var arr = new Array();
+		
+		$("input[name='chk']:checked").each(function() {
+			const json = {
+				"name" : $(this).attr('data-name'),
+				"phone" : $(this).attr('data-phone'),
+				"content" : $('#smsContent').val()
+			};
+			arr.push(json);
+		});
+		
+		if (confirm('문자를 전송하시겠습니까?')) {
+			$.ajax({
+				url: 'sendSms',
+				type: 'POST',
+				data: JSON.stringify(arr),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(data) {
+					$('#smsModal').hide();
+					$('#smsContent').val('');
+					alert(data + '건의 전송이 완료되었습니다.');
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			});
+		}
+	});
+	
+	// SMS 모달 내리기...
+	$('#closeSMS').on("click", function() {
+		$('#smsModal').hide();
+		$('#smsContent').val('');
+	});
+	
+	
+	// 세대 등록 모달 띄우기
+	$('#registerBtn').on('click', function() {
+		$('#regModal').show();
+	});
+	
+	$('#verify').on('click', function() {
+		
+		var houseInfo = $('#dong').val() + '' + $('#ho').val();
+		var str = '<p style="text-align: center; color: #E02401;">해당 세대는 이미 존재하므로 등록할 수 없습니다.</p>';
+		
+		$.ajax({
+			url: 'countGen',
+			type: 'POST',
+			data: JSON.stringify({
+				houseInfo: houseInfo
+			}),
+			contentType: 'application/json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data > 0) {
+					$('#existing').html(str);
+				} 
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		});
+	});
+	
+	// 세대 등록 모달 내리기
+	$('#closeReg').on('click', function() {
+		$('#regModal').hide();
+		$('#dong').val('');
+		$('#ho').val('');
+		$('#existing').empty();
+	});
+</script>

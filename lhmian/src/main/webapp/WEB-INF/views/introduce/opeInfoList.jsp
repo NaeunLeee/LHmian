@@ -158,17 +158,23 @@ table {
 
 
 <script>
-	$(function() {
-		var actionForm = $('#actionForm');
-
-		$('#pageBtn a').on("click", function(e) {
-			e.preventDefault();
-			var p = $(this).attr('href');
-			$('[name="pageNum"]').val(p);
-			actionForm.submit();
-		});
-
+	var actionForm = $('#actionForm');
+	
+	$('#pageBtn a').on("click", function(e) {
+		e.preventDefault();
+		var p = $(this).attr('href');
+		$('[name="pageNum"]').val(p);
+		actionForm.submit();
 	});
+		
+	$('.move').on("click", function(e) {
+	    e.preventDefault();
+	    var oiNo = $(this).attr("data-oiNo");
+	    actionForm.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
+	    actionForm.attr("action", "opeInfoSelect");
+	    actionForm.submit();
+	 });
+
 
 	$(document).ready(function() {
 		var result = '<c:out value="${message}"/>';

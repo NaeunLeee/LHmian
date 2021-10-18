@@ -58,7 +58,9 @@
 	.padding-t40{
 		padding-top: 40px !important;
 	}
-		
+	.sec-title-container {
+		padding-bottom: 30px
+	}
 	
 </style>
 
@@ -73,6 +75,7 @@
 					<ul class="pages-sidebar-links">
 						<li><a href="feeList">관리비</a></li>
 						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admGeneration">세대 관리</a></li>
 						<li><a class="active" href="admMemberList">회원 관리</a></li>
 						<li><a href="admCarList">차량 관리</a></li>
 						<li><a href="admOpeInfoList">게시글 관리</a></li>
@@ -89,22 +92,19 @@
 					<div class="clearfix"></div>
 					<p class="by-sub-title">LHmian의 모든 회원을 조회합니다.</p>
 				</div>
-
-				<div style="float: left; margin-left: 40px;" id="criteriaForm" data-option="${type}">
-
+				<div style="float: left;" id="criteriaForm" data-option="${option}">
 					<form id="actionForm" action="admMemberList" method="get">
 						<select name="type" class="form-control" style="width: 100px; ">
 							<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
-							<option id="N" value="N" ${pageMaker.cri.type=='N' ? 'selected' : ""}>이름</option>
-							<option id="C" value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>동호수</option>
-							<option id="A" value="A" ${pageMaker.cri.type=='A' ? 'selected' : ""}>휴대폰번호</option>
+							<option value="N" ${pageMaker.cri.type=='N' ? 'selected' : ""}>이름</option>
+							<option value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>동호수</option>
+							<option value="A" ${pageMaker.cri.type=='A' ? 'selected' : ""}>휴대폰번호</option>
 						</select> 
 						<input name="keyword" class="form-control" style="width: 200px; margin-right: 10px;" value="${pageMaker.cri.keyword}"> 
-							<label for="all">전체</label><input type="checkbox" id="A" name="option" value="A" checked="checked">
-							<label for="notpaid">관리비미납</label><input type="checkbox" id="N" name="option" value="N" onchange="checkOption()">
-							<label for="leader">입주민대표</label><input type="checkbox" id="L" name="option" value="L" onchange="checkOption()">
-							<label for="owner">세대주</label><input type="checkbox" id="O" name="option" value="O" onchange="checkOption()">
-							<input type="hidden" name="preType" id="preType" value="${type}">
+							<label for="all">전체</label><input type="checkbox" id="all" name="option" value="A" checked="checked">
+							<label for="notpaid">관리비미납</label><input type="checkbox" id="notpaid" name="option" value="N" onchange="checkOption()">
+							<label for="leader">입주민대표</label><input type="checkbox" id="leader" name="option" value="L" onchange="checkOption()">
+							<label for="owner">세대주</label><input type="checkbox" id="owner" name="option" value="O" onchange="checkOption()">
 						<button type="button" class="btn btn-dark" id="searchBtn" onclick="allChecked()">검색</button>
 						
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
@@ -524,9 +524,9 @@
 					str += '<tbody>';
 					for (i=0; i<data.length; i++) {
 						str += '<tr class="tr_1">';
-						str += '<td>' + data[i].carNo + '</td>';
-						str += '<td>' + data[i].carCode + '</td>';
-						str += '<td>' + data[i].carType + '</td>';
+						str += '<td>' + data[i].carNo + '</>';
+						str += '<td>' + data[i].carCode + '</>';
+						str += '<td>' + data[i].carType + '</>';
 						/* str += '<td><fmt:formatDate value="'+ data[i].carDate + '" pattern="yy-MM-dd" /></td>'; */
 						str += '<td>'+ data[i].carDate + '</td>';
 						str += '</tr>';

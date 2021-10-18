@@ -257,6 +257,9 @@
 																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
 															</li>
 															<li>
+																<a href="${pageContext.request.contextPath}/admin/admGeneration">세대 관리</a>
+															</li>
+															<li>
 																<a href="${pageContext.request.contextPath}/admin/admMemberList">회원 관리</a>
 															</li>
 															<li>
