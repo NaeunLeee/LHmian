@@ -13,4 +13,7 @@ public class MemberVO {
 	private String password;
 	private String status;
 	private String position;
+	
+	// 10-18 추가: 이나은
+	private int familyNum;
 }
