@@ -8,7 +8,7 @@
 <!-- 10/14 차량 등록 추가: 이나은 -->
 <style>
 	.container {
-		width: 85%;
+		width: 80%;
 	}
 	.tr_1 {
 		text-align: center;
@@ -33,63 +33,53 @@
 	.form-control {
 		display: inline-block;
 	}
-	.container {
-		width: 85%;
-	}
-	.sec-title-container.less-padding-3.text-left {
-		padding-left: 30px;
-		padding-bottom: 0px; 
-	}
+
 	.text-bo.white.padding-4.col-7 {
 		padding-top: 5px;
 	}
+	
+	.padding-l40{
+	padding-left: 40px !important;
+	}
+	.padding-t40{
+		padding-top: 40px !important;
+	}
+	td {
+		vertical-align: middle !important;
+	}
+	
 </style>
 
-<div class="header-inner-tmargin">
-	<section class="section-side-image clearfix">
-		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class=" clearfix"></div>
-</div>
 
-<section class="sec-padding">
+<section class="sec-padding-1">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
 				<div class="pages-sidebar-item">
-					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
+					<!-- <h5 class="uppercase pages-sidebar-item-title">관리자</h5> -->
 					<ul class="pages-sidebar-links">
-						<li><a href="#">관리비</a></li>
-						<li><a href="#">에너지 사용량</a></li>
-						<li><a href="#">회원 관리</a></li>
-						<li><a href="#">게시글 관리</a></li>
-						<li><a class="active" href="#">차량 관리</a></li>
+						<li><a href="feeList">관리비</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a class="active" href="admCarList">차량 관리</a></li>
+						<li><a href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-10 col-sm-6 col-xs-12">
+
+			<div class="col-md-10 col-sm-6 col-xs-12 padding-l40">
 				<div></div><br><br>
-				<div class="sec-title-container less-padding-3 text-left">
+				<div class="text-left">
 					<div class="title-line-3 align-left"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">차량 관리</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title">전 세대의 차량을 조회 및 관리합니다.</p>
+					<p class="by-sub-title">LHmian에 등록된 차량을 조회합니다.</p>
+
 				</div>
-				<div class="text-box white padding-4 col-7">
+				
+				<div class="text-box white">
 					<form id="frm">
 					<button class="btn btn-default" onclick="deleteCar()" type="button" id="btnDelete" style="float:right; margin:0px 10px 10px 0px; padding: 4px 13px;">삭제</button>
 					<button class="btn btn-gyellow" type="button" data-toggle="modal" data-target="#registerModal" style="float:right; margin: 0px 10px 10px 0px; padding: 4px 13px;">등록</button>

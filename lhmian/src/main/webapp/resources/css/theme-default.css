@@ -2931,6 +2931,10 @@ ul.footer-flickr {
 	padding: 80px 0 80px 0;
 }
 
+.sec-padding-1{
+	padding: 100px 0 80px 0;
+}
+
 /* 유정 수정 */
 .sec-padding-yj {
 	padding: 20px 0 20px 0;
@@ -4930,14 +4934,15 @@ display:none;
     padding-bottom: 35px;
 }
 
-
-
-
-
 .trans-15 {
 	background-color: rgba(0, 0, 0, 0.15) !important;
 }
-
+.padding-l40{
+	padding-left: 40px !important;
+}
+.padding-t40{
+	padding-top: 40px !important;
+}
 
 
 
