@@ -167,26 +167,39 @@
 	console.log(count);
 	var cookieCheck = getCookie("popupYN");
 	
-	if (count > '0' && cookieCheck != "N") {
+	if (count > '0' && !getCookie("close20090524")) {
 
 		window.open("popup/vote", "주민 투표 결과",
-						"width=750, height=550, left=300, top=50");				
+						"width=750, height=550, left=300, top=50");
 	}
 
 	
-	function getCookie(name) { 
+	function getCookie( cookieName ) { 
+		var search = cookieName + "="; 
 		var cookie = document.cookie; 
-		if (document.cookie != "") { 
-			var cookie_array = cookie.split("; "); 
-			for ( var index in cookie_array) { 
-				var cookie_name = cookie_array[index].split("="); 
-				if (cookie_name[0] == "popupYN") { 
-					return cookie_name[1]; 
+		/* 현재 쿠키가 존재할 경우 */ 
+		if( cookie.length > 0 ) { 
+			/* 해당 쿠키명이 존재하는지 검색한 후 존재하면 위치를 리턴. */ 
+			startIndex = cookie.indexOf( cookieName ); 
+			/* 만약 존재한다면 */ 
+			if( startIndex != -1 ) { 
+				/* 값을 얻어내기 위해 시작 인덱스 조절 */ 
+				startIndex += cookieName.length; 
+				/* 값을 얻어내기 위해 종료 인덱스 추출 */ 
+				endIndex = cookie.indexOf( ";", startIndex ); 
+				/* 만약 종료 인덱스를 못찾게 되면 쿠키 전체길이로 설정 */ 
+				if( endIndex == -1) endIndex = cookie.length; 
+				/* 쿠키값을 추출하여 리턴 */ 
+				return unescape( cookie.substring( startIndex + 1, endIndex ) ); 
+				} else { 
+					/* 쿠키 내에 해당 쿠키가 존재하지 않을 경우 */ 
+					return false; 
 					} 
+			} else { 
+				/* 쿠키 자체가 없을 경우 */ 
+				return false; 
 				} 
-			} 
-		return ; 
-		}
+		} 
 
 	</script>
 </sec:authorize>
