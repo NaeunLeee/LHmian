@@ -583,7 +583,7 @@
 	$('#verify').on('click', function() {
 		
 		var houseInfo = $('#dong').val() + '' + $('#ho').val();
-		var str = '<p style="text-align: center; color: #E02401;">해당 세대는 이미 존재하므로 등록할 수 없습니다.</p><br>';
+		var str = '<p style="text-align: center; color: #E02401;">해당 세대는 이미 인증번호가 발급되었습니다.</p>';
 		str += '<button type="button" class="re-verify btn btn-default">인증번호 재발급</button>';
 		
 		$.ajax({
