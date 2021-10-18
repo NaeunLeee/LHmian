@@ -17,6 +17,9 @@ public class CsCriteria {
 		this.amount = amount;
 	}
 	
+	// 10/18 
+	private String preType;
+	
 	public String[] getTypeArr() {
 		return type == null ? new String[] {} : type.split("");
 	}
