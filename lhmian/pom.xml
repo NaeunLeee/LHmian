@@ -277,7 +277,7 @@
 			<version>0.2.14</version>
 		</dependency>
 		
-		<!-- spring_ireport (PDF 출력)-->
+		<!-- spring_ireport ()-->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>

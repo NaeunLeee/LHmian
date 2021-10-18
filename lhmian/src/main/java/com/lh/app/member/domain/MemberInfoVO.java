@@ -1,5 +1,7 @@
 package com.lh.app.member.domain;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -19,4 +21,7 @@ public class MemberInfoVO {
 	
 	//10-06 추가부분
 	private String position;
+	
+	//10-18 추가부분(이나은)
+	private Date carDate;
 }
