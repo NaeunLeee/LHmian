@@ -119,7 +119,7 @@ margin-left : 25%;
 				</tr>
 				<tbody>
 					<c:forEach items="${pay}" var="payList">
-						<tr class="tr_1" onclick="payCancel('${payList.payNo}')">
+						<tr class="tr_1" onclick="payCancel('${payList.payNo}', '${payList.payStatus}', '${payList.payDate}')">
 							<td>${payList.payNo}</td>
 							<td>${payList.payDate}</td>
 							<td>${payList.payType}</td>
@@ -191,14 +191,13 @@ margin-left : 25%;
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	//수정모달
-	function payCancel(n) {
+	function payCancel(num, status, date) {
 		$(cancelModal).modal('show');
 		$.ajax({
 			url : "cancelForm",
 			type : "get",
-			data : { payNo : n },
+			data : { payNo : num },
 			success : function(data) {
-				console.log(data);
 				var tag = "";
 				tag += '<form method="post" id="frm" action="cancel">'
 						+ '	<section class="sec-padding-yj cancel">'
@@ -219,7 +218,7 @@ margin-left : 25%;
 						+ '					</tr>'
 						+ '					<tr class="h-50">'
 						+ '					  <th>결제분류</th>'
-						+ '					  <td class="p-15">' + data.payCat + '</td>'
+						+ '					  <td class="p-15" id="' + data.payNo + '">' + data.payCat + '</td>'
 						+ '					</tr>'
 						+ '					<tr class="h-50">'
 						+ '					  <th>결제금액</th>'
@@ -235,6 +234,20 @@ margin-left : 25%;
 				$("#cancelModal .modal-body").html(tag);
 			}
 		});
+		//결제 취소 건은 결제취소버튼 없음
+	if(status == '결제취소') {
+		$('#cancelBtn').hide();
+	}
+		//결제당일이 아니면 결제취소 불가
+	var today = new Date();
+	let year = today.getFullYear() + "";
+	let month = today.getMonth() + "";
+	let day = today.getDate() + "";
+	today = year+"-"+month+"-"+day;
+	if(date == today) {
+		$('#cancelBtn').hide();
+	}
+	 
 	};
 
 	//모달 취소버튼
