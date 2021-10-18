@@ -71,10 +71,9 @@
 	</li>
 </ul>
 
-<div class="tab-content" style="height:720px">
-
+<div class="tab-content" style="height:850px">
 	<div id="sliderTest1" class="tab-pane fade active in">
-	
+
 <!-- START REVOLUTION SLIDER 5.0 -->
 
 <div class="rev_slider_wrapper" id="rev_wrapper">
@@ -164,7 +163,7 @@
 
 			<!-- SLIDE  -->
 			<li data-transition="fade">
-				<!-- MAIN IMAGE --> <img src="images/sliders/ce3-1.jpg" alt=""
+				<!-- MAIN IMAGE --> <img src="${pageContext.request.contextPath }/resources/images/sliders/ce3-1.jpg" alt=""
 				width="1920" height="1280"> <!-- LAYER NR. 1 -->
 
 				<div class="tp-caption" data-x="['left','left','center','center']"
@@ -213,8 +212,9 @@
 <!-- END OF SLIDER WRAPPER -->
 <!-- 74m 끝 -->
 </div>
-	<div id="sliderTest2" class="tab-pane fade">
 	
+	
+	<div id="sliderTest2" class="tab-pane fade active in">
 <!-- START REVOLUTION SLIDER 5.0 -->
 <!-- 86m 시작 -->
 <div class="rev_slider_wrapper" id="rev_wrapper1">
@@ -303,7 +303,7 @@
 
 			<!-- SLIDE  -->
 			<li data-transition="fade">
-				<!-- MAIN IMAGE --> <img src="images/sliders/ce3-1.jpg" alt=""
+				<!-- MAIN IMAGE --> <img src="${pageContext.request.contextPath }/resources/images/sliders/ce3-1.jpg" alt=""
 				width="1920" height="1280"> <!-- LAYER NR. 1 -->
 
 				<div class="tp-caption" data-x="['left','left','center','center']"
@@ -352,7 +352,7 @@
 </div>
 <!-- END OF SLIDER WRAPPER -->
 <!-- 86m 끝 -->
-	<div id="sliderTest3" class="tab-pane fade">
+	<div id="sliderTest3" class="tab-pane fade active in">
 	
 <!-- START REVOLUTION SLIDER 5.0 -->
 <!-- 92m 시작 -->
@@ -442,7 +442,7 @@
 
 			<!-- SLIDE  -->
 			<li data-transition="fade">
-				<!-- MAIN IMAGE --> <img src="images/sliders/ce3-1.jpg" alt=""
+				<!-- MAIN IMAGE --> <img src="${pageContext.request.contextPath }/resources/images/sliders/ce3-1.jpg" alt=""
 				width="1920" height="1280"> <!-- LAYER NR. 1 -->
 
 				<div class="tp-caption" data-x="['left','left','center','center']"
@@ -492,7 +492,7 @@
 <!-- 92m 끝 -->
 	
 	</div>
-	<div id="sliderTest4" class="tab-pane fade">
+	<div id="sliderTest4" class="tab-pane fade active in">
 	
 <!-- START REVOLUTION SLIDER 5.0 -->
 <!-- 104m 시작 -->
@@ -504,7 +504,7 @@
 			<!-- SLIDE  -->
 			<li data-transition="fade">
 				<!-- MAIN IMAGE --> <img
-				src="${pageContext.request.contextPath }/resources/images/sliders/ce3-1.jpg"
+				src="${pageContext.request.contextPath}/resources/images/sliders/ce3-1.jpg"
 				alt="" width="1920" height="1280"> <!-- LAYER NR. 1 -->
 				<div class="tp-caption" data-x="['left','left','center','center']"
 					data-hoffset="['10','40','0','0']"
@@ -582,7 +582,7 @@
 
 			<!-- SLIDE  -->
 			<li data-transition="fade">
-				<!-- MAIN IMAGE --> <img src="images/sliders/ce3-1.jpg" alt=""
+				<!-- MAIN IMAGE --> <img src="${pageContext.request.contextPath }/resources/images/sliders/ce3-1.jpg" alt=""
 				width="1920" height="1280"> <!-- LAYER NR. 1 -->
 
 				<div class="tp-caption" data-x="['left','left','center','center']"
@@ -816,7 +816,7 @@ The following part can be removed on Server for On Demand Loading) -->
 		},
 			viewPort: {
 			enable:true,
-			outof:"pause",
+			outof:"pause",	
 			visible_area:"80%"
 		},
 		responsiveLevels:[1240,1024,778,480],

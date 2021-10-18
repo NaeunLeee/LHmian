@@ -170,6 +170,7 @@ textarea:focus {
 	
 	<form id="deleteForm" name="deleteForm" action="csDeleteBoard" method="post">
 		<input id="csNo" name="csNo" type="hidden" value="${cs.csNo}">
+        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</form>
 	
 	<div class="divider" style="margin:0; padding:25px 0;"></div>

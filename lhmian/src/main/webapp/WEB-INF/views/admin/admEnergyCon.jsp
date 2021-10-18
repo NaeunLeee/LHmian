@@ -32,15 +32,15 @@ tr {
 	color: black;
 }
 
-	.width-80 {
-		width:80%
-	}
-	.padding-l40{
-		padding-left: 40px
-	}
-	.padding-t40{
-		padding-top: 40px
-	}
+.width-80 {
+	width:80%
+}
+.padding-l40{
+	padding-left: 40px
+}
+.padding-t40{
+	padding-top: 40px
+}
 	
 /* 
 
@@ -48,27 +48,8 @@ tr {
 	margin-left: 25%;
 }
 </style>
-<div class="header-inner-tmargin">
-	<section class="section-side-image clearfix">
-		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class=" clearfix"></div>
-</div>
-<section class="sec-padding">
+
+<section class="sec-padding-1">
 	<div class="container width-80">
 		<div class="row">
 			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">

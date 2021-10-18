@@ -14,6 +14,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
+
 .container {
 	width: 85%;
 }
@@ -56,11 +57,13 @@ table {
 .nav-tabs.nav-justified>li>.active {
 	background-color: #C8C6C6;
 }
+
 </style>
 
 
 </head>
 <body>
+
 	<div class="header-inner-tmargin">
 		<section class="section-side-image clearfix">
 			<div class="img-holder col-md-12 col-sm-12 col-xs-12">
@@ -126,6 +129,7 @@ table {
 							href="${pageContext.request.contextPath}/admin/admSchedule">일정
 								관리</a></li>
 					</ul>
+
 					<div class="text-box white padding-4 col-10">
 						<table class="table">
 							<thead>

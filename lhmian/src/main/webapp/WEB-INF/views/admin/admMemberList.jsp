@@ -20,6 +20,10 @@
 	   background-color: #f5f5f5;
 	}
 	
+	td {
+		vertical-align: middle !important;
+	}
+	
 	table {
 	   background-color: white;
 	}
@@ -45,38 +49,22 @@
 		margin: 0px 5px 0px;
 	}
 	
+	.text-box.padding-4 {
+		padding-right: 0px;
+	}
 	.padding-l40{
-		padding-left: 40px
+		padding-left: 40px !important;
 	}
-	
 	.padding-t40{
-		padding-top: 40px
+		padding-top: 40px !important;
 	}
+		
 	
 </style>
 
 <!-- 10/11 전체수정: 이나은 -->
-<div class="header-inner-tmargin">
-	<section class="section-side-image clearfix">
-		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class=" clearfix"></div>
-</div>
-<section class="sec-padding">
+
+<section class="sec-padding-1">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
@@ -93,15 +81,17 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-10 col-sm-6 col-xs-12">
+			<div class="col-md-10 col-sm-6 col-xs-12 padding-l40">
 				<div></div><br><br>
-				<div class="sec-title-container less-padding-3 text-left padding-l40">
+				<div class="sec-title-container text-left">
 					<div class="title-line-3 align-left"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">회원 관리</h4>
 					<div class="clearfix"></div>
 					<p class="by-sub-title">LHmian의 모든 회원을 조회합니다.</p>
 				</div>
+
 				<div style="float: left; margin-left: 40px;" id="criteriaForm" data-option="${type}">
+
 					<form id="actionForm" action="admMemberList" method="get">
 						<select name="type" class="form-control" style="width: 100px; ">
 							<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
@@ -123,10 +113,10 @@
 					</form>
 				</div>
 				<div>
-					<button class="btn btn-default" onclick="deleteMember()" type="button" id="btnDelete" style="float:right; margin-right:50px; padding: 4px 13px;">회원삭제</button>
-					<button class="btn btn-gyellow" type="button" id="showModal" style="float:right; margin-right:10px; padding: 4px 13px;">SMS전송</button>
+					<button class="btn btn-default" onclick="deleteMember()" type="button" id="btnDelete" style="float:right;">회원삭제</button>
+					<button class="btn btn-gyellow" type="button" id="showModal" style="float:right; margin-right: 5px;">SMS전송</button>
 				</div>
-				<div class="text-box white padding-4">
+				<div class="text-box white padding-t40">
 					<form id="frm"> <!-- 0928 form 추가 -->
 						<table class="ui celled table" id="memberTable">
 							<thead>
