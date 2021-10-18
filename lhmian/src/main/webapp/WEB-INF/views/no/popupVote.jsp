@@ -28,7 +28,7 @@
 
 	</div>
 	<span class="pull-right"><input type="checkbox" id="check"
-		onclick="closePopup();"> 오늘 하루 동안 이 창을 열지 않음</span>
+		onclick="closeWin()"> 오늘 하루 동안 이 창을 열지 않음</span>
 
 </div>
 <script>
@@ -43,18 +43,17 @@
 	})
 
 	
-	function setCookie(name, value, expiredays) {
-        var date = new Date();
-        date.setDate(date.getDate() + expiredays);
-        document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString();
-    }
+	function setCookie( name, value, expiredays ) { 
+		var todayDate = new Date(); 
+		todayDate.setDate( todayDate.getDate() + expiredays ); 
+		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";" 
+		} 
+	
+	function closeWin(){ 
+		setCookie("close20090524","close20090524",1); 
+		window.close(); 
+		}
 
-    function closePopup() {
-        if (document.getElementById("check").value) {
-            setCookie("popupYN", "N", 1);
-            self.close();
-        }
-    }
 
 
 
