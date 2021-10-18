@@ -58,27 +58,9 @@ margin-left : 25%;
 }
 
 </style>
-<div class="header-inner-tmargin">
-	<section class="section-side-image clearfix">
-		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class=" clearfix"></div>
-</div>
+
 <section>
-	<div class="pagenation-holder">
+	<div class="pagenation-holder-no-bottom">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
@@ -158,7 +140,7 @@ margin-left : 25%;
 	</div>
 </section>
 						
-<section class="sec-padding">
+
 	<div class="container">
 		<div class="row text-center">
 			<div id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="modal-switch-label" class="modal fade">
@@ -187,7 +169,6 @@ margin-left : 25%;
 			</div>
 		</div>
 	</div>
-</section>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	//수정모달
