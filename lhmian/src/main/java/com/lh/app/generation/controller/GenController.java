@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.generation.service.GenService;
+import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
 
 @Controller
@@ -33,5 +34,10 @@ public class GenController {
 		return genService.familyList(vo);
 	}
 	
-	
+	// 세대 존재 여부 확인
+	@PostMapping("/admin/countGen")
+	@ResponseBody
+	public int countGen(@RequestBody GenerationVO vo) {
+		return genService.countGen(vo);
+	}
 }
