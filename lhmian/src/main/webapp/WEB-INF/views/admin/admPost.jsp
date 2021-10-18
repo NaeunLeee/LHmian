@@ -3,57 +3,85 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<style>
+	.width-80 {
+		width: 80%;
+	}
+	.tr_1 {
+		text-align: center;
+	}
+	
+	th {
+		text-align: center;
+		background-color: #EEEEEE;
+	}
+	
+	td {
+		text-align: center;
+	}
+	
+	.tr_1:hover {
+		background-color: #f5f5f5;
+	}
+	
+	table {
+		background-color: white;
+	}
+	.pagination>li>a {
+		color: black;
+	}
+	
+	.form-control {
+		display: inline-block;
+	}
+
+	.text-bo.white.padding-4.col-7 {
+		padding-top: 5px;
+	}
+	
+	.padding-l40 {
+	padding-left: 40px !important;
+	}
+	.padding-t40 {
+		padding-top: 40px !important;
+	}
+	td {
+		vertical-align: middle !important;
+	}
+	
+</style>
+
 <!-- 10/11 추가 -->
-<div class="header-inner-tmargin">
-	<section class="section-side-image clearfix">
-		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class=" clearfix"></div>
-</div>
-<section>
-	<div class="pagenation-holder-no-bottom">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<ol class="breadcrumb-gray">
-						<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-						<li><a href="">입주민 공간</a></li>
-						<li class="current"><a href="${pageContext.request.contextPath}/commList">커뮤니티</a></li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="sec-padding section-light">
-	<div class="container">
+<section class="sec-padding-1">
+	<div class="container width-80">
 		<div class="row">
-			<div class="col-xs-12 nopadding">
-				<div class="sec-title-container-padding-topbottom text-center">
-					<div class="pl-title-line-1"></div>
-					<h4 class="uppercase font-weight-7 less-mar-1">택배관리</h4>
-					<div class="clearfix"></div>
-					<p class="by-sub-title" style="font-size: 13px;"></p>
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
+				<div class="pages-sidebar-item">
+					<!-- <h5 class="uppercase pages-sidebar-item-title">관리자</h5> -->
+					<ul class="pages-sidebar-links">
+						<li><a href="feeList">관리비</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admGeneration">세대 관리</a></li>
+						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
+						<li><a href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a class="active" href="admPost">택배 관리</a></li>
+					</ul>
 				</div>
 			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<div class="container" align="center">
-		<div class="text-box white padding-4 col-7">
+
+			<div class="col-md-10 col-sm-6 col-xs-12 padding-l40">
+				<div></div><br><br>
+				<div class="text-left">
+					<div class="title-line-3 align-left"></div>
+					<h4 class="uppercase font-weight-7 less-mar-1">택배 관리</h4>
+					<div class="clearfix"></div>
+					<p class="by-sub-title">관리사무소에 보관된 주민들의 택배를 관리합니다.</p>
+
+				</div>
+				
+		<div class="text-box white padding-t40 col-7">
 			<form id="frm">
 				<table class="table">
 					<thead>
@@ -161,7 +189,10 @@
 				</form>
 			</div>
 		</div>
+		</div>
 	</div>
+	</div>
+	
 </section>
 
 

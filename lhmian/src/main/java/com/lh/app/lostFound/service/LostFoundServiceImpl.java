@@ -11,8 +11,9 @@ import com.lh.app.lostFound.mapper.LostFoundMapper;
 @Service
 public class LostFoundServiceImpl implements LostFoundService {
 
-	@Autowired LostFoundMapper lostFoundMapper;
-	
+	@Autowired
+	LostFoundMapper lostFoundMapper;
+
 	@Override
 	public int insert(LostFoundVO vo) {
 		return lostFoundMapper.insert(vo);
@@ -47,6 +48,5 @@ public class LostFoundServiceImpl implements LostFoundService {
 	public int getTotalLost() {
 		return lostFoundMapper.getTotalLost();
 	}
-
 
 }

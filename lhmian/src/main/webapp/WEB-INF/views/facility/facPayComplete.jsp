@@ -109,7 +109,7 @@
 
 						<div class="text-center">
 							<button type="button" 
-									onclick="location.href='${pageContext.request.contextPath}/myFac'"
+									onclick="location.href='${pageContext.request.contextPath}/myPaidList'"
 									class="btn btn-gyellow btn-half-fullwidth uppercase">시설 이용 내역</button>
 						</div>
 					</div>

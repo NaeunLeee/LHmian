@@ -1,82 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.payment.mapper.PaymentMapper">
-<select id="getTotalCount" resultType="int">
-	SELECT COUNT(*) FROM
-	PAYMENT
-</select>
-<insert id="insert">
-	INSERT INTO PAYMENT (
-		   PAY_NO
-		 , ID
-		 , PAY_DATE
-		 , PAY_TYPE
-		 , PAY_CAT
-		 , PAY_STATUS
-	) VALUES (
-		   #{payNo}
-		 , #{id}
-		 , DEFAULT
-		 , #{payType}
-		 , #{payCat}
-		 , #{payStatus}
-	)
-</insert>
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM
+		PAYMENT
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO PAYMENT (
+			PAY_NO
+			, ID
+			, PAY_DATE
+			, PAY_TYPE
+			, PAY_CAT
+			, PAY_STATUS
+		) VALUES (
+			#{payNo}
+			, #{id}
+			, DEFAULT
+			, #{payType}
+			, #{payCat}
+			, #{payStatus}
+		)
+	</insert>
 
-<update id="update">
-	UPDATE MANAGEMENT_FEE 
-		SET PAY_NO = #{payNo} 
+	<update id="update">
+		UPDATE MANAGEMENT_FEE
+		SET PAY_NO = #{payNo}
 		WHERE HOUSE_INFO = #{houseInfo} AND MF_DATE = #{mfDate}
-</update>
+	</update>
 
-<!-- 개인 결제내역 조회-관리비, 헬스, 독서실 -->
-<select id="getList" resultType="paymentVO">
-SELECT PAY_NO
-	 , ID
-	 , PAY_DATE
-	 , PAY_TYPE
-	 , PAY_CAT
-	 , PAY_STATUS
-	FROM (
-		SELECT
-		ROWNUM RN
-		 ,PAY_NO
-		 , ID
-		 , PAY_DATE
-		 , PAY_TYPE
-		 , PAY_CAT
-		 , PAY_STATUS
-		 FROM PAYMENT
-			 <![CDATA[
-			WHERE ID = #{id} AND
-			 ROWNUM <= #{pageNum} * #{amount}
-			)
-			 ]]>
+	<!-- 개인 결제내역 조회-관리비, 헬스, 독서실 -->
+	<select id="getList" resultType="paymentVO">
+		SELECT PAY_NO
+			, ID
+			, PAY_DATE
+			, PAY_TYPE
+			, PAY_CAT
+			, PAY_STATUS
+		FROM (
+			SELECT
+				ROWNUM RN
+				,PAY_NO
+				, ID
+				, PAY_DATE
+				, PAY_TYPE
+				, PAY_CAT
+				, PAY_STATUS
+			FROM PAYMENT
+				 <![CDATA[
+					WHERE ID = #{id} AND ROWNUM <= #{pageNum} * #{amount}
+					)
+			 	]]>
 		WHERE RN > (#{pageNum} -1) * #{amount}
 		ORDER BY PAY_DATE DESC
-</select>
+	</select>
 
-<!-- 결제취소할 경우 테이블에서 삭제x, 결제상태만 '결제취소'로 변경 -->
-<update id="updateStatus">
-	UPDATE PAYMENT
-		SET PAY_STATUS = #{payStatus} 
+	<!-- 결제취소할 경우 테이블에서 삭제x, 결제상태만 '결제취소'로 변경 -->
+	<update id="updateStatus">
+		UPDATE PAYMENT
+		SET PAY_STATUS = #{payStatus}
 		WHERE PAY_NO = #{payNo}
-</update>
+	</update>
 
-<!-- 결제단건조회-모달 -->
-<select id="read" resultType="PaymentVO" parameterType="paymentVO">
-	SELECT PAY_NO
-	 , PAY_DATE
-	 , PAY_TYPE
-	 , PAY_CAT
-	 ,
-	 CASE WHEN PAY_CAT = '관리비' THEN (SELECT MF_TOTAL FROM MANAGEMENT_FEE WHERE PAY_NO = #{payNo})
-		  WHEN PAY_CAT = '독서실' THEN (SELECT LIB_PRICE FROM LIBRARY WHERE PAY_NO = #{payNo})
-			   ELSE (SELECT GYM_PRICE FROM GYM WHERE PAY_NO = #{payNo})
-			   END AS PRICE
-	FROM
-		PAYMENT
+	<!-- 결제단건조회-모달 -->
+	<select id="read" resultType="PaymentVO"
+		parameterType="paymentVO">
+		SELECT PAY_NO
+			, PAY_DATE
+			, PAY_TYPE
+			, PAY_CAT
+			,
+		CASE WHEN PAY_CAT = '관리비' THEN (SELECT MF_TOTAL 
+											FROM MANAGEMENT_FEE 
+											WHERE PAY_NO = #{payNo})
+			 WHEN PAY_CAT = '독서실' THEN (SELECT LIB_PRICE 
+			 								FROM LIBRARY 
+			 								WHERE PAY_NO = #{payNo})
+			 ELSE (SELECT GYM_PRICE 
+			 		FROM GYM 
+			 		WHERE PAY_NO = #{payNo})
+			 END AS PRICE
+		FROM PAYMENT
 		WHERE PAY_NO = #{payNo}
-</select>
+	</select>
 
 </mapper>

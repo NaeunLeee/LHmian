@@ -184,7 +184,7 @@
 															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/visit/generation">방명록</a>
+															<a href="${pageContext.request.contextPath}/visit/generationList">방명록</a>
 														</li>
 													</ul>
 												</li>
@@ -255,6 +255,9 @@
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admGeneration">세대 관리</a>
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admMemberList">회원 관리</a>

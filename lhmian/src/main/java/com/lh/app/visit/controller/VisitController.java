@@ -18,28 +18,27 @@ import com.lh.app.visit.service.VisitService;
 
 @Controller
 public class VisitController {
-  
+
 	@Autowired
 	VisitService visitService;
 
-	// 세대리스트
-	@GetMapping("/visit/generation")
-	public String generation(Model model, GenerationVO vo) {
-		model.addAttribute("generation", vo.getHouseInfo());
-		return "visit/generationList";
+	// 페이지로딩
+	@GetMapping("/visit/generationList")
+	public void generation(Model model, GenerationVO vo) {
+		model.addAttribute("generation", visitService.generation(vo));
 	}
 
-	//세대리스트 총 갯수 조회
-	@GetMapping("/gntCount")
+	// 세대리스트 카운트
+	@GetMapping("/visit/gntCount")
 	@ResponseBody
 	public int gntCount() {
 		return visitService.getOldCount();
 	}
-	
-	// 세대리스트-페이징
-	@GetMapping("/gntList")
+
+	// 세대리스트 요청
+	@GetMapping("/visit/gntList")
 	@ResponseBody
-	public List<GenerationVO> gntList(Model model, GenerationVO vo) {
+	public List<GenerationVO> gntList(GenerationVO vo, Model model) {
 		return visitService.generation(vo);
 	}
 

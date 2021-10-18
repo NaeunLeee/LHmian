@@ -10,14 +10,14 @@ public class EnergyPageVO {
 	private boolean prev, next;
 	private int total;
 	private EnergyCriteria cri;
-	
+
 	public EnergyPageVO(EnergyCriteria cri, int total) {
 		this.cri = cri;
 		this.total = total;
-		this.endPage = (int) ((Math.ceil(cri.getPageNum()/10.0)) * 10);
+		this.endPage = (int) ((Math.ceil(cri.getPageNum() / 10.0)) * 10);
 		this.startPage = this.endPage - 9;
-		int realEnd = (int) (Math.ceil((total*1.0)/cri.getAmount()));
-		if(realEnd < this.endPage) {
+		int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
+		if (realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}
 		this.prev = this.startPage > 1;

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -157,17 +158,23 @@ table {
 
 
 <script>
-	$(function() {
-		var actionForm = $('#actionForm');
-
-		$('#pageBtn a').on("click", function(e) {
-			e.preventDefault();
-			var p = $(this).attr('href');
-			$('[name="pageNum"]').val(p);
-			actionForm.submit();
-		});
-
+	var actionForm = $('#actionForm');
+	
+	$('#pageBtn a').on("click", function(e) {
+		e.preventDefault();
+		var p = $(this).attr('href');
+		$('[name="pageNum"]').val(p);
+		actionForm.submit();
 	});
+		
+	$('.move').on("click", function(e) {
+	    e.preventDefault();
+	    var oiNo = $(this).attr("data-oiNo");
+	    actionForm.append('<input type="hidden" name="oiNo" value="' + oiNo + '">');
+	    actionForm.attr("action", "opeInfoSelect");
+	    actionForm.submit();
+	 });
+
 
 	$(document).ready(function() {
 		var result = '<c:out value="${message}"/>';

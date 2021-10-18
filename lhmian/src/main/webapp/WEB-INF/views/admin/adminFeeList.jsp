@@ -42,7 +42,7 @@ body {
 }
 
 .padding-t40{
-	padding-top: 25px;
+	padding-top: 40px;
 }
 h4 {
 	font-size:18px !important;
@@ -51,27 +51,8 @@ h4 {
 </style>
 </head>
 <body>
-<div class="header-inner-tmargin">
-	<section class="section-side-image clearfix">
-		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-			<div class="background-imgholder" style="background: url(http://placehold.it/1500x1000);">
-				<img class="nodisplay-image" src="http://placehold.it/1500x1000" alt="" />
-			</div>
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-					<div class="header-inner">
-						<div class="overlay">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<div class=" clearfix"></div>
-</div>
-<section class="sec-padding">
+
+<section class="sec-padding-1">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
@@ -80,6 +61,7 @@ h4 {
 					<ul class="pages-sidebar-links">
 						<li><a class="active" href="feeList">관리비</a></li>
 						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admGeneration">세대 관리</a></li>
 						<li><a href="admMemberList">회원 관리</a></li>
 						<li><a href="admCarList">차량 관리</a></li>
 						<li><a href="admOpeInfoList">게시글 관리</a></li>

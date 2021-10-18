@@ -14,6 +14,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
+
 .container {
 	width: 85%;
 }
@@ -56,11 +57,13 @@ table {
 .nav-tabs.nav-justified>li>.active {
 	background-color: #C8C6C6;
 }
+
 </style>
 
 
 </head>
 <body>
+
 	<div class="header-inner-tmargin">
 		<section class="section-side-image clearfix">
 			<div class="img-holder col-md-12 col-sm-12 col-xs-12">
@@ -87,12 +90,15 @@ table {
 			<div class="row">
 				<div class="col-md-2 col-sm-6 col-xs-12 section-white">
 					<div class="pages-sidebar-item">
-						<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
 						<ul class="pages-sidebar-links">
-							<li><a href="#">관리비</a></li>
-							<li><a href="#">에너지 사용량</a></li>
-							<li><a href="#">회원 관리</a></li>
-							<li><a class="active" href="#">게시글 관리</a></li>
+							<li><a href="feeList">관리비</a></li>
+							<li><a href="admEnergyCon">에너지 사용량</a></li>
+							<li><a href="admGeneration">세대 관리</a></li>
+							<li><a href="admMemberList">회원 관리</a></li>
+							<li><a href="admCarList">차량 관리</a></li>
+							<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
+							<li><a href="admSked">일정 관리</a></li>
+							<li><a href="admPost">택배 관리</a></li>
 						</ul>
 					</div>
 				</div>
@@ -126,6 +132,7 @@ table {
 							href="${pageContext.request.contextPath}/admin/admSchedule">일정
 								관리</a></li>
 					</ul>
+
 					<div class="text-box white padding-4 col-10">
 						<table class="table">
 							<thead>

@@ -53,12 +53,15 @@
 		<div class="row">
 			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
 				<div class="pages-sidebar-item">
-					<h5 class="uppercase pages-sidebar-item-title">관리자</h5>
 					<ul class="pages-sidebar-links">
-						<li><a href="#">관리비</a></li>
-						<li><a href="#">에너지 사용량</a></li>
-						<li><a href="#">회원 관리</a></li>
-						<li><a class="active" href="#">게시글 관리</a></li>
+						<li><a href="feeList">관리비</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admGeneration">세대 관리</a></li>
+						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
+						<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
 					</ul>
 				</div>
 			</div>

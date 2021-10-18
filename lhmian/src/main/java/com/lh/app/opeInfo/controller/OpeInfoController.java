@@ -141,11 +141,11 @@ public class OpeInfoController {
 	// 파일 첨부
 	@PostMapping("/admin/opeInfoFileAttach")
 	@ResponseBody
-	public List<OpeInfoVO> opeInfoFileAttach(MultipartFile[] uploadFile, RedirectAttributes rttr)
+	public List<OpeInfoVO> opeInfoFileAttach(MultipartFile[] uploadFile, RedirectAttributes rttr, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		List<OpeInfoVO> list = new ArrayList<OpeInfoVO>();
 
-		String path = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\opeInfoFile";
+		String path = request.getSession().getServletContext().getRealPath("resources/opeInfoFile"); //"C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\opeInfoFile";
 
 		File dir = new File(path);
 		if (!dir.exists()) {
@@ -244,7 +244,7 @@ public class OpeInfoController {
 			oiFilename = vo.getOiFilename();
 		}
 
-		String path = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\opeInfoFile";
+		String path = request.getSession().getServletContext().getRealPath("resources/opeInfoFile");
 		File uFile = new File(path, oiFileid + oiFilename);
 		long fSize = uFile.length();
 

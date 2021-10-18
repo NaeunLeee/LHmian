@@ -1,37 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
 <style>
 h4 {
-color: #727272;
+	color: #727272;
 }
 
 tr {
-border-bottom : 1px solid lightgray;
-height : 80px;
+	border-bottom: 1px solid lightgray;
+	height: 80px;
 }
 
 .table-style-2 {
-width : 600px;
+	width: 600px;
 }
 
-th { 
-text-align : center;
+th {
+	text-align: center;
 	width: 100px
-
 }
 
 td {
-/* border-left: 1px solid lightgray; */
-padding-left : 15px; 
+	/* border-left: 1px solid lightgray; */
+	padding-left: 15px;
 }
 
 textarea {
-  width : 400px;
-  height : 120px;
-  resize : none;
-  margin: 20px 0;
+	width: 400px;
+	height: 120px;
+	resize: none;
+	margin: 20px 0;
 }
-
-
 </style>
 
 
@@ -46,8 +43,7 @@ textarea {
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
 					<div class="header-inner">
-						<div class="overlay">
-						</div>
+						<div class="overlay"></div>
 					</div>
 				</div>
 			</div>
@@ -55,27 +51,27 @@ textarea {
 	</section>
 	<div class=" clearfix"></div>
 </div>
-	<section>
-		<div class="pagenation-holder">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<ol class="breadcrumb-gray">
-							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/office/office">관리 사무소</a></li>
-							<li class="current"><a href="${pageContext.request.contextPath}/itemLost/lostList">분실물 보관소</a></li>
-						</ol>
-					</div>
+<section>
+	<div class="pagenation-holder">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<ol class="breadcrumb-gray">
+						<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+						<li><a href="${pageContext.request.contextPath}/office/office">관리 사무소</a></li>
+						<li class="current"><a href="${pageContext.request.contextPath}/itemLost/lostList">분실물 보관소</a></li>
+					</ol>
 				</div>
 			</div>
 		</div>
-	</section>
-	<div class="clearfix"></div>
+	</div>
+</section>
+<div class="clearfix"></div>
 
 
-    <section class="section-light sec-padding">
-      <div class="container" align="center">
-        <div class="row">
+<section class="section-light sec-padding">
+	<div class="container" align="center">
+		<div class="row">
 			<form id="frm" method="post" action="admLostInsert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">
 				<table class="table-style-2">
 					<tr>
@@ -96,14 +92,14 @@ textarea {
 					</tr>
 				</table>
 				<br>
-				</form>
-					<button type="button" class="btn btn-default">등록</button>
-			</div>
+			</form>
+			<button type="button" class="btn btn-default">등록</button>
 		</div>
-	</section>
-	
+	</div>
+</section>
+
 <script>
-$('.btn').on('click', function() {
-   frm.submit();
-})
+	$('.btn').on('click', function() {
+		frm.submit();
+	})
 </script>

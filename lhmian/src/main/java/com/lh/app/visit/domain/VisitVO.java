@@ -13,4 +13,5 @@ private Date visitDate;
 private Date visitUpdate;
 private String visitWriter;
 private int writerInfo;
+
 }

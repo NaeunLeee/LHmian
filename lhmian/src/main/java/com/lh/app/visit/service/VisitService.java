@@ -7,7 +7,7 @@ import com.lh.app.visit.domain.VisitVO;
 
 public interface VisitService {
 	// crud
-  
+
 	// 전체조회
 	public List<VisitVO> getList(VisitVO vo);
 

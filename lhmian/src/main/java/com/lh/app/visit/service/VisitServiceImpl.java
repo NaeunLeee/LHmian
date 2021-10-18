@@ -11,7 +11,7 @@ import com.lh.app.visit.mapper.VisitMapper;
 
 @Service
 public class VisitServiceImpl implements VisitService {
-  
+
 	@Autowired
 	VisitMapper visitMapper;
 
