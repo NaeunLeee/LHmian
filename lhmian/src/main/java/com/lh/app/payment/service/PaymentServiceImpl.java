@@ -13,7 +13,8 @@ import com.lh.app.payment.mapper.PaymentMapper;
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
-	@Autowired PaymentMapper paymentMapper;
+	@Autowired
+	PaymentMapper paymentMapper;
 
 	@Override
 	public int insert(PaymentVO vo) {
@@ -39,7 +40,7 @@ public class PaymentServiceImpl implements PaymentService {
 	public List<PaymentVO> getList(PaymentCriteria cri) {
 		return paymentMapper.getList(cri);
 	}
-	
+
 	@Override
 	public int getTotalCount(PaymentCriteria cri) {
 		return paymentMapper.getTotalCount(cri);

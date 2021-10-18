@@ -2,49 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.visit.mapper.VisitMapper">
 	<select id="getOldCount" resultType="int">
-	SELECT COUNT(*) FROM
-		GENERATION
+		SELECT COUNT(*) FROM
+			GENERATION
 	</select>
-	  
+
 	<select id="generation" resultType="GenerationVO">
 		SELECT HOUSE_INFO
-		FROM  (
-		SELECT 
-		ROWNUM RN,
-        HOUSE_INFO
-        FROM GENERATION
+		FROM (
+			SELECT
+			ROWNUM RN,
+			HOUSE_INFO
+		FROM GENERATION
 			<![CDATA[
 			WHERE HOUSE_INFO != 0 AND ROWNUM <= #{pageNum} * #{amount}
 		)
 			]]>
-			WHERE RN > (#{pageNum} -1) * #{amount}
+		WHERE RN > (#{pageNum} -1) * #{amount}
 	</select>
-	
+
 	<select id="getList" resultType="VisitVO">
 		SELECT VISIT_NO,
-		HOUSE_INFO,
-		VISIT_CONTENT,
-		VISIT_DATE,
-		VISIT_UPDATE,
-		VISIT_WRITER,
-		WRITER_INFO
+			HOUSE_INFO,
+			VISIT_CONTENT,
+			VISIT_DATE,
+			VISIT_UPDATE,
+			VISIT_WRITER,
+			WRITER_INFO
 		FROM VISIT
 		WHERE HOUSE_INFO = #{houseInfo}
 	</select>
-	
+
 	<insert id="insert">
-	INSERT INTO VISIT 
-		(VISIT_NO,
-		HOUSE_INFO,
-		VISIT_CONTENT,
-		VISIT_DATE,
-		VISIT_WRITER,
-		WRITER_INFO)
-	VALUES(VISIT_SEQ.NEXTVAL,
-		#{houseInfo},
-		#{visitContent},
-		DEFAULT,
-		#{visitWriter},
-		#{writerInfo})
+		INSERT INTO VISIT
+			(VISIT_NO,
+			HOUSE_INFO,
+			VISIT_CONTENT,
+			VISIT_DATE,
+			VISIT_WRITER,
+			WRITER_INFO)
+		VALUES(VISIT_SEQ.NEXTVAL,
+			#{houseInfo},
+			#{visitContent},
+			DEFAULT,
+			#{visitWriter},
+			#{writerInfo})
 	</insert>
+	
+	<update id="update">
+		UPDATE VISIT
+		SET VISIT_CONTENT = #{visitContent},
+		VISIT_UPDATE = DEFAULT
+		WHERE WRITER_INFO = #{writerInfo}
+	</update>
 </mapper>

@@ -19,6 +19,7 @@ public interface PaymentService {
 
 	// 전체조회
 	public List<PaymentVO> getList(PaymentCriteria cri);
+
 	public int getTotalCount(PaymentCriteria cri);
 
 	// 단건조회

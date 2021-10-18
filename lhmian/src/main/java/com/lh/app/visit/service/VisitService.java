@@ -3,12 +3,11 @@ package com.lh.app.visit.service;
 import java.util.List;
 
 import com.lh.app.signIn.domain.GenerationVO;
-import com.lh.app.visit.domain.GenerationCriteria;
 import com.lh.app.visit.domain.VisitVO;
 
 public interface VisitService {
 	// crud
-  
+
 	// 전체조회
 	public List<VisitVO> getList(VisitVO vo);
 
