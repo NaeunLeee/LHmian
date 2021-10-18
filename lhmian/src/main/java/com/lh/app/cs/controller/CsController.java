@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lh.app.comm.domain.PageVO;
 import com.lh.app.cs.domain.CsCriteria;
 import com.lh.app.cs.domain.CsPageVO;
 import com.lh.app.cs.domain.CsVO;
@@ -118,10 +119,35 @@ public class CsController {
 	// 관리자 전체 조회
 	@GetMapping("/admin/admCsList")
 	public String admCsList(Model model, @ModelAttribute("cri") CsCriteria cri) {
+		if (cri.getType() == "" && cri.getPreType() == null) {
 		int total = csService.getTotalCount(cri);
 		model.addAttribute("list", csService.getList(cri));
 		model.addAttribute("pageMaker", new CsPageVO(cri, total));
+		model.addAttribute("type", cri.getType());
 		return "admin/admCsList";
+		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))
+				) {
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			
+			System.out.println("3."+cri.getType());
+			System.out.println("4."+cri.getPreType());
+
+			return "admin/admCsList";
+		}  else {
+			cri.setPageNum(1);
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			
+			System.out.println("5."+cri.getType());
+			System.out.println("6."+cri.getPreType());
+
+			return "admin/admCsList";
+		}
 	}
 	
 	// 관리자 단건 조회

@@ -188,12 +188,6 @@ table {
 			 $('#C').prop("selected", false);
 		 }
 		 
-		 if (option.indexOf('C') != -1) {
-			 $('#C').prop("selected", true);
-		 } else {
-			 $('#C').prop("selected", false);
-		 }
-		 
 		 if (option.indexOf('TC') != -1) {
 			 $('#TC').prop("selected", true);
 		 } else {

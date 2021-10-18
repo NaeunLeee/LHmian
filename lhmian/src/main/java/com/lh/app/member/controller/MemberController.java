@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.carList.service.CarListService;
+import com.lh.app.comm.domain.PageVO;
 import com.lh.app.member.domain.AdmMemberCri;
 import com.lh.app.member.domain.AdmMemberPageVO;
 import com.lh.app.member.domain.MemberInfoVO;
@@ -34,7 +35,7 @@ public class MemberController {
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	@Autowired
 	CarListService carService;
-	
+
 	// 전체조회 (기존..)
 //	@GetMapping("/admin/admMemberList")
 //	public String memberList(Model model, @ModelAttribute("cri") MemberCriteria cri) {
@@ -43,31 +44,54 @@ public class MemberController {
 //		model.addAttribute("pageMaker", new MemberPageVO(cri, total));
 //		return "admin/admMemberList";
 //	}
-	
+
 	// 전체조회 (10/12 수정: 이나은)
 	@GetMapping("/admin/admMemberList")
 	public String memberList(Model model, @ModelAttribute("cri") AdmMemberCri cri) {
-		int total = service.getTotalCount(cri);
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new AdmMemberPageVO(cri, total));
-		model.addAttribute("option", cri.getOption());
-		return "admin/admMemberList";
+		if (cri.getType() == "" && cri.getPreType() == null) {
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new AdmMemberPageVO(cri, total));
+			model.addAttribute("option", cri.getOption());
+			return "admin/admMemberList";
+		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new AdmMemberPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+
+			System.out.println("3." + cri.getType());
+			System.out.println("4." + cri.getPreType());
+
+			return "admin/admMemberList";
+		} else {
+			cri.setPageNum(1);
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new AdmMemberPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+
+			System.out.println("5." + cri.getType());
+			System.out.println("6." + cri.getPreType());
+
+			return "admin/admMemberList";
+		}
 	}
-	
+
 	// 단건조회
 	@GetMapping("myInfo")
 	public String myInfo(Model model, MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		String id = customUserDetails.getUsername();
 		vo.setId(id);
-		if(encoder.matches("4", customUserDetails.getPassword())) {
+		if (encoder.matches("4", customUserDetails.getPassword())) {
 			System.out.println("match!!");
 		}
-		model.addAttribute("car",service.getListcar(id));
+		model.addAttribute("car", service.getListcar(id));
 		model.addAttribute("info", service.read(vo));
 		return "myPage/myInfo";
 	}
-	
-	@PutMapping("updateCar") 
+
+	@PutMapping("updateCar")
 	@ResponseBody
 	public MemberInfoVO update(@RequestBody MemberInfoVO vo) { // RequestBody 필요
 		System.out.println(vo.toString());
@@ -88,57 +112,59 @@ public class MemberController {
 		// 목록 페이지로 이동
 		return true;
 	}
-	
+
 	@RequestMapping("updatePw")
 	@ResponseBody
-	public MemberInfoVO updatePw(@RequestBody MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	public MemberInfoVO updatePw(@RequestBody MemberInfoVO vo,
+			@AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		String id = customUserDetails.getUsername();
 		String pw = customUserDetails.getPassword();
-		if(encoder.matches(vo.getPassword(), pw)) {
+		if (encoder.matches(vo.getPassword(), pw)) {
 			vo.setId(id);
-			vo.setPassword(encoder.encode(vo.getNewpw())); 
+			vo.setPassword(encoder.encode(vo.getNewpw()));
 			service.updatePw(vo);
 		}
 		return vo;
 	}
-	
-	@PutMapping("updatePhone") 
+
+	@PutMapping("updatePhone")
 	@ResponseBody
-	public MemberInfoVO updatePhone(@RequestBody MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) { 
-		
+	public MemberInfoVO updatePhone(@RequestBody MemberInfoVO vo,
+			@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+
 		String id = customUserDetails.getUsername();
 		vo.setId(id);
 		System.out.println(vo.toString());
 		service.updatePhone(vo);
 		return vo;
 	}
-	
+
 	// sms 전송 (10/12 추가: 이나은)
 	@PostMapping("/admin/sendSms")
 	@ResponseBody
 	public Long sendKey(@RequestBody List<HashMap<String, String>> list) {
 		return service.smsAPI(list);
 	}
-	
+
 	// position 수정 (10/13 추가: 이나은)
 	@PostMapping("/admin/updatePosition")
 	@ResponseBody
 	public int updatePosition(@RequestBody MemberInfoVO vo) {
 		return service.updatePosition(vo);
 	}
-	
+
 	// 차량 조회 (10/13 추가: 이나은)
 	@PostMapping("/admin/carByHouseInfo")
 	@ResponseBody
 	public List<CarListVO> carByHouseInfo(@RequestBody MemberInfoVO vo) {
 		return carService.carByHouseInfo(vo);
 	}
-	
+
 	// 전체 건수 ajax (10/14 추가: 이나은)
 	@PostMapping("/admin/countByHouseInfo")
 	@ResponseBody
 	public int memberTotal(@RequestBody MemberInfoVO vo) {
 		return service.countByHouseInfo(vo);
 	}
-	
+
 }

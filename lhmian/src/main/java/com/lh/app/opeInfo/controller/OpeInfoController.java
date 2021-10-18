@@ -40,103 +40,127 @@ import lombok.extern.java.Log;
 @Log
 public class OpeInfoController {
 
-	
 	@Autowired
 	OpeInfoService opeInfoService;
-	
+
 	// 전체 조회
 	@GetMapping("/introduce/opeInfoList")
 	public String opeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
-		if(cri.getType() == "" && cri.getPreType() == null) {
-		int total = opeInfoService.getTotalCount(cri);
-		model.addAttribute("list", opeInfoService.getList(cri));
-		model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
-		model.addAttribute("type", cri.getType());
-		return "introduce/opeInfoList";
-		} else if( (cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
+		if (cri.getType() == "" && cri.getPreType() == null) {
 			int total = opeInfoService.getTotalCount(cri);
 			model.addAttribute("list", opeInfoService.getList(cri));
 			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			
+			return "introduce/opeInfoList";
+		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+
+			return "introduce/opeInfoList";
+		} else {
+			cri.setPageNum(1);
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+
 			return "introduce/opeInfoList";
 		}
-		else {
-		cri.setPageNum(1);
-		int total = opeInfoService.getTotalCount(cri);
-		model.addAttribute("list", opeInfoService.getList(cri));
-		model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
-		model.addAttribute("type", cri.getType());
-		
-		return "introduce/opeInfoList";
-		}
 	}
-	
+
 	// 단건 조회
 	@GetMapping("/introduce/opeInfoSelect")
 	public String opeInfoSelect(Model model, @ModelAttribute("cri") OpeInfoCriteria cri, OpeInfoVO vo) {
 		model.addAttribute("info", opeInfoService.read(vo));
 		return "introduce/opeInfoSelect";
 	}
-	
+
 	// 관리자 전체 조회
+	// 10/18 수정
 	@GetMapping("/admin/admOpeInfoList")
 	public String admOpeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
-		int total = opeInfoService.getTotalCount(cri);
-		model.addAttribute("list", opeInfoService.getList(cri));
-		model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
-		return "admin/admOpeInfoList";
+		if (cri.getType() == "" && cri.getPreType() == null) {
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			return "admin/admOpeInfoList";
+		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+
+			System.out.println("3." + cri.getType());
+			System.out.println("4." + cri.getPreType());
+
+			return "admin/admOpeInfoList";
+		} else {
+			cri.setPageNum(1);
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+
+			System.out.println("5." + cri.getType());
+			System.out.println("6." + cri.getPreType());
+
+			return "admin/admOpeInfoList";
+		}
 	}
-	
+
 	// 관리자 단건 조회
 	@GetMapping("/admin/admOpeInfoSelect")
 	public String admOpeInfoSelect(Model model, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
 		model.addAttribute("info", opeInfoService.read(vo));
 		return "admin/admOpeInfoSelect";
 	}
-	
+
 	// 등록 폼
 	@GetMapping("/admin/admOpeInfoInsert")
 	public String admOpeInfoInsertForm(MultipartFile[] uploadFile) {
 		return "admin/admOpeInfoInsert";
 	}
-	
+
 	// 등록
 	@PostMapping("/admin/admOpeInfoInsert")
 	public String admOpeInfoInsert(RedirectAttributes rttr, OpeInfoVO vo) {
 		int n = opeInfoService.insert(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "등록이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "등록에 실패했습니다. 다시 시도해주세요.");
 		}
-		
+
 		return "redirect:/admin/admOpeInfoList";
 	}
-	
+
 	// 파일 첨부
 	@PostMapping("/admin/opeInfoFileAttach")
 	@ResponseBody
-	public List<OpeInfoVO> opeInfoFileAttach(MultipartFile[] uploadFile, RedirectAttributes rttr) throws IllegalStateException, IOException {
+	public List<OpeInfoVO> opeInfoFileAttach(MultipartFile[] uploadFile, RedirectAttributes rttr)
+			throws IllegalStateException, IOException {
 		List<OpeInfoVO> list = new ArrayList<OpeInfoVO>();
-		
+
 		String path = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\opeInfoFile";
-		
+
 		File dir = new File(path);
 		if (!dir.exists()) {
 			dir.mkdirs();
 		}
-		
-		for (int i=0; i<uploadFile.length; i++) {
+
+		for (int i = 0; i < uploadFile.length; i++) {
 			MultipartFile ufile = uploadFile[i];
-			
-			if (!ufile.isEmpty() && ufile.getSize()>0) {
+
+			if (!ufile.isEmpty() && ufile.getSize() > 0) {
 				String filename = ufile.getOriginalFilename();
 				UUID fileid = UUID.randomUUID();
 				File file = new File(path, fileid + filename);
 				ufile.transferTo(file);
-				
+
 				OpeInfoVO vo = new OpeInfoVO();
 				vo.setOiFileid(fileid.toString());
 				vo.setOiFilename(filename);
@@ -146,7 +170,7 @@ public class OpeInfoController {
 		}
 		return list;
 	}
-	
+
 	// 수정 (ajax..)
 //	@PostMapping("/admin/opeInfoUpdate")
 //	@ResponseBody
@@ -154,85 +178,82 @@ public class OpeInfoController {
 //		opeInfoService.update(vo);
 //		return opeInfoService.read(vo);
 //	}
-	
+
 	// 수정 폼
 	@GetMapping("/admin/admOpeInfoUpdate")
 	public String opeInfoUpdateForm(OpeInfoVO vo, Model model) {
 		model.addAttribute("info", opeInfoService.read(vo));
 		return "admin/admOpeInfoUpdate";
 	}
-	
+
 	// 수정
 	@PostMapping("/admin/admOpeInfoUpdate")
 	public String opeInfoUpdate(RedirectAttributes rttr, OpeInfoVO vo) {
-		
+
 		int n = opeInfoService.update(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
 		}
-		
+
 		return "redirect:/admin/admOpeInfoList";
 	}
-	
+
 	// 삭제
 	@PostMapping("/admin/admOpeInfoDelete")
 	public String delete(RedirectAttributes rttr, OpeInfoVO vo, @ModelAttribute("cri") OpeInfoCriteria cri) {
-		
+
 		int n = opeInfoService.delete(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "삭제가 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "삭제에 실패했습니다. 다시 시도해주세요.");
 		}
-		
+
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-		
+
 		return "redirect:/admin/admOpeInfoList";
 	}
-	
+
 	// 첨부파일 삭제
 	@PostMapping("/admin/opeInfoDelFile")
 	@ResponseBody
-	public OpeInfoVO  opeInfoDelFile(@RequestBody OpeInfoVO vo) {
+	public OpeInfoVO opeInfoDelFile(@RequestBody OpeInfoVO vo) {
 		opeInfoService.deleteFile(vo);
 		return opeInfoService.read(vo);
 	}
-	
-	
+
 	// 첨부파일 다운로드
 	@GetMapping("/introduce/opeInfoDownload")
-	public void fileDownload(@RequestParam Map<String, Object> commandMap
-						   , HttpServletRequest request
-						   , HttpServletResponse response) throws IOException {
-		
+	public void fileDownload(@RequestParam Map<String, Object> commandMap, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+
 		String oiFileid = (String) commandMap.get("oiFileid");
-		
+
 		// oiFileid로 첨부파일 검색
 		OpeInfoVO vo = opeInfoService.readByFileid(oiFileid);
 		String oiFilename = "";
-		
+
 		if (vo != null) {
 			oiFilename = vo.getOiFilename();
 		}
-		
+
 		String path = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\opeInfoFile";
 		File uFile = new File(path, oiFileid + oiFilename);
 		long fSize = uFile.length();
-		
+
 		if (fSize > 0) {
 			String mimetype = "application/x-msdownload";
 			response.setContentType(mimetype);
-			response.setHeader("Content-Disposition", 
-							   "attachment;filename=\"" 
-							 + URLEncoder.encode(oiFilename, "utf-8") + "\"");
-			
+			response.setHeader("Content-Disposition",
+					"attachment;filename=\"" + URLEncoder.encode(oiFilename, "utf-8") + "\"");
+
 			BufferedInputStream in = null;
 			BufferedOutputStream out = null;
 			try {
@@ -257,8 +278,7 @@ public class OpeInfoController {
 			printwriter.flush();
 			printwriter.close();
 		}
-		
+
 	}
-	
-	
+
 }
