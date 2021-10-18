@@ -123,7 +123,9 @@
 								<tr style="text-align: center;">
 									<th><input type="checkbox" name="chkAll" id="chkAll"></th>
 									<th>동호수</th>
+									<th>권한</th>
 									<th>세대주</th>
+									<th>전화번호</th>
 									<th>구성원 수</th>
 									<th>관리비</th>
 									<th>차량</th>
@@ -131,18 +133,25 @@
 							</thead>
 							<tbody id="tbody">
 								<c:forEach var="gen" items="${list}">
-									<tr class="move tr_1">
+									<tr class="mem tr_1" data-houseInfo="${gen.houseInfo}">
 										<td>
 											<input type="checkbox" name="chk" id="" value="" data-name="" data-phone="">
 										</td>
-										<td></td>
-										<td></td>
-										<td></td>
+										<td>${gen.houseInfo}</td>
+										<td>
+											<select name="position" class="position form-control" style="width: 100px;" data-id="${gen.id}">
+												<option value="LEADER" ${gen.position eq 'LEADER' ? 'selected' : ""}>동대표</option>
+												<option value="FOLLOWER" ${gen.position eq 'FOLLOWER' ? 'selected' : ""}>일반</option>
+											</select> 
+										</td>
+										<td>${gen.name}</td>
+										<td>${gen.phone}</td>
+										<td>${gen.familyNum}</td>
 										<td>
 											<button type="button" class="feeBtn btn btn-default" data-houseInfo="">관리비</button>
 										</td>
 										<td>
-											<button type="button" class="carBtn btn btn-default" data-houseInfo="">차량정보</button>
+											<button type="button" class="carBtn btn btn-default" data-houseInfo="${gen.houseInfo}">차량정보</button>
 										</td>
 									</tr>
 								</c:forEach>
@@ -179,3 +188,200 @@
 	</div>
 </section>
 
+	<!-- Member Modal -->
+	<div class="modal" id="memberModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">세대별 회원정보</h4>
+					</div>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div id="members" style="margin: 0px 20px 0px;"></div>
+					<br>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<div align="center">
+						<button type="button" id="closeMem" class="btn btn-default" data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+
+	<!-- CarList Modal -->
+	<div class="modal" id="carListModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<div style="margin-left: 20px;">
+						<div class="title-line-3 align-left"></div>
+						<h4 class="uppercase font-weight-7 less-mar-1">차량 정보</h4>
+					</div>
+				</div>
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div id="cars" style="margin: 0px 20px 0px;"></div>
+					<br>
+				</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<div align="center">
+						<button type="button" id="closeCars" class="btn btn-default" data-dismiss="modal">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal End -->
+
+
+<script>
+
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+	
+	
+	// 회원 정보 모달 띄우기
+	$('.mem').on('click', function() {
+		var str = '';
+		
+		$.ajax({
+			url: 'familyList',
+			type: 'POST',
+			data: JSON.stringify({
+				houseInfo: $(this).attr('data-houseInfo')
+			}),
+			contentType: 'application/json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			dataType: 'json',
+			success: function(data) {
+				str += '<table class="table">';
+				str += '<thead>';
+				str += '<tr>';
+				str += '<th>구분</th>';
+				str += '<th>아이디</th>';
+				str += '<th>이름</th>';
+				str += '<th>전화번호</th>';
+				str += '</tr>';
+				str += '</thead>';
+				str += '<tbody>';
+				for (i=0; i<data.length; i++) {
+					str += '<tr class="tr_1">';
+					str += '<td>' + data[i].author + '</td>';
+					str += '<td>' + data[i].id + '</td>';
+					str += '<td>' + data[i].name + '</td>';
+					str += '<td>'+ data[i].phone + '</td>';
+					str += '</tr>';
+				}
+				str += '</tbody>';
+				str += '</table>';
+				$('#members').html(str);
+				$('#memberModal').show();
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		});
+	
+	});
+	
+	// 회원 정보 모달 내리기...
+	$('#closeMem').on('click', function() {
+		$('#memberModal').hide();
+		$('#members').empty();
+	});
+	
+	// 차량 정보 모달 띄우기
+	$('.carBtn').on("click", function() {
+		
+		var str = "";
+		
+		$.ajax({
+			url: 'carByHouseInfo',
+			type: 'POST',
+			data: JSON.stringify({
+				houseInfo: $(this).attr('data-houseInfo')
+			}),
+			contentType: 'application/json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			dataType: 'json',
+			success: function(data) {
+				if (data.length == 0) {
+					alert('등록된 차량이 없습니다.');
+				} else {
+					str += '<table class="table">';
+					str += '<thead>';
+					str += '<tr>';
+					str += '<th>식별번호</th>';
+					str += '<th>차량번호</th>';
+					str += '<th>차종</th>';
+					str += '<th>등록일자</th>';
+					str += '</tr>';
+					str += '</thead>';
+					str += '<tbody>';
+					for (i=0; i<data.length; i++) {
+						str += '<tr class="tr_1">';
+						str += '<td>' + data[i].carNo + '</td>';
+						str += '<td>' + data[i].carCode + '</td>';
+						str += '<td>' + data[i].carType + '</td>';
+						/* str += '<td><fmt:formatDate value="'+ data[i].carDate + '" pattern="yy-MM-dd" /></td>'; */
+						str += '<td>'+ data[i].carDate + '</td>';
+						str += '</tr>';
+					}
+					str += '</tbody>';
+					str += '</table>';
+					$('#cars').html(str);
+					$('#carListModal').show();
+				}
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		});
+		
+	});
+	
+	// 차량 정보 모달 내리기...
+	$('#closeCars').on("click", function() {
+		$('#carListModal').hide();
+		$('#cars').empty();
+	});
+	
+	// 직책 변경
+	$('.position').on("change", function() {
+		if(confirm('변경하시겠습니까?')) {
+			$.ajax({
+				url: 'updatePosition',
+				type: 'POST',
+				data: JSON.stringify({
+					id: $(this).attr('data-id'),
+					position: $('.position').val()
+				}),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(data) {
+					alert('변경이 완료되었습니다.');
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			});	
+		}
+	});
+	
+</script>
