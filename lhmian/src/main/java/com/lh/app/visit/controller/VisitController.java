@@ -22,27 +22,34 @@ public class VisitController {
 	@Autowired
 	VisitService visitService;
 
-	// 세대리스트
-	@GetMapping("/visit/generation")
-	public String generation(Model model, GenerationVO vo) {
-		model.addAttribute("generation", vo.getHouseInfo());
-		return "visit/generationList";
-	}
-
-	//세대리스트 총 갯수 조회
-	@GetMapping("/gntCount")
-	@ResponseBody
-	public int gntCount() {
-		return visitService.getOldCount();
-	}
+	/*
+	 * @GetMapping("/visit/generation") public String generation2(Model
+	 * model, @ModelAttribute("cri") GenerationCriteria cri) { int total =
+	 * visitService.getOldCount(cri); model.addAttribute("generation",
+	 * visitService.generation(cri)); model.addAttribute("pageMaker", new
+	 * GenerationPageVO(cri, total)); return "visit/generationList"; }
+	 */
 	
-	// 세대리스트-페이징
-	@GetMapping("/gntList")
-	@ResponseBody
-	public List<GenerationVO> gntList(Model model, GenerationVO vo) {
-		return visitService.generation(vo);
-	}
-
+	  //페이지로딩
+	  @GetMapping("/visit/generation")
+	  public void generation(Model model, GenerationVO vo) {
+		  model.addAttribute("generation",visitService.generation(vo));
+	  }
+	  
+	  //세대리스트 카운트
+	  @GetMapping("/gntCount")
+	  @ResponseBody
+	  public int gntCount() {
+		  return visitService.getOldCount();
+	  }
+	  
+	  //세대리스트 요청
+	  @GetMapping("/gntList")
+	  @ResponseBody
+	  public List<GenerationVO> gntList(GenerationVO vo, Model model) {
+		  return visitService.generation(vo);
+	  }  
+	  
 	// 세대선택, 전체조회
 	@GetMapping("/no/visitList")
 	public String list(Model model, VisitVO vo) {

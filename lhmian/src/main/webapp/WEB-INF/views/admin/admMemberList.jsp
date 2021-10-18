@@ -526,7 +526,8 @@
 						str += '<td>' + data[i].carNo + '</>';
 						str += '<td>' + data[i].carCode + '</>';
 						str += '<td>' + data[i].carType + '</>';
-						str += '<td><fmt:formatDate value="'+ data[i].carDate + '" pattern="yy-MM-dd" />';
+						/* str += '<td><fmt:formatDate value="'+ data[i].carDate + '" pattern="yy-MM-dd" /></td>'; */
+						str += '<td>'+ data[i].carDate + '</td>';
 						str += '</tr>';
 					}
 					str += '</tbody>';

@@ -121,7 +121,7 @@
 								</li>
 							</c:if>
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-								<li><a href="${num}">${num}</a></li>
+								<li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
 							</c:forEach>
 							<c:if test="${pageMaker.next == true}">
 								<li>
@@ -290,7 +290,7 @@
 		var cnt = 0;
 		
 		$.ajax({
-			url: 'admin/countByHouseInfo',
+			url: 'countByHouseInfo',
 			type: 'POST',
 			async: false,
 			data: JSON.stringify({
@@ -331,7 +331,7 @@
 			alert(dong + '동 ' + ho + '호가 존재하지 않습니다.');
 		} else {
 			$.ajax({
-				url: 'admin/carByHouseInfo',
+				url: 'carByHouseInfo',
 				type: 'POST',
 				data: JSON.stringify({
 					houseInfo: houseInfo

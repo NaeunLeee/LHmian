@@ -3,6 +3,7 @@ package com.lh.app.visit.service;
 import java.util.List;
 
 import com.lh.app.signIn.domain.GenerationVO;
+import com.lh.app.visit.domain.GenerationCriteria;
 import com.lh.app.visit.domain.VisitVO;
 
 public interface VisitService {

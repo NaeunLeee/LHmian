@@ -84,7 +84,8 @@
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">투표</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">투표를 어쩌구~~~~~~~~~~~~~~~~~~</p>
+						<br>
+						<p class="by-sub-title">우리 아파트를 올바르게 가꾸어나가기 위한 소중한 한 표를 선사해주세요.</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -122,7 +123,7 @@
 								</p>
 								<c:if test="${list.over eq '진행중'}">
 									<div class="text-right">
-										<a id="voteBtn" class="btn btn-light" data-voteNo="${list.voteNo }"><i
+										<a class="voteBtn btn btn-light" data-voteNo="${list.voteNo }"><i
 											class="bi bi-pencil-square"></i> &nbsp;투표하기</a>
 									</div>
 								</c:if>
@@ -142,8 +143,6 @@
 			</div>
 		</div>
 	</section>
-	</section>
-	</section>
 </body>
 <script>
 	let author = null;
@@ -153,8 +152,8 @@
 	</sec:authorize>
 	
 	console.log(author);
-	 
-	 $('#voteBtn').on('click', function() {
+
+	 $('.voteBtn').on('click', function() {
 		 if (author == 'ADMIN') {
 			 alert('관리자 계정은 접근할 수 없습니다.');
 			 return;
@@ -163,6 +162,5 @@
 		 $(location).attr('href', 'vote?no=' + $(this).attr('data-voteNo'));
 		 
 	 })
-
 </script>
 </html>

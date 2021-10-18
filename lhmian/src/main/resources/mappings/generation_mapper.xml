@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.generation.mapper.GenMapper">
+
+<sql id="familyNum">
+	<![CDATA[
+		SELECT HOUSE_INFO
+			 , COUNT(*) AS FAMILY_NUM
+		FROM MEMBER 
+		WHERE AUTHOR <> 'ADMIN'
+		GROUP BY HOUSE_INFO
+	]]>
+</sql>
+
+<sql id="owner">
+	SELECT HOUSE_INFO, ID, NAME, PHONE, POSITION FROM MEMBER
+	WHERE AUTHOR = 'OWNER'
+</sql>
+
+<sql id="criteria">
+	<trim prefix="(" suffix=")AND" prefixOverrides="OR">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="OR">
+				<choose>
+					<when test="type=='N'.toString()">
+						B.NAME like '%' || #{keyword} || '%'
+					</when>
+					<when test="type=='H'.toString()">
+						A.HOUSE_INFO like '%' || #{keyword} || '%'
+					</when>
+					<when test="type=='A'.toString()">
+						B.PHONE like '%' || #{keyword} || '%'
+					</when>
+					<when test="type=='U'.toString()">
+						A.HOUSE_INFO IN ( 
+							SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+    					 		   WHERE PAY_NO IS NULL 
+    					 )
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</trim>
+</sql>
+
+	<sql id="admCriteria">
+		<trim prefix="(" suffix=")AND" prefixOverrides="AND">
+			<foreach collection="optionArr" item="option">
+				<trim prefix="AND">
+					<choose>
+						<when test="option=='L'.toString()">
+							B.POSITION = 'LEADER'
+						</when>
+						<when test="option=='N'.toString()">
+							A.HOUSE_INFO IN ( 
+								SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+     					 		WHERE PAY_NO IS NULL 
+     					 	)
+						</when>
+						<when test="option=='A'.toString()">
+							A.HOUSE_INFO > 0
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(ROWNUM) FROM
+		MEMBER
+		WHERE
+			<include refid="criteria"></include>
+			<include refid="admCriteria"></include>
+		ROWNUM > 0
+	</select>
+
+	<select id="getList" resultType="memberVO">
+		WITH 
+		A AS
+			(<include refid="familyNum" />),
+		B AS
+			(<include refid="owner" />)
+		SELECT ROWNUM RN
+		     , A.HOUSE_INFO
+		     , A.FAMILY_NUM
+		     , B.ID
+		     , B.NAME
+		     , B.PHONE
+		     , B.POSITION
+		FROM A JOIN B
+		ON A.HOUSE_INFO = B.HOUSE_INFO
+		ORDER BY HOUSE_INFO
+	</select>
+
+	<select id="familyList" resultType="memberVO">
+		SELECT * FROM MEMBER
+		WHERE HOUSE_INFO = #{houseInfo}
+	</select>
+
+</mapper>

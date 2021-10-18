@@ -74,183 +74,160 @@ padding : 100px;
       <div class="container" align="center" style="width: 1400px">
          <div class="text-box white padding-4 col-7">
          	<div class="gntList">
-         	${generation }dd
-			<%-- <c:forEach items="${generation}" var="houseInfo">
-				<c:if test="${houseInfo.houseInfo != 0}">
+				<%-- <c:forEach items="${generation}" var="list">
 					<div class="status">
-						<img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="" class="img-responsive" />
+							<img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="" class="img-responsive" />
 						<div class="cbp-item-yj web-design generation">
-							<button value="${houseInfo.houseInfo}" onclick="generation(${houseInfo.houseInfo})">
-								${houseInfo.houseInfo}
+							<button value="${list.houseInfo}" onclick="generation(${list.houseInfo})">
+									${list.houseInfo}
 							</button>
 						</div>
 					</div>
-				</c:if>
-			</c:forEach> --%>
+				</c:forEach> --%>
 			</div>
-			<div id="showMore"></div>
+			<div id="listBtn"></div>
+			<%-- <div id="pageButton" align="center">
+				<ul class="pagination hover-orange">
+					<c:if test="${pageMaker.prev == true}">
+						<li><a href="${pageMaker.startPage-1}"> 
+								<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+							</a>
+						</li>
+					</c:if>
+					<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+						<li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next == true}">
+						<li><a href="${pageMaker.endPage+1}"> 
+								<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+							</a>
+						</li>
+					</c:if>
+				</ul>
+			</div> --%>
+			
+			<%-- <div id="showMore">
+				<c:if test="${pageMaker.startPage}">
+					<button style='height: 100%; width: 100%' id='addBtn'>더보기+</button>
+						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+							<input type="text" id="${num}" value="${num}">
+						</c:forEach>
+				</c:if>
+			</div>
 		</div>
+		<form id="actionForm" action="generation" method="get">
+			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		</form> --%>
 	</div>
+</div>
 </section>
 
 <script>
-let csrfHeaderName = "${_csrf.headerName}";
-let csrfTokenValue = "${_csrf.token}";
-
 var pageNum = 0;
 var amount = 0;
 var gntCount = 0;
 
 $(function() {
-	//gntList();
+	gntList();
 
-	//세대리스트 전체조회
-	 /* $.ajax({
-		url : "generation",
+	$.ajax({
+		url : "gntCount",
 		method : "get",
 		success : function(data) {
-			console.log(data);
-			gntList = data;
+			gntCount = data;
 		}
-	}) */
-});
+	});
+	
+	//더보기 클릭시 페이징
+	$(document).on('click', '#addBtn', function() {
+		var divCount = $('.gntList .status').length;
+		pageNum = (divCount / 9) + 1;
+		amount = 9;
+		
+		$.ajax({
+			url : "gntList",
+			method : "get",
+			dataType : "json",
+			data : {
+				pageNum : pageNum,
+				amount : amount
+			},
+			contentType : "application/json",
+			success : function(datas) {
+				$.each(datas, function(data) {
+					var gntOne = '<div class="status">';
+								+ '		<div class="cbp-item-yj web-design generation">';
+								+ '			<button value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">';
+								+ data.houseInfo ;
+								+ '			</button>';
+								+ '		</div>';
+								+ '</div>';
+					$('.gntList').append(gntOne);	
+				});
+			};
+		});
+		console.log(pageNum);
+		console.log(Math.ceil(gntCount/9));
+		if(pageNum == Math.ceil(gntCount/9)) {
+			$('#addBtn').remove();
+		}
+		
+	})
 
-//더보기  클릭시 세대리스트 추가(ajax 페이징)
-/* $(document).on('click', '#addBtn', function() {
-	var divCount = $('.gntList #generation').length;
-	pageNum = (divCount / 9) + 1;
+
+})
+
+
+/* $('#addBtn').on('click', function(e) {
+	
+	//e.preventDefault();
+	var p = $(this).next().val();
+	//$('[name="pageNum"]').val(p);
+
+	var divCount = $('.gntList .status').length;
+	
+	pageNum = Math.ceil((divCount / 9)) + 1;
 	amount = 9;
 	
 	$.ajax({
-		url : "gntList",
+		url : "generation",
 		method : "get",
 		dataType : 'json',
 		data : {
 			pageNum : pageNum,
 			amount : amount
 		},
-		beforeSend: function(xhr) {
-            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-         },
          contentType : "application/json",
          success : function(datas) {
-        	 $.each(datas, function(data) {
-        		 console.log(data);
-        		$("<div id='generation' data-grtNo=''></div>").appendTo($(".gntList"));
+        	console.log(datas);
+        	$.each(datas, function(data) {
+        	console.log(data);
+        		var list ='<div class="status">';
+        				+ '		<div class="cbp-item-yj web-design generation">';
+  						+ '			<button value="${list.houseInfo}" onclick="generation(${list.houseInfo})">';
+  						+ '				${list.houseInfo}';
+  						+ '			</button>';
+  						+ '		</div>';
+  						+ '</div>';
+	$(".gntList").append(list);	
         	 });
          }
 	});
-	
-	if(pageNum == Math.ceil(gntCount/9)) {
+	//$('#actionForm').submit();
+	var idNum = document.getElementById(p);
+	idNum.remove();
+
+	if(pageNum == Math.ceil(divCount/9)) {
 		$('#addBtn').remove();
 	}
 }); */
 
-//페이지 로딩시 리스트 출력
-/* function gntList() {
-	pageNum = 1;
-	amount = 9;
-	
-	$.ajax({
-		url : "generation",
-		method : "get",
-		dataType : 'json',
-		data : {
-			pageNum : pageNum,
-			amount : amount
-			},
-			contentType : 'application/json',
-			success : function(datas) {
-				$('.gntList').empty();
-				 $.each(datas, function(data) {
-					 console.log(data);
-		        		$("<div id='generation' data-grtNo=''></div>").appendTo($(".gntList"));
-		        	 });
-			}
-	});
-	$("#showMore").append($("<button style='height: 100%; width: 100%' type='button' id='addBtn'>더보기+</button>"));
-} */
 
-/* $(document).on("click","#rdBtn",function(){
-	var cnt = $(".gntList #generation").length; // 현재 포스트 갯수 구하기
-	var arryLen = arry.length;
-	if( (cnt/9) ==  Math.ceil(arryLen/9)-1  ){
-		$("#rdBtn").remove();
-	}
-	for	(var i=0; i < 9; i++ ){
-		if(arry[i+cnt].reportMno == 1){ angryStr = 'background-color: #061a3a;'; }else {
-			angryStr = '';	}
-		if(arry[i+cnt].likesNo == 1){ heartStr = 'background-color: #061a3a;'; }else {
-			heartStr = '';	}
-		$("<div id='post' data-postNo='"+arry[i+cnt].postNo+"' data-memberNo='"+arry[i+cnt].memberNo+"' class='col-lg-4 col-md-6 col-sm-12 team-block'>")
-			.append(
-				"<div class='team-block-three'>"
-				+ '<div class="inner-box">'
-				+ '<figure class="image-box">'
-				+ '<img src="${pageContext.request.contextPath}/resources/assets/images/post/'+arry[i+cnt].postColor+'" alt=""> '
-				+ '<a class="heartIcon" style="'+ heartStr +'"><i class="far fa-heart"></i></a>'
-				+ '<a class="angryIcon" style="top: 20px; right: 70px;'+ angryStr +'"><i class="far fa-angry"></i></a>'
-				+ '<div class="textBox">'
-				+ '<div><h4>'
-				+ arry[i+cnt].contents
-				+ '</h4></div>'
-				+ '</div></figure></div></div>')
-			.appendTo($(".postContents"));
-	} // for문 end 
-	
-}); */
-
-/* $(document).ready(function() {
-	var oldListCnt = '${oldListCnt}';
-	var startIndex = 1;
-	var searchStep = 10;
-	
-	readOldNotify(startIndex);
-	
-	$('#searchMoreNotify').click(function() {
-		startIndex += searchStep;
-		readOldNotify(startIndex);
-	})
-	
-		function readOldNotify(index){
-			let _endIndex = index + searchStep - 1;
-			$.ajax({
-				method : "post",
-				dataType : "json",
-				beforeSend: function(xhr) {
-		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-		         },
-				data : {
-					m_id : '${m_id}',
-					startIndex : index,
-					endIndex : _endIndex
-				},
-				url : "generation",
-				success : function(data, textStatus) {
-					let nodeList = "";
-					for(i=0; i<data.length; i++) {
-						let newNode =  '<c:if test="' + data.houseInfo + ' != 0}">'
-									+= '	<div class="status">'
-									+= '		<div class="cbp-item-yj web-design generation">'
-									+= '			<button value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">' + data.houseInfo + '</button>'
-									+= '		</div>'
-									+= '	</div>'
-									+= '</c:if>'
-						}
-					$(nodeList).appendTo($('oldList')).slideDown();
-				
-					//더 나올 내용 없으면 더보기 버튼 삭제
-					if(startIndex + searchStep > oldListCnt) {
-						$('#searchMoreNotify').remove();
-					}
-				}
-			})
-		}
-}) */
-	//세대 클릭시 새창으로 열림
-	function generation(n) {
-		openWin = window.open("../no/visitList?houseInfo=" + n,
-					"방명록",
-					"width=1000px, height=600px, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-		};  
+//세대 클릭시 새창으로 열림
+function generation(n) {
+	openWin = window.open("../no/visitList?houseInfo=" + n,
+				"방명록",
+				"width=1000px, height=600px, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	};  
 </script>

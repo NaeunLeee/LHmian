@@ -2,9 +2,13 @@ package com.lh.app.visit.mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.lh.app.signIn.domain.GenerationVO;
+import com.lh.app.visit.domain.GenerationCriteria;
 import com.lh.app.visit.domain.VisitVO;
 
+@Repository
 public interface VisitMapper {
   
 	// crud

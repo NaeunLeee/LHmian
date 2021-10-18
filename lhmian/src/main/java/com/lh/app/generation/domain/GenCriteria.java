@@ -1,24 +1,22 @@
-package com.lh.app.cs.domain;
+package com.lh.app.generation.domain;
 
 import lombok.Data;
 
 @Data
-public class CsCriteria {
+public class GenCriteria {
 
 	private int pageNum = 1;
 	private int amount = 10;
 	private String type;
 	private String keyword;
+	private String preType;
 	
-	public CsCriteria() {}
+	public GenCriteria() {}
 	
-	public CsCriteria(int pageNum, int amount) {
+	public GenCriteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}
-	
-	// 10/18 
-	private String preType;
 	
 	public String[] getTypeArr() {
 		return type == null ? new String[] {} : type.split("");

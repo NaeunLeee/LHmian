@@ -157,24 +157,25 @@
 					            </c:if>
 						    </ul>
 					   </div>
-						<div align="center">
+						<div align="center" id="criteriaForm" data-option="${type}">
 							<!-- 10/15 action 수정 -->
 							<form id="actionForm" action="admOpeInfoList" method="get">
 							   <select name="type" class="form-control" style="width: 100px; ">
 							      <option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-							      <option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-							      <option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
-							      <option value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>      
+							      <option id="T" value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
+							      <option id="C" value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
+							      <option id="TC" value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>      
 							   </select>
 							   <input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}">
 							   <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">      
 							   <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+							   <input type="hidden" name="preType" id="preType" value="${type}">
 							   <button type="submit" class="btn btn-dark">검색</button>
 							</form>
 						</div>
 					</div>
 			</div>
-		</div>
+		</div> 
 	</div>
 </section>
 
@@ -212,8 +213,33 @@ $(function() {
          alert(result);
       }
    });
+   
+   //10/18
+   let option = $('#criteriaForm').attr('data-option');
+   $(document).ready(function() {
+		
+		 if (option.indexOf('T') != -1) {
+			 $('#T').prop("selected", true);
+		 } else {
+			 $('#T').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('C') != -1) {
+			 $('#C').prop("selected", true);
+		 } else {
+			 $('#C').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('TC') != -1) {
+			 $('#TC').prop("selected", true);
+		 } else {
+			 $('#TC').prop("selected", false);
+		 }
+		 
+	 });
 
 });
+
    
 </script>
 
