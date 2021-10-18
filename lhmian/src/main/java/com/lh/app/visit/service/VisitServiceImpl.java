@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lh.app.signIn.domain.GenerationVO;
+import com.lh.app.visit.domain.GenerationCriteria;
 import com.lh.app.visit.domain.VisitVO;
 import com.lh.app.visit.mapper.VisitMapper;
 
@@ -36,13 +37,13 @@ public class VisitServiceImpl implements VisitService {
 	}
 
 	@Override
-	public List<GenerationVO> generation(GenerationVO vo) {
-		return visitMapper.generation(vo);
+	public List<GenerationVO> generation(GenerationCriteria cri) {
+		return visitMapper.generation(cri);
 	}
 
 	@Override
-	public int getOldCount() {
-		return visitMapper.getOldCount();
+	public int getOldCount(GenerationCriteria cri) {
+		return visitMapper.getOldCount(cri);
 	}
 
 }

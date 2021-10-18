@@ -2,9 +2,13 @@ package com.lh.app.visit.mapper;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.lh.app.signIn.domain.GenerationVO;
+import com.lh.app.visit.domain.GenerationCriteria;
 import com.lh.app.visit.domain.VisitVO;
 
+@Repository
 public interface VisitMapper {
   
 	// crud
@@ -21,8 +25,8 @@ public interface VisitMapper {
 	public int delete(VisitVO vo);
 
 	// 세대리스트 불러오기
-	public List<GenerationVO> generation(GenerationVO vo);
+	public List<GenerationVO> generation(GenerationCriteria cri);
 	
 	// 전체 건수 카운트
-	public int getOldCount();
+	public int getOldCount(GenerationCriteria cri);
 }
