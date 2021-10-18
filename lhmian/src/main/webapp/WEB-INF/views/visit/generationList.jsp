@@ -74,18 +74,18 @@ padding : 100px;
       <div class="container" align="center" style="width: 1400px">
          <div class="text-box white padding-4 col-7">
          	<div class="gntList">
-				<c:forEach items="${generation}" var="list">
+				<%-- <c:forEach items="${generation}" var="list">
 					<div class="status">
-							<%-- <img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="" class="img-responsive" /> --%>
+							<img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="" class="img-responsive" />
 						<div class="cbp-item-yj web-design generation">
 							<button value="${list.houseInfo}" onclick="generation(${list.houseInfo})">
 									${list.houseInfo}
 							</button>
 						</div>
 					</div>
-				</c:forEach>
+				</c:forEach> --%>
 			</div>
-			
+			<div id="listBtn"></div>
 			<%-- <div id="pageButton" align="center">
 				<ul class="pagination hover-orange">
 					<c:if test="${pageMaker.prev == true}">
@@ -106,24 +106,80 @@ padding : 100px;
 				</ul>
 			</div> --%>
 			
-			<div id="showMore">
-				<%-- <c:if test="${pageMaker.startPage}"> --%>
+			<%-- <div id="showMore">
+				<c:if test="${pageMaker.startPage}">
 					<button style='height: 100%; width: 100%' id='addBtn'>더보기+</button>
 						<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
 							<input type="text" id="${num}" value="${num}">
 						</c:forEach>
-				<%-- </c:if> --%>
+				</c:if>
 			</div>
 		</div>
 		<form id="actionForm" action="generation" method="get">
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-		</form>
+		</form> --%>
 	</div>
+</div>
 </section>
 
 <script>
-$('#addBtn').on('click', function(e) {
+var pageNum = 0;
+var amount = 0;
+var gntCount = 0;
+
+$(function() {
+	gntList();
+
+	$.ajax({
+		url : "gntCount",
+		method : "get",
+		success : function(data) {
+			gntCount = data;
+		}
+	});
+	
+	//더보기 클릭시 페이징
+	$(document).on('click', '#addBtn', function() {
+		var divCount = $('.gntList .status').length;
+		pageNum = (divCount / 9) + 1;
+		amount = 9;
+		
+		$.ajax({
+			url : "gntList",
+			method : "get",
+			dataType : "json",
+			data : {
+				pageNum : pageNum,
+				amount : amount
+			},
+			contentType : "application/json",
+			success : function(datas) {
+				$.each(datas, function(data) {
+					var gntOne = '<div class="status">';
+								+ '		<div class="cbp-item-yj web-design generation">';
+								+ '			<button value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">';
+								+ data.houseInfo ;
+								+ '			</button>';
+								+ '		</div>';
+								+ '</div>';
+					$('.gntList').append(gntOne);	
+				});
+			};
+		});
+		console.log(pageNum);
+		console.log(Math.ceil(gntCount/9));
+		if(pageNum == Math.ceil(gntCount/9)) {
+			$('#addBtn').remove();
+		}
+		
+	})
+
+
+})
+
+
+/* $('#addBtn').on('click', function(e) {
 	
 	//e.preventDefault();
 	var p = $(this).next().val();
@@ -161,12 +217,12 @@ $('#addBtn').on('click', function(e) {
 	//$('#actionForm').submit();
 	var idNum = document.getElementById(p);
 	idNum.remove();
-});
 
-	if(pageNum == Math.ceil(gntCount/9)) {
+	if(pageNum == Math.ceil(divCount/9)) {
 		$('#addBtn').remove();
 	}
-});
+}); */
+
 
 //세대 클릭시 새창으로 열림
 function generation(n) {

@@ -1,18 +1,18 @@
 package com.lh.app.visit.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.etc.CustomUserDetails;
-import com.lh.app.visit.domain.GenerationCriteria;
-import com.lh.app.visit.domain.GenerationPageVO;
 import com.lh.app.visit.domain.VisitVO;
 import com.lh.app.visit.service.VisitService;
 
@@ -22,44 +22,34 @@ public class VisitController {
 	@Autowired
 	VisitService visitService;
 
-	
-	  // 세대리스트
-	  
-		/*
-		 * @GetMapping("/visit/generation") public String generation(Model
-		 * model, @ModelAttribute("cri") GenerationCriteria cri) {
-		 * model.addAttribute("generation", visitService.generation(cri)); return
-		 * "visit/generationList"; }
-		 */
-	 
-	
-	
-	  @GetMapping("/visit/generation") 
-	  public String generation(Model model, @ModelAttribute("cri") GenerationCriteria cri) { 
-	  int total = visitService.getOldCount(cri);
-	  model.addAttribute("generation", visitService.generation(cri)); 
-	  model.addAttribute("pageMaker", new GenerationPageVO(cri, total)); 
-	   return "visit/generationList"; 
-	  }
-	 
-
 	/*
-	 * //세대리스트 총 갯수 조회
-	 * 
-	 * @GetMapping("/gntCount")
-	 * 
-	 * @ResponseBody public int gntCount(GenerationCriteria cri) { return
-	 * visitService.getOldCount(cri); }
-	 * 
-	 * // 세대리스트-페이징
-	 * 
-	 * @GetMapping("/gntList")
-	 * 
-	 * @ResponseBody public List<GenerationVO> gntList(Model model,
-	 * GenerationCriteria cri) { System.out.println(cri.getPageNum());
-	 * System.out.println(cri.getAmount()); return visitService.generation(cri); }
+	 * @GetMapping("/visit/generation") public String generation2(Model
+	 * model, @ModelAttribute("cri") GenerationCriteria cri) { int total =
+	 * visitService.getOldCount(cri); model.addAttribute("generation",
+	 * visitService.generation(cri)); model.addAttribute("pageMaker", new
+	 * GenerationPageVO(cri, total)); return "visit/generationList"; }
 	 */
-
+	
+	  //페이지로딩
+	  @GetMapping("/visit/generation")
+	  public void generation(Model model, GenerationVO vo) {
+		  model.addAttribute("generation",visitService.generation(vo));
+	  }
+	  
+	  //세대리스트 카운트
+	  @GetMapping("/gntCount")
+	  @ResponseBody
+	  public int gntCount() {
+		  return visitService.getOldCount();
+	  }
+	  
+	  //세대리스트 요청
+	  @GetMapping("/gntList")
+	  @ResponseBody
+	  public List<GenerationVO> gntList(GenerationVO vo, Model model) {
+		  return visitService.generation(vo);
+	  }  
+	  
 	// 세대선택, 전체조회
 	@GetMapping("/no/visitList")
 	public String list(Model model, VisitVO vo) {
