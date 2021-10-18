@@ -20,10 +20,10 @@
 							POSITION = 'LEADER'
 						</when>
 						<when test="type=='U'.toString()">
-							HOUSE_INFO IN ( 
-								SELECT HOUSE_INFO FROM MANAGEMENT_FEE
-     					 		WHERE PAY_NO IS NULL 
-     					 	)
+							HOUSE_INFO IN (
+							SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+							WHERE PAY_NO IS NULL
+							)
 						</when>
 					</choose>
 				</trim>
@@ -40,10 +40,10 @@
 							POSITION = 'LEADER'
 						</when>
 						<when test="option=='N'.toString()">
-							HOUSE_INFO IN ( 
-								SELECT HOUSE_INFO FROM MANAGEMENT_FEE
-     					 		WHERE PAY_NO IS NULL 
-     					 	)
+							HOUSE_INFO IN (
+							SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+							WHERE PAY_NO IS NULL
+							)
 						</when>
 						<when test="option=='O'.toString()">
 							AUTHOR = 'OWNER'
@@ -61,16 +61,18 @@
 		SELECT COUNT(ROWNUM) FROM
 		MEMBER
 		WHERE
-			<include refid="criteria"></include>
-			<include refid="admCriteria"></include>
+		<include refid="criteria"></include>
+		<include refid="admCriteria"></include>
 		ROWNUM > 0
 	</select>
 
 	<!-- 세대정보로 멤버 수 조회 (10/14 추가: 이나은) -->
-	<select id="countByHouseInfo" resultType="int" parameterType="memberVO">
+	<select id="countByHouseInfo" resultType="int"
+		parameterType="memberVO">
 		SELECT COUNT(*) FROM
 		MEMBER
-		WHERE HOUSE_INFO = #{houseInfo}
+		WHERE HOUSE_INFO =
+		#{houseInfo}
 	</select>
 
 	<select id="getList" resultType="memberVO">
@@ -90,33 +92,24 @@
 			FROM MEMBER
 			WHERE
 			]]>
-				<include refid="criteria"></include>
-				<include refid="admCriteria"></include>
+		<include refid="criteria"></include>
+		<include refid="admCriteria"></include>
 			<![CDATA[
 			ROWNUM <= #{pageNum} * #{amount}
 		)
 		WHERE RN > (#{pageNum} - 1) * #{amount}
 	]]>
 	</select>
-
+	
+	<!-- 10/18 수정 -->
 	<select id="read" resultType="MemberInfoVO">
-		SELECT DISTINCT M.ID, M.PHONE,
-		M.HOUSE_INFO,
+		SELECT M.ID,
 		M.PASSWORD,
-		LISTAGG(C.CAR_CODE, '/') WITHIN GROUP (ORDER
-		BY C.CAR_CODE) OVER(PARTITION BY
-		C.HOUSE_INFO) AS carCode
-		,
-		LISTAGG(C.CAR_TYPE, '/') WITHIN GROUP (ORDER BY C.CAR_TYPE)
-		OVER(PARTITION BY C.HOUSE_INFO) AS carType
+		M.PHONE
 		FROM MEMBER M
-		JOIN GENERATION
-		G
+		JOIN GENERATION G
 		ON (M.HOUSE_INFO = G.HOUSE_INFO)
-		JOIN CARLIST C
-		ON (G.HOUSE_INFO =
-		C.HOUSE_INFO)
-		WHERE M.ID = #{id}
+		WHERE ID = #{id}
 	</select>
 
 	<select id="getListcar" resultType="MemberInfoVO">
@@ -168,10 +161,12 @@
 	<select id="readlib" resultType="MemberInfoVO">
 		SELECT P.PAY_NO
 		, P.PAY_DATE
-		, P.PAY_CAT
+		,
+		P.PAY_CAT
 		, L.LIB_STARTDATE AS startDate
 		, L.LIB_PERIOD AS period
-		, L.LIB_PRICE AS price
+		,
+		L.LIB_PRICE AS price
 		FROM
 		PAYMENT P
 		JOIN LIBRARY L
@@ -183,10 +178,12 @@
 	<select id="readgym" resultType="MemberInfoVO">
 		SELECT P.PAY_NO
 		, P.PAY_DATE
-		, P.PAY_CAT
+		,
+		P.PAY_CAT
 		, G.GYM_STARTDATE AS STARTDATE
 		, G.GYM_PERIOD AS PERIOD
-		, G.GYM_PRICE AS PRICE
+		,
+		G.GYM_PRICE AS PRICE
 		FROM
 		PAYMENT P
 		JOIN GYM G
@@ -198,7 +195,8 @@
 	<update id="updatePosition">
 		UPDATE MEMBER
 		SET POSITION = #{position}
-		WHERE ID = #{id}
+		WHERE ID =
+		#{id}
 	</update>
-	
+
 </mapper>

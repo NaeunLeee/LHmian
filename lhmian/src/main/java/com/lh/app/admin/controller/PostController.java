@@ -30,32 +30,57 @@ public class PostController {
 	// 택배 리스트 조회
 	@RequestMapping("admin/admPost")
 	public String getListview(Model model, @ModelAttribute("cri") Criteria cri) {
-		
-		if(cri.getType() == "" && cri.getPreType() == null) {
-		
+
+		// 타입 변환 후 페이지 이동 조건
+		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
+				&& cri.getKeyword() != null) {
 			int total = postService.getTotalCount(cri);
 			model.addAttribute("list", postService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			
+			System.out.println("1 ----------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("------------------------------------");
 			return "admin/admPost";
-		} else if( (cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
+			
+		//타입 변환 시 페이지 초기화 조건
+		} else if((cri.getType()!=null)&&(cri.getType().equals(",Y")||cri.getType().equals(",N"))&& cri.getKeyword().equals("") ) {
+			
+			cri.setPageNum(1);
 			int total = postService.getTotalCount(cri);
 			model.addAttribute("list", postService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			System.out.println("2-----------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("------------------------------------");
+			return "admin/admPost";
+		// 타입 변환 + 빈칸검색 시 페이지 초기화 -> 타입 초기화
+		} else if((cri.getType() != null && cri.getKeyword().equals(""))) {
 			
+			cri.setPageNum(1);
+			int total = postService.getTotalCount(cri);
+			model.addAttribute("list", postService.getList(cri));
+			model.addAttribute("pageMaker", new PageVO(cri, total));
+			model.addAttribute("type", null);
+			System.out.println("3 ---------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("-----------------------------------");
 			return "admin/admPost";
 		}
 		else {
-		cri.setPageNum(1);
-		int total = postService.getTotalCount(cri);
-		model.addAttribute("list", postService.getList(cri));
-		model.addAttribute("pageMaker", new PageVO(cri, total));
-		model.addAttribute("type", cri.getType());
-		
-		return "admin/admPost";
+			cri.setPageNum(1);
+			int total = postService.getTotalCount(cri);
+			model.addAttribute("list", postService.getList(cri));
+			model.addAttribute("pageMaker", new PageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			System.out.println("4");
+			return "admin/admPost";
 		}
+
 	}
 	
 	// 등록

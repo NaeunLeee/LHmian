@@ -52,7 +52,7 @@ public class MemberController {
 			int total = service.getTotalCount(cri);
 			model.addAttribute("list", service.getList(cri));
 			model.addAttribute("pageMaker", new AdmMemberPageVO(cri, total));
-			model.addAttribute("option", cri.getOption());
+			model.addAttribute("option", cri.getType());
 			return "admin/admMemberList";
 		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
 			int total = service.getTotalCount(cri);
@@ -83,9 +83,6 @@ public class MemberController {
 	public String myInfo(Model model, MemberInfoVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		String id = customUserDetails.getUsername();
 		vo.setId(id);
-		if (encoder.matches("4", customUserDetails.getPassword())) {
-			System.out.println("match!!");
-		}
 		model.addAttribute("car", service.getListcar(id));
 		model.addAttribute("info", service.read(vo));
 		return "myPage/myInfo";
