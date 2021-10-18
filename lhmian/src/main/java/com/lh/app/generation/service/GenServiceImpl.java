@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lh.app.generation.mapper.GenMapper;
+import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
 
 @Service
@@ -20,6 +21,10 @@ public class GenServiceImpl implements GenService {
 
 	public List<MemberVO> familyList(MemberVO vo) {
 		return genMapper.familyList(vo);
+	}
+
+	public int countGen(GenerationVO vo) {
+		return genMapper.countGen(vo);
 	}
 
 }

@@ -98,4 +98,9 @@
 		WHERE HOUSE_INFO = #{houseInfo}
 	</select>
 
+	<select id="countGen" resultType="int">
+		SELECT COUNT(*)
+		FROM GENERATION
+		WHERE HOUSE_INFO = #{houseInfo}
+	</select>
 </mapper>
