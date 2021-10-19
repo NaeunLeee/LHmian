@@ -39,7 +39,7 @@ textarea {
 				<th>방명록작성세대</th>
 			</tr>
 			<c:forEach items="${list}" var="list">
-				<tr onclick="update('${list.visitNo}', '${list.visitContent}', '${list.writerInfo}')">
+				<tr onclick="update('${list.visitNo}', '${list.visitContent}')">
 					<td>${list.visitNo}</td>
 					<td>${list.houseInfo}</td>
 					<td>${list.visitContent}</td>
@@ -85,31 +85,36 @@ textarea {
 		
 		//등록버튼을 누르면 작동
 		$('.insert').on('click', function() {
-			if (confirm('방명록을 등록하시겠습니까?\n한번 등록한 방명록은 삭제할 수 없습니다.')) {
-				$.ajax({
-					url : "visitInsert",
-					method : "post",
-					beforeSend : function(xhr) {
-						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-					},
-					data : {
-						visitContent : $('#visitContent').val(),
-						houseInfo : house
-					},
-					success : function() {
-						alert(" 방명록이 등록되었습니다.");
-						location.reload();
-					}
-				});
+			var visitContent = $('#visitContent').val();
+			if(!visitContent) {
+				alert("내용을 입력하세요.");
+			}else{
+				if (confirm('방명록을 등록하시겠습니까?\n한번 등록한 방명록은 삭제할 수 없습니다.')) {
+					$.ajax({
+						url : "visitInsert",
+						method : "post",
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+						},
+						data : {
+							visitContent : $('#visitContent').val(),
+							houseInfo : house
+						},
+						success : function() {
+							alert(" 방명록이 등록되었습니다.");
+							location.reload();
+						}
+					});
+				}
 			};
 		});
 	});
 	
-	function update(num, content, name) {
+	function update(num, content) {
 		if (confirm('수정하시겠습니까?')) {
 			$('.vUpdate').show();
 			console.log(content);
-			$('#visitUpdate').val( content);
+			$('#visitUpdate').val(content);
 			//등록창이 열려있다면 숨겨준다
 			if($('.vContent').css("display") == 'block' ) {
 			$('.vContent').hide();
@@ -128,7 +133,7 @@ textarea {
 					},
 					data : {
 						visitContent : $('#visitUpdate').val(),
-						writerInfo : name
+						visitNo : num
 					},
 					success : function() {
 						alert(" 방명록이 등록되었습니다.");

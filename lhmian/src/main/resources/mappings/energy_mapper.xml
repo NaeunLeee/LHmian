@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.energy.mapper.EnergyMapper">
 	<select id="thisYear" resultType="EnergyVO">
-		SELECT ${columnName}
+		SELECT ${columnName}, MF_DATE
 		FROM ENERGY_USAGE
 		WHERE HOUSE_INFO = #{houseInfo}
 			AND MF_DATE 
@@ -11,22 +11,15 @@
 		ORDER BY MF_DATE
 	</select>
 
-	<!-- <select id="lastYear" resultType="EnergyVO" parameterType="EnergyVO">
-		SELECT MF_DATE,
-			HOUSE_INFO,
-			ENG,
-			GAS,
-			ELECTRIC,
-			WATER,
-			TRASH,
-			TRASH_FOOD
+	<select id="lastYear" resultType="EnergyVO" parameterType="EnergyVO">
+		SELECT ${columnName}, MF_DATE
 		FROM ENERGY_USAGE
 		WHERE HOUSE_INFO = #{houseInfo}
 			AND MF_DATE
 				BETWEEN TRUNC(TO_CHAR(ADD_MONTHS(SYSDATE,-23), 'YYMM')) 
 					AND TRUNC(TO_CHAR(ADD_MONTHS(SYSDATE,-12), 'YYMM'))
 		ORDER BY MF_DATE
-	</select> -->
+	</select>
 
 	<select id="admList" resultType="EnergyVO">
 		SELECT  /*+ INDEX_DESC(ENERGY_USAGE EU_IDX) */

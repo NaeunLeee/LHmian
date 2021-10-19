@@ -9,7 +9,7 @@ import com.lh.app.energy.domain.EnergyVO;
 @Repository
 public interface EnergyMapper {
 	// 전체조회-금년
-	public List<EnergyVO> thisYear(String columnName);
+	public List<EnergyVO> thisYear(EnergyVO vo);
 
 	// 전체조회-작년
 	public List<EnergyVO> lastYear(EnergyVO vo);

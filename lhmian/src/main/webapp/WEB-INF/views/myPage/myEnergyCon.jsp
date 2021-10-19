@@ -102,52 +102,84 @@ select {
 <script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
 <script>
 	$(document).ready( function() {
+		var thisData = null;
+		var lastData = null;
+		var mfDate = null;
 	//차트-첫 로딩시 현재 월 차트 보여주고, 월 버튼 클릭시 해당 월의 데이터 표시
 	var tagBar = "";
 	tagBar += '<h4 class="uppercase">1년 그래프</h4>'
 			+ '<br/>'
 			+ '<canvas id="myBarChart"></canvas>'
 	$(".bar-chart").html(tagBar);
-	//lastYear = ${lastYear};
-	//thisYear = ${thisYear};
-	//bar();
+	
+	//금년데이터
 	$.ajax({
-		url : "myEnergy",
-		type : "post",
+		url : "thisEnergy",
+		type : "get",
 		data : {
 			columnName : "ENG"
 		},
-		success : function(data) {
-			//data = JSON.parse(data);
-			console.log(${thisYear});
-			console.log(data.eng);
-			bar(data);
+		success : function(datas) {
+			var data = [];
+			var date = [];
+			for(let i=0; i<datas.length; i++) {
+				data.push(datas[i].eng);
+				date.push(datas[i].mfDate);
+			}
+			thisData = data;
+			mfDate = date;
+			console.log(thisData);
+			console.log(mfDate);
+		},
+		error : function(error) {
+			console.log(error);
 		}
 	});
+	
+	//작년데이터
+	$.ajax({
+		url : "lastEnergy",
+		type : "get",
+		data : {
+			columnName : "ENG"
+		},
+		success : function(datas) {
+			var data = [];
+			for(let i=0; i<datas.length; i++) {
+				data.push(datas[i].eng);
+			}
+			/* if(datas.length != 12) {
+				var temp = 12 - datas.length;
+					data.push(temp().fill(0));
+			} */
+			lastData = data;
+			console.log(lastData);
+		},
+		error : function(error) {
+			console.log(error);
+		}
+	});
+		bar(thisData, lastData);
 	});
 
 	/* 바차트(월별) */
-	function bar() {
+	function bar(thisData, lastData, mfDate) {
 		var ctx = document.getElementById('myBarChart').getContext('2d'); 
 		var chart = new Chart(ctx, { 
 			// type : 'bar' = 막대차트를 의미합니다. 
 			type: 'bar', 
 			data: { 
-				labels: [
-					'빨간색',
-					'파란색'
-					], 
+				labels: mfDate, 
 				// 큰 분류(하단 데이터 이름)
 			datasets: [ 
-				{ label: '첫번째 분류', //작은 분류 
-				backgroundColor: [ 'red', ],
-				borderColor: 'rgb(255, 99, 132)', 
-				data: [] 
-			}, { label: '두번째 분류', //작은 분류 
-				backgroundColor: [ 'blue', ], 
-				borderColor: 'rgb(255, 99, 132)', 
-				data: [2 ,10, 5,] 
-			} 
+				{ label: '금년', //작은 분류 
+ 				backgroundColor: [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue','blue','blue', 'blue', 'blue', 'blue','blue' ],
+				data: thisData
+			},
+			{ label: '작년', //작은 분류 
+ 				backgroundColor: [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue','blue','blue', 'blue', 'blue', 'blue','blue' ],
+				data: lastData
+			}
 		]}
 	});
 };
