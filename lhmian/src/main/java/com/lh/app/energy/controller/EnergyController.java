@@ -7,12 +7,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.lh.app.energy.domain.EnergyCriteria;
-import com.lh.app.energy.domain.EnergyPageVO;
 import com.lh.app.energy.domain.EnergyVO;
 import com.lh.app.energy.service.EnergyService;
 import com.lh.app.signIn.etc.CustomUserDetails;
@@ -52,9 +49,7 @@ public class EnergyController {
 
 	// 전체조회-관리자
 	@GetMapping("/admin/admEnergyCon")
-	public void admList(Model model, @ModelAttribute("cri") EnergyCriteria cri) {
-		int total = energyService.getTotalCount(cri);
-		model.addAttribute("list", energyService.admList(cri));
-		model.addAttribute("pageMaker", new EnergyPageVO(cri, total));
+	public void admList(Model model, EnergyVO vo) {
+		model.addAttribute("list", energyService.admList(vo));
 	}
 }

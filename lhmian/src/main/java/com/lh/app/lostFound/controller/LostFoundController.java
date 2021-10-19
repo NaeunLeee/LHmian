@@ -43,18 +43,19 @@ public class LostFoundController {
 		model.addAttribute("lost", lostFoundService.getList(vo));
 	}
 
-	/*
-	 * // 등록페이지
-	 * 
-	 * @GetMapping("/itemLost/admLostInsertForm")
-	 * 
-	 * @ResponseBody public void registerForm() { }
-	 */
+	
+	  // 등록페이지
+	  @GetMapping("/itemLost/admLostInsertForm")
+	  @ResponseBody 
+	  public void registerForm() { 
+	  }
+	 
 
 	// 등록처리
 	@PostMapping("/itemLost/admLostInsert")
 	public String register(LostFoundVO vo, @RequestParam("lostImg") MultipartFile file, RedirectAttributes rttr, HttpServletRequest request) throws IllegalStateException, IOException {
 		MultipartFile ufile = file;
+		//로컬저장소가 아닌 aws로 바로 올리는 경로
 		String filePath = request.getSession().getServletContext().getRealPath("/lost_img"); 
 		// 서버저장
 		if (!ufile.isEmpty() && ufile.getSize() > 0) {

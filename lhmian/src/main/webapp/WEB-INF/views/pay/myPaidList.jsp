@@ -24,7 +24,6 @@ th {
 
 .table-1000 {
 	background-color: white;
-	width: 1000px;
 }
 
 .table-500 {
@@ -109,22 +108,22 @@ th {
 
 	<div class="container" align="center">
 		<div class="text-box white padding-4 col-7">
-			<table class="table-1000">
+			<table class="table-1000 col-md-12">
 				<tr>
-					<th>결제번호</th>
-					<th>결제일</th>
-					<th>결제방식</th>
-					<th>결제분류</th>
-					<th>결제상태</th>
+					<th class="col-md-2">결제번호</th>
+					<th class="col-md-2">결제일</th>
+					<th class="col-md-2">결제방식</th>
+					<th class="col-md-2">결제분류</th>
+					<th class="col-md-2">결제상태</th>
 				</tr>
 				<tbody>
 					<c:forEach items="${pay}" var="payList">
 						<tr class="tr_1" onclick="payCancel('${payList.payNo}', '${payList.payStatus}', '${payList.payDate}')">
-							<td>${payList.payNo}</td>
-							<td>${payList.payDate}</td>
-							<td>${payList.payType}</td>
-							<td>${payList.payCat}</td>
-							<td>${payList.payStatus}</td>
+							<td class="col-md-2">${payList.payNo}</td>
+							<td class="col-md-2">${payList.payDate}</td>
+							<td class="col-md-2">${payList.payType}</td>
+							<td class="col-md-2">${payList.payCat}</td>
+							<td class="col-md-2">${payList.payStatus}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
