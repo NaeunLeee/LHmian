@@ -26,7 +26,7 @@ public class PostController {
 	@Autowired
 	PostService postService;
 
-	// 10/13 수정
+	// 10/19 수정
 	// 택배 리스트 조회
 	@RequestMapping("admin/admPost")
 	public String getListview(Model model, @ModelAttribute("cri") Criteria cri) {
@@ -59,7 +59,7 @@ public class PostController {
 			return "admin/admPost";
 		// 타입 변환 + 빈칸검색 시 페이지 초기화 -> 타입 초기화
 		} else if((cri.getType() != null && cri.getKeyword().equals(""))) {
-			
+			cri.setType("");
 			cri.setPageNum(1);
 			int total = postService.getTotalCount(cri);
 			model.addAttribute("list", postService.getList(cri));

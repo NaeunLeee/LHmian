@@ -130,9 +130,9 @@ table {
    <div style="margin:auto;" id="criteriaForm" data-option="${type}">
    <form id="actionForm" action="commlist" method="get"> <!-- 메소드 생략시 자동으로 get로 전환 -->
       <select name="type" class="form-control" style="width: 100px; ">
-         <option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-         <option id="T" value="T" ${pageMaker.cri.type =='T' ? selected : ""}>제목검색</option>
-         <option id="C" value="C" ${empty pageMaker.cri.type =='C' ? selected : ""}>번호</option>
+         <option value="" ${empty pageMaker.cri.type eq "" ? selected : ""}>선택</option>
+         <option id="T" value="T" ${pageMaker.cri.type eq 'T' ? selected : ""}>제목검색</option>
+         <option id="C" value="C" ${pageMaker.cri.type eq 'C' ? selected : ""}>번호</option>
          <option id="W" value="W" <c:out value="${pageMaker.cri.type eq 'W' ? 'selected':''}"/>>작성자</option>
          <option id="TC" value="TC" <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected':''}"/>>제목 or 내용</option>
          <option id="TW" value="TW" <c:out value="${pageMaker.cri.type eq 'TW' ? 'selected':''}"/>>제목 or 작성자</option>

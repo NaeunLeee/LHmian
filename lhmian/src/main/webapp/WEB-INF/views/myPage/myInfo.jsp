@@ -77,7 +77,7 @@
 	</div>
 
 	<div class="container" align="center">
-		<div class="text-box white padding-4 col-7">
+		<div class="text-box white padding-4 col-8">
 			<table class="table">
 				<tbody>
 					<tr>

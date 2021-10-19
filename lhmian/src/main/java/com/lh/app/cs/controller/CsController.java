@@ -29,10 +29,40 @@ public class CsController {
 	// 전체 조회
 	@RequestMapping("/office/csList")
 	public String csList(Model model, @ModelAttribute("cri") CsCriteria cri) {
-		int total = csService.getTotalCount(cri);
-		model.addAttribute("list", csService.getList(cri));
-		model.addAttribute("pageMaker", new CsPageVO(cri, total));
-		return "office/csList";
+		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
+				&& cri.getKeyword() != null) {
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			System.out.println("1 ----------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("------------------------------------");
+			return "office/csList";
+
+		} else if ((cri.getType() != null) && cri.getKeyword().equals("")) {
+			cri.setType("");
+			cri.setPageNum(1);
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			System.out.println("2-----------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("------------------------------------");
+			return "office/csList";
+
+			// 타입 변환 시 페이지 초기화 조건 ok
+		} else {
+			cri.setPageNum(1);
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			return "office/csList";
+		}
 	}
 
 	// 단건 조회
@@ -44,7 +74,8 @@ public class CsController {
 
 	// 작성자 이름으로 전체 게시글 조회
 	@GetMapping("/myPage/myCsList")
-	public String myCsList(Model model, @ModelAttribute("cri") MyCsCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	public String myCsList(Model model, @ModelAttribute("cri") MyCsCriteria cri,
+			@AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		cri.setId(customUserDetails.getUsername());
 		model.addAttribute("list", csService.listByWriter(cri));
 		return "myPage/myCsList";
@@ -84,21 +115,21 @@ public class CsController {
 		model.addAttribute("user", customUserDetails);
 		return "office/csUpdate";
 	}
-	
+
 	// 수정 처리 (ajax 없이..) (10/11 추가: 이나은)
 	@PostMapping("/office/csUpdateBoard")
 	public String csUpdate(RedirectAttributes rttr, CsVO vo) {
 		int n = csService.updateBoard(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
 		}
-		
+
 		return "redirect:/office/csList";
 	}
-	
+
 	// 삭제
 	@PostMapping("/office/csDeleteBoard")
 	public String delete(RedirectAttributes rttr, CsVO vo, @ModelAttribute("cri") CsCriteria cri) {
@@ -115,41 +146,40 @@ public class CsController {
 
 		return "redirect:/office/csList";
 	}
-	
+
 	// 관리자 전체 조회
 	@GetMapping("/admin/admCsList")
 	public String admCsList(Model model, @ModelAttribute("cri") CsCriteria cri) {
 		if (cri.getType() == "" && cri.getPreType() == null) {
-		int total = csService.getTotalCount(cri);
-		model.addAttribute("list", csService.getList(cri));
-		model.addAttribute("pageMaker", new CsPageVO(cri, total));
-		model.addAttribute("type", cri.getType());
-		return "admin/admCsList";
-		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))
-				) {
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			
-			System.out.println("3."+cri.getType());
-			System.out.println("4."+cri.getPreType());
+			return "admin/admCsList";
+		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+
+			System.out.println("3." + cri.getType());
+			System.out.println("4." + cri.getPreType());
 
 			return "admin/admCsList";
-		}  else {
+		} else {
 			cri.setPageNum(1);
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			
-			System.out.println("5."+cri.getType());
-			System.out.println("6."+cri.getPreType());
+
+			System.out.println("5." + cri.getType());
+			System.out.println("6." + cri.getPreType());
 
 			return "admin/admCsList";
 		}
 	}
-	
+
 	// 관리자 단건 조회
 	@GetMapping("/admin/admCsSelect")
 	public String admCsSelect(Model model, @ModelAttribute("cri") CsCriteria cri, CsVO vo) {
@@ -160,32 +190,32 @@ public class CsController {
 	// 관리자 게시글 삭제 (10/11 추가: 이나은)
 	@PostMapping("/admin/admCsDelete")
 	public String admCsDelete(RedirectAttributes rttr, @ModelAttribute("cri") CsCriteria cri, CsVO vo) {
-		
+
 		int n = csService.deleteBoard(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "삭제가 완료되었습니다.");
 		} else {
 			rttr.addFlashAttribute("message", "다시 시도해주세요.");
 		}
-		
+
 		return "redirect:/admin/admCsList";
 	}
-	
+
 	// 답변등록 (10/11 일부수정: 이나은)
 	@PostMapping("/admin/csAnswer")
 	public String csAnswer(RedirectAttributes rttr, CsVO vo) {
 		int n = csService.insertAnswer(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "등록이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "등록에 실패했습니다. 다시 시도해주세요.");
 		}
-		
+
 		return "redirect:/admin/admCsSelect?csNo=" + vo.getCsNo();
 	}
-	
+
 	// 답변수정 (10/11 일부수정: 이나은)
 	@PostMapping("/admin/csAnswerUpdate")
 	@ResponseBody

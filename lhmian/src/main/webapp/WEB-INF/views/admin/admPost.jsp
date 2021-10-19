@@ -177,9 +177,9 @@
 						<option id="C" value="C" ${empty type == 'C' ? selected : "" }>도착날짜</option>
 					</select> 
 						<label for="Y">Y</label>
-						<input type="radio" id="Y" name="type" value="Y" ${pageMaker.cri.type eq ('Y'||'TY'||'CY') ? checked : "" }> 
+						<input type="radio" id="Y" name="type" value="Y" ${pageMaker.cri.type eq (',Y'||'T,Y'||'C,Y') ? checked : "" }> 
 						<label for="N">N</label>
-						<input type="radio" id="N" name="type" value="N" ${pageMaker.cri.type eq ('N'||'TN'||'CN') ? checked : "" }>
+						<input type="radio" id="N" name="type" value="N" ${pageMaker.cri.type eq (',N'||'T,N'||'C,N') ? checked : "" }>
 						<button type="button" id="chkfalse" class="btn btn-dark" style="display: inline;">선택해제</button>
 						<input name="keyword" class="form-control" style="width: 200px; display: inline;" value="${pageMaker.cri.keyword}"> 
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
@@ -362,6 +362,6 @@
 	 
 	 $("#chkfalse").on("click",function(){
 		 $("#Y").prop('checked',false);
-		 $("#Y").prop('checked',false);
+		 $("#N").prop('checked',false);
 	 });
 </script>
