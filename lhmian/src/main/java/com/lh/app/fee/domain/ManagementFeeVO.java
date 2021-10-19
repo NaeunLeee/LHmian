@@ -2,6 +2,8 @@ package com.lh.app.fee.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -30,4 +32,7 @@ public class ManagementFeeVO {
 	
 	public int oddAvg;
 	public int evenAvg;
+	
+	@JsonFormat(pattern = "yyyy-MM", timezone = "Asia/Seoul")
+	public Date feeDate;
 }
