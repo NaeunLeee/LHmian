@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.semanticui.min.css">
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.semanticui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 <style>
 .tr_1 {
 	cursor: pointer;
@@ -42,10 +47,6 @@ tr {
 .padding-t40 {
 	padding-top: 40px
 }
-
-.pagination {
-	margin-left: 25%;
-}
 </style>
 
 <section class="sec-padding-1">
@@ -77,9 +78,9 @@ tr {
 					<div class="clearfix"></div>
 					<p class="by-sub-title">호수별로 각 에너지 사용량을 조회합니다.</p>
 				</div>
-
-				<div class="text-box white padding-l40">
-					<table>
+				
+				<div class="fee-table">
+					<table  id="energyList" class="ui celled table" style="width: 100%">
 						<thead>
 							<tr>
 								<th>날짜</th>
@@ -111,45 +112,40 @@ tr {
 					</table>
 					<!-- 테이블 -->
 					<br>
-					<div id="pageButton" align="center">
-						<ul class="pagination hover-orange">
-							<c:if test="${pageMaker.prev == true}">
-								<li>
-									<a href="${pageMaker.startPage-1}"> 
-										<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-									</a>
-								</li>
-							</c:if>
-							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-								<li>
-									<a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a>
-								</li>
-							</c:forEach>
-							<c:if test="${pageMaker.next == true}">
-								<li>
-									<a href="${pageMaker.endPage+1}"> 
-										<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-									</a>
-								</li>
-							</c:if>
-						</ul>
-					</div>
 				</div>
 			</div>
-			<form id="actionForm" action="admEnergyCon" method="get">
-				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-			</form>
 		</div>
 	</div>
 </section>
 <br>
 <script>
-	//페이징버튼
-	$('#pageButton a').on("click", function(e) {
-		e.preventDefault();
-		var p = $(this).attr('href');
-		$('[name="pageNum"]').val(p);
-		$('#actionForm').submit();
-	})
+const lang_kor = {
+		"decimal" : "",
+		"emptyTable" : "데이터가 없습니다.",
+		"info" : "_START_ - _END_ 건 (총 _TOTAL_ 건)",
+		"infoEmpty" : "0명",
+		"infoFiltered" : "(전체 _MAX_ 건 중 검색결과)",
+		"infoPostFix" : "",
+		"thousands" : ",",
+		"lengthMenu" : "_MENU_ 건씩 보기",
+		"loadingRecords" : "로딩중...",
+		"processing" : "처리중...",
+		"search" : "검색 : ",
+		"zeroRecords" : "검색된 데이터가 없습니다.",
+		"paginate" : {
+			"first" : "첫 페이지",
+			"last" : "마지막 페이지",
+			"next" : "다음",
+			"previous" : "이전"
+		},
+		"aria" : {
+			"sortAscending" : " :  오름차순 정렬",
+			"sortDescending" : " :  내림차순 정렬"
+		}
+	};
+
+	$('#energyList').DataTable({
+		language : lang_kor
+	//or lang_eng	
+	});
 </script>

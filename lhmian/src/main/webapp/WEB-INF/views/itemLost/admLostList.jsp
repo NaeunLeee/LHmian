@@ -267,36 +267,7 @@ button {
 	<div class="clearfix"></div>
 	<!-- end section -->
 
-	<!-- 등록 모달 -->
-	<div class="container">
-		<div class="row text-center">
-			<div id="insertModal" tabindex="-1" role="dialog" aria-labelledby="modal-switch-label" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" data-dismiss="modal" class="close">
-								<span aria-hidden="true">&times;</span><span class="sr-only">x</span>
-							</button>
-							<div id="modal-switch-label" class="modal-title">
-								<div class="text-center">
-									<div class="pl-title-line-1"></div>
-									<h4 class="h4-margin font-weight-7 less-mar-1">분실물 등록</h4>
-									<div class="clearfix"></div>
-								</div>
-							</div>
-						</div>
-						<div class="modal-body" align="center"></div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-gyellow" id="modalInsert">저장</button>
-							<button type="button" class="btn btn-gyellow" data-dismiss="modal" id="modalClose">닫기</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 수정 모달 -->
+	<!--  모달 -->
 	<div class="container">
 		<div class="row text-center">
 			<div id="LaFModal" tabindex="-1" role="dialog" aria-labelledby="modal-switch-label" class="modal fade">
@@ -309,14 +280,14 @@ button {
 							<div id="modal-switch-label" class="modal-title">
 								<div class="text-center">
 									<div class="pl-title-line-1"></div>
-									<h4 class="h4-margin font-weight-7 less-mar-1">분실물 수정</h4>
+									<h4 class="h4-margin font-weight-7 less-mar-1"></h4>
 									<div class="clearfix"></div>
 								</div>
 							</div>
 						</div>
 						<div class="modal-body" align="center"></div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-gyellow" id="lostModal">저장</button>
+							<button type="button" class="btn btn-gyellow save"></button>
 							<button type="button" class="btn btn-gyellow" data-dismiss="modal" id="modalClose">닫기</button>
 						</div>
 					</div>
@@ -345,16 +316,19 @@ button {
 <!-- Scripts END -->
 <script src="${pageContext.request.contextPath}/resources/js/functions/functions.js"></script>
 <script>
- //수정모달
+ //수정모달   
 function lostModify(n) {
 	$('#LaFModal').modal('show');
+	$('.modal-title h4').html('분실물 수정');
+	$('.modal-footer .save').attr("id", 'lostModal');
+	$('.modal-footer .save').html('저장');
 	$.ajax({
 		url : "lostModifyForm",
 		type: "get",
 		data : {lostNo : n},
 		success : function(data) {
 			var tag ="";
-			tag += '<form method="post" id="frm" action="lostModify?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">'
+			tag += '<form method="post" id="modalUpdate" action="lostModify?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">'
 				+  '	<section class="sec">'
 				+  '		<div class="container" style="width:100%">'
 				+  '			<div class="row">'
@@ -375,7 +349,7 @@ function lostModify(n) {
 				+  '					</tr>'
 				+  '					<tr class="tr-h150">'
 				+  '					  <th>분실물내용</th>'
-				+  '					  <td><textarea rows="5" onkeydown="return limitLines(this, event)" name="lostContent" class="form-control">' + data.lostContent + '</textarea></td>'
+				+  '					  <td><textarea rows="5" onkeydown="return limitLines(this, event)" id="lostContent" name="lostContent" class="form-control">' + data.lostContent + '</textarea></td>'
 				+  '					</tr>'
 				+  '					<tr>'
 				+  '					  <th class="tr-h70">분실물파일</th>'
@@ -390,67 +364,76 @@ function lostModify(n) {
 			$("#LaFModal .modal-body").html(tag);
 		}
 	});
+	
+	//수정모달 저장버튼
+	$('#lostModal').on('click', function() {
+		var lostContent = $('#lostContent').val();
+		if(!lostContent){
+	    	alert("습득물에 대한 설명은 비워두실수 없습니다. \n 내용을 반드시 입력해주세요.");
+	    }else{
+			modalUpdate.submit();
+	    }
+	});
 };
 
 //등록모달
 $('#register').on('click', function() {
 	//$(location).attr('href', 'admLostInsert');
-	$(insertModal).modal('show');
+	$('#LaFModal').modal('show');
+	$('.modal-title h4').html('분실물 등록');
+	$('.modal-footer .save').attr("id", 'insertModal');
+	$('.modal-footer .save').html('등록');
 	$.ajax({
-		url : "admLostInsert",
-		type: "post",
-		data : {lostDate : lostDate,
-				foundLocation : foundLocation,
-				lostContent : lostContent,
-				lostImg : lostImg
-		},
-		success : function(data) {
-		/* 	var tag ="";
-				tag += '<form method="post" id="frm" action="admLostInsert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">'
+		url : "admLostInsertForm",
+		type: "get",
+		success : function() {
+			var tag ="";
+				tag += '<form method="post" id="modalInsert" action="admLostInsert?${_csrf.parameterName }=${_csrf.token }" enctype="multipart/form-data">'
 					+  '	<section class="sec">'
 					+  '		<div class="container" style="width:100%">'
 					+  '			<div class="row">'
 					+  '				<table class="table-style-2">'
 					+  '					<tr class="tr-h50">'
-					+  '					  <th>분실물번호</th>'
-					+  '					  <td><input type="hidden" name="lostNo" value="' + data.lostNo + '">' + data.lostNo + '</td>'
+					+  '					  <th>습득일자</th>'
+					+  '					  <td><input type="date"  id="lostDate" name="lostDate"></td>'
 					+  '					</tr>'
 					+  '					<tr class="tr-h50">'
-					+  '					  <th>등록일자</th>'
-					+  '					  <td>' + data.lostDate + '</td>'
+					+  '					  <th>습득장소</th>'
+					+  '					  <td><input type="text" id="foundLocation" name="foundLocation"></td>'
 					+  '					</tr>'
 					+  '					<tr class="tr-h60">'
-					+  '					  <th>수령여부</th>'
-					+  '					  <td><select class="form-control" name="lostStatus" style="width:90px; height:">'
-					+  '					 		 <option value="' + data.lostStatus + '">' + data.lostStatus + '</option>'
-					+  '					 		 <option value="수령완료">수령완료</option></select></td>'
-					+  '					</tr>'
-					+  '					<tr class="tr-h150">'
 					+  '					  <th>분실물내용</th>'
-					+  '					  <td><textarea rows="5" onkeydown="return limitLines(this, event)" name="lostContent" class="form-control">' + data.lostContent + '</textarea></td>'
+					+  '					  <td><textarea id="lostContent" name="lostContent" placeholder="분실물 내용을 작성하세요."></textarea></td>'
 					+  '					</tr>'
-					+  '					<tr>'
 					+  '					  <th class="tr-h70">분실물파일</th>'
-					+  '					  <td><input type="file" name="lostChangeImg" style="padding-bottom:5px">'
-					+  '						<p class="no-margin" align="left">기등록 파일 : ' + data.lostFile + '</p></td>'
+					+  '					  <td><input type="file" id="lostImg" name="lostImg"></td>'
 					+  '					</tr>'
 					+  '				</table>'
 					+  '			</div>'
 					+  '		</div>'
 					+  '	</section>'
 					+  '</form>'
-				$("#insertModal .modal-body").html(tag); */
+				$("#LaFModal .modal-body").html(tag);
 			}
 		});
-	});
 
-	//수정모달 저장버튼
-	$('#lostModal').on('click', function() {
-		frm.submit();
-	});
-	
 	//등록모달 저장버튼
-	$('#modalInsert').on('click', function() {
-		frm.submit();
+	$('#insertModal').on('click', function() { 
+		var lostDate = $('#lostDate').val();
+		var foundLocation = $('#foundLocation').val();
+		var lostContent = $('#lostContent').val();
+		var lostImg = $('#lostImg').val();
+		if(!lostDate){
+       	 	alert("습득일을 지정해주세요.");
+	    }else if(!foundLocation){
+	    	alert("습득장소를 입력해주세요.");
+	    }else if(!lostContent) {
+	    	alert("습득물에 대한 상세한 내용을 입력해주세요.");
+	    }else if(!lostImg) {
+	    	alert("습득물 사진을 첨부해주세요.");
+	    }else{
+			modalInsert.submit();
+	    }
 	});
+});
 </script>
