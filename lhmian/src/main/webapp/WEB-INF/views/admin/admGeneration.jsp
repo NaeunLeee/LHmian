@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.11.3/css/dataTables.semanticui.min.css">
+<script
+	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.11.3/js/dataTables.semanticui.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 <!-- 10/18 생성: 이나은 -->
 
 <style>
@@ -326,6 +335,36 @@
 	</div>
 	<!-- Modal End -->
 
+   <!-- Fee Modal -->
+   <div class="modal" id="feeModal">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <div style="margin-left: 20px;">
+                  <div class="title-line-3 align-left"></div>
+                  <h4 class="uppercase font-weight-7 less-mar-1">세대별 관리비</h4>
+               </div>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+               <!--  <span class="pull-right" style="margin-right: 30px;">
+               <input type="checkbox" id="notpaid" name="option">
+               <label for="notpaid">미납건 조회</label>
+               </span> -->
+               <div id="fees" style="margin: 0px 20px 0px;"></div>
+               <br>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+               <div align="center">
+                  <button type="button" id="closeFee" class="btn btn-default" data-dismiss="modal">확인</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Modal End -->
 
 <script>
 
@@ -732,6 +771,104 @@
 		$('#existing').empty();
 	});
 	
-	
+	   // 데이터 테이블 한글 패치, 10/19 윤지민
+	   const lang_kor = {
+	      "decimal" : "",
+	      "emptyTable" : "데이터가 없습니다.",
+	      "info" : "_START_ - _END_ 건 (총 _TOTAL_ 건)",
+	      "infoEmpty" : "0명",
+	      "infoFiltered" : "(전체 _MAX_ 건 중 검색결과)",
+	      "infoPostFix" : "",
+	      "thousands" : ",",
+	      "lengthMenu" : "_MENU_ 건씩 보기",
+	      "loadingRecords" : "로딩중...",
+	      "processing" : "처리중...",
+	      "search" : "검색 : ",
+	      "zeroRecords" : "검색된 데이터가 없습니다.",
+	      "paginate" : {
+	         "first" : "첫 페이지",
+	         "last" : "마지막 페이지",
+	         "next" : "다음",
+	         "previous" : "이전"
+	      },
+	      "aria" : {
+	         "sortAscending" : " :  오름차순 정렬",
+	         "sortDescending" : " :  내림차순 정렬"
+	      }
+	   };
+	   
+	   // 세대 관리 데이터 테이블 적용, 10/19 윤지민
+	   $('#memberTable').DataTable({
+	      language : lang_kor,
+	      order: [[0, 'asc']],
+	            });
+	   
+	   // 관리비 리스트 모달 띄우기, 10/19 윤지민
+	   $('.feeBtn').on('click', function() {
+	      var str = '';
+	      
+	      $.ajax({
+	         url: 'feeList',
+	         type: 'POST',
+	         data: JSON.stringify({
+	            houseInfo: $(this).attr('data-houseInfo')
+	         }),
+	         contentType: 'application/json',
+	         beforeSend: function(xhr) {
+	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	         },
+	         dataType: 'json',
+	         success: function(data) {
+	            str += '<table id="feeList" class="ui celled table" style="width: 100%;">';
+	            str += '<thead>';
+	            str += '<tr style="text-align: center;">';
+	            str += '<th>년월</th>';
+	            str += '<th>관리비</th>';
+	            str += '<th>상태</th>';
+	            str += '</tr>';
+	            str += '</thead>';
+	            str += '<tbody>';
+	            for (i=0; i<data.length; i++) {      
+	               if (data[i].paid == '미납') {
+	                  str += '<tr style="text-align: center;">';
+	                  str += '<td>' + data[i].feeDate + '</td>';
+	                  str += '<td>' + numberWithCommas(data[i].mfTotal) + '</td>';
+	                  str += '<td style="color:red">' + data[i].paid + '</td>';
+	                  str += '</tr>';
+	               } else {
+	                  str += '<tr style="text-align: center;">';
+	                  str += '<td>' + data[i].feeDate + '</td>';
+	                  str += '<td>' + numberWithCommas(data[i].mfTotal) + '</td>';
+	                  str += '<td style="color:green">' + data[i].paid + '</td>';
+	                  str += '</tr>';
+	               }
+	            }
+	            str += '</tbody>';
+	            str += '</table>';
+	            $('#fees').html(str);
+	            $('#feeList').DataTable({
+	               language : lang_kor,
+	               order: [[0, 'desc']],
+
+	            });
+	            $('#feeModal').show();
+	         },
+	         error: function() {
+	            alert('다시 시도해주세요.');
+	         }
+	      });
+	      
+	   })
+	   
+	   // 관리비 리스트 모달 내리기, 10/19 윤지민
+	   $('#closeFee').on('click', function() {
+	      $('#feeModal').hide();
+	   });
+	   
+	   
+	   //통화 변경 함수, 10/19 윤지민
+	   function numberWithCommas(x) {
+	       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	   }
 	
 </script>

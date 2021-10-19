@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lh.app.fee.domain.ManagementFeeVO;
 import com.lh.app.generation.mapper.GenMapper;
 import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
@@ -43,7 +44,9 @@ public class GenServiceImpl implements GenService {
 		return genMapper.reVerifyGen(vo);
 	}
 
-
+	public List<ManagementFeeVO> feeList(ManagementFeeVO vo) {
+		return genMapper.feeList(vo);
+	}
 	
 	
 

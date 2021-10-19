@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lh.app.fee.domain.ManagementFeeVO;
 import com.lh.app.generation.service.GenService;
 import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
@@ -108,6 +109,13 @@ public class GenController {
 		vo.setMiniKey(miniKey);
 		
 		return genService.reVerifyGen(vo);
+	}
+	
+	// 세대별 관리비 리스트(납부, 미납 전부 조회) 10/19 윤지민
+	@PostMapping("/admin/feeList")
+	@ResponseBody
+	public List<ManagementFeeVO> feeList(@RequestBody ManagementFeeVO vo) {
+		return genService.feeList(vo);
 	}
 	
 }
