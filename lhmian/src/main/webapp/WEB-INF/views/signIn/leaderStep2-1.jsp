@@ -215,7 +215,7 @@
 						$('.key-msg').empty();
 						$('.key-msg').addClass('error-msg').text('일치하는 세대가 없습니다.');
 						return;
-					}
+					} 
 					
 					//인증번호가 일치하면
 					$('.key-msg').empty();
@@ -247,13 +247,30 @@
 							  + '</label>'
 							  + '</div>';
 							  
+					$('.gubun').css('display', 'block');
+					const box2 = '<div class="section">'
+							  + '<h6 class="less-mar-4">'
+							  + '<span class="font-weight-5">구분</span>'
+							  + '</h6>'
+							  + '<label class="field prepend-icon">'
+							  + '<input type="text" name="gubunPretty" id="gubunPretty" class="gui-input" readonly>'
+							  + '<span class="field-icon"><i class="fa fa-home"></i></span></label>'
+							  + '</div>';
+							  
 					$('.donghosu').addClass('margin-top-1')
 					$('.donghosu').html(box);
+					$('.gubun').html(box2);
 					
 					//넘어온 값 생성된 box에 세팅
 					$('#dong').val(dong);
 					$('#hosu').val(hosu);
-					$('#houseInfo').val(data.houseInfo);
+					if (data.gubun == 'OWNER') {
+						$('#gubunPretty').val('세대주');
+					} else {
+						$('#gubunPretty').val('세대원');
+					}
+					$('#gubun').val(data.gubun);
+					
 				},
 				error: () => alert('AJAX 에러')
 			})
@@ -302,13 +319,6 @@
 				$('.key-msg').css('display', 'block');
 				$('.key-msg').addClass('error-msg').text('인증번호를 입력하세요.');
 				$('#key').focus();
-				return;
-			}
-			if (!$(':radio[name="author"]').is(":checked")) {
-				
-				$('.gubun-msg').css('display', 'block');
-				$('.gubun-msg').addClass('error-msg').text('세대주 세대원 여부를 선택해주세요.');
-				$(':radio[name="author"]').focus();
 				return;
 			}
 			if (name == "") {
@@ -479,48 +489,6 @@
 								</label>
 								<div class="pwcf-msg" style="display: none"></div>
 							</div>
-							<!-- 세대 인증번호 입력 -->
-							<div class="section">
-								<label for="key">
-									<h6 class="less-mar-4">
-										세대 인증번호 <span
-											class="font-weight-5 hint--bottom-right hint--medium"
-											data-hint="세대 인증번호란? 세대를 인증하기 위한 키로, 관리사무소에서 문자로 받을 수 있습니다. 문자가 오지 않았다면 관리사무소로 문의해주세요."> <i
-											class="fa fa-question-circle"></i></span>
-									</h6>
-								</label> <label class="field prepend-icon"> <input type="text"
-									name="key" id="key" class="gui-input" placeholder="세대 인증번호">
-									<span class="field-icon"><i class="fa fa-key"></i></span>
-								</label>
-								<div class="key-msg" style="display: none"></div>
-							</div>
-							<button type="button" style="display: inline" id="authKeyBtn"
-								name="authKeyBtn" class="btn btn-dark btn-fullwidth">세대
-								인증</button>
-							<!-- 동, 호수 인풋박스가 나타나는 곳 -->
-							<div class="donghosu" style="display: none"></div>
-							<!-- 동호수 히든 -->
-							<input type="hidden" id="houseInfo" name="houseInfo">
-							<!-- 구분 라디오박스 -->
-							<div class="section-gubun">
-								<div>
-									<h6 class="less-mar-4">
-										<span class="font-weight-5">구분</span>
-									</h6>
-
-								</div>
-
-								<label class="control control--radio gubun"
-									style="display: inline">세대주 <input type="radio"
-									name="author" value="OWNER">
-									<div class="control__indicator dark"></div>
-								</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
-									class="control control--radio gubun" style="display: inline">세대원
-									<input type="radio" name="author" value="MEMBER">
-									<div class="control__indicator dark"></div>
-								</label>
-								<div class="gubun-msg" style="display: none"></div>
-							</div>
 							<!-- 이름 입력 -->
 							<div class="section">
 								<label for="name">
@@ -533,6 +501,34 @@
 								</label>
 								<div class="name-msg" style="display: none"></div>
 							</div>
+							<!-- 세대 인증번호 입력 -->
+							<div class="section">
+								<label for="key">
+									<h6 class="less-mar-4">
+										세대 인증번호 <span
+											class="font-weight-5 hint--bottom-right hint--medium"
+											data-hint="세대를 인증하기 위한 키로, 관리사무소에서 문자로 받을 수 있습니다. 문자가 오지 않았다면 관리사무소로 문의해주세요.">
+											<i class="fa fa-question-circle"></i>
+										</span>
+									</h6>
+								</label> <label class="field prepend-icon"> <input type="text"
+									name="key" id="key" class="gui-input" placeholder="세대 인증번호"
+									style="width: 253px; margin-right: 5px;">
+									<span class="field-icon"><i class="fa fa-key"></i></span>
+									<button type="button" style="display: inline" id="authKeyBtn"
+										name="authKeyBtn" class="btn btn-dark btn-medium">세대
+										인증</button>
+								</label>
+								<div class="key-msg" style="display: none"></div>
+							</div>
+							<!-- 동, 호수 인풋박스가 나타나는 곳 -->
+							<div class="donghosu" style="display: none"></div>
+							<!-- 동호수 히든 -->
+							<input type="hidden" id="houseInfo" name="houseInfo">
+							<!-- 구분 인풋박스가 나타나는 곳 -->
+							<div class="gubun" style="display: none"></div>
+							<!-- 구분 히든 -->
+							<input type="hidden" id="gubun" name="gubun">
 							<!-- 핸드폰 번호 입력 -->
 							<div class="section">
 								<label for="phone">
@@ -555,7 +551,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 
 </body>
 </html>

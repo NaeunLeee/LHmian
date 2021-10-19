@@ -17,4 +17,6 @@ public class GenerationVO {
 	private int pageNum;
 	private int amount;
 	private List<GenerationVO> generationList;
+	
+	private String gubun;
 }

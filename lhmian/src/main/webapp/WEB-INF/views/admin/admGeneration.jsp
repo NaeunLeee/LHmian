@@ -161,8 +161,8 @@
 											${fn:substring(phone, 0, 3)}-${fn:substring(phone, 3, 7)}-${fn:substring(phone, 7, 11)}
 										</td>
 										<td>${gen.familyNum}</td>
-										<td onclick="event.cancelBubble=true;"> <!-- 버튼 클릭시 tr 클릭 이벤트가 동시에 발생하지 않도록 -->
-											<button type="button" class="feeBtn btn btn-default" data-houseInfo="${gen.houseInfo}">관리비</button>
+										<td onclick="event.cancelBubble=true;" data-unpaid="${gen.unPaid }"> <!-- 버튼 클릭시 tr 클릭 이벤트가 동시에 발생하지 않도록 -->
+											${gen.unPaid }&nbsp;&nbsp;<button type="button" class="feeBtn btn btn-default" data-houseInfo="${gen.houseInfo}">조회</button>
 										</td>
 										<td onclick="event.cancelBubble=true;">
 											<button type="button" class="carBtn btn btn-default" data-houseInfo="${gen.houseInfo}">차량정보</button>
@@ -373,7 +373,6 @@
 	let csrfHeaderName = "${_csrf.headerName}";
 	let csrfTokenValue = "${_csrf.token}";
 	
-	
 	// 회원 정보 모달 띄우기
 	$('.mem').on('click', function() {
 		var str = '';
@@ -426,6 +425,66 @@
 		$('#members').empty();
 	});
 	
+	
+   // 관리비 리스트 모달 띄우기, 10/19 윤지민
+   
+	function feeBtnClick() {
+		  $('.feeBtn').on('click',  function() {
+					  
+		      var str = '';
+		      
+		      $.ajax({
+		         url: 'feeList',
+		         type: 'POST',
+		         data: JSON.stringify({ houseInfo: $(this).attr('data-houseInfo') }),
+		         contentType: 'application/json',
+		         beforeSend: function(xhr) {
+		            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		         },
+		         dataType: 'json',
+		         success: function(data) {
+		            str += '<table id="feeList" class="ui celled table" style="width: 100%;">';
+		            str += '<thead>';
+		            str += '<tr style="text-align: center;">';
+		            str += '<th>년월</th>';
+		            str += '<th>관리비</th>';
+		            str += '<th>상태</th>';
+		            str += '</tr>';
+		            str += '</thead>';
+		            str += '<tbody>';
+		            for (i=0; i<data.length; i++) {      
+		               if (data[i].paid == '미납') {
+		                  str += '<tr style="text-align: center;">';
+		                  str += '<td>' + data[i].feeDate + '</td>';
+		                  str += '<td>' + numberWithCommas(data[i].mfTotal) + '</td>';
+		                  str += '<td style="color:red">' + data[i].paid + '</td>';
+		                  str += '</tr>';
+		               } else {
+		                  str += '<tr style="text-align: center;">';
+		                  str += '<td>' + data[i].feeDate + '</td>';
+		                  str += '<td>' + numberWithCommas(data[i].mfTotal) + '</td>';
+		                  str += '<td style="color:green">' + data[i].paid + '</td>';
+		                  str += '</tr>';
+		               }
+		            }
+		            str += '</tbody>';
+		            str += '</table>';
+		            $('#fees').html(str);
+		            $('#feeList').DataTable({
+		               language : lang_kor,
+		               order: [[0, 'desc']],
+		
+		            });
+		            $('#feeModal').show();
+		         },
+		         error: function() {
+		            alert('다시 시도해주세요.');
+		         }
+		      });
+	      
+	   })
+	}
+	   
 	// 차량 정보 모달 띄우기
 	$('.carBtn').on("click", function() {
 		
@@ -845,73 +904,18 @@
 	   };
 	   
 	   // 세대 관리 데이터 테이블 적용, 10/19 윤지민
-	   $('#memberTable').DataTable({
+ 	   $('#memberTable').DataTable({
 	      language : lang_kor,
 	      order: [[0, 'asc']],
-	            });
-	   
-	   // 관리비 리스트 모달 띄우기, 10/19 윤지민
-	   $('.feeBtn').on('click', function() {
-	      var str = '';
-	      
-	      $.ajax({
-	         url: 'feeList',
-	         type: 'POST',
-	         data: JSON.stringify({
-	            houseInfo: $(this).attr('data-houseInfo')
-	         }),
-	         contentType: 'application/json',
-	         beforeSend: function(xhr) {
-	            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-	         },
-	         dataType: 'json',
-	         success: function(data) {
-	            str += '<table id="feeList" class="ui celled table" style="width: 100%;">';
-	            str += '<thead>';
-	            str += '<tr style="text-align: center;">';
-	            str += '<th>년월</th>';
-	            str += '<th>관리비</th>';
-	            str += '<th>상태</th>';
-	            str += '</tr>';
-	            str += '</thead>';
-	            str += '<tbody>';
-	            for (i=0; i<data.length; i++) {      
-	               if (data[i].paid == '미납') {
-	                  str += '<tr style="text-align: center;">';
-	                  str += '<td>' + data[i].feeDate + '</td>';
-	                  str += '<td>' + numberWithCommas(data[i].mfTotal) + '</td>';
-	                  str += '<td style="color:red">' + data[i].paid + '</td>';
-	                  str += '</tr>';
-	               } else {
-	                  str += '<tr style="text-align: center;">';
-	                  str += '<td>' + data[i].feeDate + '</td>';
-	                  str += '<td>' + numberWithCommas(data[i].mfTotal) + '</td>';
-	                  str += '<td style="color:green">' + data[i].paid + '</td>';
-	                  str += '</tr>';
-	               }
-	            }
-	            str += '</tbody>';
-	            str += '</table>';
-	            $('#fees').html(str);
-	            $('#feeList').DataTable({
-	               language : lang_kor,
-	               order: [[0, 'desc']],
+	      "drawCallback": function( settings ) {
+	    	  feeBtnClick();
+	      }
+	   }); 
 
-	            });
-	            $('#feeModal').show();
-	         },
-	         error: function() {
-	            alert('다시 시도해주세요.');
-	         }
-	      });
-	      
-	   })
-	   
 	   // 관리비 리스트 모달 내리기, 10/19 윤지민
 	   $('#closeFee').on('click', function() {
 	      $('#feeModal').hide();
 	   });
-	   
 	   
 	   //통화 변경 함수, 10/19 윤지민
 	   function numberWithCommas(x) {

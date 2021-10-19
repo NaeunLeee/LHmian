@@ -20,9 +20,12 @@
 	</select>
 	
 	<select id="authKey" resultType="GenerationVO">
-		SELECT HOUSE_INFO
+		SELECT HOUSE_INFO,
+           CASE WHEN AUTH_KEY = #{authKey} THEN 'OWNER'
+                WHEN MINI_KEY = #{authKey} THEN 'MEMBER'
+           ELSE '없음' END AS GUBUN
 		FROM GENERATION
-		WHERE AUTH_KEY = #{authKey}
+		WHERE AUTH_KEY = #{authKey} OR MINI_KEY = #{authKey}
 	</select>
 	
 	<insert id="insert">

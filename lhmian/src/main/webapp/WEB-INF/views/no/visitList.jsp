@@ -71,6 +71,9 @@ textarea {
 	let csrfHeaderName = "${_csrf.headerName}";
 	let csrfTokenValue = "${_csrf.token}";
 	
+	$('#visitUpdate').on('focus', function() {
+		$(this).select();
+	})
 	//작성버튼을 누르면 등록창이 나옴
 	$('.write').on('click', function() {
 		$('.vContent').show();
@@ -106,7 +109,7 @@ textarea {
 		if (confirm('수정하시겠습니까?')) {
 			$('.vUpdate').show();
 			console.log(content);
-			$('#visitUpdate').attr("placeholder", content);
+			$('#visitUpdate').val( content);
 			//등록창이 열려있다면 숨겨준다
 			if($('.vContent').css("display") == 'block' ) {
 			$('.vContent').hide();
