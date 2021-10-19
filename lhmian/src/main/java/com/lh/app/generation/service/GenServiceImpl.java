@@ -22,9 +22,29 @@ public class GenServiceImpl implements GenService {
 	public List<MemberVO> familyList(MemberVO vo) {
 		return genMapper.familyList(vo);
 	}
-
-	public int countGen(GenerationVO vo) {
-		return genMapper.countGen(vo);
+	
+	public MemberVO ownerInfo(GenerationVO vo) {
+		return genMapper.ownerInfo(vo);
 	}
+
+	public GenerationVO selectGen(GenerationVO vo) {
+		return genMapper.selectGen(vo);
+	}
+
+	public int makeNull(GenerationVO vo) {
+		return genMapper.makeNull(vo);
+	}
+
+	public int verifyGen(GenerationVO vo) {
+		return genMapper.verifyGen(vo);
+	}
+
+	public int reVerifyGen(GenerationVO vo) {
+		return genMapper.reVerifyGen(vo);
+	}
+
+
+	
+	
 
 }

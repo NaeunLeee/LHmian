@@ -360,7 +360,7 @@
 				str += '</thead>';
 				str += '<tbody>';
 				for (i=0; i<data.length; i++) {
-					str += '<tr style="text-align: center;">';
+					str += '<tr style="text-align: center;' + (data[i].author == 'OWNER' ? 'font-weight: bold' : '') + '">';
 					str += '<td>' + (data[i].author == 'OWNER' ? '세대주' : '세대원') + '</td>';
 					str += '<td>' + data[i].id + '</td>';
 					str += '<td>' + data[i].name + '</td>';
@@ -582,13 +582,36 @@
 	
 	$('#verify').on('click', function() {
 		
+		$('#existing').empty();
 		var houseInfo = $('#dong').val() + '' + $('#ho').val();
-		var str = '<p style="text-align: center; color: #E02401;">해당 세대는 이미 인증번호가 발급되었습니다.</p>';
-		str += '<button type="button" class="re-verify btn btn-default">인증번호 재발급</button>';
+		var result = existing(houseInfo);
+		
+		// 인증번호 기발급 세대
+		var reVerify = '<p style="color: #E02401;">해당 세대는 이미 인증번호가 발급되었습니다.</p>';
+		reVerify += '<button type="button" class="reVerify btn btn-default">인증번호 재발급</button>';
+		
+		// 세대 없을 때
+		var noGeneration = '<p style="color: #E02401;">존재하지 않는 세대입니다.</p>';
+		
+		if (result == 2) {
+			$('#existing').html(reVerify);
+		} else if (result == 0) {
+			$('#existing').html(noGeneration);
+		} else {
+			verification(houseInfo);
+		}
+		
+	});
+	
+	// 세대 존재 여부
+	function existing(houseInfo) {
+		
+		var result = 0;		// 인증키가 있으면 2, 없으면 1, 세대 자체가 없으면 0
 		
 		$.ajax({
-			url: 'countGen',
+			url: 'selectGen',
 			type: 'POST',
+			async: false,
 			data: JSON.stringify({
 				houseInfo: houseInfo
 			}),
@@ -598,14 +621,107 @@
 			},
 			dataType: 'json',
 			success: function(data) {
-				if (data > 0) {
-					$('#existing').html(str);
-				} 
+  				if (data.authKey != null) {
+					result = 2;
+				} else if (data.houseInfo != null && data.authKey == null) {
+					result = 1;
+				} else if (data == null) {
+					result = 0;
+				}
 			},
-			error: function() {
-				alert('다시 시도해주세요.');
+			error: function(data) {
+				console.log(result);
 			}
 		});
+		
+		return result;
+	}
+	
+	// 인증번호 발급
+	function verification(houseInfo) {
+		
+		var str = '<p style="font-weight: bold; color: #113CFC;">인증번호가 정상적으로 발급되었습니다.</p>';
+		
+		if (confirm('새 인증번호를 발급하시겠습니까?')) {
+			$.ajax({
+				url: 'verifyGen',
+				type: 'POST',
+				data: JSON.stringify({
+					houseInfo: parseInt(houseInfo)
+				}),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(result) {
+					if (result == 1) {
+						$('#dong').val('');
+						$('#ho').val('');
+						$('#existing').html(str);
+					} else {
+						console.log(result);
+					}
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			});
+		}
+	}
+	
+	// 인증번호 재발급
+	$(document).on('click', '.reVerify', function() {
+		
+		var houseInfo = $('#dong').val() + '' + $('#ho').val();
+		var str = '<p style="font-weight: bold; color: #113CFC;">인증번호가 정상적으로 재발급되었습니다.</p>';
+		var content = '';
+		
+		if (confirm('새 인증번호를 발급하시겠습니까?')) {
+			$.ajax({
+				url: 'reVerifyGen',
+				type: 'POST',
+				data: JSON.stringify({
+					houseInfo: parseInt(houseInfo)
+				}),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(result) {
+					if (result == 1) {
+						$('#dong').val('');
+						$('#ho').val('');
+						$('#existing').html(str);
+					} else {
+						console.log(result);
+					}
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			});
+			
+			
+			// 발급된 인증번호 전송
+			/* $.ajax({
+				url: 'sendSms',
+				type: 'POST',
+				data: JSON.stringify({
+					phone:
+					content:
+				}),
+				contentType: 'application/json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(data) {
+					alert(data + '건의 전송이 완료되었습니다.');
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			}); */
+		}
 	});
 	
 	// 세대 등록 모달 내리기
@@ -615,6 +731,7 @@
 		$('#ho').val('');
 		$('#existing').empty();
 	});
+	
 	
 	
 </script>

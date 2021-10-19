@@ -77,10 +77,9 @@
 
 	<select id="getList" resultType="memberVO">
 		WITH 
-		A AS
-			(<include refid="familyNum" />),
-		B AS
-			(<include refid="owner" />)
+		A AS (<include refid="familyNum" />),
+		B AS (<include refid="owner" />)
+		
 		SELECT ROWNUM RN
 		     , A.HOUSE_INFO
 		     , A.FAMILY_NUM
@@ -96,11 +95,41 @@
 	<select id="familyList" resultType="memberVO">
 		SELECT * FROM MEMBER
 		WHERE HOUSE_INFO = #{houseInfo}
+		ORDER BY AUTHOR DESC
 	</select>
 
-	<select id="countGen" resultType="int">
-		SELECT COUNT(*)
+	<select id="selectGen" resultType="generationVO">
+		SELECT *
 		FROM GENERATION
 		WHERE HOUSE_INFO = #{houseInfo}
+	</select>
+	
+	<update id="makeNull">
+		UPDATE GENERATION
+		SET ENROLL_DATE = ''
+		  , AUTH_KEY = ''
+		  , MINI_KEY = ''
+		WHERE HOUSE_INFO = #{houseInfo}
+	</update>
+	
+	<update id="verifyGen">
+		UPDATE GENERATION
+		SET ENROLL_DATE = SYSDATE
+		  , AUTH_KEY = #{authKey}
+		  , MINI_KEY = #{miniKey}
+		WHERE HOUSE_INFO = #{houseInfo}
+	</update>
+	
+	<update id="reVerifyGen">
+		UPDATE GENERATION
+		SET AUTH_KEY = #{authKey}
+		  , MINI_KEY = #{miniKey}
+		WHERE HOUSE_INFO = #{houseInfo}
+	</update>
+	
+	<select id="ownerInfo" resultType="memberVO">
+		SELECT * FROM MEMBER
+		WHERE HOUSE_INFO = #{houseInfo}
+			  AND AUTHOR = 'OWNER'
 	</select>
 </mapper>
