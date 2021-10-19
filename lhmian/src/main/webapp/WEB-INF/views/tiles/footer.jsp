@@ -39,7 +39,7 @@ ul {
 			<div class="container sec-tpadding-3 sec-bpadding-3">
 				<div class="row">
 					<div class=" col-md-12 col-centered text-center">
-						<img src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="" />
+						<img src="${pageContext.request.contextPath}/resources/images/logo/LHmian_logo_v1.png" alt="" style="width: 150px;"/>
 						<br /><br />
 						
 						<div class="clearfix"></div>

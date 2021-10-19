@@ -111,7 +111,7 @@
 							<div class="row"  style="margin:0; padding-bottom:30px; background-color:#1f1b1b42;">
 								<div class="col-sm-2" style="width:14%">
 									<a href="${pageContext.request.contextPath}/" title="" class="logo mar-4"> 
-										<img src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="" style="width:150px; padding-left:20px;">
+										<img src="${pageContext.request.contextPath}/resources/images/logo/LHmian_logo_v1.png" alt="" style="width:150px; padding-left:20px;">
 									</a>
 								</div>
 								<div class="col-sm-6" style="padding-left:0">
