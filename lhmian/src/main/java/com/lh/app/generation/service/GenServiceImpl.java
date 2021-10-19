@@ -35,6 +35,10 @@ public class GenServiceImpl implements GenService {
 	public int makeNull(GenerationVO vo) {
 		return genMapper.makeNull(vo);
 	}
+	
+	public int deleteFamily(GenerationVO vo) {
+		return genMapper.deleteFamily(vo);
+	}
 
 	public int verifyGen(GenerationVO vo) {
 		return genMapper.verifyGen(vo);
@@ -47,6 +51,8 @@ public class GenServiceImpl implements GenService {
 	public List<ManagementFeeVO> feeList(ManagementFeeVO vo) {
 		return genMapper.feeList(vo);
 	}
+
+
 	
 	
 

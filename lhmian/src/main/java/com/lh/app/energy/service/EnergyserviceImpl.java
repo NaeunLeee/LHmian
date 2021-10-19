@@ -15,13 +15,13 @@ public class EnergyserviceImpl implements EnergyService {
 	EnergyMapper energyMapper;
 
 	@Override
-	public List<EnergyVO> getList(EnergyVO vo) {
-		return energyMapper.getList(vo);
+	public List<EnergyVO> thisYear(String columnName) {
+		return energyMapper.thisYear(columnName);
 	}
 
 	@Override
-	public EnergyVO read(EnergyVO vo) {
-		return energyMapper.read(vo);
+	public List<EnergyVO> lastYear(EnergyVO vo) {
+		return energyMapper.lastYear(vo);
 	}
 
 	@Override

@@ -43,13 +43,13 @@ textarea {
 </div>
 	<section>
 		<div class="pagenation-holder">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a href="${pageContext.request.contextPath}/office/office">우리 아파트</a></li>
-							<li class="current"><a href="${pageContext.request.contextPath}/office/noticeList">공지사항</a></li>
+							<li><a href="${pageContext.request.contextPath}/office/office">관리사무소</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a></li>
 						</ol>
 					</div>
 				</div>

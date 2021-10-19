@@ -31,6 +31,7 @@ table {
 </style>
 
 <div class="header-inner-tmargin">
+
 	<section class="section-side-image clearfix">
 		<div class="img-holder col-md-12 col-sm-12 col-xs-12">
 			<div class="background-imgholder"
@@ -48,6 +49,7 @@ table {
 		</div>
 	</section>
 	<div class=" clearfix"></div>
+
 </div>
 <section>
 	<div class="pagenation-holder">
@@ -105,9 +107,8 @@ table {
 					</c:forEach>
 				</tbody>
 			</table>
-			<button type="button" onclick="location.href='register'"
-				class="btn btn-border light"
-				style="float: right; margin-right: 20px; padding: 4px 13px;">글작성</button>
+      <!-- 10/19 버튼 텍스트 수정: 이나은 (다른 페이지와 통일을 위해서...) -->
+   <button type="button" onclick="location.href='register'" class="btn btn-border light" style="float:right; margin-right:20px; padding: 4px 13px;">글쓰기</button>
 			<br>
 
 			<!-- 폼 -->

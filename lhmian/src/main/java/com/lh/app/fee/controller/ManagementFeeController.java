@@ -31,6 +31,7 @@ public class ManagementFeeController {
 			ManagementFeeVO vo = new ManagementFeeVO();
 			vo.setHouseInfo(houseInfo);
 			Gson gson = new Gson();
+			System.out.println(user.getPOSITION());
 
 			model.addAttribute("list", managementFeeService.selectFeeList(vo));
 			model.addAttribute("currentFee", managementFeeService.selectCurrentFee(vo));
