@@ -132,4 +132,27 @@
 		WHERE HOUSE_INFO = #{houseInfo}
 			  AND AUTHOR = 'OWNER'
 	</select>
+	
+	   <!-- 관리비 리스트 출력 10/19 윤지민 -->
+   <select id="feeList" resultType="ManagementFeeVO">
+      SELECT /*+ INDEX_DESC(MANAGEMENT_FEE IDX) */
+                TO_DATE(MF_DATE, 'YYMM') FEE_DATE,
+                HOUSE_INFO, 
+                MF_TOTAL,
+                CASE WHEN PAY_NO IS NULL THEN '미납'
+                       ELSE '납부완료' END AS PAID
+                FROM MANAGEMENT_FEE
+       WHERE HOUSE_INFO = #{houseInfo}
+   </select>
+   
+   <!-- 관리비 미납 리스트만 출력 10/19 윤지민 -->
+   <select id="unpaidList" resultType="ManagementFeeVO">
+       SELECT MF_DATE, 
+             HOUSE_INFO, 
+             SUM(MF_TOTAL) 
+             FROM MANAGEMENT_FEE
+       WHERE HOUSE_INFO = #{houseInfo}
+         AND PAY_NO IS NULL
+       GROUP BY ROLLUP((MF_DATE, HOUSE_INFO, PAY_NO))
+   </select>
 </mapper>
