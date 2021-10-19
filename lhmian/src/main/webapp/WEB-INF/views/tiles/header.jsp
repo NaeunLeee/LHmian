@@ -58,9 +58,17 @@
 	    top: 0;
 	}
 	
-	#main-menu-padding{
-		    padding: 32px 10px 0 10px;
+	.header-section ul li ul.dm-align-2{
+		margin-top:0 !important;
 	}
+	
+	#main-menu-padding{
+		    padding: 32px 10px 30px 10px;
+	}
+/* 	
+	.right{
+		padding-bottom: 30px;
+	} */
 
 </style>
 </head>
@@ -108,7 +116,7 @@
 				<div class="header-section style1 noborder pin-style">
 <!-- 					<div class="container"> -->
 						<div class="mod-menu">
-							<div class="row"  style="margin:0; padding-bottom:30px; background-color:#1f1b1b42;">
+							<div class="row"  style="margin:0; background-color:#1f1b1b42;">
 								<div class="col-sm-2" style="width:14%">
 									<a href="${pageContext.request.contextPath}/" title="" class="logo mar-4"> 
 										<img src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="" style="width:150px; padding-left:20px;">
@@ -124,7 +132,7 @@
 												</a>
 											</li>
 										</ul>
-										<div id="menu" class="collapse" style="float:left; font-size:12px">
+										<div id="menu" class="collapse" style="float:left; font-size:15px">
 											<ul class="nav navbar-nav">
 												<li class="mega-menu six-col active">
 													<a href="${pageContext.request.contextPath}/" id="main-menu-padding">Home</a> 
@@ -213,7 +221,7 @@
 												</a>
 											</li>
 										</ul>
-										<div id="menu" class="collapse" style="float:right; font-size:12px">
+										<div id="menu" class="collapse" style="float:right; font-size:15px">
 											<ul class="nav navbar-nav">
 											<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
 												<li class="right">

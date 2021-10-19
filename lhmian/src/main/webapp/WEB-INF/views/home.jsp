@@ -136,7 +136,7 @@ p {
 	<div class="row">
 		<div class="col-md-12 text-center font-weight-8 ment-1 Dodum-font">
 			<h1 class="title-1">LHmian</h1><br>
-			<h5 style="font-size:18px;">삶을 더욱 풍요롭게 해 줄 안식처</h5>
+			<h5 style="font-size:20px;">삶을 더욱 풍요롭게 해 줄 안식처</h5>
 		</div>
 			<div class="scroll-down-text col-sm-12 Dodum-font">Scroll down<br>
 			<span class="scroll-down"></span>
