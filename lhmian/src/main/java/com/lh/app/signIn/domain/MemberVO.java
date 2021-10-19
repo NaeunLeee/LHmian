@@ -16,4 +16,6 @@ public class MemberVO {
 	
 	// 10-18 추가: 이나은
 	private int familyNum;
+	private String authKey;
+	private String miniKey;
 }
