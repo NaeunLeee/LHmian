@@ -25,26 +25,35 @@ public class NoticeController {
 	NoticeService service;
 
 	// 전체조회
-	// 10/16 수정 
+	// 10/19 수정 
 	@GetMapping("/office/noticeList")
 	public String noticeList(Model model, @ModelAttribute("cri") NoticeCriteria cri) {
-		if (cri.getType() == "" && cri.getPreType() == null) {
-		int total = service.getTotalCount(cri);
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new NoticePageVO(cri, total));
-		return "office/noticeList";
-		}	else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))
-				) {
+		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
+				&& cri.getKeyword() != null) {
 			int total = service.getTotalCount(cri);
 			model.addAttribute("list", service.getList(cri));
 			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			
-			System.out.println("3."+cri.getType());
-			System.out.println("4."+cri.getPreType());
-
+			System.out.println("1 ----------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("------------------------------------");
 			return "office/noticeList";
-		}  else {
+			
+		} else if((cri.getType() != null && cri.getKeyword().equals(""))) {
+			cri.setType("");
+			cri.setPageNum(1);
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
+			model.addAttribute("type", null);
+			System.out.println("3 ---------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("-----------------------------------");
+			return "office/noticeList";
+		}
+		 else {
 			cri.setPageNum(1);
 			int total = service.getTotalCount(cri);
 			model.addAttribute("list", service.getList(cri));

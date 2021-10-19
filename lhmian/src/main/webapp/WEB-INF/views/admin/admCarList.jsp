@@ -133,17 +133,18 @@
 							</c:if>
 						</ul>
 					</div>
-					<div align="center">
+					<div align="center" id="criteriaForm" data-option="${type}">
 						<form id="actionForm" action="admCarList" method="get">
 							<select name="type" class="form-control" style="width: 100px; ">
 								<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
-								<option value="T" ${pageMaker.cri.type=='T' ? 'selected' : ""}>차종</option>
-								<option value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>차량번호</option>
+								<option id="T" value="T" ${pageMaker.cri.type=='T' ? 'selected' : ""}>차종</option>
+								<option id="C" value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>차량번호</option>
 							</select>
 							<input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}">
 							<button type="submit" class="btn btn-dark">검색</button>
 							<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 							<input type="hidden" name="amount" value="${pageMaker.cri.amount}"><br>
+							<input type="hidden" name="preType" id="preType" value="${type}">
 						</form>
 					</div>
 				</div>
@@ -476,4 +477,19 @@
 		$('#carList').empty();
 	});
 	
+	let option = $('#criteriaForm').attr('data-option');
+    $(document).ready(function() {
+		
+		 if (option.indexOf('T') != -1) {
+			 $('#T').prop("selected", true);
+		 } else {
+			 $('#T').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('C') != -1) {
+			 $('#C').prop("selected", true);
+		 } else {
+			 $('#C').prop("selected", false);
+		 }
+	 });
 </script>

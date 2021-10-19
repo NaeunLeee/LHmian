@@ -21,6 +21,7 @@ import com.lh.app.comm.domain.PersonalCriteria;
 import com.lh.app.comm.domain.PageVO;
 import com.lh.app.comm.service.CommService;
 import com.lh.app.comm.service.ReplyService;
+import com.lh.app.cs.domain.CsPageVO;
 import com.lh.app.signIn.etc.CustomUserDetails;
 
 @Controller
@@ -56,45 +57,52 @@ public class CommController {
 		return "myPage/myComment";
 	}
 
-	// 리스트 조회 
-	// 10/19 수정 
+	// 리스트 조회
 	@RequestMapping("commlist")
 	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
-		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
-				&& cri.getKeyword() != null) {
-			int total = commService.getTotalCount(cri);
-			model.addAttribute("list", commService.getList(cri));
-			model.addAttribute("pageMaker", new PageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			System.out.println("1 ----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
-			return "community/commlist"; 
-			
-		} else if((cri.getType()!=null)&& cri.getKeyword().equals("") ) {
-			cri.setType("");
+		// 빈칸 검색 조건 + type not null or ""
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
 			cri.setPageNum(1);
 			int total = commService.getTotalCount(cri);
 			model.addAttribute("list", commService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			System.out.println("2-----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
+			model.addAttribute("preKey", cri.getKeyword());
+			System.out.println("1.");
+			System.out.println("type : " + cri.getType());
+			System.out.println("preType : " + cri.getPreType());
+			System.out.println("keyword : " + cri.getKeyword());
+			System.out.println("prekey : " + cri.getPreKey());
 			return "community/commlist";
-			
-		//타입 변환 시 페이지 초기화 조건 ok
-		}	else {
+		} else if( (cri.getKeyword()!=null && cri.getPreKey()!=null)&&(!cri.getKeyword().equals(cri.getPreKey())) ) {
 			cri.setPageNum(1);
 			int total = commService.getTotalCount(cri);
 			model.addAttribute("list", commService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			System.out.println("1.");
+			System.out.println("type : " + cri.getType());
+			System.out.println("preType : " + cri.getPreType());
+			System.out.println("keyword : " + cri.getKeyword());
+			System.out.println("prekey : " + cri.getPreKey());
 			return "community/commlist";
 		}
-		
+		else {
+			int total = commService.getTotalCount(cri);
+			model.addAttribute("list", commService.getList(cri));
+			model.addAttribute("pageMaker", new PageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			System.out.println("2.");
+			System.out.println("type : " + cri.getType());
+			System.out.println("preType : " + cri.getPreType());
+			System.out.println("keyword : " + cri.getKeyword());
+			System.out.println("prekey : " + cri.getPreKey());
+			return "community/commlist";
+		}
+
 	}
 
 	// 등록폼 (10/11 수정:이나은)

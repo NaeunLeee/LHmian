@@ -30,7 +30,7 @@ public class CsController {
 	@RequestMapping("/office/csList")
 	public String csList(Model model, @ModelAttribute("cri") CsCriteria cri) {
 		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
-				&& cri.getKeyword() != null) {
+				&& cri.getKeyword() != "") {
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
@@ -40,22 +40,21 @@ public class CsController {
 			System.out.println(cri.getPreType());
 			System.out.println("------------------------------------");
 			return "office/csList";
-
-		} else if ((cri.getType() != null) && cri.getKeyword().equals("")) {
+			
+		} else if((cri.getType() != null && cri.getKeyword().equals(""))) {
 			cri.setType("");
 			cri.setPageNum(1);
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			System.out.println("2-----------------------------------");
+			model.addAttribute("type", null);
+			System.out.println("3 ---------------------------------");
 			System.out.println(cri.getType());
 			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
+			System.out.println("-----------------------------------");
 			return "office/csList";
-
-			// 타입 변환 시 페이지 초기화 조건 ok
-		} else {
+		}
+		 else {
 			cri.setPageNum(1);
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
