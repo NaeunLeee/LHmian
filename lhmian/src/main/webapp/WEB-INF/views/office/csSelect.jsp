@@ -158,13 +158,14 @@ textarea:focus {
 						</div>
 						<div class="text-box padding-2 void" id="csContent">${cs.csContent}
 						</div>
-
-<div class="padding-4 col-sm-12 " align="right">
-		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="modifyBtn">수정</button>
-		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="deleteBtn">삭제</button>
-		<button type="button" class="btn btn-border light" style="padding: 4px 13px;" onclick="location.href='../office/csList'" >목록</button>
-	</div>
-	
+				<!-- 10/19 수정: 이나은 (글 작성자에게만 수정, 삭제 버튼이 뜨도록) -->
+					<div class="padding-4 col-sm-12 " align="right">
+						<c:if test="${cs.name eq name}">
+							<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="modifyBtn">수정</button>
+							<button type="button" class="btn btn-border light" style="padding: 4px 13px;" id="deleteBtn">삭제</button>
+						</c:if>
+						<button type="button" class="btn btn-border light" style="padding: 4px 13px;" onclick="location.href='../office/csList'" >목록</button>
+					</div>
 	
 	
 	

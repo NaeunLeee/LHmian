@@ -25,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 	    public Collection<? extends GrantedAuthority> getAuthorities() {
 	        ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
 	        auth.add(new SimpleGrantedAuthority("ROLE_" + AUTHOR));
+	        auth.add(new SimpleGrantedAuthority("ROLE_" + POSITION));
 	        return auth;
 	    }
 	 

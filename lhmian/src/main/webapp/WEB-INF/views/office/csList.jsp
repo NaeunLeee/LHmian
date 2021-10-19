@@ -112,7 +112,7 @@ table {
                </c:forEach>
                </tbody>
             </table>
-      <button type="button" onclick="location.href='csInsert'" class="btn btn-border light"  style="float:right; margin-right:20px; padding: 4px 13px;">글 쓰기</button>
+      <button type="button" id="write" class="btn btn-border light"  style="float:right; margin-right:20px; padding: 4px 13px;">글 쓰기</button>
    <br>
       <%-- <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
       <%-- </sec:authorize> --%>
@@ -150,7 +150,7 @@ table {
             <option id="TC" value="TC"
                <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>
          </select> 
-         <input name="keyword" value="${pageMaker.cri.keyword}"> 
+         <input name="keyword" class="form-control" style="width: 200px; " value="${pageMaker.cri.keyword}"> 
          <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
          <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
          <input type="hidden" name="preType" id="preType" value="${type}">
@@ -221,5 +221,15 @@ table {
 		 }
 		 
 	 });
+   
+   let author = '<c:out value="${user.AUTHOR}"/>';
+   
+   $('#write').on("click", function() {
+		if (author == 'ADMIN') {
+			alert('관리자 계정은 사용할 수 없습니다.');
+		} else {
+			$(location).attr('href', 'csInsert');
+		}
+   });
 </script>
 </html>

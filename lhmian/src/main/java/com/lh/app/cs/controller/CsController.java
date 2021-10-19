@@ -28,13 +28,16 @@ public class CsController {
 
 	// 전체 조회
 	@RequestMapping("/office/csList")
-	public String csList(Model model, @ModelAttribute("cri") CsCriteria cri) {
+	public String csList(Model model, @ModelAttribute("cri") CsCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		
+		
 		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
 				&& cri.getKeyword() != null) {
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			model.addAttribute("user", customUserDetails);
 			System.out.println("1 ----------------------------------");
 			System.out.println(cri.getType());
 			System.out.println(cri.getPreType());
@@ -48,6 +51,7 @@ public class CsController {
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			model.addAttribute("user", customUserDetails);
 			System.out.println("2-----------------------------------");
 			System.out.println(cri.getType());
 			System.out.println(cri.getPreType());
@@ -61,14 +65,17 @@ public class CsController {
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			model.addAttribute("user", customUserDetails);
 			return "office/csList";
 		}
+		
 	}
 
 	// 단건 조회
 	@GetMapping("/office/csSelect")
-	public String csSelect(Model model, @ModelAttribute("cri") CsCriteria cri, CsVO vo) {
+	public String csSelect(Model model, @ModelAttribute("cri") CsCriteria cri, CsVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		model.addAttribute("cs", csService.read(vo));
+		model.addAttribute("name", customUserDetails.getNAME());
 		return "office/csSelect";
 	}
 
