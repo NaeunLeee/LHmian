@@ -7,6 +7,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -19,33 +20,45 @@ public class EnergyController {
 
 	@Autowired
 	EnergyService energyService;
-
+		
 	// 첫 로딩 페이지-사용자
 	@GetMapping("/myPage/myEnergyCon")
 	public void myList(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
 		Gson gson = new Gson();
-		model.addAttribute("read", gson.toJson(energyService.read(vo)));
+		//model.addAttribute("thisYear", gson.toJson(energyService.thisYear(vo)));
+		//model.addAttribute("lastYear", gson.toJson(energyService.lastYear(vo)));
+	}
+	
+	@PostMapping("/myPage/myEnergy")
+	@ResponseBody
+	public List<EnergyVO> energy(String columnName) {
+		//vo.setColumnName(vo.getColumnName());
+		return energyService.thisYear(columnName);
 	}
 
-	// 기간조회(전체조회)-사용자
-	@GetMapping("/myEnergyPeriod")
-	@ResponseBody
-	public List<EnergyVO> myPeriod(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		List<EnergyVO> result = energyService.getList(vo);
-		return result;
-	}
+	/*
+	 * // 기간조회(전체조회)-사용자
+	 * 
+	 * @GetMapping("/myEnergyPeriod")
+	 * 
+	 * @ResponseBody public List<EnergyVO> myPeriod(EnergyVO vo, Model
+	 * model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+	 * vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
+	 * List<EnergyVO> result = energyService.getList(vo); return result; }
+	 */
 
-	// 단건 조회-사용자
-	@GetMapping("/myEnergy")
-	@ResponseBody
-	public String myRead(EnergyVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		Gson gson = new Gson();
-		String result = String.valueOf(gson.toJson(energyService.read(vo)));
-		return result;
-	}
+	/*
+	 * // 단건 조회-사용자
+	 * 
+	 * @GetMapping("/myEnergy")
+	 * 
+	 * @ResponseBody public String myRead(EnergyVO vo, @AuthenticationPrincipal
+	 * CustomUserDetails customUserDetails) {
+	 * vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO())); Gson
+	 * gson = new Gson(); String result =
+	 * String.valueOf(gson.toJson(energyService.read(vo))); return result; }
+	 */
 
 	// 전체조회-관리자
 	@GetMapping("/admin/admEnergyCon")
