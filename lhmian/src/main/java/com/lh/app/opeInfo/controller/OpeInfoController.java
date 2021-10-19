@@ -46,8 +46,9 @@ public class OpeInfoController {
 	// 전체 조회
 	@GetMapping("/introduce/opeInfoList")
 	public String opeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
-		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
-				&& cri.getKeyword() != null) {
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
+			cri.setPageNum(1);
 			int total = opeInfoService.getTotalCount(cri);
 			model.addAttribute("list", opeInfoService.getList(cri));
 			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
@@ -57,30 +58,13 @@ public class OpeInfoController {
 			System.out.println(cri.getPreType());
 			System.out.println("------------------------------------");
 			return "introduce/opeInfoList";
-			
-		} else if((cri.getType()!=null)&& cri.getKeyword().equals("") ) {
-			cri.setType("");
-			cri.setPageNum(1);
-			int total = opeInfoService.getTotalCount(cri);
-			model.addAttribute("list", opeInfoService.getList(cri));
-			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			System.out.println("2-----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
-			return "introduce/opeInfoList";
-			
-		//타입 변환 시 페이지 초기화 조건 ok
-		}	else {
-			cri.setPageNum(1);
+		} else {
 			int total = opeInfoService.getTotalCount(cri);
 			model.addAttribute("list", opeInfoService.getList(cri));
 			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
 
-			System.out.println("5." + cri.getType());
-			System.out.println("6." + cri.getPreType());
+			System.out.println("2");
 
 			return "introduce/opeInfoList";
 		}

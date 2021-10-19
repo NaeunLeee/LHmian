@@ -15,6 +15,8 @@ public class CarListCriteria {
       this.amount = amount;
    }
    
+   private String preType;
+   
    public String[] getTypeArr() {
 	   return type == null ? new String[]{} : type.split("");
    }
