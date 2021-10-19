@@ -87,6 +87,12 @@
 		     , B.NAME
 		     , B.PHONE
 		     , B.POSITION
+		     , CASE WHEN (SELECT 1
+                FROM DUAL
+                WHERE EXISTS (SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+                WHERE HOUSE_INFO = A.HOUSE_INFO AND PAY_NO IS NULL)
+                ) = 1 THEN '미납'
+                ELSE '납부완료' END AS UN_PAID
 		FROM A JOIN B
 		ON A.HOUSE_INFO = B.HOUSE_INFO
 		ORDER BY HOUSE_INFO
