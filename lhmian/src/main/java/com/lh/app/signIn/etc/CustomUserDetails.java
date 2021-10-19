@@ -107,7 +107,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 	    }
 	 
 	    public void setPOSITION(String position) {
-	    	STATUS = position;
+	    	POSITION = position;
 	    }
 	 
 	}

@@ -140,6 +140,7 @@ public class SignInController {
 	@ResponseBody
 	public GenerationVO authKey(GenerationVO vo) {
 		System.out.println(vo.getAuthKey());
+		
 		return signInService.authKey(vo);
 	}
 	
