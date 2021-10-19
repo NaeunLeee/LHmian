@@ -191,9 +191,11 @@
 														<li>
 															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
 														</li>
+													<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
 														<li>
 															<a href="${pageContext.request.contextPath}/visit/generationList">방명록</a>
 														</li>
+													</sec:authorize>
 													</ul>
 												</li>
 												<li class="right">

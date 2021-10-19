@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <style>
 table {
 	width: 800px;
@@ -160,7 +161,7 @@ textarea {
 	});
 
 	//세대 클릭시 새창으로 열림
-	function generation(n) {
-		openWin = window.open("../no/visitList?houseInfo=" + n, "방명록", "width=1000px, height=600px, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	function generation(num) {
+		openWin = window.open("../no/visitList?houseInfo=" + num, "방명록", "width=1000px, height=600px, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	};
 </script>
