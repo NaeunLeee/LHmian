@@ -3,27 +3,12 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 
-
+<br><br><br>
+<br><br><br>
+<br><br><br>
+<br><br><br>
                
-    <form action="[URL]" method="post">
-        <textarea name="content" id="editor">
-            &lt;p&gt;This is some sample content.&lt;/p&gt;
-        </textarea>
-        <p><input type="submit" value="Submit"></p>
-    </form>
-
-
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-        
-        
-        
-    </script>
-
+<h1>${random}</h1>
 
 
 
