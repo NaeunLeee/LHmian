@@ -3,7 +3,7 @@
 <mapper namespace="com.lh.app.fee.mapper.ManagementFeeMapper">
 
 	<select id="selectFeeList" resultType="ManagementFeeVO">
-		SELECT /*+ INDEX_DESC(MANAGEMENT_FEE IDX) */
+		SELECT /*+ INDEX_ASC(MANAGEMENT_FEE IDX) */
 			   MF_DATE,
 			   SUBSTR(MF_DATE, 1, 2) AS YEAR,
 			   CASE WHEN SUBSTR(MF_DATE, 3, 1) = '0' THEN SUBSTR(MF_DATE, 4, 1)
@@ -22,7 +22,6 @@
 			   MF_TOTAL
 		FROM MANAGEMENT_FEE
         WHERE HOUSE_INFO = #{houseInfo}
-        ORDER BY 1 DESC
 	</select>
 	
 	<sql id="minDate">
