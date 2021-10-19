@@ -1,6 +1,7 @@
 package com.lh.app;
 
 import java.util.Locale;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +46,36 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/home/test")
-	public String test() {
+	public String test(Model model) {
+		
+        Random rand  = new Random();
+        String key1 = "";
+        String key2 = "";
+        String key3 = "";
+        String key4 = "";
+        String result = "";
+        
+        for(int i=0; i<3; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            key1 += ran;
+        }
+        for(int i=0; i<3; i++) {
+        	String ran = Integer.toString(rand.nextInt(10));
+        	key2 += ran;
+        }
+        for(int i=0; i<3; i++) {
+        	String ran = Integer.toString(rand.nextInt(10));
+        	key3 += ran;
+        }
+        for(int i=0; i<3; i++) {
+        	String ran = Integer.toString(rand.nextInt(10));
+        	key4 += ran;
+        }
+        
+        result = key1 + "." + key2 + "." + key3 + "." + key4;
+        
+		model.addAttribute("random", result);
+		
 		return "test";
 	}
 	

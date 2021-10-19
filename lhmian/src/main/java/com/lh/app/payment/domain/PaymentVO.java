@@ -8,14 +8,13 @@ import lombok.Data;
 
 @Data
 public class PaymentVO {
-private String payNo;
-private String id;
-@JsonFormat(pattern = "yyyy-MM-dd")
-private Date payDate;
-private String payType;
-private String payCat;
-private String payStatus;
-private int price;
-
+	private String payNo;
+	private String id;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date payDate;
+	private String payType;
+	private String payCat;
+	private String payStatus;
+	private int price;
 
 }

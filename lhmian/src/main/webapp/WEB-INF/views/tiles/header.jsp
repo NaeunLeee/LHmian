@@ -119,7 +119,7 @@
 							<div class="row"  style="margin:0; background-color:#1f1b1b42;">
 								<div class="col-sm-2" style="width:14%">
 									<a href="${pageContext.request.contextPath}/" title="" class="logo mar-4"> 
-										<img src="${pageContext.request.contextPath}/resources/images/logo/f-logo.png" alt="" style="width:150px; padding-left:20px;">
+										<img src="${pageContext.request.contextPath}/resources/images/logo/LHmian_logo_v1.png" alt="" style="width:150px; padding-left:20px;">
 									</a>
 								</div>
 								<div class="col-sm-6" style="padding-left:0">
@@ -183,7 +183,7 @@
 													<a href="${pageContext.request.contextPath}/resident/resident" id="main-menu-padding">입주민 공간</a>
 													<ul class="dm-align-2">
 														<li>
-															<a href="${pageContext.request.contextPath}/resident/confList">입주자 대표회의</a>
+															<a id="confList" href="">입주자 대표회의</a>
 														</li>
 														<li>
 															<a href="${pageContext.request.contextPath}/resident/voteList">투표</a>
@@ -192,7 +192,7 @@
 															<a href="${pageContext.request.contextPath}/commlist">커뮤니티</a>
 														</li>
 														<li>
-															<a href="${pageContext.request.contextPath}/visit/generation">방명록</a>
+															<a href="${pageContext.request.contextPath}/visit/generationList">방명록</a>
 														</li>
 													</ul>
 												</li>
@@ -263,6 +263,9 @@
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
+															</li>
+															<li>
+																<a href="${pageContext.request.contextPath}/admin/admGeneration">세대 관리</a>
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admMemberList">회원 관리</a>
@@ -359,101 +362,120 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
 	
-	<!-- script -->
-	<script type="text/javascript">
-		var tpj = jQuery;
-		var revapi4;
-		
-		tpj(document).ready(function() {
-			if (tpj("#rev_slider").revolution == undefined) {
-				revslider_showDoubleJqueryError("#rev_slider");
-			} else {
-				revapi4 = tpj("#rev_slider").show().revolution({
-					sliderType : "standard",
-					jsFileLocation : "js/revolution-slider/js/",
-					sliderLayout : "auto",
-					dottedOverlay : "none",
-					delay : 9000,
-					navigation : {
-						keyboardNavigation : "off",
-						keyboard_direction : "horizontal",
-						mouseScrollNavigation : "off",
-						onHoverStop : "off",
-						arrows : {
-							style : "erinyen",
-							enable : true,
-							hide_onmobile : true,
-							hide_under : 778,
-							hide_onleave : true,
-							hide_delay : 200,
-							hide_delay_mobile : 1200,
-							tmp : '',
-							left : {
-								h_align : "left",
-								v_align : "center",
-								h_offset : 80,
-								v_offset : 0
-							},
-							right : {
-								h_align : "right",
-								v_align : "center",
-								h_offset : 80,
-								v_offset : 0
-							}
-						},
-						touch : {
-							touchenabled : "on",
-							swipe_threshold : 75,
-							swipe_min_touches : 1,
-							swipe_direction : "horizontal",
-							drag_block_vertical : false
-						},
-
-					},
-					viewPort : {
+<!-- script -->
+<script type="text/javascript">
+	var tpj = jQuery;
+	var revapi4;
+	
+	tpj(document).ready(function() {
+		if (tpj("#rev_slider").revolution == undefined) {
+			revslider_showDoubleJqueryError("#rev_slider");
+		} else {
+			revapi4 = tpj("#rev_slider").show().revolution({
+				sliderType : "standard",
+				jsFileLocation : "js/revolution-slider/js/",
+				sliderLayout : "auto",
+				dottedOverlay : "none",
+				delay : 9000,
+				navigation : {
+					keyboardNavigation : "off",
+					keyboard_direction : "horizontal",
+					mouseScrollNavigation : "off",
+					onHoverStop : "off",
+					arrows : {
+						style : "erinyen",
 						enable : true,
-						outof : "pause",
-						visible_area : "80%"
+						hide_onmobile : true,
+						hide_under : 778,
+						hide_onleave : true,
+						hide_delay : 200,
+						hide_delay_mobile : 1200,
+						tmp : '',
+						left : {
+							h_align : "left",
+							v_align : "center",
+							h_offset : 80,
+							v_offset : 0
+						},
+						right : {
+							h_align : "right",
+							v_align : "center",
+							h_offset : 80,
+							v_offset : 0
+						}
+					},
+					touch : {
+						touchenabled : "on",
+						swipe_threshold : 75,
+						swipe_min_touches : 1,
+						swipe_direction : "horizontal",
+						drag_block_vertical : false
 					},
 
-					responsiveLevels : [ 1240, 1024, 778, 480 ],
-					gridwidth : [ 1240, 1024, 778, 480 ],
-					gridheight : [ 840, 730, 600, 420 ],
-					lazyType : "smart",
-					parallax : {
-						type : "mouse",
-						origo : "slidercenter",
-						speed : 2000,
-						levels : [ 2, 3, 4, 5, 6, 7, 12, 16, 10, 50 ],
-					},
-					shadow : 0,
-					spinner : "off",
-					stopLoop : "off",
-					stopAfterLoops : -1,
-					stopAtSlide : -1,
-					shuffle : "off",
-					autoHeight : "off",
-					hideThumbsOnMobile : "off",
-					hideSliderAtLimit : 0,
-					hideCaptionAtLimit : 0,
-					hideAllCaptionAtLilmit : 0,
-					disableProgressBar : "on",
-					debugMode : false,
-					fallbacks : {
-						simplifyAll : "off",
-						nextSlideOnWindowFocus : "off",
-						disableFocusListener : false,
-					}
-				});
-			}
-		}); /*ready*/
-	</script>
+				},
+				viewPort : {
+					enable : true,
+					outof : "pause",
+					visible_area : "80%"
+				},
 
-	<script>
-		$(window).load(function() {
-			setTimeout(function() {
+				responsiveLevels : [ 1240, 1024, 778, 480 ],
+				gridwidth : [ 1240, 1024, 778, 480 ],
+				gridheight : [ 840, 730, 600, 420 ],
+				lazyType : "smart",
+				parallax : {
+					type : "mouse",
+					origo : "slidercenter",
+					speed : 2000,
+					levels : [ 2, 3, 4, 5, 6, 7, 12, 16, 10, 50 ],
+				},
+				shadow : 0,
+				spinner : "off",
+				stopLoop : "off",
+				stopAfterLoops : -1,
+				stopAtSlide : -1,
+				shuffle : "off",
+				autoHeight : "off",
+				hideThumbsOnMobile : "off",
+				hideSliderAtLimit : 0,
+				hideCaptionAtLimit : 0,
+				hideAllCaptionAtLilmit : 0,
+				disableProgressBar : "on",
+				debugMode : false,
+				fallbacks : {
+					simplifyAll : "off",
+					nextSlideOnWindowFocus : "off",
+					disableFocusListener : false,
+				}
+			});
+		}
+	}); /*ready*/
+		
+	$(window).load(function() {
+		setTimeout(function() {
 
-				$('.loader-live').fadeOut();
-			}, 1000);
-		})
-	</script>
+			$('.loader-live').fadeOut();
+		}, 1000);
+	})
+	
+	<!-- 10/19 추가: 이나은(동대표 권한 확인) -->	
+	var pst = '';
+	var ath = '';
+	
+	<sec:authorize access="isAuthenticated()">
+	   pst = '<sec:authentication property="principal.POSITION" />';
+	   ath = '<sec:authentication property="principal.AUTHOR" />';
+	</sec:authorize>
+
+	$('#confList').on('click', function(e) {
+		e.preventDefault();
+		
+		if (pst == 'FOLLOWER' && ath != 'ADMIN') {
+			alert('동대표 권한이 없습니다.');			
+		} else if (ath == null) {
+			$(location).attr('href', '${pageContext.request.contextPath}/login');
+		} else {
+			$(location).attr('href', '${pageContext.request.contextPath}/resident/confList');
+		}
+	})
+</script>

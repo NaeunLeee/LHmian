@@ -173,6 +173,7 @@
 					<div style="margin-left: 20px;">
 						<div class="title-line-3 align-left"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">독서실 등록</h4>
+						<p style="font-size: 12px;">* 결제취소는 결제한 시간으로부터 24시간 이내에만 가능합니다.</p>
 					</div>
 				</div>
 				<!-- Modal body -->

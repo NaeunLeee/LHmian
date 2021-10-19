@@ -46,25 +46,25 @@ public class OpeInfoController {
 	// 전체 조회
 	@GetMapping("/introduce/opeInfoList")
 	public String opeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
-		if (cri.getType() == "" && cri.getPreType() == null) {
-			int total = opeInfoService.getTotalCount(cri);
-			model.addAttribute("list", opeInfoService.getList(cri));
-			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			return "introduce/opeInfoList";
-		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
-			int total = opeInfoService.getTotalCount(cri);
-			model.addAttribute("list", opeInfoService.getList(cri));
-			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-
-			return "introduce/opeInfoList";
-		} else {
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
 			cri.setPageNum(1);
 			int total = opeInfoService.getTotalCount(cri);
 			model.addAttribute("list", opeInfoService.getList(cri));
 			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			System.out.println("1 ----------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("------------------------------------");
+			return "introduce/opeInfoList";
+		} else {
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+
+			System.out.println("2");
 
 			return "introduce/opeInfoList";
 		}
@@ -81,24 +81,7 @@ public class OpeInfoController {
 	// 10/18 수정
 	@GetMapping("/admin/admOpeInfoList")
 	public String admOpeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
-		if (cri.getType() == "" && cri.getPreType() == null) {
-			int total = opeInfoService.getTotalCount(cri);
-			model.addAttribute("list", opeInfoService.getList(cri));
-			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			return "admin/admOpeInfoList";
-		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
-			int total = opeInfoService.getTotalCount(cri);
-			model.addAttribute("list", opeInfoService.getList(cri));
-			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-
-			System.out.println("3." + cri.getType());
-			System.out.println("4." + cri.getPreType());
-
-			return "admin/admOpeInfoList";
-		} else {
-			cri.setPageNum(1);
+		
 			int total = opeInfoService.getTotalCount(cri);
 			model.addAttribute("list", opeInfoService.getList(cri));
 			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
@@ -108,7 +91,7 @@ public class OpeInfoController {
 			System.out.println("6." + cri.getPreType());
 
 			return "admin/admOpeInfoList";
-		}
+		
 	}
 
 	// 관리자 단건 조회

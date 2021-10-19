@@ -112,7 +112,7 @@ table {
                </c:forEach>
                </tbody>
             </table>
-      <button type="button" onclick="location.href='csInsert'" class="btn btn-border light"  style="float:right; margin-right:20px; padding: 4px 13px;">글 쓰기</button>
+      <button type="button" id="write" class="btn btn-border light"  style="float:right; margin-right:20px; padding: 4px 13px;">글 쓰기</button>
    <br>
       <%-- <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')"> --%>
       <%-- </sec:authorize> --%>
@@ -141,18 +141,19 @@ table {
          </ul>
       </div>
 
-   <div style="margin:auto;">
+   <div style="margin:auto;" id="criteriaForm" data-option="${type}">
       <form id="actionForm" action="csList" method="get">
          <select name="type" class="form-control" style="width: 100px; ">
             <option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-            <option value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-            <option value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>내용</option>
-            <option value="TC"
+            <option id="T" value="T" ${ pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
+            <option id="C" value="C" ${ pageMaker.cri.type == 'C' ? selected : ""}>내용</option>
+            <option id="TC" value="TC"
                <c:out value="${pageMaker.cri.type eq 'TC' ? 'selected' : ''}"/>>전체</option>
          </select> 
-         <input name="keyword" value="${pageMaker.cri.keyword}"> 
+         <input name="keyword" class="form-control" style="width: 200px; " value="${pageMaker.cri.keyword}"> 
          <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
          <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+         <input type="hidden" name="preType" id="preType" value="${type}">
          <button type="submit" class="btn btn-dark">검색</button>
       </form>
    </div>
@@ -196,6 +197,39 @@ table {
       } else {
          alert(result);
       }
+   });
+   
+   let option = $('#criteriaForm').attr('data-option');
+   $(document).ready(function() {
+		
+		 if (option.indexOf('T') != -1) {
+			 $('#T').prop("selected", true);
+		 } else {
+			 $('#T').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('C') != -1) {
+			 $('#C').prop("selected", true);
+		 } else {
+			 $('#C').prop("selected", false);
+		 }
+		 
+		 if (option.indexOf('TC') != -1) {
+			 $('#TC').prop("selected", true);
+		 } else {
+			 $('#TC').prop("selected", false);
+		 }
+		 
+	 });
+   
+   let author = '<c:out value="${user.AUTHOR}"/>';
+   
+   $('#write').on("click", function() {
+		if (author == 'ADMIN') {
+			alert('관리자 계정은 사용할 수 없습니다.');
+		} else {
+			$(location).attr('href', 'csInsert');
+		}
    });
 </script>
 </html>

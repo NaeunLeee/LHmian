@@ -16,4 +16,12 @@ public class MemberVO {
 	
 	// 10-18 추가: 이나은
 	private int familyNum;
+
+  // 10-19 추가: 이나은
+	private String authKey;
+	private String miniKey;
+	
+	// 10-19 추가: 윤지민
+	private String unPaid;
+
 }

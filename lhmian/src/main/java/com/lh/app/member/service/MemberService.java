@@ -49,4 +49,5 @@ public interface MemberService {
 	// 동호수에 따른 멤버 카운트 (10/14 추가: 이나은)
 	public int countByHouseInfo(MemberInfoVO vo);
 	
+	
 }

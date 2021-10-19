@@ -1,6 +1,7 @@
 package com.lh.app.signIn.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -13,4 +14,9 @@ public class GenerationVO {
 	// 10-18 추가: 이나은
 	private String miniKey;
 	
+	private int pageNum;
+	private int amount;
+	private List<GenerationVO> generationList;
+	
+	private String gubun;
 }

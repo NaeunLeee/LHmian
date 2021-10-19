@@ -61,6 +61,7 @@
 					<ul class="pages-sidebar-links">
 						<li><a href="feeList">관리비</a></li>
 						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admGeneration">세대 관리</a></li>
 						<li><a href="admMemberList">회원 관리</a></li>
 						<li><a href="admCarList">차량 관리</a></li>
 						<li><a href="admOpeInfoList">게시글 관리</a></li>
@@ -176,9 +177,10 @@
 						<option id="C" value="C" ${empty type == 'C' ? selected : "" }>도착날짜</option>
 					</select> 
 						<label for="Y">Y</label>
-						<input type="checkbox" id="Y" name="type" value="Y" ${pageMaker.cri.type eq ('Y'||'TY'||'CY') ? checked : "" }> 
+						<input type="radio" id="Y" name="type" value="Y" ${pageMaker.cri.type eq (',Y'||'T,Y'||'C,Y') ? checked : "" }> 
 						<label for="N">N</label>
-						<input type="checkbox" id="N" name="type" value="N" ${pageMaker.cri.type eq ('N'||'TN'||'CN') ? checked : "" }> 
+						<input type="radio" id="N" name="type" value="N" ${pageMaker.cri.type eq (',N'||'T,N'||'C,N') ? checked : "" }>
+						<button type="button" id="chkfalse" class="btn btn-dark" style="display: inline;">선택해제</button>
 						<input name="keyword" class="form-control" style="width: 200px; display: inline;" value="${pageMaker.cri.keyword}"> 
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
@@ -356,5 +358,10 @@
 		 } else {
 			 $('#C').prop("selected", false);
 		 }
+	 });
+	 
+	 $("#chkfalse").on("click",function(){
+		 $("#Y").prop('checked',false);
+		 $("#N").prop('checked',false);
 	 });
 </script>

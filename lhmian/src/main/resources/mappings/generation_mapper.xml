@@ -77,10 +77,9 @@
 
 	<select id="getList" resultType="memberVO">
 		WITH 
-		A AS
-			(<include refid="familyNum" />),
-		B AS
-			(<include refid="owner" />)
+		A AS (<include refid="familyNum" />),
+		B AS (<include refid="owner" />)
+		
 		SELECT ROWNUM RN
 		     , A.HOUSE_INFO
 		     , A.FAMILY_NUM
@@ -88,6 +87,12 @@
 		     , B.NAME
 		     , B.PHONE
 		     , B.POSITION
+		     , CASE WHEN (SELECT 1
+                FROM DUAL
+                WHERE EXISTS (SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+                WHERE HOUSE_INFO = A.HOUSE_INFO AND PAY_NO IS NULL)
+                ) = 1 THEN '미납'
+                ELSE '납부완료' END AS UN_PAID
 		FROM A JOIN B
 		ON A.HOUSE_INFO = B.HOUSE_INFO
 		ORDER BY HOUSE_INFO
@@ -96,6 +101,71 @@
 	<select id="familyList" resultType="memberVO">
 		SELECT * FROM MEMBER
 		WHERE HOUSE_INFO = #{houseInfo}
+		ORDER BY AUTHOR DESC
 	</select>
 
+	<select id="selectGen" resultType="generationVO">
+		SELECT *
+		FROM GENERATION
+		WHERE HOUSE_INFO = #{houseInfo}
+	</select>
+	
+	<update id="makeNull">
+		UPDATE GENERATION
+		SET ENROLL_DATE = ''
+		  , AUTH_KEY = ''
+		  , MINI_KEY = ''
+		WHERE HOUSE_INFO = #{houseInfo}
+	</update>
+	
+	<delete id="deleteFamily">
+		DELETE FROM MEMBER
+		WHERE HOUSE_INFO = #{houseInfo}
+	</delete>
+	
+	<update id="verifyGen">
+		UPDATE GENERATION
+		SET ENROLL_DATE = SYSDATE
+		  , AUTH_KEY = #{authKey}
+		  , MINI_KEY = #{miniKey}
+		WHERE HOUSE_INFO = #{houseInfo}
+	</update>
+	
+	<update id="reVerifyGen">
+		UPDATE GENERATION
+		SET AUTH_KEY = #{authKey}
+		  , MINI_KEY = #{miniKey}
+		WHERE HOUSE_INFO = #{houseInfo}
+	</update>
+	
+	<select id="ownerInfo" resultType="memberVO">
+		SELECT M.*, G.AUTH_KEY, G.MINI_KEY
+		FROM MEMBER M
+		JOIN GENERATION G
+		ON M.HOUSE_INFO = G.HOUSE_INFO
+		WHERE M.HOUSE_INFO = #{houseInfo} AND M.AUTHOR = 'OWNER'
+	</select>
+	
+	   <!-- 관리비 리스트 출력 10/19 윤지민 -->
+   <select id="feeList" resultType="ManagementFeeVO">
+      SELECT /*+ INDEX_DESC(MANAGEMENT_FEE IDX) */
+                TO_DATE(MF_DATE, 'YYMM') FEE_DATE,
+                HOUSE_INFO, 
+                MF_TOTAL,
+                CASE WHEN PAY_NO IS NULL THEN '미납'
+                       ELSE '납부완료' END AS PAID
+                FROM MANAGEMENT_FEE
+       WHERE HOUSE_INFO = #{houseInfo}
+   </select>
+   
+   <!-- 관리비 미납 리스트만 출력 10/19 윤지민 -->
+   <select id="unpaidList" resultType="ManagementFeeVO">
+       SELECT MF_DATE, 
+             HOUSE_INFO, 
+             SUM(MF_TOTAL) 
+             FROM MANAGEMENT_FEE
+       WHERE HOUSE_INFO = #{houseInfo}
+         AND PAY_NO IS NULL
+       GROUP BY ROLLUP((MF_DATE, HOUSE_INFO, PAY_NO))
+   </select>
 </mapper>
