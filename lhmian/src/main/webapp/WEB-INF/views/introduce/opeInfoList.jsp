@@ -141,8 +141,8 @@ table {
 					<form id="actionForm" action="opeInfoList" method="get">
 						<select name="type" class="form-control" style="width: 100px;">
 							<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
-							<option id="T" value="T" ${pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
-							<option id="C" value="C" ${pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
+							<option id="T" value="T" ${empty pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
+							<option id="C" value="C" ${empty pageMaker.cri.type == 'C' ? selected : ""}>카테고리</option>
 						</select> 
 						<input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}"> 
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">

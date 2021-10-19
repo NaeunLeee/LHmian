@@ -56,43 +56,45 @@ public class CommController {
 		return "myPage/myComment";
 	}
 
-	// 리스트 조회
+	// 리스트 조회 
+	// 10/19 수정 
 	@RequestMapping("commlist")
 	public String getList(Model model, @ModelAttribute("cri") Criteria cri) {
-		if (cri.getType() == "" && cri.getPreType() == null) {
-
+		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
+				&& cri.getKeyword() != null) {
 			int total = commService.getTotalCount(cri);
 			model.addAttribute("list", commService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			System.out.println("1 ----------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("------------------------------------");
+			return "community/commlist"; 
 			
-			System.out.println("1."+cri.getType());
-			System.out.println("2."+cri.getPreType());
-
-			return "community/commlist";
-		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))
-				) {
-			int total = commService.getTotalCount(cri);
-			model.addAttribute("list", commService.getList(cri));
-			model.addAttribute("pageMaker", new PageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			
-			System.out.println("3."+cri.getType());
-			System.out.println("4."+cri.getPreType());
-
-			return "community/commlist";
-		}  else {
+		} else if((cri.getType()!=null)&& cri.getKeyword().equals("") ) {
+			cri.setType("");
 			cri.setPageNum(1);
 			int total = commService.getTotalCount(cri);
 			model.addAttribute("list", commService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			System.out.println("2-----------------------------------");
+			System.out.println(cri.getType());
+			System.out.println(cri.getPreType());
+			System.out.println("------------------------------------");
+			return "community/commlist";
 			
-			System.out.println("5."+cri.getType());
-			System.out.println("6."+cri.getPreType());
-
+		//타입 변환 시 페이지 초기화 조건 ok
+		}	else {
+			cri.setPageNum(1);
+			int total = commService.getTotalCount(cri);
+			model.addAttribute("list", commService.getList(cri));
+			model.addAttribute("pageMaker", new PageVO(cri, total));
+			model.addAttribute("type", cri.getType());
 			return "community/commlist";
 		}
+		
 	}
 
 	// 등록폼 (10/11 수정:이나은)

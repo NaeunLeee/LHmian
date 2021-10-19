@@ -77,7 +77,7 @@
 	</div>
 
 	<div class="container" align="center">
-		<div class="text-box white padding-4 col-7">
+		<div class="text-box white padding-4 col-8">
 			<table class="table">
 				<tbody>
 					<tr>
@@ -109,20 +109,20 @@
 						<th class="align-right">휴대전화</th>
 						<td><input type="text" id="Phone" name="Phone" class="input-text form-control" value="${info.phone}"><br>
 							<div class="pw-msg2" style="display: none"></div><br>
-							<button type="button" class="btnPhone1 btn btn-default">수정</button></td>
+							<button type="button" id="btnPhone1" class="btnPhone1 btn btn-default">수정</button></td>
 					</tr>
-					<tr>
-						<th class="align-right">차량정보</th>
-						<td>
-							<span>차종</span>
-								<input type="text" class="input-text form-control" id="carCode" name="carCode" aria-describedby="basic-addon3"
-									   disabled="disabled" value="${info.carCode}"><br> 
-							<span>차번호</span>
-								<input type="text" class="input-text form-control" id="carType" name="carType"
-									   aria-describedby="basic-addon3" disabled="disabled" value="${info.carType}"><br>
-							<button type="button" data-toggle="modal" data-target="#modal-switch" class="btn btn-default">수정</button>
-						</td>
-					</tr>
+					<c:forEach var="car" items="${car}">
+						<tr>
+							<th class="align-right">차량정보</th>
+							<td><span>차종</span> <input type="text"
+								class="input-text form-control" id="carCode" name="carCode"
+								aria-describedby="basic-addon3" disabled="disabled"
+								value="${car.carCode}"><br> <span>차번호</span> <input
+								type="text" class="input-text form-control" id="carType"
+								name="carType" aria-describedby="basic-addon3"
+								disabled="disabled" value="${car.carType}"><br></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 			<input type="hidden" id="houseInfo" name="houseInfo" class="houseInfo" value="${info.houseInfo}">
@@ -159,12 +159,15 @@
 </section>
 	<!-- for문 같이 여러 폼 형식의 값을 보내고 싶을때는 클래스를 이용해서 보낸다. -->
 	<!-- id는 오로지 하나의 값만 인정된다. -->
-	
+
 	
 	
 	<!-- 10/05 js 전부 수정 -->
 	<script type="text/javascript">
-		$(".btnPhone1").on("click", function() {
+	let csrfHeaderName = "${_csrf.headerName}";
+	let csrfTokenValue = "${_csrf.token}";
+		
+		$("#btnPhone1").on("click", function() {
 			var phone = $("#Phone").val(); 
 			console.log(phone);
 			if(telValidator(phone) == true){
@@ -172,6 +175,9 @@
 				$.ajax({
 				url : "updatePhone",
 				type : "put",
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
 				dataType : "json",
 				data : JSON.stringify({
 					phone : $("#Phone").val()
@@ -200,36 +206,6 @@
 		    alert(msg);
 		    return false;
 		}
-
-
-		$(".btn2").on("click", function() {
-			console.log($(this).prev().children(".carType").val());
-			console.log($(this).prev().children(".carCode").val());
-			console.log($(this).prev().children(".rownum").val());
-			console.log($(".houseInfo").val());
-			$.ajax({
-				url : "updateCar",
-				type : "put",
-				dataType : "json",
-				data : JSON.stringify({
-					houseInfo : $(".houseInfo").val(),
-					carNo : $(this).prev().children(".carNo").val(),
-					carCode : $(this).prev().children(".carCode").val(),
-					carType : $(this).prev().children(".carType").val()
-				}),
-				contentType : 'application/json',
-				success : function(data) {
-					alert("수정이 완료 되었습니다");
-					console.log(data);
-					$("#modal-switch").hide();
-					location.reload();
-				},
-				error : function() {
-					alert("입력되지 않았습니다."); // 실패 시 처리
-				}
-			});
-
-		});
 
 		//비밀번호 실시간 검증
 		$("#newpw").on("propertychange change keyup paste input", function() {
@@ -331,6 +307,9 @@
 				$.ajax({
 					url : "updatePw",
 					type : "put",
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
 					dataType : "json",
 					data : JSON.stringify({
 						password : $("#pw").val(),
