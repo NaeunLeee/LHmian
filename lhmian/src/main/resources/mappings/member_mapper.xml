@@ -199,4 +199,10 @@
 		#{id}
 	</update>
 
+	<select id="selectById" resultType="memberVO">
+		SELECT *
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+
 </mapper>
