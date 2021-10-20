@@ -52,6 +52,6 @@
 		UPDATE VISIT
 		SET VISIT_CONTENT = #{visitContent},
 		VISIT_UPDATE = DEFAULT
-		WHERE WRITER_INFO = #{writerInfo}
+		WHERE VISIT_NO = #{visitNo}
 	</update>
 </mapper>

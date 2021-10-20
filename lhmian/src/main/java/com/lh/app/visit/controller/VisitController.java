@@ -73,7 +73,10 @@ public class VisitController {
 		} else {
 			rttr.addFlashAttribute("message", "수정이 실패했습니다.");
 		}
-		return "redirect:/no/visitList";
+		/* 한솔추가 */
+		
+		 rttr.addAttribute("houseInfo",vo.getHouseInfo()); 
+		 return "redirect:/no/visitList";
 	}
 
 	// 삭제
