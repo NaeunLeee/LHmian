@@ -49,7 +49,7 @@
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='${pageContext.request.contextPath}/facility/library'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-pencil"></span>
+							<span><i class="bi bi-book"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">독서실</h5>
@@ -65,7 +65,7 @@
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='${pageContext.request.contextPath}/facility/gym'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-layers"></span>
+							<span><i class="bi bi-bicycle"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">피트니스 센터</h5>

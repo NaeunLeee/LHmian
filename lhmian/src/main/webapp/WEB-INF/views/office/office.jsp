@@ -5,13 +5,15 @@
 <meta charset="UTF-8">
 
 <style>
-.ce4-feature-box-12 {
-	cursor: pointer;
-}
-
-.trans-15 {
-background-color: rgba(0, 0, 0, 0.15) !important;
-}
+	.ce4-feature-box-12 {
+		cursor: pointer;
+		background-color: white;
+		border-color: #EEEEEE;
+	}
+	
+	.trans-15 {
+		background-color: rgba(0, 0, 0, 0.15) !important;
+	}
 </style>
 
 
@@ -35,7 +37,7 @@ background-color: rgba(0, 0, 0, 0.15) !important;
 		</section>
 		<div class=" clearfix"></div>
 	</div>
-	<section class="sec-padding">
+	<section class="sec-padding section-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 nopadding">
@@ -50,20 +52,19 @@ background-color: rgba(0, 0, 0, 0.15) !important;
 			</div>
 		</div>
 	
-		<div class="container">
+		<div class="container" style="margin-bottom: 200px;">
 			<div class="row">
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='noticeList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-pencil"></span>
+							<span><i class="bi bi-info-square"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">공지사항</h5>
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>멘트가 없어요</p>
 					</div>
 				</div>
 				<!--end item-->
@@ -71,15 +72,14 @@ background-color: rgba(0, 0, 0, 0.15) !important;
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='csList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-layers"></span>
+							<span><i class="bi bi-question-circle"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">민원</h5>
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>멘트 좀 짜주실 분</p>
 					</div>
 				</div>
 				<!--end item-->
@@ -87,15 +87,14 @@ background-color: rgba(0, 0, 0, 0.15) !important;
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='${pageContext.request.contextPath}/office/schedule'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-camera"></span>
+							<span><i class="bi bi-calendar-week"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">일정</h5>
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>제발~~</p>
 					</div>
 				</div>
 				<!--end item-->
@@ -106,15 +105,14 @@ background-color: rgba(0, 0, 0, 0.15) !important;
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='${pageContext.request.contextPath}/itemLost/lostList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-hotairballoon"></span>
+							<span><i class="bi bi-archive"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">분실물 보관소</h5>
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>please~~~~~~</p>
 					</div>
 				</div>
 				<!--end item-->

@@ -30,4 +30,7 @@ public interface GenMapper {
 	
 	// 세대별 관리비 리스트(납부, 미납 전부 조회) 10/19 윤지민
 	public List<ManagementFeeVO> feeList(ManagementFeeVO vo);
+	
+	// 세대 존재하는지 
+	public GenerationVO checkNull(MemberVO vo);
 }

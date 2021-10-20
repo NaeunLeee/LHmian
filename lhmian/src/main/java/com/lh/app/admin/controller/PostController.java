@@ -38,10 +38,7 @@ public class PostController {
 			model.addAttribute("list", postService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			System.out.println("1 ----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
+			System.out.println("1 -----------------");
 			return "admin/admPost";
 			
 		//타입 변환 시 페이지 초기화 조건
@@ -52,10 +49,7 @@ public class PostController {
 			model.addAttribute("list", postService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			System.out.println("2-----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
+			System.out.println("2--------------");
 			return "admin/admPost";
 		// 타입 변환 + 빈칸검색 시 페이지 초기화 -> 타입 초기화
 		} else if((cri.getType() != null && cri.getKeyword().equals(""))) {
@@ -65,10 +59,7 @@ public class PostController {
 			model.addAttribute("list", postService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", null);
-			System.out.println("3 ---------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("-----------------------------------");
+			System.out.println("3 -------------");
 			return "admin/admPost";
 		}
 		else {
@@ -77,7 +68,7 @@ public class PostController {
 			model.addAttribute("list", postService.getList(cri));
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			System.out.println("4");
+			System.out.println("4....");
 			return "admin/admPost";
 		}
 
