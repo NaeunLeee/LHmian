@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.app.excel.mapper.ExcelMapper">
+
+	<sql id="familyNum">
+		<![CDATA[
+			SELECT HOUSE_INFO
+				 , COUNT(*) AS FAMILY_NUM
+			FROM MEMBER 
+			WHERE AUTHOR <> 'ADMIN'
+			GROUP BY HOUSE_INFO
+		]]>
+	</sql>
+	
+	<sql id="owner">
+		SELECT HOUSE_INFO, ID, NAME, PHONE, POSITION FROM MEMBER
+		WHERE AUTHOR = 'OWNER'
+	</sql>
+	
+	<select id="memberListForExcel" resultType="HashMap">
+		WITH 
+		A AS (<include refid="familyNum" />),
+		B AS (<include refid="owner" />)
+		
+		SELECT ROWNUM RN
+		     , A.HOUSE_INFO
+		     , A.FAMILY_NUM
+		     , B.ID
+		     , B.NAME
+		     , B.PHONE
+		     , B.POSITION
+		     , CASE WHEN (SELECT 1
+                FROM DUAL
+                WHERE EXISTS (SELECT HOUSE_INFO FROM MANAGEMENT_FEE
+                WHERE HOUSE_INFO = A.HOUSE_INFO AND PAY_NO IS NULL)
+                ) = 1 THEN '미납'
+                ELSE '납부완료' END AS UN_PAID
+		FROM A JOIN B
+		ON A.HOUSE_INFO = B.HOUSE_INFO
+		ORDER BY HOUSE_INFO
+	</select>
+</mapper>

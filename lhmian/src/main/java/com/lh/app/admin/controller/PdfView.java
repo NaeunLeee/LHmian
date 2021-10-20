@@ -19,19 +19,19 @@ import net.sf.jasperreports.engine.JasperPrint;
 @Component
 public class PdfView extends AbstractView {
 	
-	@Autowired
-	DataSource datasource;
+//	@Autowired
+//	DataSource datasource;
 	
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
-		Connection conn = datasource.getConnection();
-		String reportFile = (String)model.get("filename");
-		Map<String, Object> param = (Map<String, Object>) model.get("param");
-		String jrxmlFile = getClass().getResource(reportFile).getFile();
-		String jasperFile = JasperCompileManager.compileReportToFile( jrxmlFile );
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile, param, conn);
-		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+//		Connection conn = datasource.getConnection();
+//		String reportFile = (String)model.get("filename");
+//		Map<String, Object> param = (Map<String, Object>) model.get("param");
+//		String jrxmlFile = getClass().getResource(reportFile).getFile();
+//		String jasperFile = JasperCompileManager.compileReportToFile( jrxmlFile );
+//		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile, param, conn);
+//		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 		
 	}
 	
