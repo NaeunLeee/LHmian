@@ -277,6 +277,12 @@
 			<version>0.2.14</version>
 		</dependency>
 		
+		<dependency>
+		  <groupId>com.lowagie</groupId>
+		  <artifactId>itext</artifactId>
+		  <version>4.2.0</version>
+		</dependency>
+		
 		<!-- spring_ireport ()-->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
