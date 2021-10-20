@@ -97,7 +97,8 @@
 
 				<div>
 					<button class="btn btn-dark" type="button" id="registerBtn" style="margin-right: 5px;">세대 등록</button>
-					<button class="btn btn-gyellow" type="button" id="showModal">SMS전송</button>
+					<button class="btn btn-gyellow" type="button" id="showModal" style="margin-right: 5px;">SMS전송</button>
+					<button class="btn btn-gyellow" type="button" id="excelDownload">엑셀 다운로드</button>
 					<button class="btn btn-default" type="button" onclick="deleteGen()" id="deleteBtn" style="float:right;">세대 삭제</button>
 				</div>
 				<div class="text-box white padding-t40">
@@ -321,6 +322,12 @@
       </div>
    </div>
    <!-- Modal End -->
+   
+   <!-- 엑셀 다운로드를 위한 폼 태그, 10/20 윤지민 -->
+   <form id="excelForm" name="excelForm" method="POST" action="excelDownload">
+   		<!-- CSRF 토큰 -->
+        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+   </form>
 
 <script>
 
@@ -947,5 +954,11 @@
 			});
 		}
 	});
+	
+	//엑셀 다운로드하기 10/20 윤지민
+	$('#excelDownload').on('click', function() {
+		$('#excelForm').submit();
+	});
+	
 	
 </script>
