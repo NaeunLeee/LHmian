@@ -15,8 +15,8 @@ public class EnergyserviceImpl implements EnergyService {
 	EnergyMapper energyMapper;
 
 	@Override
-	public List<EnergyVO> thisYear(String columnName) {
-		return energyMapper.thisYear(columnName);
+	public List<EnergyVO> thisYear(EnergyVO vo) {
+		return energyMapper.thisYear(vo);
 	}
 
 	@Override

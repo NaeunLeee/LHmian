@@ -264,6 +264,8 @@
 					//넘어온 값 생성된 box에 세팅
 					$('#dong').val(dong);
 					$('#hosu').val(hosu);
+					$('#houseInfo').val(data.houseInfo);
+					
 					if (data.gubun == 'OWNER') {
 						$('#gubunPretty').val('세대주');
 					} else {
@@ -433,7 +435,7 @@
 						<div class="gm-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">회원 정보 입력</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">.</p>
+						<p class="by-sub-title">회원 정보를 입력해주세요.</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>

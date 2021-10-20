@@ -19,6 +19,7 @@ public class CsCriteria {
 	
 	// 10/18 
 	private String preType;
+	private String preKey;
 	
 	public String[] getTypeArr() {
 		return type == null ? new String[] {} : type.split("");

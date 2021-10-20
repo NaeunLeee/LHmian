@@ -215,9 +215,9 @@
 									<span style="background-color: #f5f5f5"> SNS 로그인 / 회원가입 </span>
 								</div>
 							</div>
-							<div class="section">
-								<img src="./resources/images/kakao_login_medium_narrow.png"
-									onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=5986adbc56a3444841aed3bd67e4976d&redirect_uri=http://localhost:8091/app/kakaoLogin&response_type=code'">
+							<div class="section text-center">
+								<img src="./resources/images/kakao_login_large_wide.png"
+									style="width: 390px;" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=5986adbc56a3444841aed3bd67e4976d&redirect_uri=http://localhost:8091/app/kakaoLogin&response_type=code'">
 							</div>
 						</div>
 

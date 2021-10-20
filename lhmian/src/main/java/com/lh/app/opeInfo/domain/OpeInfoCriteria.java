@@ -12,6 +12,7 @@ public class OpeInfoCriteria {
 
 	// 10/15 추가
 	private String preType;
+	private String preKey;
 	
 	public OpeInfoCriteria() {}
 

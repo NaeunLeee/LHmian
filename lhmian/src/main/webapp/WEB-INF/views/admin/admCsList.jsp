@@ -14,7 +14,6 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
-
 .container {
 	width: 85%;
 }
@@ -57,7 +56,6 @@ table {
 .nav-tabs.nav-justified>li>.active {
 	background-color: #C8C6C6;
 }
-
 </style>
 
 
@@ -91,21 +89,18 @@ table {
 				<div class="col-md-2 col-sm-6 col-xs-12 section-white">
 					<div class="pages-sidebar-item">
 						<ul class="pages-sidebar-links">
-							<li><a href="feeList">관리비</a></li>
-							<li><a href="admEnergyCon">에너지 사용량</a></li>
-							<li><a href="admGeneration">세대 관리</a></li>
-							<li><a href="admMemberList">회원 관리</a></li>
-							<li><a href="admCarList">차량 관리</a></li>
-							<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
-							<li><a href="admSked">일정 관리</a></li>
-							<li><a href="admPost">택배 관리</a></li>
+						<li><a href="admGeneration">세대 관리</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
+						<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-10 col-sm-6 col-xs-12">
 					<div></div>
-					<br>
-					<br>
+					<br> <br>
 					<div class="sec-title-container less-padding-3 text-left">
 						<div class="title-line-3 align-left"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">게시글 관리</h4>
@@ -162,8 +157,7 @@ table {
 								</c:forEach>
 							</tbody>
 						</table>
-						<br>
-						<br>
+						<br> <br>
 
 						<!-- 10/15 id수정 -->
 						<div id="pageBtn" align="center">
@@ -189,7 +183,7 @@ table {
 						<div align="center" id="criteriaForm" data-option="${type}">
 							<form id="actionForm" action="admCsList" method="get">
 								<select name="type" class="form-control" style="width: 100px;">
-									<option  value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
+									<option value="" ${empty pageMaker.cri.type ? selected : ""}>선택</option>
 									<option id="T" value="T"
 										${pageMaker.cri.type == 'T' ? selected : ""}>제목</option>
 									<option id="C" value="C"
@@ -200,9 +194,10 @@ table {
 									style="width: 200px;" value="${pageMaker.cri.keyword}">
 								<input type="hidden" name="pageNum"
 									value="${pageMaker.cri.pageNum}"> <input type="hidden"
-									name="amount" value="${pageMaker.cri.amount}">
-								<input type="hidden" name="preType" id="preType" value="${type}">
-								<button type="submit" class="btn btn-dark">검색</button>
+									name="amount" value="${pageMaker.cri.amount}"> <input
+									type="hidden" name="preType" id="preType" value="${type}">
+								<input type="hidden" name="preKey" id="preKey" value="${preKey}">
+								<button type="button" id="btnSearch" class="btn btn-dark">검색</button>
 							</form>
 						</div>
 					</div>
@@ -241,6 +236,15 @@ table {
 
 	});
 
+	$("#btnSearch").on("click", function(e) {
+		e.preventDefault();
+		if ($('[name="keyword"]').val() == "") {
+			location.href = "admCsList";
+		} else {
+			actionForm.submit();
+		}
+	});
+
 	$(document).ready(function() {
 		var result = '<c:out value="${message}"/>';
 
@@ -252,27 +256,29 @@ table {
 	});
 
 	let option = $('#criteriaForm').attr('data-option');
-	$(document).ready(function() {
+	if ($('[name="keyword"]').val() != "") {
+		$(document).ready(function() {
 
-		if (option.indexOf('T') != -1) {
-			$('#T').prop("selected", true);
-		} else {
-			$('#T').prop("selected", false);
-		}
+			if (option.indexOf('T') != -1) {
+				$('#T').prop("selected", true);
+			} else {
+				$('#T').prop("selected", false);
+			}
 
-		if (option.indexOf('C') != -1) {
-			$('#C').prop("selected", true);
-		} else {
-			$('#C').prop("selected", false);
-		}
+			if (option.indexOf('C') != -1) {
+				$('#C').prop("selected", true);
+			} else {
+				$('#C').prop("selected", false);
+			}
 
-		if (option.indexOf('TC') != -1) {
-			$('#TC').prop("selected", true);
-		} else {
-			$('#TC').prop("selected", false);
-		}
+			if (option.indexOf('TC') != -1) {
+				$('#TC').prop("selected", true);
+			} else {
+				$('#TC').prop("selected", false);
+			}
 
-	});
+		});
+	}
 </script>
 
 </html>

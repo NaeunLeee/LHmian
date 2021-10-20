@@ -204,6 +204,7 @@ p {
 			};
 		});
 	
+
 	//한솔 추가
 	function update(btn) {
 		if (btn.innerText == "수정") {
@@ -227,6 +228,7 @@ p {
 			console.log(content);
 			$('#visitUpdate').attr("placeholder", content); */
 /* 			$('#visitUpdate').val(content); */
+
 			//등록창이 열려있다면 숨겨준다
 /*  			if($('.vContent').css("display") == 'block' ) {
 			$('.vContent').hide();

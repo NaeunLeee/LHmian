@@ -53,17 +53,25 @@ public class OpeInfoController {
 			model.addAttribute("list", opeInfoService.getList(cri));
 			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			System.out.println("1 ----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
+			model.addAttribute("preKey", cri.getKeyword());
+			System.out.println("1");
 			return "introduce/opeInfoList";
-		} else {
+		} else if( (cri.getKeyword()!=null && cri.getPreKey()!=null)&&(!cri.getKeyword().equals(cri.getPreKey())) ) {
+			cri.setPageNum(1);
 			int total = opeInfoService.getTotalCount(cri);
 			model.addAttribute("list", opeInfoService.getList(cri));
 			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-
+			model.addAttribute("preKey", cri.getKeyword());
+			System.out.println("2");
+			return "introduce/opeInfoList";
+		}
+		else {
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
 			System.out.println("2");
 
 			return "introduce/opeInfoList";
@@ -81,17 +89,35 @@ public class OpeInfoController {
 	// 10/18 수정
 	@GetMapping("/admin/admOpeInfoList")
 	public String admOpeInfoList(Model model, @ModelAttribute("cri") OpeInfoCriteria cri) {
-		
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
+			cri.setPageNum(1);
 			int total = opeInfoService.getTotalCount(cri);
 			model.addAttribute("list", opeInfoService.getList(cri));
 			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-
-			System.out.println("5." + cri.getType());
-			System.out.println("6." + cri.getPreType());
+			model.addAttribute("preKey", cri.getKeyword());
+			System.out.println("1");
+			return "admin/admOpeInfoList";
+		} else if( (cri.getKeyword()!=null && cri.getPreKey()!=null)&&(!cri.getKeyword().equals(cri.getPreKey())) ) {
+			cri.setPageNum(1);
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			System.out.println("2");
+			return "admin/admOpeInfoList";
+		}
+		else {
+			int total = opeInfoService.getTotalCount(cri);
+			model.addAttribute("list", opeInfoService.getList(cri));
+			model.addAttribute("pageMaker", new OpeInfoPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
 
 			return "admin/admOpeInfoList";
-		
+		}
 	}
 
 	// 관리자 단건 조회

@@ -30,6 +30,7 @@
 			WRITER_INFO
 		FROM VISIT
 		WHERE HOUSE_INFO = #{houseInfo}
+			AND VISIT_WRITER = #{visitWriter}
 	</select>
 
 	<insert id="insert">

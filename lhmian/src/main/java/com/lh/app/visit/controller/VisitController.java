@@ -44,7 +44,8 @@ public class VisitController {
 
 	// 세대선택, 전체조회
 	@GetMapping("/no/visitList")
-	public String list(Model model, VisitVO vo) {
+	public String list(Model model, VisitVO vo, @AuthenticationPrincipal CustomUserDetails user) {
+		vo.setVisitWriter(user.getNAME());
 		model.addAttribute("list", visitService.getList(vo));
 		return "no/visitList";
 	}

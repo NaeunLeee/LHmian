@@ -69,11 +69,6 @@ public class CommController {
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
 			model.addAttribute("preKey", cri.getKeyword());
-			System.out.println("1.");
-			System.out.println("type : " + cri.getType());
-			System.out.println("preType : " + cri.getPreType());
-			System.out.println("keyword : " + cri.getKeyword());
-			System.out.println("prekey : " + cri.getPreKey());
 			return "community/commlist";
 		} else if( (cri.getKeyword()!=null && cri.getPreKey()!=null)&&(!cri.getKeyword().equals(cri.getPreKey())) ) {
 			cri.setPageNum(1);
@@ -82,11 +77,6 @@ public class CommController {
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
 			model.addAttribute("preKey", cri.getKeyword());
-			System.out.println("1.");
-			System.out.println("type : " + cri.getType());
-			System.out.println("preType : " + cri.getPreType());
-			System.out.println("keyword : " + cri.getKeyword());
-			System.out.println("prekey : " + cri.getPreKey());
 			return "community/commlist";
 		}
 		else {
@@ -95,11 +85,6 @@ public class CommController {
 			model.addAttribute("pageMaker", new PageVO(cri, total));
 			model.addAttribute("type", cri.getType());
 			model.addAttribute("preKey", cri.getKeyword());
-			System.out.println("2.");
-			System.out.println("type : " + cri.getType());
-			System.out.println("preType : " + cri.getPreType());
-			System.out.println("keyword : " + cri.getKeyword());
-			System.out.println("prekey : " + cri.getPreKey());
 			return "community/commlist";
 		}
 

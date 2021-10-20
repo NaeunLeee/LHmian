@@ -191,6 +191,7 @@ th {
 			</div>
 		</div>
 	</div>
+</section>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	//수정모달
