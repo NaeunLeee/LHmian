@@ -22,7 +22,6 @@
 
 .mm-survey-container {
 	width: 100%;
-	min-height: 600px;
 	background: #fafafa;
 	position: relative;
 }
@@ -350,13 +349,18 @@ input[type="radio"]:checked+label {
 	<section class="sec-padding section-light">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12 nopadding">
+				<div class="col-xs-12">
 					<div class="sec-title-container-padding-topbottom text-center">
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">투표하기</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">투표를 어쩌구~~~~~~~~~~~~~~~~~~</p>
+						<p class="by-sub-title">LHmian을 올바르게 가꾸어나가기 위한 소중한 한 표를 선사해주세요.</p>
 					</div>
+					<p class="text-center">
+					필독해주세요<br>
+					한 번 투표하면 재투표할 수 없습니다. 신중하게 투표해주세요.<br>
+					
+					</p>
 				</div>
 				<div class="clearfix"></div>
 				<!--end title-->
@@ -393,7 +397,6 @@ input[type="radio"]:checked+label {
 												</form>
 											</div>
 										</div>
-										안내문~~~~<br> 투표는 한번 하면 취소할 수 어쩌구~~
 									</div>
 
 									<div class="mm-survey-controller">

@@ -38,7 +38,7 @@
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">편의시설</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">편의시설.. 에 대한... 설명....</p>
+						<p class="by-sub-title">LHmian의</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>

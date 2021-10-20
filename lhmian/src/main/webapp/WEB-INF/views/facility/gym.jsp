@@ -73,9 +73,10 @@
 				<div class="col-xs-12 nopadding">
 					<div class="sec-title-container-padding-topbottom text-center">
 						<div class="pl-title-line-1"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">피트니스 센터</h4>
+						<h1 class="uppercase font-weight-7 less-mar-1">피트니스 센터</h1>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">LHmian의 자랑, 근손실없는피트니스 입니다.</p>
+						<p class="by-sub-title">
+						</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -93,9 +94,10 @@
 					</div>
 				</div>
 				<div class="col-md-6 margin-bottom">
-					<h5 class="font-weight-4">근손실 없는 피트니스</h5>
-					<div class="clearfix"></div>
-					<p class="by-sub-title">LHmian의 자랑, 근손실 없는 피트니스 입니다.</p>
+					<h4 class="font-weight-4">
+						LHmian의 피트니스에는 다양한 종류의 운동 기구가 준비되어 있습니다.<br>
+						탁 트인 전망을 감상하고, 숲 속 맑은 공기를 마시며 몸 속의 에너지를 돋워 보십시오.
+					</h4>
 					<br />
 					<ul class="iconlist gyellow">
 						<li><i class="fa fa-check"></i> 
@@ -120,6 +122,55 @@
 	</section>
 	<div class="clearfix"></div>
 	<!-- end section -->
+
+<section class="section-side-image clearfix">
+      <div class="img-holder col-md-6 col-sm-3 pull-left">
+        <div class="background-imgholder" style="background:url(${pageContext.request.contextPath}/resources/images/gym_1.jpg);"> <img class="nodisplay-image" src="images/wg-3.jpg" alt=""> </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-7 col-sm-8 col-sm-offset-4 text-inner-5 clearfix align-left">
+            <div class="text-box">
+              <div class="col-xs-12 text-center nopadding">
+                <div class="sec-title-container less-padding-3 text-left">
+                  <h2 class="typography-title-6 font-weight-3 playfair"><span>Keep</span>&nbsp;&nbsp;&nbsp;<br> FIT<span class="text-gyellow">.</span></h2>
+                  <div class="typography-title-line-3"></div>
+                  <div class="clearfix"></div>
+                  <div class="wg-title-line-1"><img src="images/wg-2.png" alt=""></div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <!--end title-->
+              <h1 style="padding-bottom: 30px;">매일매일, 건강하게</h1>
+              <h3 style="line-heignt: 30px;">
+              	LHmian의 피트니스에는 다양한 종류의 운동 기구가<br> 준비되어 있습니다.<br>
+				탁 트인 전망을 감상하고, 숲 속 맑은 공기를 마시며<br> 몸 속의 에너지를 돋워 보십시오.		
+              </h3>
+					<ul class="iconlist gyellow" style="font-size: 20px;">
+						<li><i class="fa fa-check"></i> 
+							쾌적한 환경
+						</li>
+						<li><i class="fa fa-check"></i> 
+							체계적인 관리
+						</li>
+						<li><i class="fa fa-check"></i> 
+							다양한 시설
+						</li>
+						<li><i class="fa fa-check"></i> 
+							다양한 수상 경력 
+						</li>
+					</ul>
+              <br>
+              <div class="divider-line dotted"></div>
+              <br>
+              <p>운영시간 : 연중 무휴<br>
+				(Break Time : 13:00 ~ 14:00)<br>
+				문의 : 010-1234-1234<br>
+				*운영시간은 변동될 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
 	<div class="divider-line solid light"></div>
 	<br><br>
