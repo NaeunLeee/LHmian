@@ -18,7 +18,7 @@ textarea {
 .cbp-item-yj {
 	border: 1px solid lightGray;
 	margin: 0;
-	padding: 100px;
+	padding: 50px;
 }
 </style>
 
@@ -115,8 +115,9 @@ textarea {
 				$.each(datas, function(i, data) {
 					var gntOne = '<div class="status">'
 								+ '		<div class="cbp-item-yj web-design generation">'
-								+ '			<button value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">'
-								+ data.houseInfo
+								+ '			<img src="${pageContext.request.contextPath}/resources/images/logo/postbox.png" style="width: 100%; height: 100%">'
+								+ '			<button class="btn btn-default" value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">'
+								+ data.houseInfo.toString().substring(0, 3) + '동 ' + data.houseInfo.toString().substring(3, 7) + '호'
 								+ '			</button>'
 								+ '		</div>'
 								+ '</div>';
@@ -124,7 +125,7 @@ textarea {
 				});
 			}
 		});
-		$('#listBtn').append($('<button style="height:100%; width:100%" id="addBtn">더보기+</button>'));
+		$('#listBtn').append($('<button class="btn btn-gyellow" style="height:100%; width:100%" id="addBtn">더보기+</button>'));
 	}
 
 	//더보기 클릭시 페이징
@@ -144,8 +145,9 @@ textarea {
 				$.each(datas, function(i, data) {
 					var gntOne = '<div class="status">'
 								+ '		<div class="cbp-item-yj web-design generation">'
-								+ '			<button value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">'
-								+ data.houseInfo
+								+ '			<img src="${pageContext.request.contextPath}/resources/images/logo/postbox.png" style="width: 100%;">'
+								+ '			<button class="btn btn-default" value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">'
+								+ data.houseInfo.toString().substring(0, 3) + '동 ' + data.houseInfo.toString().substring(3, 7) + '호'
 								+ '			</button>'
 								+ '		</div>'
 								+ '</div>';

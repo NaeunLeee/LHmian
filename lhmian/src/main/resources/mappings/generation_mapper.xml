@@ -168,4 +168,11 @@
          AND PAY_NO IS NULL
        GROUP BY ROLLUP((MF_DATE, HOUSE_INFO, PAY_NO))
    </select>
+   
+   <select id="checkNull" resultType="generationVO">
+		SELECT * FROM GENERATION
+		WHERE HOUSE_INFO NOT IN (SELECT HOUSE_INFO FROM MEMBER)
+		AND HOUSE_INFO = #{houseInfo}
+   </select>
+   
 </mapper>

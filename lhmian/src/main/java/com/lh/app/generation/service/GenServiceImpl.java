@@ -52,6 +52,10 @@ public class GenServiceImpl implements GenService {
 		return genMapper.feeList(vo);
 	}
 
+	public GenerationVO checkNull(MemberVO vo) {
+		return genMapper.checkNull(vo);
+	}
+
 
 	
 	
