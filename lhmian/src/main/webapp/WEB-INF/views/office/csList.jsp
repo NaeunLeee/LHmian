@@ -75,7 +75,7 @@ table {
                   <div class="pl-title-line-1"></div>
                   <h4 class="uppercase font-weight-7 less-mar-1">민원게시판</h4>
                   <div class="clearfix"></div>
-                  <p class="by-sub-title" style="font-size: 13px;">민원... 어쩌구..ㅋㅋ</p>
+                  <p class="by-sub-title" style="font-size: 13px;">민원사항을 남겨주세요.</p>
                </div>
             </div>
             <div class="clearfix"></div>

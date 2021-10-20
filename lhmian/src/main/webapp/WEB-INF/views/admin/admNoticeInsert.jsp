@@ -26,6 +26,9 @@
 	.nav-tabs.nav-justified>li>.active {
 		background-color: #C8C6C6;
 	}
+	.margin-top-20 {
+		margin-top: 20px;
+	}
 </style>
 
 </head>
@@ -112,13 +115,14 @@
 						</div>
 					</form>
 				</div>
-				</div>
-				<br>
-			</div><br><br>
-			<div align="center">
+				<div class="margin-top-20" align="center">
 				<button type="button" id="insertBtn" class="btn btn-dark">등록</button>
 				<button type="button" class="btn btn-default" onclick="location.href='admNoticeList'">목록</button>
 			</div>
+				</div>
+				<br>
+			</div><br><br>
+			
 		</div>
 	</section>
 </body>

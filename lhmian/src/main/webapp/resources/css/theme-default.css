@@ -4026,7 +4026,7 @@ background-color: #fff;
 /* 2021-10-01 흰색, 구분선 없는버전 윤지민 */
 .pagenation-holder-no-bottom { 
 	float: left;
-	margin:88px 0 0 0;
+	margin:80px 0 0 0;
 	padding: 25px 0 25px;
 	width: 100%;
 	background-color: #f5f5f5;
