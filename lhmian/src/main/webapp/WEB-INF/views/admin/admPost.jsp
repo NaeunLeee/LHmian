@@ -149,7 +149,7 @@
 			</div>
 
 			<!-- 폼 -->
-			<div id="pageButton" style="margin: auto; width: 50%">
+			<div id="pageButton" style="margin: auto; width: 50%" align="center">
 				<ul class="pagination hover-orange">
 					<c:if test="${pageMaker.prev == true}">
 						<li><a href="${pageMaker.startPage-1}"> <span aria-hidden="true"><i
@@ -168,7 +168,7 @@
 			</div>
 			
 			<!-- 수정 -->
-			<div style="margin:auto;" id="criteriaForm" data-option="${type}">
+			<div style="margin:auto;" id="criteriaForm" data-option="${type}" align="center">
 				<form id="actionForm" action="admPost" method="get" >
 					<!-- 메소드 생략시 자동으로 get로 전환 -->
 					<select name="type" class="form-control" style="width: 100px; display: inline;">
