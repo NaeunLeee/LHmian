@@ -26,36 +26,30 @@ public class CarListController {
 	// 전체조회
 	@GetMapping("/admin/admCarList")
 	public String carList(Model model, @ModelAttribute("cri") CarListCriteria cri) {
-		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
-				&& cri.getKeyword() != null) {
-			int total = service.getTotalCount(cri);
-			model.addAttribute("list", service.getList(cri));
-			model.addAttribute("pageMaker", new CarListPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			System.out.println("1 ----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
-			return "admin/admCarList";
-		} else if ((cri.getType() != null) && cri.getKeyword().equals("")) {
-			cri.setType("");
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
 			cri.setPageNum(1);
 			int total = service.getTotalCount(cri);
 			model.addAttribute("list", service.getList(cri));
 			model.addAttribute("pageMaker", new CarListPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			System.out.println("2-----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
+			model.addAttribute("preKey", cri.getKeyword());
 			return "admin/admCarList";
-			// 타입 변환 시 페이지 초기화 조건 ok
-		} else {
+		} else if( (cri.getKeyword()!=null && cri.getPreKey()!=null)&&(!cri.getKeyword().equals(cri.getPreKey())) ) {
 			cri.setPageNum(1);
 			int total = service.getTotalCount(cri);
 			model.addAttribute("list", service.getList(cri));
 			model.addAttribute("pageMaker", new CarListPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			return "admin/admCarList";
+		}
+		else {
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new CarListPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
 			return "admin/admCarList";
 		}
 	}

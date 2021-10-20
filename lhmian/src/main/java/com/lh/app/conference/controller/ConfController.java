@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lh.app.comm.domain.PageVO;
 import com.lh.app.conference.domain.ConfCriteria;
 import com.lh.app.conference.domain.ConfPageVO;
 import com.lh.app.conference.domain.ConfVO;
@@ -25,13 +26,39 @@ public class ConfController {
 	ConfService confService;
 	
 	// 전체 조회
+	// 10/20 수정
 	@GetMapping("/resident/confList")
 	public String confList(Model model, @ModelAttribute("cri") ConfCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
+			cri.setPageNum(1);
+			int total = confService.getTotalCount(cri);
+			model.addAttribute("list", confService.getList(cri));
+			model.addAttribute("pageMaker", new ConfPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			model.addAttribute("user", customUserDetails);
+			return "resident/confList";
+		} else if( (cri.getKeyword()!=null && cri.getPreKey()!=null)&&(!cri.getKeyword().equals(cri.getPreKey())) ) {
+			cri.setPageNum(1);
+			int total = confService.getTotalCount(cri);
+			model.addAttribute("list", confService.getList(cri));
+			model.addAttribute("pageMaker", new ConfPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			model.addAttribute("user", customUserDetails);
+			return "resident/confList";
+		}
+		else {
+		
 		int total = confService.getTotalCount(cri);
 		model.addAttribute("list", confService.getList(cri));
 		model.addAttribute("pageMaker", new ConfPageVO(cri, total));
+		model.addAttribute("type", cri.getType());
 		model.addAttribute("user", customUserDetails);
+		model.addAttribute("preKey", cri.getKeyword());
 		return "resident/confList";
+		}
 	}
 	
 	// 단건 조회
