@@ -17,6 +17,10 @@ public class ConfCriteria {
 	      this.amount = amount;
 	}
 	
+	// 10/20 추가
+	private String preType;
+	private String preKey;
+	
 	public String[] getTypeArr() {
 		return type == null ? new String[] {} : type.split("");
 	} 

@@ -153,6 +153,8 @@ table {
 							value="${pageMaker.cri.keyword}"> <input type="hidden"
 							name="pageNum" value="${pageMaker.cri.pageNum}"> <input
 							type="hidden" name="amount" value="${pageMaker.cri.amount}">
+						
+						<input type="hidden" name="preKey" id="preKey" value="${preKey}">
 						<input type="hidden" name="preType" id="preType" value="${type}">
 						<button type="button" id="btnSearch" class="btn btn-dark">검색</button>
 					</form>

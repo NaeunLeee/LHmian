@@ -181,7 +181,6 @@ textarea:focus {
 				},
 				success: function (result) {
 					if (result == true) {
-						alert("성공")
 						window.location.href = "commlist";
 					}
 				},
@@ -277,7 +276,7 @@ textarea:focus {
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 			},
 			success: function (data) {
-				showList();
+				location.reload();
 			},
 			error: function () {
 				alert("등록 실패");
@@ -300,7 +299,6 @@ textarea:focus {
 			}),
 			contentType: 'application/json',
 			success: function (datas) {
-				alert("성공")
 				console.log(datas)
 				showList();
 			},
@@ -325,7 +323,6 @@ textarea:focus {
 			contentType: 'application/json',
 			success: function (result) {
 				if (result == true) {
-					alert("성공")
 					showList();
 				}
 			},

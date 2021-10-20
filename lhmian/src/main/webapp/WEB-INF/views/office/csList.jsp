@@ -154,7 +154,8 @@ table {
          <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
          <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
          <input type="hidden" name="preType" id="preType" value="${type}">
-         <button type="submit" class="btn btn-dark">검색</button>
+         <input type="hidden" name="preKey" id="preKey" value="${preKey}">
+         <button type="button" id="btnSearch" class="btn btn-dark">검색</button>
       </form>
    </div>
 </div>
@@ -188,6 +189,15 @@ table {
       });
 
    });
+   
+   $("#btnSearch").on("click", function(e) {
+		e.preventDefault();
+		if ($('[name="keyword"]').val() == "") {
+			location.href = "csList";
+		} else {
+			actionForm.submit();
+		}
+	});
 
    $(document).ready(function() {
       var result = '<c:out value="${message}"/>';
