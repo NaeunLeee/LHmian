@@ -28,6 +28,10 @@
 		<id>jaspersoft-third-party</id>
 		<url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
 	    </repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
 	</repositories>
 	
 	<dependencies>
@@ -310,12 +314,6 @@
 
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
 
 	<build>
 		<plugins>
