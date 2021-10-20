@@ -59,7 +59,7 @@
 			</div>
 		</div>
 	</div>
-</section> -->
+</section>
 <div class="clearfix"></div>
 
 

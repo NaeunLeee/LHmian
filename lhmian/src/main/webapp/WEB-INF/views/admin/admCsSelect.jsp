@@ -97,7 +97,8 @@
 							<div class="text-box">
 							<h4 class="col-md-8 font-weight-7" style="margin-top: 5px;">${cs.csTitle}</h4>
 							<h6 class="col-md-4" style="float: right; text-align: end;">
-							작성일자 : <fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" /> | 최종수정 : <fmt:formatDate value="${cs.csUpdate}" pattern="yy-MM-dd" /></h6>
+							작성일자 : <fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" /> 
+							<c:if test="${not empty cs.csUpdate}"> | 수정일자 : <fmt:formatDate value="${cs.csUpdate}" pattern="yy-MM-dd" /></c:if></h6>
 							<form id="deleteForm" name="deleteForm" action="admCsDelete" method="post">
 								<input type="hidden" id="csNo" name="csNo" value="${cs.csNo}">
 								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">

@@ -50,7 +50,7 @@ textarea:focus {
 #csContent {
 	margin:20px 0;
 	width: 100%;
-	min-height: 200px;
+	min-height: 100px;
 	background-color:transparent; 
 	border:none;
 	

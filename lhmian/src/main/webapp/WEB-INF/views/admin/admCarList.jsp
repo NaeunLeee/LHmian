@@ -150,11 +150,11 @@ td {
 									${pageMaker.cri.type=='C' ? selected : ""}>차량번호</option>
 							</select> <input name="keyword" class="form-control" style="width: 200px;"
 								value="${pageMaker.cri.keyword}">
+							<button type="button" id="btnSearch" class="btn btn-dark">검색</button>
 							<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 							<input type="hidden" name="amount" value="${pageMaker.cri.amount}"><br>
 							<input type="hidden" name="preKey" id="preKey" value="${preKey}">
 							<input type="hidden" name="preType" id="preType" value="${type}">
-							<button type="button" id="btnSearch" class="btn btn-dark">검색</button>
 						</form>
 					</div>
 				</div>
