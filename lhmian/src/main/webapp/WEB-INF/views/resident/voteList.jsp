@@ -84,7 +84,6 @@
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">투표</h4>
 						<div class="clearfix"></div>
-						<br>
 						<p class="by-sub-title">우리 아파트를 올바르게 가꾸어나가기 위한 소중한 한 표를 선사해주세요.</p>
 					</div>
 				</div>
