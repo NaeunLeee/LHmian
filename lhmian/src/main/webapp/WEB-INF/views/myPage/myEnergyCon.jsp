@@ -1,37 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-#myGaugeChart {
-	witdh: 500px;
-	height: 500px;
-	padding-left: 30px;
-}
-
 .col-md-12 {
 	margin: 10px;
-}
-
-select {
-	display: block;
-}
-
-.btn-yj {
-	display: inline-block;
-}
-
-.btn-month {
-	width: 100px;
-	margin: 0px 5px;
-}
-
-.col-md-8 {
-	padding-left: 65px;
 }
 
 .margin-bottom {
 	margin-bottom: 50px;
 	padding-bottom: 0
 }
+
+table {
+	text-align: center;
+}
+
 </style>
 
 <section>
@@ -76,24 +58,8 @@ select {
 				단위 : kwh
 			</div>
 			<div class="col-md-12 bar-chart"></div>
-			<div>
-				<table border="1">
-					<tr>
-						<th>연월</th>
-					</tr>
-					<tr>
-						<th>금년</th>
-					</tr>
-					<tr>
-						<th>전년</th>
-					</tr>
-					<tr>
-						<th>비교값</th>
-					</tr>
-					<tr>
-						<th>비교아이콘</th>
-					</tr>
-				</table>
+			<div class="energyTable">
+				
 			</div>
 		</div>
 	</div>
@@ -102,9 +68,10 @@ select {
 <script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
 <script>
 	$(document).ready( function() {
-		var thisData = null;
-		var lastData = null;
-		var mfDate = null;
+		var thisData;
+		var lastData;
+		var thisDate;
+		var lastDate;
 	//차트-첫 로딩시 현재 월 차트 보여주고, 월 버튼 클릭시 해당 월의 데이터 표시
 	var tagBar = "";
 	tagBar += '<h4 class="uppercase">1년 그래프</h4>'
@@ -119,17 +86,27 @@ select {
 		data : {
 			columnName : "ENG"
 		},
+		async: false,
 		success : function(datas) {
 			var data = [];
 			var date = [];
 			for(let i=0; i<datas.length; i++) {
 				data.push(datas[i].eng);
-				date.push(datas[i].mfDate);
+				//mfDate에서 월만 추출
+				var year;
+				var month;
+				var thisYear;
+				
+				year = datas[i].mfDate.substr(0, 2);
+				month = datas[i].mfDate.substr(2, 3);
+				thisYear = "20" + year + "." + month;
+				//console.log(thisYear);
+				date.push(thisYear);
 			}
 			thisData = data;
-			mfDate = date;
-			console.log(thisData);
-			console.log(mfDate);
+			thisDate = date;
+			//console.log(thisData);
+			//console.log(mfDate);
 		},
 		error : function(error) {
 			console.log(error);
@@ -143,44 +120,137 @@ select {
 		data : {
 			columnName : "ENG"
 		},
+		async: false,
 		success : function(datas) {
 			var data = [];
-			for(let i=0; i<datas.length; i++) {
-				data.push(datas[i].eng);
-			}
-			/* if(datas.length != 12) {
+			var date = [];
+			if(datas.length != 12) {
 				var temp = 12 - datas.length;
-					data.push(temp().fill(0));
-			} */
+				for(let i=0; i<temp; i++) {
+					data.push(0);
+					date.push(" ");
+				}
+				for(let i=0; i<datas.length; i++) {
+					data.push(datas[i].eng);
+					
+					//mfDate에서 월만 추출
+					var year;
+					var month;
+					var lastYear;
+					
+					year = datas[i].mfDate.substr(0, 2);
+					month = datas[i].mfDate.substr(2, 3);
+					lastYear = "20" + year + "." + month;
+					//console.log(lastYear);
+					date.push(lastYear);
+				}
+			}
 			lastData = data;
-			console.log(lastData);
+			lastDate = date;
+			//console.log(lastData);
 		},
 		error : function(error) {
 			console.log(error);
 		}
 	});
-		bar(thisData, lastData);
-	});
+
+	bar(thisData, lastData);
 
 	/* 바차트(월별) */
-	function bar(thisData, lastData, mfDate) {
+	function bar(thisData, lastData) {
+		console.log(thisData);
 		var ctx = document.getElementById('myBarChart').getContext('2d'); 
 		var chart = new Chart(ctx, { 
 			// type : 'bar' = 막대차트를 의미합니다. 
 			type: 'bar', 
 			data: { 
-				labels: mfDate, 
+				labels: [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
 				// 큰 분류(하단 데이터 이름)
 			datasets: [ 
 				{ label: '금년', //작은 분류 
- 				backgroundColor: [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue','blue','blue', 'blue', 'blue', 'blue','blue' ],
+ 				backgroundColor: [ 'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)','rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)' ,'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)'],
 				data: thisData
-			},
-			{ label: '작년', //작은 분류 
- 				backgroundColor: [ 'blue', 'blue', 'blue', 'blue', 'blue', 'blue','blue','blue', 'blue', 'blue', 'blue','blue' ],
-				data: lastData
+				},
+				{ label: '전년', //작은 분류 
+	 				backgroundColor: [ 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)','rgba(215,236,162,1)','rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)','rgba(215,236,162,1)' ],
+					data: lastData
+				}
+			]}
+		});
+	};
+	
+	//lastDate lastData thisDate thisData
+
+	var tagBar = "";
+			tagBar += '<table border="1" id="frm">'
+					+ '		<tr>'
+					+ '			<th rowcols="2">금년</th>';
+			
+			for(let i=0; i<thisDate.length; i++) {
+				tagBar += '<td>' + thisDate[i] + '</td>';
 			}
-		]}
-	});
-};
+			
+			tagBar += '		</tr>'
+					+ '		<tr>'
+					+ '		<th></th>';
+					
+			for(let i=0; i<thisData.length; i++) {
+				tagBar += '<td>' + thisData[i] + '</td>';
+			}
+	
+			tagBar += '		</tr>'
+			+ '				<tr>'
+			+ '					<th rowcols="2">작년</th>';
+			
+			for(let i=0; i<lastDate.length; i++) {
+				tagBar += '<td>' + lastDate[i] + '</td>';
+			}
+			tagBar += ' 	</tr>'
+					+ '		<tr>'
+					+ '		<th></th>';
+				
+			for(let i=0; i<lastData.length; i++) {
+				tagBar += '<td>' + lastData[i] + '</td>';
+			}
+			
+			tagBar += '		</tr>'
+					+ '		<tr id="compare">'
+					+ '			<th>비교값</th>';
+
+			 for(let i=0; i<thisData.length; i++) {
+			tagBar += '<td>' + (thisData[i] - lastData[i]) + '</td>';
+			 console.log(thisData[i] - lastData[i]);
+			} 
+	
+			tagBar += '		</tr>'
+					+ '		<tr>'
+					+ '			<th>비교아이콘</th>'; 
+					
+			function test(){
+
+				var table1 = document.getElementById("frm");
+
+				console.log(table1.rows[4].cells[0].innerHTML);
+
+
+			}
+
+
+				
+				
+			/* if('td' < -10 ) {
+				tagBar += '<td><tmg src="${pageContext.request.contextPath}/resources/images/red.png"></td>';
+			}else if(-10 <= 'td' < 10) {
+				tagBar += '<td><tmg src="${pageContext.request.contextPath}/resources/images/yellow.png"></td>';
+			}else if( 10 <= 'td') {
+				tagBar += '<td><tmg src="${pageContext.request.contextPath}/resources/images/green.png"></td>';
+			} */
+		
+			tagBar += '		</tr>'
+					+ '</table>';
+	$(".energyTable").html(tagBar);
+
+		
+	
+});
 </script>
