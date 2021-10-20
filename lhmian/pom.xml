@@ -20,18 +20,18 @@
 	</properties>
 
 	<repositories> 
-	    <repository>
-		<id>jasperreports</id>
-		<url>http://jasperreports.sourceforge.net/maven2</url>
-	    </repository>
-	    <repository>
-		<id>jaspersoft-third-party</id>
-		<url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
-	    </repository>
-	    <repository>
-		<id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-	    </repository>
+		<repository>
+			<id>jasperreports</id>
+			<url>http://jasperreports.sourceforge.net/maven2</url>
+		</repository>
+		<repository>
+			<id>jaspersoft-third-party</id>
+			<url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
+		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
 	</repositories>
 	
 	<dependencies>
@@ -298,14 +298,14 @@
 		  <version>4.2.0</version>
 		</dependency>
 		
-		
+		<!-- jasper report -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>6.17.0</version>
 		</dependency>
 
-		
+		<!-- 엑셀 추출 -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>

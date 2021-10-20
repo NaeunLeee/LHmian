@@ -170,35 +170,24 @@ public class MemberController {
 	// 회원 한명 삭제 (10/20 추가: 이나은)
 	@PostMapping("/admin/deleteMember")
 	@ResponseBody
-	public String deleteMember(@RequestBody MemberVO vo) {
+	public boolean deleteMember(@RequestBody MemberVO vo) {
 		
-		String message = "";
+		boolean result = false;
 		
 		int n = service.delete(vo);
 		
 		if (n > 0) {
 			// 한 세대의 회원이 모두 삭제되었을 때, Generation 테이블의 한 행 리셋
-			MemberVO mem = service.selectById(vo);
-			MemberInfoVO memInfo = new MemberInfoVO(); // MemberVO와 MemberInfoVO가 따로 있어서 생긴 불상사...ㅎ
-			Long houseInfo = mem.getHouseInfo();
-			memInfo.setHouseInfo(houseInfo);
-			GenerationVO gen = new GenerationVO();
-			gen.setHouseInfo(houseInfo);
-			gen = genService.selectGen(gen);
-			
-			int cnt = service.countByHouseInfo(memInfo);
-			
-			if (cnt == 0) {
-				genService.makeNull(gen);
-				message = "세대의 모든 회원이 삭제되었습니다.";
-			} else {
-				message = "삭제가 완료되었습니다.";
+			GenerationVO genVO = new GenerationVO();
+			genVO = genService.checkNull(vo);
+			if (genVO != null) {
+				genService.makeNull(genVO);
 			}
-		} else {
-			message = "다시 시도해주세요.";
-		}
+			
+			result = true;
+		} 
 		
-		return message;
+		return result;
 	}
 
 }

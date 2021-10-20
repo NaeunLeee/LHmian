@@ -83,9 +83,9 @@ table {
 						<li><a href="admSked">일정 관리</a></li>
 						<li><a href="admPost">택배 관리</a></li>
 					</ul>
-
 				</div>
-
+			</div>
+		
 				<div class="col-md-10 col-sm-6 col-xs-12">
 					<div></div>
 					<br>

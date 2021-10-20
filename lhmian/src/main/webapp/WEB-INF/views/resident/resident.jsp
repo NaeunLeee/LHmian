@@ -7,6 +7,8 @@
 <style>
 	.ce4-feature-box-12 {
 		cursor: pointer;
+		background-color: white;
+		border-color: #EEEEEE;
 	}
 </style>
 
@@ -30,7 +32,7 @@
 		</section>
 		<div class=" clearfix"></div>
 	</div>
-	<section class="sec-padding">
+	<section class="sec-padding section-light">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 nopadding">
@@ -44,12 +46,12 @@
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container" style="margin-bottom: 200px;">
 			<div class="row">
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='${pageContext.request.contextPath}/resident/confList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-pencil"></span>
+							<span><i class="bi bi-people-fill"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">입주자 대표회의</h5>
@@ -65,7 +67,7 @@
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='${pageContext.request.contextPath}/resident/voteList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-layers"></span>
+							<span><i class="bi bi-receipt-cutoff"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">투표</h5>
@@ -81,7 +83,7 @@
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='${pageContext.request.contextPath}/commlist'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
-							<span class="icon-camera"></span>
+							<span><i class="bi bi-chat-quote"></i></span>
 						</div>
 						<div class="text-box-right less-padding-2">
 							<h5 class="uppercase title font-weight-5 nopadding title">커뮤니티</h5>
@@ -96,6 +98,21 @@
 
 				<div class="clearfix"></div>
 				<div class="col-divider-margin-3"></div>
+
+				<div class="col-md-4 col-sm-12 col-xs-12">
+					<div onclick="location.href='${pageContext.request.contextPath}/itemLost/lostList'" class="ce4-feature-box-12 margin-bottom">
+						<div class="icon-plain-msmall left icon">
+							<span><i class="bi bi-mailbox"></i></span>
+						</div>
+						<div class="text-box-right less-padding-2">
+							<h5 class="uppercase title font-weight-5 nopadding title">방명록</h5>
+							<div class="title-line"></div>
+						</div>
+						<br />
+						<p>please~~~~~~</p>
+					</div>
+				</div>
+				<!--end item-->
 			</div>
 		</div>
 	</section>

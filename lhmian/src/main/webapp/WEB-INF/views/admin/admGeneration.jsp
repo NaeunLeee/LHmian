@@ -360,7 +360,7 @@
 					str += '<td>' + data[i].id + '</td>';
 					str += '<td>' + data[i].name + '</td>';
 					str += '<td>'+ data[i].phone.substring(0, 3) + '-' + data[i].phone.substring(3, 7) + '-' + data[i].phone.substring(7, 11) + '</td>';
-					str += '<td><button type="button" class="delMem btn btn-default" data-id="' + data[i].id + '">삭제</button></td>';
+					str += '<td><button type="button" class="delMem btn btn-default" data-id="' + data[i].id + '" data-houseInfo="' + data[i].houseInfo + '">삭제</button></td>';
 					str += '</tr>';
 				}
 				str += '</tbody>';
@@ -924,7 +924,8 @@
 				url: 'deleteMember',
 				type: 'POST',
 				data: JSON.stringify({
-					id: $(this).attr('data-id')
+					id: $(this).attr('data-id'),
+					houseInfo : $(this).attr('data-houseInfo')
 				}),
 				contentType: 'application/json',
 				dataType: 'json',
@@ -932,15 +933,16 @@
 					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 				},
 				success: function(result) {
-					if (result != null) {
+					if (result == true) {
 						$(tr).remove();
-						alert(result);
+						alert('삭제가 완료되었습니다.');
+						$(location).reload();
 					} else {
-						console.log(result);
+						console.log('다시 시도해주세요.');
 					}
 				},
 				error: function() {
-					alert('다시 시도해주세요.');
+					alert('서버 통신 실패');
 				}
 			});
 		}
