@@ -19,6 +19,17 @@
 		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
 	</properties>
 
+	<repositories> 
+	    <repository>
+		<id>jasperreports</id>
+		<url>http://jasperreports.sourceforge.net/maven2</url>
+	    </repository>
+	    <repository>
+		<id>jaspersoft-third-party</id>
+		<url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
+	    </repository>
+	</repositories>
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
