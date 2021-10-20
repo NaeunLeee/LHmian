@@ -139,8 +139,9 @@ table {
 		<input name="keyword" class="form-control" style="width: 200px;" value="${pageMaker.cri.keyword}">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		<input type="hidden" name="preKey" id="preKey" value="${preKey}">
 		<input type="hidden" name="preType" id="preType" value="${type}">
-		<button type="submit" class="btn btn-dark">검색</button>
+		<button type="button" id="btnSearch" class="btn btn-dark">검색</button>
 	</form>
 </div>
 </div>
@@ -156,6 +157,15 @@ table {
 		actionForm.append('<input type="hidden" name="noticeNo" value="'+ noticeNo +'">')
 		actionForm.attr("action", "noticeSelect");
 		actionForm.submit();
+	});
+	
+	$("#btnSearch").on("click", function(e) {
+		e.preventDefault();
+		if ($('[name="keyword"]').val() == "") {
+			location.href = "noticeList";
+		} else {
+			actionForm.submit();
+		}
 	});
 	
 	$("#pageButton a").on("click", function(e){ //페이지 번호 눌렀을 때. pagebutton 안써주면 헤더, 푸터에 걸린 a태그도 다 링크 걸림

@@ -1,44 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.energy.mapper.EnergyMapper">
-	<select id="getList" resultType="EnergyVO">
-		SELECT MF_DATE,
-			HOUSE_INFO,
-			ENG,
-			GAS,
-			ELECTRIC,
-			WATER,
-			TRASH,
-			TRASH_FOOD
+	<select id="thisYear" resultType="EnergyVO">
+		SELECT ${columnName}, MF_DATE
 		FROM ENERGY_USAGE
 		WHERE HOUSE_INFO = #{houseInfo}
-		<if test="mfDate == 6">
-			AND MF_DATE BETWEEN TRUNC(TO_CHAR(ADD_MONTHS(SYSDATE,-5), 'YYMM')) AND TO_CHAR(SYSDATE,'YYMM')
-		</if>
-		<if test="mfDate == 12">
-			AND MF_DATE BETWEEN TRUNC(TO_CHAR(ADD_MONTHS(SYSDATE,-11), 'YYMM')) AND TO_CHAR(SYSDATE,'YYMM')
-		</if>
+			AND MF_DATE 
+				BETWEEN TRUNC(TO_CHAR(ADD_MONTHS(SYSDATE,-11), 'YYMM')) 
+					AND TO_CHAR(SYSDATE,'YYMM')
 		ORDER BY MF_DATE
 	</select>
 
-	<select id="read" resultType="EnergyVO" parameterType="EnergyVO">
-		SELECT MF_DATE,
-			HOUSE_INFO,
-			ENG,
-			GAS,
-			ELECTRIC,
-			WATER,
-			TRASH,
-			TRASH_FOOD
-		FROM
-		ENERGY_USAGE
-		<if test="mfDate == null">
-			WHERE MF_DATE = (SELECT MAX(MF_DATE) FROM ENERGY_USAGE)
-		</if>
-		<if test="mfDate != null">
-			WHERE MF_DATE = #{mfDate}
-		</if>
-		AND HOUSE_INFO = #{houseInfo}
+	<select id="lastYear" resultType="EnergyVO" parameterType="EnergyVO">
+		SELECT ${columnName}, MF_DATE
+		FROM ENERGY_USAGE
+		WHERE HOUSE_INFO = #{houseInfo}
+			AND MF_DATE
+				BETWEEN TRUNC(TO_CHAR(ADD_MONTHS(SYSDATE,-23), 'YYMM')) 
+					AND TRUNC(TO_CHAR(ADD_MONTHS(SYSDATE,-12), 'YYMM'))
 		ORDER BY MF_DATE
 	</select>
 
@@ -55,6 +34,5 @@
 		TRASH,
 		TRASH_FOOD
 		FROM ENERGY_USAGE
-		ORDER BY 1 DESC
 	</select>
 </mapper>

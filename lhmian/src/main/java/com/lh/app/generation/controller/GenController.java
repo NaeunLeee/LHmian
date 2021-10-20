@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.fee.domain.ManagementFeeVO;
@@ -36,6 +37,13 @@ public class GenController {
 		return genService.familyList(vo);
 	}
 	
+	// 세대주 정보 조회 (SMS 전송 위해..)
+	@PostMapping("/admin/ownerInfo")
+	@ResponseBody
+	public MemberVO ownerInfo(@RequestBody GenerationVO vo) {
+		return genService.ownerInfo(vo);
+	}
+	
 	// 세대 단건 조회
 	@PostMapping("/admin/selectGen")
 	@ResponseBody
@@ -46,8 +54,16 @@ public class GenController {
 	// 세대 삭제
 	@PostMapping("/admin/deleteGen")
 	@ResponseBody
-	public int deleteGen(@RequestBody GenerationVO vo) {
-		return 0;
+	public boolean deleteGen(@RequestParam String[] chk) {
+		
+		for (int i=0; i<chk.length; i++) {
+			GenerationVO genVO = new GenerationVO();
+			genVO.setHouseInfo(Long.parseLong(chk[i]));
+			genService.deleteFamily(genVO);
+			genService.makeNull(genVO);
+		}
+		
+		return true;
 	}
 	
 	// 인증번호 난수 생성

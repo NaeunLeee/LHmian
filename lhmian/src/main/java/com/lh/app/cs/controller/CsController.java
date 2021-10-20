@@ -28,47 +28,46 @@ public class CsController {
 
 	// 전체 조회
 	@RequestMapping("/office/csList")
-	public String csList(Model model, @ModelAttribute("cri") CsCriteria cri) {
-		if (cri.getPreType() != null && cri.getType() != null && (cri.getPreType().equals(cri.getType()))
-				&& cri.getKeyword() != null) {
-			int total = csService.getTotalCount(cri);
-			model.addAttribute("list", csService.getList(cri));
-			model.addAttribute("pageMaker", new CsPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			System.out.println("1 ----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
-			return "office/csList";
-
-		} else if ((cri.getType() != null) && cri.getKeyword().equals("")) {
-			cri.setType("");
+	public String csList(Model model, @ModelAttribute("cri") CsCriteria cri, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		
+		
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
 			cri.setPageNum(1);
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			System.out.println("2-----------------------------------");
-			System.out.println(cri.getType());
-			System.out.println(cri.getPreType());
-			System.out.println("------------------------------------");
+			model.addAttribute("preKey", cri.getKeyword());
+			model.addAttribute("user", customUserDetails);
 			return "office/csList";
-
-			// 타입 변환 시 페이지 초기화 조건 ok
-		} else {
+		} else if( (cri.getKeyword()!=null && cri.getPreKey()!=null)&&(!cri.getKeyword().equals(cri.getPreKey())) ) {
 			cri.setPageNum(1);
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			model.addAttribute("user", customUserDetails);
 			return "office/csList";
 		}
+		else {
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			model.addAttribute("user", customUserDetails);
+			return "office/csList";
+		}
+		
 	}
 
 	// 단건 조회
 	@GetMapping("/office/csSelect")
-	public String csSelect(Model model, @ModelAttribute("cri") CsCriteria cri, CsVO vo) {
+	public String csSelect(Model model, @ModelAttribute("cri") CsCriteria cri, CsVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 		model.addAttribute("cs", csService.read(vo));
+		model.addAttribute("name", customUserDetails.getNAME());
 		return "office/csSelect";
 	}
 
@@ -150,32 +149,30 @@ public class CsController {
 	// 관리자 전체 조회
 	@GetMapping("/admin/admCsList")
 	public String admCsList(Model model, @ModelAttribute("cri") CsCriteria cri) {
-		if (cri.getType() == "" && cri.getPreType() == null) {
-			int total = csService.getTotalCount(cri);
-			model.addAttribute("list", csService.getList(cri));
-			model.addAttribute("pageMaker", new CsPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			return "admin/admCsList";
-		} else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))) {
-			int total = csService.getTotalCount(cri);
-			model.addAttribute("list", csService.getList(cri));
-			model.addAttribute("pageMaker", new CsPageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-
-			System.out.println("3." + cri.getType());
-			System.out.println("4." + cri.getPreType());
-
-			return "admin/admCsList";
-		} else {
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
 			cri.setPageNum(1);
 			int total = csService.getTotalCount(cri);
 			model.addAttribute("list", csService.getList(cri));
 			model.addAttribute("pageMaker", new CsPageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-
-			System.out.println("5." + cri.getType());
-			System.out.println("6." + cri.getPreType());
-
+			model.addAttribute("preKey", cri.getKeyword());
+			return "admin/admCsList";
+		} else if( (cri.getKeyword()!=null && cri.getPreKey()!=null)&&(!cri.getKeyword().equals(cri.getPreKey())) ) {
+			cri.setPageNum(1);
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			return "admin/admCsList";
+		}
+		else {
+			int total = csService.getTotalCount(cri);
+			model.addAttribute("list", csService.getList(cri));
+			model.addAttribute("pageMaker", new CsPageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
 			return "admin/admCsList";
 		}
 	}

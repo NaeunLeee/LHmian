@@ -19,34 +19,35 @@ public class EnergyController {
 
 	@Autowired
 	EnergyService energyService;
-
-	// 첫 로딩 페이지-사용자
-	@GetMapping("/myPage/myEnergyCon")
-	public void myList(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		Gson gson = new Gson();
-		model.addAttribute("read", gson.toJson(energyService.read(vo)));
-	}
-
-	// 기간조회(전체조회)-사용자
-	@GetMapping("/myEnergyPeriod")
+		
+	
+	  // 첫 로딩 페이지-사용자
+	  @GetMapping("/myPage/myEnergyCon") 
+	  public String myList() {
+	  return "myPage/myEnergyCon";
+	  }
+	 
+	//금년데이터
+	@GetMapping("/myPage/thisEnergy")
 	@ResponseBody
-	public List<EnergyVO> myPeriod(EnergyVO vo, Model model, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		List<EnergyVO> result = energyService.getList(vo);
-		return result;
+	public List<EnergyVO> energy(EnergyVO vo, String columnName, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO())); 
+		vo.setColumnName(columnName);
+		  List<EnergyVO> list = energyService.thisYear(vo);
+		return list;
 	}
 
-	// 단건 조회-사용자
-	@GetMapping("/myEnergy")
-	@ResponseBody
-	public String myRead(EnergyVO vo, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
-		vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO()));
-		Gson gson = new Gson();
-		String result = String.valueOf(gson.toJson(energyService.read(vo)));
-		return result;
-	}
-
+	
+	  // 작년데이터
+	  @GetMapping("/myPage/lastEnergy")
+	  @ResponseBody 
+	  public List<EnergyVO> myPeriod(EnergyVO vo, String columnName, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+		  vo.setHouseInfo(Integer.parseInt(customUserDetails.getHOUSEINFO())); 
+			vo.setColumnName(columnName);
+			  List<EnergyVO> list = energyService.lastYear(vo);
+			return list;
+	  }
+	 
 	// 전체조회-관리자
 	@GetMapping("/admin/admEnergyCon")
 	public void admList(Model model, EnergyVO vo) {

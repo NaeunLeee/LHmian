@@ -118,6 +118,11 @@
 		WHERE HOUSE_INFO = #{houseInfo}
 	</update>
 	
+	<delete id="deleteFamily">
+		DELETE FROM MEMBER
+		WHERE HOUSE_INFO = #{houseInfo}
+	</delete>
+	
 	<update id="verifyGen">
 		UPDATE GENERATION
 		SET ENROLL_DATE = SYSDATE
@@ -134,9 +139,11 @@
 	</update>
 	
 	<select id="ownerInfo" resultType="memberVO">
-		SELECT * FROM MEMBER
-		WHERE HOUSE_INFO = #{houseInfo}
-			  AND AUTHOR = 'OWNER'
+		SELECT M.*, G.AUTH_KEY, G.MINI_KEY
+		FROM MEMBER M
+		JOIN GENERATION G
+		ON M.HOUSE_INFO = G.HOUSE_INFO
+		WHERE M.HOUSE_INFO = #{houseInfo} AND M.AUTHOR = 'OWNER'
 	</select>
 	
 	   <!-- 관리비 리스트 출력 10/19 윤지민 -->

@@ -17,4 +17,7 @@ public class EnergyVO {
 	private int water;
 	private int trash;
 	private int trashFood;
+	
+	private String column;
+	private String columnName;
 }

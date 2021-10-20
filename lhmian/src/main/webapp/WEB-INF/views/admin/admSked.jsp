@@ -11,7 +11,7 @@
 
 <style>
 container {
-	width: 80%
+	width: 85%
 }
 
 .tr_1 {

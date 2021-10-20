@@ -25,47 +25,69 @@ public class NoticeController {
 	NoticeService service;
 
 	// 전체조회
-	// 10/16 수정 
+	// 10/20 수정
 	@GetMapping("/office/noticeList")
 	public String noticeList(Model model, @ModelAttribute("cri") NoticeCriteria cri) {
-		if (cri.getType() == "" && cri.getPreType() == null) {
-		int total = service.getTotalCount(cri);
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new NoticePageVO(cri, total));
-		return "office/noticeList";
-		}	else if ((cri.getPreType() != null && cri.getType() != null) && (cri.getPreType().equals(cri.getType()))
-				) {
-			int total = service.getTotalCount(cri);
-			model.addAttribute("list", service.getList(cri));
-			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
-			model.addAttribute("type", cri.getType());
-			
-			System.out.println("3."+cri.getType());
-			System.out.println("4."+cri.getPreType());
-
-			return "office/noticeList";
-		}  else {
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
 			cri.setPageNum(1);
 			int total = service.getTotalCount(cri);
 			model.addAttribute("list", service.getList(cri));
 			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
 			model.addAttribute("type", cri.getType());
-			
-			System.out.println("5."+cri.getType());
-			System.out.println("6."+cri.getPreType());
-
+			model.addAttribute("preKey", cri.getKeyword());
+			return "office/noticeList";
+		} else if ((cri.getKeyword() != null && cri.getPreKey() != null)
+				&& (!cri.getKeyword().equals(cri.getPreKey()))) {
+			cri.setPageNum(1);
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			return "office/noticeList";
+		} else {
+			cri.setPageNum(1);
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
 			return "office/noticeList";
 		}
-		
+
 	}
 
 	// 관리자 전체조회
 	@RequestMapping("/admin/admNoticeList")
 	public String admNoticeList(Model model, @ModelAttribute("cri") NoticeCriteria cri) {
-		int total = service.getTotalCount(cri);
-		model.addAttribute("list", service.getList(cri));
-		model.addAttribute("pageMaker", new NoticePageVO(cri, total));
-		return "admin/admNoticeList";
+		if ((cri.getPreType() != null && cri.getType() != null) && (!cri.getPreType().equals(cri.getType()))
+				&& (!cri.getKeyword().equals(""))) {
+			cri.setPageNum(1);
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			return "admin/admNoticeList";
+		} else if ((cri.getKeyword() != null && cri.getPreKey() != null)
+				&& (!cri.getKeyword().equals(cri.getPreKey()))) {
+			cri.setPageNum(1);
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			return "admin/admNoticeList";
+		} else {
+
+			int total = service.getTotalCount(cri);
+			model.addAttribute("list", service.getList(cri));
+			model.addAttribute("pageMaker", new NoticePageVO(cri, total));
+			model.addAttribute("type", cri.getType());
+			model.addAttribute("preKey", cri.getKeyword());
+			return "admin/admNoticeList";
+		}
 	}
 
 	// 단건조회
@@ -89,26 +111,26 @@ public class NoticeController {
 //		service.delete(vo);
 //		return true;
 //	}
-	
+
 	// 관리자 글삭제 (ajax 없이 페이지로) (10/10 추가 - 이나은)
 	@PostMapping("/admin/admNoticeDelete")
 	public String delete(NoticeVO vo, RedirectAttributes rttr, @ModelAttribute("cri") NoticeCriteria cri) {
-		
+
 		int n = service.delete(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "삭제가 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "삭제에 실패했습니다. 다시 시도해주세요.");
 		}
-		
+
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-		
+
 		return "redirect:/admin/admNoticeList";
-		
+
 	}
 
 	// 등록 폼
@@ -121,13 +143,13 @@ public class NoticeController {
 	@PostMapping("/admin/admNoticeInsert")
 	public String admNoticeInsert(NoticeVO vo, RedirectAttributes rttr) {
 		int n = service.insert(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "공지사항 한 건이 정상적으로 등록되었습니다.");
 		} else {
 			rttr.addFlashAttribute("message", "다시 시도해주세요.");
 		}
-		
+
 		return "redirect:/admin/admNoticeList";
 	}
 
@@ -137,21 +159,21 @@ public class NoticeController {
 		model.addAttribute("notice", service.read(vo));
 		return "admin/admNoticeUpdate";
 	}
-	
+
 	// 관리자 공지사항 수정 (ajax 없이 페이지로) (10/10 추가 - 이나은)
 	@PostMapping("/admin/admNoticeUpdate")
 	public String update(RedirectAttributes rttr, NoticeVO vo) {
 		int n = service.update(vo);
-		
+
 		if (n == 1) {
 			rttr.addFlashAttribute("message", "수정이 완료되었습니다!");
 		} else {
 			rttr.addFlashAttribute("message", "수정에 실패했습니다. 다시 시도해주세요.");
 		}
-		
+
 		return "redirect:/admin/admNoticeList";
 	}
-	
+
 	// 관리자 공지사항 수정 (ajax)
 //	@ResponseBody
 //	@PostMapping("/admin/admNoticeUpdate")

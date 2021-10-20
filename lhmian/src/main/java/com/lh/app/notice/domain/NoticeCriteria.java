@@ -12,7 +12,7 @@ public class NoticeCriteria {
    
    //10/16 추가
    private String preType;
-   
+   private String preKey;
    
    public NoticeCriteria() {}
    public NoticeCriteria(int pageNum, int amount) {

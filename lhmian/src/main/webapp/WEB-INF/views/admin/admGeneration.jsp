@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.11.3/css/dataTables.semanticui.min.css">
-<script
-	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.11.3/js/dataTables.semanticui.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+
 <!-- 10/18 생성: 이나은 -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.semanticui.min.css">
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.semanticui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+
 
 <style>
 	.container {
@@ -97,32 +95,10 @@
 					<p class="by-sub-title">LHmian의 모든 세대를 조회합니다.</p>
 				</div>
 
-				<div style="float: left; margin-left: 40px;" id="criteriaForm" data-option="${type}">
-
-					<%-- <form id="actionForm" action="admGeneration" method="get">
-						<select name="type" class="form-control" style="width: 100px; ">
-							<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
-							<option id="N" value="N" ${pageMaker.cri.type=='N' ? 'selected' : ""}>이름</option>
-							<option id="C" value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>동호수</option>
-							<option id="A" value="A" ${pageMaker.cri.type=='A' ? 'selected' : ""}>휴대폰번호</option>
-						</select> 
-						<input name="keyword" class="form-control" style="width: 200px; margin-right: 10px;" value="${pageMaker.cri.keyword}"> 
-							<label for="all">전체</label><input type="checkbox" id="A" name="option" value="A" checked="checked">
-							<label for="notpaid">관리비미납</label><input type="checkbox" id="N" name="option" value="N" onchange="checkOption()">
-							<label for="leader">입주민대표</label><input type="checkbox" id="L" name="option" value="L" onchange="checkOption()">
-							<label for="owner">세대주</label><input type="checkbox" id="O" name="option" value="O" onchange="checkOption()">
-							<input type="hidden" name="preType" id="preType" value="${type}">
-						<button type="button" class="btn btn-dark" id="searchBtn" onclick="allChecked()">검색</button>
-						
-						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-						<input type="hidden" name="amount" value="${pageMaker.cri.amount}"><br>
-						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-					</form> --%>
-				</div>
 				<div>
 					<button class="btn btn-dark" type="button" id="registerBtn" style="margin-right: 5px;">세대 등록</button>
 					<button class="btn btn-gyellow" type="button" id="showModal">SMS전송</button>
-					<button class="btn btn-default" type="button" id="deleteBtn" style="float:right;">세대 삭제</button>
+					<button class="btn btn-default" type="button" onclick="deleteGen()" id="deleteBtn" style="float:right;">세대 삭제</button>
 				</div>
 				<div class="text-box white padding-t40">
 					<form id="frm"> <!-- 0928 form 추가 -->
@@ -143,11 +119,11 @@
 								<c:forEach var="gen" items="${list}">
 									<tr class="mem tr_1" data-houseInfo="${gen.houseInfo}">
 										<td onclick="event.cancelBubble=true;">
-											<input type="checkbox" name="chk" value="${gen.houseInfo}" data-name="${gen.name}" data-phone="${gen.phone}">
+											<input type="checkbox" name="chk" value="${gen.houseInfo}" data-houseInfo="${gen.houseInfo}" data-name="${gen.name}" data-phone="${gen.phone}">
 										</td>
 										<td>
 											<c:set var="donghosu" value="${gen.houseInfo}"/>
-											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 8)}호
+											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 7)}호
 										</td>
 										<td onclick="event.cancelBubble=true;">
 											<select name="position" class="position form-control" style="width: 100px;" data-id="${gen.id}">
@@ -156,7 +132,10 @@
 											</select> 
 										</td>
 										<td>${gen.name}</td>
-										<td>${gen.phone}</td>
+										<td>
+											<c:set var="phone" value="${gen.phone}"/>
+											${fn:substring(phone, 0, 3)}-${fn:substring(phone, 3, 7)}-${fn:substring(phone, 7, 11)}
+										</td>
 										<td>${gen.familyNum}</td>
 										<td onclick="event.cancelBubble=true;" data-unpaid="${gen.unPaid }"> <!-- 버튼 클릭시 tr 클릭 이벤트가 동시에 발생하지 않도록 -->
 											${gen.unPaid }&nbsp;&nbsp;<button type="button" class="feeBtn btn btn-default" data-houseInfo="${gen.houseInfo}">조회</button>
@@ -171,28 +150,6 @@
 						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					</form>
 					<br>
-					<!-- 폼 -->
-					<%-- <div id="pageButton" align="center">
-						<ul class="pagination hover-orange">
-							<c:if test="${pageMaker.prev == true}">
-								<li>
-									<a href="${pageMaker.startPage-1}">
-										<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-									</a>
-								</li>
-							</c:if>
-							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-								<li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
-							</c:forEach>
-							<c:if test="${pageMaker.next == true}">
-								<li>
-									<a href="${pageMaker.endPage+1}">
-										<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-									</a>
-								</li>
-							</c:if>
-						</ul>
-					</div> --%>
 				</div>
 			</div>
 		</div>
@@ -208,6 +165,7 @@
 					<div style="margin-left: 20px;">
 						<div class="title-line-3 align-left"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">새 세대 등록</h4>
+						<p style="font-size: 12px;">* 새로운 인증번호를 생성하여, 세대주에게 전송합니다.</p>
 					</div>
 				</div>
 				<!-- Modal body -->
@@ -392,6 +350,7 @@
 				str += '<th>아이디</th>';
 				str += '<th>이름</th>';
 				str += '<th>전화번호</th>';
+				str += '<th></th>';
 				str += '</tr>';
 				str += '</thead>';
 				str += '<tbody>';
@@ -400,7 +359,8 @@
 					str += '<td>' + (data[i].author == 'OWNER' ? '세대주' : '세대원') + '</td>';
 					str += '<td>' + data[i].id + '</td>';
 					str += '<td>' + data[i].name + '</td>';
-					str += '<td>'+ data[i].phone + '</td>';
+					str += '<td>'+ data[i].phone.substring(0, 3) + '-' + data[i].phone.substring(3, 7) + '-' + data[i].phone.substring(7, 11) + '</td>';
+					str += '<td><button type="button" class="delMem btn btn-default" data-id="' + data[i].id + '">삭제</button></td>';
 					str += '</tr>';
 				}
 				str += '</tbody>';
@@ -754,6 +714,7 @@
 						$('#dong').val('');
 						$('#ho').val('');
 						$('#existing').html(str);
+						sendVerification(houseInfo);
 					} else {
 						console.log(result);
 					}
@@ -762,6 +723,8 @@
 					alert('다시 시도해주세요.');
 				}
 			});
+			
+			
 		}
 	}
 	
@@ -788,6 +751,7 @@
 						$('#dong').val('');
 						$('#ho').val('');
 						$('#existing').html(str);
+						sendVerification(houseInfo);
 					} else {
 						console.log(result);
 					}
@@ -798,27 +762,68 @@
 			});
 			
 			
-			// 발급된 인증번호 전송
-			/* $.ajax({
-				url: 'sendSms',
-				type: 'POST',
-				data: JSON.stringify({
-					phone:
-					content:
-				}),
-				contentType: 'application/json',
-				beforeSend: function(xhr) {
-					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-				},
-				success: function(data) {
-					alert(data + '건의 전송이 완료되었습니다.');
-				},
-				error: function() {
-					alert('다시 시도해주세요.');
-				}
-			}); */
+			
 		}
 	});
+	
+	// 세대주 전화번호와 인증키 조회하여 SMS 전송
+	function sendVerification(houseInfo) {
+		
+		var phone = '';
+		var authKey = '';
+		var miniKey = '';
+		var arr = new Array();
+		
+		$.ajax({
+			url: 'ownerInfo',
+			type: 'POST',
+			async: false,
+			data: JSON.stringify({
+				houseInfo: parseInt(houseInfo)
+			}),
+			contentType: 'application/json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			success: function(data) {
+				phone = data.phone;
+				authKey = data.authKey;
+				miniKey = data.miniKey;
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		});
+		
+		var dong = houseInfo.substring(0, 3);
+		var ho = houseInfo.substring(3, 7);
+		var content = dong + '동 ' + ho + '호의 인증키입니다. 세대주 인증키: ' + authKey + ' / 세대원 인증키: ' + miniKey;
+		
+		var json = {
+			"phone" : phone,
+			"content" : content
+		};
+		arr.push(json);
+		
+		console.log(json);
+		
+		// 발급된 인증번호 전송
+ 		$.ajax({
+			url: 'sendSms',
+			type: 'POST',
+			data: JSON.stringify(arr),
+			contentType: 'application/json',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			success: function(data) {
+				alert(data + '건의 전송이 완료되었습니다.');
+			},
+			error: function() {
+				alert('다시 시도해주세요.');
+			}
+		});
+	}
 	
 	// 세대 등록 모달 내리기
 	$('#closeReg').on('click', function() {
@@ -872,5 +877,73 @@
 	   function numberWithCommas(x) {
 	       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	   }
+	
+	// 세대 삭제
+	function deleteGen() {
+		var cnt = $("input[name='chk']:checked").length;
+		var arr = new Array();
+		$("input[name='chk']:checked").each(function() {
+			arr.push($(this).attr('data-houseInfo'));
+		});
+		
+		if (cnt == 0) {
+			alert("선택된 값이 없습니다.");
+		} else {
+			if (confirm(cnt + '세대를 삭제하시겠습니까?')) {
+				$.ajax({
+					url: 'deleteGen',
+					type: 'POST',
+					data: $("#frm").serialize(),
+					traditional : true,
+					dataType : "json",
+					beforeSend: function(xhr) {
+						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+					},
+					success : function(result) {
+						if (result == true) {
+							alert("삭제완료");
+							location.reload();
+						}
+					},
+					error : function() {
+						alert("서버통신 오류");
+						console.log(arr);
+					}
+				});
+			}
+		}
+	}
+	
+	// 세대별 회원 정보 모달에서 회원 삭제
+	$(document).on('click', '.delMem', function() {
+		
+		var tr = $(this).parent().parent();
+		
+		if (confirm('삭제하시겠습니까?')) {
+			$.ajax({
+				url: 'deleteMember',
+				type: 'POST',
+				data: JSON.stringify({
+					id: $(this).attr('data-id')
+				}),
+				contentType: 'application/json',
+				dataType: 'json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(result) {
+					if (result != null) {
+						$(tr).remove();
+						alert(result);
+					} else {
+						console.log(result);
+					}
+				},
+				error: function() {
+					alert('다시 시도해주세요.');
+				}
+			});
+		}
+	});
 	
 </script>

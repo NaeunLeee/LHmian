@@ -1,37 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
-#myGaugeChart {
-	witdh: 500px;
-	height: 500px;
-	padding-left: 30px;
-}
-
 .col-md-12 {
 	margin: 10px;
-}
-
-select {
-	display: block;
-}
-
-.btn-yj {
-	display: inline-block;
-}
-
-.btn-month {
-	width: 100px;
-	margin: 0px 5px;
-}
-
-.col-md-8 {
-	padding-left: 65px;
 }
 
 .margin-bottom {
 	margin-bottom: 50px;
 	padding-bottom: 0
 }
+
+table {
+	text-align: center;
+}
+
 </style>
 
 <section>
@@ -66,386 +48,209 @@ select {
 
 	<div class="container" align="center">
 		<div class="row">
-			<div class="btn1 col-md-12"></div>
-			<div class="btn2 col-md-12">
-				<button class="btn-yj " value="6" onclick="periodBtn(this)">6개월</button>
-				<button class="btn-yj" value="12" onclick="periodBtn(this)" style="margin-left: 5px">1년</button>
+			<div class="btn1 col-md-12">
+				<label><input type="checkbox">일반관리비</label>
+				<label><input type="checkbox">가스</label>
+				<label><input type="checkbox">전기</label>
+				<label><input type="checkbox">수도</label>
+				<label><input type="checkbox">생활폐기물</label>
+				<label><input type="checkbox">음식물폐기물</label>
+				단위 : kwh
 			</div>
-			<div class="col-md-7 text-center margin-bottom"></div>
-			<div class="col-md-5 text-center margin-bottom"></div>
+			<div class="col-md-12 bar-chart"></div>
+			<div class="energyTable">
+				
+			</div>
 		</div>
 	</div>
 </section>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/pie-charts/chart/chart.js" type="text/javascript"></script>
 <script>
-	//버튼-현재 월 기준으로 최근 6개월의 버튼이 생성됨
-	var date = new Date();
-	var month = date.getMonth() + 1;
-	var total = "";
 	$(document).ready( function() {
-		for (let i = 0; i < 6; i++) {
-			var btn = month - i;
-			var tag = "";
-			tag = '<button id="month' + i + '" class="btn-yj btn-month" value="' + btn + '" onclick="monthBtn(this);">' + btn + '월</button>';
-			total = total + tag;
+		var thisData;
+		var lastData;
+		var thisDate;
+		var lastDate;
+	//차트-첫 로딩시 현재 월 차트 보여주고, 월 버튼 클릭시 해당 월의 데이터 표시
+	var tagBar = "";
+	tagBar += '<h4 class="uppercase">1년 그래프</h4>'
+			+ '<br/>'
+			+ '<canvas id="myBarChart"></canvas>'
+	$(".bar-chart").html(tagBar);
+	
+	//금년데이터
+	$.ajax({
+		url : "thisEnergy",
+		type : "get",
+		data : {
+			columnName : "ENG"
+		},
+		async: false,
+		success : function(datas) {
+			var data = [];
+			var date = [];
+			for(let i=0; i<datas.length; i++) {
+				data.push(datas[i].eng);
+				//mfDate에서 월만 추출
+				var year;
+				var month;
+				var thisYear;
+				
+				year = datas[i].mfDate.substr(0, 2);
+				month = datas[i].mfDate.substr(2, 3);
+				thisYear = "20" + year + "." + month;
+				//console.log(thisYear);
+				date.push(thisYear);
+			}
+			thisData = data;
+			thisDate = date;
+			//console.log(thisData);
+			//console.log(mfDate);
+		},
+		error : function(error) {
+			console.log(error);
 		}
-		$('.btn1').html(total);
-
-		//차트-첫 로딩시 현재 월 차트 보여주고, 월 버튼 클릭시 해당 월의 데이터 표시
-		var tagBar = "";
-		tagBar += '<h4 class="uppercase">월별 - Bar</h4>'
-				+ '<br/>'
-				+ '<canvas id="myBarChart" width="400" height="300"></canvas>'
-		$(".col-md-7").html(tagBar);
-
-		var tagDoughnut = "";
-		tagDoughnut += '<h4 class="uppercase">월별 - Pie</h4>'
-					+ '<br/>'
-					+ '<canvas id="myDoughnutChart" width="300" height="300"></canvas>'
-		$(".col-md-5").html(tagDoughnut);
-
-		//첫로딩 데이터 - 현재 월	
-		data = ${read};
-		bar(data);
-		doughnut(data);
 	});
-
-	//월별 버튼
-	function monthBtn(data) {
-		var tagBar = "";
-		tagBar += '<h4 class="uppercase">월별 - Bar</h4>' + '<br/>'
-				+ '<canvas id="myBarChart" width="400" height="300"></canvas>'
-		$(".col-md-7").html(tagBar);
-
-		var tagDoughnut = "";
-		tagDoughnut += '<h4 class="uppercase">월별 - Pie</h4>'
-				+ '<br/>'
-				+ '<canvas id="myDoughnutChart" width="300" height="300"></canvas>'
-		$(".col-md-5").html(tagDoughnut);
-
-		var month = date.getFullYear() + "";
-		if (data.value == '10' || data.value == '11' || data.value == '12') {
-			month = month.substr(2, 2) + data.value;
-		} else {
-			month = month.substr(2, 2) + '0' + data.value;
-		};
-		$.ajax({
-			url : "${pageContext.request.contextPath}/myEnergy",
-			type : "get",
-			data : {
-				mfDate : month
-			},
-			success : function(data) {
-				data = JSON.parse(data);
-				bar(data);
-				doughnut(data);
-			}
-		});
-	};
-
-	//기간별 버튼
-	function periodBtn(data) {
-		var tagLine = "";
-		tagLine += '<h4 class="uppercase">기간별 - Line</h4>' + '<br/>'
-				+ '<canvas id="myLineChart" width="400" height="300"></canvas>'
-		$(".col-md-7").html(tagLine);
-
-		var tagGauge = "";
-		tagGauge += '<h4 class="uppercase">기간별 - 평균</h4>' + '<br/>'
-				+ '<div id="myGaugeChart"></div>'
-		$(".col-md-5").html(tagGauge);
-
-		$.ajax({
-			url : "${pageContext.request.contextPath}/myEnergyPeriod",
-			type : "get",
-			data : {
-				mfDate : data.value
-			},
-			success : function(data) {
-				line(data);
-				gauge(data);
-			}
-		});
-	};
-
-	/* 바차트(월별) */
-	function bar(data) {
-		var ctx = document.getElementById("myBarChart");
-		var myBarChart = new Chart(ctx, {
-			type : 'bar',
-			data : {
-				labels : [ "일반관리비", "가스", "전기", "수도", "생활폐기물", "음식물폐기물" ],
-				datasets : [ {
-					data : [ data.eng, data.gas, data.electric, data.water, data.trash, data.trashFood ],
-					backgroundColor : [ "rgba(75,192,192,1)",
-										"rgba(162,236,191,1)", 
-										"rgba(236,162,183,1)",
-										"rgba(215,236,162,1)", 
-										"rgba(162,163,236,1)",
-										"rgba(236, 235,162,1)" ],
-					hoverBackgroundColor : [ "rgba(75,192,192,0.8)",
-											"rgba(162,236,191,0.8)", 
-											"rgba(236,162,183,0.8)",
-											"rgba(215,236,162,0.8)", 
-											"rgba(162,163,236,0.8)",
-											"rgba(236, 235,162,0.8)" ]
-				}]
-			},
-			options : {
-				legend : {
-					display : false
+	
+	//작년데이터
+	$.ajax({
+		url : "lastEnergy",
+		type : "get",
+		data : {
+			columnName : "ENG"
+		},
+		async: false,
+		success : function(datas) {
+			var data = [];
+			var date = [];
+			if(datas.length != 12) {
+				var temp = 12 - datas.length;
+				for(let i=0; i<temp; i++) {
+					data.push(0);
+					date.push(" ");
+				}
+				for(let i=0; i<datas.length; i++) {
+					data.push(datas[i].eng);
+					
+					//mfDate에서 월만 추출
+					var year;
+					var month;
+					var lastYear;
+					
+					year = datas[i].mfDate.substr(0, 2);
+					month = datas[i].mfDate.substr(2, 3);
+					lastYear = "20" + year + "." + month;
+					//console.log(lastYear);
+					date.push(lastYear);
 				}
 			}
+			lastData = data;
+			lastDate = date;
+			//console.log(lastData);
+		},
+		error : function(error) {
+			console.log(error);
+		}
+	});
+
+	bar(thisData, lastData);
+
+	/* 바차트(월별) */
+	function bar(thisData, lastData) {
+		console.log(thisData);
+		var ctx = document.getElementById('myBarChart').getContext('2d'); 
+		var chart = new Chart(ctx, { 
+			// type : 'bar' = 막대차트를 의미합니다. 
+			type: 'bar', 
+			data: { 
+				labels: [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+				// 큰 분류(하단 데이터 이름)
+			datasets: [ 
+				{ label: '금년', //작은 분류 
+ 				backgroundColor: [ 'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)','rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)' ,'rgba(75,192,192,1)', 'rgba(75,192,192,1)', 'rgba(75,192,192,1)'],
+				data: thisData
+				},
+				{ label: '전년', //작은 분류 
+	 				backgroundColor: [ 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)','rgba(215,236,162,1)','rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)', 'rgba(215,236,162,1)','rgba(215,236,162,1)' ],
+					data: lastData
+				}
+			]}
 		});
 	};
+	
+	//lastDate lastData thisDate thisData
 
-	/* 도넛차트(에너지별) */
-	function doughnut(data) {
-		var ctx = document.getElementById("myDoughnutChart");
-		var myDoughnutChart = new Chart(ctx, {
-			type : 'doughnut',
-			data : {
-				labels : [ "일반관리비", "가스", "전기", "수도", "생활폐기물", "음식물폐기물" ],
-				datasets : [ {
-					data : [ data.eng, data.gas, data.electric, data.water, data.trash, data.trashFood ],
-					backgroundColor : [ "rgba(75,192,192,1)",
-										"rgba(162,236,191,1)", 
-										"rgba(236,162,183,1)",
-										"rgba(215,236,162,1)", 
-										"rgba(162,163,236,1)",
-										"rgba(236, 235,162,1)" ],
-					hoverBackgroundColor : [ "rgba(75,192,192,0.8)",
-											"rgba(162,236,191,0.8)", 
-											"rgba(236,162,183,0.8)",
-											"rgba(215,236,162,0.8)", 
-											"rgba(162,163,236,0.8)",
-											"rgba(236, 235,162,0.8)" ]
-				}]
+	var tagBar = "";
+			tagBar += '<table border="1" id="frm">'
+					+ '		<tr>'
+					+ '			<th rowcols="2">금년</th>';
+			
+			for(let i=0; i<thisDate.length; i++) {
+				tagBar += '<td>' + thisDate[i] + '</td>';
 			}
-		});
-	}
-
-	function line(data) {
-		//기간데이터-라인차트
-		var mfDate = [];
-
-		var engArray = [];
-		var gasArray = [];
-		var electricArray = [];
-		var waterArray = [];
-		var trashArray = [];
-		var trashFoodArray = [];
-
-		for (let i = 0; i < data.length; i++) {
-			mfDate.push(data[i].mfDate);
-			engArray.push(data[i].eng);
-			gasArray.push(data[i].gas);
-			electricArray.push(data[i].electric);
-			waterArray.push(data[i].water);
-			trashArray.push(data[i].trash);
-			trashFoodArray.push(data[i].trashFood);
-		}
-
-		/* 라인차트(전체) */
-		var ctx = document.getElementById("myLineChart");
-		var myLineChart = Chart.Line(ctx, {
-			type : 'line',
-			data : {
-				labels : mfDate,
-				datasets : [ {
-					label : "일반관리비",
-					fill : false,
-					lineTension : 0.1,
-					backgroundColor : "rgba(75,192,192,1)",
-					borderColor : "rgba(75,192,192,1)",
-					borderCapStyle : 'butt',
-					borderDash : [],
-					borderDashOffset : 0.0,
-					borderJoinStyle : 'miter',
-					pointBorderColor : "rgba(75,192,192,1)",
-					pointBackgroundColor : "#fff",
-					pointBorderWidth : 1,
-					pointHoverRadius : 5,
-					pointHoverBackgroundColor : "rgba(75,192,192,1)",
-					pointHoverBorderColor : "rgba(220,220,220,1)",
-					pointHoverBorderWidth : 2,
-					pointRadius : 1,
-					pointHitRadius : 10,
-					data : engArray
-				}, {
-					label : "가스",
-					fill : false,
-					lineTension : 0.1,
-					backgroundColor : "rgba(162,236,191,1)",
-					borderColor : "rgba(162,236,191,1)",
-					borderCapStyle : 'butt',
-					borderDash : [],
-					borderDashOffset : 0.0,
-					borderJoinStyle : 'miter',
-					pointBorderColor : "rgba(162,236,191,1)",
-					pointBackgroundColor : "#fff",
-					pointBorderWidth : 1,
-					pointHoverRadius : 5,
-					pointHoverBackgroundColor : "rgba(162,236,191,1)",
-					pointHoverBorderColor : "rgba(220,220,220,1)",
-					pointHoverBorderWidth : 2,
-					pointRadius : 1,
-					pointHitRadius : 10,
-					data : gasArray
-				}, {
-					label : "전기",
-					fill : false,
-					lineTension : 0.1,
-					backgroundColor : "rgba(236,162,183,1)",
-					borderColor : "rgba(236,162,183,1)",
-					borderCapStyle : 'butt',
-					borderDash : [],
-					borderDashOffset : 0.0,
-					borderJoinStyle : 'miter',
-					pointBorderColor : "rgba(236,162,183,1)",
-					pointBackgroundColor : "#fff",
-					pointBorderWidth : 1,
-					pointHoverRadius : 5,
-					pointHoverBackgroundColor : "rgba(236,162,183,1)",
-					pointHoverBorderColor : "rgba(220,220,220,1)",
-					pointHoverBorderWidth : 2,
-					pointRadius : 1,
-					pointHitRadius : 10,
-					data : electricArray
-				}, {
-					label : "수도",
-					fill : false,
-					lineTension : 0.1,
-					backgroundColor : "rgba(215,236,162,1)",
-					borderColor : "rgba(215,236,162,1)",
-					borderCapStyle : 'butt',
-					borderDash : [],
-					borderDashOffset : 0.0,
-					borderJoinStyle : 'miter',
-					pointBorderColor : "rgba(215,236,162,1)",
-					pointBackgroundColor : "#fff",
-					pointBorderWidth : 1,
-					pointHoverRadius : 5,
-					pointHoverBackgroundColor : "rgba(215,236,162,1)",
-					pointHoverBorderColor : "rgba(220,220,220,1)",
-					pointHoverBorderWidth : 2,
-					pointRadius : 1,
-					pointHitRadius : 10,
-					data : waterArray
-				}, {
-					label : "생활폐기물",
-					fill : false,
-					lineTension : 0.1,
-					backgroundColor : "rgba(162,163,236,1)",
-					borderColor : "rgba(162,163,236,1)",
-					borderCapStyle : 'butt',
-					borderDash : [],
-					borderDashOffset : 0.0,
-					borderJoinStyle : 'miter',
-					pointBorderColor : "rgba(162,163,236,1)",
-					pointBackgroundColor : "#fff",
-					pointBorderWidth : 1,
-					pointHoverRadius : 5,
-					pointHoverBackgroundColor : "rgba(162,163,236,1)",
-					pointHoverBorderColor : "rgba(220,220,220,1)",
-					pointHoverBorderWidth : 2,
-					pointRadius : 1,
-					pointHitRadius : 10,
-					data : trashArray
-				}, {
-					label : "음식물폐기물",
-					fill : false,
-					lineTension : 0.1,
-					backgroundColor : "rgba(236,235,162,1)",
-					borderColor : "rgba(236, 235,162,1)",
-					borderCapStyle : 'butt',
-					borderDash : [],
-					borderDashOffset : 0.0,
-					borderJoinStyle : 'miter',
-					pointBorderColor : "rgba(236,235,162,1)",
-					pointBackgroundColor : "#fff",
-					pointBorderWidth : 1,
-					pointHoverRadius : 5,
-					pointHoverBackgroundColor : "rgba(236,235,162,1)",
-					pointHoverBorderColor : "rgba(220,220,220,1)",
-					pointHoverBorderWidth : 2,
-					pointRadius : 1,
-					pointHitRadius : 10,
-					data : trashFoodArray
-				}]
+			
+			tagBar += '		</tr>'
+					+ '		<tr>'
+					+ '		<th></th>';
+					
+			for(let i=0; i<thisData.length; i++) {
+				tagBar += '<td>' + thisData[i] + '</td>';
 			}
-		});
-	}
+	
+			tagBar += '		</tr>'
+			+ '				<tr>'
+			+ '					<th rowcols="2">작년</th>';
+			
+			for(let i=0; i<lastDate.length; i++) {
+				tagBar += '<td>' + lastDate[i] + '</td>';
+			}
+			tagBar += ' 	</tr>'
+					+ '		<tr>'
+					+ '		<th></th>';
+				
+			for(let i=0; i<lastData.length; i++) {
+				tagBar += '<td>' + lastData[i] + '</td>';
+			}
+			
+			tagBar += '		</tr>'
+					+ '		<tr id="compare">'
+					+ '			<th>비교값</th>';
 
-	/* 게이지차트(에너지평균) */
-	function gauge(data) {
-		google.charts.load('current', {
-			'packages' : [ 'gauge' ]
-		});
-		google.charts.setOnLoadCallback(drawChart);
+			 for(let i=0; i<thisData.length; i++) {
+			tagBar += '<td>' + (thisData[i] - lastData[i]) + '</td>';
+			 console.log(thisData[i] - lastData[i]);
+			} 
+	
+			tagBar += '		</tr>'
+					+ '		<tr>'
+					+ '			<th>비교아이콘</th>'; 
+					
+			function test(){
 
-		//기간평균-게이지차트 
-		var avgEng = 0;
-		var avgGas = 0;
-		var avgElectric = 0;
-		var avgWater = 0;
-		var avgTrash = 0;
-		var avgTrashFood = 0;
+				var table1 = document.getElementById("frm");
 
-		for (let i = 0; i < data.length; i++) {
-			avgEng += data[i].eng;
-			avgGas += data[i].gas;
-			avgElectric += data[i].electric;
-			avgWater += data[i].water;
-			avgTrash += data[i].trash;
-			avgTrashFood += data[i].trashFood;
-		}
-		if (data.length == 6) {
-			avgEng = avgEng / 6;
-			avgEng = Number(avgEng.toFixed(1));
-			avgGas = avgGas / 6;
-			avgGas = Number(avgGas.toFixed(1));
-			avgElectric = avgElectric / 6;
-			avgElectric = Number(avgElectric.toFixed(1));
-			avgWater = avgWater / 6;
-			avgWater = Number(avgWater.toFixed(1));
-			avgTrash = avgTrash / 6;
-			avgTrash = Number(avgTrash.toFixed(1));
-			avgTrashFood = avgTrashFood / 6;
-			avgTrashFood = Number(avgTrashFood.toFixed(1));
-		} else {
-			avgEng = avgEng / 12;
-			avgEng = Number(avgEng.toFixed(1));
-			avgGas = avgGas / 12;
-			avgGas = Number(avgGas.toFixed(1));
-			avgElectric = avgElectric / 12;
-			avgElectric = Number(avgElectric.toFixed(1));
-			avgWater = avgWater / 12;
-			avgWater = Number(avgWater.toFixed(1));
-			avgTrash = avgTrash / 12;
-			avgTrash = Number(avgTrash.toFixed(1));
-			avgTrashFood = avgTrashFood / 12;
-			avgTrashFood = Number(avgTrashFood.toFixed(1));
-		}
+				console.log(table1.rows[4].cells[0].innerHTML);
 
-		function drawChart() {
-			var data = google.visualization.arrayToDataTable([
-					[ 'Label', 'Value' ], [ '일반관리비', avgEng ],
-					[ '가스', avgGas ], [ '전기', avgElectric ],
-					[ '수도', avgWater ], [ '생활폐기물', avgTrash ],
-					[ '음식물폐기물', avgTrashFood ] ]);
 
-			var options = {
-				redFrom : 90,
-				redTo : 100,
-				yellowFrom : 75,
-				yellowTo : 90,
-				minorTicks : 5
-			};
+			}
 
-			var chart = new google.visualization.Gauge(document.getElementById('myGaugeChart'));
-			chart.draw(data, options);
-		}
-	}
+
+				
+				
+			/* if('td' < -10 ) {
+				tagBar += '<td><tmg src="${pageContext.request.contextPath}/resources/images/red.png"></td>';
+			}else if(-10 <= 'td' < 10) {
+				tagBar += '<td><tmg src="${pageContext.request.contextPath}/resources/images/yellow.png"></td>';
+			}else if( 10 <= 'td') {
+				tagBar += '<td><tmg src="${pageContext.request.contextPath}/resources/images/green.png"></td>';
+			} */
+		
+			tagBar += '		</tr>'
+					+ '</table>';
+	$(".energyTable").html(tagBar);
+
+		
+	
+});
 </script>

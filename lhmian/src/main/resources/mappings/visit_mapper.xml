@@ -30,6 +30,7 @@
 			WRITER_INFO
 		FROM VISIT
 		WHERE HOUSE_INFO = #{houseInfo}
+			AND VISIT_WRITER = #{visitWriter}
 	</select>
 
 	<insert id="insert">
@@ -52,6 +53,6 @@
 		UPDATE VISIT
 		SET VISIT_CONTENT = #{visitContent},
 		VISIT_UPDATE = DEFAULT
-		WHERE WRITER_INFO = #{writerInfo}
+		WHERE VISIT_NO = #{visitNo}
 	</update>
 </mapper>

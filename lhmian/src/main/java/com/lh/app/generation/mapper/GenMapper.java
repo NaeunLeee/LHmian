@@ -20,8 +20,9 @@ public interface GenMapper {
 	// 세대 한건 조회
 	public GenerationVO selectGen(GenerationVO vo);
 	
-	// 한 세대 Null로 리셋
+	// 한 세대 삭제
 	public int makeNull(GenerationVO vo);
+	public int deleteFamily(GenerationVO vo);
 	
 	// 인증번호 발급/재발급
 	public int verifyGen(GenerationVO vo);
