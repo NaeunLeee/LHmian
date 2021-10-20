@@ -47,6 +47,9 @@ tr {
 .padding-t40 {
 	padding-top: 40px
 }
+.ui.grid {
+	padding-left: 55px
+}
 </style>
 
 <section class="sec-padding-1">

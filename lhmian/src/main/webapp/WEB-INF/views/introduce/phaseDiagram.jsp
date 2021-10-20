@@ -2,6 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<style>
+.pagenation-holder-no-bottom {
+	background: white !important;
+}
+.breadcrumb {
+	background: white !important;
+}
+</style>
+
 <section>
 	<div class="pagenation-holder-no-bottom">
 		<div class="container">
@@ -22,57 +31,42 @@
 <div class="clearfix"></div>
 <!-- end section -->
 
-
-
 <section>
 	<div class="container">
 		<div class="row">
+
 			<div class="clearfix">
 				<div id="js-filters-lightbox-gallery2"
 					class="cbp-l-filters-buttonCenter">
 
-					<button type="button" id="testBtn"
-						>test</button>
-					<div data-filter=".print" id="btn" class="cbp-filter-item">
+					<a href="#sliderTest1" data-toggle="tab" id="show1"  class="cbp-filter-item">
 						74㎡A
-						<div class="cbp-filter-counter"></div>
-					</div>
-					<div data-filter=".web-design" id="btn1" class="cbp-filter-item">
+						<span class="cbp-filter-counter"></span>
+					</a>
+					<a href="#sliderTest2" data-toggle="tab" id="show2"  class="cbp-filter-item">
 						86㎡A
-						<div class="cbp-filter-counter"></div>
-					</div>
-					<div data-filter=".graphic" id="btn2" class="cbp-filter-item">
+						<span class="cbp-filter-counter"></span>
+					</a>
+					<a href="#sliderTest3" data-toggle="tab" id="show3"  class="cbp-filter-item">
 						92㎡A
-						<div class="cbp-filter-counter"></div>
-					</div>
-					<div data-filter=".motion" id="btn3" class="cbp-filter-item">
+						<span class="cbp-filter-counter"></span>
+					</a>
+					<a href="#sliderTest4" data-toggle="tab" id="show4"  class="cbp-filter-item">
 						104㎡A
-						<div class="cbp-filter-counter"></div>
-					</div>
+						<span class="cbp-filter-counter"></span>
+					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 <div class="clearfix"></div>
-<!-- end section -->
-<ul class="nav nav-pills">
-	<li class="nav-item active">
-		<a href="#sliderTest1" class="nav-link" id="show1" data-toggle="tab">slider1</a>
-	</li>
-	<li class="nav-item">
-		<a href="#sliderTest2" class="nav-link" id="show2" data-toggle="tab">slider2</a>
-	</li>
-	<li class="nav-item">
-		<a href="#sliderTest3" class="nav-link" id="show3" data-toggle="tab">slider3</a>
-	</li>
-	<li class="nav-item">
-		<a href="#sliderTest4" class="nav-link" id="show4" data-toggle="tab">slider4</a>
-	</li>
-</ul>
 
-<div class="tab-content" style="height:850px">
-	<div id="sliderTest1" class="tab-pane fade active in">
+
+<!-- end section -->
+
+<div class="tab-content" style="min-height:700px;">
+	<div id="sliderTest1" class="tab-pane active in">
 
 <!-- START REVOLUTION SLIDER 5.0 -->
 
@@ -145,8 +139,9 @@
 					data-splitin="none" data-splitout="none"
 					data-responsive_offset="on"
 					style="z-index: 5; white-space: nowrap;">
-					1BL | 전용면적: 74.96㎡ | 공급면적: 97.67㎡ | 계약면적: 149.06㎡ <br /> 3BL |
-					전용면적: 74.96㎡ | 공급면적: 99.08㎡ | 계약면적: 151.64㎡
+					1BL | 전용면적: 74.96㎡ | 공급면적: 97.67㎡ | 계약면적: 149.06㎡ <br /> 
+					2BL | 전용면적: 74.96㎡ | 공급면적: 97.02㎡ | 계약면적: 162.06㎡ <br />
+					3BL | 전용면적: 74.96㎡ | 공급면적: 99.08㎡ | 계약면적: 151.64㎡
 				</div> <!-- LAYER NR. 4 -->
 				<div class="tp-caption sbut2" data-x="['left','left','left','left']"
 					data-hoffset="['750','450','100','100']"
@@ -212,9 +207,8 @@
 <!-- END OF SLIDER WRAPPER -->
 <!-- 74m 끝 -->
 </div>
-	
-	
-	<div id="sliderTest2" class="tab-pane fade active in">
+
+	<div id="sliderTest2" class="tab-pane">
 <!-- START REVOLUTION SLIDER 5.0 -->
 <!-- 86m 시작 -->
 <div class="rev_slider_wrapper" id="rev_wrapper1">
@@ -270,7 +264,7 @@
 					data-mask_in="x:[100%];y:0;s:inherit;e:inherit;" data-start="2000"
 					data-splitin="none" data-splitout="none"
 					data-responsive_offset="on"
-					style="z-index: 5; white-space: nowrap; font-size: 45px; line-height: 30px;">86㎡A
+					style="z-index: 5; white-space: nowrap; font-size: 45px; line-height: 30px;">84㎡A
 				</div> <!-- LAYER NR. 3 -->
 				<div class="tp-caption br-text-3 tp-resizeme"
 					data-x="['left','left','left','left']"
@@ -285,8 +279,9 @@
 					data-splitin="none" data-splitout="none"
 					data-responsive_offset="on"
 					style="z-index: 5; white-space: nowrap;">
-					1BL | 전용면적: 51.94㎡ | 공급면적: 68.82㎡ | 계약면적: 104.43㎡ <br /> 3BL |
-					전용면적: 51.94㎡ | 공급면적: 70.14㎡ | 계약면적: 106.56㎡
+					1BL | 전용면적: 84.93㎡ | 공급면적: 109.28㎡ | 계약면적: 168.83㎡ <br /> 
+					2BL | 전용면적: 84.93㎡ | 공급면적: 109.68㎡ | 계약면적: 173.28㎡ <br />
+					3BL | 전용면적: 84.93㎡ | 공급면적: 110.11㎡ | 계약면적: 180.72㎡
 				</div> <!-- LAYER NR. 4 -->
 				<div class="tp-caption sbut2" data-x="['left','left','left','left']"
 					data-hoffset="['750','450','100','100']"
@@ -352,7 +347,7 @@
 </div>
 <!-- END OF SLIDER WRAPPER -->
 <!-- 86m 끝 -->
-	<div id="sliderTest3" class="tab-pane fade active in">
+	<div id="sliderTest3" class="tab-pane">
 	
 <!-- START REVOLUTION SLIDER 5.0 -->
 <!-- 92m 시작 -->
@@ -424,8 +419,8 @@
 					data-splitin="none" data-splitout="none"
 					data-responsive_offset="on"
 					style="z-index: 5; white-space: nowrap;">
-					1BL | 전용면적: 51.94㎡ | 공급면적: 68.82㎡ | 계약면적: 104.43㎡ <br /> 3BL |
-					전용면적: 51.94㎡ | 공급면적: 70.14㎡ | 계약면적: 106.56㎡
+					1BL | 전용면적: 92.95㎡ | 공급면적: 110.25㎡ | 계약면적: 179.82㎡ <br /> 
+					2BL | 전용면적: 92.95㎡ | 공급면적: 111.10㎡ | 계약면적: 163.77㎡ 
 				</div> <!-- LAYER NR. 4 -->
 				<div class="tp-caption sbut2" data-x="['left','left','left','left']"
 					data-hoffset="['750','450','100','100']"
@@ -492,7 +487,7 @@
 <!-- 92m 끝 -->
 	
 	</div>
-	<div id="sliderTest4" class="tab-pane fade active in">
+	<div id="sliderTest4" class="tab-pane">
 	
 <!-- START REVOLUTION SLIDER 5.0 -->
 <!-- 104m 시작 -->
@@ -549,7 +544,7 @@
 					data-mask_in="x:[100%];y:0;s:inherit;e:inherit;" data-start="2000"
 					data-splitin="none" data-splitout="none"
 					data-responsive_offset="on"
-					style="z-index: 5; white-space: nowrap; font-size: 45px; line-height: 30px;">86㎡A
+					style="z-index: 5; white-space: nowrap; font-size: 45px; line-height: 30px;">104㎡A
 				</div> <!-- LAYER NR. 3 -->
 				<div class="tp-caption br-text-3 tp-resizeme"
 					data-x="['left','left','left','left']"
@@ -564,8 +559,7 @@
 					data-splitin="none" data-splitout="none"
 					data-responsive_offset="on"
 					style="z-index: 5; white-space: nowrap;">
-					1BL | 전용면적: 51.94㎡ | 공급면적: 68.82㎡ | 계약면적: 104.43㎡ <br /> 3BL |
-					전용면적: 51.94㎡ | 공급면적: 70.14㎡ | 계약면적: 106.56㎡
+					3BL | 전용면적: 109.44㎡ | 공급면적: 121.53㎡ | 계약면적: 180.72㎡
 				</div> <!-- LAYER NR. 4 -->
 				<div class="tp-caption sbut2" data-x="['left','left','left','left']"
 					data-hoffset="['750','450','100','100']"
@@ -914,7 +908,7 @@ The following part can be removed on Server for On Demand Loading) -->
 			jsFileLocation:"js/revolution-slider/js/",
 			sliderLayout:"auto",
 			dottedOverlay:"none",
-			delay:3000,
+			delay:9000,
 			navigation: {
 			keyboardNavigation:"off",
 			keyboard_direction: "horizontal",
@@ -970,22 +964,26 @@ The following part can be removed on Server for On Demand Loading) -->
 
 		document.getElementById("show1").addEventListener ("click", show1, false);
         function show1() {
-				revapi4.revshowslide(1)
+				revapi4.revshowslide(1);
+				revapi4.revredraw();
 			};
 
 		document.getElementById("show2").addEventListener ("click", show2, false);
         function show2() {
-           		 revapi5.revshowslide(1)
+           		 revapi5.revshowslide(1);
+           		revapi5.revredraw();
         };
         
         document.getElementById("show3").addEventListener ("click", show3, false);
         function show3() {
-				revapi6.revshowslide(1)
+				revapi6.revshowslide(1);
+				revapi6.revredraw();
 			};
 			
 		document.getElementById("show4").addEventListener ("click", show4, false);
         function show4() {
-        	    revapi7.revshowslide(1)
+        	    revapi7.revshowslide(1);
+        	    revapi7.revredraw();
         };
 	}
 	
