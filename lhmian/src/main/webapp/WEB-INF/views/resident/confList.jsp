@@ -75,7 +75,7 @@
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
-							<li class="current"><a href="#">입주자 대표회의</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/resident/confList">입주자 대표회의</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
@@ -95,7 +95,7 @@
 					<div class="pl-title-line-1"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">입주자 대표회의</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title" style="font-size: 13px;">입주자 대표회의... 어쩌구..ㅋㅋ</p>
+					<p class="by-sub-title" style="font-size: 13px;">동대표 주민들이 모여 회의하는 공간입니다.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>

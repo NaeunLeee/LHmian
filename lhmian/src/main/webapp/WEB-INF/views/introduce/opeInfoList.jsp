@@ -89,7 +89,7 @@ table {
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">운영 정보 공개</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">투명한 운영 정보 공개로 ... 어쩌구..ㅋㅋ</p>
+						<p class="by-sub-title">LHmian은 운영 정보를 투명하게 공개하고 있습니다.</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
