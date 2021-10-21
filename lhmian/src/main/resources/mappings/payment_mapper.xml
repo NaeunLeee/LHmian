@@ -3,7 +3,8 @@
 <mapper namespace="com.lh.app.payment.mapper.PaymentMapper">
 	<select id="getTotalCount" resultType="int">
 		SELECT COUNT(*) FROM
-		PAYMENT ID = #{id}
+		PAYMENT 
+		WHERE ID = #{id}
 	</select>
 	
 	<insert id="insert">

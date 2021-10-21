@@ -52,6 +52,7 @@ public class PaymentController {
 	@RequestMapping("/myPaidList")
 	public String list(@ModelAttribute("cri") PaymentCriteria cri, Model model, @AuthenticationPrincipal CustomUserDetails userId) {
 		int total = paymentService.getTotalCount(cri);
+		System.out.println(cri);
 		cri.setId(userId.getUsername());
 		model.addAttribute("pay", paymentService.getList(cri));
 		model.addAttribute("pageMaker", new PaymentPageVO(cri, total));
