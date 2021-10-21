@@ -77,10 +77,8 @@
 				<div class="pages-sidebar-item">
 					<!-- <h5 class="uppercase pages-sidebar-item-title">관리자</h5> -->
 					<ul class="pages-sidebar-links">
-						<li><a href="feeList">관리비</a></li>
+						<li><a class="active" href="admGeneration">세대 관리</a></li>
 						<li><a href="admEnergyCon">에너지 사용량</a></li>
-						<li><a class="active" href="#">세대 관리</a></li>
-						<li><a href="admMemberList">회원 관리</a></li>
 						<li><a href="admCarList">차량 관리</a></li>
 						<li><a href="admOpeInfoList">게시글 관리</a></li>
 						<li><a href="admSked">일정 관리</a></li>
@@ -97,31 +95,10 @@
 					<p class="by-sub-title">LHmian의 모든 세대를 조회합니다.</p>
 				</div>
 
-				<div style="float: left; margin-left: 40px;" id="criteriaForm" data-option="${type}">
-
-					<%-- <form id="actionForm" action="admGeneration" method="get">
-						<select name="type" class="form-control" style="width: 100px; ">
-							<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
-							<option id="N" value="N" ${pageMaker.cri.type=='N' ? 'selected' : ""}>이름</option>
-							<option id="C" value="C" ${pageMaker.cri.type=='C' ? 'selected' : ""}>동호수</option>
-							<option id="A" value="A" ${pageMaker.cri.type=='A' ? 'selected' : ""}>휴대폰번호</option>
-						</select> 
-						<input name="keyword" class="form-control" style="width: 200px; margin-right: 10px;" value="${pageMaker.cri.keyword}"> 
-							<label for="all">전체</label><input type="checkbox" id="A" name="option" value="A" checked="checked">
-							<label for="notpaid">관리비미납</label><input type="checkbox" id="N" name="option" value="N" onchange="checkOption()">
-							<label for="leader">입주민대표</label><input type="checkbox" id="L" name="option" value="L" onchange="checkOption()">
-							<label for="owner">세대주</label><input type="checkbox" id="O" name="option" value="O" onchange="checkOption()">
-							<input type="hidden" name="preType" id="preType" value="${type}">
-						<button type="button" class="btn btn-dark" id="searchBtn" onclick="allChecked()">검색</button>
-						
-						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-						<input type="hidden" name="amount" value="${pageMaker.cri.amount}"><br>
-						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-					</form> --%>
-				</div>
 				<div>
 					<button class="btn btn-dark" type="button" id="registerBtn" style="margin-right: 5px;">세대 등록</button>
-					<button class="btn btn-gyellow" type="button" id="showModal">SMS전송</button>
+					<button class="btn btn-gyellow" type="button" id="showModal" style="margin-right: 5px;">SMS전송</button>
+					<button class="btn btn-gyellow" type="button" id="excelDownload">엑셀 다운로드</button>
 					<button class="btn btn-default" type="button" onclick="deleteGen()" id="deleteBtn" style="float:right;">세대 삭제</button>
 				</div>
 				<div class="text-box white padding-t40">
@@ -174,28 +151,6 @@
 						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 					</form>
 					<br>
-					<!-- 폼 -->
-					<%-- <div id="pageButton" align="center">
-						<ul class="pagination hover-orange">
-							<c:if test="${pageMaker.prev == true}">
-								<li>
-									<a href="${pageMaker.startPage-1}">
-										<span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-									</a>
-								</li>
-							</c:if>
-							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
-								<li><a href="${num}" style="<c:if test="${num eq pageMaker.cri.pageNum}">color:white; background-color:orange;</c:if>">${num}</a></li>
-							</c:forEach>
-							<c:if test="${pageMaker.next == true}">
-								<li>
-									<a href="${pageMaker.endPage+1}">
-										<span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-									</a>
-								</li>
-							</c:if>
-						</ul>
-					</div> --%>
 				</div>
 			</div>
 		</div>
@@ -285,7 +240,7 @@
 					<br>
 				</div>
 				<!-- Modal Footer -->
-				<div class="modal-footer">
+				<div class="modal-footer" style="margin-top: 10px;">
 					<div align="center">
 						<button type="button" id="closeCars" class="btn btn-default" data-dismiss="modal">확인</button>
 					</div>
@@ -367,6 +322,12 @@
       </div>
    </div>
    <!-- Modal End -->
+   
+   <!-- 엑셀 다운로드를 위한 폼 태그, 10/20 윤지민 -->
+   <form id="excelForm" name="excelForm" method="POST" action="excelDownload">
+   		<!-- CSRF 토큰 -->
+        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+   </form>
 
 <script>
 
@@ -396,6 +357,7 @@
 				str += '<th>아이디</th>';
 				str += '<th>이름</th>';
 				str += '<th>전화번호</th>';
+				str += '<th></th>';
 				str += '</tr>';
 				str += '</thead>';
 				str += '<tbody>';
@@ -405,6 +367,7 @@
 					str += '<td>' + data[i].id + '</td>';
 					str += '<td>' + data[i].name + '</td>';
 					str += '<td>'+ data[i].phone.substring(0, 3) + '-' + data[i].phone.substring(3, 7) + '-' + data[i].phone.substring(7, 11) + '</td>';
+					str += '<td><button type="button" class="delMem btn btn-default" data-id="' + data[i].id + '" data-houseInfo="' + data[i].houseInfo + '">삭제</button></td>';
 					str += '</tr>';
 				}
 				str += '</tbody>';
@@ -526,6 +489,7 @@
 					}
 					str += '</tbody>';
 					str += '</table>';
+					str += '<button class="carList btn btn-default" type="button" style="float: right;">차량 관리</button>';
 					$('#cars').html(str);
 					$('#carListModal').show();
 				}
@@ -535,6 +499,11 @@
 			}
 		});
 		
+	});
+	
+	// 차량 관리로 이동
+	$(document).on('click', '.carList', function() {
+		$(location).attr('href', 'admCarList');
 	});
 	
 	// 차량 정보 모달 내리기...
@@ -956,6 +925,46 @@
 				});
 			}
 		}
-		
 	}
+	
+	// 세대별 회원 정보 모달에서 회원 삭제
+	$(document).on('click', '.delMem', function() {
+		
+		var tr = $(this).parent().parent();
+		
+		if (confirm('삭제하시겠습니까?')) {
+			$.ajax({
+				url: 'deleteMember',
+				type: 'POST',
+				data: JSON.stringify({
+					id: $(this).attr('data-id'),
+					houseInfo : $(this).attr('data-houseInfo')
+				}),
+				contentType: 'application/json',
+				dataType: 'json',
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				success: function(result) {
+					if (result == true) {
+						$(tr).remove();
+						alert('삭제가 완료되었습니다.');
+						$(location).reload();
+					} else {
+						console.log('다시 시도해주세요.');
+					}
+				},
+				error: function() {
+					alert('서버 통신 실패');
+				}
+			});
+		}
+	});
+	
+	//엑셀 다운로드하기 10/20 윤지민
+	$('#excelDownload').on('click', function() {
+		$('#excelForm').submit();
+	});
+	
+	
 </script>

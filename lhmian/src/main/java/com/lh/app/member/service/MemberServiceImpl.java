@@ -99,5 +99,10 @@ public class MemberServiceImpl implements MemberService {
 	public int countByHouseInfo(MemberInfoVO vo) {
 		return mapper.countByHouseInfo(vo);
 	}
+
+	// id로 회원 조회
+	public MemberVO selectById(MemberVO vo) {
+		return mapper.selectById(vo);
+	}
 	
 }

@@ -10,6 +10,10 @@
 	.ce4-feature-box-12 {
 		cursor: pointer;
 	}
+	p {
+    	margin: 0 0 10px 40px;
+    }
+
 </style>
 </head>
 <body>
@@ -35,7 +39,7 @@
                 <div class="title-line"></div>
               </div>
               <br/>
-              <p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum dolor consectetuer adipiscing elit Suspendisse.</p>
+              <p>비밀번호 및 전화번호를 변경할 수 있습니다.</p><br/>
             </div>
           </div>
           <!--end item-->
@@ -48,7 +52,7 @@
                 <div class="title-line"></div>
               </div>
               <br/>
-              <p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum dolor consectetuer adipiscing elit Suspendisse.</p>
+              <p>납부하신 관리비 상세내역 및 결제상태를 확인하실 수 있습니다. </p> <br/>
             </div>
           </div>
           <!--end item-->
@@ -61,7 +65,7 @@
                 <div class="title-line"></div>
               </div>
               <br/>
-              <p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum dolor consectetuer adipiscing elit Suspendisse.</p>
+              <p>월별, 기간별로 세대의 에너지 <br/>사용 내역을 확인하고 비교할 수 있습니다.</p>
             </div>
           </div>
           <!--end item-->
@@ -77,7 +81,7 @@
                 <div class="title-line"></div>
               </div>
               <br/>
-              <p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum dolor consectetuer adipiscing elit Suspendisse.</p>
+              <p>작성한 커뮤니티, 민원, 입주자 대표회의 글을 확인할 수 있습니다.</p><br/>
             </div>
           </div>
           <!--end item-->
@@ -90,7 +94,7 @@
                 <div class="title-line"></div>
               </div>
               <br/>
-              <p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum dolor consectetuer adipiscing elit Suspendisse.</p>
+              <p>편의시설 이용 내역을 확인할 수 있습니다.</p><br/>
             </div>
           </div>
           <!--end item--> 

@@ -52,6 +52,9 @@
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">커뮤니티</h4>
 						<div class="clearfix"></div>
+
+						<p class="by-sub-title">수정할 내용을 입력해주세요.</p>
+
 					</div>
 				</div>
 				<div class="clearfix"></div>

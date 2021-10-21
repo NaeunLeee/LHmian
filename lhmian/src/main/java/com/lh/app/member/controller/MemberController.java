@@ -18,12 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lh.app.carList.service.CarListService;
-import com.lh.app.comm.domain.PageVO;
+import com.lh.app.generation.service.GenService;
 import com.lh.app.member.domain.AdmMemberCri;
 import com.lh.app.member.domain.AdmMemberPageVO;
 import com.lh.app.member.domain.MemberInfoVO;
 import com.lh.app.member.service.MemberService;
 import com.lh.app.signIn.domain.CarListVO;
+import com.lh.app.signIn.domain.GenerationVO;
 import com.lh.app.signIn.domain.MemberVO;
 import com.lh.app.signIn.etc.CustomUserDetails;
 
@@ -35,6 +36,8 @@ public class MemberController {
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	@Autowired
 	CarListService carService;
+	@Autowired
+	GenService genService;
 
 	// 전체조회 (기존..)
 //	@GetMapping("/admin/admMemberList")
@@ -162,6 +165,29 @@ public class MemberController {
 	@ResponseBody
 	public int memberTotal(@RequestBody MemberInfoVO vo) {
 		return service.countByHouseInfo(vo);
+	}
+	
+	// 회원 한명 삭제 (10/20 추가: 이나은)
+	@PostMapping("/admin/deleteMember")
+	@ResponseBody
+	public boolean deleteMember(@RequestBody MemberVO vo) {
+		
+		boolean result = false;
+		
+		int n = service.delete(vo);
+		
+		if (n > 0) {
+			// 한 세대의 회원이 모두 삭제되었을 때, Generation 테이블의 한 행 리셋
+			GenerationVO genVO = new GenerationVO();
+			genVO = genService.checkNull(vo);
+			if (genVO != null) {
+				genService.makeNull(genVO);
+			}
+			
+			result = true;
+		} 
+		
+		return result;
 	}
 
 }

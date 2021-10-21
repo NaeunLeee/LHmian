@@ -57,10 +57,8 @@
 			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
 				<div class="pages-sidebar-item">
 					<ul class="pages-sidebar-links">
-						<li><a href="feeList">관리비</a></li>
-						<li><a href="admEnergyCon">에너지 사용량</a></li>
 						<li><a href="admGeneration">세대 관리</a></li>
-						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
 						<li><a href="admCarList">차량 관리</a></li>
 						<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
 						<li><a href="admSked">일정 관리</a></li>
@@ -76,26 +74,26 @@
 					<div class="clearfix"></div>
 					<p class="by-sub-title">게시글을 조회 및 수정합니다.</p>
 				</div>
-				<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item">
-						<a class="nav-link active" href="#">운영 정보 공개</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#">투표</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#">분실물 보관소</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#">일정 관리</a>
-					</li>
-				</ul>
+					<ul class="nav nav-tabs nav-justified">
+						<li class="nav-item">
+							<a class="nav-link active" href="admOpeInfoList">운영 정보 공개</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="admNoticeList">공지사항</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="admCsList">민원</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="admVoteList">투표</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/itemLost/admLostList">분실물 보관소</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="admSked">일정 관리</a>
+						</li>
+					</ul>
 				<div class="row">
 					<div class="text-box white padding-4 col-10">
 							<div class="text-box">

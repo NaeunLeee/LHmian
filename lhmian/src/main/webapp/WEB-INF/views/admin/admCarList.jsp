@@ -62,10 +62,8 @@ td {
 				<div class="pages-sidebar-item">
 					<!-- <h5 class="uppercase pages-sidebar-item-title">관리자</h5> -->
 					<ul class="pages-sidebar-links">
-						<li><a href="feeList">관리비</a></li>
-						<li><a href="admEnergyCon">에너지 사용량</a></li>
 						<li><a href="admGeneration">세대 관리</a></li>
-						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
 						<li><a class="active" href="admCarList">차량 관리</a></li>
 						<li><a href="admOpeInfoList">게시글 관리</a></li>
 						<li><a href="admSked">일정 관리</a></li>
@@ -107,15 +105,13 @@ td {
 							<tbody>
 								<c:forEach var="car" items="${list}">
 									<tr class="move tr_1">
-										<td><input type="checkbox" name="chk" id="${car.carNo}"
-											value="${car.carNo}"></td>
-										<td><c:set var="donghosu" value="${car.houseInfo}" />
+										<td class="col-md-1"><input type="checkbox" name="chk" id="${car.carNo}" value="${car.carNo}"></td>
+										<td class="col-md-3"><c:set var="donghosu" value="${car.houseInfo}" />
 											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 8)}호
 										</td>
-										<td>${car.carCode}</td>
-										<td>${car.carType}</td>
-										<td><fmt:formatDate value="${car.carDate}"
-												pattern="yy-MM-dd" /></td>
+										<td class="col-md-4">${car.carCode}</td>
+										<td class="col-md-2">${car.carType}</td>
+										<td class="col-md-2"><fmt:formatDate value="${car.carDate}" pattern="yy-MM-dd" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -152,11 +148,11 @@ td {
 									${pageMaker.cri.type=='C' ? selected : ""}>차량번호</option>
 							</select> <input name="keyword" class="form-control" style="width: 200px;"
 								value="${pageMaker.cri.keyword}">
+							<button type="button" id="btnSearch" class="btn btn-dark">검색</button>
 							<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 							<input type="hidden" name="amount" value="${pageMaker.cri.amount}"><br>
 							<input type="hidden" name="preKey" id="preKey" value="${preKey}">
 							<input type="hidden" name="preType" id="preType" value="${type}">
-							<button type="button" id="btnSearch" class="btn btn-dark">검색</button>
 						</form>
 					</div>
 				</div>

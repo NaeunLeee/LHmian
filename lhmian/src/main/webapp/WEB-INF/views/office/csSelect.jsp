@@ -50,7 +50,7 @@ textarea:focus {
 #csContent {
 	margin:20px 0;
 	width: 100%;
-	min-height: 200px;
+	min-height: 100px;
 	background-color:transparent; 
 	border:none;
 	
@@ -142,11 +142,25 @@ textarea:focus {
 			</div>
 		</div>
 	</section>
-	<hr>
-				<section class="section-light sec-padding">
+	   <section class="sec-padding section-light">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12 nopadding">
+               <div class="sec-title-container-padding-topbottom text-center">
+                  <div class="pl-title-line-1"></div>
+                  <h4 class="uppercase font-weight-7 less-mar-1">민원게시판</h4>
+                  <div class="clearfix"></div>
+                  <p class="by-sub-title" style="font-size: 13px;">민원사항을 남겨주세요.</p>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+         </div>
+      </div>
+	
+
 				<div class="container">
 				<div class="row">
-				<div class="text-box white padding-4 col-7" style="margin-top:50px; ">
+				<div class="text-box white padding-4 col-7">
 							<div class="text-box">
 							<textarea readonly id="csTitle" class="col-md-11 font-weight-7" style="background-color:transparent; font-size:20px">${cs.csTitle}</textarea>
 							<div class="text-box">

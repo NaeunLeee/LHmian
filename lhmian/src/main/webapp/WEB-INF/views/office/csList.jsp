@@ -75,7 +75,7 @@ table {
                   <div class="pl-title-line-1"></div>
                   <h4 class="uppercase font-weight-7 less-mar-1">민원게시판</h4>
                   <div class="clearfix"></div>
-                  <p class="by-sub-title" style="font-size: 13px;">민원... 어쩌구..ㅋㅋ</p>
+                  <p class="by-sub-title" style="font-size: 13px;">민원사항을 남겨주세요.</p>
                </div>
             </div>
             <div class="clearfix"></div>
@@ -97,17 +97,17 @@ table {
                <tbody>
                <c:forEach items="${list}" var="cs">
                   <tr class="move tr_1" data-csNo="${cs.csNo}">
-                     <td>${cs.csNo}</td>
+                     <td class="col-md-1">${cs.csNo}</td>
                      <c:if test="${cs.csAnswer != null}">
-                        <td style="color: #14279B;">답변완료</td>
+                        <td class="col-md-2" style="color: #14279B;">답변완료</td>
                      </c:if>
                      <c:if test="${cs.csAnswer == null}">
-                        <td style="color: #FF0000;">처리중</td>
+                        <td class="col-md-2" style="color: #FF0000;">처리중</td>
                      </c:if>
                      <%-- <td onclick="location.href='../office/csSelect?csNo=${cs.csNo}'">${cs.csTitle}</td> --%>
-                     <td style="text-align: left;">${cs.csTitle}</td>
-                     <td>${cs.name}</td>
-                     <td><fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" /></td>
+                     <td class="col-md-6" style="text-align: left;">${cs.csTitle}</td>
+                     <td class="col-md-1">${cs.name}</td>
+                     <td class="col-md-2"><fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" /></td>
                   </tr>
                </c:forEach>
                </tbody>

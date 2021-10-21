@@ -28,6 +28,12 @@
 	.tab-content-style-7 {
 		background-color: #EEEEEE;
 	}
+	.margin-t130 {
+		margin-top: 130px;
+	}
+	.padding-l110 {
+		padding-left: 110px;
+	}
 </style>
 </head>
 <body>
@@ -59,7 +65,7 @@
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a href="${pageContext.request.contextPath}/facility/facilityList">편의 시설</a></li>
-							<li class="current"><a href="#">피트니스 센터</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/facility/gym">피트니스 센터</a></li>
 						</ol>
 					</div>
 				</div>
@@ -73,9 +79,10 @@
 				<div class="col-xs-12 nopadding">
 					<div class="sec-title-container-padding-topbottom text-center">
 						<div class="pl-title-line-1"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">피트니스 센터</h4>
+						<h1 class="uppercase font-weight-7 less-mar-1">피트니스 센터</h1>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">LHmian의 자랑, 근손실없는피트니스 입니다.</p>
+						<p class="by-sub-title">
+						</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -84,7 +91,7 @@
 		</div>
 
 	
-		<section class="sec-padding">
+		<%-- <section class="sec-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 margin-bottom">
@@ -93,9 +100,10 @@
 					</div>
 				</div>
 				<div class="col-md-6 margin-bottom">
-					<h5 class="font-weight-4">근손실 없는 피트니스</h5>
-					<div class="clearfix"></div>
-					<p class="by-sub-title">LHmian의 자랑, 근손실 없는 피트니스 입니다.</p>
+					<h4 class="font-weight-4">
+						LHmian의 피트니스에는 다양한 종류의 운동 기구가 준비되어 있습니다.<br>
+						탁 트인 전망을 감상하고, 숲 속 맑은 공기를 마시며 몸 속의 에너지를 돋워 보십시오.
+					</h4>
 					<br />
 					<ul class="iconlist gyellow">
 						<li><i class="fa fa-check"></i> 
@@ -118,12 +126,266 @@
 			</div>
 		</div>
 	</section>
-	<div class="clearfix"></div>
+	<div class="clearfix"></div> --%>
 	<!-- end section -->
 
-	<div class="divider-line solid light"></div>
+ <div id="rev_slider_2_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="classic-carousel2" style="margin:0px auto;background-color:#ffffff;padding:0px;margin-top:0px;margin-bottom:0px;">
+				
+					<!-- START REVOLUTION SLIDER 5.0.7 fullwidth mode -->
+					<div id="rev_slider_2_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.0.7">
+						<ul>	
+						<!-- SLIDE  -->
+							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+								<!-- MAIN IMAGE -->
+								<img src="${pageContext.request.contextPath}/resources/images/gym/독서실.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<!-- LAYERS -->
+
+
+								<!-- LAYER NR. 3 -->
+								<div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-0" 
+									 id="slide-6-layer-8" 
+									 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+									 data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" 
+												data-width="none"
+									data-height="none"
+									data-whitespace="nowrap"
+									data-transform_idle="o:1;"
+										data-style_hover="cursor:default;"
+						 
+									 data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" 
+									 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+									 data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" 
+									 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+									data-start="2000" 
+									data-splitin="none" 
+									data-splitout="none" 
+									data-responsive_offset="on" 
+
+									
+									style="z-index: 7; white-space: nowrap;"><i class="pe-7s-refresh"></i> 
+								</div>
+							</li>
+							<!-- SLIDE  -->
+							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+								<!-- MAIN IMAGE -->
+								<img src="${pageContext.request.contextPath}/resources/images/gym/독서실1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<!-- LAYERS -->
+
+
+								<!-- LAYER NR. 3 -->
+								<div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-0" 
+									 id="slide-6-layer-8" 
+									 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+									 data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" 
+												data-width="none"
+									data-height="none"
+									data-whitespace="nowrap"
+									data-transform_idle="o:1;"
+										data-style_hover="cursor:default;"
+						 
+									 data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" 
+									 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+									 data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" 
+									 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+									data-start="2000" 
+									data-splitin="none" 
+									data-splitout="none" 
+									data-responsive_offset="on" 
+
+									
+									style="z-index: 7; white-space: nowrap;"><i class="pe-7s-refresh"></i> 
+								</div>
+							</li>
+							<!-- SLIDE  -->
+							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+								<!-- MAIN IMAGE -->
+								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<!-- LAYERS -->
+
+
+								<!-- LAYER NR. 3 -->
+								<div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-0" 
+									 id="slide-6-layer-8" 
+									 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+									 data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" 
+												data-width="none"
+									data-height="none"
+									data-whitespace="nowrap"
+									data-transform_idle="o:1;"
+										data-style_hover="cursor:default;"
+						 
+									 data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" 
+									 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+									 data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" 
+									 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+									data-start="2000" 
+									data-splitin="none" 
+									data-splitout="none" 
+									data-responsive_offset="on" 
+
+									
+									style="z-index: 7; white-space: nowrap;"><i class="pe-7s-refresh"></i> 
+								</div>
+							</li>
+							<!-- SLIDE  -->
+							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+								<!-- MAIN IMAGE -->
+								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<!-- LAYERS -->
+
+
+								<!-- LAYER NR. 3 -->
+								<div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-0" 
+									 id="slide-6-layer-8" 
+									 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+									 data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" 
+												data-width="none"
+									data-height="none"
+									data-whitespace="nowrap"
+									data-transform_idle="o:1;"
+										data-style_hover="cursor:default;"
+						 
+									 data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" 
+									 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+									 data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" 
+									 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+									data-start="2000" 
+									data-splitin="none" 
+									data-splitout="none" 
+									data-responsive_offset="on" 
+
+									
+									style="z-index: 7; white-space: nowrap;"><i class="pe-7s-refresh"></i> 
+								</div>
+							</li>
+							<!-- SLIDE  -->
+							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+								<!-- MAIN IMAGE -->
+								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<!-- LAYERS -->
+
+
+								<!-- LAYER NR. 3 -->
+								<div class="tp-caption NotGeneric-Icon   tp-resizeme rs-parallaxlevel-0" 
+									 id="slide-6-layer-8" 
+									 data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
+									 data-y="['middle','middle','middle','middle']" data-voffset="['-68','-68','-68','-68']" 
+												data-width="none"
+									data-height="none"
+									data-whitespace="nowrap"
+									data-transform_idle="o:1;"
+										data-style_hover="cursor:default;"
+						 
+									 data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" 
+									 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" 
+									 data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;" 
+									 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" 
+									data-start="2000" 
+									data-splitin="none" 
+									data-splitout="none" 
+									data-responsive_offset="on" 
+
+									
+									style="z-index: 7; white-space: nowrap;"><i class="pe-7s-refresh"></i> 
+								</div>
+							</li>
+						</ul>
+						<div class="tp-static-layers"></div>
+						<div class="tp-bannertimer" style="height: 7px; background-color: rgba(255, 255, 255, 0.25);"></div>	
+					</div>
+				</div>
+
+<div class="container margin-t130">
+<div class="row">
+<div class="col-md-5"> <img src="http://placehold.it/800x800" alt="" class="img-responsive img-circle"> </div>
+<div class="col-md-7 padding-l110">
+<div class="text-box">
+<h1 style="padding-bottom: 30px;">매일매일, 건강하게</h1>
+              <h3 style="line-heignt: 30px;">
+              	LHmian의 피트니스에는 다양한 종류의 운동 기구가<br> 준비되어 있습니다.<br>
+				탁 트인 전망을 감상하고, 숲 속 맑은 공기를 마시며<br> 몸 속의 에너지를 돋워 보십시오.		
+              </h3>
+					<ul class="iconlist gyellow" style="font-size: 20px;">
+						<li><i class="fa fa-check"></i> 
+							쾌적한 환경
+						</li>
+						<li><i class="fa fa-check"></i> 
+							체계적인 관리
+						</li>
+						<li><i class="fa fa-check"></i> 
+							다양한 시설
+						</li>
+						<li><i class="fa fa-check"></i> 
+							다양한 수상 경력 
+						</li>
+					</ul>
+              <br>
+              <div class="divider-line dotted"></div>
+              <br>
+              <p>운영시간 : 연중 무휴<br>
+				(Break Time : 13:00 ~ 14:00)<br>
+				문의 : 010-1234-1234<br>
+				*운영시간은 변동될 수 있습니다.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<%-- <section class="section-side-image clearfix">
+      <div class="img-holder col-md-6 col-sm-3 pull-left">
+        <div class="background-imgholder" style="background:url(${pageContext.request.contextPath}/resources/images/gym_1.jpg);"> <img class="nodisplay-image" src="images/wg-3.jpg" alt=""> </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-5 col-md-offset-7 col-sm-8 col-sm-offset-4 text-inner-5 clearfix align-left">
+            <div class="text-box">
+              <div class="col-xs-12 text-center nopadding">
+                <div class="sec-title-container less-padding-3 text-left">
+                  <h2 class="typography-title-6 font-weight-3 playfair"><span>Keep</span>&nbsp;&nbsp;&nbsp;<br> FIT<span class="text-gyellow">.</span></h2>
+                  <div class="typography-title-line-3"></div>
+                  <div class="clearfix"></div>
+                  <div class="wg-title-line-1"><img src="images/wg-2.png" alt=""></div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <!--end title-->
+              <h1 style="padding-bottom: 30px;">매일매일, 건강하게</h1>
+              <h3 style="line-heignt: 30px;">
+              	LHmian의 피트니스에는 다양한 종류의 운동 기구가<br> 준비되어 있습니다.<br>
+				탁 트인 전망을 감상하고, 숲 속 맑은 공기를 마시며<br> 몸 속의 에너지를 돋워 보십시오.		
+              </h3>
+					<ul class="iconlist gyellow" style="font-size: 20px;">
+						<li><i class="fa fa-check"></i> 
+							쾌적한 환경
+						</li>
+						<li><i class="fa fa-check"></i> 
+							체계적인 관리
+						</li>
+						<li><i class="fa fa-check"></i> 
+							다양한 시설
+						</li>
+						<li><i class="fa fa-check"></i> 
+							다양한 수상 경력 
+						</li>
+					</ul>
+              <br>
+              <div class="divider-line dotted"></div>
+              <br>
+              <p>운영시간 : 연중 무휴<br>
+				(Break Time : 13:00 ~ 14:00)<br>
+				문의 : 010-1234-1234<br>
+				*운영시간은 변동될 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section> --%>
+
+<%--	<div class="divider-line solid light"></div>
 	<br><br>
-	<section class="moreless-padding">
+ 	<section class="moreless-padding">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -160,7 +422,8 @@
 				<!--end item-->
 			</div>
 		</div>
-	</section><br><br>
+	</section> --%>
+	<br><br>
 	<div class="divider-line solid light"></div>
 	<section class="sec-padding">
 		<div class="container">
@@ -294,6 +557,7 @@
 		</div>
 	</section>
 	</section>
+	
 
 <!-- The Modal -->
 <div class="modal" id="gymModal">
@@ -389,6 +653,188 @@
 </form>
 
 </body>
+
+
+
+<!-- Scripts --> 
+<script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/less/less.min.js" data-env="development"></script> 
+<!-- Scripts END --> 
+
+<!-- Template scripts --> 
+<script src="${pageContext.request.contextPath}/resources/js/megamenu/js/main.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/owl-carousel/owl.carousel.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/js/owl-carousel/custom.js"></script> 
+<!-- REVOLUTION JS FILES --> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/jquery.themepunch.tools.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script> 
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+
+ 
+<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  
+(Load Extensions only on Local File Systems ! 
+The following part can be removed on Server for On Demand Loading) --> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+ 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script> 
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script> 
+<script type="text/javascript">
+						var tpj=jQuery;
+			
+					var revapi2;
+					tpj(document).ready(function() {
+						if(tpj("#rev_slider_2_1").revolution == undefined){
+							revslider_showDoubleJqueryError("#rev_slider_2_1");
+						}else{
+							revapi2 = tpj("#rev_slider_2_1").show().revolution({
+								sliderType:"carousel",
+								jsFileLocation:"../../revolution/js/",
+								sliderLayout:"fullwidth",
+								dottedOverlay:"none",
+								delay:9000,
+								navigation: {
+									keyboardNavigation:"off",
+									keyboard_direction: "horizontal",
+									mouseScrollNavigation:"off",
+									onHoverStop:"off",
+									arrows: {
+										style:"erinyen",
+										enable:true,
+										hide_onmobile:true,
+										hide_under:600,
+										hide_onleave:true,
+										hide_delay:200,
+										hide_delay_mobile:1200,
+										tmp:'<div class="tp-title-wrap">  	<div class="tp-arr-imgholder"></div>    <div class="tp-arr-img-over"></div>	<span class="tp-arr-titleholder">{{title}}</span> </div>',
+										left: {
+											h_align:"left",
+											v_align:"center",
+											h_offset:30,
+											v_offset:0
+										},
+										right: {
+											h_align:"right",
+											v_align:"center",
+											h_offset:30,
+											v_offset:0
+										}
+									}
+									,
+									thumbnails: {
+										style:"gyges",
+										enable:true,
+										width:60,
+										height:60,
+										min_width:60,
+										wrapper_padding:0,
+										wrapper_color:"transparent",
+										wrapper_opacity:"1",
+										tmp:'<span class="tp-thumb-img-wrap">  <span class="tp-thumb-image"></span></span>',
+										visibleAmount:5,
+										hide_onmobile:true,
+										hide_under:800,
+										hide_onleave:false,
+										direction:"horizontal",
+										span:false,
+										position:"inner",
+										space:5,
+										h_align:"center",
+										v_align:"bottom",
+										h_offset:0,
+										v_offset:20
+									}
+								},
+								carousel: {
+									horizontal_align: "center",
+									vertical_align: "center",
+									fadeout: "off",
+									maxVisibleItems: 3,
+									infinity: "on",
+									space: 0,
+									stretch: "off"
+								},
+								viewPort: {
+									enable:true,
+									outof:"pause",
+									visible_area:"80%"
+								},
+								responsiveLevels:[1240,1024,778,480],
+								gridwidth:[1240,1024,778,480],
+								gridheight:[600,600,500,400],
+								lazyType:"none",
+								parallax: {
+									type:"mouse",
+									origo:"slidercenter",
+									speed:2000,
+									levels:[2,3,4,5,6,7,12,16,10,50],
+								},
+								shadow:5,
+								spinner:"off",
+								stopLoop:"off",
+								stopAfterLoops:-1,
+								stopAtSlide:-1,
+								shuffle:"off",
+								autoHeight:"off",
+								hideThumbsOnMobile:"on",
+								hideSliderAtLimit:0,
+								hideCaptionAtLimit:0,
+								hideAllCaptionAtLilmit:0,
+								debugMode:false,
+								fallbacks: {
+									simplifyAll:"off",
+									nextSlideOnWindowFocus:"off",
+									disableFocusListener:false,
+								}
+							});
+						}
+					});	/*ready*/
+				</script>	
+
+<script src="${pageContext.request.contextPath}/resources/js/jFlickrFeed/jflickrfeed.min.js"></script>
+<script>
+$('#basicuse').jflickrfeed({
+limit: 6,
+qstrings: {
+id: '133294431@N08'
+},
+itemTemplate: 
+'<li>' +
+'<a href="{{image_b}}"><img src="{{image_s}}" alt="{{title}}" /></a>' +
+'</li>'
+});
+</script>
+
+<script>
+    $(window).load(function(){
+      setTimeout(function(){
+
+        $('.loader-live').fadeOut();
+      },1000);
+    })
+
+  </script>
+<script src="${pageContext.request.contextPath}/resources/js/functions/functions.js"></script>
+
+
+<!-- 레볼루션 끝-->
+
+
+
 
 <script>
 

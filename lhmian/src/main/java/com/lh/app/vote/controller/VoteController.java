@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -101,9 +102,9 @@ public class VoteController {
 	}
 	
 	@PostMapping("/admin/voteCreate")
-	public String voteCreate(VoteVO vo, VoteContentsVO vcvo, MultipartFile file) throws IllegalStateException, IOException {
+	public String voteCreate(HttpServletRequest request, VoteVO vo, VoteContentsVO vcvo, MultipartFile file) throws IllegalStateException, IOException {
 		MultipartFile ufile = file;
-		String filePath = "C:\\Users\\admin\\git\\LHmian\\lhmian\\src\\main\\webapp\\resources\\images";
+		String filePath = request.getSession().getServletContext().getRealPath("resources/images");
 		// 서버저장
 		if (!ufile.isEmpty() && ufile.getSize() > 0) {
 			String fileName = ufile.getOriginalFilename();

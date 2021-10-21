@@ -26,6 +26,9 @@
 	.nav-tabs.nav-justified>li>.active {
 		background-color: #C8C6C6;
 	}
+	.margin-top-20 {
+		margin-top: 20px;
+	}
 </style>
 
 </head>
@@ -60,10 +63,8 @@
 			<div class="col-md-2 col-sm-6 col-xs-12 section-white">
 				<div class="pages-sidebar-item">
 					<ul class="pages-sidebar-links">
-						<li><a href="feeList">관리비</a></li>
-						<li><a href="admEnergyCon">에너지 사용량</a></li>
 						<li><a href="admGeneration">세대 관리</a></li>
-						<li><a href="admMemberList">회원 관리</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
 						<li><a href="admCarList">차량 관리</a></li>
 						<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
 						<li><a href="admSked">일정 관리</a></li>
@@ -82,22 +83,22 @@
 				<div>
 					<ul class="nav nav-tabs nav-justified">
 						<li class="nav-item">
-							<a class="nav-link" href="${pageContext.request.contextPath}/admin/admOpeInfoList">운영 정보 공개</a>
+							<a class="nav-link" href="admOpeInfoList">운영 정보 공개</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" href="#">공지사항</a>
+							<a class="nav-link active" href="admNoticeList">공지사항</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
+							<a class="nav-link" href="admCsList">민원</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link disabled" href="#">투표</a>
+							<a class="nav-link" href="admVoteList">투표</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link disabled" href="#">분실물 보관소</a>
+							<a class="nav-link" href="${pageContext.request.contextPath}/itemLost/admLostList">분실물 보관소</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link disabled" href="${pageContext.request.contextPath}/admin/admSchedule">일정 관리</a>
+							<a class="nav-link" href="admSked">일정 관리</a>
 						</li>
 					</ul>
 				</div>
@@ -114,13 +115,14 @@
 						</div>
 					</form>
 				</div>
-				</div>
-				<br>
-			</div><br><br>
-			<div align="center">
+				<div class="margin-top-20" align="center">
 				<button type="button" id="insertBtn" class="btn btn-dark">등록</button>
 				<button type="button" class="btn btn-default" onclick="location.href='admNoticeList'">목록</button>
 			</div>
+				</div>
+				<br>
+			</div><br><br>
+			
 		</div>
 	</section>
 </body>

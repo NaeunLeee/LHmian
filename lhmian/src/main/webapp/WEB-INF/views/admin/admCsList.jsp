@@ -1,102 +1,83 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
-.container {
-	width: 85%;
-}
-
-.tr_1 {
-	cursor: pointer;
-	text-align: center;
-}
-
-th {
-	text-align: center;
-	background-color: #EEEEEE;
-}
-
-.tr_1:hover {
-	background-color: #f5f5f5;
-}
-
-table {
-	background-color: white;
-}
-
-.pagination>li>a {
-	color: black;
-}
-
-.form-control {
-	display: inline-block;
-}
-
-.nav-tabs.nav-justified>li>a {
-	margin: 0px 1px 0px;
-	background-color: #f5f5f5;
-}
-
-.nav-tabs.nav-justified>li>a:hover {
-	background-color: #C8C6C6;
-}
-
-.nav-tabs.nav-justified>li>.active {
-	background-color: #C8C6C6;
-}
+	.container {
+		width: 80%;
+	}
+	
+	.tr_1 {
+		cursor: pointer;
+		text-align: center;
+	}
+	
+	th {
+		text-align: center;
+		background-color: #EEEEEE;
+	}
+	
+	.tr_1:hover {
+		background-color: #f5f5f5;
+	}
+	
+	table {
+		background-color: white;
+	}
+	
+	.pagination>li>a {
+		color: black;
+	}
+	
+	.form-control {
+		display: inline-block;
+	}
+	
+	.nav-tabs.nav-justified>li>a {
+		margin: 0px 1px 0px;
+		background-color: #f5f5f5;
+	}
+	
+	.nav-tabs.nav-justified>li>a:hover {
+		background-color: #C8C6C6;
+	}
+	
+	.nav-tabs.nav-justified>li>.active {
+		background-color: #C8C6C6;
+	}
+	
+	.padding-l40 {
+		padding-left: 40px
+	}
+	
+	.padding-t40 {
+		padding-top: 40px
+	}
 </style>
 
 
 </head>
 <body>
-
-	<div class="header-inner-tmargin">
-		<section class="section-side-image clearfix">
-			<div class="img-holder col-md-12 col-sm-12 col-xs-12">
-				<div class="background-imgholder"
-					style="background: url(http://placehold.it/1500x1000);">
-					<img class="nodisplay-image" src="http://placehold.it/1500x1000"
-						alt="" />
-				</div>
-			</div>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12 clearfix nopadding">
-						<div class="header-inner">
-							<div class="overlay"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<div class=" clearfix"></div>
-	</div>
-	<section class="sec-padding">
-		<div class="container">
+	<section class="sec-padding-1">
+		<div class="container width-80">
 			<div class="row">
-				<div class="col-md-2 col-sm-6 col-xs-12 section-white">
+				<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
 					<div class="pages-sidebar-item">
 						<ul class="pages-sidebar-links">
-							<li><a href="feeList">관리비</a></li>
-							<li><a href="admEnergyCon">에너지 사용량</a></li>
-							<li><a href="admGeneration">세대 관리</a></li>
-							<li><a href="admMemberList">회원 관리</a></li>
-							<li><a href="admCarList">차량 관리</a></li>
-							<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
-							<li><a href="admSked">일정 관리</a></li>
-							<li><a href="admPost">택배 관리</a></li>
+						<li><a href="admGeneration">세대 관리</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
+						<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
 						</ul>
 					</div>
 				</div>
@@ -110,24 +91,24 @@ table {
 						<p class="by-sub-title">게시글을 조회 및 수정합니다.</p>
 					</div>
 					<ul class="nav nav-tabs nav-justified">
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/admOpeInfoList">운영
-								정보 공개</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a>
+						<li class="nav-item">
+							<a class="nav-link" href="admOpeInfoList">운영 정보 공개</a>
 						</li>
-						<li class="nav-item"><a class="nav-link active"
-							href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
+						<li class="nav-item">
+							<a class="nav-link" href="admNoticeList">공지사항</a>
 						</li>
-						<li class="nav-item"><a class="nav-link disabled"
-							href="${pageContext.request.contextPath}/admin/admVoteList">투표</a>
+						<li class="nav-item">
+							<a class="nav-link active" href="admCsList">민원</a>
 						</li>
-						<li class="nav-item"><a class="nav-link disabled"
-							href="${pageContext.request.contextPath}/itemLost/admLostList">분실물
-								보관소</a></li>
-						<li class="nav-item"><a class="nav-link disabled"
-							href="${pageContext.request.contextPath}/admin/admSchedule">일정
-								관리</a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="admVoteList">투표</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/itemLost/admLostList">분실물 보관소</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="admSked">일정 관리</a>
+						</li>
 					</ul>
 
 					<div class="text-box white padding-4 col-10">
@@ -144,17 +125,18 @@ table {
 							<tbody>
 								<c:forEach items="${list}" var="cs">
 									<tr class="move tr_1" data-csNo="${cs.csNo}">
-										<td>${cs.csNo}</td>
+										<td class="col-md-1">${cs.csNo}</td>
 										<c:if test="${cs.csAnswer != null}">
-											<td style="color: #14279B;">답변완료</td>
+											<td class="col-md-2" style="color: #14279B;">답변완료</td>
 										</c:if>
 										<c:if test="${cs.csAnswer == null}">
-											<td style="color: #FF0000;">처리중</td>
+											<td class="col-md-2" style="color: #FF0000;">처리중</td>
 										</c:if>
-										<td align="left">${cs.csTitle}</td>
-										<td>${cs.name}</td>
-										<td><fmt:formatDate value="${cs.csDate}"
-												pattern="yy-MM-dd" /></td>
+										<td class="col-md-7" align="left">${cs.csTitle}</td>
+										<td class="col-md-1">${cs.name}</td>
+										<td class="col-md-1">
+											<fmt:formatDate value="${cs.csDate}" pattern="yy-MM-dd" />
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>

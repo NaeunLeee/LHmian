@@ -67,23 +67,23 @@ table {
 
 </head>
 <body>
-	<section class="sec-padding-1">
-		<div class="container width-80">
-			<div class="row">
-				<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
-					<div class="pages-sidebar-item">
-						<ul class="pages-sidebar-links">
-							<li><a href="feeList">관리비</a></li>
-							<li><a href="admEnergyCon">에너지 사용량</a></li>
-							<li><a href="admMemberList">회원 관리</a></li>
-							<li><a href="admCarList">차량 관리</a></li>
-							<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
-							<li><a href="admSked">일정 관리</a></li>
-							<li><a href="admPost">택배 관리</a></li>
-						</ul>
-					</div>
-				</div>
 
+<section class="sec-padding-1">
+	<div class="container width-80">
+		<div class="row">
+			<div class="col-md-2 col-sm-6 col-xs-12 section-white padding-t40">
+				<div class="pages-sidebar-item">
+					<ul class="pages-sidebar-links">
+						<li><a href="admGeneration">세대 관리</a></li>
+						<li><a href="admEnergyCon">에너지 사용량</a></li>
+						<li><a href="admCarList">차량 관리</a></li>
+						<li><a class="active" href="admOpeInfoList">게시글 관리</a></li>
+						<li><a href="admSked">일정 관리</a></li>
+						<li><a href="admPost">택배 관리</a></li>
+					</ul>
+
+				</div>
+			</div>
 				<div class="col-md-10 col-sm-6 col-xs-12">
 					<div></div>
 					<br>
@@ -99,24 +99,24 @@ table {
 
 
 					<ul class="nav nav-tabs nav-justified">
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/admOpeInfoList">운영
-								정보 공개</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a>
+						<li class="nav-item">
+							<a class="nav-link" href="admOpeInfoList">운영 정보 공개</a>
 						</li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/admCsList">민원</a>
+						<li class="nav-item">
+							<a class="nav-link active" href="admNoticeList">공지사항</a>
 						</li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/admVoteList">투표</a>
+						<li class="nav-item">
+							<a class="nav-link" href="admCsList">민원</a>
 						</li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/itemLost/admLostList">분실물
-								보관소</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/admSchedule">일정
-								관리</a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="admVoteList">투표</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/itemLost/admLostList">분실물 보관소</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="admSked">일정 관리</a>
+						</li>
 					</ul>
 
 					<div class="text-box white padding-4 col-10">

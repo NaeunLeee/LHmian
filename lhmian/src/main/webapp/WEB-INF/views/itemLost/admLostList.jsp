@@ -151,6 +151,11 @@ button {
 	background-color: rgba(0, 0, 0, 0.15) !important;
 }
 
+.padding-15 {
+	padding-bottom: 15px;
+}
+
+
 
 </style>
 
@@ -204,11 +209,11 @@ button {
 		</div>
 
 	</div>
-	<div class="col-sm-12" align="center">
-		<button type="button" id="register" class="btn btn-default">등록</button>
-	</div>
 	<section class="section-light">
 		<div class="container">
+	<div class="col padding-15" align="right">
+		<button type="button" id="register" class="btn btn-default">등록</button>
+	</div>
 			<div class="row">
 				<c:forEach items="${lost}" var="item">
 					<c:if test="${item.lostStatus eq '수령전'}">

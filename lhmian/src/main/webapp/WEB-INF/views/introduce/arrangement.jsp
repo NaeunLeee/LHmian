@@ -8,8 +8,25 @@
 }
 
 .subtitle-gray{
-	color:#7d7878
+	color: #7d7878
 }
+
+.margin-t40{
+	margin-top: 40px;
+}
+
+.padding-r30{
+	padding-right: 30px;
+}
+
+.align-right{
+	text-align: right;
+}
+
+.float-right{
+	float: right !important;
+}
+
 
 
 </style>
@@ -44,10 +61,10 @@
           <div class="clearfix"></div>
           <!--end title-->
           
-          <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 40px"> <br/>
-            <div class="ce4-feature-box-19 margin-bottom">
+          <div class="col-md-3 col-sm-3 col-xs-12 margin-t40 padding-r30"> <br/>
+            <div class="ce4-feature-box-19 margin-bottom align-right">
               <h5 class="title font-weight-5 nopadding title">엘리시아가든</h5>
-              <div class="title-line"></div>
+              <div class="title-line float-right"></div>
               <br/>
               <p>단지를 대표하는 <br>소나무와 함께 넓게 펼쳐진 <br>중심 커뮤니티</p>
             </div>
@@ -63,9 +80,9 @@
             <!--end feature box-->
             
             <div class="col-divider-margin-6"></div>
-            <div class="ce4-feature-box-19 margin-bottom">
+            <div class="ce4-feature-box-19 margin-bottom  align-right">
               <h5 class="title font-weight-5 nopadding title">바닥분수</h5>
-              <div class="title-line"></div>
+              <div class="title-line float-right"></div>
               <br/>
               <p>타원형의 광장을 따라 <br>바닥분수와 휴게공간이 연결되는 <br>생동감 넘치는 공간</p>
             </div>
@@ -77,7 +94,7 @@
           <div class="col-md-6 col-sm-6 col-xs-12"> <img src="${pageContext.request.contextPath }/resources/images/sliders/세로배치도.jpg" alt="" class="img-responsive"/> </div>
           <!--end item-->
           
-          <div class="col-md-3 col-sm-3 col-xs-12" style="margin-top: 40px"> <br/>
+          <div class="col-md-3 col-sm-3 col-xs-12 margin-t40"> <br/>
             <div class="ce4-feature-box-19 margin-bottom">
               <h5 class="title font-weight-5 nopadding title">산책로</h5>
               <div class="title-line"></div>
@@ -87,9 +104,9 @@
             <!--end feature box-->
             
             <div class="col-divider-margin-6"></div>
-            <div class="ce4-feature-box-19 margin-bottom">
+            <div class="ce4-feature-box-19 margin-bottom align-right">
               <h5 class="title font-weight-5 nopadding title">어린이 놀이터</h5>
-              <div class="title-line"></div>
+              <div class="title-line float-right"></div>
               <br/>
               <p>자녀와 부모가 <br>함께 즐기는 다목적 공간으로 <br>흥미로운 이야기가 있는 <br>테마형 어린이놀이터</p>
             </div>
