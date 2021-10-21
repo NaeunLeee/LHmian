@@ -20,6 +20,13 @@ textarea {
 	margin: 0;
 	padding: 50px;
 }
+#goToNow {
+width : 250px;
+}
+.goToNow {
+float : right;
+margin-right : 30px;
+}
 </style>
 
 <div class="header-inner-tmargin">
@@ -70,6 +77,11 @@ textarea {
 	</div>
 
 	<div class="container" align="center" style="width: 1400px">
+		<div class="goToNow">
+		<input type="text" id="goToNow" placeholder="예) 101동1001호 => 1011001">
+		<button onclick="generation($('#goToNow').val())">바로가기</button>
+		<br><br>
+		</div>
 		<div class="text-box white padding-4 col-7">
 			<div class="gntList">
 				<%-- <img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="" class="img-responsive" /> --%>
@@ -164,6 +176,12 @@ textarea {
 
 	//세대 클릭시 새창으로 열림
 	function generation(num) {
+		if(typeof num == 'object') {
+			parseInt(num);
 		openWin = window.open("../no/visitList?houseInfo=" + num, "방명록", "width=1000px, height=600px, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		}else{
+		openWin = window.open("../no/visitList?houseInfo=" + num, "방명록", "width=1000px, height=600px, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		}
+		
 	};
 </script>
