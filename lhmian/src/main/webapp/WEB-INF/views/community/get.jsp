@@ -209,9 +209,9 @@ textarea:focus {
 			var str = "";
 			if(datas.cmtWriter == '<sec:authentication property="principal.username" />'){
 				str = '<input type="hidden" id="cmtNo2" value="'+ datas.cmtNo +'">'
-					+ '<button type="button" class="test" id="cmtUpdate" data-num="'+ datas.cmtNo + '">수정</button>'
+					+ '<button type="button" class="test btn btn-default" id="cmtUpdate" data-num="'+ datas.cmtNo + '">수정</button>'
 					+ '&nbsp'
-					+ '<button type="button" id="cmtDelete" onclick="button2_click(this);" data-num="'
+					+ '<button type="button" class="btn btn-default" id="cmtDelete" onclick="button2_click(this);" data-num="'
 					+ datas.cmtNo + '">삭제</button>'
 				}
 			return '<li class="left clearfix">'

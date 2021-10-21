@@ -81,7 +81,7 @@ div .form-body .btn {
 								  + '	</label>'
 								  + '	<p class="certificate-msg"></p>'
 								  + '	</div>'
-								  + '	<button id="certificate" name="certificate" class="btn btn-gyellow btn-fullwidth uppercase" type="button">인증번호 전송</button>';
+								  + '	<button id="certificate" name="certificate" class="btn btn-gyellow btn-fullwidth uppercase" type="button">인증번호 확인</button>';
 						$('#sendKey').remove();
 						$('#box').html(box);
 
