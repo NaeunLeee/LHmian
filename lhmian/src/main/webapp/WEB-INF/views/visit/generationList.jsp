@@ -16,9 +16,24 @@ textarea {
 }
 
 .cbp-item-yj {
-	border: 1px solid lightGray;
 	margin: 0;
-	padding: 50px;
+	padding: 20px;
+}
+
+.address-btn {
+	padding: 70px 60px 110px 130px;
+	border: 0px;
+	background: transparent;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.padding-t40{
+	padding-top: 40px;
+}
+
+.width-1400 {
+	width: 1400px;
 }
 </style>
 
@@ -41,7 +56,7 @@ textarea {
 </div>
 <section>
 	<div class="pagenation-holder">
-		<div class="container">
+		<div class="container width-1400">
 			<div class="row">
 				<div class="col-md-6">
 					<ol class="breadcrumb-gray">
@@ -69,10 +84,9 @@ textarea {
 		</div>
 	</div>
 
-	<div class="container" align="center" style="width: 1400px">
-		<div class="text-box white padding-4 col-7">
+	<div class="container width-1400" align="center">
+		<div class="text-box white padding-t40 col-7">
 			<div class="gntList">
-				<%-- <img src="${pageContext.request.contextPath }/resources/images/header/방명록.jpg" alt="" class="img-responsive" /> --%>
 			</div>
 			<div id="listBtn"></div>
 
@@ -115,10 +129,11 @@ textarea {
 				$.each(datas, function(i, data) {
 					var gntOne = '<div class="status">'
 								+ '		<div class="cbp-item-yj web-design generation">'
-								+ '			<img src="${pageContext.request.contextPath}/resources/images/logo/postbox.png" style="width: 100%; height: 100%">'
-								+ '			<button class="btn btn-default" value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">'
-								+ data.houseInfo.toString().substring(0, 3) + '동 ' + data.houseInfo.toString().substring(3, 7) + '호'
-								+ '			</button>'
+								+ '			<div style="background: url(${pageContext.request.contextPath}/resources/images/logo/postbox.png) center center / cover no-repeat; height:100%">'
+								/* + '			<img src="${pageContext.request.contextPath}/resources/images/logo/postbox.png" style="width: 100%; height: 100%">' */
+								+ '			<button class="address-btn" value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">'
+								+ data.houseInfo.toString().substring(0, 3) + '동 ' + '<br>' + data.houseInfo.toString().substring(3, 7) + '호'
+								+ '			</button>' 
 								+ '		</div>'
 								+ '</div>';
 					$('.gntList').append(gntOne);
@@ -145,9 +160,9 @@ textarea {
 				$.each(datas, function(i, data) {
 					var gntOne = '<div class="status">'
 								+ '		<div class="cbp-item-yj web-design generation">'
-								+ '			<img src="${pageContext.request.contextPath}/resources/images/logo/postbox.png" style="width: 100%;">'
-								+ '			<button class="btn btn-default" value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">'
-								+ data.houseInfo.toString().substring(0, 3) + '동 ' + data.houseInfo.toString().substring(3, 7) + '호'
+								+ '			<div style="background: url(${pageContext.request.contextPath}/resources/images/logo/postbox.png) center center / cover no-repeat; height:100%">'
+								+ '			<button class="address-btn" value="' + data.houseInfo + '" onclick="generation(' + data.houseInfo + ')">'
+								+ data.houseInfo.toString().substring(0, 3) + '동 ' + '<br>' + data.houseInfo.toString().substring(3, 7) + '호'
 								+ '			</button>'
 								+ '		</div>'
 								+ '</div>';

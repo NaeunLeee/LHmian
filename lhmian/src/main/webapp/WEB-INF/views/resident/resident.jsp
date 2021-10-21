@@ -10,6 +10,13 @@
 		background-color: white;
 		border-color: #EEEEEE;
 	}
+	p {
+    	margin: 0 0 10px 30px;
+    }
+    
+    .no-margin {
+    	margin: 0
+    }
 </style>
 
 </head>
@@ -40,7 +47,7 @@
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">입주민 공간</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">입주민 공간.. 에 대한... 설명....</p>
+						<p class="by-sub-title no-margin">입주민들을 위한 공간입니다.</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -58,8 +65,7 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>입주자 동대표 주민들이 모여 회의하는 공간입니다.</p><br/>
 					</div>
 				</div>
 				<!--end item-->
@@ -74,8 +80,7 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>아파트 관리에 대한 주민들의 의견을 반영하기 위해 투표를 진행하고 있습니다.</p>
 					</div>
 				</div>
 				<!--end item-->
@@ -90,8 +95,7 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>모든 입주민들이 자유롭게 글을 <br />남기고 의견을 나눌 수 있는 입주민 <br />커뮤니티 공간입니다.</p>
 					</div>
 				</div>
 				<!--end item-->
@@ -100,7 +104,7 @@
 				<div class="col-divider-margin-3"></div>
 
 				<div class="col-md-4 col-sm-12 col-xs-12">
-					<div onclick="location.href='${pageContext.request.contextPath}/itemLost/lostList'" class="ce4-feature-box-12 margin-bottom">
+					<div onclick="location.href='${pageContext.request.contextPath}/visit/generationList'" class="ce4-feature-box-12 margin-bottom">
 						<div class="icon-plain-msmall left icon">
 							<span><i class="bi bi-mailbox"></i></span>
 						</div>
@@ -109,7 +113,8 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>please~~~~~~</p>
+						<p>이웃들에게 마음을 담은 방명록을 남길 수 있는 공간입니다.</p>
+						<br />
 					</div>
 				</div>
 				<!--end item-->
