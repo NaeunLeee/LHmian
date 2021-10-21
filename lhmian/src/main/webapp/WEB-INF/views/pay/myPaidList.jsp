@@ -42,8 +42,8 @@ th {
 	color: black;
 }
 
-.pagination {
-	margin-left: 25%;
+#pageButton {
+	text-align : center;
 }
 
 .modal-header {
@@ -136,7 +136,7 @@ th {
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	</form>
 	<div id="pageButton" style="margin: auto; width: 50%">
-		<ul class="pagination hover-orange">
+		<ul class="pagination hover-orange" align="center">
 			<c:if test="${pageMaker.prev == true}">
 				<li>
 					<a href="${pageMaker.startPage-1}">

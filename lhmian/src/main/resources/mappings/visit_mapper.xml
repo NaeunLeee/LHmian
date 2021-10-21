@@ -31,6 +31,7 @@
 		FROM VISIT
 		WHERE HOUSE_INFO = #{houseInfo}
 			AND VISIT_WRITER = #{visitWriter}
+		ORDER BY VISIT_NO DESC
 	</select>
 
 	<insert id="insert">
