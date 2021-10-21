@@ -30,7 +30,9 @@
 			WRITER_INFO
 		FROM VISIT
 		WHERE HOUSE_INFO = #{houseInfo}
+		<if test="writerInfo != houseInfo">
 			AND VISIT_WRITER = #{visitWriter}
+		</if>
 	</select>
 
 	<insert id="insert">
