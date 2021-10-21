@@ -99,12 +99,12 @@ table {
 				<tbody>
 					<c:forEach items="${list}" var="comm">
 						<tr class="move tr_1" data-commNo="${comm.commNo}">
-							<td>${comm.commNo}</td>
-							<td>${comm.id}</td>
-							<td>${comm.commTitle}</td>
-							<td><fmt:formatDate value="${comm.commDate}" type="both"
+							<td class="col-md-1">${comm.commNo}</td>
+							<td class="col-md-2">${comm.id}</td>
+							<td class="col-md-7" style="text-align: left;">${comm.commTitle}</td>
+							<td class="col-md-1"><fmt:formatDate value="${comm.commDate}" type="both"
 									pattern="yy-MM-dd" /></td>
-							<td>${comm.commHit}</td>
+							<td class="col-md-1">${comm.commHit}</td>
 					</c:forEach>
 				</tbody>
 			</table>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -71,9 +70,7 @@ table {
 					<div class="col-md-6">
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/introduce/myApt">우리
-									아파트</a></li>
+							<li><a href="${pageContext.request.contextPath}/introduce/myApt">우리 아파트</a></li>
 							<li class="current"><a href="#">운영 정보 공개</a></li>
 						</ol>
 					</div>
@@ -110,11 +107,12 @@ table {
 					<tbody>
 						<c:forEach items="${list}" var="info">
 							<tr class="move tr_1" data-oiNo="${info.oiNo}">
-								<td>${info.oiNo}</td>
-								<td>${info.oiType}</td>
-								<td>${info.oiTitle}</td>
-								<td><fmt:formatDate value="${info.oiDate}"
-										pattern="yy-MM-dd" /></td>
+								<td class="col-md-1">${info.oiNo}</td>
+								<td class="col-md-2">${info.oiType}</td>
+								<td class="col-md-7" style="text-align: left;">${info.oiTitle}</td>
+								<td class="col-md-2">
+									<fmt:formatDate value="${info.oiDate}" pattern="yy-MM-dd" />
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

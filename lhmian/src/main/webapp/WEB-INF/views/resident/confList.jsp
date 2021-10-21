@@ -84,8 +84,7 @@
 				<div class="col-md-6"></div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 <section class="sec-padding section-light">
 	<div class="container">
@@ -113,11 +112,11 @@
 				</tr>
 				<c:forEach items="${list}" var="conf">
 					<tr class="tr_1 move" data-confNo="${conf.confNo}">
-						<td>${conf.confNo}</td>
-						<td>${conf.confTitle}</td>
-						<td>${conf.confWriter}</td>
-						<td><fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /></td>
-						<td>${conf.confHit}</td>
+						<td class="col-md-2">${conf.confNo}</td>
+						<td class="col-md-7" style="text-align: left;">${conf.confTitle}</td>
+						<td class="col-md-1">${conf.confWriter}</td>
+						<td class="col-md-1"><fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /></td>
+						<td class="col-md-1">${conf.confHit}</td>
 					</tr>
 				</c:forEach>
 			</table>
