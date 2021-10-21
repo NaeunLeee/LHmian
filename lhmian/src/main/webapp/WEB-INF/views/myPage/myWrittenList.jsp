@@ -10,24 +10,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
 <style>
-.tr_1 {
-	cursor: pointer;
-	text-align: center;
-}
-
-th {
-	text-align: center;
-	background-color: #EEEEEE;
-}
-
-.tr_1:hover {
-	background-color: #f5f5f5;
-}
-
-table {
-	background-color: white;
-	margin-bottom: 60px;
-}
+	.tr_1 {
+		cursor: pointer;
+		text-align: center;
+	}
+	
+	th {
+		text-align: center;
+		background-color: #EEEEEE;
+	}
+	
+	.tr_1:hover {
+		background-color: #f5f5f5;
+	}
+	
+	table {
+		background-color: white;
+		margin-bottom: 60px;
+	}
 
 /* .tabstyle-7 .responsive-tabs li {
 	background-color: #f5f5f5;
@@ -48,12 +48,12 @@ table {
 	background-color: #101010;
 } */
 
-.tab-navicon {
-	background-color: #fff;
-}
-.tab-navicon:hover {
-	background-color: #101010;
-}
+	.tab-navicon {
+		background-color: #fff;
+	}
+	.tab-navicon:hover {
+		background-color: #101010;
+	}
 
 
 </style>
