@@ -77,7 +77,7 @@ table {
 					<div class="pl-title-line-1"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">커뮤니티</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title">입주민들과 자유롭게 소통할 수 있는 공간입니다.</p>
+					<p class="by-sub-title">모든 입주민들이 자유롭게 글을 남기고 의견을 나눌 수 있는 입주민 커뮤니티 공간입니다.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>

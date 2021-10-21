@@ -240,7 +240,7 @@
 					<br>
 				</div>
 				<!-- Modal Footer -->
-				<div class="modal-footer">
+				<div class="modal-footer" style="margin-top: 10px;">
 					<div align="center">
 						<button type="button" id="closeCars" class="btn btn-default" data-dismiss="modal">확인</button>
 					</div>
@@ -489,6 +489,7 @@
 					}
 					str += '</tbody>';
 					str += '</table>';
+					str += '<button class="carList btn btn-default" type="button" style="float: right;">차량 관리</button>';
 					$('#cars').html(str);
 					$('#carListModal').show();
 				}
@@ -498,6 +499,11 @@
 			}
 		});
 		
+	});
+	
+	// 차량 관리로 이동
+	$(document).on('click', '.carList', function() {
+		$(location).attr('href', 'admCarList');
 	});
 	
 	// 차량 정보 모달 내리기...
