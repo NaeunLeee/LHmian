@@ -46,6 +46,7 @@ public class VisitController {
 	@GetMapping("/no/visitList")
 	public String list(Model model, VisitVO vo, @AuthenticationPrincipal CustomUserDetails user) {
 		vo.setVisitWriter(user.getNAME());
+		vo.setWriterInfo(Integer.valueOf(user.getHOUSEINFO()));
 		model.addAttribute("list", visitService.getList(vo));
 		return "no/visitList";
 	}
