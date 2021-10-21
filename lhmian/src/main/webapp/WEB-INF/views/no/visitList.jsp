@@ -85,16 +85,17 @@ p {
     background-color: #f5f5f5;
 }
 .textarea-update::-webkit-scrollbar { 
-    display: none !important;
+    	display: none !important;
 }
 .wrap {
-      width: 500px;
+      width: 95%;
     }
 .wrap textarea {
       width: 100%;
       resize: none;
       overflow-y: hidden; /* prevents scroll bar flash */
-      padding: 1.1em; /* prevents text jump on Enter keypress */
+      /* padding: 1.1em; /* prevents text jump on Enter keypress */ 
+      padding-top: 0.7em;
       padding-bottom: 0.2em;
       line-height: 1.6;
     }

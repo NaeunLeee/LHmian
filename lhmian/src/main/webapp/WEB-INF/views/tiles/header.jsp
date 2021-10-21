@@ -261,10 +261,10 @@
 														<a href="${pageContext.request.contextPath}/admin/adminPage" id="main-menu-padding">관리자 페이지</a>
 														<ul class="dm-align-2">
 															<li>
-																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
+																<a href="${pageContext.request.contextPath}/admin/admGeneration">세대 관리</a>
 															</li>
 															<li>
-																<a href="${pageContext.request.contextPath}/admin/admGeneration">세대 관리</a>
+																<a href="${pageContext.request.contextPath}/admin/admEnergyCon">에너지 사용량</a>
 															</li>
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admCarList">차량 관리</a>
