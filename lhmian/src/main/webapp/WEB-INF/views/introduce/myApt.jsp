@@ -42,7 +42,7 @@
 	</div>
 	<br><br><br>
 	<div>
-	<section class="sec-padding section-light">
+	<section class="section-light">
 	
 		<div class="container">
 			<div class="row">
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	
-		<div class="container" style="margin-bottom: 200px;">
+		<div class="container" style="padding-bottom: 150px;">
 			<div class="row">
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div onclick="location.href='introduce'" class="ce4-feature-box-12 margin-bottom">
