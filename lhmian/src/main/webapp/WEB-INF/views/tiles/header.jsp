@@ -252,9 +252,6 @@
 															<a href="${pageContext.request.contextPath}/myPage/myWrittenList">작성글 조회</a>
 															<!-- 10/02 스케쥴 조회 링크 추가 끝 -->
 														</li>
-														<li>
-															<a href="${pageContext.request.contextPath}/myFac">시설이용내역</a>
-														</li>
 													</ul>
 												</li>
 											</sec:authorize>
