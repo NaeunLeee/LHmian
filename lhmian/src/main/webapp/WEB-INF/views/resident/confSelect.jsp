@@ -68,11 +68,24 @@
 			</div>
 		</div>
 	</section>
-	<hr>
-	<section class="section-light sec-padding">
+<section class="sec-padding section-light">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12 nopadding">
+               <div class="sec-title-container-padding-topbottom text-center">
+                  <div class="pl-title-line-1"></div>
+                  <h4 class="uppercase font-weight-7 less-mar-1">입주자 대표회의</h4>
+                  <div class="clearfix"></div>
+                  <p class="by-sub-title" style="font-size: 13px;">동대표 주민들이 모여 회의하는 공간입니다.</p>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+         </div>
+      </div>
+
 		<div class="container">
 			<div class="row">
-				<div class="text-box white padding-4 col-7" style="margin-top:50px; ">
+				<div class="text-box white padding-4 col-7" >
 					<div class="text-box">
 						<div id="confTitle" class="col-md-12 font-weight-7" style="height:35px; font-size:20px">${conf.confTitle}</div>
 							<div class="text-box">
