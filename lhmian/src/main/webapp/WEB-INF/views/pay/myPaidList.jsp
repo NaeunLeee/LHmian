@@ -247,10 +247,10 @@ th {
 		//결제당일이 아니면 결제취소 불가
 		var today = new Date();
 		let year = today.getFullYear() + "";
-		let month = today.getMonth() + "";
+		let month = (today.getMonth() + 1) + "";
 		let day = today.getDate() + "";
 		today = year + "-" + month + "-" + day;
-		if (date == today) {
+		if (date != today) {
 			$('#cancelBtn').hide();
 		}
 	};
