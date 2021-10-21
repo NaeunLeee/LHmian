@@ -93,9 +93,9 @@ margin-right : 30px;
 
 
 	<div class="container" align="center" style="width: 1400px">
-		<div class="goToNow">
-		<input type="text" id="goToNow" placeholder="예) 101동1001호 => 1011001">
-		<button onclick="generation($('#goToNow').val())">바로가기</button>
+		<div class="goToNow" style="margin-bottom: 10px;">
+		<button class="btn btn-gyellow" style="float: right; margin-left: 5px;" onclick="generation($('#goToNow').val())">바로가기</button>
+		<input class="form-control" style="width: 300px; float: right;" type="text" id="goToNow" placeholder="예) 101동1001호 => 1011001">
 		<br><br>
 		</div>
 		<div class="text-box white padding-4 col-7">
