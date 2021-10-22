@@ -304,11 +304,15 @@ border : 1px solid lightgray;
 				 temp = parseInt(data.eq(i).text());
 				 //temp값에 따라 스마일마크 이미지 달라짐
 				if(temp < -10 ) {
-					tagBar += '<td><img src="${pageContext.request.contextPath}/resources/images/red.png"></td>';		
+
+					tagBar += '<td>123<img src="${pageContext.request.contextPath}/resources/images/green.png"></td>';		
+
 				}else if(temp < 10) {
 					tagBar += '<td><img src="${pageContext.request.contextPath}/resources/images/yellow.png"></td>';
 				}else{
-					tagBar += '<td><img src="${pageContext.request.contextPath}/resources/images/green.png"></td>';
+
+					tagBar += '<td>345<img src="${pageContext.request.contextPath}/resources/images/red.png"></td>';
+
 				} 
 			}
 			tagBar += '	</tr>';
