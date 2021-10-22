@@ -137,7 +137,7 @@
 						<!-- SLIDE  -->
 							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
-								<img src="${pageContext.request.contextPath}/resources/images/gym/독서실.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<img src="${pageContext.request.contextPath}/resources/images/gym/헬스장1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
 
 
@@ -168,7 +168,7 @@
 							<!-- SLIDE  -->
 							<li data-index="rs-7" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
-								<img src="${pageContext.request.contextPath}/resources/images/gym/독서실1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<img src="${pageContext.request.contextPath}/resources/images/gym/헬스장2.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
 
 
@@ -199,7 +199,7 @@
 							<!-- SLIDE  -->
 							<li data-index="rs-8" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
-								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<img src="${pageContext.request.contextPath}/resources/images/gym/헬스장3.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
 
 
@@ -230,7 +230,7 @@
 							<!-- SLIDE  -->
 							<li data-index="rs-9" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
-								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<img src="${pageContext.request.contextPath}/resources/images/gym/헬스장4.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
 
 
@@ -261,7 +261,7 @@
 							<!-- SLIDE  -->
 							<li data-index="rs-10" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
-								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+								<img src="${pageContext.request.contextPath}/resources/images/gym/헬스장5.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
 
 
@@ -297,7 +297,7 @@
 
 <div class="container margin-t130">
 <div class="row">
-<div class="col-md-5"> <img src="http://placehold.it/800x800" alt="" class="img-responsive img-circle"> </div>
+<div class="col-md-5"> <img src="${pageContext.request.contextPath}/resources/images/gym/헬스장6.jpg" style="width: 100%; height: 100%;" alt="" class="img-responsive img-circle"> </div>
 <div class="col-md-7 padding-l110">
 <div class="text-box">
 <h2 style="padding-bottom: 30px;">매일매일, 건강하게</h2>
