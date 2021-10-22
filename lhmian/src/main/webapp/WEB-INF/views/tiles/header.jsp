@@ -229,7 +229,7 @@
 											<ul class="nav navbar-nav">
 											<sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
 												<li class="right">
-													<a href="${pageContext.request.contextPath}/myPage/myPage" id="main-menu-padding">마이 페이지</a>
+													<a href="${pageContext.request.contextPath}/mypage/fee" id="main-menu-padding">마이 페이지</a>
 													<ul class="dm-align-2">
 														<li>
 															<!-- 10/03 개인정보 조회/수정 링크 -->
@@ -257,7 +257,7 @@
 											</sec:authorize>
 											<sec:authorize access="hasRole('ROLE_ADMIN')">
 													<li class="right">
-														<a href="${pageContext.request.contextPath}/admin/adminPage" id="main-menu-padding">관리자 페이지</a>
+														<a href="${pageContext.request.contextPath}/admin/admGeneration" id="main-menu-padding">관리자 페이지</a>
 														<ul class="dm-align-2">
 															<li>
 																<a href="${pageContext.request.contextPath}/admin/admGeneration">세대 관리</a>

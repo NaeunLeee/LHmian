@@ -571,7 +571,21 @@
 					data : [ data[0].mfTotal, data[1].mfTotal, data[2].mfTotal, data[3].mfTotal, data[4].mfTotal, data[5].mfTotal ],
 				} ]
 			},
-
+			options : {
+				scales : {
+					yAxes : [ {
+						ticks : {
+							userCallback: function(value, index, values) {
+								value = value.toString();
+								value = value.split(/(?=(?:...)*$)/);
+								value = value.join(',');
+								
+								return value + "원";
+							}
+						}
+					} ]
+				}
+			}
 		});
 	}
 	
@@ -601,9 +615,24 @@
 				scales : {
 					yAxes : [ {
 						ticks : {
-							beginAtZero : true
+							beginAtZero : true,
+							userCallback: function(value, index, values) {
+								value = value.toString();
+								value = value.split(/(?=(?:...)*$)/);
+								value = value.join(',');
+								
+								return value + "원";
+							}
 						}
-					} ]
+					} ],
+					
+					xAxes: [{
+						display: true,
+						barThickness: 10
+					}]
+				},
+				legend: {
+					display: false
 				}
 			}
 		});
