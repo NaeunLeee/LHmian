@@ -600,13 +600,13 @@
 						<div style="margin: 0px 20px 0px;">
 							<h5>
 								<i class="bi bi-person-circle"></i>&nbsp;&nbsp;
-								<label for="name">차종</label>
+								<label for="name">이 름</label>
 							</h5>
 							<input type="text" id="name" class="form-control" readonly="readonly"
 								value="<sec:authentication property="principal.NAME" />"><br>
 							<h5>
 								<i class="bi bi-patch-exclamation"></i>&nbsp;&nbsp;
-								<label for="gxTitle">차량 번호</label>
+								<label for="gxTitle">프로그램명</label>
 							</h5>
 							<input type="text" id="gxTitle" name="gxTitle" class="form-control" readonly="readonly"><br>
 							<h5>
