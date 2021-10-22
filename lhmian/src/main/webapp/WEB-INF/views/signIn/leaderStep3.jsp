@@ -37,7 +37,7 @@
 						<div class="clearfix"></div>
 						<p class="by-sub-title">회원 가입이 완료되었습니다!</p>
 						<br><br>
-						<button type="button" class="btn btn-gyellow" onclick="location.href='${pageContext.request.contextPath}/'"><i class="bi bi-arrow-up-left-square"></i>&nbsp;&nbsp;메인으로 가기</button>
+						<button type="button" class="btn btn-gyellow" onclick="location.href='${pageContext.request.contextPath}/login'"><i class="bi bi-arrow-up-left-square"></i>&nbsp;&nbsp;로그인하러 가기</button>
 					</div>
 				</div>
 				<div class="clearfix"></div>

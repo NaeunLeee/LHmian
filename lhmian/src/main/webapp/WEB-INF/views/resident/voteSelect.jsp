@@ -357,8 +357,7 @@ input[type="radio"]:checked+label {
 						<p class="by-sub-title">LHmian을 올바르게 가꾸어나가기 위한 소중한 한 표를 선사해주세요.</p>
 					</div>
 					<p class="text-center">
-					필독해주세요<br>
-					한 번 투표하면 재투표할 수 없습니다. 신중하게 투표해주세요.<br>
+					<strong style="color: red;">한 번 투표하면 재투표할 수 없습니다. 신중하게 투표해주세요.</strong><br>
 					
 					</p>
 				</div>
