@@ -341,7 +341,6 @@ td {
 			alert('동호수를 모두 입력해주세요.');
 		} else if (num == 0) {
 			alert(dong + '동 ' + ho + '호가 존재하지 않습니다.');
-			$('#carInfo').empty();
 		} else {
 			$
 					.ajax({
