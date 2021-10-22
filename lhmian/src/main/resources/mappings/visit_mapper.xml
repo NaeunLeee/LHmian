@@ -33,6 +33,7 @@
 		<if test="writerInfo != houseInfo">
 			AND VISIT_WRITER = #{visitWriter}
 		</if>
+		ORDER BY VISIT_NO DESC
 	</select>
 
 	<insert id="insert">

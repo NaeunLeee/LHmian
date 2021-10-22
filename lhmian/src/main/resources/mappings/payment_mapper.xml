@@ -49,12 +49,13 @@
 				, PAY_CAT
 				, PAY_STATUS
 			FROM PAYMENT
-				 <![CDATA[
-					WHERE ID = #{id} AND ROWNUM <= #{pageNum} * #{amount}
-					)
+			WHERE ID = #{id} 
+			ORDER BY PAY_DATE DESC
+				)
+		 	<![CDATA[
+				WHERE RN > (#{pageNum} -1) * #{amount} 
+				AND ROWNUM <= #{pageNum} * #{amount}
 			 	]]>
-		WHERE RN > (#{pageNum} -1) * #{amount}
-		ORDER BY PAY_DATE DESC
 	</select>
 
 	<!-- 결제취소할 경우 테이블에서 삭제x, 결제상태만 '결제취소'로 변경 -->

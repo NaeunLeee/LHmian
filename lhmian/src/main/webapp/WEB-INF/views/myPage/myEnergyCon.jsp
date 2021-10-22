@@ -12,7 +12,7 @@
 
 img {
 	width : 100%;
-	height : 100%;
+	height : 350%;
 }
 
 .checkBox {
@@ -26,7 +26,7 @@ border : 1px;
 th, td {
 text-align : center;
 width : 100px;
-hight : 60px;
+height : 25px;
 border : 1px solid lightgray;
 }
 </style>
