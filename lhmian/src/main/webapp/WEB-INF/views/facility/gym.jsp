@@ -166,7 +166,7 @@
 								</div>
 							</li>
 							<!-- SLIDE  -->
-							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+							<li data-index="rs-7" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
 								<img src="${pageContext.request.contextPath}/resources/images/gym/독서실1.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
@@ -197,7 +197,7 @@
 								</div>
 							</li>
 							<!-- SLIDE  -->
-							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+							<li data-index="rs-8" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
 								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
@@ -228,7 +228,7 @@
 								</div>
 							</li>
 							<!-- SLIDE  -->
-							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+							<li data-index="rs-9" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
 								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
@@ -259,7 +259,7 @@
 								</div>
 							</li>
 							<!-- SLIDE  -->
-							<li data-index="rs-6" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
+							<li data-index="rs-10" data-transition="zoomout" data-slotamount="default"  data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="" data-description="">
 								<!-- MAIN IMAGE -->
 								<img src="http://placehold.it/1920x1329"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
 								<!-- LAYERS -->
@@ -300,11 +300,11 @@
 <div class="col-md-5"> <img src="http://placehold.it/800x800" alt="" class="img-responsive img-circle"> </div>
 <div class="col-md-7 padding-l110">
 <div class="text-box">
-<h1 style="padding-bottom: 30px;">매일매일, 건강하게</h1>
-              <h3 style="line-heignt: 30px;">
-              	LHmian의 피트니스에는 다양한 종류의 운동 기구가<br> 준비되어 있습니다.<br>
-				탁 트인 전망을 감상하고, 숲 속 맑은 공기를 마시며<br> 몸 속의 에너지를 돋워 보십시오.		
-              </h3>
+<h2 style="padding-bottom: 30px;">매일매일, 건강하게</h2>
+              <h4 style="line-heignt: 30px;">
+              	LHmian의 피트니스에는 다양한 종류의<br/> 운동 기구가 준비되어 있습니다.<br>
+				탁 트인 전망을 감상하고, 숲 속 맑은 공기를 마시며<br> 몸 속의 에너지를 돋워 보세요.		
+              </h4><br/>
 					<ul class="iconlist gyellow" style="font-size: 20px;">
 						<li><i class="fa fa-check"></i> 
 							쾌적한 환경
@@ -735,29 +735,7 @@ The following part can be removed on Server for On Demand Loading) -->
 										}
 									}
 									,
-									thumbnails: {
-										style:"gyges",
-										enable:true,
-										width:60,
-										height:60,
-										min_width:60,
-										wrapper_padding:0,
-										wrapper_color:"transparent",
-										wrapper_opacity:"1",
-										tmp:'<span class="tp-thumb-img-wrap">  <span class="tp-thumb-image"></span></span>',
-										visibleAmount:5,
-										hide_onmobile:true,
-										hide_under:800,
-										hide_onleave:false,
-										direction:"horizontal",
-										span:false,
-										position:"inner",
-										space:5,
-										h_align:"center",
-										v_align:"bottom",
-										h_offset:0,
-										v_offset:20
-									}
+									
 								},
 								carousel: {
 									horizontal_align: "center",
