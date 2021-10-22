@@ -271,7 +271,7 @@
 					} else {
 						$('#gubunPretty').val('세대원');
 					}
-					$('#gubun').val(data.gubun);
+					$('#author').val(data.gubun);
 					
 				},
 				error: () => alert('AJAX 에러')
@@ -530,7 +530,7 @@
 							<!-- 구분 인풋박스가 나타나는 곳 -->
 							<div class="gubun" style="display: none"></div>
 							<!-- 구분 히든 -->
-							<input type="hidden" id="gubun" name="gubun">
+							<input type="hidden" id="author" name="author">
 							<!-- 핸드폰 번호 입력 -->
 							<div class="section">
 								<label for="phone">
