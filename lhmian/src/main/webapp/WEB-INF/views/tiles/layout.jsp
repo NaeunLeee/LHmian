@@ -90,6 +90,14 @@
         border-radius: 2px;
         transform: scale(1) translate(-50%, -50%)
     }
+	
+    .sec-title-container-padding-top > h4 {
+       font-size: 30px;
+    }
+    
+    .sec-title-container-padding-topbottom > h4 {
+       font-size: 30px;
+    }
 </style>
 <!-- Template's stylesheets END -->
 </head>

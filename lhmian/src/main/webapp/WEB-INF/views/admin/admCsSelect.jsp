@@ -73,22 +73,22 @@
 				</div>
 				<ul class="nav nav-tabs nav-justified">
 					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admOpeInfoList">운영 정보 공개</a>
+						<a class="nav-link" href="admOpeInfoList">운영 정보 공개</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/admNoticeList">공지사항</a>
+						<a class="nav-link" href="admNoticeList">공지사항</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link active" href="#">민원</a>
+						<a class="nav-link active" href="admCsList">민원</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link disabled" href="#">투표</a>
+						<a class="nav-link disabled" href="admVoteList">투표</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link disabled" href="#">분실물 보관소</a>
+						<a class="nav-link disabled" href="${pageContext.request.contextPath}/itemLost/admLostList">분실물 보관소</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link disabled" href="#">일정 관리</a>
+						<a class="nav-link disabled" href="admSked">일정 관리</a>
 					</li>
 				</ul>
 				<div class="row">

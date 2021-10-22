@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 .tr_1 {
@@ -94,9 +93,9 @@ table {
 	<tbody>
 		<c:forEach var="notice" items="${list}">
 			<tr class="move tr_1" data-noticeNo="${notice.noticeNo}">
-				<td>${notice.noticeNo}</td>
-				<td>${notice.noticeTitle}</td>
-				<td>${notice.noticeDate}</td>
+				<td class="col-md-1">${notice.noticeNo}</td>
+				<td class="col-md-9" style="text-align: left;">${notice.noticeTitle}</td>
+				<td class="col-md-2">${notice.noticeDate}</td>
 			</tr>
 		</c:forEach>
 		</tbody>
