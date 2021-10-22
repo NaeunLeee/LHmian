@@ -8,7 +8,7 @@
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
 <link href='http://www.openhiun.com/hangul/nanumbarungothic.css' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -27,6 +27,10 @@
 	}
 	.padding-l110 {
 		padding-left: 110px;
+	}
+	
+	.nanum {
+		font-family: 'NanumSquare', sans-serif;
 	}
 	
 body {
@@ -261,12 +265,12 @@ body {
 <div class="col-md-5"> <img src="${pageContext.request.contextPath}/resources/images/gym/독서실6.jpg" style="width: 100%; height: 100%;"alt="" class="img-responsive img-circle"> </div>
 <div class="col-md-7 padding-l110">
 <div class="text-box">
-<h2 style="padding-bottom: 30px;">공부습관을 만들어주는 최적의 학습공간</h2>
-              <h4 style="line-height: 20px;">
+<h2 style="padding-bottom: 30px;" class="nanum">공부습관을 만들어주는 최적의 학습공간</h2>
+              <h4 class="nanum" style="line-height: 20px;">
               	LHmian의 독서실에서는 입주민들의 <br/>취향에 맞춘 다양한 공간형태를 제공하고 있습니다.<br>
 				온전히 공부에 집중할 수 있도록 만들어진<br> 최적화된 미래형 독서실입니다.		
               </h4><br/>
-					<ul class="iconlist gyellow" style="font-size: 18px;">
+					<ul class="nanum iconlist gyellow" style="font-size: 18px;">
 						<li><i class="fa fa-check"></i> 
 							쾌적한 환경
 						</li>
@@ -283,7 +287,7 @@ body {
               <br>
               <div class="divider-line dotted"></div>
               <br>
-              <p>운영시간 : 연중 무휴<br>
+              <p class="nanum">운영시간 : 연중 무휴<br>
 				(Break Time : 13:00 ~ 14:00)<br>
 				*운영시간은 변동될 수 있습니다.</p>
 				<button type="button" data-toggle="modal" data-target="#numModal" class="btn btn-dark" style="margin-right: 10px;">연락처</button>

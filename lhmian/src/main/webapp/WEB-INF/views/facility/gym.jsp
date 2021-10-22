@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <style>
@@ -33,6 +35,10 @@
 	}
 	.padding-l110 {
 		padding-left: 110px;
+	}
+	
+	.nanum {
+		font-family: 'NanumSquare', sans-serif;
 	}
 </style>
 </head>
@@ -300,12 +306,12 @@
 <div class="col-md-5"> <img src="${pageContext.request.contextPath}/resources/images/gym/헬스장6.jpg" style="width: 100%; height: 100%;" alt="" class="img-responsive img-circle"> </div>
 <div class="col-md-7 padding-l110">
 <div class="text-box">
-<h2 style="padding-bottom: 30px;">매일매일, 건강하게</h2>
-              <h4 style="line-heignt: 30px;">
+<h2 style="padding-bottom: 30px;" class="nanum">매일매일, 건강하게</h2>
+              <h4 style="line-heignt: 30px;" class="nanum">
               	LHmian의 피트니스에는 다양한 종류의<br/> 운동 기구가 준비되어 있습니다.<br>
 				탁 트인 전망을 감상하고, 숲 속 맑은 공기를 마시며<br> 몸 속의 에너지를 돋워 보세요.		
               </h4><br/>
-					<ul class="iconlist gyellow" style="font-size: 20px;">
+					<ul class="iconlist gyellow" style="font-size: 20px;" class="nanum">
 						<li><i class="fa fa-check"></i> 
 							쾌적한 환경
 						</li>
@@ -322,7 +328,7 @@
               <br>
               <div class="divider-line dotted"></div>
               <br>
-              <p>운영시간 : 연중 무휴<br>
+              <p class="nanum">운영시간 : 연중 무휴<br>
 				(Break Time : 13:00 ~ 14:00)<br>
 				문의 : 010-1234-1234<br>
 				*운영시간은 변동될 수 있습니다.</p>
