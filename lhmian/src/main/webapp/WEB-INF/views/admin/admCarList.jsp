@@ -105,15 +105,13 @@ td {
 							<tbody>
 								<c:forEach var="car" items="${list}">
 									<tr class="move tr_1">
-										<td><input type="checkbox" name="chk" id="${car.carNo}"
-											value="${car.carNo}"></td>
-										<td><c:set var="donghosu" value="${car.houseInfo}" />
+										<td class="col-md-1"><input type="checkbox" name="chk" id="${car.carNo}" value="${car.carNo}"></td>
+										<td class="col-md-3"><c:set var="donghosu" value="${car.houseInfo}" />
 											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 8)}호
 										</td>
-										<td>${car.carCode}</td>
-										<td>${car.carType}</td>
-										<td><fmt:formatDate value="${car.carDate}"
-												pattern="yy-MM-dd" /></td>
+										<td class="col-md-4">${car.carCode}</td>
+										<td class="col-md-2">${car.carType}</td>
+										<td class="col-md-2"><fmt:formatDate value="${car.carDate}" pattern="yy-MM-dd" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>

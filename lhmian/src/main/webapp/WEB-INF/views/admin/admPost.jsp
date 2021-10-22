@@ -178,12 +178,14 @@
 						<input type="radio" id="Y" name="type" value="Y" ${pageMaker.cri.type eq (',Y'||'T,Y'||'C,Y') ? checked : "" }> 
 						<label for="N">N</label>
 						<input type="radio" id="N" name="type" value="N" ${pageMaker.cri.type eq (',N'||'T,N'||'C,N') ? checked : "" }>
-						<button type="button" id="chkfalse" class="btn btn-dark" style="display: inline;">선택해제</button>
 						<input name="keyword" class="form-control" style="width: 200px; display: inline;" value="${pageMaker.cri.keyword}"> 
 						<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}"> 
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+						<input type="date" name="startDate" value="${pageMaker.cri.startDate}">
+						<input type="date" name="endDate" value="${pageMaker.cri.endDate}">
 						<input type="hidden" name="preType" id="preType" value="${type}">
-					<button type="submit" class="btn btn-dark" style="display: inline;">검색</button>
+						<button type="button" id="btnSearch" class="btn btn-dark" style="display: inline;">검색</button>
+						<button type="button" id="chkfalse" class="btn btn-dark" style="display: inline;">초기화</button>
 				</form>
 			</div>
 		</div>
@@ -361,5 +363,22 @@
 	 $("#chkfalse").on("click",function(){
 		 $("#Y").prop('checked',false);
 		 $("#N").prop('checked',false);
+		 $('[name="startDate"]').val("");
+		 $('[name="endDate"]').val("");
+		 $('[name="keyword"]').val("");
+		 $('[name="type"]').val("");
 	 });
+	 
+	 $("#btnSearch").on("click", function(e) {
+			e.preventDefault();
+			if ($('[name="keyword"]').val() == "" 
+					&& $("#Y").prop('checked') == false 
+					&& $("#N").prop('checked') == false
+					&& $('[name="startDate"]').val() == ""
+					&& $('[name="endDate"]').val() == "") {
+				location.href = "admPost";
+			} else {
+				actionForm.submit();
+			}
+		});
 </script>

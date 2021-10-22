@@ -138,6 +138,7 @@
 
 	<update id="update">
 		UPDATE COMMUNITY SET
+		COMM_TITLE = #{commTitle},
 		COMM_CONTENT = #{commContent},
 		COMM_UPDATE = sysdate
 		WHERE COMM_NO = #{commNo}

@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+
 <sec:authorize access="hasAnyRole('ROLE_OWNER', 'ROLE_MEMBER')">
 	<script>
 	
@@ -117,8 +116,9 @@
 
 p {
 	line-height: normal; 
-	font-weight: 600; 
+	font-weight: 900; 
 	font-size: 30px;
+	text-shadow: 2px 2px 6px black, 2px 2px 10px black;
 }
 .slide-2 {
 	top: 200px; 

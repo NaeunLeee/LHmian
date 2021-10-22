@@ -77,6 +77,7 @@ table {
 					<div class="pl-title-line-1"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">커뮤니티</h4>
 					<div class="clearfix"></div>
+					<p class="by-sub-title">모든 입주민들이 자유롭게 글을 남기고 의견을 나눌 수 있는 입주민 커뮤니티 공간입니다.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -98,12 +99,12 @@ table {
 				<tbody>
 					<c:forEach items="${list}" var="comm">
 						<tr class="move tr_1" data-commNo="${comm.commNo}">
-							<td>${comm.commNo}</td>
-							<td>${comm.id}</td>
-							<td>${comm.commTitle}</td>
-							<td><fmt:formatDate value="${comm.commDate}" type="both"
+							<td class="col-md-1">${comm.commNo}</td>
+							<td class="col-md-2">${comm.id}</td>
+							<td class="col-md-7" style="text-align: left;">${comm.commTitle}</td>
+							<td class="col-md-1"><fmt:formatDate value="${comm.commDate}" type="both"
 									pattern="yy-MM-dd" /></td>
-							<td>${comm.commHit}</td>
+							<td class="col-md-1">${comm.commHit}</td>
 					</c:forEach>
 				</tbody>
 			</table>

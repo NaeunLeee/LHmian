@@ -16,6 +16,7 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
 
 <!-- Template's stylesheets -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/fonts/Simple-Line-Icons-Webfont/simple-line-icons.css" media="screen" />
@@ -40,7 +41,17 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/gym.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mechanic.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<style type="text/css">
+	
+	body {
+		font-family: 'NanumSquare' !important;
+	}
+
+</style>
+
 <style>
+
     input[type="checkbox"] {
         -webkit-appearance: none;
         position: relative;

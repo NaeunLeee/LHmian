@@ -79,11 +79,24 @@ textarea:focus {
 			</div>
 		</div>
 	</section>
-	<hr>
-	<section class="section-light">
+<section class="sec-padding section-light">
+      <div class="container">
+         <div class="row">
+            <div class="col-xs-12 nopadding">
+               <div class="sec-title-container-padding-topbottom text-center">
+                  <div class="pl-title-line-1"></div>
+                  <h4 class="uppercase font-weight-7 less-mar-1">커뮤니티</h4>
+                  <div class="clearfix"></div>
+                  <p class="by-sub-title" style="font-size: 13px;">입주민들과 자유롭게 소통할 수 있는 공간입니다.</p>
+               </div>
+            </div>
+            <div class="clearfix"></div>
+         </div>
+      </div>
+
 		<div class="container">
 			<div class="row">
-				<div class="text-box white padding-4 col-7" style="margin: 80px 0;">
+				<div class="text-box white padding-4 col-7" >
 					<div class="text-box">
 						<textarea readonly id="commTitle" class="col-md-8 font-weight-7"
 							style="background-color: transparent; font-size: 20px">${list.commTitle}</textarea>
@@ -209,9 +222,9 @@ textarea:focus {
 			var str = "";
 			if(datas.cmtWriter == '<sec:authentication property="principal.username" />'){
 				str = '<input type="hidden" id="cmtNo2" value="'+ datas.cmtNo +'">'
-					+ '<button type="button" class="test" id="cmtUpdate" data-num="'+ datas.cmtNo + '">수정</button>'
+					+ '<button type="button" class="test btn btn-default" id="cmtUpdate" data-num="'+ datas.cmtNo + '">수정</button>'
 					+ '&nbsp'
-					+ '<button type="button" id="cmtDelete" onclick="button2_click(this);" data-num="'
+					+ '<button type="button" class="btn btn-default" id="cmtDelete" onclick="button2_click(this);" data-num="'
 					+ datas.cmtNo + '">삭제</button>'
 				}
 			return '<li class="left clearfix">'
