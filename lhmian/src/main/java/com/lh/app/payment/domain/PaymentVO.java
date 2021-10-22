@@ -10,7 +10,7 @@ import lombok.Data;
 public class PaymentVO {
 	private String payNo;
 	private String id;
-	@JsonFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date payDate;
 	private String payType;
 	private String payCat;

@@ -48,6 +48,7 @@ public class VisitController {
 		vo.setVisitWriter(user.getNAME());
 		vo.setWriterInfo(Integer.valueOf(user.getHOUSEINFO()));
 		model.addAttribute("list", visitService.getList(vo));
+		model.addAttribute("user", user.getHOUSEINFO());
 		return "no/visitList";
 	}
 
@@ -82,7 +83,8 @@ public class VisitController {
 	}
 
 	// 삭제
-	@PostMapping("/visitDelete")
+	@PostMapping("/no/visitDelete")
+	@ResponseBody
 	public String delete(VisitVO vo, RedirectAttributes rttr) {
 		int n = visitService.delete(vo);
 		if (n == 1) {

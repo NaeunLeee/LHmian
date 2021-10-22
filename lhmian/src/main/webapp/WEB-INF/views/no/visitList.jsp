@@ -1,29 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <style>
-/* .visitList {
-	margin: 30px;
-	padding: 10px;
-	height: 500px;
-} */
-
-/* table {
-	width: 900px;
-} */
-
-/* textarea {
-	width: 900px;
-} */
-
-/* .insert {
-	float: right;
-} */
-
-/* .vContent, .vUpdate{
-	display : none;
-} */
 .font-size-12 {
 	font-size: 12px;
 }
@@ -39,7 +19,6 @@
 textarea {
 	resize: none;		/* 사이즈 임의변경 불가 */
     border-radius: 10px;
-    /* border: 1px solid #f1f1f1; */
     border: 1px solid #e1dede;
 }
 
@@ -94,7 +73,6 @@ p {
       width: 100%;
       resize: none;
       overflow-y: hidden; /* prevents scroll bar flash */
-      /* padding: 1.1em; /* prevents text jump on Enter keypress */ 
       padding-top: 0.7em;
       padding-bottom: 0.2em;
       line-height: 1.6;
@@ -103,7 +81,6 @@ p {
 
 </style>
 <div class="col-xs-12 wrapper-all">
-<!-- 	<button class="write">방명록작성</button> -->
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 nopadding">
@@ -116,54 +93,31 @@ p {
 			</div>
 		</div>
 	<div>
-		<%-- <table class="col-xs-12" border="1">
-			<tr>
-				<th>방명록번호</th>
-				<th>세대정보</th>
-				<th>방명록내용</th>
-				<th>방명록작성일</th>
-				<th>방명록작성자</th>
-				<th>방명록작성세대</th>
-			</tr>
-			<c:forEach items="${list}" var="list">
-				<tr onclick="update('${list.visitNo}', '${list.visitContent}')">
-					<td>${list.visitNo}</td>
-					<td>${list.houseInfo}</td>
-					<td>${list.visitContent}</td>
-					<td>${list.visitDate}</td>
-					<td>${list.visitWriter}</td>
-					<td>${list.writerInfo}</td>
-				</tr>
-			</c:forEach>
-		</table> --%>
 	</div>
 	<br>
 	<div class="col-xs-12 container-insert" align="center">
-		<!-- <div class="container container-insert" align="center"> -->
 			<textarea rows="3" class="textarea-insert" id="visitContent" placeholder="우리는 서로 이웃입니다. 가는 말이 고와야 오는 말이 곱습니다."></textarea>
 			<br>
 			<button class="insert"><i class="far fa-paper-plane"></i></button>
-		<!-- </div> -->
 	</div>
-<!-- 	<div>
-		<textarea id="visitUpdate"></textarea>
-		<br>
-		<button class="update">수정</button>
-	</div> -->
 	<div class="col-sm-12 col-xs-12 comment-box">
 		<c:forEach items="${list}" var="list" varStatus="status">
 	      <div class="text-box border white padding-4">
         	  <div class="imgbox-medium left round overflow-hidden"><i class="fas fa-user-circle" style="font-size:10rem"></i></div>
        		  <div class="text-box-right more-padding-1">
-     		 	<h5 class="less-mar-1">${list.visitWriter}<span class="font-size-12"> (${list.houseInfo})</span>
+     		 	<h5 class="less-mar-1">${list.visitWriter}<span class="font-size-12"> (${list.writerInfo})</span>
      		 	</h5>
     		      <div class="blog-post-info">${list.visitDate}<span></span></div>
       		      <br/>
       		      <div class="wrap">
    			       <textarea name="visitContent" data-no="${list.visitNo}" disabled class="textarea-update">${list.visitContent}</textarea>
-	     		 	<button type="button" class="btn" onclick="update(this)">수정</button>
+   					<c:if test="${list.houseInfo != user}">
+		     		 	<button type="button" class="btn" onclick="update(this)">수정</button>
+   					</c:if>
+   					<c:if test="${list.houseInfo == user}">
+   						<button type="button" class="btn" onclick="del(${list.visitNo})">삭제</button>
+   					</c:if>
 	     		 </div>
-<!--           <a class="btn btn-border less-bor dark btn-small" href="#"><i class="fa fa-reply" aria-hidden="true"></i> &nbsp;Reply</a> -->
         	   </div>
           </div>
       </c:forEach>
@@ -190,15 +144,6 @@ $(document).ready(function() {
 	
 	let csrfHeaderName = "${_csrf.headerName}";
 	let csrfTokenValue = "${_csrf.token}";
-	
-	//작성버튼을 누르면 등록창이 나옴
- 	/* $('.write').on('click', function() {
-		$('.vContent').show();  */
-		
-		//수정창이 열려있다면 숨겨준다
-/*  		if($('.vUpdate').css("display") == 'block' ) {
-		$('.vUpdate').hide();
-		}  */
 		
 		//등록버튼을 누르면 작동
 		$('.insert').on('click', function() {
@@ -243,42 +188,27 @@ $(document).ready(function() {
 			updateForm.submit();
 		}
 	}
-
-/* 	function update(num, content) {
-		if (confirm('수정하시겠습니까?')) {
-			$('.vUpdate').show();
-			console.log(content);
-			$('#visitUpdate').attr("placeholder", content); */
-/* 			$('#visitUpdate').val(content); */
-
-			//등록창이 열려있다면 숨겨준다
-/*  			if($('.vContent').css("display") == 'block' ) {
-			$('.vContent').hide();
-			}  */
-		
-		
-		//수정버튼을 누르면 작동
-		/* $('.update').on('click', function() {
-			if (confirm('방명록을 수정하시겠습니까?')) {
-				$.ajax({
-					url : "visitUpdate",
-					method : "post",
-					beforeSend : function(xhr) {
-						xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-					},
-					data : {
-						visitContent : $('#visitUpdate').val(),
-						visitNo : num
-					},
-					success : function() {
-						alert(" 방명록이 등록되었습니다.");
-						location.reload();
-					}
-				});
-			};
-		}); */
+	
+	function del(num) {
+		console.log(num);
+		if (confirm('삭제하시겠습니까?')) {
+			$.ajax({
+				url : "visitDelete",
+				method : "post",
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+				},
+				data : {
+					visitNo : num
+				},
+				success : function() {
+					alert(" 방명록이 삭제되었습니다.");
+					location.reload();
+				}
+			});
+		}
+	}
 </script>
-
 <!-- Template's stylesheets -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/megamenu/stylesheets/screen.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme-default.css" type="text/css">
@@ -291,24 +221,17 @@ $(document).ready(function() {
 <link href="${pageContext.request.contextPath}/resources/js/tabs/css/responsive-tabs.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/js/cubeportfolio/cubeportfolio.min.css">
 <!-- Template's stylesheets END -->
-
 <link rel="stylesheet/less" type="text/css" href="${pageContext.request.contextPath}/resources/less/skin.less">
-
-
 <!-- Skin stylesheet -->
-
-
 <!-- Scripts --> 
 <script src="${pageContext.request.contextPath}/resources/js/jquery/jquery.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap/bootstrap.min.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/less/less.min.js" data-env="development"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/sticky/js/jquery.sticky.js"></script> 
 <!-- Scripts END --> 
-
 <!-- Template scripts --> 
 <script src="${pageContext.request.contextPath}/resources/js/megamenu/js/main.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/owl-carousel/owl.carousel.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/owl-carousel/custom.js"></script> 
 <script src="${pageContext.request.contextPath}/resources/js/tabs/js/responsive-tabs.min.js" type="text/javascript"></script> 
-
 <script src="${pageContext.request.contextPath}/resources/js/functions/functions.js"></script>

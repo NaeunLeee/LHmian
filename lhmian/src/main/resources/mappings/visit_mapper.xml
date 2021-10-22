@@ -58,4 +58,9 @@
 		VISIT_UPDATE = DEFAULT
 		WHERE VISIT_NO = #{visitNo}
 	</update>
+	
+	<delete id="delete">
+		DELETE FROM VISIT
+			WHERE VISIT_NO = #{visitNo}
+	</delete>
 </mapper>
