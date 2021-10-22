@@ -101,56 +101,58 @@
 					<button class="btn btn-gyellow" type="button" id="excelDownload">엑셀 다운로드</button>
 					<button class="btn btn-default" type="button" onclick="deleteGen()" id="deleteBtn" style="float:right;">세대 삭제</button>
 				</div>
-				<div class="text-box white padding-t40">
-					<form id="frm"> <!-- 0928 form 추가 -->
-						<table class="ui celled table" id="memberTable">
-							<thead>
-								<tr style="text-align: center;">
-									<th><input type="checkbox" name="chkAll" id="chkAll"></th>
-									<th>동호수</th>
-									<th>권한</th>
-									<th>세대주</th>
-									<th>전화번호</th>
-									<th>구성원 수</th>
-									<th>관리비</th>
-									<th>차량</th>
-								</tr>
-							</thead>
-							<tbody id="tbody">
-								<c:forEach var="gen" items="${list}">
-									<tr class="mem tr_1" data-houseInfo="${gen.houseInfo}">
-										<td onclick="event.cancelBubble=true;">
-											<input type="checkbox" name="chk" value="${gen.houseInfo}" data-houseInfo="${gen.houseInfo}" data-name="${gen.name}" data-phone="${gen.phone}">
-										</td>
-										<td>
-											<c:set var="donghosu" value="${gen.houseInfo}"/>
-											${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 7)}호
-										</td>
-										<td onclick="event.cancelBubble=true;">
-											<select name="position" class="position form-control" style="width: 100px;" data-id="${gen.id}">
-												<option value="LEADER" ${gen.position eq 'LEADER' ? 'selected' : ""}>동대표</option>
-												<option value="FOLLOWER" ${gen.position eq 'FOLLOWER' ? 'selected' : ""}>일반</option>
-											</select> 
-										</td>
-										<td>${gen.name}</td>
-										<td>
-											<c:set var="phone" value="${gen.phone}"/>
-											${fn:substring(phone, 0, 3)}-${fn:substring(phone, 3, 7)}-${fn:substring(phone, 7, 11)}
-										</td>
-										<td>${gen.familyNum}</td>
-										<td onclick="event.cancelBubble=true;" data-unpaid="${gen.unPaid }"> <!-- 버튼 클릭시 tr 클릭 이벤트가 동시에 발생하지 않도록 -->
-											${gen.unPaid }&nbsp;&nbsp;<button type="button" class="feeBtn btn btn-default" data-houseInfo="${gen.houseInfo}">조회</button>
-										</td>
-										<td onclick="event.cancelBubble=true;">
-											<button type="button" class="carBtn btn btn-default" data-houseInfo="${gen.houseInfo}">차량정보</button>
-										</td>
+				<div style="margin: 0px 0px 0px 20px;">
+					<div class="text-box white padding-t40">
+						<form id="frm"> <!-- 0928 form 추가 -->
+							<table class="ui celled table" id="memberTable">
+								<thead>
+									<tr style="text-align: center;">
+										<th><input type="checkbox" name="chkAll" id="chkAll"></th>
+										<th>동호수</th>
+										<th>권한</th>
+										<th>세대주</th>
+										<th>전화번호</th>
+										<th>구성원 수</th>
+										<th>관리비</th>
+										<th>차량</th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-					</form>
-					<br>
+								</thead>
+								<tbody id="tbody">
+									<c:forEach var="gen" items="${list}">
+										<tr class="mem tr_1" data-houseInfo="${gen.houseInfo}">
+											<td onclick="event.cancelBubble=true;">
+												<input type="checkbox" name="chk" value="${gen.houseInfo}" data-houseInfo="${gen.houseInfo}" data-name="${gen.name}" data-phone="${gen.phone}">
+											</td>
+											<td>
+												<c:set var="donghosu" value="${gen.houseInfo}"/>
+												${fn:substring(donghosu, 0, 3)}동 ${fn:substring(donghosu, 3, 7)}호
+											</td>
+											<td onclick="event.cancelBubble=true;">
+												<select name="position" class="position form-control" style="width: 100px;" data-id="${gen.id}">
+													<option value="LEADER" ${gen.position eq 'LEADER' ? 'selected' : ""}>동대표</option>
+													<option value="FOLLOWER" ${gen.position eq 'FOLLOWER' ? 'selected' : ""}>일반</option>
+												</select> 
+											</td>
+											<td>${gen.name}</td>
+											<td>
+												<c:set var="phone" value="${gen.phone}"/>
+												${fn:substring(phone, 0, 3)}-${fn:substring(phone, 3, 7)}-${fn:substring(phone, 7, 11)}
+											</td>
+											<td>${gen.familyNum}</td>
+											<td onclick="event.cancelBubble=true;" data-unpaid="${gen.unPaid }"> <!-- 버튼 클릭시 tr 클릭 이벤트가 동시에 발생하지 않도록 -->
+												${gen.unPaid }&nbsp;&nbsp;<button type="button" class="feeBtn btn btn-default" data-houseInfo="${gen.houseInfo}">조회</button>
+											</td>
+											<td onclick="event.cancelBubble=true;">
+												<button type="button" class="carBtn btn btn-default" data-houseInfo="${gen.houseInfo}">차량정보</button>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+						</form>
+						<br>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -240,7 +242,7 @@
 					<br>
 				</div>
 				<!-- Modal Footer -->
-				<div class="modal-footer">
+				<div class="modal-footer" style="margin-top: 10px;">
 					<div align="center">
 						<button type="button" id="closeCars" class="btn btn-default" data-dismiss="modal">확인</button>
 					</div>
@@ -489,6 +491,7 @@
 					}
 					str += '</tbody>';
 					str += '</table>';
+					str += '<button class="carList btn btn-default" type="button" style="float: right;">차량 관리</button>';
 					$('#cars').html(str);
 					$('#carListModal').show();
 				}
@@ -498,6 +501,11 @@
 			}
 		});
 		
+	});
+	
+	// 차량 관리로 이동
+	$(document).on('click', '.carList', function() {
+		$(location).attr('href', 'admCarList');
 	});
 	
 	// 차량 정보 모달 내리기...

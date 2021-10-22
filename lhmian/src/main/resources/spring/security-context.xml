@@ -53,7 +53,7 @@
 		<security:intercept-url pattern="/popup/**" access="permitAll()" />  
   		<security:intercept-url pattern="/kakaoLogin" access="permitAll()" />
 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/resident/conf*" access="hasRole('ROLE_LEADER')" />
+		<security:intercept-url pattern="/resident/conf*" access="hasAnyRole('ROLE_LEADER', 'ROLE_ADMIN')" />
   		<security:intercept-url pattern="/signIn/**" access="isAnonymous()" />   
   		<security:intercept-url pattern="/login/**" access="isAnonymous()" />
   		<security:intercept-url pattern="/find/**" access="isAnonymous()" />

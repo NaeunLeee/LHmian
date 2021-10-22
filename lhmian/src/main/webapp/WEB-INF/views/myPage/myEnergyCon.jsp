@@ -10,20 +10,26 @@
 	padding-bottom: 0
 }
 
-table {
-	text-align: center;
+img {
+	width : 100%;
+	height : 350%;
 }
 
-img {
-	width : 100px;
-	height : 100px;
+.checkBox {
+padding-right : 30%;
+}
+
+table {
+border : 1px;
 }
 
 th, td {
+text-align : center;
 width : 100px;
+height : 25px;
+border : 1px solid lightgray;
 }
 </style>
-
 <section>
 	<div class="pagenation-holder-no-bottom">
 		<div class="container">
@@ -56,22 +62,23 @@ width : 100px;
 
 	<div class="container" align="center">
 		<div class="row">
-			<div class="btn1 col-md-12" id="categoryDiv">
-				<label><input type="checkbox" class="check" id="eng" value="eng" >일반관리비</label>
-				<label><input type="checkbox" class="check" id="gas"value="gas" >가스</label>
-				<label><input type="checkbox" class="check" id="electric" value="electric" >전기</label>
-				<label><input type="checkbox" class="check" id="water" value="water" >수도</label>
-				<label><input type="checkbox" class="check" id="trash" value="trash" >생활폐기물</label>
-				<label><input type="checkbox" class="check" id="trashFood" value="trash_food" >음식물폐기물</label>
+			<div class="col-md-12" id="categoryDiv">
+			<div class="col-md-10 checkBox">
+				<label><input type="checkbox" class="check" id="eng" value="eng" >&nbsp;일반관리비&nbsp;&nbsp;</label>
+				<label><input type="checkbox" class="check" id="gas"value="gas" >&nbsp;가스&nbsp;&nbsp;</label>
+				<label><input type="checkbox" class="check" id="electric" value="electric" >&nbsp;전기&nbsp;&nbsp;</label>
+				<label><input type="checkbox" class="check" id="water" value="water" >&nbsp;수도&nbsp;&nbsp;</label>
+				<label><input type="checkbox" class="check" id="trash" value="trash" >&nbsp;생활폐기물&nbsp;&nbsp;</label>
+				<label><input type="checkbox" class="check" id="trashFood" value="trash_food" >&nbsp;음식물폐기물&nbsp;&nbsp;</label>
+			</div>
+			<div class="col-md-2" style="float:right; font-weight:bold; padding-left:50px;">
 				단위 : kWh
 			</div>
-			 <h4 class="uppercase">1년 그래프</h4>
-				<br/>
-			<canvas id="myBarChart"></canvas>
-			<div class="col-md-12 bar-chart"></div>
-			<div class="energyTable">
-				
 			</div>
+			<div class="col-md-12">
+				<canvas id="myBarChart"></canvas>
+			</div>
+			<div class="energyTable col-md-12"></div>
 		</div>
 	</div>
 </section>
@@ -167,7 +174,7 @@ width : 100px;
 					var temp = 12 - datas.length;
 					for(let i=0; i<temp; i++) {
 						data.push(0);
-						date.push(" ");
+						date.push(".");
 					}
 					for(let i=0; i<datas.length; i++) {
 						if(category == "eng") {
@@ -212,14 +219,14 @@ width : 100px;
 	
 		/* 바차트(월별) */
 		function bar(thisData, lastData) {
-			var ctx = document.getElementById('myBarChart').getContext('2d'); 
+			var ctx = document.getElementById('myBarChart'); 
 			var labelName = [];
 			var thisColor = [];
 			var lastColor = [];
 			for(let i=0; i<12; i++) {
 				labelName.push(" ");
-				thisColor.push('rgba(75,192,192,1)');
-				lastColor.push('rgba(215,236,162,1)');
+				thisColor.push('#EE514A');
+				lastColor.push('#087070');
 				var chart = new Chart(ctx, { 
 					// type : 'bar' = 막대차트를 의미합니다. 
 					type: 'bar', 
@@ -242,17 +249,16 @@ width : 100px;
 	
 		//위 데이터를 테이블로 뿌려줌
 		var tagBar = "";
-			tagBar += '<table border="1" id="chartTable">'
+			tagBar += '<table id="chartTable">'
 					+ '		<tr>'
-					+ '			<th>금년</th>';
+					+ '			<th rowspan="2">금년</th>';
 			
 			for(let i=0; i<thisDate.length; i++) {
-				tagBar += '<td>' + thisDate[i] + '</td>';
+				tagBar += '<td style="background-color:#e5e2e2;">' + thisDate[i] + '</td>';
 			}
 			
 			tagBar += '		</tr>'
-					+ '		<tr>'
-					+ '		<th></th>';
+					+ '		<tr>';
 					
 			for(let i=0; i<thisData.length; i++) {
 				tagBar += '<td>' + thisData[i] + '</td>';
@@ -260,15 +266,14 @@ width : 100px;
 	
 			tagBar += '		</tr>'
 			+ '				<tr>'
-			+ '					<th>작년</th>';
+			+ '					<th rowspan="2">작년</th>';
 			
 			for(let i=0; i<lastDate.length; i++) {
-				tagBar += '<td>' + lastDate[i] + '</td>';
+				tagBar += '<td style="background-color:#e5e2e2;">' + lastDate[i] + '</td>';
 			}
 			
 			tagBar += ' 	</tr>'
-					+ '		<tr>'
-					+ '		<th></th>';
+					+ '		<tr>';
 				
 			for(let i=0; i<lastData.length; i++) {
 				tagBar += '<td>' + lastData[i] + '</td>';
@@ -299,11 +304,11 @@ width : 100px;
 				 temp = parseInt(data.eq(i).text());
 				 //temp값에 따라 스마일마크 이미지 달라짐
 				if(temp < -10 ) {
-					tagBar += '<td>123<img src="${pageContext.request.contextPath}/resources/images/red.png"></td>';		
+					tagBar += '<td><img src="${pageContext.request.contextPath}/resources/images/red.png"></td>';		
 				}else if(temp < 10) {
-					tagBar += '<td>234<img src="${pageContext.request.contextPath}/resources/images/yellow.png"></td>';
+					tagBar += '<td><img src="${pageContext.request.contextPath}/resources/images/yellow.png"></td>';
 				}else{
-					tagBar += '<td>345<img src="${pageContext.request.contextPath}/resources/images/green.png"></td>';
+					tagBar += '<td><img src="${pageContext.request.contextPath}/resources/images/green.png"></td>';
 				} 
 			}
 			tagBar += '	</tr>';

@@ -42,8 +42,8 @@ th {
 	color: black;
 }
 
-.pagination {
-	margin-left: 25%;
+#pageButton {
+	text-align : center;
 }
 
 .modal-header {
@@ -136,7 +136,7 @@ th {
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	</form>
 	<div id="pageButton" style="margin: auto; width: 50%">
-		<ul class="pagination hover-orange">
+		<ul class="pagination hover-orange" align="center">
 			<c:if test="${pageMaker.prev == true}">
 				<li>
 					<a href="${pageMaker.startPage-1}">
@@ -247,10 +247,10 @@ th {
 		//결제당일이 아니면 결제취소 불가
 		var today = new Date();
 		let year = today.getFullYear() + "";
-		let month = today.getMonth() + "";
+		let month = (today.getMonth() + 1) + "";
 		let day = today.getDate() + "";
 		today = year + "-" + month + "-" + day;
-		if (date == today) {
+		if (date != today) {
 			$('#cancelBtn').hide();
 		}
 	};

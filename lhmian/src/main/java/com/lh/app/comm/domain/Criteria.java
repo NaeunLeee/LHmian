@@ -21,6 +21,9 @@ public class Criteria {
    private String preType;
    private String preKey;
    
+   private String startDate;
+   private String endDate;
+   
    public String[] getTypeArr() {
 	   return type == null ? new String[]{} : type.split("");
    }

@@ -14,6 +14,13 @@
 	.trans-15 {
 		background-color: rgba(0, 0, 0, 0.15) !important;
 	}
+	
+	p {
+    	margin: 0 0 10px 30px;
+    }
+    .no-margin{
+    	margin: 0
+    }
 </style>
 
 
@@ -44,6 +51,7 @@
 					<div class="sec-title-container-padding-topbottom text-center">
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">관리 사무소</h4>
+						<p class="by-sub-title no-margin"></p>						
 						<div class="clearfix"></div>
 						<!-- <p class="by-sub-title">관리 사무소 설명....</p> -->
 					</div>
@@ -64,7 +72,7 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>멘트가 없어요</p>
+						<p>LHmian의 공지사항을 확인하세요.</p> <br/>
 					</div>
 				</div>
 				<!--end item-->
@@ -79,7 +87,9 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>멘트 좀 짜주실 분</p>
+						<p> 민원사항을 자유롭게 남겨주세요.
+						LHmian은 주민들의 불편함을 최소화하고자 최선을 다하고 있습니다.
+						</p>
 					</div>
 				</div>
 				<!--end item-->
@@ -94,7 +104,8 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>제발~~</p>
+						<p>LHmian의 일정을 한눈에 확인하실 수 있습니다.</p>
+						<br />
 					</div>
 				</div>
 				<!--end item-->
@@ -112,7 +123,8 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>please~~~~~~</p>
+						<p>습득하여 보관하고있는 분실물 리스트입니다.</p>
+						<br />
 					</div>
 				</div>
 				<!--end item-->

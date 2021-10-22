@@ -75,7 +75,7 @@
 						<ol class="breadcrumb-gray">
 							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
 							<li><a href="${pageContext.request.contextPath}/resident/resident">입주민 공간</a></li>
-							<li class="current"><a href="#">입주자 대표회의</a></li>
+							<li class="current"><a href="${pageContext.request.contextPath}/resident/confList">입주자 대표회의</a></li>
 						</ol>
 					</div>
 					<div class="col-md-6"></div>
@@ -84,8 +84,7 @@
 				<div class="col-md-6"></div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 <section class="sec-padding section-light">
 	<div class="container">
@@ -95,7 +94,7 @@
 					<div class="pl-title-line-1"></div>
 					<h4 class="uppercase font-weight-7 less-mar-1">입주자 대표회의</h4>
 					<div class="clearfix"></div>
-					<p class="by-sub-title" style="font-size: 13px;">입주자 대표회의... 어쩌구..ㅋㅋ</p>
+					<p class="by-sub-title" style="font-size: 13px;">동대표 주민들이 모여 회의하는 공간입니다.</p>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -113,11 +112,11 @@
 				</tr>
 				<c:forEach items="${list}" var="conf">
 					<tr class="tr_1 move" data-confNo="${conf.confNo}">
-						<td>${conf.confNo}</td>
-						<td>${conf.confTitle}</td>
-						<td>${conf.confWriter}</td>
-						<td><fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /></td>
-						<td>${conf.confHit}</td>
+						<td class="col-md-2">${conf.confNo}</td>
+						<td class="col-md-7" style="text-align: left;">${conf.confTitle}</td>
+						<td class="col-md-1">${conf.confWriter}</td>
+						<td class="col-md-1"><fmt:formatDate value="${conf.confDate}" pattern="yy-MM-dd" /></td>
+						<td class="col-md-1">${conf.confHit}</td>
 					</tr>
 				</c:forEach>
 			</table>

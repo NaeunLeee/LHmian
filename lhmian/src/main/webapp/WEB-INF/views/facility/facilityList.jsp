@@ -8,6 +8,12 @@
 	.ce4-feature-box-12 {
 		cursor: pointer;
 	}
+	p {
+    	margin: 0 0 10px 30px;
+    }
+	.no-margin {
+		margin: 0px;
+	}
 </style>
 
 </head>
@@ -38,7 +44,7 @@
 						<div class="pl-title-line-1"></div>
 						<h4 class="uppercase font-weight-7 less-mar-1">편의시설</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">LHmian의</p>
+						<p class="by-sub-title no-margin">LHmian에서 운영하고 있는 주민 공동 시설입니다.</p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -56,8 +62,7 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>LHmian에서 운영하고 있는 독서실입니다. 연락처 확인 및 등록 가능합니다.</p>
 					</div>
 				</div>
 				<!--end item-->
@@ -72,8 +77,8 @@
 							<div class="title-line"></div>
 						</div>
 						<br />
-						<p>Lorem ipsum dolor sit amet sit amet justo et elit ipsum
-							dolor consectetuer adipiscing elit Suspendisse.</p>
+						<p>LHmian에서 운영하고 있는 피트니스 센터입니다. 헬스장 이용 및 다양한 프로그램
+						에 참여하실 수 있습니다.</p>
 					</div>
 				</div>
 				<!--end item-->

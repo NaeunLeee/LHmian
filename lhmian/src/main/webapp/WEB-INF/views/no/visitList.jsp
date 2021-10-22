@@ -85,8 +85,20 @@ p {
     background-color: #f5f5f5;
 }
 .textarea-update::-webkit-scrollbar { 
-    display: none !important;
-
+    	display: none !important;
+}
+.wrap {
+      width: 95%;
+    }
+.wrap textarea {
+      width: 100%;
+      resize: none;
+      overflow-y: hidden; /* prevents scroll bar flash */
+      /* padding: 1.1em; /* prevents text jump on Enter keypress */ 
+      padding-top: 0.7em;
+      padding-bottom: 0.2em;
+      line-height: 1.6;
+    }
 
 
 </style>
@@ -97,7 +109,6 @@ p {
 				<div class="col-xs-12 nopadding">
 					<div class="text-center">
 						<div class="pl-title-line-1"></div>
-						<h4 class="font-weight-6">아직 미완성.. </h4>
 						<h4 class="font-weight-6">자유롭게 이야기를 나누어 보세요</h4>
 					</div>
 				</div>
@@ -148,8 +159,10 @@ p {
      		 	</h5>
     		      <div class="blog-post-info">${list.visitDate}<span></span></div>
       		      <br/>
+      		      <div class="wrap">
    			       <textarea name="visitContent" data-no="${list.visitNo}" disabled class="textarea-update">${list.visitContent}</textarea>
 	     		 	<button type="button" class="btn" onclick="update(this)">수정</button>
+	     		 </div>
 <!--           <a class="btn btn-border less-bor dark btn-small" href="#"><i class="fa fa-reply" aria-hidden="true"></i> &nbsp;Reply</a> -->
         	   </div>
           </div>
@@ -162,6 +175,15 @@ p {
 		<input type="hidden" name="visitNo" value="">
 	</form>
 <script>
+
+$(document).ready(function() {
+  $('.wrap').on( 'keyup', 'textarea', function (e){
+    $(this).css('height', 'auto' );
+    $(this).height( this.scrollHeight );
+  });
+  $('.wrap').find( 'textarea' ).keyup();
+});
+
 	//세대정보 가져오기(주소에서)
 	var house = window.location.href;
 	house = house.substr(-7);
