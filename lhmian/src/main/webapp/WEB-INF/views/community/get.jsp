@@ -371,9 +371,10 @@ textarea:focus {
 						+ '</textarea>'
 					
 					$("#test0").html(str2);
-
+					
+					// 10/22 수정
 					$(document)
-						.one("click",
+						.on("click",
 							"#cmtUpdate2",
 							function () {
 							var cmtContent = $(this).parents("div").children("#test0").children(".test").val();
@@ -399,7 +400,7 @@ textarea:focus {
 												data) {
 												console
 													.log(data);
-												showList();
+												location.reload();
 
 											},
 											error: function () {
