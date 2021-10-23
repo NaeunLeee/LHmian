@@ -455,8 +455,7 @@
 							<div class="section">
 								<label for="id">
 									<h6 class="less-mar-4">
-										<span class="font-weight-5">아이디 <span
-											class="font-weight-3">*</span></span>
+										<span class="font-weight-5">아이디</span>
 									</h6>
 								</label> <label class="field prepend-icon"> <input type="text"
 									name="id" id="id" class="gui-input" placeholder="아이디"

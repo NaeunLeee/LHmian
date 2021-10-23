@@ -302,7 +302,7 @@
 							</div>
 							<button type="button" id="signUp" name="signUp"
 								class="btn btn-gyellow btn-fullwidth">회원가입</button>
-							<button type="button" onclick="location.href='login'"
+							<button type="button" onclick="location.href='/app/login'"
 								class="btn btn-dark-3 btn-fullwidth">취소</button>
 						</form>
 					</div>
