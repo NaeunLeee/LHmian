@@ -291,8 +291,8 @@
 	let currentMfTotal = ${currentFee.mfTotal};
 	//저번달 관리비 합계
 	const lastMfTotal = ${currentFee.lastMonthTotal};
-	//관리비 전체 평균
-	const mfAvg = ${avg.mfAvg};
+	//최근 달 관리비 평균
+	let mfAvg = ${avg.mfAvg};
 	//월
 	let month = ${currentFee.month};
 	let date = ${currentFee.mfDate};
@@ -359,7 +359,7 @@
 				$('#mfTrash').text(comma(data.mfTrash));
 				$('#mfTotal').text(comma(data.mfTotal));
 				$('#month').text(data.month + "월 관리비");
-				avgDiff(mfAvg, data.mfTotal);
+				
 				compareLastMonth(data.lastMonthTotal, data.mfTotal);
 				pieChart(data);
 				
@@ -409,9 +409,25 @@
 				mfDate: date
 			},
 			success: function(data) {
-				console.log(data);
-				console.log
 				date % 1 == 1 ? myBarChart(data.oddAvg, currentMfTotal) : myBarChart(data.evenAvg, currentMfTotal)
+			}
+			
+		})	
+		
+		$.ajax({
+			url: 'monthAvg',
+			type: 'POST',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			data: {
+				mfDate: date
+			},
+			success: function(data) {
+				mfAvg = data.mfAvg;
+				console.log(mfAvg);
+				$('#mfAvg').val(mfAvg);
+				avgDiff(mfAvg, currentMfTotal);
 			}
 			
 		})	

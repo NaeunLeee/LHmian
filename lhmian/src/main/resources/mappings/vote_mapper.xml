@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lh.app.vote.mapper.VoteMapper">
-
-	<select id="voteList" resultType="VoteVO">
-		SELECT VOTE_NO, 
-	       VOTE_TITLE, 
-	       VOTE_START,
-	       VOTE_END,
-	       UPLOAD_IMG,
-	       ROUND(VOTE_COUNT / (SELECT COUNT(*) FROM MEMBER WHERE AUTHOR = 'OWNER') * 100, 1) PERCENT,
-	       CASE WHEN SYSDATE BETWEEN VOTE_START AND VOTE_END THEN '진행중'
-                WHEN SYSDATE <![CDATA[<]]> VOTE_START THEN '진행예정'
-	       ELSE '투표마감' END AS OVER
-		FROM VOTE
-		ORDER BY (CASE OVER WHEN '진행중' THEN 1 WHEN '진행예정' THEN 2 ELSE 3 END), VOTE_END DESC
-	</select>
 	
 	<select id="voteSelect" resultType="VoteVO">
 		SELECT V.VOTE_NO, 
@@ -51,6 +37,20 @@
 			   SYSDATE - V.VOTE_END
 		FROM VOTE V
 		WHERE V.VOTE_NO = #{voteNo}
+	</select>
+	
+	<select id="voteList" resultType="VoteVO">
+		SELECT VOTE_NO, 
+	       VOTE_TITLE, 
+	       VOTE_START,
+	       VOTE_END,
+	       UPLOAD_IMG,
+	       ROUND(VOTE_COUNT / (SELECT COUNT(*) FROM MEMBER WHERE AUTHOR = 'OWNER') * 100, 1) PERCENT,
+	       CASE WHEN SYSDATE BETWEEN VOTE_START AND VOTE_END THEN '진행중'
+                WHEN SYSDATE <![CDATA[<]]> VOTE_START THEN '진행예정'
+	       ELSE '투표마감' END AS OVER
+		FROM VOTE
+		ORDER BY (CASE OVER WHEN '진행중' THEN 1 WHEN '진행예정' THEN 2 ELSE 3 END), VOTE_END DESC
 	</select>
 	
 	<select id="voteResult" resultType="VoteContentsVO">

@@ -106,7 +106,7 @@
 				<div></div><br><br>
 				<div class="sec-title-container less-padding-3 text-left padding-l40">
 					<div class="title-line-3 align-left"></div>
-					<h4 class="uppercase font-weight-7 less-mar-1">게시글 관리</h4>
+					<h4 class="uppercase font-weight-7 less-mar-1">투표 관리</h4>
 					<div class="clearfix"></div>
 						<p class="by-sub-title">투표 현황을 파악하고 투표를 등록합니다. 수정/삭제는 불가능합니다.</p>
 					</div>

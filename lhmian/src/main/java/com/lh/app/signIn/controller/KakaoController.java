@@ -110,19 +110,18 @@ public class KakaoController {
 		System.out.println("kakao id : " + kakaoId);
 		System.out.println("kakao email : " + kakaoProfile.getKakao_account().getEmail());
 
-		//회원가입 이력이 있는지 조회하는 로직
-		
+		//회원가입 이력이 있는지 조회
 		String page="";
 		
 		//가입 이력이 있으면 1, 없으면 0
 		int kakaoIdCheck = signInService.kakaoIdCheck(kakaoId);
 		
-		// 
+		//가입 이력이 없으면 회원가입으로
 		if (kakaoIdCheck == 0) {
 			model.addAttribute("kakaoId", kakaoId);
 			page = "signIn/leaderStep1";
+		//있으면 로그인 후 메인 페이지로
 		} else {
-			//로그인을 시켜버려야....하는데..............어떻게하지??............
 			//패스워드 해시 암호화
 			 BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	         CustomUserDetails customUserDetails = new CustomUserDetails();

@@ -226,7 +226,6 @@
 					const donghosu = String(data.houseInfo);
 					const dong = donghosu.substring(0, 3);
 					const hosu = donghosu.substring(3, 7);
-					//프론트에서 인증하자마자 동호수 인풋박스가 뜨도록 하기
 					
 					$('.donghosu').css('display', 'block');
 					const box = '<div class="section">'

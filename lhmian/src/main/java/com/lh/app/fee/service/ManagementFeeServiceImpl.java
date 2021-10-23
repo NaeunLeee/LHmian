@@ -26,9 +26,9 @@ public class ManagementFeeServiceImpl implements ManagementFeeService {
 	}
 
 	@Override
-	public ManagementFeeVO selectAvg() {
+	public ManagementFeeVO selectAvg(ManagementFeeVO vo) {
 		// TODO Auto-generated method stub
-		return managementFeeMapper.selectAvg();
+		return managementFeeMapper.selectAvg(vo);
 	}
 
 	@Override
@@ -59,6 +59,12 @@ public class ManagementFeeServiceImpl implements ManagementFeeService {
 	public ManagementFeeVO samePyeongAvg(ManagementFeeVO vo) {
 		// TODO Auto-generated method stub
 		return managementFeeMapper.samePyeongAvg(vo);
+	}
+
+	@Override
+	public ManagementFeeVO selectCurrentAvg() {
+		// TODO Auto-generated method stub
+		return managementFeeMapper.selectCurrentAvg();
 	}
 
 }
