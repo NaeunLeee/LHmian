@@ -32,18 +32,26 @@
 		font-size: 16px !important;
 	}
 	
-	.btn {
-		margin-top: 18px !important;
-	}
 	.input-text {
-		width: 50%;
-	}
-	.container {
 		width: 70%;
 	}
-	.align-right {
-		test-align: right;
+	.container {
+		width: 50%;
 	}
+	th {
+		width: 23%;
+		vertical-align: middle !important;
+		padding: 15px !important;
+	}
+	td {
+		vertical-align: middle !important;
+		padding: 15px !important;
+	}
+	
+	.margin-l10{
+		margin-left: 10px
+	}
+
 </style>
 <!-- 10/14 디자인 수정: 이나은 -->
 
@@ -81,46 +89,45 @@
 			<table class="table">
 				<tbody>
 					<tr>
-						<th class="align-right">아이디</th>
+						<th>아이디</th>
 						<td><input type="text" class="input-text form-control" id="id" name="id" aria-describedby="basic-addon3" value="${info.id}" disabled="disabled"></td>
 					</tr>
 						<!-- 10/05 비밀번호, 전화번호, 차량정보 수정 /지우고 덮어씌우는걸 추천-->
 					<tr>
-						<th class="align-right">현재 비밀번호</th>
-						<td><input type="password" class="input-text form-control" id="pw" name="pw" aria-describedby="basic-addon3"><br></td>
+						<th>현재 비밀번호</th>
+						<td><input type="password" class="input-text form-control" id="pw" name="pw" aria-describedby="basic-addon3"></td>
 					</tr>
 					<tr>
-						<th class="align-right">새 비밀번호</th>
-						<td><input type="password" class="input-text form-control" id="newpw" name="newpw" aria-describedby="basic-addon3" style="">
+						<th>새 비밀번호</th>
+						<td><input type="password" class="input-text form-control" id="newpw" name="newpw" aria-describedby="basic-addon3" placeholder="영문자, 숫자, 특수문자를 모두 포함하여 8~12자로 입력해주세요">
 							<!-- 10/15 추가 -->
-							<span>영문자, 숫자, 특수문자를 모두 포함하여 8~12자로 입력해주세요</span>
 							<div class="pw-msg" style="display: none"></div>
 						</td>
 					</tr>
 					<tr>
-						<th class="align-right">새 비밀번호 확인</th>
+						<th>새 비밀번호 확인</th>
 						<td><input type="password" class="input-text form-control col-lg-1" id="newpwcheck" name="newpwcheck" aria-describedby="basic-addon3">
-							<div class="pwcf-msg" style="display: none"></div> <br>
-							<br>
-							<button type="button" class="btnPwcn btn btn-default">비밀번호 변경</button>
+							<button type="button" class="btnPwcn btn btn-default margin-l10">비밀번호 변경</button>
+							<div class="pwcf-msg" style="display: none"></div>
 						</td>
 					</tr>
 					<tr>
-						<th class="align-right">휴대전화</th>
-						<td><input type="text" id="Phone" name="Phone" class="input-text form-control" value="${info.phone}"><br>
-							<div class="pw-msg2" style="display: none"></div><br>
-							<button type="button" id="btnPhone1" class="btnPhone1 btn btn-default">수정</button></td>
+						<th>휴대전화</th>
+						<td><input type="text" id="Phone" name="Phone" class="input-text form-control col-lg-1" value="${info.phone}">
+							<button type="button" id="btnPhone1" class="btnPhone1 btn btn-default margin-l10">수정</button>
+							<div class="pw-msg2" style="display: none"></div>
+						</td>
 					</tr>
 					<c:forEach var="car" items="${car}">
 						<tr>
-							<th class="align-right">차량정보</th>
+							<th>차량정보</th>
 							<td><span>차종</span> <input type="text"
 								class="input-text form-control" id="carCode" name="carCode"
 								aria-describedby="basic-addon3" disabled="disabled"
 								value="${car.carCode}"><br> <span>차번호</span> <input
 								type="text" class="input-text form-control" id="carType"
 								name="carType" aria-describedby="basic-addon3"
-								disabled="disabled" value="${car.carType}"><br></td>
+								disabled="disabled" value="${car.carType}"></td>
 						</tr>
 					</c:forEach>
 				</tbody>
