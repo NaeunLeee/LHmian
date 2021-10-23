@@ -172,7 +172,7 @@
 					<select name="type" class="form-control" style="width: 100px; display: inline;">
 						<option value="" ${empty pageMaker.cri.type ? selected : "" }>선택</option>
 						<option id="T" value="T" ${empty type == 'T' ? selected : "" }>세대번호</option>
-						<option id="C" value="C" ${empty type == 'C' ? selected : "" }>도착날짜</option>
+		
 					</select> 
 						<label for="Y">Y</label>
 						<input type="radio" id="Y" name="type" value="Y" ${pageMaker.cri.type eq (',Y'||'T,Y'||'C,Y') ? checked : "" }> 
