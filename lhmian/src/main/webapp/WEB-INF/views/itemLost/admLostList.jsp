@@ -348,7 +348,7 @@ function lostModify(n) {
 				+  '					</tr>'
 				+  '					<tr class="tr-h60">'
 				+  '					  <th>수령여부</th>'
-				+  '					  <td><select class="form-control" name="lostStatus" style="width:90px; height:">'
+				+  '					  <td><select class="form-control" name="lostStatus" style="width:105px; height:">'
 				+  '					 		 <option value="' + data.lostStatus + '">' + data.lostStatus + '</option>'
 				+  '					 		 <option value="수령완료">수령완료</option></select></td>'
 				+  '					</tr>'
