@@ -13,7 +13,7 @@
                 WHEN SYSDATE <![CDATA[<]]> VOTE_START THEN '진행예정'
 	       ELSE '투표마감' END AS OVER
 		FROM VOTE
-		ORDER BY (CASE OVER WHEN '진행예정' THEN 1 WHEN '진행중' THEN 2 ELSE 3 END), VOTE_END DESC
+		ORDER BY (CASE OVER WHEN '진행중' THEN 1 WHEN '진행예정' THEN 2 ELSE 3 END), VOTE_END DESC
 	</select>
 	
 	<select id="voteSelect" resultType="VoteVO">

@@ -124,6 +124,9 @@ h3 {
 	</section>
 </body>
 <script>
+
+	
+
 	$.fn.extend({
 		'progressbar' : function(config) {
 			var opt = $.extend({

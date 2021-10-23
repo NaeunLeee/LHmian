@@ -489,7 +489,7 @@
 		buyer_name : name,
 		buyer_tel : phone,
 		buyer_email : "8841258@naver.com",
-		amount : 100, //판매 가격
+		amount : currentMfTotal, //판매 가격
 		}, function(rsp) {
 				if(rsp.success){
 		        	alert("결제가 완료되었습니다."); 

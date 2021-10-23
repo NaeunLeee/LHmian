@@ -137,7 +137,7 @@
 							</thead>
 							<tbody>
 								<c:forEach var="list" items="${list }">
-									<tr class="tr_1">
+									<tr class="tr_1" onclick="">
 										<td class="col-md-2">
 											<c:if test="${list.over eq '투표마감'}">
 												<a class="btn btn-medium btn-grey xround-5" style="color: #727272;">${list.over }</a>
