@@ -101,9 +101,9 @@ table {
 					<br> <br>
 					<div class="sec-title-container less-padding-3 text-left">
 						<div class="title-line-3 align-left"></div>
-						<h4 class="uppercase font-weight-7 less-mar-1">게시글 관리</h4>
+						<h4 class="uppercase font-weight-7 less-mar-1">투표 관리</h4>
 						<div class="clearfix"></div>
-						<p class="by-sub-title">게시글을 조회 및 수정합니다.</p>
+						<p class="by-sub-title">투표를 등록할 수 있습니다.</p>
 					</div>
 
 					<ul class="nav nav-tabs nav-justified">
@@ -111,13 +111,13 @@ table {
 							<a class="nav-link" href="admOpeInfoList">운영 정보 공개</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" href="admNoticeList">공지사항</a>
+							<a class="nav-link" href="admNoticeList">공지사항</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="admCsList">민원</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link disabled" href="admVoteList">투표</a>
+							<a class="nav-link active disabled" href="admVoteList">투표</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link disabled" href="${pageContext.request.contextPath}/itemLost/admLostList">분실물 보관소</a>

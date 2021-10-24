@@ -36,7 +36,7 @@ public class ManagementFeeController {
 			model.addAttribute("list", managementFeeService.selectFeeList(vo));
 			model.addAttribute("currentFee", managementFeeService.selectCurrentFee(vo));
 			model.addAttribute("currentFeeJson", gson.toJson(managementFeeService.selectCurrentFee(vo)));
-			model.addAttribute("avg", managementFeeService.selectAvg());
+			model.addAttribute("avg", managementFeeService.selectCurrentAvg());
 			model.addAttribute("sixMonth", gson.toJson(managementFeeService.sixMonthsCurrent(vo)));
 		}
 
@@ -68,6 +68,13 @@ public class ManagementFeeController {
 	public ManagementFeeVO samePyeongAvg(ManagementFeeVO vo) {
 		
 		return managementFeeService.samePyeongAvg(vo);
+	}
+	
+	@PostMapping("/monthAvg")
+	@ResponseBody
+	public ManagementFeeVO monthAvg(ManagementFeeVO vo) {
+		
+		return managementFeeService.selectAvg(vo);
 	}
 	
 }

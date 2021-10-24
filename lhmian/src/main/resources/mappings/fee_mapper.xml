@@ -65,6 +65,15 @@
         AND TO_CHAR(SYSDATE, 'YYMM')
 	</select>
 	
+	<select id="selectCurrentAvg" resultType="ManagementFeeVO">
+		SELECT TRUNC(AVG(MF_TOTAL)) AS MF_AVG
+		FROM MANAGEMENT_FEE 
+		WHERE MF_DATE = (
+						 SELECT MAX(MF_DATE) 
+						 FROM MANAGEMENT_FEE
+						 )
+	</select>
+	
 	<select id="selectFee" resultType="ManagementFeeVO">
 		SELECT /*+ INDEX_DESC(MANAGEMENT_FEE IDX) */
 			   MF_DATE,
@@ -129,7 +138,7 @@
 	
 	<select id="selectAvg" resultType="ManagementFeeVO">
 		SELECT TRUNC(AVG(MF_TOTAL)) AS MF_AVG
-		FROM MANAGEMENT_FEE
+		FROM MANAGEMENT_FEE WHERE MF_DATE = #{mfDate}
 	</select>
 	
 	<select id="admSelectFeeList" resultType="ManagementFeeVO">
